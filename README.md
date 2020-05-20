@@ -21,16 +21,16 @@ Current Known Issues:
 * Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
 
-Info: https://github.com/Moreina/planner#planner
+Info: https://github.com/BetweenWalls/planner#planner
 
 Text below this is formatted for the github info page
 ------------------------------------------>
 
-# [Planner](https://moreina.github.io/planner/)
+# [Planner](https://BetweenWalls.github.io/planner/)
 
 Character Skill Planner for Diablo 2: Path of Diablo
 
-### [Download](https://github.com/Moreina/planner/archive/master.zip)
+### [Download](https://github.com/BetweenWalls/planner/archive/master.zip)
 
 ### Features So Far:
 * all skill info up to level 60
@@ -69,7 +69,7 @@ Character Skill Planner for Diablo 2: Path of Diablo
 ### Feedback:
 [Reddit Thread](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/)
 
-[Github 'Wiki'](https://github.com/Moreina/planner/wiki/Feedback-for-Skill-Planner)
+[Github 'Wiki'](https://github.com/BetweenWalls/planner/wiki/Feedback-for-Skill-Planner)
 
 This project will likely be made open-source at some point, but if you want to contribute directly before that point, any improvements would be welcome.
 For anyone curious about the program code, the files can be edited with any text editor (I use Notepad++):
