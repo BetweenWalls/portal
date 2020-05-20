@@ -1,0 +1,270 @@
+.dropdown-skill {
+  background-color: black;
+  color: gray;
+  border-color: #333;
+}
+.no-selection {
+-webkit-user-select: none; /* for safari & chrome browsers */
+-moz-user-select: none; /* for mozilla browsers */
+-ms-user-select: none; /* for IE10+ */
+  background-color: black;
+}
+.hover {
+  position: absolute;
+  text-align: center;
+  color: white;
+  background-color: black;
+  opacity: 0.85;
+  padding: 5px;
+  z-index: 7;
+}
+.hover-item {
+  position: absolute;
+  text-align: left;
+  color: white;
+  background-color: black;
+  opacity: 0.85;
+  padding: 5px;
+  z-index: 6;
+  width: 288px;
+}
+.point {
+  position: absolute;
+  text-align: center;
+  color: white;
+  width: 30px;
+}
+.inventory {
+  position: relative;
+  width: 303px;
+  height: 300px;
+  margin-right: 13px;
+  float: right;
+  z-index: 3;
+}
+.inv-charms {
+  position: relative;
+  margin-left:2px;
+  width: 300px;
+  height: 185px;
+  float: left;
+  z-index: 3;
+}
+.inv-equipment {
+  position: relative;
+  z-index: 3;
+}
+.text {
+  position: absolute;
+  text-align: center;
+  color: white;
+  width: 100px;
+}
+.green {
+  text-align: center;
+  color: #00f000;
+}
+.green-name {
+  text-align: center;
+  color: #00f000;
+/*  font-weight: bold;	*/
+}
+.gray {
+  color: gray;
+  z-index: 3;
+}
+.gray-all {
+  color: #bbb;
+  z-index: 3;
+  background-color: #161616;
+}
+.background {
+  background-color: black;
+}
+.dropdown-character {
+  color: #ddd;
+  position: absolute;
+  left: 68px;
+  top: 14px;
+  opacity: 0;
+  border-color: black;
+  background-color: black;
+  padding: 0px;
+  width: 97px;
+  height: 38px;
+  z-index: 4;
+}
+.dropdown select {
+  color: #ddd;
+  background-color: black;
+  padding-left: 7px;
+  width: 200px;
+  height: 29px;
+  border-color: #333;
+  z-index: 5;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.dropdown-corruption select {
+  color: #ddd;
+  background-color: black;
+  padding-left: 7px;
+  width: 20px;
+  height: 29px;
+  border-color: #333;
+  z-index: 5;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.dropdown-set {
+  background-color: #222;
+  color: #00f000;
+  z-index: 6;
+}
+.dropdown-unique {
+  background-color: #222;
+  color: #928068;
+  z-index: 6;
+}
+.dropdown-magic {
+  background-color: #222;
+  color: #8080ff;
+  z-index: 6;
+}
+.dropdown-rare {
+  background-color: #222;
+  color: yellow;
+  z-index: 6;
+}
+.dropdown-craft {
+  background-color: #222;
+  color: orange;
+  z-index: 6;
+}
+.dropdown-common {
+  background-color: #222;
+  color: white;
+  z-index: 6;
+}
+.dropdown-rw {
+  background-color: #222;
+  color: #b2a992;
+  z-index: 6;
+}
+.dropdown-debug {
+  background-color: #222;
+  color: #ff8080;
+  z-index: 6;
+}
+.dropdown:hover, .dropdown:focus {
+  background-color: #222;
+  z-index: 6;
+}
+
+.P {  position: absolute;
+  text-align: center;
+  text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 2px 2px 3px black, -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black;
+  color: white;
+  width: 30px;
+  z-index: 4;
+}
+.Pa1 {left: 51px;}
+.Pa2 {left: 120px;}
+.Pa3 {left: 189px;}
+.Pb1 {left: 283px;}
+.Pb2 {left: 351px;}
+.Pb3 {left: 420px;}
+.Pc1 {left: 513px;}
+.Pc2 {left: 582px;}
+.Pc3 {left: 651px;}
+.Py1 {top: 44px;}
+.Py2 {top: 112px;}
+.Py3 {top: 180px;}
+.Py4 {top: 248px;}
+.Py5 {top: 317px;}
+.Py6 {top: 385px;}
+
+.I {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  z-index: 3;
+}
+.Ia1 {left: 14px;}
+.Ia2 {left: 83px;}
+.Ia3 {left: 152px;}
+.Ib1 {left: 245px;}
+.Ib2 {left: 314px;}
+.Ib3 {left: 383px;}
+.Ic1 {left: 476px;}
+.Ic2 {left: 545px;}
+.Ic3 {left: 614px;}
+.Iy1 {top: 16px;}
+.Iy2 {top: 84px;}
+.Iy3 {top: 152px;}
+.Iy4 {top: 220px;}
+.Iy5 {top: 289px;}
+.Iy6 {top: 357px;}
+
+.cell {
+position:absolute;
+}
+
+.H {
+  position: absolute;
+  width: 29px;
+  height: 29px;
+  z-index: 3;
+  }
+.Hx1 {left: 5px;}
+.Hx2 {left: 34px;}
+.Hx3 {left: 63px;}
+.Hx4 {left: 92px;}
+.Hx5 {left: 121px;}
+.Hx6 {left: 150px;}
+.Hx7 {left: 179px;}
+.Hx8 {left: 208px;}
+.Hx9 {left: 237px;}
+.Hx10 {left: 266px;}
+.Hy1 {top: 3px;}
+.Hy2 {top: 32px;}
+.Hy3 {top: 61px;}
+.Hy4 {top: 90px;}
+
+.effect {
+  width: 36px;
+  height: 36px;
+  visibility: visible;
+  display: block;
+  z-index: 6;
+  }
+  
+.hide {
+  width: 36px;
+  height: 0px;
+  visibility: hidden;
+  display: block;
+  z-index: 6;
+  }
+  
+.flex-box {
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+.button-file {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #eee;
+}

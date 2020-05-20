@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Path of Diablo Planner</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="./data/all.css">
+<!--<script type="text/javascript" src="./data/jquery-3.5.1.min.js"></script>-->
+<script type="text/javascript" src="./data/all_equipment.js"></script>
+<script type="text/javascript" src="./data/all.js"></script>
+<!--
+<style type="text/css">
+
+</style>
+-->
+<link rel="shortcut icon" href="./images/tab_icon.png" type="image/x-icon">
+
+</head>
+<body class="background" onload="initial_load()">
+
+<div id="main">
+<!--
+<div id="side_panel" style="width: 100px; height:800px; position: relative; float: right;" class="no-selection" oncontextmenu="return false">
+-->
+
+<div id="full_interface" style="width: 1000px;" class="no-selection" oncontextmenu="return false">
+<div id="side" style="margin-left: 11px; margin-top: 4px; width: 120px; position: relative; float:right;"></div>
+
+<div id="interface" style="width: 869px;">
+
+<div id="gui" class="no-selection" oncontextmenu="return false">
+
+<!--		/GUI Stats		-->
+<div id="gui_stats" style="position: relative; width: 175px; height: 434px; float: left;">
+<img usemap="#statmap" src="./images/statbar.png">
+<map id="statmap" name="statmap">
+<area coords="127,107,163,143" id="btn_strength" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
+<area coords="127,169,163,203" id="btn_dexterity" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
+<area coords="127,231,163,267" id="btn_vitality" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
+<area coords="127,293,163,329" id="btn_energy" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
+<area coords="14,15,61,52" id="btn_level" onclick="changeLevel(1)" oncontextmenu="changeLevel(-1)">
+</map>
+<p class="point" style="left: 23px; top: 12px;" id="level" onclick="changeLevel(1)" oncontextmenu="changeLevel(-1)"></p>
+<p class="text" style="left: 67px; top: 12px;" id="class_name"></p>
+<p class="point" style="left: 100px; top: 45px;" id="remainingskills"></p>
+<p class="point" style="left: 100px; top: 338px;" id="remainingstats"></p>
+<p class="point" style="left: 85px; top: 100px;" id="strength"></p>
+<p class="point" style="left: 85px; top: 161px;" id="dexterity"></p>
+<p class="point" style="left: 85px; top: 224px;" id="vitality"></p>
+<p class="point" style="left: 85px; top: 286px;" id="energy"></p>
+
+<img id="hide_skillpoints" src="./images/statbar_hidden_skills.png" style="position: absolute; display: block; left: 7px; top: 54px;">
+<img id="hide_statpoints" src="./images/statbar_hidden_stats.png" style="position: absolute; display: block; left: 7px; top: 344px;">
+<img id="hide_stats" src="./images/statbar_hidden_buttons.png" style="position: absolute; display: block; left: 120px; top: 98px;">
+
+<!--	class selection 	-->
+<select class="dropdown-character" id="dropdown_class" onChange="reset(this.value)">
+<option class="gray" disabled selected>Choose Class</option>
+<option>Amazon</option>
+<option>Assassin</option>
+<option>Barbarian</option>
+<option>Druid</option>
+<option>Necromancer</option>
+<option>Paladin</option>
+<option>Sorceress</option></select>
+</div> <!-- /GUI Stats -->
+
+<!--		GUI Skills		-->
+<div id="gui_skills" style="position: relative; width: 694px; height: 434px; float: left;">
+<img usemap="#skillmap" id="skill_tree" src="">
+<map id="skillmap" name="skillmap">
+<!--	skill hover areas	-->
+<area coords="14,16,62,64" id="s111"><area coords="83,16,131,64" id="s112"><area coords="152,16,200,64" id="s113">
+<area coords="14,84,62,132" id="s121"><area coords="83,84,131,132" id="s122"><area coords="152,84,200,132" id="s123">
+<area coords="14,152,62,200" id="s131"><area coords="83,152,131,200" id="s132"><area coords="152,152,200,200" id="s133">
+<area coords="14,220,62,268" id="s141"><area coords="83,220,131,268" id="s142"><area coords="152,220,200,268" id="s143">
+<area coords="14,289,62,337" id="s151"><area coords="83,289,131,337" id="s152"><area coords="152,289,200,337" id="s153">
+<area coords="14,357,62,405" id="s161"><area coords="83,357,131,405" id="s162"><area coords="152,357,200,405" id="s163">
+
+<area coords="245,16,293,62" id="s211"><area coords="314,16,362,62" id="s212"><area coords="383,16,434,62" id="s213">
+<area coords="245,84,293,132" id="s221"><area coords="314,84,362,132" id="s222"><area coords="383,84,434,132" id="s223">
+<area coords="245,152,293,200" id="s231"><area coords="314,152,362,200" id="s232"><area coords="383,152,434,200" id="s233">
+<area coords="245,220,293,268" id="s241"><area coords="314,220,362,268" id="s242"><area coords="383,220,434,268" id="s243">
+<area coords="245,289,293,337" id="s251"><area coords="314,289,362,337" id="s252"><area coords="383,289,434,337" id="s253">
+<area coords="245,357,293,405" id="s261"><area coords="314,357,362,405" id="s262"><area coords="383,357,434,405" id="s263">
+
+<area coords="476,16,524,62" id="s311"><area coords="545,16,593,62" id="s312"><area coords="614,16,662,62" id="s313">
+<area coords="476,84,524,132" id="s321"><area coords="545,84,593,132" id="s322"><area coords="614,84,662,132" id="s323">
+<area coords="476,152,524,200" id="s331"><area coords="545,152,593,200" id="s332"><area coords="614,152,662,200" id="s333">
+<area coords="476,220,524,268" id="s341"><area coords="545,220,593,268" id="s342"><area coords="614,220,662,268" id="s343">
+<area coords="476,289,524,337" id="s351"><area coords="545,289,593,337" id="s352"><area coords="614,289,662,337" id="s353">
+<area coords="476,357,524,405" id="s361"><area coords="545,357,593,405" id="s362"><area coords="614,357,662,405" id="s363">
+</map>
+<!--	Skill Points	-->
+<p class="P Pa1 Py1" id="p111"></p><p class="P Pa2 Py1" id="p112"></p><p class="P Pa3 Py1" id="p113"></p>
+<p class="P Pa1 Py2" id="p121"></p><p class="P Pa2 Py2" id="p122"></p><p class="P Pa3 Py2" id="p123"></p>
+<p class="P Pa1 Py3" id="p131"></p><p class="P Pa2 Py3" id="p132"></p><p class="P Pa3 Py3" id="p133"></p>
+<p class="P Pa1 Py4" id="p141"></p><p class="P Pa2 Py4" id="p142"></p><p class="P Pa3 Py4" id="p143"></p>
+<p class="P Pa1 Py5" id="p151"></p><p class="P Pa2 Py5" id="p152"></p><p class="P Pa3 Py5" id="p153"></p>
+<p class="P Pa1 Py6" id="p161"></p><p class="P Pa2 Py6" id="p162"></p><p class="P Pa3 Py6" id="p163"></p>
+
+<p class="P Pb1 Py1" id="p211"></p><p class="P Pb2 Py1" id="p212"></p><p class="P Pb3 Py1" id="p213"></p>
+<p class="P Pb1 Py2" id="p221"></p><p class="P Pb2 Py2" id="p222"></p><p class="P Pb3 Py2" id="p223"></p>
+<p class="P Pb1 Py3" id="p231"></p><p class="P Pb2 Py3" id="p232"></p><p class="P Pb3 Py3" id="p233"></p>
+<p class="P Pb1 Py4" id="p241"></p><p class="P Pb2 Py4" id="p242"></p><p class="P Pb3 Py4" id="p243"></p>
+<p class="P Pb1 Py5" id="p251"></p><p class="P Pb2 Py5" id="p252"></p><p class="P Pb3 Py5" id="p253"></p>
+<p class="P Pb1 Py6" id="p261"></p><p class="P Pb2 Py6" id="p262"></p><p class="P Pb3 Py6" id="p263"></p>
+
+<p class="P Pc1 Py1" id="p311"></p><p class="P Pc2 Py1" id="p312"></p><p class="P Pc3 Py1" id="p313"></p>
+<p class="P Pc1 Py2" id="p321"></p><p class="P Pc2 Py2" id="p322"></p><p class="P Pc3 Py2" id="p323"></p>
+<p class="P Pc1 Py3" id="p331"></p><p class="P Pc2 Py3" id="p332"></p><p class="P Pc3 Py3" id="p333"></p>
+<p class="P Pc1 Py4" id="p341"></p><p class="P Pc2 Py4" id="p342"></p><p class="P Pc3 Py4" id="p343"></p>
+<p class="P Pc1 Py5" id="p351"></p><p class="P Pc2 Py5" id="p352"></p><p class="P Pc3 Py5" id="p353"></p>
+<p class="P Pc1 Py6" id="p361"></p><p class="P Pc2 Py6" id="p362"></p><p class="P Pc3 Py6" id="p363"></p>
+
+<!--	Skill Icons	-->
+<img class="I Ia1 Iy1" id="i111"><img class="I Ia2 Iy1" id="i112"><img class="I Ia3 Iy1" id="i113">
+<img class="I Ia1 Iy2" id="i121"><img class="I Ia2 Iy2" id="i122"><img class="I Ia3 Iy2" id="i123">
+<img class="I Ia1 Iy3" id="i131"><img class="I Ia2 Iy3" id="i132"><img class="I Ia3 Iy3" id="i133">
+<img class="I Ia1 Iy4" id="i141"><img class="I Ia2 Iy4" id="i142"><img class="I Ia3 Iy4" id="i143">
+<img class="I Ia1 Iy5" id="i151"><img class="I Ia2 Iy5" id="i152"><img class="I Ia3 Iy5" id="i153">
+<img class="I Ia1 Iy6" id="i161"><img class="I Ia2 Iy6" id="i162"><img class="I Ia3 Iy6" id="i163">
+
+<img class="I Ib1 Iy1" id="i211"><img class="I Ib2 Iy1" id="i212"><img class="I Ib3 Iy1" id="i213">
+<img class="I Ib1 Iy2" id="i221"><img class="I Ib2 Iy2" id="i222"><img class="I Ib3 Iy2" id="i223">
+<img class="I Ib1 Iy3" id="i231"><img class="I Ib2 Iy3" id="i232"><img class="I Ib3 Iy3" id="i233">
+<img class="I Ib1 Iy4" id="i241"><img class="I Ib2 Iy4" id="i242"><img class="I Ib3 Iy4" id="i243">
+<img class="I Ib1 Iy5" id="i251"><img class="I Ib2 Iy5" id="i252"><img class="I Ib3 Iy5" id="i253">
+<img class="I Ib1 Iy6" id="i261"><img class="I Ib2 Iy6" id="i262"><img class="I Ib3 Iy6" id="i263">
+
+<img class="I Ic1 Iy1" id="i311"><img class="I Ic2 Iy1" id="i312"><img class="I Ic3 Iy1" id="i313">
+<img class="I Ic1 Iy2" id="i321"><img class="I Ic2 Iy2" id="i322"><img class="I Ic3 Iy2" id="i323">
+<img class="I Ic1 Iy3" id="i331"><img class="I Ic2 Iy3" id="i332"><img class="I Ic3 Iy3" id="i333">
+<img class="I Ic1 Iy4" id="i341"><img class="I Ic2 Iy4" id="i342"><img class="I Ic3 Iy4" id="i343">
+<img class="I Ic1 Iy5" id="i351"><img class="I Ic2 Iy5" id="i352"><img class="I Ic3 Iy5" id="i353">
+<img class="I Ic1 Iy6" id="i361"><img class="I Ic2 Iy6" id="i362"><img class="I Ic3 Iy6" id="i363">
+
+<!--	skill hover text	-->
+<div class="hover" style="display: none;" id="tooltip">
+	<a id="title" class="green-name"></a><br>
+	<a id="description"></a>
+	<a id="graytext" class="gray"></a>
+	<a id="pretext"></a>
+	<a id="current"></a>
+	<a id="next_level_text">Next Level</a><br>
+	<a id="next"></a><br>
+	<a id="syn_title" class="green"></a>
+	<a id="syn_text"></a>
+</div> <!-- /skill hover text -->
+</div> <!-- /GUI Skills -->
+
+<!--	Equipment Menus 	-->
+<div class="dropdown" id="equipment" style="float: right; width:200px; height:20px; margin-right:2px; position: relative; z-index: 6;">
+<select class="dropdown" id="dropdown_helm" onChange="equip('helm', this.value)" onContextMenu="equip('helm', 'helm')"></select>
+<select class="dropdown" id="dropdown_armor" onChange="equip('armor', this.value)" onContextMenu="equip('armor', 'armor')"></select>
+<select class="dropdown" id="dropdown_gloves" onChange="equip('gloves', this.value)" onContextMenu="equip('gloves', 'gloves')"></select>
+<select class="dropdown" id="dropdown_boots" onChange="equip('boots', this.value)" onContextMenu="equip('boots', 'boots')"></select>
+<select class="dropdown" id="dropdown_belt" onChange="equip('belt', this.value)" onContextMenu="equip('belt', 'belt')"></select>
+<select class="dropdown" id="dropdown_amulet" onChange="equip('amulet', this.value)" onContextMenu="equip('amulet', 'amulet')"></select>
+<select class="dropdown" id="dropdown_ring1" onChange="equip('ring1', this.value)" onContextMenu="equip('ring1', 'ring1')"></select>
+<select class="dropdown" id="dropdown_ring2" onChange="equip('ring2', this.value)" onContextMenu="equip('ring2', 'ring2')"></select>
+<select class="dropdown" id="dropdown_weapon" onChange="equip('weapon', this.value)" onContextMenu="equip('weapon', 'weapon')"></select>
+<select class="dropdown" id="dropdown_offhand" onChange="equip('offhand', this.value)" onContextMenu="equip('offhand', 'offhand')"></select>
+<br><br>
+<select class="dropdown" id="dropdown_charms" onChange="addCharm(this.value)"></select>
+<select class="dropdown" id="dropdown_socketables" onChange="addSocketable(this.value)"></select>
+<br><br>
+<select class="dropdown" id="dropdown_mercenary" onChange="setMercenary(this.value)" onContextMenu="setMercenary('none')"></select>
+<select class="dropdown" id="dropdown_merc_helm" onChange="equipMerc('helm', this.value)" onContextMenu="equipMerc('helm', 'helm')"></select>
+<select class="dropdown" id="dropdown_merc_armor" onChange="equipMerc('armor', this.value)" onContextMenu="equipMerc('armor', 'armor')"></select>
+<select class="dropdown" id="dropdown_merc_weapon" onChange="equipMerc('weapon', this.value)" onContextMenu="equipMerc('weapon', 'weapon')"></select>
+<select class="dropdown" id="dropdown_merc_offhand" onChange="equipMerc('offhand', this.value)" onContextMenu="equipMerc('offhand', 'offhand')"></select>
+<br><br>
+<select class="dropdown" id="dropdown_misc" onChange="addEffect('misc',this.value,this.selectedIndex,'')"></select>
+</div> <!-- /Equipment Menus -->
+
+<!--	Corruption Options	-->
+<div class="dropdown-corruption" id="equipment_corruptions" style="float: right; width:20px; margin-right:1px; position: relative; z-index: 6;">
+<select class="dropdown" id="corruptions_helm" onChange="corrupt('helm', this.value)" onContextMenu="corrupt('helm', 'none')"></select>
+<select class="dropdown" id="corruptions_armor" onChange="corrupt('armor', this.value)" onContextMenu="corrupt('armor', 'none')"></select>
+<select class="dropdown" id="corruptions_gloves" onChange="corrupt('gloves', this.value)" onContextMenu="corrupt('gloves', 'none')"></select>
+<select class="dropdown" id="corruptions_boots" onChange="corrupt('boots', this.value)" onContextMenu="corrupt('boots', 'none')"></select>
+<select class="dropdown" id="corruptions_belt" onChange="corrupt('belt', this.value)" onContextMenu="corrupt('belt', 'none')"></select>
+<select class="dropdown" id="corruptions_amulet" onChange="corrupt('amulet', this.value)" onContextMenu="corrupt('amulet', 'none')"></select>
+<select class="dropdown" id="corruptions_ring1" onChange="corrupt('ring1', this.value)" onContextMenu="corrupt('ring1', 'none')"></select>
+<select class="dropdown" id="corruptions_ring2" onChange="corrupt('ring2', this.value)" onContextMenu="corrupt('ring2', 'none')"></select>
+<select class="dropdown" id="corruptions_weapon" onChange="corrupt('weapon', this.value)" onContextMenu="corrupt('weapon', 'none')"></select>
+<select class="dropdown" id="corruptions_offhand" onChange="corrupt('offhand', this.value)" onContextMenu="corrupt('offhand', 'none')"></select>
+</div> <!-- /Corruption Options -->
+
+<!--	selection options	-->
+<div style="width: 869px; margin-bottom: 0px;">
+<div style="margin-right: 30px; width: 210px; float: right;">
+<div>
+<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
+<label style="color: #aaa;" for="coupling">Skill-Level Coupling</label>
+</div>
+<div>
+<input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
+<label style="color: #aaa;" for="autocast">New Effects Begin Enabled</label>
+</div>
+</div>
+<div style="width: 350px;">
+<div style="margin-left: 12px; margin-bottom: 1px; width: 200px">
+<input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
+<label style="color: #aaa;" for="quests">Quests Completed</label>
+</div>
+<div style="margin-left: 12px; margin-bottom: 3px; width: 180px;">
+<input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
+<label style="color: #aaa;" for="running">Running</label>
+</div>
+<div style="color: #aaa; float: left; margin-right: 5px; margin-left: 12px;">Difficulty: </div>
+<div style="position: relative; color: #aaa; float: left;">
+<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
+<label style="color: #aaa;" for="difficulty">Normal</label>
+<input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
+<label style="color: #aaa;" for="difficulty">Nightmare</label>
+<input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
+<label style="color: #aaa;" for="difficulty">Hell</label>
+</div>
+</div>
+</div> <!-- /selection options -->
+
+<!--	inventory	-->
+<div class="inventory">
+<!--	equipment inventory	-->
+<div id="gui_equipment" class="inv-equipment" oncontextmenu="return false">
+<img usemap="#equipmentmap" id="equipment_grid" style="float: right;" src="./images/equipment_inventory.png">
+<map id="equipmentmap" name="equipmentmap">
+<div style="position: relative;">
+<div id="helm_" class="flex-box" style="position: absolute; width: 58px; height: 58px; left: 63px; top: 1px; z-index: 2;" ondrop="socket(event,'helm')" ondragover="allowSocket(event,'helm')" onmouseover="equipmentHover('helm')" onmouseout="equipmentOut()"><img id="helm_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'helm')" onContextMenu="inventoryRightClick(event,'helm')"><div style="position:absolute; z-index:4;" align="center" id="helm"></div></div>
+<div id="armor_" class="flex-box" style="position: absolute; width: 58px; height: 88px; left: 122px; top: 1px; z-index: 2;" ondrop="socket(event,'armor')" ondragover="allowSocket(event,'armor')" onmouseover="equipmentHover('armor')" onmouseout="equipmentOut()"><img id="armor_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'armor')" onContextMenu="inventoryRightClick(event,'armor')"><div style="position:absolute; z-index:4;" align="center" id="armor"></div></div>
+<div id="gloves" style="position: absolute; width: 58px; height: 59px; left: 182px; top: 1px; z-index: 2;" onmouseover="equipmentHover('gloves')" onmouseout="equipmentOut()" align="center"><img id="gloves_image" src="" onClick="inventoryLeftClick(event,'gloves')" onContextMenu="inventoryRightClick(event,'gloves')"></div>
+<div id="boots" style="position: absolute; width: 58px; height: 58px; left: 182px; top: 61px; z-index: 2;" onmouseover="equipmentHover('boots')" onmouseout="equipmentOut()" align="center"><img id="boots_image" src="" onClick="inventoryLeftClick(event,'boots')" onContextMenu="inventoryRightClick(event,'boots')"></div>
+<div id="belt" style="position: absolute; width: 58px; height: 29px; left: 122px; top: 90px; z-index: 2;" onmouseover="equipmentHover('belt')" onmouseout="equipmentOut()" align="center"><img id="belt_image" src="" onClick="inventoryLeftClick(event,'belt')" onContextMenu="inventoryRightClick(event,'belt')"></div>
+<div id="amulet" style="position: absolute; width: 29px; height: 29px; left: 77px; top: 60px; z-index: 2;" onmouseover="equipmentHover('amulet')" onmouseout="equipmentOut()" align="center"><img id="amulet_image" src="" onContextMenu="equip('amulet', 'amulet')"></div>
+<div id="ring1" style="position: absolute; width: 28px; height: 29px; left: 63px; top: 90px; z-index: 2;" onmouseover="equipmentHover('ring1')" onmouseout="equipmentOut()" align="center"><img id="ring1_image" src="" onContextMenu="equip('ring1', 'ring1')"></div>
+<div id="ring2" style="position: absolute; width: 28px; height: 29px; left: 93px; top: 90px; z-index: 2;" onmouseover="equipmentHover('ring2')" onmouseout="equipmentOut()" align="center"><img id="ring2_image" src="" onContextMenu="equip('ring2', 'ring2')"></div>
+<div id="weapon_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 1px; top: 1px; z-index: 2;" ondrop="socket(event,'weapon')" ondragover="allowSocket(event,'weapon')" onmouseover="equipmentHover('weapon')" onmouseout="equipmentOut()"><img id="weapon_image" style="z-index:3;" src="" onClick="inventoryLeftClick(event,'weapon')" onContextMenu="inventoryRightClick(event,'weapon')"><div style="position:absolute; z-index:4;" align="center" id="weapon"></div></div>
+<div id="offhand_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 242px; top: 1px; z-index: 2;" ondrop="socket(event,'offhand')" ondragover="allowSocket(event,'offhand')" onmouseover="equipmentHover('offhand')" onmouseout="equipmentOut()"><img id="offhand_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'offhand')" onContextMenu="inventoryRightClick(event,'offhand')"><div style="position:absolute; z-index:4;" align="center" id="offhand"></div></div>
+</div>
+</map>
+</div> <!-- /equipment inventory -->
+
+<!--	charm inventory 	-->
+<div id="gui_charms" class="inv-charms" oncontextmenu="return false">
+<img usemap="#charmmap" id="charm_grid" src="./images/charm_inventory.png">
+<map id="charmmap" name="charmmap">
+
+<div id="h14" ondrop="drop(event,31)" ondragover="allowDrop(event,31,4)" class="H Hx1 Hy4" onmouseover="itemHover(event, 'h14')" onmouseout="itemOut()"></div>
+<div id="h24" ondrop="drop(event,32)" ondragover="allowDrop(event,32,4)" class="H Hx2 Hy4" onmouseover="itemHover(event, 'h24')" onmouseout="itemOut()"></div>
+<div id="h34" ondrop="drop(event,33)" ondragover="allowDrop(event,33,4)" class="H Hx3 Hy4" onmouseover="itemHover(event, 'h34')" onmouseout="itemOut()"></div>
+<div id="h44" ondrop="drop(event,34)" ondragover="allowDrop(event,34,4)" class="H Hx4 Hy4" onmouseover="itemHover(event, 'h44')" onmouseout="itemOut()"></div>
+<div id="h54" ondrop="drop(event,35)" ondragover="allowDrop(event,35,4)" class="H Hx5 Hy4" onmouseover="itemHover(event, 'h54')" onmouseout="itemOut()"></div>
+<div id="h64" ondrop="drop(event,36)" ondragover="allowDrop(event,36,4)" class="H Hx6 Hy4" onmouseover="itemHover(event, 'h64')" onmouseout="itemOut()"></div>
+<div id="h74" ondrop="drop(event,37)" ondragover="allowDrop(event,37,4)" class="H Hx7 Hy4" onmouseover="itemHover(event, 'h74')" onmouseout="itemOut()"></div>
+<div id="h84" ondrop="drop(event,38)" ondragover="allowDrop(event,38,4)" class="H Hx8 Hy4" onmouseover="itemHover(event, 'h84')" onmouseout="itemOut()"></div>
+<div id="h94" ondrop="drop(event,39)" ondragover="allowDrop(event,39,4)" class="H Hx9 Hy4" onmouseover="itemHover(event, 'h94')" onmouseout="itemOut()"></div>
+<div id="h04" ondrop="drop(event,40)" ondragover="allowDrop(event,40,4)" class="H Hx10 Hy4" onmouseover="itemHover(event, 'h04')" onmouseout="itemOut()"></div>
+
+<div id="h13" ondrop="drop(event,21)" ondragover="allowDrop(event,21,3)" class="H Hx1 Hy3" onmouseover="itemHover(event, 'h13')" onmouseout="itemOut()"></div>
+<div id="h23" ondrop="drop(event,22)" ondragover="allowDrop(event,22,3)" class="H Hx2 Hy3" onmouseover="itemHover(event, 'h23')" onmouseout="itemOut()"></div>
+<div id="h33" ondrop="drop(event,23)" ondragover="allowDrop(event,23,3)" class="H Hx3 Hy3" onmouseover="itemHover(event, 'h33')" onmouseout="itemOut()"></div>
+<div id="h43" ondrop="drop(event,24)" ondragover="allowDrop(event,24,3)" class="H Hx4 Hy3" onmouseover="itemHover(event, 'h43')" onmouseout="itemOut()"></div>
+<div id="h53" ondrop="drop(event,25)" ondragover="allowDrop(event,25,3)" class="H Hx5 Hy3" onmouseover="itemHover(event, 'h53')" onmouseout="itemOut()"></div>
+<div id="h63" ondrop="drop(event,26)" ondragover="allowDrop(event,26,3)" class="H Hx6 Hy3" onmouseover="itemHover(event, 'h63')" onmouseout="itemOut()"></div>
+<div id="h73" ondrop="drop(event,27)" ondragover="allowDrop(event,27,3)" class="H Hx7 Hy3" onmouseover="itemHover(event, 'h73')" onmouseout="itemOut()"></div>
+<div id="h83" ondrop="drop(event,28)" ondragover="allowDrop(event,28,3)" class="H Hx8 Hy3" onmouseover="itemHover(event, 'h83')" onmouseout="itemOut()"></div>
+<div id="h93" ondrop="drop(event,29)" ondragover="allowDrop(event,29,3)" class="H Hx9 Hy3" onmouseover="itemHover(event, 'h93')" onmouseout="itemOut()"></div>
+<div id="h03" ondrop="drop(event,30)" ondragover="allowDrop(event,30,3)" class="H Hx10 Hy3" onmouseover="itemHover(event, 'h03')" onmouseout="itemOut()"></div>
+
+<div id="h12" ondrop="drop(event,11)" ondragover="allowDrop(event,11,2)" class="H Hx1 Hy2" onmouseover="itemHover(event, 'h12')" onmouseout="itemOut()"></div>
+<div id="h22" ondrop="drop(event,12)" ondragover="allowDrop(event,12,2)" class="H Hx2 Hy2" onmouseover="itemHover(event, 'h22')" onmouseout="itemOut()"></div>
+<div id="h32" ondrop="drop(event,13)" ondragover="allowDrop(event,13,2)" class="H Hx3 Hy2" onmouseover="itemHover(event, 'h32')" onmouseout="itemOut()"></div>
+<div id="h42" ondrop="drop(event,14)" ondragover="allowDrop(event,14,2)" class="H Hx4 Hy2" onmouseover="itemHover(event, 'h42')" onmouseout="itemOut()"></div>
+<div id="h52" ondrop="drop(event,15)" ondragover="allowDrop(event,15,2)" class="H Hx5 Hy2" onmouseover="itemHover(event, 'h52')" onmouseout="itemOut()"></div>
+<div id="h62" ondrop="drop(event,16)" ondragover="allowDrop(event,16,2)" class="H Hx6 Hy2" onmouseover="itemHover(event, 'h62')" onmouseout="itemOut()"></div>
+<div id="h72" ondrop="drop(event,17)" ondragover="allowDrop(event,17,2)" class="H Hx7 Hy2" onmouseover="itemHover(event, 'h72')" onmouseout="itemOut()"></div>
+<div id="h82" ondrop="drop(event,18)" ondragover="allowDrop(event,18,2)" class="H Hx8 Hy2" onmouseover="itemHover(event, 'h82')" onmouseout="itemOut()"></div>
+<div id="h92" ondrop="drop(event,19)" ondragover="allowDrop(event,19,2)" class="H Hx9 Hy2" onmouseover="itemHover(event, 'h92')" onmouseout="itemOut()"></div>
+<div id="h02" ondrop="drop(event,20)" ondragover="allowDrop(event,20,2)" class="H Hx10 Hy2" onmouseover="itemHover(event, 'h02')" onmouseout="itemOut()"></div>
+
+<div id="h11" ondrop="drop(event,1)" ondragover="allowDrop(event,1,1)" class="H Hx1 Hy1" onmouseover="itemHover(event, 'h11')" onmouseout="itemOut()"></div>
+<div id="h21" ondrop="drop(event,2)" ondragover="allowDrop(event,2,1)" class="H Hx2 Hy1" onmouseover="itemHover(event, 'h21')" onmouseout="itemOut()"></div>
+<div id="h31" ondrop="drop(event,3)" ondragover="allowDrop(event,3,1)" class="H Hx3 Hy1" onmouseover="itemHover(event, 'h31')" onmouseout="itemOut()"></div>
+<div id="h41" ondrop="drop(event,4)" ondragover="allowDrop(event,4,1)" class="H Hx4 Hy1" onmouseover="itemHover(event, 'h41')" onmouseout="itemOut()"></div>
+<div id="h51" ondrop="drop(event,5)" ondragover="allowDrop(event,5,1)" class="H Hx5 Hy1" onmouseover="itemHover(event, 'h51')" onmouseout="itemOut()"></div>
+<div id="h61" ondrop="drop(event,6)" ondragover="allowDrop(event,6,1)" class="H Hx6 Hy1" onmouseover="itemHover(event, 'h61')" onmouseout="itemOut()"></div>
+<div id="h71" ondrop="drop(event,7)" ondragover="allowDrop(event,7,1)" class="H Hx7 Hy1" onmouseover="itemHover(event, 'h71')" onmouseout="itemOut()"></div>
+<div id="h81" ondrop="drop(event,8)" ondragover="allowDrop(event,8,1)" class="H Hx8 Hy1" onmouseover="itemHover(event, 'h81')" onmouseout="itemOut()"></div>
+<div id="h91" ondrop="drop(event,9)" ondragover="allowDrop(event,9,1)" class="H Hx9 Hy1" onmouseover="itemHover(event, 'h91')" onmouseout="itemOut()"></div>
+<div id="h01" ondrop="drop(event,10)" ondragover="allowDrop(event,10,1)" class="H Hx10 Hy1" onmouseover="itemHover(event, 'h01')" onmouseout="itemOut()"></div>
+
+</map>
+<div class="hover-item" id="item_tooltip"></div>
+</div> <!-- /charm inventory -->
+</div> <!-- /inventory -->
+
+</div> <!-- /gui -->
+
+<!--		skill details		-->
+<div class="no-selection" style="display: block; height:220px; width: 330px; margin-top: 30px; position: relative;">
+<div class="gray">
+<div style="width: 300px; margin-bottom: 15px; margin-top: 40px;">
+<!--<a style="visibility:visible;">Damage per Second: </a><a id="dps"></a><br>-->
+<!--<a style="visibility:visible;">Chance to Hit: </a><a id="hit"></a><br>-->
+	<a>Basic Attack: </a><a id="basic_attack"></a><br>
+	<a>Attack Rating: </a><a id="ar"></a>
+</div>
+
+<div>
+	<div id="skillDetail1" style="height: 22px; position: relative; z-index: 3;">
+	<select class="dropdown-skill" id="dropdown_skill1" onChange="checkSkill(this.value, 1)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 1', 1)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 1</option></select><a id="skill1_info">: </a>
+	</div>
+	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill1"></a>
+</div>
+
+<div>
+	<div id="skillDetail2" style="height: 22px; position: relative; z-index: 3; margin-top: 10px;">
+	<select class="dropdown-skill" id="dropdown_skill2" onChange="checkSkill(this.value, 2)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 2', 2)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 2</option></select><a id="skill2_info">: </a>
+	</div>
+	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill2"></a>
+</div>
+<div> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as ED) -->
+<div style="position:absolute; left:30px;">
+	<br>
+	<font size="2">Damage vs Demons: </font><font size="2" id="damage_vs_demons"></font><br>
+	<font size="2">Damage vs Undead: </font><font size="2" id="damage_vs_undead"></font><br>
+</div>
+<div style="position:absolute; left:192px;">
+	<br>
+	<font size="2">AR vs Demons: </font><font size="2" id="ar_vs_demons"></font><br>
+	<font size="2">AR vs Undead: </font><font size="2" id="ar_vs_undead"></font><br>
+</div>
+</div>
+</div>
+</div> <!-- /skill details -->
+
+<!--		stats		-->
+<div class="gray" id="stats">
+<div id="stats_main_columns">
+<div style="position:absolute; left:10px;" id="stats_column_1">
+	<font size="2">Fire Resist: </font><font size="2" id="fres"></font><br>
+	<font size="2">Cold Resist: </font><font size="2" id="cres"></font><br>
+	<font size="2">Lightning Resist: </font><font size="2" id="lres"></font><br>
+	<font size="2">Poison Resist: </font><font size="2" id="pres"></font><br>
+	<font size="2">Magic Resist: </font><font size="2" id="mres"></font><br>
+	<font size="2">Damage Reduction: </font><font size="2" id="pdr"></font><br><br>
+	
+	<font size="2">+ Attack Speed: </font><font size="2" id="ias"></font><br>
+	<div onmouseover="hoverFCR()" onmouseout="updateStats()"><font size="2">Faster Cast Rate: </font><font size="2" id="fcr"></font><br></div>
+	<font size="2">Faster Block Rate: </font><font size="2" id="fbr"></font><br>
+	<font size="2">Faster Hit Recovery: </font><font size="2" id="fhr"></font><br>
+	<br>
+	<font size="2">Cooldown Reduction: </font><font size="2" id="cdr"></font><br><br>
+	
+	<font size="2">Life Leech: </font><font size="2" id="life_leech"></font><br>
+	<font size="2">Mana Leech: </font><font size="2" id="mana_leech"></font><br><br>
+	
+	<font size="2">+ Fire Damage: </font><font size="2" id="fdamage"></font><br>
+	<font size="2">+ Cold Damage: </font><font size="2" id="cdamage"></font><br>
+	<font size="2">+ Lightning Damage: </font><font size="2" id="ldamage"></font><br>
+	<font size="2">+ Poison Damage: </font><font size="2" id="pdamage"></font><br>
+</div>
+<div style="position:absolute; left:180px;" id="stats_column_2">
+	<font size="2">Fire Absorb: </font><font size="2" id="fabsorb"></font><br>
+	<font size="2">Cold Absorb: </font><font size="2" id="cabsorb"></font><br>
+	<font size="2">Lightning Absorb: </font><font size="2" id="labsorb"></font><br><br>
+	<font size="2">Magic Absorb: </font><font size="2" id="mabsorb"></font><br><br><br>
+	
+	<font size="2">Pierce: </font><font size="2" id="pierce"></font><br>
+	<font size="2">Crushing Blow: </font><font size="2" id="cblow"></font><br>
+	<font size="2">Deadly Strike: </font><font size="2" id="dstrike"></font><br>
+	<font size="2">Critical Strike: </font><font size="2" id="cstrike"></font><br>
+	<font size="2">Open Wounds: </font><font size="2" id="owounds"></font><br>
+	<font size="2">Enemy Defense: </font><font size="2" id="enemy_defense"></font><br><br>
+	<font size="2">Life per Hit: </font><font size="2" id="life_per_hit"></font><br>
+	<font size="2">Mana per Hit: </font><font size="2" id="mana_per_hit"></font><br><br>
+	
+	<font size="2">Fire Pierce: </font><font size="2" id="fpierce"></font><br>
+	<font size="2">Cold Pierce: </font><font size="2" id="cpierce"></font><br>
+	<font size="2">Lightning Pierce: </font><font size="2" id="lpierce"></font><br>
+	<font size="2">Poison Pierce: </font><font size="2" id="ppierce"></font><br>
+</div>
+<div style="position:absolute; left:350px;" id="stats_column_3">
+	<br>
+	<a>Life: </a><a id="life"></a><br>
+	<a>Mana: </a><a id="mana"></a><br>
+	<a>Stamina: </a><a id="stamina"></a><br>
+	<a>Defense: </a><a id="defense"></a><br>
+	<a id="block_label" style="visibility:hidden;">Block Chance: </a><a id="block"></a><br><br>
+	
+	<font size="2">Faster Run/Walk: </font><font size="2" id="frw"></font><br>
+	<font size="2">Speed: </font><font size="2" id="velocity"></font><br><br>
+	
+	<font size="2">Poison Reduction: </font><font size="2" id="poison_reduction"></font><br>
+	<font size="2">Curse Reduction: </font><font size="2" id="curse_reduction"></font><br>
+	<br><br>
+	<font size="2">Life per Kill: </font><font size="2" id="life_per_kill"></font><br>
+	<font size="2">Mana per Kill: </font><font size="2" id="mana_per_kill"></font><br><br>
+	
+	<font size="2">Enemy Fire Resist: </font><font size="2" id="enemy_fres"></font><br>
+	<font size="2">Enemy Cold Resist: </font><font size="2" id="enemy_cres"></font><br>
+	<font size="2">Enemy Lightning Resist: </font><font size="2" id="enemy_lres"></font><br>
+	<font size="2">Enemy Poison Resist: </font><font size="2" id="enemy_pres"></font><br>
+</div>
+<div style="position:absolute; left:520px;" id="stats_column_4">
+	<br>
+	<a>Strength: </a><a id="strength2"></a><br>
+	<a>Dexterity: </a><a id="dexterity2"></a><br>
+	<a>Vitality: </a><a id="vitality2"></a><br>
+	<a>Energy: </a><a id="energy2"></a><br><br><br>
+	
+	<font size="2">Magic Find: </font><font size="2" id="mf"></font><br>
+	<font size="2">Gold Find: </font><font size="2" id="gf"></font><br><br>
+	
+	<font size="2">Damage to Mana: </font><font size="2" id="damage_to_mana"></font><br>
+	<font size="2">Thorns: </font><font size="2" id="thorns"></font><br><br>
+	<br>
+	<font size="2">Life Regen: </font><font size="2" id="life_regen"></font><br>
+	<font size="2">Mana Regen: </font><font size="2" id="mana_regen"></font><br><br>
+	
+	<font size="2" id="f4"></font><br>
+	<font size="2" id="c4"></font><br>
+	<font size="2" id="l4"></font><br>
+	<font size="2" id="p4"></font><br>
+</div>
+</div>
+
+<div style="width:869px;" id="stats_positioning_alignment">
+<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+<div style="float:right; width:195px;" id="stats_column_5">
+	<div style="margin-right:-100px;"><font size="2" id="flamme"></font></div>
+	<font size="2" id="itd"></font>
+	<font size="2" id="pmh"></font>
+	<font size="2" id="cbf"></font>
+	<font size="2" id="knockback"></font>
+	<font size="2" id="melee_splash"></font>
+	<font size="2" id="slow_target"></font>
+	<font size="2" id="freezes_target"></font>
+	<font size="2" id="blind_on_hit"></font>
+	<font size="2" id="flee_on_hit"></font>
+	<font size="2" id="peace"></font>
+	<font size="2" id="light_radius"></font>
+	<font size="2" id="heal_stam"></font>
+	<font size="2" id="slower_stam_drain"></font>
+	<font size="2" id="discount"></font>
+	<font size="2" id="glow"></font>
+	<div style="margin-right:-125px;"><font size="2" id="ctc"></font></div>
+	<div style="margin-right:-125px;"><font size="2" id="cskill"></font></div>
+</div>
+<div><br><br><br><br><br></div>
+</div>
+</div>	<!-- /stats -->
+
+<div style="position:relative; margin-top: 15px; margin-bottom: 33px; width: 869px; float: left;">
+<a style="display: block; color: #bbbbbb; z-index:9; width:869px; height: 25px; position:absolute; text-align:center;" href="https://github.com/Moreina/planner#planner">development plans & feedback</a>
+</div>
+
+<!--		save/load (hidden until working properly)	-->
+<label class="button-file" style="display:none;">Save<button style="display:none" onclick="saveTextAsFile()"></button></label>
+<label class="button-file" style="display:none;">Load<input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
+<table><tr><td colspan="3"><textarea style="border:none; display:none;" id="inputTextToSave" cols="120" rows="1"></textarea></td></tr></table>
+
+</div>	<!-- /interface -->
+</div>	<!-- /full_interface -->
+</div>	<!-- /main -->
+
+</div>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="./data/amazon.js"></script>
+<script type="text/javascript" src="./data/assassin.js"></script>
+<script type="text/javascript" src="./data/barbarian.js"></script>
+<script type="text/javascript" src="./data/druid.js"></script>
+<script type="text/javascript" src="./data/necromancer.js"></script>
+<script type="text/javascript" src="./data/paladin.js"></script>
+<script type="text/javascript" src="./data/sorceress.js"></script>
+<script type="text/javascript" src="./data/universal_skills.js"></script>
+
+<script>
+
+//
+// ---------------------------------
+function initial_load() {
+	skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
+	character_all = {amazon:character_amazon, assassin:character_assassin, barbarian:character_barbarian, druid:character_druid, necromancer:character_necromancer, paladin:character_paladin, sorceress:character_sorceress}
+	
+	// select random class
+	var random = Math.floor(Math.random() * 7);
+	var classes = ["amazon","assassin","barbarian","druid","necromancer","paladin","sorceress"]
+	var initial_class = classes[random];
+	skills = skills_all[initial_class]
+	equipment.ring2 = equipment.ring1
+	corruptions.ring2 = corruptions.ring1
+	startup(initial_class)
+}
+
+</script>
