@@ -23,6 +23,21 @@ Current Known Issues:
 
 Info: https://github.com/BetweenWalls/planner#planner
 
+Code Organization:
+	File			Description
+	index.html		Handles page layout
+	all.css			Defines style elements
+	all.js			Holds most of the program logic
+	all_equipment.js	Contains item data
+	amazon.js		Skill data (amazon)
+	assassin.js		Skill data (assassin)
+	barbarian.js		Skill data (barbarian)
+	druid.js		Skill data (druid)
+	necromancer.js		Skill data (necromancer)
+	paladin.js		Skill data (paladin)
+	sorceress.js		Skill data (sorceress)
+	universal_skills.js	Skill data (oskills)
+
 Text below this is formatted for the github info page
 ------------------------------------------>
 
@@ -72,14 +87,3 @@ Character Skill Planner for Diablo 2: Path of Diablo
 [Github 'Wiki'](https://github.com/BetweenWalls/planner/wiki/Feedback-for-Skill-Planner)
 
 This project will likely be made open-source at some point, but if you want to contribute directly before that point, any improvements would be welcome.
-For anyone curious about the program code, the files can be edited with any text editor (I use Notepad++):
-* **index.html**
-  * Handles page layout
-* **all.css**
-  * Defines style elements
-* **all.js**
-  * Holds most of the program logic
-* **all_equipment.js**
-  * Contains item data
-* **class .js files**  *(amazon, assassin, barbarian, druid, necromancer, paladin, sorceress, universal_skills)*
-  * Contains skill data
