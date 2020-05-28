@@ -1,5 +1,5 @@
 
-fileInfo = {character:{class_name:""},skills:[]};
+fileInfo = {character:{class_name:""},skills:[],equipped:{},corruptsEquipped:{},mercEquipped:{}};
 character = {};
 var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, edged_skillup:[0,0,0], pole_skillup:[0,0,0], blunt_skillup:[0,0,0], thrown_skillup:[0,0,0], claw_skillup:[0,0,0], mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0};
 var base_stats = {level:1, skillpoints:0, statpoints:0, quests_completed:-1, running:-1, difficulty:3, strength_added:0, dexterity_added:0, vitality_added:0, energy_added:0, fRes_penalty:100, cRes_penalty:100, lRes_penalty:100, pRes_penalty:100, mRes_penalty:100, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0, fRes_max_base:75, cRes_max_base:75, lRes_max_base:75, pRes_max_base:75, mRes_max_base:75, set_bonuses:[0,0,{},{},{},{},{}]}
@@ -60,36 +60,16 @@ function getCharacterInfo() {
 	}
 	// TODO: Add ctc, cskill, 'skillup' stats
 	charInfo += "},skills:["
-//	for (let s = 0; s < skills.length; s++) { charInfo += "{level:"+skills[s].level+",extra_levels:"+skills[s].extra_levels+",force_levels:"+skills[s].force_levels+"}," }
 	for (let s = 0; s < skills.length; s++) { charInfo += "["+skills[s].level+","+skills[s].extra_levels+","+skills[s].force_levels+"]," }
-	charInfo += "],equipped:{helm:{" + getArrayText(equipped.helm)
-	charInfo += "},armor:{" + getArrayText(equipped.armor)
-	charInfo += "},gloves:{" + getArrayText(equipped.gloves)
-	charInfo += "},boots:{" + getArrayText(equipped.boots)
-	charInfo += "},belt:{" + getArrayText(equipped.belt)
-	charInfo += "},amulet:{" + getArrayText(equipped.amulet)
-	charInfo += "},ring1:{" + getArrayText(equipped.ring1)
-	charInfo += "},ring2:{" + getArrayText(equipped.ring2)
-	charInfo += "},weapon:{" + getArrayText(equipped.weapon)
-	charInfo += "},offhand:{" + getArrayText(equipped.offhand)
-	charInfo += "},charms:{"
+	charInfo += "],equipped:{"
+	for (group in corruptsEquipped) { charInfo += (group+":{name:'"+equipped[group].name+"'},") }
+	charInfo += "charms:{"
 	for (let c = 0; c < equipped.charms.length; c++) { equipped.charms[c]+":{"+getArrayText(equipped.charms[c])+"}," }
-	charInfo += "}},mercEquipped:{helm:{" + getArrayText(mercEquipped.helm)
-	charInfo += "},armor:{" + getArrayText(mercEquipped.armor)
-	charInfo += "},weapon:{" + getArrayText(mercEquipped.weapon)
-	charInfo += "},offhand:{" + getArrayText(mercEquipped.offhand)
-	charInfo += "}},corruptsEquipped:{helm:{" + getArrayText(corruptsEquipped.helm)
-	charInfo += "},armor:{" + getArrayText(corruptsEquipped.armor)
-	charInfo += "},gloves:{" + getArrayText(corruptsEquipped.gloves)
-	charInfo += "},boots:{" + getArrayText(corruptsEquipped.boots)
-	charInfo += "},belt:{" + getArrayText(corruptsEquipped.belt)
-	charInfo += "},amulet:{" + getArrayText(corruptsEquipped.amulet)
-	charInfo += "},ring1:{" + getArrayText(corruptsEquipped.ring1)
-	charInfo += "},ring2:{" + getArrayText(corruptsEquipped.ring2)
-	charInfo += "},weapon:{" + getArrayText(corruptsEquipped.weapon)
-	charInfo += "},offhand:{" + getArrayText(corruptsEquipped.offhand)
-
-	charInfo += "}}"
+	charInfo += "}},corruptsEquipped:{"
+	for (group in corruptsEquipped) { charInfo += (group+":{name:'"+corruptsEquipped[group].name+"'},") }
+	charInfo += "},mercEquipped:{"
+	for (group in mercEquipped) { charInfo += (group+":{name:'"+mercEquipped[group].name+"'},") }
+	charInfo += "}"
 	// TODO: Add effects
 	// TODO: Add duplicateEffects
 	// TODO: Add skillList
@@ -170,21 +150,42 @@ function loadFileAsText() {
 //	file: text from file
 // ---------------------------------
 function parseFile(file) {
-	var temp = file.split("character:{")[1].split("},skills:")[0].split(",");
-	for (let i = 0; i < temp.length; i++) {
-		var split = temp[i].split(":");
+	var new_character = file.split("character:{")[1].split("},skills:")[0].split(",");
+	for (let i = 0; i < new_character.length; i++) {
+		var split = new_character[i].split(":");
 		var val = split[1];
-		if (isNaN(Number(val)) == false) { val = Number(val) }
+		if (isNaN(Number(val)) == false) { val = ~~Number(val) }
 		fileInfo.character[split[0]] = val
 	}
-	temp = file.split("skills:[[")[1].split("]]")[0].split("],[");
-	for (let s = 0; s < temp.length; s++) {
-		//temp[s] = "["+temp[s]+"]"
+	var new_skills = file.split("skills:[[")[1].split("]],equipped:")[0].split("],[");
+	for (let s = 0; s < new_skills.length; s++) {
 		if (typeof(fileInfo.skills[s]) == 'undefined') { fileInfo.skills[s] = [] }
-		fileInfo.skills[s][0] = temp[s][0]
-		fileInfo.skills[s][1] = temp[s][1]
-		fileInfo.skills[s][2] = temp[s][2]
+		fileInfo.skills[s][0] = ~~new_skills[s].split(",")[0]
+		fileInfo.skills[s][1] = ~~new_skills[s].split(",")[1]
+		fileInfo.skills[s][2] = ~~new_skills[s].split(",")[2]
 	}
+	var new_equipped = file.split("equipped:{")[1].split(",charms:")[0].split(",");
+	for (let e = 0; e < new_equipped.length; e++) {
+		var group = new_equipped[e].split(":{")[0];
+		var name = new_equipped[e].split("name:'")[1].split("'}")[0];
+		fileInfo.equipped[group] = {}
+		fileInfo.equipped[group].name = name
+	}
+	var new_corruptions = file.split("corruptsEquipped:{")[1].split(",mercEquipped:")[0].split(",");
+	for (let e = 0; e < new_corruptions.length; e++) {
+		var group = new_corruptions[e].split(":{")[0];
+		var name = new_corruptions[e].split("name:'")[1].split("'")[0];
+		fileInfo.corruptsEquipped[group] = {}
+		fileInfo.corruptsEquipped[group].name = name
+	}
+	var new_mercEquipped = file.split("mercEquipped:{")[1].split("}}")[0].split(",");
+	for (let e = 0; e < new_mercEquipped.length; e++) {
+//		var group = new_mercEquipped[e].split(":{")[0];
+//		var name = new_mercEquipped[e].split("name:'")[1].split("'")[0];
+//		fileInfo.mercEquipped[group] = {}
+//		fileInfo.mercEquipped[group].name = name
+	}
+	// TODO: ...
 }
 
 // setCharacterInfo - 
@@ -201,7 +202,7 @@ function setCharacterInfo(className) {
 	// TODO: Add settings (coupling, autocast)
 	// TODO: Add socketed (helm, armor, weapon, offhand)
 	// TODO: Add inv (1-40)
-	
+	// TODO: socketed
 	// TODO: charms
 /*	for (item in info.equipped.charms) {
 		addCharm(info.equipped.charms[item].name)
@@ -212,9 +213,24 @@ function setCharacterInfo(className) {
 		//for (stat in info.equipped[group]) { equipped[group][stat] = info.equipped[group][stat] }
 		//for (stat in info.corruptsEquipped[group]) { corruptsEquipped[group][stat] = info.corruptsEquipped[group][stat] }
 	}
-*/	// TODO: socketed
-	// TODO: fix skill saving/loading
-	for (let s = 0; s < skills.length; s++) { skills[s].level = fileInfo.skills[s][0]; skills[s].extra_levels = fileInfo.skills[s][1]; skills[s].force_levels = fileInfo.skills[s][2]; showBaseLevels(skills[s]) }
+*/
+	for (group in corruptsEquipped) {
+		var options = document.getElementById("dropdown_"+group).options;
+		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.equipped[group].name) {  document.getElementById("dropdown_"+group).selectedIndex = i } }
+		equip(group,fileInfo.equipped[group].name)
+	}
+	for (group in corruptsEquipped) {
+		var options = document.getElementById("corruptions_"+group).options;
+		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.corruptsEquipped[group].name) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
+		corrupt(group,fileInfo.corruptsEquipped[group].name)
+	}
+	//
+	for (group in mercEquipped) {
+		var options = document.getElementById("dropdown_merc_"+group).options;
+		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.mercEquipped[group].name) {  document.getElementById("dropdown_merc_"+group).selectedIndex = i } }
+		equipMerc(group,fileInfo.mercEquipped[group].name)
+	}
+	for (let s = 0; s < skills.length; s++) { skills[s].level = ~~fileInfo.skills[s][0]; skills[s].extra_levels = ~~fileInfo.skills[s][1]; skills[s].force_levels = ~~fileInfo.skills[s][2]; }
 	for (stat in fileInfo.character) {
 		character[stat] = fileInfo.character[stat]
 	}
@@ -226,9 +242,9 @@ function setCharacterInfo(className) {
 //	className: name of character class
 // ---------------------------------
 function loadEquipment(className) {
-	var equipmentTypes = ["helm", "armor", "gloves", "boots", "belt", "amulet", "ring1", "ring2", "weapon", "offhand", "charms"];
+	var equipmentGroups = ["helm", "armor", "gloves", "boots", "belt", "amulet", "ring1", "ring2", "weapon", "offhand", "charms"];
 	var equipmentDropdowns = ["dropdown_helm", "dropdown_armor", "dropdown_gloves", "dropdown_boots", "dropdown_belt", "dropdown_amulet", "dropdown_ring1", "dropdown_ring2", "dropdown_weapon", "dropdown_offhand", "dropdown_charms"]
-	for (let i = 0; i < equipmentTypes.length; i++) { loadItems(equipmentTypes[i], equipmentDropdowns[i], className) }
+	for (let i = 0; i < equipmentGroups.length; i++) { loadItems(equipmentGroups[i], equipmentDropdowns[i], className) }
 	loadMisc()
 	loadMerc()
 	loadCorruptions()

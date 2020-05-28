@@ -458,10 +458,10 @@
 <a style="display: block; color: #bbbbbb; z-index:9; width:869px; height: 25px; position:absolute; text-align:center;" href="https://github.com/BetweenWalls/planner#planner">development plans & feedback</a>
 </div>
 
-<!--		save/load (hidden until working properly)	-->
+<!--		save/load (hidden until working properly (display:none / inline,inline,block))		-->
 <label class="button-file" style="display:none;">Save<button style="display:none" onclick="saveTextAsFile()"></button></label>
 <label class="button-file" style="display:none;">Load<input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
-<table><tr><td colspan="3"><textarea style="border:none; display:none;" id="inputTextToSave" cols="120" rows="1"></textarea></td></tr></table>
+<textarea style="border:none; margin-top:9px; display:none;" id="inputTextToSave" cols="121" rows="1"></textarea>
 
 </div>	<!-- /interface -->
 </div>	<!-- /full_interface -->
