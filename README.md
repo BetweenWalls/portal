@@ -20,21 +20,22 @@ Current Known Issues:
 * Unimplemented: skill buffs from item-charges
 * Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
+* Save/Load doesn't include socketables
 
 Info: https://github.com/BetweenWalls/planner#planner
 
 Code Organization:
-	File			Description
-	index.html		Handles page layout
+	File   			Description
+	index.html  		Handles page layout
 	all.css			Defines style elements
 	all.js			Holds most of the program logic
 	all_equipment.js	Contains item data
-	amazon.js		Skill data (amazon)
+	amazon.js   		Skill data (amazon)
 	assassin.js		Skill data (assassin)
 	barbarian.js		Skill data (barbarian)
-	druid.js		Skill data (druid)
+	druid.js    		Skill data (druid)
 	necromancer.js		Skill data (necromancer)
-	paladin.js		Skill data (paladin)
+	paladin.js  		Skill data (paladin)
 	sorceress.js		Skill data (sorceress)
 	universal_skills.js	Skill data (oskills)
 
@@ -57,21 +58,22 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * charm inventory
 
 ### Upcoming Plans:
+* offhand attacks
 * skill buffs from item-charges
 * option to 'snapshot' buffs
 * more breakpoint info
 * mercenary stats & validation
 * interface niceties
+* complete save/load
 
 ### Longterm Goals:
-* character saving/sharing
 * item description tooltips
 * full GUI inventory/stash
 * custom item creation & editing
 * custom item-pool saving
 * options for individual quests
 * option for strict character validation (prevent invalid character states instead of just making text red)
-* character importing
+* character importing/sharing
 * monster stat calculations
 * debuff tracking
 * party tracking/planning
@@ -82,8 +84,8 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * dynamic item/skill recommendations
 
 ### Feedback:
-[Reddit Thread](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/)
+[Reddit](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/)
 
-[Github 'Wiki'](https://github.com/BetweenWalls/planner/wiki/Feedback-for-Skill-Planner)
+[Github](https://github.com/BetweenWalls/planner/wiki/Feedback-for-Skill-Planner)
 
 This project will likely be made open-source at some point, but if you want to contribute directly before that point, any improvements would be welcome.

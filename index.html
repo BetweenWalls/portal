@@ -54,6 +54,11 @@
 <img id="hide_statpoints" src="./images/statbar_hidden_stats.png" style="position: absolute; display: block; left: 7px; top: 344px;">
 <img id="hide_stats" src="./images/statbar_hidden_buttons.png" style="position: absolute; display: block; left: 120px; top: 98px;">
 
+<div style="position:absolute; display:block; left:0px; top:395px;">
+<label class="button-file" style="margin-left:25px;">Save<button style="display:none" onclick="saveTextAsFile()"></button></label>
+<label class="button-file" style="margin-left:15px;">Load<input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
+</div>
+
 <!--	class selection 	-->
 <select class="dropdown-character" id="dropdown_class" onChange="reset(this.value)">
 <option class="gray" disabled selected>Choose Class</option>
@@ -201,17 +206,17 @@
 <label style="color: #aaa;" for="autocast">New Effects Begin Enabled</label>
 </div>
 </div>
-<div style="width: 350px;">
-<div style="margin-left: 12px; margin-bottom: 1px; width: 200px">
+<div style="width:210px; float:left;">
+<div>
 <input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
 <label style="color: #aaa;" for="quests">Quests Completed</label>
 </div>
-<div style="margin-left: 12px; margin-bottom: 3px; width: 180px;">
+<div>
 <input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
 <label style="color: #aaa;" for="running">Running</label>
 </div>
-<div style="color: #aaa; float: left; margin-right: 5px; margin-left: 12px;">Difficulty: </div>
-<div style="position: relative; color: #aaa; float: left;">
+</div>
+<div style="position: relative; color: #aaa; float: left; width:310px; margin-left:5px;">Difficulty: 
 <input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
 <label style="color: #aaa;" for="difficulty">Normal</label>
 <input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
@@ -219,7 +224,7 @@
 <input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
 <label style="color: #aaa;" for="difficulty">Hell</label>
 </div>
-</div>
+<div style="color: #aaa; width:869px; height:480px; display:block;"></div>
 </div> <!-- /selection options -->
 
 <!--	inventory	-->
@@ -454,14 +459,10 @@
 </div>
 </div>	<!-- /stats -->
 
-<div style="position:relative; margin-top: 15px; margin-bottom: 33px; width: 869px; float: left;">
+<textarea style="border:none; background-color:black; resize:none; float:right;" id="inputTextToSave" cols="1" rows="1"></textarea>
+<div style="position:relative; margin-top: 15px; margin-bottom: 33px; width: 840px; float: left;">
 <a style="display: block; color: #bbbbbb; z-index:9; width:869px; height: 25px; position:absolute; text-align:center;" href="https://github.com/BetweenWalls/planner#planner">development plans & feedback</a>
 </div>
-
-<!--		save/load (hidden until working properly (display:none / inline,inline,block))		-->
-<label class="button-file" style="display:none;">Save<button style="display:none" onclick="saveTextAsFile()"></button></label>
-<label class="button-file" style="display:none;">Load<input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
-<textarea style="border:none; margin-top:9px; display:none;" id="inputTextToSave" cols="121" rows="1"></textarea>
 
 </div>	<!-- /interface -->
 </div>	<!-- /full_interface -->

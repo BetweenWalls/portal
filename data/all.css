@@ -264,7 +264,7 @@ input[type="file"] {
 }
 .button-file {
     border: 1px solid #ccc;
-    padding: 6px 12px;
+    padding: 5px 10px;
     cursor: pointer;
     background-color: #eee;
 }

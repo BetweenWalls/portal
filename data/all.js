@@ -1,5 +1,5 @@
 
-fileInfo = {character:{class_name:""},skills:[],equipped:{},corruptsEquipped:{},mercEquipped:{}};
+fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},selectedSkill:["",""],mercenary:"",settings:{}};
 character = {};
 var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, edged_skillup:[0,0,0], pole_skillup:[0,0,0], blunt_skillup:[0,0,0], thrown_skillup:[0,0,0], claw_skillup:[0,0,0], mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0};
 var base_stats = {level:1, skillpoints:0, statpoints:0, quests_completed:-1, running:-1, difficulty:3, strength_added:0, dexterity_added:0, vitality_added:0, energy_added:0, fRes_penalty:100, cRes_penalty:100, lRes_penalty:100, pRes_penalty:100, mRes_penalty:100, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0, fRes_max_base:75, cRes_max_base:75, lRes_max_base:75, pRes_max_base:75, mRes_max_base:75, set_bonuses:[0,0,{},{},{},{},{}]}
@@ -58,32 +58,37 @@ function getCharacterInfo() {
 		for (let i = 0; i < not_applicable.length; i++) { if (stat == not_applicable[i]) { halt = 1 } }
 		if (halt == 0 && character[stat] != 0 && character[stat] != "") { charInfo += (stat+":"+character[stat]+",") }
 	}
-	// TODO: Add ctc, cskill, 'skillup' stats
+	// TODO: Add ctc, cskill, 'skillup' stats?
 	charInfo += "},skills:["
 	for (let s = 0; s < skills.length; s++) { charInfo += "["+skills[s].level+","+skills[s].extra_levels+","+skills[s].force_levels+"]," }
 	charInfo += "],equipped:{"
 	for (group in corruptsEquipped) { charInfo += (group+":{name:'"+equipped[group].name+"'},") }
-	charInfo += "charms:{"
-	for (let c = 0; c < equipped.charms.length; c++) { equipped.charms[c]+":{"+getArrayText(equipped.charms[c])+"}," }
-	charInfo += "}},corruptsEquipped:{"
+	charInfo += "charms:["
+	for (charm in equipped.charms) { if (typeof(equipped.charms[charm].name) != 'undefined' && equipped.charms[charm].name != 'none') { charInfo += "'"+equipped.charms[charm].name+"'," } }
+	charInfo += "]},corruptsEquipped:{"
 	for (group in corruptsEquipped) { charInfo += (group+":{name:'"+corruptsEquipped[group].name+"'},") }
 	charInfo += "},mercEquipped:{"
 	for (group in mercEquipped) { charInfo += (group+":{name:'"+mercEquipped[group].name+"'},") }
+	//charInfo += "}"
+	charInfo += "},selectedSkill:["+selectedSkill[0]+","+selectedSkill[1]
+	charInfo += "],mercenary:'"+mercenary.name+"'"
+	charInfo += ",settings:{coupling:"+settings.coupling+",autocast:"+settings.autocast
 	charInfo += "}"
-	// TODO: Add effects
-	// TODO: Add duplicateEffects
-	// TODO: Add skillList
-	// TODO: Add skillOptions
-	// TODO: Add selectedSkill
-	// TODO: Add mercenary
-	// TODO: Add offhandType
-	// TODO: Add settings (coupling, autocast)
+		// TODO: Add effects
+		// TODO: Add duplicateEffects
+		// TODO: Add skillList
+		// TODO: Add skillOptions
+		// TODO: Add selectedSkill
+		// TODO: Add mercenary
+		// TODO: Add offhandType
+		// TODO: Add settings (coupling, autocast)
 	// TODO: Add socketed (helm, armor, weapon, offhand)
 	// TODO: Add inv (1-40)
 	charInfo += "}"
 	return charInfo
 }
 
+// NOT USED
 // getArrayText - 
 // return: 
 // ---------------------------------
@@ -123,6 +128,7 @@ function saveTextAsFile() {
 	document.body.appendChild(downloadLink);
 
 	downloadLink.click();
+	document.getElementById("inputTextToSave").value = ""
 }
 
 // destroyClickedElement - 
@@ -150,6 +156,7 @@ function loadFileAsText() {
 //	file: text from file
 // ---------------------------------
 function parseFile(file) {
+	fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},selectedSkill:["",""],mercenary:"",settings:{}};	// reset fileInfo
 	var new_character = file.split("character:{")[1].split("},skills:")[0].split(",");
 	for (let i = 0; i < new_character.length; i++) {
 		var split = new_character[i].split(":");
@@ -178,13 +185,30 @@ function parseFile(file) {
 		fileInfo.corruptsEquipped[group] = {}
 		fileInfo.corruptsEquipped[group].name = name
 	}
-	var new_mercEquipped = file.split("mercEquipped:{")[1].split("}}")[0].split(",");
+	var new_mercEquipped = file.split("mercEquipped:{")[1].split("},selectedSkill:")[0].split(",");
 	for (let e = 0; e < new_mercEquipped.length; e++) {
-//		var group = new_mercEquipped[e].split(":{")[0];
-//		var name = new_mercEquipped[e].split("name:'")[1].split("'")[0];
-//		fileInfo.mercEquipped[group] = {}
-//		fileInfo.mercEquipped[group].name = name
+		var group = new_mercEquipped[e].split(":{")[0];
+		var name = new_mercEquipped[e].split("name:'")[1].split("'")[0];
+		fileInfo.mercEquipped[group] = {}
+		fileInfo.mercEquipped[group].name = name
 	}
+	var new_selectedSkill = file.split("selectedSkill:[")[1].split("],mercenary:")[0].split(",");
+	fileInfo.selectedSkill[0] = new_selectedSkill[0]
+	fileInfo.selectedSkill[1] = new_selectedSkill[1]
+	var new_mercenary = file.split("mercenary:'")[1].split("',settings:")[0];
+	fileInfo.mercenary = new_mercenary
+	var new_settings = file.split("settings:{")[1].split("}")[0].split(",");
+	for (let i = 0; i < new_settings.length; i++) {
+		var setting = new_settings[i].split(":")[0];
+		var value = new_settings[i].split(":")[1];
+		fileInfo.settings[setting] = value
+	}
+	var new_charms = file.split("charms:[")[1].split("]},corruptsEquipped:")[0]
+	if (new_charms.length > 0) {
+		new_charms = file.split("charms:['")[1].split("']},corruptsEquipped:")[0].split("','");
+		for (let i = 0; i < new_charms.length; i++) { fileInfo.equipped.charms[i] = new_charms[i] }
+	}
+	
 	// TODO: ...
 }
 
@@ -192,28 +216,10 @@ function parseFile(file) {
 // ---------------------------------
 function setCharacterInfo(className) {
 	startup(className)
-	// TODO: Add effects
-	// TODO: Add duplicateEffects
-	// TODO: Add skillList
-	// TODO: Add skillOptions
-	// TODO: Add selectedSkill
-	// TODO: Add mercenary
-	// TODO: Add offhandType
-	// TODO: Add settings (coupling, autocast)
-	// TODO: Add socketed (helm, armor, weapon, offhand)
-	// TODO: Add inv (1-40)
-	// TODO: socketed
-	// TODO: charms
-/*	for (item in info.equipped.charms) {
-		addCharm(info.equipped.charms[item].name)
-	}
-	for (group in corruptsEquipped) {
-		equip(group,info.equipped[group].name)
-		corrupt(group,info.corruptsEquipped[group].name)
-		//for (stat in info.equipped[group]) { equipped[group][stat] = info.equipped[group][stat] }
-		//for (stat in info.corruptsEquipped[group]) { corruptsEquipped[group][stat] = info.corruptsEquipped[group][stat] }
-	}
-*/
+	if (settings.coupling == 0) { document.getElementById("coupling").checked = true; toggleCoupling(document.getElementById("coupling")); }
+	if (settings.autocast == 0) { document.getElementById("autocast").checked = true; toggleAutocast(document.getElementById("autocast")); }
+	for (let s = 0; s < skills.length; s++) { if (~~fileInfo.skills[s][0] > 0) { skillUp(null,skills[s],~~fileInfo.skills[s][0]) } }
+	skillOut()
 	for (group in corruptsEquipped) {
 		var options = document.getElementById("dropdown_"+group).options;
 		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.equipped[group].name) {  document.getElementById("dropdown_"+group).selectedIndex = i } }
@@ -224,18 +230,34 @@ function setCharacterInfo(className) {
 		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.corruptsEquipped[group].name) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
 		corrupt(group,fileInfo.corruptsEquipped[group].name)
 	}
-	//
-	for (group in mercEquipped) {
-		var options = document.getElementById("dropdown_merc_"+group).options;
-		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.mercEquipped[group].name) {  document.getElementById("dropdown_merc_"+group).selectedIndex = i } }
-		equipMerc(group,fileInfo.mercEquipped[group].name)
-	}
+	for (let i = 0; i < fileInfo.equipped.charms.length; i++) { addCharm(fileInfo.equipped.charms[i]) }
 	for (let s = 0; s < skills.length; s++) { skills[s].level = ~~fileInfo.skills[s][0]; skills[s].extra_levels = ~~fileInfo.skills[s][1]; skills[s].force_levels = ~~fileInfo.skills[s][2]; }
+	
+	// TODO: ...
+	
+	checkSkill(fileInfo.selectedSkill[0], 1)
+	checkSkill(fileInfo.selectedSkill[1], 2)
+	if (character.difficulty != fileInfo.character.difficulty) { document.getElementById("difficulty3").checked = false; document.getElementById("difficulty"+fileInfo.character.difficulty).checked = true; changeDifficulty(fileInfo.character.difficulty) }
+	if (character.running != fileInfo.character.running) { document.getElementById("running").checked = true; toggleRunning(document.getElementById("running")) }
+	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
+	character.level = fileInfo.character.level
+	setMercenary(fileInfo.mercenary)
+	for (group in mercEquipped) {
+		if (fileInfo.mercEquipped[group].name != 'none') {
+			var options = document.getElementById("dropdown_merc_"+group).options;
+			for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.mercEquipped[group].name) {  document.getElementById("dropdown_merc_"+group).selectedIndex = i } }
+			equipMerc(group,fileInfo.mercEquipped[group].name)	// TODO: Issue with this? Was halting other code when it was above them...
+		}
+	}
+	// TODO: Disable/enable effects if needed
 	for (stat in fileInfo.character) {
 		character[stat] = fileInfo.character[stat]
 	}
-//	updateStats()
+	if (settings.coupling != fileInfo.settings.coupling) { if (settings.coupling == 1) { document.getElementById("coupling").checked = false }; toggleCoupling(document.getElementById("coupling")) }
+	if (settings.autocast != fileInfo.settings.autocast) { if (settings.autocast == 1) { document.getElementById("autocast").checked = false }; toggleAutocast(document.getElementById("autocast")) }
+	updateStats()
 //	updateAllEffects()
+	document.getElementById("inputTextToSave").value = ""
 }
 
 // loadEquipment - Loads equipment/charm info to the appropriate dropdowns
@@ -344,7 +366,7 @@ function setMercenary(merc) {
 		if (merc == mercenaries[8].name) { mercType = "Barb (merc)" }
 		for (let i = 0; i < mercEquipmentGroups.length; i++) { loadItems(mercEquipmentGroups[i], mercEquipmentDropdowns[i], mercType) }
 		for (let m = 1; m < mercenaries.length; m++) {
-			if (merc == mercenaries[m].name) { if (mercenary.base_aura == "") {
+			if (merc == mercenaries[m].name) { document.getElementById("dropdown_mercenary").selectedIndex = m; if (mercenary.base_aura == "") {
 				mercenary.level = Math.max(1,character.level-1)
 				mercenary.base_aura_level = getMercenaryAuraLevel(mercenary.level)
 				mercenary.base_aura = mercenaries[m].aura
@@ -435,8 +457,8 @@ function init() {
 	document.getElementById("skillmap").onmouseout = function() {skillOut()};
 	for (let s = 0, len = skills.length; s < len; s++) {
 		document.getElementById("s"+skills[s].key).onmouseover = function() {skillHover(skills[s])};
-		document.getElementById("s"+skills[s].key).onclick = function() {skillUp(event, skills[s])};
-		document.getElementById("s"+skills[s].key).oncontextmenu = function() {skillDown(event, skills[s])};
+		document.getElementById("s"+skills[s].key).onclick = function() {skillUp(event,skills[s],1)};
+		document.getElementById("s"+skills[s].key).oncontextmenu = function() {skillDown(event,skills[s])};
 	}
 }
 
@@ -1453,7 +1475,7 @@ function toggleQuests(quests) {
 //	running: name identifier for 'Running' checkbox element
 // ---------------------------------
 function toggleRunning(running) {
-	if (running.checked) { character.running = 1 } else { character.running = 0 }
+	if (running.checked == true) { character.running = 1 } else { character.running = 0 }
 	updateStats()
 }
 
@@ -1468,6 +1490,7 @@ function changeDifficulty(diff) {
 		else if (diff == 2) { character[penalties[p]] = 40 }
 		else if (diff == 3) { character[penalties[p]] = 100 }
 	}
+	//document.getElementById("difficulty"+diff).checked = true
 	updatePrimaryStats()
 	updateOther()
 }
@@ -2060,12 +2083,14 @@ function removeStat(event, stat) {
 
 // skillUp - Raises the skill level
 //	skill: the skill to modify
+//	levels: number of levels to add (1 by default)
 // ---------------------------------
-function skillUp(event, skill) {
+function skillUp(event, skill, levels) {
 	var old_level = skill.level;
-	var levels = 1;
-	if (event.shiftKey) { levels = 10 }
-	if (event.ctrlKey) { levels = 20 }
+	if (levels == 1 && event != null) {
+		if (event.shiftKey) { levels = 10 }
+		if (event.ctrlKey) { levels = 20 }
+	}
 	if (old_level+levels > MAX) { levels = MAX-old_level }
 	if (levels > (99-character.level) + character.skillpoints) { levels = (99-(character.level) + character.skillpoints) }
 	if (settings.coupling == 0 && levels > character.skillpoints) { levels = character.skillpoints }
@@ -2312,6 +2337,7 @@ function checkSkill(skillName, num) {
 	for (let s = 0; s < skills.length; s++) {
 		if (skills[s].name == skillName) { 
 			skill = skills[s]
+			document.getElementById("dropdown_skill"+num).selectedIndex = s
 		}
 	}
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
