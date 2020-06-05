@@ -23,13 +23,66 @@
 <!--
 <div id="side_panel" style="width: 100px; height:800px; position: relative; float: right;" class="no-selection" oncontextmenu="return false">
 -->
+<div class="navbar">
+  <div class="nav-dropdown">
+    <button class="nav-dropbtn">File
+    </button>
+    <div class="nav-dropdown-content">
+      <div class="nav-dropdown-content-item">
+	<label class="button-file"> ­ ­ ­ ­ Save ­ ­ <button style="display:none" onclick="saveTextAsFile()"></button></label>
+      </div>
+      <div class="nav-dropdown-content-item">
+	<label class="button-file"> ­ ­ ­ ­ Load ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
+      </div>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <button class="nav-dropbtn">Preferences
+    </button>
+    <div class="nav-dropdown-content">
+      <div class="nav-dropdown-content-item">
+	<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
+	<label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ </label>
+      </div>
+      <div class="nav-dropdown-content-item">
+	<input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
+	<label for="autocast"> ­ ­ ­ ­ New Effects Begin Enabled ­ ­ </label>
+      </div>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <button class="nav-dropbtn">Character
+    </button>
+    <div class="nav-dropdown-content">
+      <div class="nav-dropdown-content-item"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
+	<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
+	<label for="difficulty">Normal</label>
+	<input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
+	<label for="difficulty">Nightmare</label>
+	<input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
+	<label for="difficulty">Hell ­ ­ </label>
+      </div>
+      <div class="nav-dropdown-content-item">
+	<input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
+	<label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ </label>
+      </div>
+      <div class="nav-dropdown-content-item">
+	<input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
+	<label for="running"> ­ ­ ­ ­ Running ­ ­ </label>
+      </div>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <div class="nav-dropbtn"><a href="https://github.com/BetweenWalls/planner#planner">About</a></div>
+  </div>
+</div>
 
 <div id="full_interface" style="width: 1000px;" class="no-selection" oncontextmenu="return false">
-<div id="side" style="margin-left: 11px; margin-top: 4px; width: 120px; position: relative; float:right;"></div>
+<div id="side" style="margin-left: 4px; margin-top: 4px; width: 125px; position: relative; float:right;"></div>
 
 <div id="interface" style="width: 869px;">
 
-<div id="gui" class="no-selection" oncontextmenu="return false">
+<div id="gui" class="no-selection" oncontextmenu="return false" style="height:398px;">
 
 <!--		/GUI Stats		-->
 <div id="gui_stats" style="position: relative; width: 175px; height: 434px; float: left;">
@@ -53,11 +106,6 @@
 <img id="hide_skillpoints" src="./images/statbar_hidden_skills.png" style="position: absolute; display: block; left: 7px; top: 54px;">
 <img id="hide_statpoints" src="./images/statbar_hidden_stats.png" style="position: absolute; display: block; left: 7px; top: 344px;">
 <img id="hide_stats" src="./images/statbar_hidden_buttons.png" style="position: absolute; display: block; left: 120px; top: 98px;">
-
-<div style="position:absolute; display:block; left:0px; top:395px;">
-<label class="button-file" style="margin-left:25px;">Save<button style="display:none" onclick="saveTextAsFile()"></button></label>
-<label class="button-file" style="margin-left:15px;">Load<input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
-</div>
 
 <!--	class selection 	-->
 <select class="dropdown-character" id="dropdown_class" onChange="reset(this.value)">
@@ -194,39 +242,6 @@
 <select class="dropdown" id="corruptions_offhand" onChange="corrupt('offhand', this.value)" onContextMenu="corrupt('offhand', 'none')"></select>
 </div> <!-- /Corruption Options -->
 
-<!--	selection options	-->
-<div style="width: 869px; margin-bottom: 0px;">
-<div style="margin-right: 30px; width: 210px; float: right;">
-<div>
-<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
-<label style="color: #aaa;" for="coupling">Skill-Level Coupling</label>
-</div>
-<div>
-<input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
-<label style="color: #aaa;" for="autocast">New Effects Begin Enabled</label>
-</div>
-</div>
-<div style="width:210px; float:left;">
-<div>
-<input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
-<label style="color: #aaa;" for="quests">Quests Completed</label>
-</div>
-<div>
-<input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
-<label style="color: #aaa;" for="running">Running</label>
-</div>
-</div>
-<div style="position: relative; color: #aaa; float: left; width:310px; margin-left:5px;">Difficulty: 
-<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
-<label style="color: #aaa;" for="difficulty">Normal</label>
-<input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
-<label style="color: #aaa;" for="difficulty">Nightmare</label>
-<input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
-<label style="color: #aaa;" for="difficulty">Hell</label>
-</div>
-<div style="color: #aaa; width:869px; height:480px; display:block;"></div>
-</div> <!-- /selection options -->
-
 <!--	inventory	-->
 <div class="inventory">
 <!--	equipment inventory	-->
@@ -305,7 +320,7 @@
 </div> <!-- /gui -->
 
 <!--		skill details		-->
-<div class="no-selection" style="display: block; height:220px; width: 330px; margin-top: 30px; position: relative;">
+<div class="no-selection" style="display: block; height:235px; width: 330px; margin-top: 30px; position: relative;">
 <div class="gray">
 <div style="width: 300px; margin-bottom: 15px; margin-top: 40px;">
 <!--<a style="visibility:visible;">Damage per Second: </a><a id="dps"></a><br>-->
@@ -329,12 +344,12 @@
 </div>
 <div> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as ED) -->
 <div style="position:absolute; left:30px;">
-	<br>
+	<br><br>
 	<font size="2">Damage vs Demons: </font><font size="2" id="damage_vs_demons"></font><br>
 	<font size="2">Damage vs Undead: </font><font size="2" id="damage_vs_undead"></font><br>
 </div>
 <div style="position:absolute; left:192px;">
-	<br>
+	<br><br>
 	<font size="2">AR vs Demons: </font><font size="2" id="ar_vs_demons"></font><br>
 	<font size="2">AR vs Undead: </font><font size="2" id="ar_vs_undead"></font><br>
 </div>
@@ -434,7 +449,7 @@
 </div>
 
 <div style="width:869px;" id="stats_positioning_alignment">
-<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <div style="float:right; width:195px;" id="stats_column_5">
 	<div style="margin-right:-100px;"><font size="2" id="flamme"></font></div>
 	<font size="2" id="itd"></font>
@@ -454,16 +469,12 @@
 	<font size="2" id="glow"></font>
 	<div style="margin-right:-125px;"><font size="2" id="ctc"></font></div>
 	<div style="margin-right:-125px;"><font size="2" id="cskill"></font></div>
+	<br>
 </div>
-<div><br><br><br><br><br></div>
+<div><br><br></div>
 </div>
+<textarea style="border:none; background-color:black; resize:none; float:left;" id="inputTextToSave" cols="1" rows="1"></textarea>
 </div>	<!-- /stats -->
-
-<textarea style="border:none; background-color:black; resize:none; float:right;" id="inputTextToSave" cols="1" rows="1"></textarea>
-<div style="position:relative; margin-top: 15px; margin-bottom: 33px; width: 840px; float: left;">
-<a style="display: block; color: #bbbbbb; z-index:9; width:869px; height: 25px; position:absolute; text-align:center;" href="https://github.com/BetweenWalls/planner#planner">development plans & feedback</a>
-</div>
-
 </div>	<!-- /interface -->
 </div>	<!-- /full_interface -->
 </div>	<!-- /main -->

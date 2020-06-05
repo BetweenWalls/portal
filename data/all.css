@@ -262,9 +262,59 @@ position:absolute;
 input[type="file"] {
     display: none;
 }
-.button-file {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #eee;
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #444;
+  font-family: Arial;
+}
+
+/* The dropdown container */
+.nav-dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.nav-dropbtn, .nav-dropbtn a {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 3px 8px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  text-decoration: none;
+}
+
+/* Highlight navbar categories on hover */
+.nav-dropdown:hover {
+  background-color: #222;
+}
+
+/* Highlight navbar dropdown options on hover */
+.nav-dropdown-content-item:hover {
+  background-color: #555;
+}
+
+/* Dropdown content (hidden by default) */
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  color: #eee;
+  background-color: #333;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 9;
+}
+
+.nav-dropdown-content-item {
+  margin: 2px 2px 2px 2px;
+}
+
+/* Show the dropdown menu on hover */
+.nav-dropdown:hover .nav-dropdown-content {
+  display: block;
 }
