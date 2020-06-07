@@ -1,5 +1,5 @@
 
-fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},selectedSkill:["",""],mercenary:"",settings:{}};
+fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{}};
 character = {};
 var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, edged_skillup:[0,0,0], pole_skillup:[0,0,0], blunt_skillup:[0,0,0], thrown_skillup:[0,0,0], claw_skillup:[0,0,0], mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0};
 var base_stats = {level:1, skillpoints:0, statpoints:0, quests_completed:-1, running:-1, difficulty:3, strength_added:0, dexterity_added:0, vitality_added:0, energy_added:0, fRes_penalty:100, cRes_penalty:100, lRes_penalty:100, pRes_penalty:100, mRes_penalty:100, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0, fRes_max_base:75, cRes_max_base:75, lRes_max_base:75, pRes_max_base:75, mRes_max_base:75, set_bonuses:[0,0,{},{},{},{},{}]}
@@ -10,6 +10,7 @@ var skillList = []; var skillOptions = [];
 var selectedSkill = [" ­ ­ ­ ­ Skill 1", " ­ ­ ­ ­ Skill 2"];
 
 var offhandSetup = "";
+var tempSetup = 0;
 var mercenary = {name:"",level:1,base_aura:"",base_aura_level:1};
 var offhandType = "none";
 var lastCharm = "";
@@ -30,10 +31,10 @@ var socketed = {
 // Charm Inventory
 var inv = [
 {onpickup:"?",pickup_x:0,pickup_y:0,empty:1,charms:[],in:["",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-{x:1,y:1,empty:1,id:"h11"},{x:1,y:1,empty:1,id:"h21"},{x:1,y:1,empty:1,id:"h31"},{x:1,y:1,empty:1,id:"h41"},{x:1,y:1,empty:1,id:"h51"},{x:1,y:1,empty:1,id:"h61"},{x:1,y:1,empty:1,id:"h71"},{x:1,y:1,empty:1,id:"h81"},{x:1,y:1,empty:1,id:"h91"},{x:1,y:1,empty:1,id:"h01"},
-{x:1,y:1,empty:1,id:"h12"},{x:1,y:1,empty:1,id:"h22"},{x:1,y:1,empty:1,id:"h32"},{x:1,y:1,empty:1,id:"h42"},{x:1,y:1,empty:1,id:"h52"},{x:1,y:1,empty:1,id:"h62"},{x:1,y:1,empty:1,id:"h72"},{x:1,y:1,empty:1,id:"h82"},{x:1,y:1,empty:1,id:"h92"},{x:1,y:1,empty:1,id:"h02"},
-{x:1,y:1,empty:1,id:"h13"},{x:1,y:1,empty:1,id:"h23"},{x:1,y:1,empty:1,id:"h33"},{x:1,y:1,empty:1,id:"h43"},{x:1,y:1,empty:1,id:"h53"},{x:1,y:1,empty:1,id:"h63"},{x:1,y:1,empty:1,id:"h73"},{x:1,y:1,empty:1,id:"h83"},{x:1,y:1,empty:1,id:"h93"},{x:1,y:1,empty:1,id:"h03"},
-{x:1,y:1,empty:1,id:"h14"},{x:1,y:1,empty:1,id:"h24"},{x:1,y:1,empty:1,id:"h34"},{x:1,y:1,empty:1,id:"h44"},{x:1,y:1,empty:1,id:"h54"},{x:1,y:1,empty:1,id:"h64"},{x:1,y:1,empty:1,id:"h74"},{x:1,y:1,empty:1,id:"h84"},{x:1,y:1,empty:1,id:"h94"},{x:1,y:1,empty:1,id:"h04"}
+{x:1,y:1,empty:1,load:"",id:"h11"},{x:1,y:1,empty:1,load:"",id:"h21"},{x:1,y:1,empty:1,load:"",id:"h31"},{x:1,y:1,empty:1,load:"",id:"h41"},{x:1,y:1,empty:1,load:"",id:"h51"},{x:1,y:1,empty:1,load:"",id:"h61"},{x:1,y:1,empty:1,load:"",id:"h71"},{x:1,y:1,empty:1,load:"",id:"h81"},{x:1,y:1,empty:1,load:"",id:"h91"},{x:1,y:1,empty:1,load:"",id:"h01"},
+{x:1,y:1,empty:1,load:"",id:"h12"},{x:1,y:1,empty:1,load:"",id:"h22"},{x:1,y:1,empty:1,load:"",id:"h32"},{x:1,y:1,empty:1,load:"",id:"h42"},{x:1,y:1,empty:1,load:"",id:"h52"},{x:1,y:1,empty:1,load:"",id:"h62"},{x:1,y:1,empty:1,load:"",id:"h72"},{x:1,y:1,empty:1,load:"",id:"h82"},{x:1,y:1,empty:1,load:"",id:"h92"},{x:1,y:1,empty:1,load:"",id:"h02"},
+{x:1,y:1,empty:1,load:"",id:"h13"},{x:1,y:1,empty:1,load:"",id:"h23"},{x:1,y:1,empty:1,load:"",id:"h33"},{x:1,y:1,empty:1,load:"",id:"h43"},{x:1,y:1,empty:1,load:"",id:"h53"},{x:1,y:1,empty:1,load:"",id:"h63"},{x:1,y:1,empty:1,load:"",id:"h73"},{x:1,y:1,empty:1,load:"",id:"h83"},{x:1,y:1,empty:1,load:"",id:"h93"},{x:1,y:1,empty:1,load:"",id:"h03"},
+{x:1,y:1,empty:1,load:"",id:"h14"},{x:1,y:1,empty:1,load:"",id:"h24"},{x:1,y:1,empty:1,load:"",id:"h34"},{x:1,y:1,empty:1,load:"",id:"h44"},{x:1,y:1,empty:1,load:"",id:"h54"},{x:1,y:1,empty:1,load:"",id:"h64"},{x:1,y:1,empty:1,load:"",id:"h74"},{x:1,y:1,empty:1,load:"",id:"h84"},{x:1,y:1,empty:1,load:"",id:"h94"},{x:1,y:1,empty:1,load:"",id:"h04"}
 ];
 
 // update - Updates everything
@@ -58,6 +59,7 @@ function getCharacterInfo() {
 		for (let i = 0; i < not_applicable.length; i++) { if (stat == not_applicable[i]) { halt = 1 } }
 		if (halt == 0 && character[stat] != 0 && character[stat] != "") { charInfo += (stat+":"+character[stat]+",") }
 	}
+	// TODO: Remove other NaN stats - weapon, armor, shield
 	// TODO: Add ctc, cskill, 'skillup' stats?
 	charInfo += "},skills:["
 	for (let s = 0; s < skills.length; s++) { charInfo += "["+skills[s].level+","+skills[s].extra_levels+","+skills[s].force_levels+"]," }
@@ -69,44 +71,19 @@ function getCharacterInfo() {
 	for (group in corruptsEquipped) { charInfo += (group+":{name:'"+corruptsEquipped[group].name+"'},") }
 	charInfo += "},mercEquipped:{"
 	for (group in mercEquipped) { charInfo += (group+":{name:'"+mercEquipped[group].name+"'},") }
-	//charInfo += "}"
+	charInfo += "},socketed:{"
+	for (group in socketed) {
+		charInfo += group+":["
+		for (let i = 0; i < socketed[group].items.length; i++) { charInfo += ("name:{'"+socketed[group].items[i].name+"'},") }
+		charInfo += "],"
+	}
+	charInfo += "},effects:{"
+	for (id in effects) { charInfo += (id+":"+effects[id].info.enabled+",") }
 	charInfo += "},selectedSkill:["+selectedSkill[0]+","+selectedSkill[1]
 	charInfo += "],mercenary:'"+mercenary.name+"'"
 	charInfo += ",settings:{coupling:"+settings.coupling+",autocast:"+settings.autocast
-	charInfo += "}"
-		// TODO: Add effects
-		// TODO: Add duplicateEffects
-		// TODO: Add skillList
-		// TODO: Add skillOptions
-		// TODO: Add selectedSkill
-		// TODO: Add mercenary
-		// TODO: Add offhandType
-		// TODO: Add settings (coupling, autocast)
-	// TODO: Add socketed (helm, armor, weapon, offhand)
-	// TODO: Add inv (1-40)
-	charInfo += "}"
+	charInfo += "}}"
 	return charInfo
-}
-
-// NOT USED
-// getArrayText - 
-// return: 
-// ---------------------------------
-function getArrayText(array) {
-	// TODO: Add parameter for exceptions?
-	var arrayText = "";
-	for (stat in array) {
-		if (character[stat] != 0 && character[stat] != "") {	// temporary? (stats with default values not added to reduce clutter)
-			if (stat == "not" || stat == "ctc" || stat == "cskill" || stat == "set_bonuses") {
-				// TODO: Implement
-			} else if (stat == "name" || stat == "type" || stat == "base" || stat == "img" || stat == "rarity" || stat == "only" || stat == "aura" || stat == "group" || stat == "size" || stat == "upgrade" || stat == "downgrade") {
-				arrayText += (stat+":'"+array[stat]+"',")
-			} else {
-				arrayText += (stat+":"+array[stat]+",")
-			}
-		}
-	}
-	return arrayText
 }
 
 // saveTextAsFile - 
@@ -156,7 +133,8 @@ function loadFileAsText() {
 //	file: text from file
 // ---------------------------------
 function parseFile(file) {
-	fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},selectedSkill:["",""],mercenary:"",settings:{}};	// reset fileInfo
+	fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{}};	// reset fileInfo
+
 	var new_character = file.split("character:{")[1].split("},skills:")[0].split(",");
 	for (let i = 0; i < new_character.length; i++) {
 		var split = new_character[i].split(":");
@@ -181,22 +159,37 @@ function parseFile(file) {
 	var new_corruptions = file.split("corruptsEquipped:{")[1].split(",mercEquipped:")[0].split(",");
 	for (let e = 0; e < new_corruptions.length; e++) {
 		var group = new_corruptions[e].split(":{")[0];
-		var name = new_corruptions[e].split("name:'")[1].split("'")[0];
+		var name = new_corruptions[e].split("name:'")[1].split("'}")[0];
 		fileInfo.corruptsEquipped[group] = {}
 		fileInfo.corruptsEquipped[group].name = name
 	}
-	var new_mercEquipped = file.split("mercEquipped:{")[1].split("},selectedSkill:")[0].split(",");
+	var new_socketed = file.split("socketed:{")[1].split("},effects:")[0].split("],");
+	for (let g = 0; g < new_socketed.length; g++) {
+		var group = new_socketed[g].split(":[")[0];
+		var new_socketedGroup = new_socketed[g].split(":[")[1].split("'},");
+		for (let i = 0; i < new_socketedGroup.length; i++) {
+			var name = new_socketedGroup[i].split(":{'")[1].split("'}")[0];
+			fileInfo.socketed[group][i] = name
+		}
+	}
+	var new_effects = file.split("effects:{")[1].split("},selectedSkill:")[0].split(",");
+	for (let i = 0; i < new_effects.length; i++) {
+		var id = new_effects[i].split(":")[0];
+		var enabled = ~~new_effects[i].split(":")[1];
+		fileInfo.effects[id] = enabled
+	}
+	var new_mercenary = file.split("mercenary:'")[1].split("',settings:")[0];
+	fileInfo.mercenary = new_mercenary
+	var new_mercEquipped = file.split("mercEquipped:{")[1].split("},socketed:")[0].split(",");
 	for (let e = 0; e < new_mercEquipped.length; e++) {
-		var group = new_mercEquipped[e].split(":{")[0];
-		var name = new_mercEquipped[e].split("name:'")[1].split("'")[0];
+		var group = new_mercEquipped[e].split(":{name:'")[0];
+		var name = new_mercEquipped[e].split(":{name:'")[1].split("'}")[0];
 		fileInfo.mercEquipped[group] = {}
 		fileInfo.mercEquipped[group].name = name
 	}
 	var new_selectedSkill = file.split("selectedSkill:[")[1].split("],mercenary:")[0].split(",");
 	fileInfo.selectedSkill[0] = new_selectedSkill[0]
 	fileInfo.selectedSkill[1] = new_selectedSkill[1]
-	var new_mercenary = file.split("mercenary:'")[1].split("',settings:")[0];
-	fileInfo.mercenary = new_mercenary
 	var new_settings = file.split("settings:{")[1].split("}")[0].split(",");
 	for (let i = 0; i < new_settings.length; i++) {
 		var setting = new_settings[i].split(":")[0];
@@ -208,8 +201,6 @@ function parseFile(file) {
 		new_charms = file.split("charms:['")[1].split("']},corruptsEquipped:")[0].split("','");
 		for (let i = 0; i < new_charms.length; i++) { fileInfo.equipped.charms[i] = new_charms[i] }
 	}
-	
-	// TODO: ...
 }
 
 // setCharacterInfo - 
@@ -230,33 +221,32 @@ function setCharacterInfo(className) {
 		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.corruptsEquipped[group].name) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
 		corrupt(group,fileInfo.corruptsEquipped[group].name)
 	}
-	for (let i = 0; i < fileInfo.equipped.charms.length; i++) { addCharm(fileInfo.equipped.charms[i]) }
-	for (let s = 0; s < skills.length; s++) { skills[s].level = ~~fileInfo.skills[s][0]; skills[s].extra_levels = ~~fileInfo.skills[s][1]; skills[s].force_levels = ~~fileInfo.skills[s][2]; }
-	
-	// TODO: ...
-	
-	checkSkill(fileInfo.selectedSkill[0], 1)
-	checkSkill(fileInfo.selectedSkill[1], 2)
-	if (character.difficulty != fileInfo.character.difficulty) { document.getElementById("difficulty3").checked = false; document.getElementById("difficulty"+fileInfo.character.difficulty).checked = true; changeDifficulty(fileInfo.character.difficulty) }
-	if (character.running != fileInfo.character.running) { document.getElementById("running").checked = true; toggleRunning(document.getElementById("running")) }
-	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
 	character.level = fileInfo.character.level
 	setMercenary(fileInfo.mercenary)
 	for (group in mercEquipped) {
 		if (fileInfo.mercEquipped[group].name != 'none') {
 			var options = document.getElementById("dropdown_merc_"+group).options;
 			for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.mercEquipped[group].name) {  document.getElementById("dropdown_merc_"+group).selectedIndex = i } }
-			equipMerc(group,fileInfo.mercEquipped[group].name)	// TODO: Issue with this? Was halting other code when it was above them...
+			equipMerc(group,fileInfo.mercEquipped[group].name)
 		}
 	}
-	// TODO: Disable/enable effects if needed
-	for (stat in fileInfo.character) {
-		character[stat] = fileInfo.character[stat]
-	}
+	for (group in fileInfo.socketed) { for (let i = 0; i < fileInfo.socketed[group].length; i++) { if (fileInfo.socketed[group][i] != "") { addSocketable(fileInfo.socketed[group][i]); inv[tempSetup].load = group; tempSetup = 0; } } }
+	for (let s = 1; s < inv[0].in.length; s++) { if (inv[s].empty != 1) { inv[0].onpickup = inv[0].in[s]; socket(null,inv[s].load,s); } }	// socketables get moved to equipment
+	for (effect in fileInfo.effects) { for (let i = 1; i < non_items.length; i++) {
+		if (effect == non_items[i].effect) { addEffect('misc',non_items[i].name,i,'') }
+	} }
+	for (let i = 0; i < fileInfo.equipped.charms.length; i++) { addCharm(fileInfo.equipped.charms[i]) }
+	for (let s = 0; s < skills.length; s++) { skills[s].level = ~~fileInfo.skills[s][0]; skills[s].extra_levels = ~~fileInfo.skills[s][1]; skills[s].force_levels = ~~fileInfo.skills[s][2]; }
+	checkSkill(fileInfo.selectedSkill[0], 1)
+	checkSkill(fileInfo.selectedSkill[1], 2)
+	if (character.difficulty != fileInfo.character.difficulty) { document.getElementById("difficulty3").checked = false; document.getElementById("difficulty"+fileInfo.character.difficulty).checked = true; changeDifficulty(fileInfo.character.difficulty) }
+	if (character.running != fileInfo.character.running) { document.getElementById("running").checked = true; toggleRunning(document.getElementById("running")) }
+	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
+	for (effect in fileInfo.effects) { if (fileInfo.effects[effect] != effects[effect].info.enabled) { toggleEffect(effect) } }
+	for (stat in fileInfo.character) { character[stat] = fileInfo.character[stat] }
 	if (settings.coupling != fileInfo.settings.coupling) { if (settings.coupling == 1) { document.getElementById("coupling").checked = false }; toggleCoupling(document.getElementById("coupling")) }
 	if (settings.autocast != fileInfo.settings.autocast) { if (settings.autocast == 1) { document.getElementById("autocast").checked = false }; toggleAutocast(document.getElementById("autocast")) }
 	updateStats()
-//	updateAllEffects()
 	document.getElementById("inputTextToSave").value = ""
 }
 
@@ -595,6 +585,8 @@ function corrupt(group, val) {
 //	val: name of item
 // ---------------------------------
 function equipMerc(group, val) {
+	var auraName = "";
+	var auraLevel = 0;
 	for (old_affix in mercEquipped[group]) {
 		if (old_affix == "aura" || old_affix == "aura_lvl" || old_affix == "name" || old_affix == "type" || old_affix == "base" || old_affix == "only" || old_affix == "not" || old_affix == "img") {
 			if (old_affix == "aura") {
@@ -648,7 +640,8 @@ function equipMerc(group, val) {
 							if (equipment[group][item][affix] > mercEquipped[group][affix]) { mercEquipped[group][affix] = equipment[group][item][affix] }
 						} else {
 							mercEquipped[group][affix] = equipment[group][item][affix]
-							if (affix == "aura" && equipment[group][item][affix] != mercenary.base_aura) { addEffect("aura",equipment[group][item][affix],equipment[group][item].aura_lvl,"mercenary_"+group) }
+						//	if (affix == "aura" && equipment[group][item][affix] != mercenary.base_aura) { addEffect("aura",equipment[group][item][affix],equipment[group][item].aura_lvl,"mercenary_"+group) }
+							if (affix == "aura") { auraName = equipment[group][item][affix]; auraLevel = equipment[group][item].aura_lvl; }
 						}
 					} else {
 						if (affix == "sup" || affix == "e_damage") {
@@ -665,6 +658,9 @@ function equipMerc(group, val) {
 			}
 		}
 		updateMercenary()
+	}
+	if (auraName != "" && auraName != mercenary.base_aura && auraLevel != 0) {
+		addEffect("aura",auraName,auraLevel,"mercenary_"+group)
 	}
 	updateStats()
 	updateAllEffects()
@@ -1108,6 +1104,7 @@ function addSocketable(val) {
 		insertion = inv[i].id;
 		inv[i].empty = 0
 		inv[0].in[i] = val
+		tempSetup = i
 		document.getElementById(insertion).innerHTML += itemHTML;
 	}
 	document.getElementById("dropdown_socketables").selectedIndex = 0
@@ -1767,7 +1764,7 @@ function updateTertiaryStats() {
 	if (c.itd > 0) { document.getElementById("itd").innerHTML = "Ignore Target Defense<br>" } else { document.getElementById("itd").innerHTML = "" }
 	if (c.pmh > 0) { document.getElementById("pmh").innerHTML = "Prevent Monster Heal<br>" } else { document.getElementById("pmh").innerHTML = "" }
 	if (c.cbf > 0) { document.getElementById("cbf").innerHTML = "Cannot Be Frozen<br>" }
-	else if (c.half_freeze_duration > 0) { document.getElementById("cbf").innerHTML = "Half Freeze Duration<br>" }
+	else if (c.half_freeze > 0) { document.getElementById("cbf").innerHTML = "Half Freeze Duration<br>" }
 	else { document.getElementById("cbf").innerHTML = "" }
 	if (c.knockback > 0) { document.getElementById("knockback").innerHTML = "Knockback<br>" } else { document.getElementById("knockback").innerHTML = "" }
 	if (c.melee_splash > 0) { document.getElementById("melee_splash").innerHTML = "Melee Attacks deal Splash Damage<br>" } else { document.getElementById("melee_splash").innerHTML = "" }
@@ -2685,18 +2682,23 @@ function equipmentOut() {
 
 // socket - Adds a socketable item (jewel, rune, gem) to equipment
 //	group: equipment group name
+//	source: inventory space to drag from if event is null (used when loading a character)
 // ---------------------------------
-function socket(event, group) {
-	event.preventDefault();
-	var data = event.dataTransfer.getData("text");
-	// switches to the correct target if the item image is in the way
-	if (event.target.id != group) { document.getElementById(group).appendChild(document.getElementById(data)); }
-	else { event.target.appendChild(document.getElementById(data)); }
-	
+function socket(event, group, source) {
+	if (event == null && source > 0) {
+		var id = inv[0].in[source];
+		document.getElementById(group).appendChild(document.getElementById(id))
+	} else {
+		event.preventDefault();
+		var data = event.dataTransfer.getData("text");
+		// switches to the correct target if the item image is in the way
+		if (event.target.id != group) { document.getElementById(group).appendChild(document.getElementById(data)); }
+		else { event.target.appendChild(document.getElementById(data)); }
+	}
 	// equipment destination
 	var spaceFound = 0;
 	var index = 0;
-	for (let i = 0; i < socketed[group].items.length; i++) { if (socketed[group].items[i].name == "") { spaceFound = 1; index = i; } }
+	for (let i = 0; i < socketed[group].items.length; i++) { if (socketed[group].items[i].name == "") { spaceFound = 1; index = i; } }	// TODO: reverse order to clarify saved file?
 	if (spaceFound == 1) {
 		var name = inv[0].onpickup.split('_')[0];
 		// Remove previous affixes, if being moved from another equipment item
@@ -2744,7 +2746,7 @@ function socket(event, group) {
 		// updateAllEffects()?
 	}
 	// inventory destination
-	for (s = 1; s <= inv[0].in.length; s++) {
+	for (let s = 1; s <= inv[0].in.length; s++) {
 		if (inv[0].in[s] == inv[0].onpickup) { inv[s].empty = 1; inv[0].in[s] = ""; 
 			inv[s].y = 1;
 			document.getElementById(inv[s].id).style = "position: absolute; width: 29px; height: 29px; z-index: 3;";
@@ -2894,6 +2896,7 @@ function inventoryRightClick(event, group) {
 //	change: what kind of change to make ("upgrade" or "downgrade")
 // ---------------------------------
 function changeBase(group, change) {
+	// TODO: Implement saving/loading
 	// TODO: Upgraded items should get +5 to req_level
 	// TODO: required level depends on affixes, not just base level
 	// TODO: Prevent items from being downgraded below their baseline

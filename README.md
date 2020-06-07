@@ -15,12 +15,12 @@ Current Known Issues:
 	* Unique items can be downgraded below their baseline
 	* Required level/strength/dexterity may be inaccurate for upgraded/downgraded items
 	* Unimplemented: upgrading/downgrading for quest weapons
+	* Unimplemented: saving/loading
 * Unimplemented: mercenaries (everything except their auras)
 * Unimplemented: offhand attacks
 * Unimplemented: skill buffs from item-charges
 * Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
-* Save/Load doesn't include socketables
 
 Info: https://github.com/BetweenWalls/planner#planner
 
@@ -56,6 +56,7 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * mercenary selection
 * equipment selection & modification (corrupting, socketing, upgrading)
 * charm inventory
+* saving/loading
 
 ### Upcoming Plans:
 * offhand attacks
@@ -64,10 +65,9 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * more breakpoint info
 * mercenary stats & validation
 * interface niceties
-* complete save/load
+* tooltips for items & buffs
 
 ### Longterm Goals:
-* item description tooltips
 * full GUI inventory/stash
 * custom item creation & editing
 * custom item-pool saving

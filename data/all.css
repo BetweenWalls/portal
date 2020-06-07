@@ -282,7 +282,7 @@ input[type="file"] {
   border: none;
   outline: none;
   color: white;
-  padding: 3px 8px;
+  padding: 2px 8px;
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
@@ -311,7 +311,18 @@ input[type="file"] {
 }
 
 .nav-dropdown-content-item {
+  min-height: 27px;
   margin: 2px 2px 2px 2px;
+}
+
+.nav-text {
+  position: relative;
+  top: 5px;
+}
+
+.nav-option {
+  position: relative;
+  top: 3px;
 }
 
 /* Show the dropdown menu on hover */

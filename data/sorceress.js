@@ -122,7 +122,7 @@ var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vi
 		}
 		if (skill.name == "Blaze") { result.life_regen = 2; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Energy Shield") {
-			result.absorb_es_deplete = 100*(100 / (skill.data.values[0][lvl] + (0.04*skills[13].level)));
+			result.absorb_es_deplete = 100*(100 / (~~skill.data.values[0][lvl] + ~~(0.04*skills[13].level)));	// TODO: fix
 			result.absorb_es_redirect = skill.data.values[2][lvl]; result.duration = skill.data.values[1][lvl];
 		}
 		// No stat buffs:

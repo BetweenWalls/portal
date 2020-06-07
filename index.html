@@ -28,33 +28,33 @@
     <button class="nav-dropbtn">File
     </button>
     <div class="nav-dropdown-content">
-      <div class="nav-dropdown-content-item">
+      <div class="nav-dropdown-content-item"><div class="nav-text">
 	<label class="button-file"> ­ ­ ­ ­ Save ­ ­ <button style="display:none" onclick="saveTextAsFile()"></button></label>
-      </div>
-      <div class="nav-dropdown-content-item">
+      </div></div>
+      <div class="nav-dropdown-content-item"><div class="nav-text">
 	<label class="button-file"> ­ ­ ­ ­ Load ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
-      </div>
+      </div></div>
     </div>
   </div>
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Preferences
     </button>
     <div class="nav-dropdown-content">
-      <div class="nav-dropdown-content-item">
+      <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
 	<label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ </label>
-      </div>
-      <div class="nav-dropdown-content-item">
+      </div></div>
+      <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
 	<label for="autocast"> ­ ­ ­ ­ New Effects Begin Enabled ­ ­ </label>
-      </div>
+      </div></div>
     </div>
   </div>
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Character
     </button>
     <div class="nav-dropdown-content">
-      <div class="nav-dropdown-content-item"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
+      <div class="nav-dropdown-content-item"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
 	<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
 	<label for="difficulty">Normal</label>
 	<input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
@@ -62,14 +62,14 @@
 	<input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
 	<label for="difficulty">Hell ­ ­ </label>
       </div>
-      <div class="nav-dropdown-content-item">
+      <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
 	<label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ </label>
-      </div>
-      <div class="nav-dropdown-content-item">
+      </div></div>
+      <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
 	<label for="running"> ­ ­ ­ ­ Running ­ ­ </label>
-      </div>
+      </div></div>
     </div>
   </div>
   <div class="nav-dropdown">
@@ -249,16 +249,16 @@
 <img usemap="#equipmentmap" id="equipment_grid" style="float: right;" src="./images/equipment_inventory.png">
 <map id="equipmentmap" name="equipmentmap">
 <div style="position: relative;">
-<div id="helm_" class="flex-box" style="position: absolute; width: 58px; height: 58px; left: 63px; top: 1px; z-index: 2;" ondrop="socket(event,'helm')" ondragover="allowSocket(event,'helm')" onmouseover="equipmentHover('helm')" onmouseout="equipmentOut()"><img id="helm_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'helm')" onContextMenu="inventoryRightClick(event,'helm')"><div style="position:absolute; z-index:4;" align="center" id="helm"></div></div>
-<div id="armor_" class="flex-box" style="position: absolute; width: 58px; height: 88px; left: 122px; top: 1px; z-index: 2;" ondrop="socket(event,'armor')" ondragover="allowSocket(event,'armor')" onmouseover="equipmentHover('armor')" onmouseout="equipmentOut()"><img id="armor_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'armor')" onContextMenu="inventoryRightClick(event,'armor')"><div style="position:absolute; z-index:4;" align="center" id="armor"></div></div>
+<div id="helm_" class="flex-box" style="position: absolute; width: 58px; height: 58px; left: 63px; top: 1px; z-index: 2;" ondrop="socket(event,'helm',0)" ondragover="allowSocket(event,'helm')" onmouseover="equipmentHover('helm')" onmouseout="equipmentOut()"><img id="helm_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'helm')" onContextMenu="inventoryRightClick(event,'helm')"><div style="position:absolute; z-index:4;" align="center" id="helm"></div></div>
+<div id="armor_" class="flex-box" style="position: absolute; width: 58px; height: 88px; left: 122px; top: 1px; z-index: 2;" ondrop="socket(event,'armor',0)" ondragover="allowSocket(event,'armor')" onmouseover="equipmentHover('armor')" onmouseout="equipmentOut()"><img id="armor_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'armor')" onContextMenu="inventoryRightClick(event,'armor')"><div style="position:absolute; z-index:4;" align="center" id="armor"></div></div>
 <div id="gloves" style="position: absolute; width: 58px; height: 59px; left: 182px; top: 1px; z-index: 2;" onmouseover="equipmentHover('gloves')" onmouseout="equipmentOut()" align="center"><img id="gloves_image" src="" onClick="inventoryLeftClick(event,'gloves')" onContextMenu="inventoryRightClick(event,'gloves')"></div>
 <div id="boots" style="position: absolute; width: 58px; height: 58px; left: 182px; top: 61px; z-index: 2;" onmouseover="equipmentHover('boots')" onmouseout="equipmentOut()" align="center"><img id="boots_image" src="" onClick="inventoryLeftClick(event,'boots')" onContextMenu="inventoryRightClick(event,'boots')"></div>
 <div id="belt" style="position: absolute; width: 58px; height: 29px; left: 122px; top: 90px; z-index: 2;" onmouseover="equipmentHover('belt')" onmouseout="equipmentOut()" align="center"><img id="belt_image" src="" onClick="inventoryLeftClick(event,'belt')" onContextMenu="inventoryRightClick(event,'belt')"></div>
 <div id="amulet" style="position: absolute; width: 29px; height: 29px; left: 77px; top: 60px; z-index: 2;" onmouseover="equipmentHover('amulet')" onmouseout="equipmentOut()" align="center"><img id="amulet_image" src="" onContextMenu="equip('amulet', 'amulet')"></div>
 <div id="ring1" style="position: absolute; width: 28px; height: 29px; left: 63px; top: 90px; z-index: 2;" onmouseover="equipmentHover('ring1')" onmouseout="equipmentOut()" align="center"><img id="ring1_image" src="" onContextMenu="equip('ring1', 'ring1')"></div>
 <div id="ring2" style="position: absolute; width: 28px; height: 29px; left: 93px; top: 90px; z-index: 2;" onmouseover="equipmentHover('ring2')" onmouseout="equipmentOut()" align="center"><img id="ring2_image" src="" onContextMenu="equip('ring2', 'ring2')"></div>
-<div id="weapon_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 1px; top: 1px; z-index: 2;" ondrop="socket(event,'weapon')" ondragover="allowSocket(event,'weapon')" onmouseover="equipmentHover('weapon')" onmouseout="equipmentOut()"><img id="weapon_image" style="z-index:3;" src="" onClick="inventoryLeftClick(event,'weapon')" onContextMenu="inventoryRightClick(event,'weapon')"><div style="position:absolute; z-index:4;" align="center" id="weapon"></div></div>
-<div id="offhand_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 242px; top: 1px; z-index: 2;" ondrop="socket(event,'offhand')" ondragover="allowSocket(event,'offhand')" onmouseover="equipmentHover('offhand')" onmouseout="equipmentOut()"><img id="offhand_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'offhand')" onContextMenu="inventoryRightClick(event,'offhand')"><div style="position:absolute; z-index:4;" align="center" id="offhand"></div></div>
+<div id="weapon_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 1px; top: 1px; z-index: 2;" ondrop="socket(event,'weapon',0)" ondragover="allowSocket(event,'weapon')" onmouseover="equipmentHover('weapon')" onmouseout="equipmentOut()"><img id="weapon_image" style="z-index:3;" src="" onClick="inventoryLeftClick(event,'weapon')" onContextMenu="inventoryRightClick(event,'weapon')"><div style="position:absolute; z-index:4;" align="center" id="weapon"></div></div>
+<div id="offhand_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 242px; top: 1px; z-index: 2;" ondrop="socket(event,'offhand',0)" ondragover="allowSocket(event,'offhand')" onmouseover="equipmentHover('offhand')" onmouseout="equipmentOut()"><img id="offhand_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'offhand')" onContextMenu="inventoryRightClick(event,'offhand')"><div style="position:absolute; z-index:4;" align="center" id="offhand"></div></div>
 </div>
 </map>
 </div> <!-- /equipment inventory -->
