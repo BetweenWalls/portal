@@ -52,7 +52,7 @@ function update() {
 // return: 
 // ---------------------------------
 function getCharacterInfo() {
-	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','updateSelectedSkill','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura'];	// TODO: Prevent item qualities from being added as character qualities
+	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','updateSelectedSkill','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier'];	// TODO: Prevent item qualities from being added as character qualities
 	var charInfo = "{character:{";
 	for (stat in character) {
 		var halt = 0;
@@ -64,7 +64,7 @@ function getCharacterInfo() {
 	charInfo += "},skills:["
 	for (let s = 0; s < skills.length; s++) { charInfo += "["+skills[s].level+","+skills[s].extra_levels+","+skills[s].force_levels+"]," }
 	charInfo += "],equipped:{"
-	for (group in corruptsEquipped) { charInfo += (group+":{name:'"+equipped[group].name+"'},") }
+	for (group in corruptsEquipped) { charInfo += (group+":{name:"+equipped[group].name+",tier:"+equipped[group].tier+"},") }
 	charInfo += "charms:["
 	for (charm in equipped.charms) { if (typeof(equipped.charms[charm].name) != 'undefined' && equipped.charms[charm].name != 'none') { charInfo += "'"+equipped.charms[charm].name+"'," } }
 	charInfo += "]},corruptsEquipped:{"
@@ -149,12 +149,16 @@ function parseFile(file) {
 		fileInfo.skills[s][1] = ~~new_skills[s].split(",")[1]
 		fileInfo.skills[s][2] = ~~new_skills[s].split(",")[2]
 	}
-	var new_equipped = file.split("equipped:{")[1].split(",charms:")[0].split(",");
+	var new_equipped = file.split("equipped:{")[1].split("},charms:")[0].split("},");
 	for (let e = 0; e < new_equipped.length; e++) {
 		var group = new_equipped[e].split(":{")[0];
-		var name = new_equipped[e].split("name:'")[1].split("'}")[0];
+		var stats = new_equipped[e].split(":{")[1].split(",");
 		fileInfo.equipped[group] = {}
-		fileInfo.equipped[group].name = name
+		for (let i = 0; i < stats.length; i++) {
+			var stat = stats[i].split(":")[0];
+			var value = stats[i].split(":")[1];
+			fileInfo.equipped[group][stat] = value
+		}
 	}
 	var new_corruptions = file.split("corruptsEquipped:{")[1].split(",mercEquipped:")[0].split(",");
 	for (let e = 0; e < new_corruptions.length; e++) {
@@ -221,6 +225,16 @@ function setCharacterInfo(className) {
 		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.corruptsEquipped[group].name) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
 		corrupt(group,fileInfo.corruptsEquipped[group].name)
 	}
+	for (group in corruptsEquipped) {
+		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
+		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }
+		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }
+	}
+	for (group in corruptsEquipped) {
+		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
+		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)
+		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)
+	}
 	character.level = fileInfo.character.level
 	setMercenary(fileInfo.mercenary)
 	for (group in mercEquipped) {
@@ -242,7 +256,7 @@ function setCharacterInfo(className) {
 	if (character.difficulty != fileInfo.character.difficulty) { document.getElementById("difficulty3").checked = false; document.getElementById("difficulty"+fileInfo.character.difficulty).checked = true; changeDifficulty(fileInfo.character.difficulty) }
 	if (character.running != fileInfo.character.running) { document.getElementById("running").checked = true; toggleRunning(document.getElementById("running")) }
 	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
-	for (effect in fileInfo.effects) { if (fileInfo.effects[effect] != effects[effect].info.enabled) { toggleEffect(effect) } }
+	if (effects != {}) { for (effect in effects) { if (fileInfo.effects[effect] != effects[effect].info.enabled) { toggleEffect(effect) } } }
 	for (stat in fileInfo.character) { character[stat] = fileInfo.character[stat] }
 	if (settings.coupling != fileInfo.settings.coupling) { if (settings.coupling == 1) { document.getElementById("coupling").checked = false }; toggleCoupling(document.getElementById("coupling")) }
 	if (settings.autocast != fileInfo.settings.autocast) { if (settings.autocast == 1) { document.getElementById("autocast").checked = false }; toggleAutocast(document.getElementById("autocast")) }
@@ -762,6 +776,9 @@ function equip(group, val) {
 							character[affix] += Math.ceil(multEth*bases[base][affix])
 						} else if (affix == "req_strength" || affix == "req_dexterity") {
 							equipped[group][affix] = Math.max(0,Math.ceil(multReq*bases[base][affix] - reqEth))
+						} else if (affix == "tier") {
+							equipped[group][affix] = bases[base][affix]
+							equipped[group]["original_tier"] = bases[base][affix]
 						} else {
 							equipped[group][affix] = bases[base][affix]
 							character[affix] += bases[base][affix]
@@ -945,11 +962,11 @@ function resetEquipment() {
 // resetCharms - Resets all charms
 // ---------------------------------
 function resetCharms() {
-	var type = "charms"
-	for (val in equipped[type]) {
-		for (old_affix in equipped[type][val]) {
-			character[old_affix] -= equipped[type][val][old_affix]
-			equipped[type][val][old_affix] = unequipped[old_affix]
+	var group = "charms"
+	for (charm in equipped[group]) {
+		for (old_affix in equipped[group][charm]) {
+			character[old_affix] -= equipped[group][charm][old_affix]
+			equipped[group][charm][old_affix] = unequipped[old_affix]
 		}
 	}
 	for (let s = 1; s < inv[0]["in"].length; s++) { inv[0]["in"][s] = "" }
@@ -1774,6 +1791,18 @@ function updateTertiaryStats() {
 	else { document.getElementById("freezes_target").innerHTML = "" }
 	if (c.peace > 0) { document.getElementById("peace").innerHTML = "Slain Monsters Rest in Peace<br>" } else { document.getElementById("peace").innerHTML = "" }
 	if (c.glow > 0) { document.getElementById("glow").innerHTML = "Character is Glowing<br>" } else { document.getElementById("glow").innerHTML = "" }
+	var statlines = "";
+	if (c.bonus_corpse_explosion > 0) { statlines += "Corpse Explosion deals +"+c.bonus_corpse_explosion+"% of Maximum Corpse life<br>" }
+	if (c.phys_Lightning_Surge > 0) { statlines += "Lightning Surge Deals "+c.phys_Lightning_Surge+"% Extra Damage As Physical<br>" }
+	if (c.extraValkyrie > 0) { statlines += "Can Summon One Additional Valkyrie<br>" }
+	if (c.extraGrizzly > 0) { statlines += "Can Summon One Additional Grizzly Bear<br>" }
+	if (c.extraFireGolem > 0) { statlines += "Can Summon One Additional Fire Golem<br>" }
+	if (c.extraHydra > 0) { statlines += "Can Summon One Additional Hydra<br>" }
+	if (c.radius_FreezingArrow > 0) { statlines += "+"+c.radius_FreezingArrow+"% to Freezing Arrow Radius<br>" }
+	if (c.reset_cooldown_on_kill > 0) { statlines += c.reset_cooldown_on_kill+"% Chance to Reset Skill Cooldown on Kill<br>" }
+	if (c.cdr_on_striking > 0) { statlines += "Gain "+c.cdr_on_striking+"% Reduced Skill Cooldown For 4 Seconds On Striking<br>" }
+	if (c.reanimate > 0) { statlines += c.reanimate+"% Reanimate As: Returned<br>" }
+	document.getElementById("statlines").innerHTML = statlines
 	updateCTC()
 	updateChargeSkills()
 }
@@ -2896,36 +2925,36 @@ function inventoryRightClick(event, group) {
 //	change: what kind of change to make ("upgrade" or "downgrade")
 // ---------------------------------
 function changeBase(group, change) {
-	// TODO: Implement saving/loading
 	// TODO: Upgraded items should get +5 to req_level
 	// TODO: required level depends on affixes, not just base level
-	// TODO: Prevent items from being downgraded below their baseline
 	// TODO: Add special cases for quest items?
 	var base_name = equipped[group].base;
 	var base = getBaseId(base_name);
-	if (typeof(bases[base][change]) != 'undefined') {
+	var halt = 0;
+	if ((typeof(equipped[group].rarity) == 'undefined' || equipped[group].rarity == "set") && change == "downgrade" && equipped[group].tier <= equipped[group].original_tier) { halt = 1 }		// prevents unique/set from being downgraded below their baseline
+	if (typeof(bases[base][change]) != 'undefined' && halt == 0) {
 		base = bases[base][change];
 		equipped[group].base = base;
 		base = getBaseId(base)
-		// TODO: Reduce duplicated code - very similar to equip()
-		for (affix in bases[base]) { if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only") {
-			var multEth = 1;
-			var multED = 1;
-			var multReq = 1;
-			var reqEth = 0;
-			if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; reqEth = 10; } }
-			if (affix == "base_defense") { if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) } }
-			else if (affix == "req_strength" || affix == "req_dexterity") { if (typeof(equipped[group]["req"]) != 'undefined') { multReq += (equipped[group]["req"]/100) } }
-
-			if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate" || affix == "base_defense") {
+		var multEth = 1;
+		var multED = 1;
+		var multReq = 1;
+		var reqEth = 0;
+		if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; reqEth = 10; } }
+		if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
+		if (typeof(equipped[group]["req"]) != 'undefined') { multReq += (equipped[group]["req"]/100) }
+		for (affix in bases[base]) { if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands") {
+			if (affix == "base_defense") {
 				character[affix] -= equipped[group][affix]
 				equipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
 				character[affix] += equipped[group][affix]
-			}
-			else if (affix == "req_strength" || affix == "req_dexterity") {
-				equipped[group][affix] = Math.ceil(multReq*bases[base][affix] - reqEth)
-			}
-			else {
+			} else if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
+				character[affix] -= equipped[group][affix]
+				equipped[group][affix] = Math.ceil(multEth*bases[base][affix])
+				character[affix] += equipped[group][affix]
+			} else if (affix == "req_strength" || affix == "req_dexterity") {
+				equipped[group][affix] = Math.max(0,Math.ceil(multReq*bases[base][affix] - reqEth))
+			} else {	// any affixes that are undefined should not be checked (base upgrades/downgrades share the same affixes)
 				character[affix] -= equipped[group][affix]
 				equipped[group][affix] = bases[base][affix]
 				character[affix] += bases[base][affix]

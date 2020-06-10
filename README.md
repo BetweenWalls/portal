@@ -12,10 +12,8 @@ Current Known Issues:
 * Enhanced Defense from corruptions (Helm/Body) or Pul Rune is applied to all armor instead of just that item
 * Upgrading/Downgrading:
 	* Any item can be upgraded/downgraded (instead of just rare/unique)
-	* Unique items can be downgraded below their baseline
 	* Required level/strength/dexterity may be inaccurate for upgraded/downgraded items
 	* Unimplemented: upgrading/downgrading for quest weapons
-	* Unimplemented: saving/loading
 * Unimplemented: mercenaries (everything except their auras)
 * Unimplemented: offhand attacks
 * Unimplemented: skill buffs from item-charges
