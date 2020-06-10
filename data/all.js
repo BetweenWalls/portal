@@ -1446,7 +1446,7 @@ function getAuraData(aura, lvl, source) {
 	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; }
 	//else if (aura == "Enflame") { result.fDamage_min = skill.data.values[1][lvl]; result.fDamage_max = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; }
 	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
-	else if (aura == "Lifted Spirit") { result.wisp = auras[a].values[0][lvl]; }
+	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; }
 	
 	return result;
 }
