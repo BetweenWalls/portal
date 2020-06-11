@@ -2158,6 +2158,7 @@ function skillUp(event, skill, levels) {
 //	skill: the skill to modify
 // ---------------------------------
 function skillDown(event, skill) {
+	// TODO: Allow even when all statpoints have been used (just increase available skillpoints without changing character's level)
 	var old_level = skill.level
 	var levels = 1
 	if (event.shiftKey) { levels = 10 }

@@ -9,17 +9,19 @@ Path of Diablo Planner
 Current Known Issues:
 * Charms can't be moved into a new space below the original space if they overlap eachother
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
-* Enhanced Defense from corruptions (Helm/Body) or Pul Rune is applied to all armor instead of just that item
-* socketed gems/runes/jewels sometimes aren't aligned like they should be
+* Enhanced Defense from corruptions or socketed Pul Runes is applied to all armor instead of just that item
+* Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * Upgrading/Downgrading:
-	* Any item can be upgraded/downgraded (instead of just rare/unique)
-	* Required level/strength/dexterity may be inaccurate for upgraded/downgraded items
-	* Unimplemented: upgrading/downgrading for quest weapons
-* Unimplemented: mercenaries (everything except their auras)
+	* Allowed for any item (instead of just rare/unique)
+	* Required level/strength/dexterity may be inaccurate
+	* Unimplemented: quest weapons
+* Unimplemented: mercenary stats
 * Unimplemented: offhand attacks
 * Unimplemented: skill buffs from item-charges
 * Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
+* Breakpoints for IAS (frames-per-attack) may be inaccurate
+* Some stats from offhand weapons may incorrectly contribute to mainhand attacks
 
 Info: https://github.com/BetweenWalls/planner#planner
 
