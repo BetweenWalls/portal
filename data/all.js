@@ -1266,6 +1266,7 @@ function enableEffect(id) {
 // updateAllEffects - 
 // ---------------------------------
 function updateAllEffects() {
+	// TODO: Make exception for identical auras to stack (2x Dream, Dragon & Hand of Justice, etc)
 	calculateSkillAmounts()
 	// updates skill effects
 	for (let s = 0; s < skills.length; s++) {
@@ -2169,8 +2170,6 @@ function skillDown(event, skill) {
 	var levels_temp = 0;
 	if (character.quests_completed > 0 && character.skillpoints < 12) { levels_temp = 12 - character.skillpoints; maxdown += levels_temp; maxstatdown += (levels_temp*5) }
 	if (levels > maxdown) { levels = maxdown }
-	if (character.quests_completed < 0 && levels > character.statpoints/5) { levels = Math.floor(character.statpoints/5) }
-	if (character.quests_completed > 0 && levels > maxstatdown/5) { levels = Math.floor(maxstatdown/5) }
 	if (settings.coupling == 1) {
 		if (levels <= maxdown && 5*levels <= maxstatdown) {
 			if (character.quests_completed > 0 && character.skillpoints < 12) {
@@ -2187,6 +2186,9 @@ function skillDown(event, skill) {
 				character.stamina -= (character.levelup_stamina*levels)
 				character.mana -= (character.levelup_mana*levels)
 			}
+		} else if (levels <= maxdown) {
+			skill.level -= levels
+			character.skillpoints += levels
 		}
 	} else {
 		skill.level -= levels

@@ -130,8 +130,13 @@ var character_any = {
 				result.velocity = 0; result.life_leech = 0; result.duration = 0;
 			}
 		}
+		if (skill.name == "Frigerate") {	// TODO: Make always-active?
+			result.cDamage_min = skill.data.values[0][lvl];
+			result.cDamage_max = skill.data.values[1][lvl];
+			result.enemy_defense = skill.data.values[2][lvl];
+		}
 		if (skill.name == "Shiver Armor") { result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl]; }
-		if (skill.name == "Enflame") {	// TODO: Make always-active?
+		if (skill.name == "Enflame") {		// TODO: Make always-active?
 			result.fDamage_min = skill.data.values[1][lvl];
 			result.fDamage_max = skill.data.values[2][lvl];
 			result.ar_bonus = skill.data.values[3][lvl];
