@@ -100,7 +100,7 @@ var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vi
 		var lvl = skill.level + skill.extra_levels;
 		var result = {};
 		
-		if (skill.name == "Shiver Armor") {		
+		if (skill.name == "Shiver Armor") {
 			var sk = skills[8].name.split(' ').join('_');
 			if (document.getElementById(sk) != null && effects[id].info.enabled == 1) { disableEffect(sk) }	// disables Chilling Armor
 			result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl];
@@ -122,7 +122,7 @@ var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vi
 		}
 		if (skill.name == "Blaze") { result.life_regen = 2; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Energy Shield") {
-			result.absorb_es_deplete = 100*(100 / (~~skill.data.values[0][lvl] + ~~(0.04*skills[13].level)));	// TODO: fix
+			result.absorb_es_deplete = (6 + ~~(0.04*skills[13].level));	// TODO: fix
 			result.absorb_es_redirect = skill.data.values[2][lvl]; result.duration = skill.data.values[1][lvl];
 		}
 		// No stat buffs:

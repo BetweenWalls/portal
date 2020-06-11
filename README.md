@@ -10,6 +10,7 @@ Current Known Issues:
 * Charms can't be moved into a new space below the original space if they overlap eachother
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Enhanced Defense from corruptions (Helm/Body) or Pul Rune is applied to all armor instead of just that item
+* socketed gems/runes/jewels sometimes aren't aligned like they should be
 * Upgrading/Downgrading:
 	* Any item can be upgraded/downgraded (instead of just rare/unique)
 	* Required level/strength/dexterity may be inaccurate for upgraded/downgraded items

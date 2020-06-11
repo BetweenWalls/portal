@@ -1,5 +1,6 @@
 
 fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{}};
+fileText = "";
 character = {};
 var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, edged_skillup:[0,0,0], pole_skillup:[0,0,0], blunt_skillup:[0,0,0], thrown_skillup:[0,0,0], claw_skillup:[0,0,0], mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0};
 var base_stats = {level:1, skillpoints:0, statpoints:0, quests_completed:-1, running:-1, difficulty:3, strength_added:0, dexterity_added:0, vitality_added:0, energy_added:0, fRes_penalty:100, cRes_penalty:100, lRes_penalty:100, pRes_penalty:100, mRes_penalty:100, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0, fRes_max_base:75, cRes_max_base:75, lRes_max_base:75, pRes_max_base:75, mRes_max_base:75, set_bonuses:[0,0,{},{},{},{},{}]}
@@ -52,15 +53,14 @@ function update() {
 // return: 
 // ---------------------------------
 function getCharacterInfo() {
-	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','updateSelectedSkill','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier'];	// TODO: Prevent item qualities from being added as character qualities
+	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','updateSelectedSkill','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration'];	// TODO: Prevent item qualities from being added as character qualities
 	var charInfo = "{character:{";
 	for (stat in character) {
 		var halt = 0;
 		for (let i = 0; i < not_applicable.length; i++) { if (stat == not_applicable[i]) { halt = 1 } }
-		if (halt == 0 && character[stat] != 0 && character[stat] != "") { charInfo += (stat+":"+character[stat]+",") }
+		if ((typeof(unequipped[stat]) != 'undefined' && character[stat] == unequipped[stat]) || unequipped[stat] == "") { halt = 1 }
+		if (halt == 0 || stat == "statpoints" || stat == "strength_added" || stat == "dexterity_added" || stat == "vitality_added" || stat == "energy_added" || stat == "strength" || stat == "dexterity" || stat == "vitality" || stat == "energy" || stat == "life" || stat == "mana" || stat == "stamina" || stat == "mana_regen") { charInfo += (stat+":"+character[stat]+",") }
 	}
-	// TODO: Remove other NaN stats - weapon, armor, shield
-	// TODO: Add ctc, cskill, 'skillup' stats?
 	charInfo += "},skills:["
 	for (let s = 0; s < skills.length; s++) { charInfo += "["+skills[s].level+","+skills[s].extra_levels+","+skills[s].force_levels+"]," }
 	charInfo += "],equipped:{"
@@ -90,7 +90,7 @@ function getCharacterInfo() {
 // ---------------------------------
 function saveTextAsFile() {
 	document.getElementById("inputTextToSave").value = getCharacterInfo().split(",}").join("}").split(",]").join("]")
-	fileInfo = getCharacterInfo().split(",}").join("}").split(",]").join("]")
+	fileText = getCharacterInfo().split(",}").join("}").split(",]").join("]")
 
 	var textToSave = document.getElementById("inputTextToSave").value;
 	var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
@@ -139,7 +139,7 @@ function parseFile(file) {
 	for (let i = 0; i < new_character.length; i++) {
 		var split = new_character[i].split(":");
 		var val = split[1];
-		if (isNaN(Number(val)) == false) { val = ~~Number(val) }
+		if (isNaN(Number(val)) == false) { val = Number(val) }
 		fileInfo.character[split[0]] = val
 	}
 	var new_skills = file.split("skills:[[")[1].split("]],equipped:")[0].split("],[");
@@ -213,6 +213,9 @@ function setCharacterInfo(className) {
 	startup(className)
 	if (settings.coupling == 0) { document.getElementById("coupling").checked = true; toggleCoupling(document.getElementById("coupling")); }
 	if (settings.autocast == 0) { document.getElementById("autocast").checked = true; toggleAutocast(document.getElementById("autocast")); }
+	if (character.difficulty != fileInfo.character.difficulty) { document.getElementById("difficulty3").checked = false; document.getElementById("difficulty"+fileInfo.character.difficulty).checked = true; changeDifficulty(fileInfo.character.difficulty) }
+	if (character.running != fileInfo.character.running) { document.getElementById("running").checked = true; toggleRunning(document.getElementById("running")) }
+	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
 	for (let s = 0; s < skills.length; s++) { if (~~fileInfo.skills[s][0] > 0) { skillUp(null,skills[s],~~fileInfo.skills[s][0]) } }
 	skillOut()
 	for (group in corruptsEquipped) {
@@ -253,9 +256,6 @@ function setCharacterInfo(className) {
 	for (let s = 0; s < skills.length; s++) { skills[s].level = ~~fileInfo.skills[s][0]; skills[s].extra_levels = ~~fileInfo.skills[s][1]; skills[s].force_levels = ~~fileInfo.skills[s][2]; }
 	checkSkill(fileInfo.selectedSkill[0], 1)
 	checkSkill(fileInfo.selectedSkill[1], 2)
-	if (character.difficulty != fileInfo.character.difficulty) { document.getElementById("difficulty3").checked = false; document.getElementById("difficulty"+fileInfo.character.difficulty).checked = true; changeDifficulty(fileInfo.character.difficulty) }
-	if (character.running != fileInfo.character.running) { document.getElementById("running").checked = true; toggleRunning(document.getElementById("running")) }
-	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
 	if (effects != {}) { for (effect in effects) { if (fileInfo.effects[effect] != effects[effect].info.enabled) { toggleEffect(effect) } } }
 	for (stat in fileInfo.character) { character[stat] = fileInfo.character[stat] }
 	if (settings.coupling != fileInfo.settings.coupling) { if (settings.coupling == 1) { document.getElementById("coupling").checked = false }; toggleCoupling(document.getElementById("coupling")) }
@@ -1742,7 +1742,7 @@ function updateSecondaryStats() {
 	var lifeRegen = "";
 	if (c.life_regen > 0) { lifeRegen = c.life_regen+"% " }; if (c.life_replenish > 0) { lifeRegen += ("+"+c.life_replenish) }; if (c.life_regen == 0 && c.life_replenish == 0) { lifeRegen = 0 }
 	document.getElementById("life_regen").innerHTML = lifeRegen
-	document.getElementById("mana_regen").innerHTML = round(c.mana_regen + c.mana_regen_skillup)+"%"
+	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen + c.mana_regen_skillup,1)+"%"
 	
 	document.getElementById("damage_to_mana").innerHTML = c.damage_to_mana; if (c.damage_to_mana > 0) { document.getElementById("damage_to_mana").innerHTML += "%" }
 	
