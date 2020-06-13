@@ -52,21 +52,20 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		var sum_damage = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_damage = (1+((~~skills[0].data.values[4][skills[0].level+skills[0].extra_levels]) / 100)); }
 		var sum_life = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_life = (1+((~~skills[0].data.values[3][skills[0].level+skills[0].extra_levels]) / 100)); }
 		var diffResult = skill.data.values[elem][character.difficulty];
-		var wisp = (1+Math.round(character.wisp/20,0)/10);
 		
-		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {	result *= (sum_damage * (1+character.skeleton_bonus/100) * wisp) }
+		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {	result *= (sum_damage * (1+character.skeleton_bonus/100)) }
 		if (skill.name == "Raise Skeleton Warrior" && elem == 2) {	result = (sum_life * (diffResult + (6 * skill.level))) }
-		if (skill.name == "Clay Golem" && elem < 2) {			result = (sum_damage * diffResult * wisp) }
+		if (skill.name == "Clay Golem" && elem < 2) {			result = (sum_damage * diffResult) }
 		if (skill.name == "Clay Golem" && elem == 2) {			result = (sum_life * diffResult) }
-		if (skill.name == "Raise Skeletal Mage" && elem < 7) {		result *= (sum_damage * (1+character.skeleton_bonus/100) * wisp) }
+		if (skill.name == "Raise Skeletal Mage" && elem < 7) {		result *= (sum_damage * (1+character.skeleton_bonus/100)) }
 		if (skill.name == "Raise Skeletal Mage" && elem == 7) {		result = (sum_life * (diffResult + (6 * skill.level))) }
-		if (skill.name == "Blood Golem" && elem < 2) {			result = (sum_damage * diffResult * wisp) }
+		if (skill.name == "Blood Golem" && elem < 2) {			result = (sum_damage * diffResult) }
 		if (skill.name == "Blood Golem" && elem == 2) {			result = (sum_life * diffResult) }
-		if (skill.name == "Iron Golem" && elem < 2) {			result = (sum_damage * diffResult * wisp) }
+		if (skill.name == "Iron Golem" && elem < 2) {			result = (sum_damage * diffResult) }
 		if (skill.name == "Iron Golem" && elem == 2) {			result = (sum_life * diffResult) }
-		if (skill.name == "Fire Golem" && elem < 2) {			result *= (sum_damage * wisp) }
+		if (skill.name == "Fire Golem" && elem < 2) {			result *= sum_damage }
 		if (skill.name == "Fire Golem" && elem == 2) {			result = (sum_life * diffResult + 0.01*skill.level*diffResult) }
-		if (skill.name == "Fire Golem" && elem > 3 && elem < 6) {	result *= (sum_damage * wisp) }
+		if (skill.name == "Fire Golem" && elem > 3 && elem < 6) {	result *= sum_damage }
 		if (skill.name == "Revive" && elem == 0) {			result = (skill.data.values[elem][1] + Math.min(1,(skills[0].level+skills[0].force_levels))*~~skills[0].data.values[0][skills[0].level+skills[0].extra_levels]) }
 		if (skill.name == "Revive" && elem == 1) {			result = (skill.data.values[elem][1] + Math.min(1,(skills[0].level+skills[0].force_levels))*~~skills[0].data.values[1][skills[0].level+skills[0].extra_levels]) }
 
@@ -77,9 +76,9 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		if (skill.name == "Teeth" && elem > 0 && elem < 3) { 		result *= (1 + (0.17*skills[16].level + 0.17*skills[18].level)) }
 		if (skill.name == "Bone Spear" && elem < 2) { 			result *= (1 + (0.07*skills[12].level + 0.07*skills[18].level)) }
 		if (skill.name == "Bone Spirit" && elem < 2) { 			result *= (1 + (0.10*skills[12].level + 0.10*skills[16].level)) }
-		if (skill.name == "Deadly Poison" && elem > 0 && elem < 3) { 	result *= ((1 + (0.10*skills[15].level + 0.10*skills[19].level)) * (1+character.pDamage/100) * wisp) }
-		if (skill.name == "Desecrate" && elem > 0 && elem < 3) { 	result *= ((1 + (0.16*skills[11].level + 0.16*skills[19].level)) * (1+character.pDamage/100) * wisp) }
-		if (skill.name == "Poison Nova" && elem < 2) { 			result *= ((1 + (0.13*skills[11].level + 0.13*skills[15].level)) * (1+character.pDamage/100) * wisp) }
+		if (skill.name == "Deadly Poison" && elem > 0 && elem < 3) { 	result *= ((1 + (0.10*skills[15].level + 0.10*skills[19].level)) * (1+character.pDamage/100)) }
+		if (skill.name == "Desecrate" && elem > 0 && elem < 3) { 	result *= ((1 + (0.16*skills[11].level + 0.16*skills[19].level)) * (1+character.pDamage/100)) }
+		if (skill.name == "Poison Nova" && elem < 2) { 			result *= ((1 + (0.13*skills[11].level + 0.13*skills[15].level)) * (1+character.pDamage/100)) }
 		
 		if (skill.name == "Hemorrhage" && elem < 1) { result *= (1 + (0.20*skills[23].level + 0.20*skills[24].level + 0.20*skills[27].level)) }
 		
@@ -97,11 +96,25 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		if (skill.name == "Bone Offering") { result.defense_bonus = skill.data.values[2][lvl]; result.skeleton_bonus = skill.data.values[3][lvl]; result.curse_length_reduced = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Flesh Offering") { result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Blood Golem") { disableGolems(skill); result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl]; }
-		if (skill.name == "Iron Golem") {	// TODO: Add Iron Golem equipment selection	...dropdown appears when Iron Golem effect is available?
+		if (skill.name == "Iron Golem") {
 			disableGolems(skill);
-			var aura = "Meditation"; var aura_lvl = 17;	// temporary - golem is made from Insight
-			var auraInfo = getAuraData(aura, aura_lvl, "mercenary");
-			for (affix in auraInfo) { result[affix] = auraInfo[affix] }
+			if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") {
+				var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
+				var active = true;
+				for (id in effects) {
+					if (typeof(effects[id].info.enabled) != 'undefined') {
+						var effect = id.split('-')[0];
+						if (getId(aura) == effect) {
+							active = false;
+						}
+					}
+				}
+				var auraInfo = getAuraData(aura, aura_lvl, "golem");
+				for (affix in auraInfo) {
+					if (active == true) { result[affix] = auraInfo[affix] }
+					else { result[affix] = unequipped[affix] }
+				}
+			} }
 		}
 		if (skill.name == "Deadly Poison") {
 			result.pDamage_min = skill.data.values[1][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
@@ -135,9 +148,8 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 	//	num: 1 or 2 (skill1 or skill2)
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
-	//	wisp: multiplier for Wisp Projector (Lifted Spirit aura)
 	// ---------------------------------
-	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max, wisp) {
+	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
 		var lvl = skill.level+skill.extra_levels;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
 		var damage_min = 0; var damage_max = 0;

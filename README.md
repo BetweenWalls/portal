@@ -22,8 +22,6 @@ Current Known Issues:
 * Unimplemented: breakpoint info for FCR, FBR, FHR
 * Breakpoints for IAS (frames-per-attack) may be inaccurate
 * Some stats from offhand weapons may incorrectly contribute to mainhand attacks
-* Unimplemented: stacking for identical auras (e.g. when wearing 2x Dream or Dragon & Hand of Justice)
-* Unimplemented: item options for Iron Golem (currently uses Insight)
 
 Info: https://github.com/BetweenWalls/planner#planner
 

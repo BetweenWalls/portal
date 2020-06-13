@@ -1,5 +1,5 @@
 
-fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{}};
+fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{},ironGolem:""};
 fileText = "";
 character = {};
 var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, edged_skillup:[0,0,0], pole_skillup:[0,0,0], blunt_skillup:[0,0,0], thrown_skillup:[0,0,0], claw_skillup:[0,0,0], mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0};
@@ -10,27 +10,26 @@ var duplicateEffects = {};
 var skillList = []; var skillOptions = [];
 var selectedSkill = [" ­ ­ ­ ­ Skill 1", " ­ ­ ­ ­ Skill 2"];
 
-var offhandSetup = "";
-var tempSetup = 0;
+var offhandSetup = "";	// temporary variable
+var tempSetup = 0;	// temporary variable
 var mercenary = {name:"",level:1,base_aura:"",base_aura_level:1};
 var offhandType = "none";
-var lastCharm = "";
-var lastSocketable = "";
+var lastCharm = "";		// last charm on mouse-over
+var lastSocketable = "";	// last gem/rune/jewel on mouse-over
 var lastSelected = "";
 var settings = {coupling:1, autocast:1}
-var MAX = 20;	// Highest Skill Hardpoints
-var LIMIT = 60; // Highest Skill Data
+var MAX = 20;		// Highest Skill Hardpoints
+var LIMIT = 60;		// Highest Skill Data
 var RES_CAP = 95;
 
-var socketed = {
+var socketed = {	// Gems/Runes/Jewels Socketed in Equipment
 	helm:{sockets:0, socketsFilled:0, totals:{}, items:[{id:"",name:""},{id:"",name:""},{id:"",name:""}]},
 	armor:{sockets:0, socketsFilled:0, totals:{}, items:[{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""}]},
 	weapon:{sockets:0, socketsFilled:0, totals:{}, items:[{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""}]},
 	offhand:{sockets:0, socketsFilled:0, totals:{}, items:[{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""},{id:"",name:""}]},
 };
 
-// Charm Inventory
-var inv = [
+var inv = [		// Charm Inventory
 {onpickup:"?",pickup_x:0,pickup_y:0,empty:1,charms:[],in:["",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
 {x:1,y:1,empty:1,load:"",id:"h11"},{x:1,y:1,empty:1,load:"",id:"h21"},{x:1,y:1,empty:1,load:"",id:"h31"},{x:1,y:1,empty:1,load:"",id:"h41"},{x:1,y:1,empty:1,load:"",id:"h51"},{x:1,y:1,empty:1,load:"",id:"h61"},{x:1,y:1,empty:1,load:"",id:"h71"},{x:1,y:1,empty:1,load:"",id:"h81"},{x:1,y:1,empty:1,load:"",id:"h91"},{x:1,y:1,empty:1,load:"",id:"h01"},
 {x:1,y:1,empty:1,load:"",id:"h12"},{x:1,y:1,empty:1,load:"",id:"h22"},{x:1,y:1,empty:1,load:"",id:"h32"},{x:1,y:1,empty:1,load:"",id:"h42"},{x:1,y:1,empty:1,load:"",id:"h52"},{x:1,y:1,empty:1,load:"",id:"h62"},{x:1,y:1,empty:1,load:"",id:"h72"},{x:1,y:1,empty:1,load:"",id:"h82"},{x:1,y:1,empty:1,load:"",id:"h92"},{x:1,y:1,empty:1,load:"",id:"h02"},
@@ -47,13 +46,14 @@ function update() {
 	updateSkills()
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
+	checkIronGolem()
 }
 
 // getCharacterInfo - 
 // return: 
 // ---------------------------------
 function getCharacterInfo() {
-	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','updateSelectedSkill','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration'];	// TODO: Prevent item qualities from being added as character qualities
+	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','updateSelectedSkill','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration','nonmetal'];	// TODO: Prevent item qualities from being added as character qualities
 	var charInfo = "{character:{";
 	for (stat in character) {
 		var halt = 0;
@@ -82,7 +82,8 @@ function getCharacterInfo() {
 	charInfo += "},selectedSkill:["+selectedSkill[0]+","+selectedSkill[1]
 	charInfo += "],mercenary:'"+mercenary.name+"'"
 	charInfo += ",settings:{coupling:"+settings.coupling+",autocast:"+settings.autocast
-	charInfo += "}}"
+	charInfo += "},ironGolem:"+golemItem.name
+	charInfo += "}"
 	return charInfo
 }
 
@@ -133,7 +134,7 @@ function loadFileAsText() {
 //	file: text from file
 // ---------------------------------
 function parseFile(file) {
-	fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{}};	// reset fileInfo
+	fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{},ironGolem:""};	// reset fileInfo
 
 	var new_character = file.split("character:{")[1].split("},skills:")[0].split(",");
 	for (let i = 0; i < new_character.length; i++) {
@@ -194,7 +195,7 @@ function parseFile(file) {
 	var new_selectedSkill = file.split("selectedSkill:[")[1].split("],mercenary:")[0].split(",");
 	fileInfo.selectedSkill[0] = new_selectedSkill[0]
 	fileInfo.selectedSkill[1] = new_selectedSkill[1]
-	var new_settings = file.split("settings:{")[1].split("}")[0].split(",");
+	var new_settings = file.split("settings:{")[1].split("},ironGolem")[0].split(",");
 	for (let i = 0; i < new_settings.length; i++) {
 		var setting = new_settings[i].split(":")[0];
 		var value = new_settings[i].split(":")[1];
@@ -205,6 +206,8 @@ function parseFile(file) {
 		new_charms = file.split("charms:['")[1].split("']},corruptsEquipped:")[0].split("','");
 		for (let i = 0; i < new_charms.length; i++) { fileInfo.equipped.charms[i] = new_charms[i] }
 	}
+	var new_golem = file.split("ironGolem:")[1].split("}")[0];
+	fileInfo.ironGolem = new_golem
 }
 
 // setCharacterInfo - 
@@ -254,6 +257,9 @@ function setCharacterInfo(className) {
 	} }
 	for (let i = 0; i < fileInfo.equipped.charms.length; i++) { addCharm(fileInfo.equipped.charms[i]) }
 	for (let s = 0; s < skills.length; s++) { skills[s].level = ~~fileInfo.skills[s][0]; skills[s].extra_levels = ~~fileInfo.skills[s][1]; skills[s].force_levels = ~~fileInfo.skills[s][2]; }
+	var options = document.getElementById("dropdown_golem").options;
+	for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.ironGolem) { document.getElementById("dropdown_golem").selectedIndex = i } }
+	setIronGolem(fileInfo.ironGolem)
 	checkSkill(fileInfo.selectedSkill[0], 1)
 	checkSkill(fileInfo.selectedSkill[1], 2)
 	if (effects != {}) { for (effect in effects) { if (fileInfo.effects[effect] != effects[effect].info.enabled) { toggleEffect(effect) } } }
@@ -275,6 +281,7 @@ function loadEquipment(className) {
 	loadMerc()
 	loadCorruptions()
 	loadSocketables()
+	loadGolem()
 }
 
 // loadItems - Creates a dropdown menu option
@@ -412,15 +419,38 @@ function getMercenaryAuraLevel(hlvl) {
 // loadCorruptions - Loads corruption options
 // ---------------------------------
 function loadCorruptions() {
-	var types = ["helm", "armor", "gloves", "boots", "belt", "amulet", "ring1", "ring2", "weapon", "offhand"];
-	for (let i = 0; i < types.length; i++) {
+	var groups = ["helm", "armor", "gloves", "boots", "belt", "amulet", "ring1", "ring2", "weapon", "offhand"];
+	for (let i = 0; i < groups.length; i++) {
 		var choices = "<option>­ ­ ­ ­ Corruption</option>";
-		for (let m = 1; m < corruptions[types[i]].length; m++) {
-			if (types[i] == "offhand") { if (corruptions[types[i]][m].base == "shield") { choices += "<option>" + corruptions[types[i]][m].name + "</option>" } }
-			else { choices += "<option>" + corruptions[types[i]][m].name + "</option>" }
+		for (let m = 1; m < corruptions[groups[i]].length; m++) {
+			if (groups[i] == "offhand") { if (corruptions[groups[i]][m].base == "shield") { choices += "<option>" + corruptions[groups[i]][m].name + "</option>" } }
+			else { choices += "<option>" + corruptions[groups[i]][m].name + "</option>" }
 		}
-		document.getElementById("corruptions_"+types[i]).innerHTML = choices
+		document.getElementById("corruptions_"+groups[i]).innerHTML = choices
 	}
+}
+
+// loadGolem - 
+// ---------------------------------
+function loadGolem() {
+	var choices = "<option>­ ­ ­ ­ Iron Golem</option>";
+	for (group in corruptsEquipped) {
+		for (itemNew in equipment[group]) {
+			var item = equipment[group][itemNew];
+			var metal = true;
+			if (group == "amulet" || group == "ring1" || group == "ring2" || item.type == "quiver" || item.special == 1 || item.rarity == "magic" || item.only == "Desert Guard" || item.only == "Iron Wolf" || item.only == "Barb (merc)") { metal = false }
+			else if (typeof(item.base) != 'undefined') { if (typeof(bases[getBaseId(item.base)].nonmetal) != 'undefined') { if (bases[getBaseId(item.base)].nonmetal == 1) { metal = false } } }
+			// TODO: Adjust equipment list to exclude 'duplicates' and include runewords that can made in metal bases
+			if (metal == true) {
+				var addon = "";
+				if (item == equipment[group][0]) { addon = "<option class='gray-all' style='color:gray' disabled>" + item.name + "</option>" }
+				else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
+				else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
+				choices += addon
+			}
+		}
+	}
+	document.getElementById("dropdown_golem").innerHTML = choices
 }
 
 // startup - Resets everything and starts a new character
@@ -428,6 +458,7 @@ function loadCorruptions() {
 // ---------------------------------
 function startup(choice) {
 	setMercenary("none")
+	setIronGolem("none")
 	loadEquipment(choice)
 	clearIconSources()
 	resetSkills()
@@ -527,6 +558,36 @@ function changeLevel(input) {
 	}
 	updateMercenary()
 	update()
+}
+
+// setIronGolem - 
+//	val: 
+// ---------------------------------
+function setIronGolem(val) {
+	golemItem = {name:"none"}
+	if (val == "none" || val == "­ ­ ­ ­ Iron Golem") { document.getElementById("dropdown_golem").selectedIndex = 0 }
+	else {
+		var groups = ["helm","armor","gloves","boots","belt","weapon","offhand"];
+		for (let g = 0; g < groups.length; g++) { for (item in equipment[groups[g]]) {
+			if (equipment[groups[g]][item].name == val) {
+				for (affix in equipment[groups[g]][item]) {
+					// TODO: Add other item stats and display them somewhere?
+					if (affix == "name" || affix == "aura_lvl" || affix == "aura") {
+						golemItem[affix] = equipment[groups[g]][item][affix]
+					}
+				}
+			}
+		} }
+	}
+	if (typeof(effects["Iron_Golem"]) != 'undefined') {
+		for (affix in effects["Iron_Golem"]) { if (affix != "info") {
+			character[affix] -= effects["Iron_Golem"][affix]	// stats are added to the character via getBuffData()
+			effects["Iron_Golem"][affix] = unequipped[affix]
+		} }
+		updateEffect("Iron_Golem")
+	}
+	update()
+	updateAllEffects()
 }
 
 // reloadOffhandCorruptions - reloads corruption options for offhands (when the selected item changes types)
@@ -654,7 +715,6 @@ function equipMerc(group, val) {
 							if (equipment[group][item][affix] > mercEquipped[group][affix]) { mercEquipped[group][affix] = equipment[group][item][affix] }
 						} else {
 							mercEquipped[group][affix] = equipment[group][item][affix]
-						//	if (affix == "aura" && equipment[group][item][affix] != mercenary.base_aura) { addEffect("aura",equipment[group][item][affix],equipment[group][item].aura_lvl,"mercenary_"+group) }
 							if (affix == "aura") { auraName = equipment[group][item][affix]; auraLevel = equipment[group][item].aura_lvl; }
 						}
 					} else {
@@ -792,7 +852,7 @@ function equip(group, val) {
 				if (affix == "damage_vs_undead") {									// damage_vs_undead is the only additive affix included in both bases[] (automods) and equipment[] (regular affixes)
 					equipped[group][affix] += equipment[src_group][item][affix]
 					character[affix] += equipment[src_group][item][affix]
-				} else if (affix == "name" || affix == "type" || affix == "base" || affix == "only" || affix == "not" || affix == "img" || affix == "rarity" || affix == "req" || affix == "ethereal" || affix == "indestructible" || affix == "autorepair" || affix == "autoreplenish" || affix == "stack_size" || affix == "set_bonuses" || affix == "pod_changes" || affix == "aura_lvl" || affix == "twoHanded" || affix == "sockets" || affix == "e_def" || affix == "ctc" || affix == "cskill" || affix == "aura" || affix == "req_strength" || affix == "req_dexterity") {	// no need to add these as character affixes
+				} else if (affix == "name" || affix == "type" || affix == "base" || affix == "only" || affix == "not" || affix == "img" || affix == "rarity" || affix == "req" || affix == "ethereal" || affix == "indestructible" || affix == "autorepair" || affix == "autoreplenish" || affix == "stack_size" || affix == "set_bonuses" || affix == "pod_changes" || affix == "twoHanded" || affix == "sockets" || affix == "e_def" || affix == "ctc" || affix == "cskill" || affix == "aura" || affix == "aura_lvl" || affix == "req_strength" || affix == "req_dexterity") {	// no need to add these as character affixes
 					equipped[group][affix] = equipment[src_group][item][affix]
 					if (affix == "req_strength" || affix == "req_dexterity") {
 						if (equipment[src_group][item][affix] > equipped[group][affix]) { equipped[group][affix] = equipment[src_group][item][affix] }	// these affixes aren't additive (only the largest matters)
@@ -1131,7 +1191,7 @@ function addSocketable(val) {
 //	origin: what kind of source the effect has ("skill", "aura", "misc")
 //	name: name of the chosen effect
 //	num: index, or aura level
-//	other: "mercenary" for auras
+//	other: "mercenary" or the item type which is granting the aura
 // ---------------------------------
 function addEffect(origin, name, num, other) {
 	if (origin == "misc") { name = non_items[num].effect; document.getElementById("dropdown_misc").selectedIndex = 0; }
@@ -1146,7 +1206,7 @@ function addEffect(origin, name, num, other) {
 //	origin: what kind of source the effect has ("skill", "aura", "misc")
 //	name: name of the chosen effect
 //	num: index, or aura level
-//	other: "mercenary" for auras
+//	other: "mercenary" or the item type which is granting the aura
 // ---------------------------------
 function initializeEffect(origin, name, num, other) {
 	var id = name.split(' ').join('_');
@@ -1181,6 +1241,7 @@ function initializeEffect(origin, name, num, other) {
 	setEffectData(origin,name,num,other)
 	
 	if (settings.autocast == 1) { toggleEffect(id) }	// TODO: should also toggle-on if effect is always-active
+	adjustStackedAuras()
 }
 
 // setEffectData - 
@@ -1224,6 +1285,7 @@ function removeEffect(id, direct) {
 			if (on == 1 && secondary != "") { enableEffect(secondary); }
 			updateAllEffects()
 		}
+		adjustStackedAuras()
 	}
 }
 
@@ -1266,7 +1328,6 @@ function enableEffect(id) {
 // updateAllEffects - 
 // ---------------------------------
 function updateAllEffects() {
-	// TODO: Make exception for identical auras to stack (2x Dream, Dragon & Hand of Justice, etc)
 	calculateSkillAmounts()
 	// updates skill effects
 	for (let s = 0; s < skills.length; s++) {
@@ -1314,7 +1375,7 @@ function updateAllEffects() {
 				if (id1 != id2 && checkedEffects[id2] != 1 && typeof(effects[id2].info.enabled) != 'undefined' && effects[id2].info.origin != "skill") {
 					var effect1 = id1.split('-')[0];
 					var effect2 = id2.split('-')[0];
-					var skillEnabled = 0;
+					var skillEnabled = 0;	// not used?
 					if (typeof(effects[effect1]) != 'undefined') { if ((effects[effect1].info.enabled) != 'undefined') { if (effects[effect1].info.enabled == 1) { skillEnabled = 1; } } }
 					if (effect1 == effect2) {
 						if (document.getElementById(id1).getAttribute("class") != "hide" && document.getElementById(id2).getAttribute("class") != "hide") {
@@ -1380,11 +1441,44 @@ function updateEffect(id) {
 	}
 }
 
-// trackDuplicateEffects - 
-//	id: the effect's id
+// adjustStackedAuras - 
 // ---------------------------------
-function trackDuplicateEffects(id) {
-	// unneeded?
+function adjustStackedAuras() {
+	/* Possible Stacking Auras
+		Holy Shock	Dream helm, Dream shield
+		Holy Fire	Dragon armor, Dragon shield, Hand of Justice weapons
+		Thorns		Edge bow, Bramble armor
+		Redemption	Phoenix shield, Phoenix weapons
+		Holy Freeze	Doom weapons
+		Fanaticism	Beast Weapons
+		Might		Last Wish weapons
+		Sanctuary	Azurewrath/Lawbringer weapons
+	*/
+	var stackableAuras = ["Holy_Shock","Holy_Fire","Thorns","Redemption","Holy_Freeze","Fanaticism","Might","Sanctuary"];
+	var stackedAuras = [0,0,0,0,0,0,0,0];
+	var stackedLevels = [0,0,0,0,0,0,0,0];
+	for (id in effects) {
+		if (typeof(effects[id].info.enabled) != 'undefined' && effects[id].info.origin == "aura" && effects[id].info.other.split('_')[0] != "mercenary" && effects[id].info.other != "combined") {
+			var effect = id.split('-')[0];
+			for (let i = 0; i < stackableAuras.length; i++) {
+				if (effect == stackableAuras[i]) {
+					stackedAuras[i] += 1
+					stackedLevels[i] += effects[id].info.index
+				}
+			}
+		}
+	}
+	for (let i = 0; i < stackedAuras.length; i++) {
+		var active = false;
+		var id = stackableAuras[i]+"-combined";
+		if (typeof(effects[id]) != 'undefined') { if (typeof(effects[id].info.enabled) != 'undefined') { active = true } }
+		if (stackedAuras[i] > 1) {
+			if (active == false) { addEffect("aura",stackableAuras[i].split("_").join(" "),stackedLevels[i],"combined") }
+			else { effects[id].info.index = stackedLevels[i]; updateEffect(id); }
+		} else {
+			if (active != false) { removeEffect(id,null) }
+		}
+	}
 }
 
 // hoverEffectOn - 
@@ -1434,18 +1528,17 @@ function getAuraData(aura, lvl, source) {
 	// Offensive Auras
 	else if (aura == "Might") { result.damage_bonus = auras[a].data.values[0][lvl]; }
 	else if (aura == "Holy Fire") { result.fDamage_min = auras[a].data.values[0][lvl]; result.fDamage_max = auras[a].data.values[1][lvl]; }
-	else if (aura == "Precision") { result.cstrike = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; if (source == "mercenary") { result.pierce = auras[a].data.values[1][lvl] } else { result.pierce = auras[a].data.values[0][lvl] }}
+	else if (aura == "Precision") { result.cstrike = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; if (source == "mercenary" || source == "golem") { result.pierce = auras[a].data.values[1][lvl] } else { result.pierce = auras[a].data.values[0][lvl] }}
 	else if (aura == "Blessed Aim") { result.ar_bonus = auras[a].data.values[2][lvl]; result.hammer_on_hit = auras[a].data.values[1][lvl]; }
 	else if (aura == "Concentration") { result.ar_bonus = auras[a].data.values[0][lvl]; result.damage_bonus = auras[a].data.values[1][lvl]; result.hammer_bonus = auras[a].data.values[2][lvl]; }
 	else if (aura == "Holy Freeze") { result.cDamage_min = auras[a].data.values[0][lvl]; result.cDamage_max = auras[a].data.values[1][lvl]; result.slow_enemies = auras[a].data.values[2][lvl]; }
 	else if (aura == "Holy Shock") { result.lDamage_min = auras[a].data.values[0][lvl]; result.lDamage_max = auras[a].data.values[1][lvl]; }
 	else if (aura == "Sanctuary") { result.damage_vs_undead = auras[a].data.values[0][lvl]; }
-	else if (aura == "Fanaticism") { result.ias_skill = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; if (source == "mercenary") { result.damage_bonus = auras[a].data.values[0][lvl] } else { result.damage_bonus = auras[a].data.values[1][lvl] }}
+	else if (aura == "Fanaticism") { result.ias_skill = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; if (source == "mercenary" || source == "golem") { result.damage_bonus = auras[a].data.values[0][lvl] } else { result.damage_bonus = auras[a].data.values[1][lvl] }}
 	else if (aura == "Conviction") { result.enemy_defense = auras[a].data.values[0][lvl]; result.enemy_fRes = auras[a].data.values[1][lvl]; result.enemy_cRes = auras[a].data.values[1][lvl]; result.enemy_lRes = auras[a].data.values[1][lvl]; result.enemy_pRes = auras[a].data.values[1][lvl]; }
 	// Others
 	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; }
 	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; }
-	//else if (aura == "Enflame") { result.fDamage_min = skill.data.values[1][lvl]; result.fDamage_max = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; }
 	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
 	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; }
 	
@@ -1589,19 +1682,18 @@ function updatePrimaryStats() {
 	
 	var def = (c.base_defense + c.defense + c.level*c.defense_per_level + Math.floor(dexTotal/4)) * (1 + (c.defense_bonus + c.defense_skillup)/100);
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const + (c.ar_per_socketed*socketed.offhand.socketsFilled)) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
-	var wisp = 1+~~Math.round(c.wisp/20,0)/10
 	
-	var fMin = c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100)*wisp;
-	var fMax = (c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100)*wisp;
-	var cMin = (c.cDamage_min+(c.cDamage_per_ice*c.charge_ice)+(c.cDamage_per_socketed*socketed.weapon.socketsFilled))*(1+(c.cDamage+c.cDamage_skillup)/100)*wisp;
-	var cMax = (c.cDamage_max+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+(c.cDamage_per_socketed*socketed.weapon.socketsFilled))*(1+(c.cDamage+c.cDamage_skillup)/100)*wisp;
-	var lMin = c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100)*wisp;
-	var lMax = (c.lDamage_max+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100)*wisp;
-	var pMin = (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100)*wisp;	// TODO: Damage over time should be separate from regular damage. Calculate poison bitrate.
-	var pMax = (c.pDamage_all+c.pDamage_max)*(1+c.pDamage/100)*wisp;	//	 Also, poison doesn't overlap from different sources?
+	var fMin = c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100);
+	var fMax = (c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100);
+	var cMin = (c.cDamage_min+(c.cDamage_per_ice*c.charge_ice)+(c.cDamage_per_socketed*socketed.weapon.socketsFilled))*(1+(c.cDamage+c.cDamage_skillup)/100);
+	var cMax = (c.cDamage_max+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+(c.cDamage_per_socketed*socketed.weapon.socketsFilled))*(1+(c.cDamage+c.cDamage_skillup)/100);
+	var lMin = c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100);
+	var lMax = (c.lDamage_max+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100);
+	var pMin = (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100);	// TODO: Damage over time should be separate from regular damage. Calculate poison bitrate.
+	var pMax = (c.pDamage_all+c.pDamage_max)*(1+c.pDamage/100);	//	 Also, poison doesn't overlap from different sources?
 	
-	var basic_min = Math.floor(physDamage[0]*physDamage[2]*wisp + fMin + cMin + lMin + pMin + c.mDamage_min);
-	var basic_max = Math.floor(physDamage[1]*physDamage[2]*wisp + fMax + cMax + lMax + pMax + c.mDamage_max);
+	var basic_min = Math.floor(physDamage[0]*physDamage[2] + fMin + cMin + lMin + pMin + c.mDamage_min);
+	var basic_max = Math.floor(physDamage[1]*physDamage[2] + fMax + cMax + lMax + pMax + c.mDamage_max);
 	if (basic_min > 0 || basic_max > 0) { document.getElementById("basic_attack").innerHTML = basic_min + "-" + basic_max + " {"+Math.ceil((basic_min+basic_max)/2)+"}"}
 	else { document.getElementById("basic_attack").innerHTML = "" }
 	// TODO: Create display for offhand attacks (separate damage & AR)
@@ -1667,7 +1759,7 @@ function updatePrimaryStats() {
 		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(256 * (100 + c.ias_skill + eIAS - c.baseSpeed) / 100));
 		document.getElementById("ias").innerHTML += " ("+frames_per_attack+" fpa)"
 	}
-	if (c.flamme > 0) { document.getElementById("flamme").innerHTML = "Righteous Fire deals "+Math.floor((c.flamme/100*lifeTotal)*(1+(c.fDamage+c.fDamage_skillup)/100)*wisp)+" damage per second<br>" } else { document.getElementById("flamme").innerHTML = "" }
+	if (c.flamme > 0) { document.getElementById("flamme").innerHTML = "Righteous Fire deals "+Math.floor((c.flamme/100*lifeTotal)*(1+(c.fDamage+c.fDamage_skillup)/100))+" damage per second<br>" } else { document.getElementById("flamme").innerHTML = "" }
 }
 
 // updateSecondaryStats - Updates stats shown on the secondary (Path of Diablo) stat page
@@ -2353,9 +2445,8 @@ function checkSkill(skillName, num) {
 	if (offhandType == "weapon") { weaponType_offhand = equipped.offhand.type }
 	
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
-	var wisp = 1+~~Math.round(c.wisp/20,0)/10
-	var ele_min = Math.floor(wisp*(c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100) + c.cDamage_min*(1+(c.cDamage+c.cDamage_skillup)/100) + c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100) + (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100)));
-	var ele_max = Math.floor(wisp*((c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100) + (c.cDamage_max+(c.level*c.cDamage_max_per_level))*(1+(c.cDamage+c.cDamage_skillup)/100) + (c.lDamage_max+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100) + (c.pDamage_all+c.pDamage_max)*(1+c.pDamage/100)));
+	var ele_min = Math.floor(c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100) + c.cDamage_min*(1+(c.cDamage+c.cDamage_skillup)/100) + c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100) + (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100));
+	var ele_max = Math.floor((c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100) + (c.cDamage_max+(c.level*c.cDamage_max_per_level))*(1+(c.cDamage+c.cDamage_skillup)/100) + (c.lDamage_max+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100) + (c.pDamage_all+c.pDamage_max)*(1+c.pDamage/100));
 	
 	var physDamage = [0,0,1];
 	if (skillName == "Poison Javelin" || skillName == "Lightning Bolt" || skillName == "Plague Javelin" || skillName == "Lightning Fury" || skillName == "Power Throw" || skillName == "Ethereal Throw") {
@@ -2370,8 +2461,8 @@ function checkSkill(skillName, num) {
 		}
 	}
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
-		if (native_skill == 0) { character_any.updateSelectedSkill(skillName, num, ar, physDamage[0], physDamage[1], physDamage[2], ele_min, ele_max, c.mDamage_min, c.mDamage_max, wisp); }
-		else { c.updateSelectedSkill(skill, num, ar, physDamage[0], physDamage[1], physDamage[2], ele_min, ele_max, c.mDamage_min, c.mDamage_max, wisp); }
+		if (native_skill == 0) { character_any.updateSelectedSkill(skillName, num, ar, physDamage[0], physDamage[1], physDamage[2], ele_min, ele_max, c.mDamage_min, c.mDamage_max); }
+		else { c.updateSelectedSkill(skill, num, ar, physDamage[0], physDamage[1], physDamage[2], ele_min, ele_max, c.mDamage_min, c.mDamage_max); }
 	} else {
 		
 	}
@@ -2935,6 +3026,7 @@ function changeBase(group, change) {
 	var base = getBaseId(base_name);
 	var halt = 0;
 	if ((typeof(equipped[group].rarity) == 'undefined' || equipped[group].rarity == "set") && change == "downgrade" && equipped[group].tier <= equipped[group].original_tier) { halt = 1 }		// prevents unique/set from being downgraded below their baseline
+	//if (typeof(equipped[group].rarity) != 'undefined' && equipped[group].rarity != "rare") { halt = 1 }
 	if (typeof(bases[base][change]) != 'undefined' && halt == 0) {
 		base = bases[base][change];
 		equipped[group].base = base;
@@ -2976,12 +3068,6 @@ function changeBase(group, change) {
 	// updateAllEffects()?
 }
 
-// hoverFCR - 
-// ---------------------------------
-function hoverFCR() {
-	//document.getElementById("fcr").innerHTML = "testing"//character.fcr + Math.floor(character.level*character.fcr_per_level)
-}
-
 // getId - gets the ID for the given name
 //	name: the name to be changed
 // return: the ID for name (name with spaces replaced with underscores)
@@ -2996,4 +3082,18 @@ function getId(name) {
 // ---------------------------------
 function getBaseId(base_name) {
 	return base_name.split(" ").join("_").split("-").join("_").split("s'").join("s").split("'s").join("s");
+}
+
+// checkIronGolem - 
+// ---------------------------------
+function checkIronGolem() {
+	if (character.class_name == "Necromancer" && (skills[8].level > 0 || skills[8].force_levels > 0)) {
+		var active = false;
+		for (effect in effects) { if (effect == "Iron_Golem" && typeof(effects[effect].info.enabled) != 'undefined') { if (effects[effect].info.enabled == 1) { active = true } } }
+		if (active != false) { document.getElementById("golem").style.display = "block"; document.getElementById("golem_spacing").style.display = "block"; }
+		else { document.getElementById("golem").style.display = "none"; document.getElementById("golem_spacing").style.display = "none" }
+	} else {
+		document.getElementById("golem").style.display = "none"
+		document.getElementById("golem_spacing").style.display = "none"
+	}
 }

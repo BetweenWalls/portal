@@ -49,7 +49,6 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 	// ---------------------------------
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
-		var wisp = (1+Math.round(character.wisp/20,0)/10);
 		
 		if (skill.name == "War Cry" && elem < 2) { 		result *= ((1 + (0.16*skills[2].level + 0.16*skills[8].level))) }
 		if (skill.name == "Battle Command" && elem == 0) { 	result = 1+Math.floor(skill.level/10) }
@@ -58,7 +57,7 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		if (skill.name == "Frenzy" && elem == 1) { 		result += (10*skills[20].level) }
 		if (skill.name == "Frenzy" && elem == 2) { 		result += (8*skills[19].level) }
 		if (skill.name == "Concentrate" && elem == 2) { 	result += (5*skills[24].level + 10*skills[2].level + 10*skills[6].level) }
-		if (skill.name == "Cleave" && elem < 2) { 		result *= ((1 + (0.15*skills[18].level)) * wisp) }
+		if (skill.name == "Cleave" && elem < 2) { 		result *= (1 + (0.15*skills[18].level)) }
 		if (skill.name == "Stun" && elem == 0) { 		result = (10*skills[24].level) }
 		if (skill.name == "Stun" && elem == 1) { 		result += (5*skills[19].level) }
 		if (skill.name == "Stun" && elem == 2) { 		result += (5*skills[8].level) }
@@ -96,9 +95,8 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 	//	num: 1 or 2 (skill1 or skill2)
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
-	//	wisp: multiplier for Wisp Projector (Lifted Spirit aura)
 	// ---------------------------------
-	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max, wisp) {
+	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
 		var lvl = skill.level+skill.extra_levels;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
 		var damage_min = 0; var damage_max = 0;

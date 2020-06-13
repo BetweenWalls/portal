@@ -51,12 +51,11 @@ var character_assassin = {class_name:"Assassin", strength:20, dexterity:20, vita
 	// ---------------------------------
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
-		var wisp = (1+Math.round(character.wisp/20,0)/10);
 		
 		if (skill.name == "Dual Strike" && elem == 0) { 		result += (5*skills[9].level + 5*skills[13].level) }
-		if (skill.name == "Static Strike" && elem < 2) { 		result *= ((1 + (0.08*skills[21].level)) * (1+0.20*character.charge_thunder) * (1+character.lDamage/100) * wisp) }
-		if (skill.name == "Emberstorm" && elem < 2) { 			result *= ((1 + (0.18*skills[20].level)) * (1+0.20*character.charge_ember) * (1+character.fDamage/100) * wisp) }
-		if (skill.name == "Blades of Ice" && elem > 0 && elem < 3) { 	result *= ((1+0.20*character.charge_ice) * (1+character.cDamage/100) * wisp) }
+		if (skill.name == "Static Strike" && elem < 2) { 		result *= ((1 + (0.08*skills[21].level)) * (1+0.20*character.charge_thunder) * (1+character.lDamage/100)) }
+		if (skill.name == "Emberstorm" && elem < 2) { 			result *= ((1 + (0.18*skills[20].level)) * (1+0.20*character.charge_ember) * (1+character.fDamage/100)) }
+		if (skill.name == "Blades of Ice" && elem > 0 && elem < 3) { 	result *= ((1+0.20*character.charge_ice) * (1+character.cDamage/100)) }
 		if (skill.name == "Dragon Talon" && elem == 0) { 		result = character.kick_min }
 		if (skill.name == "Dragon Talon" && elem == 1) { 		result = Math.floor(1.5*character.kick_min) }
 		if (skill.name == "Dragon Talon" && elem == 3) { 		result += (15*skills[7].level) }
@@ -67,23 +66,22 @@ var character_assassin = {class_name:"Assassin", strength:20, dexterity:20, vita
 		if (skill.name == "Psychic Hammer" && elem < 4) { 		result *= (1 + (0.25*skills[12].level + 0.25*skills[17].level)) }
 		if (skill.name == "Mind Blast" && elem > 0 && elem < 3) { 	result *= (1 + (0.21*skills[10].level + 0.21*skills[12].level)) }
 		if (skill.name == "Mind Blast" && elem == 0) { 			result = (2.6 + (0.7 * Math.floor(skills[14].level / 5))) }
-		if (skill.name == "Venom" && elem > 0 && elem < 3) { 		result *= ((1+character.pDamage/100) * wisp) }
+		if (skill.name == "Venom" && elem > 0 && elem < 3) { 		result *= ((1+character.pDamage/100)) }
 		
-		if (skill.name == "Fire Blast" && elem < 2) { 			result *= ((1 + (0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[24].level + 0.12*skills[27].level + 0.12*skills[28].level)) * (1+character.fDamage/100) * wisp) }
+		if (skill.name == "Fire Blast" && elem < 2) { 			result *= ((1 + (0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[24].level + 0.12*skills[27].level + 0.12*skills[28].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Shock Web" && elem == 0) { 			result = Math.max(6, (skill.data.values[elem][lvl] + Math.floor(skills[20].level / 3))) }
-		if (skill.name == "Shock Web" && elem < 3 && elem > 0) { 	result *= ((1 + (0.20*skills[21].level + 0.20*skills[26].level + 0.20*skills[28].level)) * (1+character.lDamage/100) * wisp) }
-		if (skill.name == "Blade Throw" && elem < 3 && elem > 0) { 	result *= ((1 + (0.16*skills[25].level + 0.16*skills[29].level)) * wisp) }
+		if (skill.name == "Shock Web" && elem < 3 && elem > 0) { 	result *= ((1 + (0.20*skills[21].level + 0.20*skills[26].level + 0.20*skills[28].level)) * (1+character.lDamage/100)) }
+		if (skill.name == "Blade Throw" && elem < 3 && elem > 0) { 	result *= (1 + (0.16*skills[25].level + 0.16*skills[29].level)) }
 		if (skill.name == "Charged Bolt Sentry" && elem == 0) { 	result = 5 + Math.floor(skills[26].level / 4) }
 		if (skill.name == "Charged Bolt Sentry" && elem == 1) { 	result = 5 + Math.floor(skills[21].level / 3) }
-		if (skill.name == "Charged Bolt Sentry" && elem < 4 && elem > 1) { result *= ((1 + (0.20*skills[20].level + 0.20*skills[26].level + 0.20*skills[28].level)) * (1+character.lDamage/100) * wisp) }
-		if (skill.name == "Wake of Fire" && elem < 2) { 		result *= ((1 + (0.20*skills[20].level + 0.20*skills[27].level)) * (1+character.fDamage/100) * wisp) }
-		if (skill.name == "Blade Fury" && elem < 3 && elem > 0) { 	result *= wisp }
-		if (skill.name == "Lightning Sentry" && elem < 2) { 		result *= ((1 + (0.21*skills[21].level + 0.21*skills[23].level + 0.21*skills[28].level)) * (1+character.lDamage/100) * wisp) }
+		if (skill.name == "Charged Bolt Sentry" && elem<4 && elem>1) {	result *= ((1 + (0.20*skills[20].level + 0.20*skills[26].level + 0.20*skills[28].level)) * (1+character.lDamage/100)) }
+		if (skill.name == "Wake of Fire" && elem < 2) { 		result *= ((1 + (0.20*skills[20].level + 0.20*skills[27].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Lightning Sentry" && elem < 2) { 		result *= ((1 + (0.21*skills[21].level + 0.21*skills[23].level + 0.21*skills[28].level)) * (1+character.lDamage/100)) }
 		if (skill.name == "Wake of Inferno" && elem == 0) { 		result = (1 + (0.04 * skills[24].level)) }
-		if (skill.name == "Wake of Inferno" && elem < 3 && elem > 0) { 	result *= ((1 + (0.13*skills[21].level + 0.13*skills[28].level + 0.20*skills[24].level)) * (1+character.fDamage/100) * wisp) }
-		if (skill.name == "Death Sentry" && elem == 0) { result = 5 + Math.floor(skills[20].level / 3) }
-		if (skill.name == "Death Sentry" && elem < 4 && elem > 1) { 	result *= ((1 + (0.15*skills[26].level)) * (1+character.lDamage/100) * wisp) }
-		if (skill.name == "Blade Shield" && elem < 4 && elem > 1) { 	result *= ((1 + (0.05*skills[22].level + 0.05*skills[25].level)) * wisp) }
+		if (skill.name == "Wake of Inferno" && elem < 3 && elem > 0) { 	result *= ((1 + (0.13*skills[21].level + 0.13*skills[28].level + 0.20*skills[24].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Death Sentry" && elem == 0) { 		result = 5 + Math.floor(skills[20].level / 3) }
+		if (skill.name == "Death Sentry" && elem < 4 && elem > 1) { 	result *= ((1 + (0.15*skills[26].level)) * (1+character.lDamage/100)) }
+		if (skill.name == "Blade Shield" && elem < 4 && elem > 1) { 	result *= ((1 + (0.05*skills[22].level + 0.05*skills[25].level))) }
 	return result
 	},
 	
@@ -127,9 +125,8 @@ var character_assassin = {class_name:"Assassin", strength:20, dexterity:20, vita
 	//	num: 1 or 2 (skill1 or skill2)
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
-	//	wisp: multiplier for Wisp Projector (Lifted Spirit aura)
 	// ---------------------------------
-	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max, wisp) {
+	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
 		var lvl = skill.level+skill.extra_levels;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
 		var damage_min = 0; var damage_max = 0;

@@ -45,26 +45,25 @@ var character_any = {
 		if (skillName == "Ball Lightning") { skill = sk_Ball_Lightning }
 
 		var result = skill.data.values[elem][lvl];
-		var wisp = (1+Math.round(character.wisp/20,0)/10);
 		var lycan_lvl = ~~character["oskill_lycanthropy"] + character.all_skills;
 		var phys_min = ((1+(character.e_damage+character.damage_bonus)/100)*((character.level-1)*character.min_damage_per_level+character.base_damage_min))+character.damage_min;
 		var phys_max = ((1+(character.e_damage+character.damage_bonus)/100)*((character.level-1)*character.max_damage_per_level+character.base_damage_max))+character.damage_max;
 	
 	// Universal
-		if (skillName == "Ball Lightning" && elem < 2) {		result *= ((1 + (character.lDamage+character.lDamage_skillup)/100) * wisp) }
+		if (skillName == "Ball Lightning" && elem < 2) {		result *= (1 + (character.lDamage+character.lDamage_skillup)/100) }
 	// Barbarian
 		if (skillName == "Battle Command" && elem == 0) {		result = 1 }
 	// Druid
 		if (skillName == "Flame Dash" && elem == 0) {			result = 8 }
-		if (skillName == "Flame Dash" && elem < 3 && elem > 0) {	result *= ((1 + 0.01*(character.energy + character.all_attributes)*(1+character.max_energy/100)) * (1+(character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Arctic Blast" && elem < 2) {			result *= ((1+(character.cDamage+character.cDamage_skillup)/100) * wisp) }
+		if (skillName == "Flame Dash" && elem < 3 && elem > 0) {	result *= ((1 + 0.01*(character.energy + character.all_attributes)*(1+character.max_energy/100)) * (1+(character.fDamage+character.fDamage_skillup)/100)) }
+		if (skillName == "Arctic Blast" && elem < 2) {			result *= (1+(character.cDamage+character.cDamage_skillup)/100) }
 		if (skillName == "Werewolf" && elem == 0) {			result = (15 + skills[12].data.values[1][lycan_lvl]) }
 		if (skillName == "Werewolf" && elem == 3) {			result = (skills[12].data.values[0][lycan_lvl]) }
 		if (skillName == "Werebear" && elem == 0) {			result = (25 + skills[12].data.values[1][lycan_lvl]) }
 		if (skillName == "Werebear" && elem == 1) {			result += (skills[12].data.values[0][lycan_lvl]) }
 		if (skillName == "Summon Dire Wolf" && elem == 3) {		result = ((1 + (skill.data.values[6][lvl] / 100)) * skill.data.values[elem][character.difficulty]) }
 	// Necromancer
-		if (skillName == "Desecrate" && elem > 0 && elem < 3) { 	result *= ((1+character.pDamage/100) * wisp) }
+		if (skillName == "Desecrate" && elem > 0 && elem < 3) { 	result *= (1+character.pDamage/100) }
 	// Paladin
 		var phys_min = 0;
 		var phys_max = 0;
@@ -72,24 +71,21 @@ var character_any = {
 			phys_min = (character.base_damage_min * (1+character.e_damage/100) + character.damage_min + (character.level-1)*character.min_damage_per_level);
 			phys_max = (character.base_damage_max * (1+character.e_damage/100) + character.damage_max + (character.level-1)*character.max_damage_per_level);
 		}
-		if (skillName == "Vengeance" && elem == 0) {			result = phys_min * wisp }
-		if (skillName == "Vengeance" && elem == 1) {			result = phys_max * wisp }
-		if (skillName == "Vengeance" && elem == 2) {			result = Math.floor(phys_min * (skill.data.values[8][lvl]/100) * (1+(character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Vengeance" && elem == 3) {			result = Math.floor(phys_max * (skill.data.values[8][lvl]/100) * (1+(character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Vengeance" && elem == 4) {			result = Math.floor(phys_min * (skill.data.values[9][lvl]/100) * (1+(character.cDamage+character.cDamage_skillup)/100) * wisp) }
-		if (skillName == "Vengeance" && elem == 5) {			result = Math.floor(phys_max * (skill.data.values[9][lvl]/100) * (1+(character.cDamage+character.cDamage_skillup)/100) * wisp) }
-		if (skillName == "Vengeance" && elem == 6) {			result = Math.floor(phys_min * (skill.data.values[10][lvl]/100) * (1+(character.lDamage+character.lDamage_skillup)/100) * wisp) }
-		if (skillName == "Vengeance" && elem == 7) {			result = Math.floor(phys_max * (skill.data.values[10][lvl]/100) * (1+(character.lDamage+character.lDamage_skillup)/100) * wisp) }
+		if (skillName == "Vengeance" && elem == 0) {			result = phys_min }
+		if (skillName == "Vengeance" && elem == 1) {			result = phys_max }
+		if (skillName == "Vengeance" && elem == 2) {			result = Math.floor(phys_min * (skill.data.values[8][lvl]/100) * (1+(character.fDamage+character.fDamage_skillup)/100)) }
+		if (skillName == "Vengeance" && elem == 3) {			result = Math.floor(phys_max * (skill.data.values[8][lvl]/100) * (1+(character.fDamage+character.fDamage_skillup)/100)) }
+		if (skillName == "Vengeance" && elem == 4) {			result = Math.floor(phys_min * (skill.data.values[9][lvl]/100) * (1+(character.cDamage+character.cDamage_skillup)/100)) }
+		if (skillName == "Vengeance" && elem == 5) {			result = Math.floor(phys_max * (skill.data.values[9][lvl]/100) * (1+(character.cDamage+character.cDamage_skillup)/100)) }
+		if (skillName == "Vengeance" && elem == 6) {			result = Math.floor(phys_min * (skill.data.values[10][lvl]/100) * (1+(character.lDamage+character.lDamage_skillup)/100)) }
+		if (skillName == "Vengeance" && elem == 7) {			result = Math.floor(phys_max * (skill.data.values[10][lvl]/100) * (1+(character.lDamage+character.lDamage_skillup)/100)) }
 	// Sorceress
-		//if (skillName == "Shiver Armor" && elem < 4 && elem > 1) { 	result *= ((1 + (character.cDamage+character.cDamage_skillup)/100) * wisp) }
-		if (skillName == "Fire Ball" && elem < 2) { 			result *= ((1 + (character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Fire Wall" && elem < 2) { 			result *= ((1 + (character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		//if (skillName == "Enflame" && elem < 3 && elem > 0) { 	result *= ((1 + (character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Meteor" && elem < 2) { 			result *= ((1 + (character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Meteor" && elem < 4 && elem > 1) { 		result *= ((1 + (character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		if (skillName == "Hydra" && elem < 3 && elem > 0) { 		result *= ((1 + (character.fDamage+character.fDamage_skillup)/100) * wisp) }
-		
-		// TODO: Does wisp need to be added to other effects here? For example, where is it being added to Enflame, if not here?
+		if (skillName == "Fire Ball" && elem < 2) { 			result *= (1 + (character.fDamage+character.fDamage_skillup)/100) }
+		if (skillName == "Fire Wall" && elem < 2) { 			result *= (1 + (character.fDamage+character.fDamage_skillup)/100) }
+		if (skillName == "Meteor" && elem < 2) { 			result *= (1 + (character.fDamage+character.fDamage_skillup)/100) }
+		if (skillName == "Meteor" && elem < 4 && elem > 1) { 		result *= (1 + (character.fDamage+character.fDamage_skillup)/100) }
+		if (skillName == "Hydra" && elem < 3 && elem > 0) { 		result *= (1 + (character.fDamage+character.fDamage_skillup)/100) }
+
 	return result
 	},
 
@@ -149,9 +145,8 @@ var character_any = {
 	//	num: 1 or 2 (skill1 or skill2)
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
-	//	wisp: multiplier for Wisp Projector (Lifted Spirit aura)
 	// ---------------------------------
-	updateSelectedSkill : function(skillName, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max, wisp) {
+	updateSelectedSkill : function(skillName, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
 		var nameMod = "oskill_"+skillName.split(" ").join("_");
 		var lvl = ~~character[nameMod] + character.all_skills;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;

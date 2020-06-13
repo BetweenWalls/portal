@@ -58,33 +58,32 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 	// ---------------------------------
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
-		var wisp = (1+Math.round(character.wisp/20,0)/10);
 		
-		if (skill.name == "Firestorm" && elem > 0 && elem < 3) { 	result *= ((1 + (0.30*skills[1].level + 0.30*skills[4].level)) * (1+character.fDamage/100) * wisp) }
+		if (skill.name == "Firestorm" && elem > 0 && elem < 3) { 	result *= ((1 + (0.30*skills[1].level + 0.30*skills[4].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Flame Dash" && elem == 0) { 			result = Math.min(8,Math.max(0.5, (8.4 - 0.4*skill.level))) }
-		if (skill.name == "Flame Dash" && elem < 3 && elem > 0) { 	result *= ((1 + 0.10*skills[1].level + 0.01*((character.energy + character.all_attributes)*(1+character.max_energy/100))) * (1+character.fDamage/100) * wisp) }
+		if (skill.name == "Flame Dash" && elem < 3 && elem > 0) { 	result *= ((1 + 0.10*skills[1].level + 0.01*((character.energy + character.all_attributes)*(1+character.max_energy/100))) * (1+character.fDamage/100)) }
 		if (skill.name == "Molten Boulder" && elem < 2) { 		result *= (1 + (0.20*skills[7].level)) }
-		if (skill.name == "Molten Boulder" && elem > 1 && elem < 4) { 	result *= ((1 + (0.23*skills[0].level)) * (1+character.fDamage/100) * wisp) }
-		if (skill.name == "Molten Boulder" && elem > 3 && elem < 6) { 	result *= ((1 + (0.17*skills[0].level)) * (1+character.fDamage/100) * wisp) }
-		if (skill.name == "Fissure" && elem < 2) { 			result *= ((1 + (0.15*skills[0].level + 0.15*skills[7].level)) * (1+character.fDamage/100) * wisp) }
+		if (skill.name == "Molten Boulder" && elem > 1 && elem < 4) { 	result *= ((1 + (0.23*skills[0].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Molten Boulder" && elem > 3 && elem < 6) { 	result *= ((1 + (0.17*skills[0].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Fissure" && elem < 2) { 			result *= ((1 + (0.15*skills[0].level + 0.15*skills[7].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Volcano" && elem < 2) { 			result *= (1 + (0.20*skills[1].level)) }
-		if (skill.name == "Volcano" && elem > 1 && elem < 4) { 		result *= ((1 + (0.14*skills[4].level + 0.14*skills[9].level)) * (1+character.fDamage/100) * wisp) }
+		if (skill.name == "Volcano" && elem > 1 && elem < 4) { 		result *= ((1 + (0.14*skills[4].level + 0.14*skills[9].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Armageddon" && elem == 0) { 			result += (2*skills[4].level) }
 		if (skill.name == "Armageddon" && elem < 3 && elem > 0) { 	result *= (1 + (0.12*skills[1].level)) }
-		if (skill.name == "Armageddon" && elem < 5 && elem > 2) { 	result *= ((1 + (0.12*skills[0].level + 0.12*skills[7].level)) * (1+character.fDamage/100) * wisp) }
-		if (skill.name == "Arctic Blast" && elem < 2) { 		result *= ((1 + (0.10*skills[5].level + 0.10*skills[10].level)) * (1+character.cDamage/100) * wisp) }
+		if (skill.name == "Armageddon" && elem < 5 && elem > 2) { 	result *= ((1 + (0.12*skills[0].level + 0.12*skills[7].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Arctic Blast" && elem < 2) { 		result *= ((1 + (0.10*skills[5].level + 0.10*skills[10].level)) * (1+character.cDamage/100)) }
 		if (skill.name == "Twister" && elem < 2) { 			result *= (1 + (0.30*skills[8].level + 0.30*skills[10].level)) }
 		if (skill.name == "Tornado" && elem < 2) { 			result *= (1 + (0.07*skills[5].level + 0.18*skills[6].level + 0.18*skills[10].level)) }
 		if (skill.name == "Hurricane" && elem == 0) { 			result += (2*skills[5].level) }
-		if (skill.name == "Hurricane" && elem < 3 && elem > 0) { 	result *= ((1 + (0.04*skills[3].level + 0.04*skills[6].level + 0.04*skills[8].level)) * (1+character.cDamage/100) * wisp) }
+		if (skill.name == "Hurricane" && elem < 3 && elem > 0) { 	result *= ((1 + (0.04*skills[3].level + 0.04*skills[6].level + 0.04*skills[8].level)) * (1+character.cDamage/100)) }
 		
 		if (skill.name == "Werewolf" && elem == 0) { if (skills[12].level > 0) { result = (15 + skills[12].data.values[1][skills[12].level+skills[12].extra_levels]) } else { result = 15 } }
 		if (skill.name == "Werewolf" && elem == 3) { if (skills[12].level > 0) { result = (skills[12].data.values[0][skills[12].level+skills[12].extra_levels]) } else { result = 0 } }
 		if (skill.name == "Werebear" && elem == 0) { if (skills[12].level > 0) { result = (25 + skills[12].data.values[1][skills[12].level+skills[12].extra_levels]) } else { result = 25 } }
 		if (skill.name == "Werebear" && elem == 1) { if (skills[12].level > 0) { result += (skills[12].data.values[0][skills[12].level+skills[12].extra_levels]) } }
-		if (skill.name == "Fire Claws" && elem < 2) { result *= ((1 + (0.11*skills[0].level + 0.11*skills[1].level + 0.11*skills[4].level + 0.11*skills[7].level)) * (1+character.fDamage/100) * wisp) }
+		if (skill.name == "Fire Claws" && elem < 2) { result *= ((1 + (0.11*skills[0].level + 0.11*skills[1].level + 0.11*skills[4].level + 0.11*skills[7].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Shock Wave" && elem < 2) { result *= (1 + (0.08*skills[15].level)) }
-		if (skill.name == "Rabies" && elem > 0 && elem < 3) { result *= ((1 + (0.20*skills[22].level + 0.20*skills[27].level)) * (1+character.pDamage/100) * wisp) }
+		if (skill.name == "Rabies" && elem > 0 && elem < 3) { result *= ((1 + (0.20*skills[22].level + 0.20*skills[27].level)) * (1+character.pDamage/100)) }
 
 		if (skill.name == "Raven" && elem < 3 && elem > 0) { result *= (1 + (0.20*skills[5].level + 0.20*skills[6].level)) }
 		if (skill.name == "Raven" && elem < 5 && elem > 2) { result *= (1 + 0.21*skills[3].level + 0.01*((character.energy + character.all_attributes)*(1+character.max_energy/100))) }
@@ -170,9 +169,8 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 	//	num: 1 or 2 (skill1 or skill2)
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
-	//	wisp: multiplier for Wisp Projector (Lifted Spirit aura)
 	// ---------------------------------
-	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max, wisp) {
+	updateSelectedSkill : function(skill, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
 		var lvl = skill.level+skill.extra_levels;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
 		var damage_min = 0; var damage_max = 0;
