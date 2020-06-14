@@ -251,7 +251,7 @@ function setCharacterInfo(className) {
 		}
 	}
 	for (group in fileInfo.socketed) { for (let i = 0; i < fileInfo.socketed[group].length; i++) { if (fileInfo.socketed[group][i] != "") { addSocketable(fileInfo.socketed[group][i]); inv[tempSetup].load = group; tempSetup = 0; } } }
-	for (let s = 1; s < inv[0].in.length; s++) { if (inv[s].empty != 1) { inv[0].onpickup = inv[0].in[s]; socket(null,inv[s].load,s); } }	// socketables get moved to equipment
+	for (let s = 1; s < inv[0].in.length; s++) { if (inv[s].empty != 1) { inv[0].onpickup = inv[0].in[s]; handleSocket(null,inv[s].load,s); } }	// socketables get moved to equipment
 	for (effect in fileInfo.effects) { for (let i = 1; i < non_items.length; i++) {
 		if (effect == non_items[i].effect) { addEffect('misc',non_items[i].name,i,'') }
 	} }
@@ -1161,7 +1161,7 @@ function addSocketable(val) {
 	val = val + append
 	
 	var socketable = 'socketable';
-	var itemHTML = '<img style="width: 28; height: 28; pointer-events: auto; z-index:5;" id="' + val + '" src="' + itemImage + '" draggable="true" ondragstart="dragSocketable(event)" width="28" height="28" oncontextmenu="trashSocketable(event)" onmouseover="itemHover(event, this.value)" onmouseout="itemOut()" onclick="socketableSelect(event)">';
+	var itemHTML = '<img style="width: 28; height: 28; pointer-events: auto; z-index:5;" id="' + val + '" src="' + itemImage + '" draggable="true" ondragstart="dragSocketable(event)" width="28" height="28" oncontextmenu="trashSocketable(event,\''+val+'\',0)" onmouseover="itemHover(event, this.value)" onmouseout="itemOut()" onclick="socketableSelect(event)">';
 	var insertion = "";
 	var space_found = 0;
 	var empty = 1;
@@ -1185,6 +1185,8 @@ function addSocketable(val) {
 		document.getElementById(insertion).innerHTML += itemHTML;
 	}
 	document.getElementById("dropdown_socketables").selectedIndex = 0
+	
+	return val;
 }
 
 // addEffect - 
@@ -1541,7 +1543,20 @@ function getAuraData(aura, lvl, source) {
 	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; }
 	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
 	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; }
-	
+	// Paladin Synergies
+	if (character.class_name == "Paladin") {
+		if (aura == "Cleansing") { result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]); }
+		else if (aura == "Meditation") { result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]); }
+		else if (aura == "Holy Fire") { 
+			result.fDamage_min = auras[a].data.values[0][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level);
+			result.fDamage_max = auras[a].data.values[1][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level); }
+		else if (aura == "Holy Freeze") { 
+			result.cDamage_min = auras[a].data.values[0][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
+			result.cDamage_max = auras[a].data.values[1][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level); }
+		else if (aura == "Holy Shock") { 
+			result.lDamage_min = auras[a].data.values[0][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);
+			result.lDamage_max = auras[a].data.values[1][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level); }
+	}
 	return result;
 }
 
@@ -2245,6 +2260,7 @@ function skillUp(event, skill, levels) {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	updateAllEffects()
+	for (effect in effects) { updateEffect(effect) }
 }
 
 // skillDown - Lowers the skill level
@@ -2294,6 +2310,7 @@ function skillDown(event, skill) {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	updateAllEffects()
+	for (effect in effects) { updateEffect(effect) }
 }
 
 // skillHover - Shows skill description tooltip on mouse-over
@@ -2803,6 +2820,22 @@ function equipmentOut() {
 	document.getElementById("item_tooltip").style.display = "none"
 }
 
+// handleSocket - 
+//	group: equipment group name
+//	source: inventory space to drag from if event is null
+// ---------------------------------
+function handleSocket(event, group, source) {
+	// TODO: Modify so that it can be used as a way to 'hack' socketables to display within bounds?
+	var ident = "";
+	if (source > 0) { ident = inv[0].in[source] }
+	else { ident = event.dataTransfer.getData("text") }
+	socket(event,group,source)
+//	trashSocketable(event,ident,1)
+//	var newId = addSocketable(ident.split("_")[0])
+//	var newSource = 1; for (let s = 1; s <= inv[0].in.length; s++) { if (inv[0].in[s] == newId) { newSource = s } }
+//	socket(null,group,newSource)
+}
+
 // socket - Adds a socketable item (jewel, rune, gem) to equipment
 //	group: equipment group name
 //	source: inventory space to drag from if event is null (used when loading a character)
@@ -2814,9 +2847,7 @@ function socket(event, group, source) {
 	} else {
 		event.preventDefault();
 		var data = event.dataTransfer.getData("text");
-		// switches to the correct target if the item image is in the way
-		if (event.target.id != group) { document.getElementById(group).appendChild(document.getElementById(data)); }
-		else { event.target.appendChild(document.getElementById(data)); }
+		document.getElementById(group).appendChild(document.getElementById(data))
 	}
 	// equipment destination
 	var spaceFound = 0;
@@ -2870,9 +2901,9 @@ function socket(event, group, source) {
 	}
 	// inventory destination
 	for (let s = 1; s <= inv[0].in.length; s++) {
-		if (inv[0].in[s] == inv[0].onpickup) { inv[s].empty = 1; inv[0].in[s] = ""; 
-			inv[s].y = 1;
-			document.getElementById(inv[s].id).style = "position: absolute; width: 29px; height: 29px; z-index: 3;";
+		if (inv[0].in[s] == inv[0].onpickup) {
+			inv[s].empty = 1; inv[0].in[s] = ""; inv[s].y = 1;
+			document.getElementById(inv[s].id).style = "position: absolute; width: 28px; height: 28px; z-index: 3;";
 		}
 	}
 	inv[0].onpickup = "none"
@@ -2909,9 +2940,19 @@ function dragSocketable(ev) {
 }
 
 // trashSocketable - Handles item removal for socketables (gems, runes, jewels)
+//	ident: 
+//	override: 
 // ---------------------------------
-function trashSocketable(event) {
-	var val = event.target.id;
+function trashSocketable(event, ident, override) {
+	var val = ident;
+	var target = document.getElementById(ident);
+	var dup = 0;
+	if (override == 0) {
+		val = event.target.id
+		target = event.target
+		if (event.shiftKey) { dup = 9 }
+		if (event.ctrlKey) { dup = 39 }
+	}
 	var nameVal = val.split('_')[0];
 	// removed from equipment
 	var groups = ["helm", "armor", "weapon", "offhand"];
@@ -2931,18 +2972,15 @@ function trashSocketable(event) {
 	}
 	// removed from inventory
 	for (s = 1; s <= inv[0].in.length; s++) {
-		if (inv[0].in[s] == event.target.id) {
+		if (inv[0].in[s] == val) {
 			inv[s].empty = 1;
 			inv[0].in[s] = "";
 		}
 	}
 	
-	event.target.remove();
+	target.remove()
 	
 	// find/remove duplicates
-	var dup = 0;
-	if (event.shiftKey) { dup = 9 }
-	if (event.ctrlKey) { dup = 39 }
 	if (dup > 0) {
 		for (let d = 0; d < inv[0].in.length; d++) {
 			if (dup > 0 && nameVal == inv[0].in[d].split('_')[0]) {
@@ -3096,4 +3134,21 @@ function checkIronGolem() {
 		document.getElementById("golem").style.display = "none"
 		document.getElementById("golem_spacing").style.display = "none"
 	}
+}
+
+// hoverStatOn - 
+//	stat:
+// ---------------------------------
+function hoverStatOn(stat) {
+	document.getElementById(stat).style.color = "gray"
+	document.getElementById(stat).innerHTML = character["starting_"+stat]+character[stat+"_added"]
+}
+
+// hoverStatOff - 
+//	stat:
+// ---------------------------------
+function hoverStatOff(stat) {
+	document.getElementById(stat).style.color = "white"
+	updatePrimaryStats()
+	checkRequirements()
 }
