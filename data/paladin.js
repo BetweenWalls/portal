@@ -172,8 +172,8 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		var pDamage_min = 0; var pDamage_max = 0; var pDamage_duration = 0;
 		var mDamage_min = 0; var mDamage_max = 0;
 		var skillMin = 0; var skillMax = 0; var skillAr = 0;
-		var attack = 1;	// 0 = no basic damage, 1 = includes basic attack damage
-		var spell = 1;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
+		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage
+		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
 		var smite_min = 0; var smite_max = 0;
 		var strTotal = (character.strength + character.all_attributes + (character.level-1)*character.strength_per_level);	// used in Smite calculation
 		
@@ -190,18 +190,18 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		else if (skill.name == "Fist of the Heavens") {	attack = 0; spell = 1; mDamage_min = character.getSkillData(skill,lvl,0); mDamage_max = character.getSkillData(skill,lvl,1); lDamage_min = character.getSkillData(skill,lvl,2); lDamage_max = character.getSkillData(skill,lvl,3); }
 		else if (skill.name == "Dashing Strike") {	attack = 1; spell = 1; mDamage_min = character.getSkillData(skill,lvl,1); mDamage_max = character.getSkillData(skill,lvl,2); }
 		else if (skill.name == "Conversion") {		attack = 1; spell = 0; }
-		else { attack = 0; spell = 2; }
 
 		if (typeof(skill.reqWeapon) != 'undefined') { var match = 0; for (let w = 0; w < skill.reqWeapon.length; w++) {
 			if (skill.name == "Smite") { if (equipped.offhand.type == "shield") { match = 1 } }
 			else { if (equipped.weapon.type == skill.reqWeapon[w]) { match = 1 } }
 		} if (match == 0) { spell = 2 } }
 		
-		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; ele_min = 0; ele_max = 0; mag_min = 0; mag_max = 0; }
+		var damage_enhanced = character.damage_bonus + character.e_damage;
+		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; ele_min = 0; ele_max = 0; mag_min = 0; mag_max = 0; damage_enhanced = 0; }
 		ele_min += Math.floor(fDamage_min + cDamage_min + lDamage_min + pDamage_min);
 		ele_max += Math.floor(fDamage_max + cDamage_max + lDamage_max + pDamage_max);
-		phys_min = Math.floor((phys_min + damage_min + smite_min) * (phys_mult + (weapon_damage-100+damage_bonus)/100));
-		phys_max = Math.floor((phys_max + damage_max + smite_max) * (phys_mult + (weapon_damage-100+damage_bonus)/100));
+		phys_min = Math.floor(~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + ((damage_min + smite_min) * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_max = Math.floor(~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + ((damage_max + smite_max) * (1+(damage_bonus+damage_enhanced)/100)));
 		if (spell != 2) { skillMin = Math.floor(mag_min+mDamage_min+ele_min+phys_min); skillMax = Math.floor(mag_max+mDamage_max+ele_max+phys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		

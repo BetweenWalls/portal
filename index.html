@@ -328,23 +328,33 @@
 <!--<a style="visibility:visible;">Damage per Second: </a><a id="dps"></a><br>-->
 <!--<a style="visibility:visible;">Chance to Hit: </a><a id="hit"></a><br>-->
 	<a>Basic Attack: </a><a id="basic_attack"></a><br>
+	<div id="offhand_basic" style="display:none;"> ­ ­ ­ ­ ­ ­ ­ Offhand: <a id="offhand_basic_damage"></a><br></div>
 	<a>Attack Rating: </a><a id="ar"></a>
 </div>
 
 <div>
-	<div id="skillDetail1" style="height: 22px; position: relative; z-index: 3;">
+	<div id="skillDetail1" style="height: 22px; position: relative; z-index: 3; margin-top: -5px;">
 	<select class="dropdown-skill" id="dropdown_skill1" onChange="checkSkill(this.value, 1)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 1', 1)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 1</option></select><a id="skill1_info">: </a>
 	</div>
+	<div id="offhand_skill1" style="display:none;"><a id="offhand_skill1_damage"></a><br></div>
 	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill1"></a>
 </div>
 
 <div>
-	<div id="skillDetail2" style="height: 22px; position: relative; z-index: 3; margin-top: 10px;">
+	<div id="skillDetail2" style="height: 22px; position: relative; z-index: 3; margin-top: 5px;">
 	<select class="dropdown-skill" id="dropdown_skill2" onChange="checkSkill(this.value, 2)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 2', 2)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 2</option></select><a id="skill2_info">: </a>
 	</div>
+	<div id="offhand_skill2" style="display:none;"><a id="offhand_skill2_damage"></a><br></div>
 	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill2"></a>
 </div>
-<div> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as ED) -->
+
+</div>
+</div> <!-- /skill details -->
+
+<!--		stats		-->
+<div class="gray" id="stats">
+<div id="stats_main_columns">
+<div id="demons_and_undead" style="position:relative; top:-90px;"> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as separate ED/AR) -->
 <div style="position:absolute; left:30px;">
 	<br><br>
 	<font size="2">Damage vs Demons: </font><font size="2" id="damage_vs_demons"></font><br>
@@ -356,12 +366,6 @@
 	<font size="2">AR vs Undead: </font><font size="2" id="ar_vs_undead"></font><br>
 </div>
 </div>
-</div>
-</div> <!-- /skill details -->
-
-<!--		stats		-->
-<div class="gray" id="stats">
-<div id="stats_main_columns">
 <div style="position:absolute; left:10px;" id="stats_column_1">
 	<font size="2">Fire Resist: </font><font size="2" id="fres"></font><br>
 	<font size="2">Cold Resist: </font><font size="2" id="cres"></font><br>

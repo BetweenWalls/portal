@@ -40,6 +40,7 @@ var inv = [		// Charm Inventory
 // update - Updates everything
 // ---------------------------------
 function update() {
+	checkOffhand()
 	calculateSkillAmounts()
 	updateStats()
 	checkRequirements()
@@ -719,6 +720,7 @@ function equipMerc(group, val) {
 						}
 					} else {
 						if (affix == "sup" || affix == "e_damage") {
+							if (typeof(mercEquipped[group]["e_damage"]) == 'undefined') { mercEquipped[group]["e_damage"] = unequipped["e_damage"] }
 							if (affix == "sup") { mercEquipped[group][affix] = equipment[group][item][affix] }
 							mercEquipped[group]["e_damage"] += equipment[group][item][affix]
 							mercenary["e_damage"] += equipment[group][item][affix]
@@ -826,7 +828,7 @@ function equip(group, val) {
 				if (typeof(equipment[src_group][item]["e_def"]) != 'undefined') { multED += (equipment[src_group][item]["e_def"]/100) }
 				if (typeof(equipment[src_group][item]["req"]) != 'undefined') { multReq += (equipment[src_group][item]["req"]/100) }
 				if (typeof(bases[base]) != 'undefined') { for (affix in bases[base]) {
-					if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands") {	// test: twoHands still unused elsewhere? okay here?
+					if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands" && affix != "nonmetal") {	// test: twoHands still unused elsewhere? okay here?
 						if (typeof(equipped[group][affix]) == 'undefined') { equipped[group][affix] = unequipped[affix] }	// undefined (new) affixes get initialized to zero
 						if (affix == "base_defense") {										// TODO: consider renaming? ...group_defense, combined_defense, item_def, etc
 							equipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
@@ -862,6 +864,7 @@ function equip(group, val) {
 					}
 				} else {
 					if ((affix == "sup" || affix == "e_damage") && src_group == "weapon") {
+						if (typeof(equipped[group]["e_damage"]) == 'undefined') { equipped[group]["e_damage"] = unequipped["e_damage"] }
 						if (affix == "sup") { equipped[group][affix] = equipment[src_group][item][affix] }
 						equipped[group]["e_damage"] += equipment[src_group][item][affix]
 						character["e_damage"] += equipment[src_group][item][affix]
@@ -1637,16 +1640,19 @@ function toggleAutocast(autocast) {
 //	dex: total dexterity
 //	type: type of the weapon
 //	thrown: 1 if the weapon is being thrown
+//	group: weapon or offhand
 // return: array with [min damage, max damage, multiplier]
 // ---------------------------------
-function getWeaponDamage(str, dex, type, thrown) {
-// TODO: make useable for offhand weapons too
+function getWeaponDamage(str, dex, type, thrown, group) {
+// TODO: veryify this works for offhand weapons too
 	var c = character;
+	var other = "offhand";
+	if (group == "offhand") { other = "weapon" }
 	// multiplier from stats
 	var statBonus = 0;
 	if (typeof(type) != 'undefined') { 
 		if (type == "hammer") { statBonus = (str*1.1/100) }
-		else if (typeof(equipped.weapon.only) != 'undefined') { if ((type == "spear" || type == "javelin") && equipped.weapon.only == "amazon") { statBonus = ((str*0.8/100)+(dex*0.5/100)) } }
+		else if (typeof(equipped[group].only) != 'undefined') { if ((type == "spear" || type == "javelin") && equipped[group].only == "amazon") { statBonus = ((str*0.8/100)+(dex*0.5/100)) } }
 		else if (type == "bow" || type == "crossbow" || type == "javelin") { statBonus = (dex/100) }						// check if javelins are counted as missile weapons or throwing weapons
 		else if (type == "dagger" || type == "thrown" || type == "claw" || type == "javelin") { statBonus = ((str*0.75/100)+(dex*0.75/100)) }	// check if javelins are counted as missile weapons or throwing weapons
 		else  { statBonus = (str/100) }
@@ -1662,11 +1668,11 @@ function getWeaponDamage(str, dex, type, thrown) {
 		else { weapon_skillup = 0; c.ar_skillup = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
 	}
 	var e_damage_offhand = 0;
-	if (offhandType == "weapon") { e_damage_offhand = (~~equipped.offhand.e_damage + ~~socketed.offhand.totals.e_damage + ~~corruptsEquipped.offhand.e_damage); }
+	if (offhandType == "weapon") { e_damage_offhand = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage)); }
 	var e_damage = c.e_damage + (c.level*c.e_max_damage_per_level) - e_damage_offhand;
-	var base_min = ~~equipped.weapon.base_damage_min;
-	var base_max = ~~equipped.weapon.base_damage_max;
-	if (thrown == 1) { base_min = ~~equipped.weapon.throw_min; base_max = ~~equipped.weapon.throw_max; }
+	var base_min = equipped[group].base_damage_min;
+	var base_max = equipped[group].base_damage_max;
+	if (thrown == 1) { base_min = ~~(equipped[group].throw_min); base_max = ~~(equipped[group].throw_max); }
 	var phys_min = (base_min * (1+e_damage/100) + c.damage_min + (c.level-1)*c.min_damage_per_level);
 	var phys_max = (base_max * (1+e_damage/100) + c.damage_max + (c.level-1)*c.max_damage_per_level);
 	var phys_mult = (1+statBonus+(c.damage_bonus+weapon_skillup)/100);
@@ -1689,7 +1695,7 @@ function updatePrimaryStats() {
 	var energyTotal = (c.energy + c.all_attributes)*(1+c.max_energy/100);
 	
 	var weaponType = equipped.weapon.type;
-	var physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,0);
+	var physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,0,"weapon");
 	
 	var life_addon = (vitTotal-c.starting_vitality)*c.life_per_vitality;
 	var stamina_addon = (vitTotal-c.starting_vitality)*c.stamina_per_vitality;
@@ -1711,7 +1717,16 @@ function updatePrimaryStats() {
 	var basic_max = Math.floor(physDamage[1]*physDamage[2] + fMax + cMax + lMax + pMax + c.mDamage_max);
 	if (basic_min > 0 || basic_max > 0) { document.getElementById("basic_attack").innerHTML = basic_min + "-" + basic_max + " {"+Math.ceil((basic_min+basic_max)/2)+"}"}
 	else { document.getElementById("basic_attack").innerHTML = "" }
-	// TODO: Create display for offhand attacks (separate damage & AR)
+	
+	// TODO: basic offhand attack
+	if (offhandType == "weapon") {
+		var weaponType_offhand = equipped.offhand.type;
+		var physDamage_offhand = getWeaponDamage(strTotal,dexTotal,weaponType_offhand,0,"offhand");
+		var basic_min_offhand = Math.floor(physDamage_offhand[0]*physDamage_offhand[2] + fMin + cMin + lMin + pMin + c.mDamage_min);
+		var basic_max_offhand = Math.floor(physDamage_offhand[1]*physDamage_offhand[2] + fMax + cMax + lMax + pMax + c.mDamage_max);
+		if (basic_min_offhand > 0 || basic_max_offhand > 0) { document.getElementById("offhand_basic_damage").innerHTML = basic_min_offhand + "-" + basic_max_offhand + " {"+Math.ceil((basic_min_offhand+basic_max_offhand)/2)+"}"}
+		else { document.getElementById("offhand_basic_damage").innerHTML = "" }
+	}
 	
 	var block = c.block + c.ibc;
 	if (c.class_name != "Paladin") { block -= 5; if (c.class_name == "Druid" || c.class_name == "Necromancer" || c.class_name == "Sorceress") { block -= 5 } }
@@ -1975,7 +1990,7 @@ function updateOther() {
 	
 	// update available sockets - TODO: move this to a more suitable 'update' function
 	for (group in socketed) {
-		socketed[group].sockets = (~~equipped[group].sockets + ~~corruptsEquipped[group].sockets)
+		socketed[group].sockets = (~~(equipped[group].sockets) + ~~(corruptsEquipped[group].sockets))
 		removeInvalidSockets(group)
 	}
 }
@@ -2458,8 +2473,8 @@ function checkSkill(skillName, num) {
 	var dexTotal = (c.dexterity + c.all_attributes + (c.level-1)*c.dexterity_per_level);
 	var energyTotal = Math.floor((c.energy + c.all_attributes)*(1+c.max_energy/100));
 	var weaponType = equipped.weapon.type;
-	var weaponType_offhand = "";
-	if (offhandType == "weapon") { weaponType_offhand = equipped.offhand.type }
+	//var weaponType_offhand = "";
+	//if (offhandType == "weapon") { weaponType_offhand = equipped.offhand.type }
 	
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 	var ele_min = Math.floor(c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100) + c.cDamage_min*(1+(c.cDamage+c.cDamage_skillup)/100) + c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100) + (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100));
@@ -2467,16 +2482,25 @@ function checkSkill(skillName, num) {
 	
 	var physDamage = [0,0,1];
 	if (skillName == "Poison Javelin" || skillName == "Lightning Bolt" || skillName == "Plague Javelin" || skillName == "Lightning Fury" || skillName == "Power Throw" || skillName == "Ethereal Throw") {
-		physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,1);
-	} else { physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,0); }
+		physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,1,"weapon");
+	} else { physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,0,"weapon"); }
 	
-	var skill = "";
+	var skill = {};
 	for (let s = 0; s < skills.length; s++) {
 		if (skills[s].name == skillName) { 
 			skill = skills[s]
 			document.getElementById("dropdown_skill"+num).selectedIndex = s
 		}
 	}
+	
+	// TODO: Implement offhand damage for selected skills
+	if (offhandType == "weapon" && (skill.name == "Dual Strike" || skill.name == "Frenzy" || skill.name == "Whirlwind")) {
+//		document.getElementById("offhand_skill"+num).style.display = "inline"
+//		document.getElementById("offhand_skill"+num).style.margin = "0px 0px 0px "+(document.getElementById("dropdown_skill"+num).clientWidth+10)+"px"
+	} else {
+//		document.getElementById("offhand_skill"+num).style.display = "none"
+	}
+	
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
 		if (native_skill == 0) { character_any.updateSelectedSkill(skillName, num, ar, physDamage[0], physDamage[1], physDamage[2], ele_min, ele_max, c.mDamage_min, c.mDamage_max); }
 		else { c.updateSelectedSkill(skill, num, ar, physDamage[0], physDamage[1], physDamage[2], ele_min, ele_max, c.mDamage_min, c.mDamage_max); }
@@ -3133,6 +3157,18 @@ function checkIronGolem() {
 	} else {
 		document.getElementById("golem").style.display = "none"
 		document.getElementById("golem_spacing").style.display = "none"
+	}
+}
+
+// checkOffhand - 
+// ---------------------------------
+function checkOffhand() {
+	if (offhandType == "weapon") {
+		document.getElementById("offhand_basic").style.display = "inline"
+	} else {
+		document.getElementById("offhand_basic").style.display = "none"
+		document.getElementById("offhand_skill1").style.display = "none"
+		document.getElementById("offhand_skill2").style.display = "none"
 	}
 }
 

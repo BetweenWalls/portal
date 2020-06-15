@@ -159,8 +159,8 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		var pDamage_min = 0; var pDamage_max = 0; var pDamage_duration = 0;
 		var mDamage_min = 0; var mDamage_max = 0;
 		var skillMin = 0; var skillMax = 0; var skillAr = 0;
-		var attack = 1;	// 0 = no basic damage, 1 = includes basic attack damage
-		var spell = 1;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
+		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage
+		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
 		
 		if (skill.name == "Raise Skeleton Warrior") {	attack = 0; spell = 1; damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Clay Golem") {		attack = 0; spell = 1; damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); }
@@ -176,13 +176,13 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		else if (skill.name == "Poison Nova") {		attack = 0; spell = 1; pDamage_min = character.getSkillData(skill,lvl,0); pDamage_max = character.getSkillData(skill,lvl,1); pDamage_duration = 2; }
 	//	else if (skill.name == "Corpse Explosion") {	attack = 0; spell = 2; }
 		else if (skill.name == "Hemorrhage") {		attack = 0; spell = 1; mDamage_min = character.getSkillData(skill,lvl,0); mDamage_max = character.getSkillData(skill,lvl,0); }
-		else { attack = 0; spell = 2; }
 		
-		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; ele_min = 0; ele_max = 0; mag_min = 0; mag_max = 0; }
+		var damage_enhanced = character.damage_bonus + character.e_damage;
+		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; ele_min = 0; ele_max = 0; mag_min = 0; mag_max = 0; damage_enhanced = 0; }
 		ele_min += Math.floor(fDamage_min + cDamage_min + lDamage_min + pDamage_min);
 		ele_max += Math.floor(fDamage_max + cDamage_max + lDamage_max + pDamage_max);
-		phys_min = Math.floor((phys_min + damage_min) * (phys_mult + (weapon_damage-100+damage_bonus)/100));
-		phys_max = Math.floor((phys_max + damage_max) * (phys_mult + (weapon_damage-100+damage_bonus)/100));
+		phys_min = Math.floor(~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_max = Math.floor(~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_max * (1+(damage_bonus+damage_enhanced)/100)));
 		if (spell != 2) { skillMin = Math.floor(mag_min+mDamage_min+ele_min+phys_min); skillMax = Math.floor(mag_max+mDamage_max+ele_max+phys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		
