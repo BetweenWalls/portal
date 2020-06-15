@@ -1638,14 +1638,13 @@ function toggleAutocast(autocast) {
 // getWeaponDamage - Calculates physical min/max damage and multiplier for an equipped weapon
 //	str: total strength
 //	dex: total dexterity
-//	type: type of the weapon
-//	thrown: 1 if the weapon is being thrown
-//	group: weapon or offhand
+//	group: weapon's group ('weapon' or 'offhand')
+//	thrown: 1 if the weapon is being thrown, otherwise 0
 // return: array with [min damage, max damage, multiplier]
 // ---------------------------------
-function getWeaponDamage(str, dex, type, thrown, group) {
-// TODO: veryify this works for offhand weapons too
+function getWeaponDamage(str, dex, group, thrown) {
 	var c = character;
+	var type = equipped[group].type;
 	var other = "offhand";
 	if (group == "offhand") { other = "weapon" }
 	// multiplier from stats
@@ -1667,9 +1666,9 @@ function getWeaponDamage(str, dex, type, thrown, group) {
 		else if (type == "claw") { weapon_skillup = c.claw_skillup[0]; c.ar_skillup = c.claw_skillup[1]; c.cstrike_skillup = c.claw_skillup[2]; }
 		else { weapon_skillup = 0; c.ar_skillup = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
 	}
-	var e_damage_offhand = 0;
-	if (offhandType == "weapon") { e_damage_offhand = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage)); }
-	var e_damage = c.e_damage + (c.level*c.e_max_damage_per_level) - e_damage_offhand;
+	var e_damage_other = 0;
+	if (offhandType == "weapon") { e_damage_other = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage)); }
+	var e_damage = c.e_damage + (c.level*c.e_max_damage_per_level) - e_damage_other;
 	var base_min = equipped[group].base_damage_min;
 	var base_max = equipped[group].base_damage_max;
 	if (thrown == 1) { base_min = ~~(equipped[group].throw_min); base_max = ~~(equipped[group].throw_max); }
@@ -1685,7 +1684,7 @@ function getWeaponDamage(str, dex, type, thrown, group) {
 // ---------------------------------
 function updateStats() { updatePrimaryStats(); updateOther(); updateSecondaryStats(); updateTertiaryStats(); }
 
-// updateStats - Updates stats shown by the default (original D2) stat page
+// updatePrimaryStats - Updates stats shown by the default (original D2) stat page
 // ---------------------------------
 function updatePrimaryStats() {
 	var c = character;
@@ -1694,8 +1693,7 @@ function updatePrimaryStats() {
 	var vitTotal = (c.vitality + c.all_attributes + (c.level-1)*c.vitality_per_level);
 	var energyTotal = (c.energy + c.all_attributes)*(1+c.max_energy/100);
 	
-	var weaponType = equipped.weapon.type;
-	var physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,0,"weapon");
+	var physDamage = getWeaponDamage(strTotal,dexTotal,"weapon",0);
 	
 	var life_addon = (vitTotal-c.starting_vitality)*c.life_per_vitality;
 	var stamina_addon = (vitTotal-c.starting_vitality)*c.stamina_per_vitality;
@@ -1704,6 +1702,7 @@ function updatePrimaryStats() {
 	var def = (c.base_defense + c.defense + c.level*c.defense_per_level + Math.floor(dexTotal/4)) * (1 + (c.defense_bonus + c.defense_skillup)/100);
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const + (c.ar_per_socketed*socketed.offhand.socketsFilled)) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 	
+	// TODO: Verify damage for main/offhand basic attacks when offhand is a weapon (on-weapon elemental damage shouldn't apply to the other?)
 	var fMin = c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100);
 	var fMax = (c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100);
 	var cMin = (c.cDamage_min+(c.cDamage_per_ice*c.charge_ice)+(c.cDamage_per_socketed*socketed.weapon.socketsFilled))*(1+(c.cDamage+c.cDamage_skillup)/100);
@@ -1718,21 +1717,21 @@ function updatePrimaryStats() {
 	if (basic_min > 0 || basic_max > 0) { document.getElementById("basic_attack").innerHTML = basic_min + "-" + basic_max + " {"+Math.ceil((basic_min+basic_max)/2)+"}"}
 	else { document.getElementById("basic_attack").innerHTML = "" }
 	
-	// TODO: basic offhand attack
 	if (offhandType == "weapon") {
-		var weaponType_offhand = equipped.offhand.type;
-		var physDamage_offhand = getWeaponDamage(strTotal,dexTotal,weaponType_offhand,0,"offhand");
+		var physDamage_offhand = getWeaponDamage(strTotal,dexTotal,"offhand",0);
 		var basic_min_offhand = Math.floor(physDamage_offhand[0]*physDamage_offhand[2] + fMin + cMin + lMin + pMin + c.mDamage_min);
 		var basic_max_offhand = Math.floor(physDamage_offhand[1]*physDamage_offhand[2] + fMax + cMax + lMax + pMax + c.mDamage_max);
 		if (basic_min_offhand > 0 || basic_max_offhand > 0) { document.getElementById("offhand_basic_damage").innerHTML = basic_min_offhand + "-" + basic_max_offhand + " {"+Math.ceil((basic_min_offhand+basic_max_offhand)/2)+"}"}
 		else { document.getElementById("offhand_basic_damage").innerHTML = "" }
 	}
 	
-	var block = c.block + c.ibc;
-	if (c.class_name != "Paladin") { block -= 5; if (c.class_name == "Druid" || c.class_name == "Necromancer" || c.class_name == "Sorceress") { block -= 5 } }
-	block = (Math.max(0,block) + c.block_skillup + c.ibc)*(dexTotal-15)/(c.level*2)
+	var block_shield = c.block;
+	if (c.class_name == "Amazon" || c.class_name == "Assassin" || c.class_name == "Barbarian") { block_shield -= 5 }
+	if (c.class_name == "Druid" || (c.class_name == "Necromancer" && equipped.offhand.only != "necromancer") || c.class_name == "Sorceress") { block_shield -= 10 }
+	var block = Math.min(((Math.max(0,block_shield) + c.ibc)*(dexTotal-15)/(c.level*2)),(block_shield+c.ibc))
+	if (c.block_skillup > 0) { block = Math.min((c.block_skillup*(dexTotal-15)/(c.level*2)),c.block_skillup) }
 	if (c.running > 0) { block = Math.min(25,block/3) }
-	if (c.block > 0) {
+	if (c.block > 0 || c.block_skillup > 0) {
 		document.getElementById("block_label").style.visibility = "visible"
 		document.getElementById("block").innerHTML = Math.floor(Math.min(75,block))+"%"
 	} else {
@@ -1773,6 +1772,7 @@ function updatePrimaryStats() {
 	if (offhandType == "weapon" && typeof(equipped.offhand.ias) != 'undefined') { ias -= equipped.offhand.ias }
 	document.getElementById("ias").innerHTML = ias; if (ias > 0) { document.getElementById("ias").innerHTML += "%" }
 	if (equipped.weapon.type != "") {
+		var weaponType = equipped.weapon.type;
 		var eIAS = Math.floor(120*ias/(120+ias));
 		var weaponFrames = 0;
 		if (weaponType != "") {
@@ -2472,9 +2472,6 @@ function checkSkill(skillName, num) {
 	var strTotal = (c.strength + c.all_attributes + (c.level-1)*c.strength_per_level);
 	var dexTotal = (c.dexterity + c.all_attributes + (c.level-1)*c.dexterity_per_level);
 	var energyTotal = Math.floor((c.energy + c.all_attributes)*(1+c.max_energy/100));
-	var weaponType = equipped.weapon.type;
-	//var weaponType_offhand = "";
-	//if (offhandType == "weapon") { weaponType_offhand = equipped.offhand.type }
 	
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 	var ele_min = Math.floor(c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100) + c.cDamage_min*(1+(c.cDamage+c.cDamage_skillup)/100) + c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100) + (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100));
@@ -2482,8 +2479,8 @@ function checkSkill(skillName, num) {
 	
 	var physDamage = [0,0,1];
 	if (skillName == "Poison Javelin" || skillName == "Lightning Bolt" || skillName == "Plague Javelin" || skillName == "Lightning Fury" || skillName == "Power Throw" || skillName == "Ethereal Throw") {
-		physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,1,"weapon");
-	} else { physDamage = getWeaponDamage(strTotal,dexTotal,weaponType,0,"weapon"); }
+		physDamage = getWeaponDamage(strTotal,dexTotal,"weapon",1);
+	} else { physDamage = getWeaponDamage(strTotal,dexTotal,"weapon",0); }
 	
 	var skill = {};
 	for (let s = 0; s < skills.length; s++) {

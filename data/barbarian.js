@@ -11,7 +11,7 @@
 // Skills that may adjust IAS breakpoints:
 //	Frenzy, Whirlwind, Concentrate, Bash, Stun, Cleave
 
-var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vitality:25, energy:10, life:55, mana:10, stamina:192, levelup_life:2, levelup_stamina:1, levelup_mana:1, ar_per_dexterity:5, life_per_vitality:4, stamina_per_vitality:1, mana_per_energy:1, starting_strength:30, starting_dexterity:20, starting_vitality:25, starting_energy:10, ar_const:20, skill_layout:"./images/barbarian.png", mana_regen:1.66,
+var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vitality:25, energy:10, life:55, mana:10, stamina:192, levelup_life:2, levelup_stamina:1, levelup_mana:1, ar_per_dexterity:5, life_per_vitality:4, stamina_per_vitality:1, mana_per_energy:1, starting_strength:30, starting_dexterity:20, starting_vitality:25, starting_energy:10, ar_const:20, block_const:4, skill_layout:"./images/barbarian.png", mana_regen:1.66,
 	weapon_frames:{dagger:13, sword:[13,17], axe:[13,18], mace:[13,21], thrown:13, staff:18, polearm:18, scepter:13, wand:13, javelin:18, spear:18, bow:14, crossbow:19},
 
 /*	// Barbarian - waffengattung

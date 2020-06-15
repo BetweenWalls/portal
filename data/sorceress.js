@@ -12,7 +12,7 @@
 // Skills that may adjust IAS breakpoints:
 //	none
 
-var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vitality:10, energy:35, life:40, mana:35, stamina:174, levelup_life:1.5, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:10, starting_dexterity:25, starting_vitality:10, starting_energy:35, ar_const:-15, skill_layout:"./images/sorceress.png", mana_regen:1.66,
+var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vitality:10, energy:35, life:40, mana:35, stamina:174, levelup_life:1.5, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:10, starting_dexterity:25, starting_vitality:10, starting_energy:35, ar_const:-15, block_const:5, skill_layout:"./images/sorceress.png", mana_regen:1.66,
 	weapon_frames:{dagger:16, sword:[17,21], axe:[17,15], mace:[17,20], thrown:17, staff:15, polearm:15, scepter:17, wand:17, javelin:20, spear:20, bow:16, crossbow:19, orb:17},
 
 /*	// Sorceress - waffengattung
