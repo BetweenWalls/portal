@@ -16,12 +16,12 @@ Current Known Issues:
 	* Required level/strength/dexterity may be inaccurate
 	* Unimplemented: quest weapons
 * Unimplemented: mercenary stats
-* Unimplemented: offhand attacks
+* Unimplemented: offhand damage for select skills (Frenzy, Whirlwind, Dual Strike)
 * Unimplemented: skill buffs from item-charges
 * Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
 * Breakpoints for IAS (frames-per-attack) may be inaccurate
-* Some stats from offhand weapons may incorrectly contribute to mainhand attacks
+* Some stats from offhand weapons may incorrectly contribute to mainhand attacks (and vice versa)
 
 Info: https://github.com/BetweenWalls/planner#planner
 
@@ -60,12 +60,10 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * saving/loading
 
 ### Upcoming Plans:
-* offhand attacks
 * skill buffs from item-charges
 * option to 'snapshot' buffs
 * more breakpoint info
 * mercenary stats & validation
-* interface niceties
 * tooltips for items & buffs
 
 ### Longterm Goals:

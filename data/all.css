@@ -20,13 +20,13 @@
 }
 .hover-item {
   position: absolute;
-  text-align: left;
+  /*text-align: left;*/
   color: white;
   background-color: black;
   opacity: 0.85;
   padding: 5px;
   z-index: 6;
-  width: 288px;
+  /*width: 288px;*/
 }
 .point {
   position: absolute;
@@ -36,8 +36,6 @@
 }
 .inventory {
   position: relative;
-  width: 303px;
-  height: 300px;
   margin-right: 13px;
   float: right;
   z-index: 3;

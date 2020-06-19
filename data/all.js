@@ -2492,10 +2492,10 @@ function checkSkill(skillName, num) {
 	
 	// TODO: Implement offhand damage for selected skills
 	if (offhandType == "weapon" && (skill.name == "Dual Strike" || skill.name == "Frenzy" || skill.name == "Whirlwind")) {
-//		document.getElementById("offhand_skill"+num).style.display = "inline"
-//		document.getElementById("offhand_skill"+num).style.margin = "0px 0px 0px "+(document.getElementById("dropdown_skill"+num).clientWidth+10)+"px"
+		document.getElementById("offhand_skill"+num).style.display = "inline"
+		document.getElementById("offhand_skill"+num).style.margin = "0px 0px 0px "+(document.getElementById("dropdown_skill"+num).clientWidth+10)+"px"
 	} else {
-//		document.getElementById("offhand_skill"+num).style.display = "none"
+		document.getElementById("offhand_skill"+num).style.display = "none"
 	}
 	
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
@@ -2802,6 +2802,8 @@ function socketableSelect(ev) {
 // ---------------------------------
 function equipmentHover(group) {
 	// TODO: Turn into actual hover-text, instead of using a premade empty area
+	var groupId = group;
+	if (group == "helm" || group == "armor" || group == "weapon" || group == "offhand") { groupId += "_" }
 	var selected = equipped[group].name;
 	if (selected != "none" && equipped[group].rarity == "rw") {
 		selected = selected.split(" ­ ­ - ­ ­ ")[0]+ " ­ ­ - ­ ­ " + equipped[group].base
