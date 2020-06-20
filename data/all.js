@@ -439,7 +439,7 @@ function loadGolem() {
 		for (itemNew in equipment[group]) {
 			var item = equipment[group][itemNew];
 			var metal = true;
-			if (group == "amulet" || group == "ring1" || group == "ring2" || item.type == "quiver" || item.special == 1 || item.rarity == "magic" || item.only == "Desert Guard" || item.only == "Iron Wolf" || item.only == "Barb (merc)") { metal = false }
+			if (group == "amulet" || group == "ring1" || group == "ring2" || item.type == "quiver" || item.special > 0 || item.rarity == "magic" || item.only == "Desert Guard" || item.only == "Iron Wolf" || item.only == "Barb (merc)") { metal = false }
 			else if (typeof(item.base) != 'undefined') { if (typeof(bases[getBaseId(item.base)].nonmetal) != 'undefined') { if (bases[getBaseId(item.base)].nonmetal == 1) { metal = false } } }
 			// TODO: Adjust equipment list to exclude 'duplicates' and include runewords that can made in metal bases
 			if (metal == true) {
@@ -1845,7 +1845,7 @@ function updatePrimaryStats() {
 	var ias = c.ias + c.ias_skill + Math.floor(dexTotal/8)*c.ias_per_8_dexterity;
 	if (offhandType == "weapon" && typeof(equipped.offhand.ias) != 'undefined') { ias -= equipped.offhand.ias }
 	document.getElementById("ias").innerHTML = ias; if (ias > 0) { document.getElementById("ias").innerHTML += "%" }
-	if (equipped.weapon.type != "") {
+	if (equipped.weapon.type != "" && equipped.weapon.special != 1) {
 		var weaponType = equipped.weapon.type;
 		var eIAS = Math.floor(120*ias/(120+ias));
 		var weaponFrames = 0;
@@ -3190,8 +3190,7 @@ function inventoryLeftClick(event, group) {
 	if (event.shiftKey) { mod = 1 }
 	if (event.ctrlKey) { mod = 2 }
 	if (mod > 0) {
-		// TODO: Limit to unique/rare/craft/rw (i.e. not sets)
-		if (typeof(equipped[group].base) != 'undefined') { changeBase(group, "upgrade") }
+		changeBase(group, "upgrade")
 	} else {
 		// TODO: simulate click() on appropriate equipment dropdown menu?
 	}
@@ -3205,8 +3204,7 @@ function inventoryRightClick(event, group) {
 	if (event.shiftKey) { mod = 1 }
 	if (event.ctrlKey) { mod = 2 }
 	if (mod > 0) {
-		// TODO: Limit to unique/rare/craft/rw (i.e. not sets)
-		if (typeof(equipped[group].base) != 'undefined') { changeBase(group, "downgrade") }
+		changeBase(group, "downgrade")
 	} else {
 		equip(group, group)	// right click = unequip
 	}
@@ -3217,14 +3215,13 @@ function inventoryRightClick(event, group) {
 //	change: what kind of change to make ("upgrade" or "downgrade")
 // ---------------------------------
 function changeBase(group, change) {
-	// TODO: Upgraded items should get +5 to req_level
-	// TODO: required level depends on affixes, not just base level
-	// TODO: Add special cases for quest items?
 	var base_name = equipped[group].base;
+	if (typeof(equipped[group].base) == 'undefined' && typeof(equipped[group].special) != 'undefined') { base_name = "Special_0" }
 	var base = getBaseId(base_name);
 	var halt = 0;
 	if ((typeof(equipped[group].rarity) == 'undefined' || equipped[group].rarity == "set") && change == "downgrade" && equipped[group].tier <= equipped[group].original_tier) { halt = 1 }		// prevents unique/set from being downgraded below their baseline
-	//if (typeof(equipped[group].rarity) != 'undefined' && equipped[group].rarity != "rare") { halt = 1 }
+	//if (typeof(equipped[group].rarity) != 'undefined' && equipped[group].rarity != "rare") { halt = 1 }	// limit to unique/rare
+	if (equipped[group].rarity == "set") { halt = 1 }							// limit set items
 	if (typeof(bases[base][change]) != 'undefined' && halt == 0) {
 		base = bases[base][change];
 		equipped[group].base = base;
@@ -3247,12 +3244,19 @@ function changeBase(group, change) {
 				character[affix] += equipped[group][affix]
 			} else if (affix == "req_strength" || affix == "req_dexterity") {
 				equipped[group][affix] = Math.max(0,Math.ceil(multReq*bases[base][affix] - reqEth))
-			} else {	// any affixes that are undefined should not be checked (base upgrades/downgrades share the same affixes)
+			} else if (affix == "req_lvl") {
+				equipped[group]["tier"] = bases[base]["tier"]
+				var req_change = (5 * (equipped[group].tier - equipped[group].original_tier));
+				equipped[group][affix] = bases[base][affix] + req_change
+			} else {		// any affixes that are undefined should not be checked (base upgrades/downgrades share the same affixes)
 				character[affix] -= equipped[group][affix]
 				equipped[group][affix] = bases[base][affix]
 				character[affix] += bases[base][affix]
 			}
 		} }
+		if (equipped[group].tier == equipped[group].original_tier) { var name = equipped[group].name; equip(group,"none"); equip(group,name); }		// used to reset affixes such as req_lvl, req_strength, req_dexterity (since they are often different from the base affixes)
+		if (base == "Special_0") { var name = equipped[group].name; equip(group,"none"); equip(group,name); }
+		if (base == "Special_1" || base == "Special_2" || base == "Special_3") { document.getElementById(group+"_image").src = "./images/items/weapon/axe/Hand_Axe.png" }
 	}
 	if (corruptsEquipped[group].name == "+ Sockets") { adjustCorruptionSockets(group) }
 	equipmentOut()

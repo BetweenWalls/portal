@@ -36,8 +36,7 @@ var unequipped = {		strength:0, dexterity:0, vitality:0, energy:0, life:0, mana:
 /* oskills  necromancer	*/	oskill_Desecrate:0,	// Radament's Sphere
 /* oskills  paladin	*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, oskill_Enflame:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
-// ...to confirm:
-//	oskill_Guided_Arrow (Widowmaker)
+// TODO: confirm oskill_Guided_Arrow (Widowmaker)
 };
 // TODO: Remove old instances of Arctic Blast (replaced with Frigerate on Frostwind sword)
 var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Arctic_Blast","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
@@ -50,26 +49,6 @@ var oskills_info = {
 	oskill_Zeal:{name:"Zeal",native_class:"paladin",i:23}, oskill_Vengeance:{name:"Vengeance",native_class:"paladin",i:25}, 
 	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, oskill_Enflame:{name:"Enflame",native_class:"sorceress",i:28}, 
 };
-var cskills = [
-	// in equipment[]:
-	"Attract","Cloak of Shadows","Venom","Spirit of Barbs","Molten Boulder",
-	"Clay Golem","Weaken","Desecrate","Life Tap","Iron Golem","Iron Maiden",
-	"Poison Creeper","Oak Sage","Heart of Wolverine","Revive","Twister","Blood Golem",
-	"Poison Nova","Summon Spirit Wolf","Cyclone Armor","Summon Grizzly","Corpse Explosion",
-	"Teleport","Frozen Orb","Meteor","Nova","Amplify Damage","Blizzard","Enflame","Volcano",
-	"Firestorm","Holy Bolt","Raven","Hydra","Plague Javelin","Immolation Arrow",
-	// possible cskills (copied from wiki):
-	"Inner Sight","Magic Arrow","Fire Arrow","Cold Arrow","Multiple Shot","Exploding Arrow","Ice Arrow","Freezing Arrow","Power Strike","Power Strike","Charged Strike",
-	"Bash","Stun","Concentration","Grim Ward",
-	"Firestorm","Fissure","Twister","Volcano","Tornado",
-	"Teeth","Deadly Poison","Bone Spear","Poison Nova","Bone Spirit","Dim Vision","Weaken","Terror","Confusion","Life Tap","Attraction","Lower Resist",
-	"Sacrifice","Holy Bolt","Zeal","Vengeance","Blessed Hammer",
-	"Ice Bolt","Ice Blast","Frost Nova","Glacial Spike","Blizzard","Frozen Orb","Charged Bolt","Telekinesis","Nova","Lightning Surge","Chain Lightning","Teleport","Fire Bolt","Fire Ball","Enflame","Meteor",
-];
-var ctcs = [
-	// possible ctc effects (copied from wiki):
-	"Fire Bolt","Charged Bolt","Ice Bolt","Frost Nova","Nova","Lightning Surge","Hydra","Amplify Damage",	// wiki is incomplete
-];
 
 var non_items = [
 {name:"Miscellaneous"},
@@ -81,8 +60,8 @@ var non_items = [
 {i:6, name:"Shrine: Cold Resist", cRes:75, duration:144, recharge:240, effect:"Resist_Cold"},
 {i:7, name:"Shrine: Lightning Resist", lRes:75, duration:144, recharge:240, effect:"Resist_Lightning"},
 {i:8, name:"Shrine: Poison Resist", pRes:75, duration:144, recharge:240, effect:"Resist_Poison"},
-{i:9, name:"Potion: Thawing", cRes:50, duration:30, effect:"Thawing"},							// stackable duration
-{i:10, name:"Potion: Antitode", pRes:50, duration:30, effect:"Antidote"},						// stackable duration
+{i:9, name:"Potion: Thawing", cRes:50, duration:30, effect:"Thawing"},							// stackable duration (unimplemented)
+{i:10, name:"Potion: Antitode", pRes:50, duration:30, effect:"Antidote"},						// stackable duration (unimplemented)
 ];
 
 var mercenaries = [
@@ -643,14 +622,14 @@ var equipment = {
 {rarity:"rw", name:"Memory ­ ­ - ­ ­ Gothic Staff", req_level:37, skills_sorceress:3, fcr:33, damage_min:9, target_defense:-25, defense_bonus:50, vitality:10, energy:10, max_mana:20, phys_Lightning_Surge:35, skill_Static_Field:2, skill_Energy_Shield:6, skill_Lightning_Surge:3, skill_Lightning_Mastery:3, twoHanded:1, type:"staff", base:"Gothic Staff", pod_changes:1},
 {not:["necromancer"], rarity:"rw", name:"White ­ ­ - ­ ­ Bone Wand", req_level:35, skills_poisonBone:3, fcr:20, flee_on_hit:25, vitality:10, mana:13, mDamage_reduced:4, skill_Summon_Mastery:4, skill_Bone_Armor:3, skill_Bone_Spear:2, type:"wand", base:"Bone Wand"},
 // Special
-{name:"Horadric Malus", type:"hammer", req_strength:15, req_dexterity:15, special:1, damage_vs_undead:150, base_damage_min:6, base_damage_max:15, max_sockets:2, img:"Horadric_Malus"},
-{name:"Staff of Kings", type:"staff", twoHanded:1, req_strength:25, special:1, damage_vs_undead:50, base_damage_min:10, base_damage_max:15, ias:50, all_res:10, max_sockets:2, img:"Staff_of_Kings"},
-{name:"Horadric Staff", type:"staff", twoHanded:1, req_strength:30, special:1, damage_vs_undead:50, base_damage_min:12, base_damage_max:20, ias:50, all_res:10, pRes:25, life:10, mana:10, max_sockets:3, img:"Horadric_Staff"},
-{name:"The Gidbinn", type:"dagger", req_strength:15, req_dexterity:25, special:1, base_damage_min:3, base_damage_max:7, max_sockets:1, img:"The_Gidbinn"},
-{name:"Khalim's Flail", req_strength:41, req_dexterity:35, type:"mace", special:1, ias:50, ar:40, damage_vs_undead:50, base_damage_min:1, base_damage_max:15, lDamage_min:1, lDamage_max:20, max_sockets:3, img:"Khalim's_Flail"},
-{name:"Khalim's Will", type:"mace", special:1, ias:50, ar:40, life_leech:6, mana_leech:6, damage_vs_undead:50, base_damage_min:1, base_damage_max:15, lDamage_min:1, lDamage_max:40, max_sockets:3, img:"Khalim's_Will"},
-{name:"Hellforge Hammer", type:"hammer", special:1, defense:35, fRes:40, damage_vs_undead:50, base_damage_min:6, base_damage_max:15, fDamage_min:5, fDamage_max:20, max_sockets:4, img:"Hellforge_Hammer"},
-{rarity:"common", name:"Wirt's Leg", type:"mace", special:1, damage_vs_undead:50, base_damage_min:2, base_damage_max:8, max_sockets:3, sockets:3, img:"Wirt's_Leg"},
+{name:"Horadric Malus", type:"hammer", req_strength:15, req_dexterity:15, special:1, damage_vs_undead:150, base_damage_min:6, base_damage_max:15, durability:83, max_sockets:2, img:"Horadric_Malus", tier:0},
+{name:"Staff of Kings", type:"staff", twoHanded:1, req_strength:25, special:1, damage_vs_undead:50, base_damage_min:10, base_damage_max:15, durability:0, ias:50, all_res:10, max_sockets:2, img:"Staff_of_Kings", tier:0},
+{name:"Horadric Staff", type:"staff", twoHanded:1, req_strength:30, special:1, damage_vs_undead:50, base_damage_min:12, base_damage_max:20, durability:0, ias:50, all_res:10, pRes:25, life:10, mana:10, max_sockets:3, img:"Horadric_Staff", tier:0},
+{name:"The Gidbinn", type:"dagger", req_strength:15, req_dexterity:25, special:1, base_damage_min:3, base_damage_max:7, durability:45, max_sockets:1, img:"The_Gidbinn", tier:0},
+{name:"Khalim's Flail", type:"mace", req_strength:41, req_dexterity:35, special:1, ias:50, ar:40, damage_vs_undead:50, base_damage_min:1, base_damage_max:15, durability:0, lDamage_min:1, lDamage_max:20, max_sockets:3, img:"Khalim's_Flail", tier:0},
+{name:"Khalim's Will", type:"mace", special:1, ias:50, ar:40, life_leech:6, mana_leech:6, damage_vs_undead:50, base_damage_min:1, base_damage_max:15, lDamage_min:1, lDamage_max:40, max_sockets:3, img:"Khalim's_Will", tier:0},
+{name:"Hellforge Hammer", type:"hammer", special:1, defense:35, fRes:40, damage_vs_undead:50, base_damage_min:6, base_damage_max:15, durability:83, fDamage_min:5, fDamage_max:20, max_sockets:4, img:"Hellforge_Hammer", tier:0},
+{rarity:"common", name:"Wirt's Leg", type:"mace", special:2, damage_vs_undead:50, base_damage_min:2, base_damage_max:8, durability:0, max_sockets:3, sockets:3, img:"Wirt's_Leg"},
 // Staves
 {name:"Bane Ash", req_level:5, e_damage:60, ias:20, mana:30, fRes:50, fDamage_min:4, fDamage_max:6, skill_Fire_Bolt:5, skill_Warmth:2, twoHanded:1, type:"staff", base:"Short Staff", img:"Bane_Ash"},
 {name:"Serpent Lord", req_level:9, e_damage:40, pDamage_all:12, pDamage_duration:3, mana_leech:100, target_defense:-50, mana:10, pRes:50, light_radius:-1, twoHanded:1, type:"staff", base:"Long Staff", img:"Serpent_Lord"},
@@ -1847,11 +1826,44 @@ var bases = {	// Note: damage_vs_undead:50 is included for blunt weapons, but ot
 	Maiden_Javelin:{group:"weapon", type:"javelin", base_damage_min:8, base_damage_max:14, req_level:17, req_strength:33, req_dexterity:47, durability:6, baseSpeed:-10, range:2, throw_min:6, throw_max:22, upgrade:"Ceremonial Javelin", only:"amazon", tier:1},
 	Ceremonial_Javelin:{group:"weapon", type:"javelin", base_damage_min:18, base_damage_max:35, req_level:26, req_strength:25, req_dexterity:109, durability:6, baseSpeed:-10, range:2, throw_min:18, throw_max:54, upgrade:"Matriarchal Javelin", downgrade:"Maiden Javelin", only:"amazon", tier:2},
 	Matriarchal_Javelin:{group:"weapon", type:"javelin", base_damage_min:30, base_damage_max:54, req_level:48, req_strength:107, req_dexterity:151, durability:6, baseSpeed:-10, range:2, throw_min:35, throw_max:66, downgrade:"Ceremonial Javelin", only:"amazon", tier:3},
+	// quest weapons
+	Special_0:{group:"weapon", type:"axe", upgrade:"Special_1", tier:0, base_damage_min:0, base_damage_max:0, durability:0, baseSpeed:0, range:0, max_sockets:2},
+	Special_1:{group:"weapon", type:"axe", base_damage_min:3, base_damage_max:6, req_level:5, durability:42, baseSpeed:0, range:0, max_sockets:2, downgrade:"Special_0", upgrade:"Special_2", tier:1},								// Hand Axe
+	Special_2:{group:"weapon", type:"axe", base_damage_min:10, base_damage_max:21, req_level:29, req_strength:25, req_dexterity:25, durability:28, baseSpeed:0, range:0, max_sockets:2, downgrade:"Special_1", upgrade:"Special_3", tier:2},	// Hatchet
+	Special_3:{group:"weapon", type:"axe", base_damage_min:33, base_damage_max:58, req_level:55, req_strength:125, req_dexterity:67, durability:28, baseSpeed:0, range:0, max_sockets:2, downgrade:"Special_2", tier:3},				// Tomahawk
 	// other? (unneeded with current implementation)
 	//Arrows:{group:"offhand", type:"quiver"},
 	//Bolts:{group:"offhand", type:"quiver"},
 	//Amulet:{group:"amulet", type:"amulet"},
 	//Ring:{group:"ring", type:"ring"},
-	//Special:{group:"weapon", type:"axe", base_damage_min:3, base_damage_max:6, durability:28, baseSpeed:0, range:0, max_sockets:2, upgrade:"Special2"},								// Hand Axe?	// TODO: verify upgrade stats for all quest items
-	//Special2:{group:"weapon", type:"axe", base_damage_min:10, base_damage_max:21, req_level:19, req_strength:25, req_dexterity:25, durability:28, baseSpeed:0, range:0, max_sockets:2, downgrade:"Special"},	// Hatchet?
 };
+
+/*
+var affixes = [
+	// TODO: Implement affix ranges so required level can be accurately calculated when items are modified
+];
+*/
+/*
+var cskills = [
+	// in equipment[]:
+	"Attract","Cloak of Shadows","Venom","Spirit of Barbs","Molten Boulder",
+	"Clay Golem","Weaken","Desecrate","Life Tap","Iron Golem","Iron Maiden",
+	"Poison Creeper","Oak Sage","Heart of Wolverine","Revive","Twister","Blood Golem",
+	"Poison Nova","Summon Spirit Wolf","Cyclone Armor","Summon Grizzly","Corpse Explosion",
+	"Teleport","Frozen Orb","Meteor","Nova","Amplify Damage","Blizzard","Enflame","Volcano",
+	"Firestorm","Holy Bolt","Raven","Hydra","Plague Javelin","Immolation Arrow",
+	// possible cskills (copied from wiki):
+	"Inner Sight","Magic Arrow","Fire Arrow","Cold Arrow","Multiple Shot","Exploding Arrow","Ice Arrow","Freezing Arrow","Power Strike","Power Strike","Charged Strike",
+	"Bash","Stun","Concentration","Grim Ward",
+	"Firestorm","Fissure","Twister","Volcano","Tornado",
+	"Teeth","Deadly Poison","Bone Spear","Poison Nova","Bone Spirit","Dim Vision","Weaken","Terror","Confusion","Life Tap","Attraction","Lower Resist",
+	"Sacrifice","Holy Bolt","Zeal","Vengeance","Blessed Hammer",
+	"Ice Bolt","Ice Blast","Frost Nova","Glacial Spike","Blizzard","Frozen Orb","Charged Bolt","Telekinesis","Nova","Lightning Surge","Chain Lightning","Teleport","Fire Bolt","Fire Ball","Enflame","Meteor",
+];
+*/
+/*
+var ctcs = [
+	// possible ctc effects (copied from wiki):
+	"Fire Bolt","Charged Bolt","Ice Bolt","Frost Nova","Nova","Lightning Surge","Hydra","Amplify Damage",	// wiki is incomplete
+];
+*/

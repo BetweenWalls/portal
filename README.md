@@ -10,10 +10,6 @@ Current Known Issues:
 * Charms can't be moved into a new space below the original space if they overlap eachother
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
-* Upgrading/Downgrading:
-	* Allowed for any item (instead of just rare/unique)
-	* Required level/strength/dexterity may be inaccurate
-	* Unimplemented: quest weapons
 * Unimplemented: mercenary stats
 * Unimplemented: skill buffs from item-charges
 * Unimplemented: option to 'snapshot' buffs
