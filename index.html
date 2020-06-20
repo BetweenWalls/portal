@@ -10,6 +10,14 @@
 <script type="text/javascript" src="./data/all_equipment.js"></script>
 <script type="text/javascript" src="./data/all.js"></script>
 <!--
+<script type="text/javascript" src="./data/functions/all.js"></script>
+<script type="text/javascript" src="./data/functions/file_io.js"></script>
+<script type="text/javascript" src="./data/functions/effects.js"></script>
+<script type="text/javascript" src="./data/functions/inventory.js"></script>
+<script type="text/javascript" src="./data/functions/items.js"></script>
+<script type="text/javascript" src="./data/functions/skills.js"></script>
+-->
+<!--
 <style type="text/css">
 
 </style>
@@ -18,6 +26,71 @@
 
 </head>
 <body class="background" onload="initial_load()">
+<!--
+<div id='cssmenu'>
+<ul>
+   <li><a>File</a>
+      <ul>
+         <li><a><label class="button-file"> ­ ­ ­ ­ Save ­ ­ <button style="display:none" onclick="saveTextAsFile()"></button></label></a></li>
+         <li><a>Load</a></li>
+      </ul>
+   </li>
+   <li><a>Preferences</a>
+      <ul>
+         <li><a>Skill-Level Coupling</a></li>
+         <li><a>New Effects Begin Enabled</a></li>
+      </ul>
+   </li>
+   <li class='active'><a>Character</a>
+      <ul>
+         <li><a>Difficulty</a>
+            <ul>
+               <li><a>Normal</a></li>
+               <li><a>Nightmare</a></li>
+               <li><a>Hell</a></li>
+            </ul>
+         </li>
+         <li><a><input style="float:right;" id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);"><label for="quests">Quests Completed</label></a>
+            <ul>
+               <li><a>Normal</a>
+		  <ul>
+		     <li><a>1.1</a></li>
+		     <li><a>2.1</a></li>
+		     <li><a>3.3</a></li>
+		     <li><a>3.4</a></li>
+		     <li><a>4.1</a></li>
+		     <li><a>5.3</a></li>
+		  </ul>
+	       </li>
+               <li><a>Nightmare</a>
+		  <ul>
+		     <li><a>1.1</a></li>
+		     <li><a>2.1</a></li>
+		     <li><a>3.3</a></li>
+		     <li><a>3.4</a></li>
+		     <li><a>4.1</a></li>
+		     <li><a>5.3</a></li>
+		  </ul>
+	       </li>
+               <li><a>Hell</a>
+		  <ul>
+		     <li><a>1.1</a></li>
+		     <li><a>2.1</a></li>
+		     <li><a>3.3</a></li>
+		     <li><a>3.4</a></li>
+		     <li><a>4.1</a></li>
+		     <li><a>5.3</a></li>
+		  </ul>
+	       </li>
+            </ul>
+         </li>
+         <li><a><input style="float:right;" id="running" type="checkbox" name="running" onclick="return toggleRunning(this);"><label for="running">Running</label></a></li>
+      </ul>
+   </li>
+   <li><a href="https://github.com/BetweenWalls/planner#planner">About</a></li>
+</ul>
+</div>
+-->
 
 <div id="main">
 <!--
@@ -28,11 +101,11 @@
     <button class="nav-dropbtn">File
     </button>
     <div class="nav-dropdown-content">
-      <div class="nav-dropdown-content-item"><div class="nav-text">
-	<label class="button-file"> ­ ­ ­ ­ Save ­ ­ <button style="display:none" onclick="saveTextAsFile()"></button></label>
+      <div class="nav-dropdown-content-item" onclick="saveTextAsFile()"><div class="nav-text">
+	<label> ­ ­ ­ ­ Save ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-text">
-	<label class="button-file"> ­ ­ ­ ­ Load ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></label>
+	<label> ­ ­ ­ ­ Load ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></input></label>
       </div></div>
     </div>
   </div>
@@ -42,7 +115,7 @@
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
-	<label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ </label>
+	<label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
@@ -54,26 +127,26 @@
     <button class="nav-dropbtn">Character
     </button>
     <div class="nav-dropdown-content">
-      <div class="nav-dropdown-content-item"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
+      <div class="nav-dropdown-content-item"><div class="nav-difficulty"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
 	<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
 	<label for="difficulty">Normal</label>
 	<input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
 	<label for="difficulty">Nightmare</label>
 	<input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
 	<label for="difficulty">Hell ­ ­ </label>
-      </div>
+      </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
-	<label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ </label>
+	<label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
-	<label for="running"> ­ ­ ­ ­ Running ­ ­ </label>
+	<label for="running"> ­ ­ ­ ­ Running ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
     </div>
   </div>
   <div class="nav-dropdown">
-    <div class="nav-dropbtn"><a href="https://github.com/BetweenWalls/planner#planner">About</a></div>
+    <div class="nav-dropbtn" style="cursor:pointer;" onClick="location.href='https://github.com/BetweenWalls/planner#planner'"><a href="https://github.com/BetweenWalls/planner#planner">About</a></div>
   </div>
 </div>
 

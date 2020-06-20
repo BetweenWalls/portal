@@ -723,7 +723,7 @@ var equipment = {
 {name:"The Chieftain", req_level:19, e_damage:100, ias:20, lDamage_min:1, lDamage_max:40, all_res:20, mana_per_kill:6, twoHanded:1, type:"axe", base:"Battle Axe", img:"The_Chieftain"},
 {name:"Brainhew", req_level:25, e_damage:80, damage_min:14, fDamage_min:15, fDamage_max:35, mana_leech:13, mana:25, light_radius:4, twoHanded:1, type:"axe", base:"Great Axe", img:"Brainhew"},
 {name:"Humongous", req_level:29, e_damage:120, damage_min:8, damage_max:25, cblow:33, strength:30, req:20, twoHanded:1, type:"axe", base:"Giant Axe", img:"Humongous"},
-{name:"Coldkill", req_level:36, e_damage:190, ias:30, cDamage_min:40, cRes_max:15, cRes:15, type:"axe", base:"Hatchet", img:"Coldkill", ctc:[[10,10,"Ice Blast","on striking"],[10,5,"Frost Nova","when struck"]]},
+{name:"Coldkill", req_level:36, e_damage:190, ias:30, cDamage_min:40, cDamage_max:40, cRes_max:15, cRes:15, type:"axe", base:"Hatchet", img:"Coldkill", ctc:[[10,10,"Ice Blast","on striking"],[10,5,"Frost Nova","when struck"]]},
 {name:"Butcher's Pupil", req_level:39, e_damage:200, damage_min:30, damage_max:50, dstrike:35, owounds:25, ias:30, indestructible:1, ethereal:0, type:"axe", base:"Cleaver", img:"Butcher's_Pupil"},
 {name:"Islestrike", req_level:43, e_damage:190, cblow:25, skills_druid:2, missile_defense:50, all_attributes:10, skill_Fury:1, skill_Maul:1, type:"axe", base:"Twin Axe", img:""},
 {name:"Pompeii's Wrath", req_level:45, e_damage:170, fDamage_min:35, fDamage_max:150, slows_target:50, kick_damage_per_level:4, type:"axe", base:"Crowbill", pod_changes:1, img:"Pompeii's_Wrath", ctc:[[4,8,"Volcano","on striking"],[25,17,"Fissure","when struck"]]},
@@ -1136,7 +1136,7 @@ var socketables = [
 {name:"Ko Rune", type:"rune", rarity:"craft", req_level:39, weapon:{dexterity:10}, armor:{dexterity:10}},
 {name:"Fal Rune", type:"rune", rarity:"craft", req_level:41, weapon:{strength:10}, armor:{strength:10}},
 {name:"Lem Rune", type:"rune", rarity:"craft", req_level:43, weapon:{gf:75}, armor:{gf:50}},
-{name:"Pul Rune", type:"rune", rarity:"craft", req_level:45, weapon:{damage_vs_demons:75,ar_vs_demons:100}, armor:{defense_bonus:30}},	// TODO: Implement (e_def, apply only to defense for socketed item)
+{name:"Pul Rune", type:"rune", rarity:"craft", req_level:45, weapon:{damage_vs_demons:75,ar_vs_demons:100}, armor:{e_def:30}},	// TODO: Implement (e_def, apply only to defense for socketed item)
 {name:"Um Rune", type:"rune", rarity:"craft", req_level:47, weapon:{owounds:25}, armor:{all_res:15}, shield:{all_res:22}},
 {name:"Mal Rune", type:"rune", rarity:"craft", req_level:49, weapon:{pmh:1}, armor:{mDamage_reduced:7}},
 {name:"Ist Rune", type:"rune", rarity:"craft", req_level:51, weapon:{mf:30}, armor:{mf:25}},
@@ -1197,7 +1197,7 @@ var corruptions = {	// Note: non-socket corruptions include +1 socket if possibl
 		{name:"+ Strength", strength:10, sockets:1},
 		{name:"+ Energy", energy:10, sockets:1},
 		{name:"+ Life", life:15, sockets:1},
-		{name:"+ Enhanced Defense", defense_bonus:25, sockets:1},	// TODO: Implement (e_def, apply only to helm defense)
+		{name:"+ Enhanced Defense", e_def:25, sockets:1},	// TODO: Implement (e_def, apply only to helm defense)
 	],
 	armor: [
 		{name:"Armor"},
@@ -1206,7 +1206,7 @@ var corruptions = {	// Note: non-socket corruptions include +1 socket if possibl
 		{name:"+ Increased Attack Speed", ias:10, sockets:1},
 		{name:"+ Attack Rating", ar_bonus:20, sockets:1},
 		{name:"+ Max Life", max_life:2, sockets:1},
-		{name:"+ Enhanced Defense", defense_bonus:20, sockets:1},	// TODO: Implement (e_def, apply only to body armor defense)
+		{name:"+ Enhanced Defense", e_def:20, sockets:1},	// TODO: Implement (e_def, apply only to body armor defense)
 	],
 	gloves: [
 		{name:"Gloves"},

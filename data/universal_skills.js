@@ -140,13 +140,13 @@ var character_any = {
 	return result
 	},
 
-	// updateSelectedSkill - updates and displays the damage and attack rating for the selected skill
+	// getSkillDamage - gets the damage and attack rating for the selected skill
 	//	skillName: name of selected skill
 	//	num: 1 or 2 (skill1 or skill2)
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
 	// ---------------------------------
-	updateSelectedSkill : function(skillName, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
+	getSkillDamage : function(skillName, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
 		var nameMod = "oskill_"+skillName.split(" ").join("_");
 		var lvl = ~~character[nameMod] + character.all_skills;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
@@ -194,8 +194,7 @@ var character_any = {
 		if (spell != 2) { skillMin = ~~Math.floor(mag_min+mDamage_min+ele_min+phys_min); skillMax = ~~Math.floor(mag_max+mDamage_max+ele_max+phys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		
-		var output = ": " + skillMin + "-" + skillMax + " {"+Math.ceil((skillMin+skillMax)/2)+"}";
-		if (skillMin != 0 && skillMax != 0) { document.getElementById("skill"+num+"_info").innerHTML = output } else { document.getElementById("skill"+num+"_info").innerHTML = ":" }
-		if (skillAr != 0) { document.getElementById("ar_skill"+num).innerHTML = "AR: " + skillAr } else { document.getElementById("ar_skill"+num).innerHTML = "" }
+		var result = {min:skillMin,max:skillMax,ar:skillAr};
+		return result
 	}
 };
