@@ -243,6 +243,7 @@ function setCharacterInfo(className) {
 		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)
 	}
 	character.level = fileInfo.character.level
+	//for (let i = 1; i < fileInfo.character.level, i++) { changeLevel(null,1) }
 	setMercenary(fileInfo.mercenary)
 	for (group in mercEquipped) {
 		if (fileInfo.mercEquipped[group].name != 'none') {
@@ -269,6 +270,7 @@ function setCharacterInfo(className) {
 	if (settings.autocast != fileInfo.settings.autocast) { if (settings.autocast == 1) { document.getElementById("autocast").checked = false }; toggleAutocast(document.getElementById("autocast")) }
 	updateStats()
 	document.getElementById("inputTextToSave").value = ""
+	update()
 }
 
 // loadEquipment - Loads equipment/charm info to the appropriate dropdowns
@@ -537,10 +539,12 @@ function updateSkillIcons() {
 // changeLevel - Modifies the character's level
 //	input: positive or negative change (-1 or 1)
 // ---------------------------------
-function changeLevel(input) {
+function changeLevel(event, input) {
 	var levels = 1
-	if (event.shiftKey) { levels = 10 }
-	if (event.ctrlKey) { levels = 100 }
+	if (event != null) {
+		if (event.shiftKey) { levels = 10 }
+		if (event.ctrlKey) { levels = 100 }
+	}
 	if (input < 0) {
 		if (levels > character.level-1) { levels = (character.level-1) }
 		if (levels > character.skillpoints) { levels = character.skillpoints }
@@ -2565,8 +2569,8 @@ function checkSkill(skillName, num) {
 	
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
 		var outcome = {min:0,max:0,ar:0};
-		if (native_skill == 0) { outcome = character_any.getSkillDamage(skillName, num, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
-		else { outcome = c.getSkillDamage(skill, num, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
+		if (native_skill == 0) { outcome = character_any.getSkillDamage(skillName, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
+		else { outcome = c.getSkillDamage(skill, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
 		
 		var output = ": " + outcome.min + "-" + outcome.max + " {"+Math.ceil((outcome.min+outcome.max)/2)+"}";
 		if (outcome.min != 0 && outcome.max != 0) { document.getElementById("skill"+num+"_info").innerHTML = output } else { document.getElementById("skill"+num+"_info").innerHTML = ":" }
@@ -2580,7 +2584,7 @@ function checkSkill(skillName, num) {
 		var nonPhys_min_offhand = Math.floor(ohd.fMin + ohd.cMin + ohd.lMin + ohd.pMin + ohd.mMin);
 		var nonPhys_max_offhand = Math.floor(ohd.fMax + ohd.cMax + ohd.lMax + ohd.pMax + ohd.mMax);
 		var outcome = {min:0,max:0,ar:0};
-		outcome = c.getSkillDamage(skill, num, ar, physDamage_offhand[0], physDamage_offhand[1], physDamage_offhand[2], nonPhys_min_offhand, nonPhys_max_offhand);
+		outcome = c.getSkillDamage(skill, ar, physDamage_offhand[0], physDamage_offhand[1], physDamage_offhand[2], nonPhys_min_offhand, nonPhys_max_offhand);
 		var output = outcome.min + "-" + outcome.max + " {"+Math.ceil((outcome.min+outcome.max)/2)+"}";
 		if (outcome.min != 0 && outcome.max != 0) { document.getElementById("offhand_skill"+num+"_damage").innerHTML = output }
 		//if (outcome.ar != 0) { document.getElementById("ar_skill"+num).innerHTML += " ... " + outcome.ar }

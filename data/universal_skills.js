@@ -146,7 +146,7 @@ var character_any = {
 	//	ar: base attack rating
 	//	min/max parameters: base damage of different types
 	// ---------------------------------
-	getSkillDamage : function(skillName, num, ar, phys_min, phys_max, phys_mult, ele_min, ele_max, mag_min, mag_max) {
+	getSkillDamage : function(skillName, ar, phys_min, phys_max, phys_mult, nonPhys_min, nonPhys_max) {
 		var nameMod = "oskill_"+skillName.split(" ").join("_");
 		var lvl = ~~character[nameMod] + character.all_skills;
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
@@ -186,12 +186,12 @@ var character_any = {
 		}
 		
 		var damage_enhanced = character.damage_bonus + character.e_damage;
-		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; ele_min = 0; ele_max = 0; mag_min = 0; mag_max = 0; damage_enhanced = 0; }
-		ele_min += Math.floor(fDamage_min + cDamage_min + lDamage_min + pDamage_min);
-		ele_max += Math.floor(fDamage_max + cDamage_max + lDamage_max + pDamage_max);
-		phys_min = Math.floor(~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
-		phys_max = Math.floor(~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_max * (1+(damage_bonus+damage_enhanced)/100)));
-		if (spell != 2) { skillMin = ~~Math.floor(mag_min+mDamage_min+ele_min+phys_min); skillMax = ~~Math.floor(mag_max+mDamage_max+ele_max+phys_max); }
+		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; nonPhys_min = 0; nonPhys_max = 0; damage_enhanced = 0; }
+		nonPhys_min += (fDamage_min + cDamage_min + lDamage_min + pDamage_min + mDamage_min);
+		nonPhys_max += (fDamage_max + cDamage_max + lDamage_max + pDamage_max + mDamage_max);
+		phys_min = (~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_max = (~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_max * (1+(damage_bonus+damage_enhanced)/100)));
+		if (spell != 2) { skillMin = Math.floor(phys_min+nonPhys_min); skillMax = Math.floor(phys_max+nonPhys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		
 		var result = {min:skillMin,max:skillMax,ar:skillAr};
