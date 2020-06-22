@@ -919,7 +919,7 @@ var equipment = {
 {name:"Radament's Sphere", req_level:50, e_def:200, e_def:200, ibc:20, pRes:75, fcr:20, skills_poisonBone:2, oskill_Desecrate:1, type:"shield", base:"Ancient Shield", pod_changes:1, img:"The_Ward"},
 {name:"Blackoak Shield", req_level:61, e_def:200, oskill_Inner_Sight:1, fbr:50, e_def:200, dexterity_per_level:0.5, life_per_level:1.25, cAbsorb_flat_per_level:0.625, half_freeze:1, type:"shield", base:"Luna", pod_changes:1, img:"Umbral_Disk"},
 {name:"Spike Thorn", req_level:70, e_def:150, fhr:30, pdr:20, thorns_per_level:1.375, sockets:1, type:"shield", base:"Blade Barrier", img:"Swordback_Hold"},
-{name:"Stormshield", req_level:73, pdr:30, fbr:35, cRes:60, lRes:25, strength:30, defense_per_level:3.75, ibc:25, thorns:10, ethereal:0, type:"shield", base:"Monarch", pod_changes:1, img:"Steelclash"},
+{name:"Stormshield", req_level:73, pdr:30, fbr:35, cRes:60, lRes:25, strength:30, defense_per_level:3.75, ibc:25, thorns:10, indestructible:1, ethereal:0, type:"shield", base:"Monarch", pod_changes:1, img:"Steelclash"},
 {name:"Head Hunter's Glory", req_level:75, defense:420, missile_defense:350, fRes:30, pRes:40, life_per_kill:7, ar_per_socketed:150, sockets:3, type:"shield", base:"Troll Nest", pod_changes:1, img:"Wall_of_the_Eyeless"},
 {name:"Medusa's Gaze", req_level:76, e_def:200, enemy_cRes:-20, cRes_max:5, cRes:80, skills_cold_all:2, oskill_Shiver_Armor:3, req:-50, type:"shield", base:"Aegis", pod_changes:1, img:"Bverrit_Keep"},
 {name:"Spirit Ward", req_level:68, e_def:180, fbr:25, ibc:30, all_res:40, cAbsorb_flat:11, type:"shield", base:"Ward", img:"The_Ward", ctc:[[5,8,"Fade","when struck"]]},
@@ -1124,7 +1124,7 @@ var socketables = [
 {name:"Ohm Rune", type:"rune", rarity:"craft", req_level:57, weapon:{e_damage:50}, armor:{cRes_max:5}},
 {name:"Lo Rune", type:"rune", rarity:"craft", req_level:59, weapon:{dstrike:20}, armor:{lRes_max:5}},
 {name:"Sur Rune", type:"rune", rarity:"craft", req_level:61, weapon:{blind_on_hit:20}, armor:{max_mana:5}, shield:{mana:50}},
-{name:"Ber Rune", type:"rune", rarity:"craft", req_level:63, weapon:{cblow:20}, armor:{pDamage_reduced:8}},
+{name:"Ber Rune", type:"rune", rarity:"craft", req_level:63, weapon:{cblow:20}, armor:{pdr:8}},
 {name:"Jah Rune", type:"rune", rarity:"craft", req_level:65, weapon:{itd:1}, armor:{max_life:5}, shield:{life:50}},
 {name:"Cham Rune", type:"rune", rarity:"craft", req_level:67, weapon:{freezes_target:3}, armor:{cbf:1}},	// "32% Chance of Hit Freezing Target for 3 seconds" = "freezes_target:3" ?
 {name:"Zod Rune", type:"rune", rarity:"craft", req_level:69, weapon:{indestructible:1}, armor:{indestructible:1}},	// same

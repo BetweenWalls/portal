@@ -1875,7 +1875,7 @@ function updatePrimaryStats() {
 function updateSecondaryStats() {
 	var c = character;
 	
-	var physRes = ""; if (c.pdr > 0) { physRes = c.pdr+"% " }
+	var physRes = ""; if (c.pdr > 0) { physRes = Math.min(50,c.pdr)+"% " }
 	if (c.damage_reduced > 0) { physRes += ("+"+c.damage_reduced) }
 	if (c.pdr == 0 && c.damage_reduced == 0) { physRes = 0 }
 	document.getElementById("pdr").innerHTML = physRes
