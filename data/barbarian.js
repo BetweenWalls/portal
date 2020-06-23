@@ -14,33 +14,6 @@
 var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vitality:25, energy:10, life:55, mana:10, stamina:192, levelup_life:2, levelup_stamina:1, levelup_mana:1, ar_per_dexterity:5, life_per_vitality:4, stamina_per_vitality:1, mana_per_energy:1, starting_strength:30, starting_dexterity:20, starting_vitality:25, starting_energy:10, ar_const:20, block_const:4, skill_layout:"./images/barbarian.png", mana_regen:1.66,
 	weapon_frames:{dagger:13, sword:[13,17], axe:[13,18], mace:[13,21], thrown:13, staff:18, polearm:18, scepter:13, wand:13, javelin:18, spear:18, bow:14, crossbow:19},
 
-/*	// Barbarian - waffengattung
-	weapon_frames:{
-		//unarmed
-	none:12, 
-		//swinging
-	axe:[16,19], 
-	mace:[16,19], 
-	sword:[16,18], 
-	wand:16, 
-	scepter:16, 
-		//thrusting
-	dagger:16, 
-	javelin:16, //(melee?)
-		//spear
-	spear:19, 
-		//two-handed
-	polearm:19, 
-	staff:19, 
-		//bow
-	bow:15, 
-		//crossbow
-	crossbow:20, 
-		//throwing
-	thrown:16, 
-	javelin:16, //(thrown?)
-	}
-*/	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

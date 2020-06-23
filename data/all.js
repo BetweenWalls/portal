@@ -1846,15 +1846,16 @@ function updatePrimaryStats() {
 	if (c.mDamage_reduced > 0) { magicRes += (" +"+c.mDamage_reduced) }
 	document.getElementById("mres").innerHTML = magicRes
 	
-	var ias = c.ias + c.ias_skill + Math.floor(dexTotal/8)*c.ias_per_8_dexterity;
+	var ias = c.ias + Math.floor(dexTotal/8)*c.ias_per_8_dexterity;
+	var ias_total = ias + c.ias_skill;
 	if (offhandType == "weapon" && typeof(equipped.offhand.ias) != 'undefined') { ias -= equipped.offhand.ias }
-	document.getElementById("ias").innerHTML = ias; if (ias > 0) { document.getElementById("ias").innerHTML += "%" }
+	document.getElementById("ias").innerHTML = ias_total; if (ias_total > 0) { document.getElementById("ias").innerHTML += "%" }
 	if (equipped.weapon.type != "" && equipped.weapon.special != 1) {
 		var weaponType = equipped.weapon.type;
 		var eIAS = Math.floor(120*ias/(120+ias));
 		var weaponFrames = 0;
 		if (weaponType != "") {
-			// TODO: Check weapon speed for 'thrown' weapons - additional penalty?
+			// TODO: Check weapon speed for 'thrown' weapons - additional baseSpeed (WSM) penalty of 30?
 			// TODO: Add fpa/aps to skills (many skills attack multiple times at different speeds, or interact with IAS differently)
 			if (weaponType == "club" || weaponType == "hammer") { weaponType = "mace" }
 			weaponFrames = c.weapon_frames[weaponType];
@@ -1864,7 +1865,8 @@ function updatePrimaryStats() {
 			}
 			if (weaponType == "sword" || weaponType == "axe" || weaponType == "mace") { if (equipped.weapon.twoHanded == 1) { weaponFrames = weaponFrames[1]; } else { weaponFrames = weaponFrames[0]; } }
 		}
-		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(256 * (100 + c.ias_skill + eIAS - c.baseSpeed) / 100));
+		weaponFrames += 1
+		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(256 * (100 + c.ias_skill + eIAS - c.baseSpeed) / 100)) - 1;
 		document.getElementById("ias").innerHTML += " ("+frames_per_attack+" fpa)"
 	}
 	if (c.flamme > 0) { document.getElementById("flamme").innerHTML = "Righteous Fire deals "+Math.floor((c.flamme/100*lifeTotal)*(1+(c.fDamage+c.fDamage_skillup)/100))+" damage per second<br>" } else { document.getElementById("flamme").innerHTML = "" }

@@ -1,5 +1,4 @@
 
-
 // FCR breakpoints
 //	base frames: 19
 //	var fcr_bp = [0, 7, 14, 22, 32, 48, 68, 99, 152]
@@ -16,33 +15,6 @@
 var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality:20, energy:15, life:50, mana:15, stamina:184, levelup_life:2.5, levelup_stamina:1, levelup_mana:1.5, ar_per_dexterity:5, life_per_vitality:3, stamina_per_vitality:1, mana_per_energy:1.5, starting_strength:20, starting_dexterity:25, starting_vitality:20, starting_energy:15, ar_const:10, block_const:3, skill_layout:"./images/amazon.png", mana_regen:1.66,
 	weapon_frames:{dagger:12, sword:[13,17], axe:[13,17], mace:[13,20], thrown:13, staff:17, polearm:17, scepter:13, wand:13, javelin:15, spear:15, bow:13, crossbow:19},
 
-/*	// Amazon - waffengattung
-	weapon_frames:{
-		//unarmed
-	none:13, 
-		//swinging
-	axe:[16,20], 
-	mace:[16,20], 
-	sword:[16,20], 
-	wand:16, 
-	scepter:16, 
-		//thrusting
-	dagger:15, 
-	javelin:15, //(melee?)
-		//spear
-	spear:18, 
-		//two-handed
-	polearm:20, 
-	staff:20, 
-		//bow
-	bow:14, 
-		//crossbow
-	crossbow:20, 
-		//throwing
-	thrown:16, 
-	javelin:16, //(thrown?)
-	}
-*/	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

@@ -1,28 +1,4 @@
 
-// OSkills that may adjust IAS breakpoints: Zeal, Feral Rage
-/* Copied from german IAS calculator:
-var startframe = [1, 0, 2, 2, 2, 2, 2, 0, 0]
-var aktionsframe = [
-    [8, 6, 6, 8, 8, 7, 9],	// unarmed
-    [0, 6, 0, 0, 0, 0, 0],	// claws
-    [10, 7, 7, 9, 9, 7, 12],	// one-handed swinging weapon (axe, mace, sword, wand, scepter)
-    [12, 11, 8, 10, 11, 8, 14],	// two-handed sword
-    [9, 7, 7, 8, 9, 8, 11],	// one-handed thrusting weapon (dagger, javelin (melee?))
-    [11, 10, 9, 9, 10, 8, 13],	// spear
-    [12, 9, 9, 9, 11, 9, 11],	// two-handed weapon
-    [6, 7, 7, 8, 9, 8, 9],	// bow
-    [9, 10, 10, 10, 11, 10, 11]	// crossbow
-				// thrown?
-]
-var sequences = [		// each skill is labeled with sequence/animation numbers, corresponding to this kind of array
-    [0, 0, 0, 0, 21, 24, 0, 0, 0],
-    [0, 0, 0, 0, 18, 21, 0, 0, 0],
-    [12, 12, 16, 0, 0, 0, 0, 0, 0],
-    [0, 0, 17, 17, 17, 0, 0, 0, 0],
-    [0, 0, 12, 0, 12, 0, 0, 0, 0]
-]
-*/
-
 var character_any = {
 	
 	// getSkillData - gets skill info from the appropriate skills data table

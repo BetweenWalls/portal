@@ -1063,6 +1063,7 @@ var equipment = {
 				bonus_corpse_explosion:1, phys_Lightning_Surge:1, extraValkyrie:1, extraGrizzly:1, extraFireGolem:1, extraHydra:1, radius_FreezingArrow:1, reset_cooldown_on_kill:1, cdr_on_striking:1, reanimate:1, 
 				flamme:1, ias_skill:1, ar_shrine_bonus:1, charge_ember:1, charge_thunder:1, charge_ice:1, skeleton_bonus:1, hammer_bonus:1, hammer_on_hit:1, recovery_per_corpse:1, absorb_elemental:1, absorb_melee:1, absorb_es_redirect:1, absorb_es_deplete:1, duration:1, radius:1, amountSummoned:1, enemy_damage:1, enemy_attack:1, enemy_physRes:1, enemy_allRes:1, fleeing:1, flee_distance:1, dimmedVision:1, confused:1, attraction:1, enemy_ias:1, enemy_frw:1	}
 */
+{debug:1, name:"+1% increased attack speed", req_level:100, ias:1},
 	],
 };
 

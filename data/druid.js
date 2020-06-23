@@ -22,34 +22,6 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 	weapon_frames:{dagger:20, sword:[20,21], axe:[20,17], mace:[20,20], thrown:20, staff:17, polearm:17, scepter:20, wand:20, javelin:23, spear:23, bow:15, crossbow:19},
 	wereform_frames:{dagger:22, sword:[22,25], axe:[22,20], mace:[22,23], thrown:22, staff:20, polearm:20, scepter:22, wand:22, javelin:27, spear:27, bow:19, crossbow:24},
 
-/*	// Druid - waffengattung
-	weapon_frames:{
-		//unarmed
-	none:16, 
-		//swinging
-	axe:[19,17], 
-	mace:[19,17], 
-	sword:[19,21], 
-	wand:19, 
-	scepter:19, 
-		//thrusting
-	dagger:19, 
-	javelin:19, //(melee?)
-		//spear
-	spear:23, 
-		//two-handed
-	polearm:17, 
-	staff:17, 
-		//bow
-	bow:16, 
-		//crossbow
-	crossbow:20, 
-		//throwing
-	thrown:18, 
-	javelin:18, //(thrown?)
-	}
-	//wereform_frames:{}
-*/	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

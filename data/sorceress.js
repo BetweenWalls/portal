@@ -15,33 +15,6 @@
 var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vitality:10, energy:35, life:40, mana:35, stamina:174, levelup_life:1.5, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:10, starting_dexterity:25, starting_vitality:10, starting_energy:35, ar_const:-15, block_const:5, skill_layout:"./images/sorceress.png", mana_regen:1.66,
 	weapon_frames:{dagger:16, sword:[17,21], axe:[17,15], mace:[17,20], thrown:17, staff:15, polearm:15, scepter:17, wand:17, javelin:20, spear:20, bow:16, crossbow:19, orb:17},
 
-/*	// Sorceress - waffengattung
-	weapon_frames:{
-		//unarmed
-	none:16, 
-		//swinging
-	axe:[20,18], 
-	mace:[20,18], 
-	sword:[20,24], 
-	wand:20, 
-	scepter:20, 
-		//thrusting
-	dagger:19, 
-	javelin:19, //(melee?)
-		//spear
-	spear:23, 
-		//two-handed
-	polearm:18, 
-	staff:18, 
-		//bow
-	bow:17, 
-		//crossbow
-	crossbow:20, 
-		//throwing
-	thrown:20, 
-	javelin:20, //(thrown?)
-	}
-*/	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

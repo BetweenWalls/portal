@@ -14,33 +14,6 @@
 var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25, vitality:15, energy:25, life:45, mana:25, stamina:179, levelup_life:2, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:15, starting_dexterity:25, starting_vitality:15, starting_energy:25, ar_const:-10, block_const:6, skill_layout:"./images/necromancer.png", mana_regen:1.66,
 	weapon_frames:{dagger:18, sword:[18,22], axe:[18,19], mace:[18,22], thrown:18, staff:19, polearm:19, scepter:18, wand:18, javelin:23, spear:23, bow:17, crossbow:19},
 
-/*	// Necromancer - waffengattung
-	weapon_frames:{
-		//unarmed
-	none:15, 
-		//swinging
-	axe:[19,20], 
-	mace:[19,20], 
-	sword:[19,23], 
-	wand:19, 
-	scepter:19, 
-		//thrusting
-	dagger:19, 
-	javelin:19, //(melee?)
-		//spear
-	spear:24, 
-		//two-handed
-	polearm:20, 
-	staff:20, 
-		//bow
-	bow:18, 
-		//crossbow
-	crossbow:20, 
-		//throwing
-	thrown:20, 
-	javelin:20, //(thrown?)
-	}
-*/	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill
