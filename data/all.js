@@ -2898,7 +2898,7 @@ function equipmentHover(group) {
 	if (selected != "none" && equipped[group].rarity == "rw") {
 		selected = selected.split(" ­ ­ - ­ ­ ")[0]+ " ­ ­ - ­ ­ " + equipped[group].base
 	}
-	if (selected != "none" && (group == "helm" || group == "armor" || group == "weapon" || (group == "offhand" && equipped[group].type != "quiver"))) {
+	if (selected != "none" && (group == "helm" || group == "armor" || (group == "weapon" && equipped[group].type != "javelin" && equipped[group].type != "thrown") || (group == "offhand" && equipped[group].type != "quiver"))) {
 		var sockets = ~~corruptsEquipped[group].sockets + ~~equipped[group].sockets;
 		var base = "";
 		if (typeof(equipped[group].base) != 'undefined') { base = getBaseId(equipped[group].base) }
