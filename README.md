@@ -14,7 +14,6 @@ Current Known Issues:
 * Unimplemented: skill buffs from item-charges
 * Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
-* Breakpoints for IAS (frames-per-attack) may be inaccurate
 
 Info: https://github.com/BetweenWalls/planner#planner
 

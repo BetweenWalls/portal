@@ -1,12 +1,20 @@
 .dropdown-skill {
   background-color: black;
-  color: gray;
+  color: #bbb;
   border-color: #333;
+  min-width: 75px;
+  padding: 1px 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.dropdown-skill:hover {
+  background-color: #222;
 }
 .no-selection {
--webkit-user-select: none; /* for safari & chrome browsers */
--moz-user-select: none; /* for mozilla browsers */
--ms-user-select: none; /* for IE10+ */
+  -webkit-user-select: none; /* for safari & chrome browsers */
+  -moz-user-select: none; /* for mozilla browsers */
+  -ms-user-select: none; /* for IE10+ */
   background-color: black;
 }
 .hover {
@@ -58,14 +66,9 @@
   color: white;
   width: 100px;
 }
-.green {
+.green, .green-name {
   text-align: center;
   color: #00f000;
-}
-.green-name {
-  text-align: center;
-  color: #00f000;
-/*  font-weight: bold;	*/
 }
 .gray {
   color: gray;
@@ -92,7 +95,7 @@
   height: 38px;
   z-index: 4;
 }
-.dropdown select {
+.dropdown select, .dropdown-corruption select {
   color: #ddd;
   background-color: black;
   padding-left: 7px;
@@ -105,62 +108,36 @@
   appearance: none;
 }
 .dropdown-corruption select {
-  color: #ddd;
-  background-color: black;
-  padding-left: 7px;
   width: 20px;
-  height: 29px;
-  border-color: #333;
-  z-index: 5;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+}
+.dropdown-set, .dropdown-unique, .dropdown-magic, .dropdown-rare, .dropdown-craft, .dropdown-common, .dropdown-rw, .dropdown-debug, .dropdown:hover, .dropdown:focus {
+  background-color: #222;
+  z-index: 6;
 }
 .dropdown-set {
-  background-color: #222;
   color: #00f000;
-  z-index: 6;
 }
 .dropdown-unique {
-  background-color: #222;
   color: #928068;
-  z-index: 6;
 }
 .dropdown-magic {
-  background-color: #222;
   color: #8080ff;
-  z-index: 6;
 }
 .dropdown-rare {
-  background-color: #222;
   color: yellow;
-  z-index: 6;
 }
 .dropdown-craft {
-  background-color: #222;
   color: orange;
-  z-index: 6;
 }
 .dropdown-common {
-  background-color: #222;
   color: white;
-  z-index: 6;
 }
 .dropdown-rw {
-  background-color: #222;
   color: #b2a992;
-  z-index: 6;
 }
 .dropdown-debug {
-  background-color: #222;
   color: #ff8080;
-  z-index: 6;
 }
-.dropdown:hover, .dropdown:focus {
-  background-color: #222;
-  z-index: 6;
-}
-
 .P {  position: absolute;
   text-align: center;
   text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 2px 2px 3px black, -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black;
