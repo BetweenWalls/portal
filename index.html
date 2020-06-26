@@ -93,9 +93,7 @@
 -->
 
 <div id="main">
-<!--
-<div id="side_panel" style="width: 100px; height:800px; position: relative; float: right;" class="no-selection" oncontextmenu="return false">
--->
+
 <div class="navbar" oncontextmenu="return false">
   <div class="nav-dropdown">
     <button class="nav-dropbtn">File</button>
@@ -152,10 +150,10 @@
 
 <div id="interface" style="width: 869px;">
 
-<div id="gui" class="no-selection" oncontextmenu="return false" style="height:398px;">
+<div id="gui" class="no-selection" oncontextmenu="return false" style="position:relative; height:433px;">
 
 <!--		/GUI Stats		-->
-<div id="gui_stats" style="position: relative; width: 175px; height: 434px; float: left;">
+<div id="gui_stats" style="position: relative; width: 175px; height: 433px; float: left;">
 <img usemap="#statmap" src="./images/statbar.png">
 <map id="statmap" name="statmap">
 <area coords="127,107,163,143" id="btn_strength" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
@@ -190,7 +188,7 @@
 </div> <!-- /GUI Stats -->
 
 <!--		GUI Skills		-->
-<div id="gui_skills" style="position: relative; width: 694px; height: 434px; float: left;">
+<div id="gui_skills" style="position: relative; width: 694px; height: 433px; float: left;">
 <img usemap="#skillmap" id="skill_tree" src="">
 <map id="skillmap" name="skillmap">
 <!--	skill hover areas	-->
@@ -392,9 +390,9 @@
 </div> <!-- /gui -->
 
 <!--		skill details		-->
-<div class="no-selection" style="display: block; height:235px; width: 330px; margin-top: 30px; position: relative;">
+<div class="no-selection" style="display: block; height:235px; width: 330px; position: relative;">
 <div class="gray">
-<div style="width: 300px; margin-bottom: 15px; margin-top: 40px;">
+<div style="margin-bottom: 15px;">
 <!--<a style="visibility:visible;">Damage per Second: </a><a id="dps"></a><br>-->
 <!--<a style="visibility:visible;">Chance to Hit: </a><a id="hit"></a><br>-->
 	<a>Basic Attack: </a><a id="basic_attack"></a><br>
@@ -525,7 +523,7 @@
 </div>
 
 <div style="width:869px;" id="stats_positioning_alignment">
-<div id="stats_align" style="color:black;"><br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br></div>
+<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <div style="float:right; width:195px;" id="stats_column_5">
 	<div id="golem_spacing" style="display:none;"><br><br><br></div>
 	<div style="margin-right:-100px;"><font size="2" id="flamme"></font></div>

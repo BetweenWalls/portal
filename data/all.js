@@ -48,7 +48,6 @@ function update() {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	checkIronGolem()
-	if (document.getElementById("inputTextToSave").value == "dev") { document.getElementById("stats_align").style.color = "orange" }
 }
 
 // getCharacterInfo - 
