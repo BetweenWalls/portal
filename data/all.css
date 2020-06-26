@@ -243,6 +243,7 @@ input[type="file"] {
   overflow: hidden;
   background-color: #333;
   font-family: Montserrat, sans-serif;
+  height: 24px;
 }
 
 /* The dropdown container */
