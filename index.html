@@ -275,25 +275,25 @@
 
 <!--	Equipment Menus 	-->
 <div class="dropdown" id="equipment" style="float: right; width:200px; height:20px; margin-right:2px; position: relative; z-index: 6;">
-<select class="dropdown" id="dropdown_helm" onChange="equip('helm', this.value)" onContextMenu="equip('helm', 'helm')"></select>
-<select class="dropdown" id="dropdown_armor" onChange="equip('armor', this.value)" onContextMenu="equip('armor', 'armor')"></select>
-<select class="dropdown" id="dropdown_gloves" onChange="equip('gloves', this.value)" onContextMenu="equip('gloves', 'gloves')"></select>
-<select class="dropdown" id="dropdown_boots" onChange="equip('boots', this.value)" onContextMenu="equip('boots', 'boots')"></select>
-<select class="dropdown" id="dropdown_belt" onChange="equip('belt', this.value)" onContextMenu="equip('belt', 'belt')"></select>
-<select class="dropdown" id="dropdown_amulet" onChange="equip('amulet', this.value)" onContextMenu="equip('amulet', 'amulet')"></select>
-<select class="dropdown" id="dropdown_ring1" onChange="equip('ring1', this.value)" onContextMenu="equip('ring1', 'ring1')"></select>
-<select class="dropdown" id="dropdown_ring2" onChange="equip('ring2', this.value)" onContextMenu="equip('ring2', 'ring2')"></select>
-<select class="dropdown" id="dropdown_weapon" onChange="equip('weapon', this.value)" onContextMenu="equip('weapon', 'weapon')"></select>
-<select class="dropdown" id="dropdown_offhand" onChange="equip('offhand', this.value)" onContextMenu="equip('offhand', 'offhand')"></select>
+<select id="dropdown_helm" onChange="equip('helm', this.value)" onContextMenu="equip('helm', 'helm')"></select>
+<select id="dropdown_armor" onChange="equip('armor', this.value)" onContextMenu="equip('armor', 'armor')"></select>
+<select id="dropdown_gloves" onChange="equip('gloves', this.value)" onContextMenu="equip('gloves', 'gloves')"></select>
+<select id="dropdown_boots" onChange="equip('boots', this.value)" onContextMenu="equip('boots', 'boots')"></select>
+<select id="dropdown_belt" onChange="equip('belt', this.value)" onContextMenu="equip('belt', 'belt')"></select>
+<select id="dropdown_amulet" onChange="equip('amulet', this.value)" onContextMenu="equip('amulet', 'amulet')"></select>
+<select id="dropdown_ring1" onChange="equip('ring1', this.value)" onContextMenu="equip('ring1', 'ring1')"></select>
+<select id="dropdown_ring2" onChange="equip('ring2', this.value)" onContextMenu="equip('ring2', 'ring2')"></select>
+<select id="dropdown_weapon" onChange="equip('weapon', this.value)" onContextMenu="equip('weapon', 'weapon')"></select>
+<select id="dropdown_offhand" onChange="equip('offhand', this.value)" onContextMenu="equip('offhand', 'offhand')"></select>
 <br><br>
-<select class="dropdown" id="dropdown_charms" onChange="addCharm(this.value)"></select>
-<select class="dropdown" id="dropdown_socketables" onChange="addSocketable(this.value)"></select>
+<select id="dropdown_charms" onChange="addCharm(this.value)"></select>
+<select id="dropdown_socketables" onChange="addSocketable(this.value)"></select>
 <br><br>
-<select class="dropdown" id="dropdown_mercenary" onChange="setMercenary(this.value)" onContextMenu="setMercenary('none')"></select>
-<select class="dropdown" id="dropdown_merc_helm" onChange="equipMerc('helm', this.value)" onContextMenu="equipMerc('helm', 'helm')"></select>
-<select class="dropdown" id="dropdown_merc_armor" onChange="equipMerc('armor', this.value)" onContextMenu="equipMerc('armor', 'armor')"></select>
-<select class="dropdown" id="dropdown_merc_weapon" onChange="equipMerc('weapon', this.value)" onContextMenu="equipMerc('weapon', 'weapon')"></select>
-<select class="dropdown" id="dropdown_merc_offhand" onChange="equipMerc('offhand', this.value)" onContextMenu="equipMerc('offhand', 'offhand')"></select>
+<select id="dropdown_mercenary" onChange="setMercenary(this.value)" onContextMenu="setMercenary('none')"></select>
+<select id="dropdown_merc_helm" onChange="equipMerc('helm', this.value)" onContextMenu="equipMerc('helm', 'helm')"></select>
+<select id="dropdown_merc_armor" onChange="equipMerc('armor', this.value)" onContextMenu="equipMerc('armor', 'armor')"></select>
+<select id="dropdown_merc_weapon" onChange="equipMerc('weapon', this.value)" onContextMenu="equipMerc('weapon', 'weapon')"></select>
+<select id="dropdown_merc_offhand" onChange="equipMerc('offhand', this.value)" onContextMenu="equipMerc('offhand', 'offhand')"></select>
 <br>
 <div id="golem" style="display:none;"><br><select class="dropdown" id="dropdown_golem" onChange="setIronGolem(this.value)" onContextMenu="setIronGolem('none')"></select><br></div>
 <br>
@@ -302,16 +302,16 @@
 
 <!--	Corruption Options	-->
 <div class="dropdown-corruption" id="equipment_corruptions" style="float: right; width:20px; margin-right:1px; position: relative; z-index: 6;">
-<select class="dropdown" id="corruptions_helm" onChange="corrupt('helm', this.value)" onContextMenu="corrupt('helm', 'none')"></select>
-<select class="dropdown" id="corruptions_armor" onChange="corrupt('armor', this.value)" onContextMenu="corrupt('armor', 'none')"></select>
-<select class="dropdown" id="corruptions_gloves" onChange="corrupt('gloves', this.value)" onContextMenu="corrupt('gloves', 'none')"></select>
-<select class="dropdown" id="corruptions_boots" onChange="corrupt('boots', this.value)" onContextMenu="corrupt('boots', 'none')"></select>
-<select class="dropdown" id="corruptions_belt" onChange="corrupt('belt', this.value)" onContextMenu="corrupt('belt', 'none')"></select>
-<select class="dropdown" id="corruptions_amulet" onChange="corrupt('amulet', this.value)" onContextMenu="corrupt('amulet', 'none')"></select>
-<select class="dropdown" id="corruptions_ring1" onChange="corrupt('ring1', this.value)" onContextMenu="corrupt('ring1', 'none')"></select>
-<select class="dropdown" id="corruptions_ring2" onChange="corrupt('ring2', this.value)" onContextMenu="corrupt('ring2', 'none')"></select>
-<select class="dropdown" id="corruptions_weapon" onChange="corrupt('weapon', this.value)" onContextMenu="corrupt('weapon', 'none')"></select>
-<select class="dropdown" id="corruptions_offhand" onChange="corrupt('offhand', this.value)" onContextMenu="corrupt('offhand', 'none')"></select>
+<select id="corruptions_helm" onChange="corrupt('helm', this.value)" onContextMenu="corrupt('helm', 'none')"></select>
+<select id="corruptions_armor" onChange="corrupt('armor', this.value)" onContextMenu="corrupt('armor', 'none')"></select>
+<select id="corruptions_gloves" onChange="corrupt('gloves', this.value)" onContextMenu="corrupt('gloves', 'none')"></select>
+<select id="corruptions_boots" onChange="corrupt('boots', this.value)" onContextMenu="corrupt('boots', 'none')"></select>
+<select id="corruptions_belt" onChange="corrupt('belt', this.value)" onContextMenu="corrupt('belt', 'none')"></select>
+<select id="corruptions_amulet" onChange="corrupt('amulet', this.value)" onContextMenu="corrupt('amulet', 'none')"></select>
+<select id="corruptions_ring1" onChange="corrupt('ring1', this.value)" onContextMenu="corrupt('ring1', 'none')"></select>
+<select id="corruptions_ring2" onChange="corrupt('ring2', this.value)" onContextMenu="corrupt('ring2', 'none')"></select>
+<select id="corruptions_weapon" onChange="corrupt('weapon', this.value)" onContextMenu="corrupt('weapon', 'none')"></select>
+<select id="corruptions_offhand" onChange="corrupt('offhand', this.value)" onContextMenu="corrupt('offhand', 'none')"></select>
 </div> <!-- /Corruption Options -->
 
 <!--	inventory	-->
@@ -525,9 +525,9 @@
 </div>
 
 <div style="width:869px;" id="stats_positioning_alignment">
-<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+<div id="stats_align" style="color:black;"><br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br></div>
 <div style="float:right; width:195px;" id="stats_column_5">
-	<div id="golem_spacing" style="display:hidden;"><br><br><br></div>
+	<div id="golem_spacing" style="display:none;"><br><br><br></div>
 	<div style="margin-right:-100px;"><font size="2" id="flamme"></font></div>
 	<font size="2" id="itd"></font>
 	<font size="2" id="pmh"></font>

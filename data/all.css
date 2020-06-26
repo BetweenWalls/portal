@@ -325,7 +325,7 @@ input[type="file"] {
 /*====================================================================================*/
 
 /*@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);*/
-
+/*
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
@@ -341,9 +341,6 @@ input[type="file"] {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  /*-webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;*/
 }
 #cssmenu:after,
 #cssmenu > ul:after {
@@ -354,9 +351,6 @@ input[type="file"] {
   line-height: 0;
   height: 0;
 }
-/*#cssmenu #menu-button {
-  display: none;
-}*/
 #cssmenu {
   font-family: Montserrat, sans-serif;
   background: #333333;
@@ -364,6 +358,51 @@ input[type="file"] {
 #cssmenu > ul > li {
   float: left;
 }
+#cssmenu > ul > li > a {
+  padding: 8px 16px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #dddddd;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+#cssmenu ul ul {
+  position: absolute;
+  left: -9999px;
+}
+#cssmenu li:hover > ul {
+  left: auto;
+}
+#cssmenu ul ul ul {
+  margin-left: 100%;
+  top: 0;
+}
+#cssmenu ul ul li a {
+  border-bottom: 1px solid rgba(150, 150, 150, 0.15);
+  padding: 11px 15px;
+  width: 170px;
+  font-size: 12px;
+  text-decoration: none;
+  color: #ddd;
+  font-weight: 400;
+  background: #333;
+  z-index: 9;
+}
+#cssmenu ul ul li:last-child > a,
+#cssmenu ul ul li.last-item > a {
+  border-bottom: 0;
+}
+#cssmenu > ul > li:hover > a,
+#cssmenu ul ul li:hover > a,
+#cssmenu ul ul li a:hover {
+  color: #fff;
+  background: #222
+}
+*/
+/*#cssmenu #menu-button {
+  display: none;
+}*/
 /*#cssmenu.align-center > ul {
   font-size: 0;
   text-align: center;
@@ -378,15 +417,6 @@ input[type="file"] {
 #cssmenu.align-right > ul > li {
   float: right;
 }*/
-#cssmenu > ul > li > a {
-  padding: 8px 16px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-decoration: none;
-  color: #dddddd;
-  font-weight: 700;
-  text-transform: uppercase;
-}
 /*#cssmenu > ul > li.has-sub > a {
   padding-right: 30px;
 }
@@ -419,10 +449,6 @@ input[type="file"] {
   top: 23px;
   height: 0;
 }*/
-#cssmenu ul ul {
-  position: absolute;
-  left: -9999px;
-}
 /*#cssmenu.align-right ul ul {
   text-align: right;
 }*/
@@ -434,9 +460,6 @@ input[type="file"] {
   -o-transition: all .2s ease;
   transition: all .2s ease;
 }*/
-#cssmenu li:hover > ul {
-  left: auto;
-}
 /*#cssmenu.align-right li:hover > ul {
   left: auto;
   right: 0;
@@ -445,35 +468,10 @@ input[type="file"] {
   height: 35px;
   left: auto;
 }*/
-#cssmenu ul ul ul {
-  margin-left: 100%;
-  top: 0;
-}
 /*#cssmenu.align-right ul ul ul {
   margin-left: 0;
   margin-right: 100%;
 }*/
-#cssmenu ul ul li a {
-  border-bottom: 1px solid rgba(150, 150, 150, 0.15);
-  padding: 11px 15px;
-  width: 170px;
-  font-size: 12px;
-  text-decoration: none;
-  color: #ddd;
-  font-weight: 400;
-  background: #333;
-  z-index: 9;
-}
-#cssmenu ul ul li:last-child > a,
-#cssmenu ul ul li.last-item > a {
-  border-bottom: 0;
-}
-#cssmenu > ul > li:hover > a,
-#cssmenu ul ul li:hover > a,
-#cssmenu ul ul li a:hover {
-  color: #fff;
-  background: #222
-}
 /*
 #cssmenu ul ul li.has-sub > a:after {
   position: absolute;
