@@ -302,19 +302,16 @@ input[type="file"] {
 }
 
 .nav-text {
-  display: none;
   position: relative;
   height: 27px;
   top: 7px;
 }
 .nav-option {
-  display: none;
   position: relative;
   height: 27px;
   top: 3px;
 }
 .nav-difficulty {
-  display: none;
   position: relative;
   height: 44px;
   top: 4px;
@@ -323,24 +320,6 @@ input[type="file"] {
 /* Show the dropdown menu on hover */
 .nav-dropdown:hover .nav-dropdown-content {
   display: block;
-} else {
-  display: none;
-}
-
-.nav-dropdown:hover .nav-text {
-  display: block;
-} else {
-  background-color:orange;
-}
-.nav-dropdown:hover .nav-option {
-  display: block;
-} else {
-  background-color:orange;
-}
-.nav-dropdown:hover .nav-difficulty {
-  display: block;
-} else {
-  background-color:orange;
 }
 
 /*====================================================================================*/
