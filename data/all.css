@@ -244,6 +244,7 @@ input[type="file"] {
   background-color: #333;
   font-family: Montserrat, sans-serif;
   height: 24px;
+  min-width: 911px;
 }
 
 /* The dropdown container */

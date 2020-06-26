@@ -98,8 +98,7 @@
 -->
 <div class="navbar" oncontextmenu="return false">
   <div class="nav-dropdown">
-    <button class="nav-dropbtn">File
-    </button>
+    <button class="nav-dropbtn">File</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item" onclick="saveTextAsFile()"><div class="nav-text">
 	<label> ­ ­ ­ ­ Save ­ ­ </label>
@@ -110,8 +109,7 @@
     </div>
   </div>
   <div class="nav-dropdown">
-    <button class="nav-dropbtn">Preferences
-    </button>
+    <button class="nav-dropbtn">Preferences</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
 	<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
@@ -124,8 +122,7 @@
     </div>
   </div>
   <div class="nav-dropdown">
-    <button class="nav-dropbtn">Character
-    </button>
+    <button class="nav-dropbtn">Character</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-difficulty"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
 	<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
@@ -146,7 +143,7 @@
     </div>
   </div>
   <div class="nav-dropdown">
-    <div class="nav-dropbtn" style="cursor:pointer;" onClick="location.href='https://github.com/BetweenWalls/planner#planner'"><a href="https://github.com/BetweenWalls/planner#planner">About</a></div>
+    <button class="nav-dropbtn" style="cursor:pointer;" onClick="location.href='https://github.com/BetweenWalls/planner#planner'"><a href="https://github.com/BetweenWalls/planner#planner">About</a></button>
   </div>
 </div>
 
@@ -426,7 +423,7 @@
 
 <!--		stats		-->
 <div class="gray" id="stats">
-<div id="stats_main_columns">
+<div id="stats_main_columns" style="position:relative; left:3px;">
 <div id="demons_and_undead" style="position:relative; top:-90px;"> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as separate ED/AR) -->
 <div style="position:absolute; left:30px;">
 	<br><br>
@@ -439,7 +436,7 @@
 	<font size="2">AR vs Undead: </font><font size="2" id="ar_vs_undead"></font><br>
 </div>
 </div>
-<div style="position:absolute; left:10px;" id="stats_column_1">
+<div style="position:absolute; left:0px;" id="stats_column_1">
 	<font size="2">Fire Resist: </font><font size="2" id="fres"></font><br>
 	<font size="2">Cold Resist: </font><font size="2" id="cres"></font><br>
 	<font size="2">Lightning Resist: </font><font size="2" id="lres"></font><br>
@@ -462,7 +459,7 @@
 	<font size="2">+ Lightning Damage: </font><font size="2" id="ldamage"></font><br>
 	<font size="2">+ Poison Damage: </font><font size="2" id="pdamage"></font><br>
 </div>
-<div style="position:absolute; left:180px;" id="stats_column_2">
+<div style="position:absolute; left:170px;" id="stats_column_2">
 	<font size="2">Fire Absorb: </font><font size="2" id="fabsorb"></font><br>
 	<font size="2">Cold Absorb: </font><font size="2" id="cabsorb"></font><br>
 	<font size="2">Lightning Absorb: </font><font size="2" id="labsorb"></font><br><br>
@@ -482,7 +479,7 @@
 	<font size="2">Lightning Pierce: </font><font size="2" id="lpierce"></font><br>
 	<font size="2">Poison Pierce: </font><font size="2" id="ppierce"></font><br>
 </div>
-<div style="position:absolute; left:350px;" id="stats_column_3">
+<div style="position:absolute; left:340px;" id="stats_column_3">
 	<br>
 	<font size="3">Life: </font><font size="3" id="life"></font><br>
 	<font size="3">Mana: </font><font size="3" id="mana"></font><br>
@@ -504,7 +501,7 @@
 	<font size="2">Enemy Lightning Resist: </font><font size="2" id="enemy_lres"></font><br>
 	<font size="2">Enemy Poison Resist: </font><font size="2" id="enemy_pres"></font><br>
 </div>
-<div style="position:absolute; left:520px;" id="stats_column_4">
+<div style="position:absolute; left:510px;" id="stats_column_4">
 	<br>
 	<font>Strength: </font><font id="strength2"></font><br>
 	<font>Dexterity: </font><font id="dexterity2"></font><br>
