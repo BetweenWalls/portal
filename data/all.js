@@ -187,21 +187,24 @@ function parseFile(file) {
 			fileInfo.socketed[group][i] = name
 		}
 	}
-	var new_effects = file.split("effects:{")[1].split("}},selectedSkill:")[0].split("},");
-	for (let i = 0; i < new_effects.length; i++) {
-		var id = new_effects[i].split(":{")[0];
-		var stats = new_effects[i].split(":{")[1].split(",")
-		fileInfo.effects[id] = {}
-		fileInfo.effects[id].info = {}
-		for (let t = 0; t < stats.length; t++) {
-			var stat = stats[t].split(":")[0];
-			var value = stats[t].split(":")[1];
-			if (stat == "enabled" || stat == "snapshot" || stat == "index") {
-				fileInfo.effects[id].info[stat] = ~~value
-			} else if (stat == "origin") {
-				fileInfo.effects[id].info[stat] = value
-			} else {
-				fileInfo.effects[id][stat] = ~~value
+	var new_effects = file.split("effects:{")[1].split("},selectedSkill:")[0];
+	if (new_effects != "") {
+		new_effects = file.split("effects:{")[1].split("}},selectedSkill:")[0].split("},");
+		for (let i = 0; i < new_effects.length; i++) {
+			var id = new_effects[i].split(":{")[0];
+			var stats = new_effects[i].split(":{")[1].split(",")
+			fileInfo.effects[id] = {}
+			fileInfo.effects[id].info = {}
+			for (let t = 0; t < stats.length; t++) {
+				var stat = stats[t].split(":")[0];
+				var value = stats[t].split(":")[1];
+				if (stat == "enabled" || stat == "snapshot" || stat == "index") {
+					fileInfo.effects[id].info[stat] = ~~value
+				} else if (stat == "origin") {
+					fileInfo.effects[id].info[stat] = value
+				} else {
+					fileInfo.effects[id][stat] = ~~value
+				}
 			}
 		}
 	}
@@ -285,7 +288,7 @@ function setCharacterInfo(className) {
 	setIronGolem(fileInfo.ironGolem)
 	checkSkill(fileInfo.selectedSkill[0], 1)
 	checkSkill(fileInfo.selectedSkill[1], 2)
-	for (effect in fileInfo.effects) { if (fileInfo.effects[effect].info.snapshot == 1) {
+	for (effect in fileInfo.effects) { if (typeof(fileInfo.effects[effect].info.snapshot) != 'undefined') { if (fileInfo.effects[effect].info.snapshot == 1) {
 		var active = 0;
 		var new_effect = 0;
 		if (typeof(effects[effect]) != 'undefined') {
@@ -309,7 +312,7 @@ function setCharacterInfo(className) {
 				if (info.origin == "skill") { skills[info.index].level -= 1 }
 				if (info.origin == "oskill") { character["oskill_"+effect] -= 1 }
 			}
-	} }
+	} } }
 	if (effects != {}) { for (effect in effects) { if (typeof(effects[effect].info.enabled) != 'undefined') { if (fileInfo.effects[effect].info.enabled != effects[effect].info.enabled) { toggleEffect(effect) } } } }
 	for (stat in fileInfo.character) { character[stat] = fileInfo.character[stat] }
 	if (settings.coupling != fileInfo.settings.coupling) { if (settings.coupling == 1) { document.getElementById("coupling").checked = false }; toggleCoupling(document.getElementById("coupling")) }
@@ -508,7 +511,6 @@ function loadGolem() {
 function startup(choice) {
 	setMercenary("none")
 	setIronGolem("none")
-	for (id in effects) { if (typeof(effects[id].info.snapshot) != 'undefined') { effects[id].info.snapshot = 0 } }
 	loadEquipment(choice)
 	clearIconSources()
 	resetSkills()
@@ -1522,24 +1524,18 @@ function updateAllEffects() {
 		}
 	}
 	// updates cskill effects
-/*	for (id in effects) { for (cskill in effect_cskills) { if (id.split("-")[0] == cskill) { if (typeof(effects[id].info.enabled) != 'undefined') {
+	for (id in effects) { if (effects[id].info.origin == "cskill") {
 		var match = 0;
 		var group = effects[id].info.other;
-	//	if (typeof(equipped[group].cskill) != 'undefined') { if (equipped[group].cskill.length != 0) { match = 1 } }	// TODO: Implement & Add more cases (check which cskills are granted) ...if this is even needed?
-	//	if (match == 0) { removeEffect(id) }
-	} } } }
-*/	for (let s = 0; s < skills.length; s++) {
-		var skill = skills[s];
-		if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) {
-			var id = skill.name.split(' ').join('_');
-			if (skill.level > 0 || skill.force_levels > 0) {
-				if (document.getElementById(id) == null) { addEffect("skill",skill.name,skill.i,"") }
-				else { updateEffect(id) }
-			} else {
-				if (document.getElementById(id) != null) { removeEffect(id) }
+		var cskill_level = effects[id].info.index;
+		var cskill_name = id.split("-")[0].split("_").join(" ");
+		if (typeof(equipped[group].cskill) != 'undefined' && equipped[group].cskill != "") {
+			for (unit in equipped[group].cskill) {
+				if (cskill_level == equipped[group].cskill[unit][0] && cskill_name == equipped[group].cskill[unit][1]) { match = 1 }
 			}
-		} }
-	}
+		}
+		if (match == 0) { removeEffect(id) }
+	} }
 	update()	// needed?
 	// disables duplicate effects (non-skills)
 	for (id in effects) { if (document.getElementById(id) != null) { if (document.getElementById(id).getAttribute("class") == "hide") { document.getElementById(id).setAttribute("class","effect") } } }
@@ -1670,7 +1666,10 @@ function hoverEffectOff(id) {}
 // resetEffects - Removes all effects
 // ---------------------------------
 function resetEffects() {
+	for (id in effects) { if (typeof(effects[id].info.snapshot) != 'undefined') { effects[id].info.snapshot = 0 } }
+	updateAllEffects()
 	for (id in effects) { if (document.getElementById(id) != null) { removeEffect(id) } }
+	effects = {}
 }
 
 // getAuraData - gets a list of stats corresponding to the aura (excludes synergy bonuses)
@@ -2127,7 +2126,7 @@ function updateSecondaryStats() {
 	
 	document.getElementById("pierce").innerHTML = c.pierce + c.pierce_skillup; if (c.pierce > 0 || c.pierce_skillup > 0) { document.getElementById("pierce").innerHTML += "%" }
 	document.getElementById("cblow").innerHTML = c.cblow; if (c.cblow > 0) { document.getElementById("cblow").innerHTML += "%" }
-	document.getElementById("dstrike").innerHTML = c.dstrike + Math.floor(c.level*c.dstrike_per_level); if (c.dstrike > 0) { document.getElementById("dstrike").innerHTML += "%" }
+	document.getElementById("dstrike").innerHTML = c.dstrike + Math.floor(c.level*c.dstrike_per_level); if (c.dstrike > 0 || c.dstrike_per_level > 0) { document.getElementById("dstrike").innerHTML += "%" }
 	document.getElementById("cstrike").innerHTML = c.cstrike + c.cstrike_skillup; if (c.cstrike > 0 || c.cstrike_skillup > 0) { document.getElementById("cstrike").innerHTML += "%" }
 	document.getElementById("owounds").innerHTML = c.owounds; if (c.owounds > 0) { document.getElementById("owounds").innerHTML += "%" }
 	
