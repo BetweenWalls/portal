@@ -49,11 +49,11 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * mercenary selection
 * equipment selection & modification (corrupting, socketing, upgrading)
 * charm inventory
+* snapshotting
 * saving/loading
 
 ### Upcoming Plans:
 * skill buffs from item-charges
-* option to 'snapshot' buffs
 * more breakpoint info
 * mercenary stats & validation
 * tooltips for items & buffs
