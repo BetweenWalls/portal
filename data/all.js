@@ -1522,11 +1522,13 @@ function updateAllEffects() {
 		}
 	}
 	// updates cskill effects
-	for (id in effects) { for (cskill in effect_cskills) { if (id.split("-")[0] == cskill) { if (typeof(effects[id].info.enabled) != 'undefined') {
+/*	for (id in effects) { for (cskill in effect_cskills) { if (id.split("-")[0] == cskill) { if (typeof(effects[id].info.enabled) != 'undefined') {
+		var match = 0;
 		var group = effects[id].info.other;
-		if (equipped[group].cskill.length == 0) { removeEffect(id) }	// TODO: Add more cases (check which cskills are granted)
+	//	if (typeof(equipped[group].cskill) != 'undefined') { if (equipped[group].cskill.length != 0) { match = 1 } }	// TODO: Implement & Add more cases (check which cskills are granted) ...if this is even needed?
+	//	if (match == 0) { removeEffect(id) }
 	} } } }
-	for (let s = 0; s < skills.length; s++) {
+*/	for (let s = 0; s < skills.length; s++) {
 		var skill = skills[s];
 		if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) {
 			var id = skill.name.split(' ').join('_');
