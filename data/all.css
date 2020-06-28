@@ -208,13 +208,16 @@ position:absolute;
 .Hy3 {top: 61px;}
 .Hy4 {top: 90px;}
 
-.effect {
+.effect, .effect-container {
   width: 36px;
   height: 36px;
   visibility: visible;
   display: block;
   z-index: 6;
   }
+.effect {
+  position: absolute;
+}
   
 .hide {
   width: 36px;

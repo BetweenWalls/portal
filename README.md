@@ -5,6 +5,7 @@ Path of Diablo Planner
 * Use right click to remove points or items
 * Shift and ctrl modify the amount added or removed
 * Upgrading can be done by ctrl-clicking the equipped item (ctrl + right-click to downgrade)
+* Snapshot effects by ctrl-clicking the effect's icon
 
 Current Known Issues:
 * Charms can't be moved into a new space below the original space if they overlap eachother
@@ -12,7 +13,6 @@ Current Known Issues:
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * Unimplemented: mercenary stats
 * Unimplemented: skill buffs from item-charges
-* Unimplemented: option to 'snapshot' buffs
 * Unimplemented: breakpoint info for FCR, FBR, FHR
 
 Info: https://github.com/BetweenWalls/planner#planner

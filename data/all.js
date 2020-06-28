@@ -79,7 +79,16 @@ function getCharacterInfo() {
 		charInfo += "],"
 	}
 	charInfo += "},effects:{"
-	for (id in effects) { charInfo += (id+":"+effects[id].info.enabled+",") }
+	for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') {
+		charInfo += (id+":{enabled:"+effects[id].info.enabled+",snapshot:"+effects[id].info.snapshot)
+		if (effects[id].info.snapshot == 1) {
+			charInfo += (",origin:"+effects[id].info.origin+",index:"+effects[id].info.index)
+			for (affix in effects[id]) { if (affix != "info") {
+				charInfo += (","+affix+":"+effects[id][affix])
+			} }
+		}
+		charInfo += "},"
+	} }
 	charInfo += "},selectedSkill:["+selectedSkill[0]+","+selectedSkill[1]
 	charInfo += "],mercenary:'"+mercenary.name+"'"
 	charInfo += ",settings:{coupling:"+settings.coupling+",autocast:"+settings.autocast
@@ -178,11 +187,23 @@ function parseFile(file) {
 			fileInfo.socketed[group][i] = name
 		}
 	}
-	var new_effects = file.split("effects:{")[1].split("},selectedSkill:")[0].split(",");
+	var new_effects = file.split("effects:{")[1].split("}},selectedSkill:")[0].split("},");
 	for (let i = 0; i < new_effects.length; i++) {
-		var id = new_effects[i].split(":")[0];
-		var enabled = ~~new_effects[i].split(":")[1];
-		fileInfo.effects[id] = enabled
+		var id = new_effects[i].split(":{")[0];
+		var stats = new_effects[i].split(":{")[1].split(",")
+		fileInfo.effects[id] = {}
+		fileInfo.effects[id].info = {}
+		for (let t = 0; t < stats.length; t++) {
+			var stat = stats[t].split(":")[0];
+			var value = stats[t].split(":")[1];
+			if (stat == "enabled" || stat == "snapshot" || stat == "index") {
+				fileInfo.effects[id].info[stat] = ~~value
+			} else if (stat == "origin") {
+				fileInfo.effects[id].info[stat] = value
+			} else {
+				fileInfo.effects[id][stat] = ~~value
+			}
+		}
 	}
 	var new_mercenary = file.split("mercenary:'")[1].split("',settings:")[0];
 	fileInfo.mercenary = new_mercenary
@@ -264,11 +285,36 @@ function setCharacterInfo(className) {
 	setIronGolem(fileInfo.ironGolem)
 	checkSkill(fileInfo.selectedSkill[0], 1)
 	checkSkill(fileInfo.selectedSkill[1], 2)
-	if (effects != {}) { for (effect in effects) { if (fileInfo.effects[effect] != effects[effect].info.enabled) { toggleEffect(effect) } } }
+	for (effect in fileInfo.effects) { if (fileInfo.effects[effect].info.snapshot == 1) {
+		var active = 0;
+		var new_effect = 0;
+		if (typeof(effects[effect]) != 'undefined') {
+			if (fileInfo.effects[effect].info.enabled == 1) { active = 1; toggleEffect(effect); }
+		} else {
+			new_effect = 1;
+			var info = fileInfo.effects[effect].info;
+			if (info.origin == "skill") { skills[info.index].level += 1 }
+			if (info.origin == "oskill") { character["oskill_"+effect] += 1 }
+			addEffect(info.origin,effect.split('_').join(' '),info.index,"")	// addEffect() doesn't work with zero skill levels, so this implementation is 'hacky'
+			if (fileInfo.effects[effect].info.enabled == 1) { active = 1; toggleEffect(effect); }
+		}
+			effects[effect].info.snapshot = 1;
+			document.getElementById(effect+"_ss").src = "./images/skills/snapshot.png";
+			for (affix in fileInfo.effects[effect]) { if (affix != "info") {
+				effects[effect][affix] = fileInfo.effects[effect][affix]
+			} }
+			if (active == 1) { toggleEffect(effect) }
+			if (new_effect == 1) {
+				var info = fileInfo.effects[effect].info;
+				if (info.origin == "skill") { skills[info.index].level -= 1 }
+				if (info.origin == "oskill") { character["oskill_"+effect] -= 1 }
+			}
+	} }
+	if (effects != {}) { for (effect in effects) { if (typeof(effects[effect].info.enabled) != 'undefined') { if (fileInfo.effects[effect].info.enabled != effects[effect].info.enabled) { toggleEffect(effect) } } } }
 	for (stat in fileInfo.character) { character[stat] = fileInfo.character[stat] }
 	if (settings.coupling != fileInfo.settings.coupling) { if (settings.coupling == 1) { document.getElementById("coupling").checked = false }; toggleCoupling(document.getElementById("coupling")) }
 	if (settings.autocast != fileInfo.settings.autocast) { if (settings.autocast == 1) { document.getElementById("autocast").checked = false }; toggleAutocast(document.getElementById("autocast")) }
-	updateStats()
+	//updateStats()
 	document.getElementById("inputTextToSave").value = ""
 	update()
 }
@@ -462,6 +508,7 @@ function loadGolem() {
 function startup(choice) {
 	setMercenary("none")
 	setIronGolem("none")
+	for (id in effects) { if (typeof(effects[id].info.snapshot) != 'undefined') { effects[id].info.snapshot = 0 } }
 	loadEquipment(choice)
 	clearIconSources()
 	resetSkills()
@@ -1254,16 +1301,28 @@ function initializeEffect(origin, name, num, other) {
 	var iconOff = prefix+"dark/"+name+" dark.png";
 	var iconOn = prefix+name+fileType;
 	
-	var newEffect = document.createElement("img")
-	var eClass = document.createAttribute("class");			eClass.value = "effect";			newEffect.setAttributeNode(eClass);
-	var eId = document.createAttribute("id");			eId.value = id;					newEffect.setAttributeNode(eId);
-	var eSrc = document.createAttribute("src");			eSrc.value = iconOff;				newEffect.setAttributeNode(eSrc);
-	var eHoverOn = document.createAttribute("onmouseover");		eHoverOn.value = "hoverEffectOn(this.id)";	newEffect.setAttributeNode(eHoverOn);
-	var eHoverOff = document.createAttribute("onmouseout");		eHoverOff.value = "hoverEffectOff(this.id)";	newEffect.setAttributeNode(eHoverOff);
-	var eToggle = document.createAttribute("onclick");		eToggle.value = "toggleEffect(this.id)";	newEffect.setAttributeNode(eToggle);
-	var eRemove = document.createAttribute("oncontextmenu");	eRemove.value = "removeEffect(this.id,1)";	newEffect.setAttributeNode(eRemove);
+	var newDiv = document.createElement("div");
+	var dClass = document.createAttribute("class");			dClass.value = "effect-container";				newDiv.setAttributeNode(dClass);
+	var dId = document.createAttribute("id");			dId.value = id;							newDiv.setAttributeNode(dId);
+	var dHoverOn = document.createAttribute("onmouseover");		dHoverOn.value = "hoverEffectOn(this.id)";			newDiv.setAttributeNode(dHoverOn);
+	var dHoverOff = document.createAttribute("onmouseout");		dHoverOff.value = "hoverEffectOff(this.id)";			newDiv.setAttributeNode(dHoverOff);
+	var dClickLeft = document.createAttribute("onclick");		dClickLeft.value = "leftClickEffect(event,this.id)";		newDiv.setAttributeNode(dClickLeft);
+	var dClickRight = document.createAttribute("oncontextmenu");	dClickRight.value = "rightClickEffect(event,this.id,1)";	newDiv.setAttributeNode(dClickRight);
+	
+	var newEffect = document.createElement("img");
+	var eClass = document.createAttribute("class");			eClass.value = "effect";					newEffect.setAttributeNode(eClass);
+	var eId = document.createAttribute("id");			eId.value = id+"_e";						newEffect.setAttributeNode(eId);
+	var eSrc = document.createAttribute("src");			eSrc.value = iconOff;						newEffect.setAttributeNode(eSrc);
+	newDiv.appendChild(newEffect)
+	
+	var newEffectSnapshot = document.createElement("img");
+	var oClass = document.createAttribute("class");			oClass.value = "effect";					newEffectSnapshot.setAttributeNode(oClass);
+	var oId = document.createAttribute("id");			oId.value = id+"_ss";						newEffectSnapshot.setAttributeNode(oId);
+	var oSrc = document.createAttribute("src");			oSrc.value = "./images/skills/none.png";			newEffectSnapshot.setAttributeNode(oSrc);
+	newDiv.appendChild(newEffectSnapshot)
+	
 	var effectGUI = document.getElementById("side");
-	effectGUI.appendChild(newEffect);
+	effectGUI.appendChild(newDiv);
 	
 	if (typeof(effects[id]) == 'undefined') { effects[id] = {info:{}} }
 	
@@ -1273,6 +1332,7 @@ function initializeEffect(origin, name, num, other) {
 	effects[id].info.origin = origin
 	effects[id].info.index = num
 	effects[id].info.other = other
+	effects[id].info.snapshot = 0
 	setEffectData(origin,name,num,other)
 	
 	if (settings.autocast == 1) { toggleEffect(id) }	// TODO: should also toggle-on if effect is always-active
@@ -1293,7 +1353,50 @@ function setEffectData(origin, name, num, other) {
 	else if (origin == "skill") { data = character.getBuffData(skills[num]) }
 	else if (origin == "oskill") { data = character_any.getBuffData(skills_all[oskills_info["oskill_"+id].native_class][num]) }
 	else if (origin == "misc") { data = getMiscData(name,num); }
-	for (affix in data) { effects[id][affix] = data[affix] }
+	if (effects[id].info.snapshot == 0) { for (affix in data) { effects[id][affix] = data[affix] } }
+	// TODO: remove 'snapshot' for class effects if their base skill level decreases?
+}
+
+// rightClickEffect - 
+//	id: the effect's id
+//	direct: whether the effect icon was clicked directly (1 or null)
+// ---------------------------------
+function rightClickEffect(event, id, direct) {
+	var mod = 0;
+	if (event != null) { if (event.ctrlKey) { mod = 1 } }
+	if (mod > 0) {
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Lethal_Strike" && id != "Frigerate" && id != "Enflame"))) {
+			effects[id].info.snapshot = 0
+			document.getElementById(id+"_ss").src = "./images/skills/none.png"
+			updateAllEffects()
+			update()
+		}
+	} else {
+		removeEffect(id,direct)
+	}
+}
+
+// leftClickEffect - 
+//	id: the effect's id
+// ---------------------------------
+function leftClickEffect(event, id) {
+	var mod = 0;
+	if (event != null) { if (event.ctrlKey) { mod = 1 } }
+	if (mod > 0) {
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame"))) {
+			if (effects[id].info.snapshot == 0) {
+				effects[id].info.snapshot = 1;
+				document.getElementById(id+"_ss").src = "./images/skills/snapshot.png";
+			} else {
+				effects[id].info.snapshot = 0;
+				document.getElementById(id+"_ss").src = "./images/skills/none.png";
+			}
+			updateAllEffects()
+			update()
+		}
+	} else {
+		toggleEffect(id)
+	}
 }
 
 // removeEffect - 
@@ -1301,7 +1404,7 @@ function setEffectData(origin, name, num, other) {
 //	direct: whether the effect icon was clicked directly (1 or null)
 // ---------------------------------
 function removeEffect(id, direct) {
-	if (document.getElementById(id) != null) {
+	if (document.getElementById(id) != null) { if (effects[id].info.snapshot != 1) {
 		var on = effects[id].info.enabled;
 		var secondary = "";
 		if (on == 1) { if (typeof(effects[id].info.secondary) != 'undefined') { secondary = effects[id].info.secondary } }
@@ -1321,7 +1424,7 @@ function removeEffect(id, direct) {
 			updateAllEffects()
 		}
 		adjustStackedAuras()
-	}
+	} }
 }
 
 // toggleEffect - 
@@ -1343,7 +1446,7 @@ function toggleEffect(id) {
 function disableEffect(id) {
 	if (document.getElementById(id) != null && effects[id].info.enabled == 1) {
 		effects[id].info.enabled = 0
-		document.getElementById(id).src = effects[id].info.imageOff
+		document.getElementById(id+"_e").src = effects[id].info.imageOff
 		for (affix in effects[id]) { if (affix != "info") { character[affix] -= effects[id][affix] } }
 		//update() or updateEffect(id)?
 	}
@@ -1355,7 +1458,7 @@ function disableEffect(id) {
 function enableEffect(id) {
 	if (document.getElementById(id) != null && effects[id].info.enabled == 0) {
 		effects[id].info.enabled = 1
-		document.getElementById(id).src = effects[id].info.imageOn
+		document.getElementById(id+"_e").src = effects[id].info.imageOn
 		for (affix in effects[id]) { if (affix != "info") { character[affix] += effects[id][affix] } }
 	}
 }
@@ -1371,9 +1474,7 @@ function updateAllEffects() {
 			var id = skill.name.split(' ').join('_');
 			if (skill.level > 0 || skill.force_levels > 0) {
 				if (document.getElementById(id) == null) { addEffect("skill",skill.name,skill.i,"") }
-				else {
-					updateEffect(id)
-				}
+				else { updateEffect(id) }
 			} else {
 				if (document.getElementById(id) != null) { removeEffect(id) }
 			}
@@ -1389,9 +1490,7 @@ function updateAllEffects() {
 					var id = skill.name.split(' ').join('_');
 					if (character[oskills[o]] > 0) {
 						if (document.getElementById(id) == null) { addEffect("oskill",skill.name,skill.i,"") }
-						else {
-							updateEffect(id)
-						}
+						else { updateEffect(id) }
 					} else {
 						if (document.getElementById(id) != null) { removeEffect(id) }
 					}
