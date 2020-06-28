@@ -631,13 +631,13 @@ function setIronGolem(val) {
 			}
 		} }
 	}
-	if (typeof(effects["Iron_Golem"]) != 'undefined') {
-		for (affix in effects["Iron_Golem"]) { if (affix != "info") {
-			character[affix] -= effects["Iron_Golem"][affix]	// stats are added to the character via getBuffData()
-			effects["Iron_Golem"][affix] = unequipped[affix]
+	for (id in effects) { if (id.split("-")[0] == "Iron_Golem") {
+		for (affix in effects[id]) { if (affix != "info") {
+			character[affix] -= effects[id][affix]	// stats are added to the character via getBuffData()
+			effects[id][affix] = unequipped[affix]
 		} }
-		updateEffect("Iron_Golem")
-	}
+		updateEffect(id)
+	} }
 	update()
 	updateAllEffects()
 }
@@ -823,6 +823,8 @@ function equipMerc(group, val) {
 function equip(group, val) {
 	var auraName = "";
 	var auraLevel = 0;
+	var cskillName = ["","",""];
+	var cskillLevel = [0,0,0];
 	var old_set_bonuses = "";
 	var old_set = "";
 	var old_set_before = 0;
@@ -850,6 +852,12 @@ function equip(group, val) {
 	for (old_affix in equipped[group]) {
 		if (typeof(character[old_affix]) != 'undefined') { character[old_affix] -= equipped[group][old_affix] }
 		if (old_affix == "aura") { removeEffect(equipped[group][old_affix].split(' ').join('_')+"-"+group) }
+		if (old_affix == "cskill") {
+			for (let i = 0; i < equipped[group].cskill.length; i++) {
+				var cskill_name = equipped[group].cskill[i][1];
+				for (cskill in effect_cskills) { if (cskill.split('_').join(' ') == cskill_name) { removeEffect(cskill+"-"+group) } }
+			}
+		}
 		if (old_affix != "set_bonuses") { equipped[group][old_affix] = unequipped[old_affix] }
 	}
 	// remove set bonuses from previous item
@@ -936,6 +944,13 @@ function equip(group, val) {
 					} else {
 						equipped[group][affix] = equipment[src_group][item][affix]
 						if (affix == "aura") { auraName = equipment[src_group][item][affix]; auraLevel = equipment[src_group][item].aura_lvl; }
+						if (affix == "cskill") {
+							for (let i = 0; i < equipped[group].cskill.length; i++) {
+								var cskill_level = equipped[group].cskill[i][0];
+								var cskill_name = equipped[group].cskill[i][1];
+								for (cskill in effect_cskills) { if (cskill.split('_').join(' ') == cskill_name) { cskillName[i] = cskill_name; cskillLevel[i] = cskill_level; } }
+							}
+						}
 					}
 				} else {
 					if ((affix == "sup" || affix == "e_damage") && src_group == "weapon") {
@@ -1044,6 +1059,11 @@ function equip(group, val) {
 	
 	if (auraName != "" && auraLevel != 0) {		// TODO: Why does this break things if called earlier? (item image wasn't appearing)
 		addEffect("aura",auraName,auraLevel,group)
+	}
+	for (let i = 0; i < cskillName.length; i++) {
+		if (cskillName[i] != "" && cskillLevel[i] != 0) {
+			addEffect("cskill",cskillName[i],cskillLevel[i],group)
+		}
 	}
 	if (corruptsEquipped[group].name == "+ Enhanced Defense") { adjustDefenseCorruption(group,val) }
 	update()
@@ -1353,6 +1373,7 @@ function setEffectData(origin, name, num, other) {
 	else if (origin == "skill") { data = character.getBuffData(skills[num]) }
 	else if (origin == "oskill") { data = character_any.getBuffData(skills_all[oskills_info["oskill_"+id].native_class][num]) }
 	else if (origin == "misc") { data = getMiscData(name,num); }
+	else if (origin == "cskill") { data = getCSkillData(name,num) }
 	if (effects[id].info.snapshot == 0) { for (affix in data) { effects[id][affix] = data[affix] } }
 	// TODO: remove 'snapshot' for class effects if their base skill level decreases?
 }
@@ -1365,7 +1386,8 @@ function rightClickEffect(event, id, direct) {
 	var mod = 0;
 	if (event != null) { if (event.ctrlKey) { mod = 1 } }
 	if (mod > 0) {
-		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Lethal_Strike" && id != "Frigerate" && id != "Enflame"))) {
+		var idName = id.split("-")[0];
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem"))) {
 			effects[id].info.snapshot = 0
 			document.getElementById(id+"_ss").src = "./images/skills/none.png"
 			updateAllEffects()
@@ -1383,7 +1405,8 @@ function leftClickEffect(event, id) {
 	var mod = 0;
 	if (event != null) { if (event.ctrlKey) { mod = 1 } }
 	if (mod > 0) {
-		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame"))) {
+		var idName = id.split("-")[0];
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem"))) {
 			if (effects[id].info.snapshot == 0) {
 				effects[id].info.snapshot = 1;
 				document.getElementById(id+"_ss").src = "./images/skills/snapshot.png";
@@ -1497,6 +1520,23 @@ function updateAllEffects() {
 				} }
 			}
 		}
+	}
+	// updates cskill effects
+	for (id in effects) { for (cskill in effect_cskills) { if (id.split("-")[0] == cskill) { if (typeof(effects[id].info.enabled) != 'undefined') {
+		var group = effects[id].info.other;
+		if (equipped[group].cskill.length == 0) { removeEffect(id) }	// TODO: Add more cases (check which cskills are granted)
+	} } } }
+	for (let s = 0; s < skills.length; s++) {
+		var skill = skills[s];
+		if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) {
+			var id = skill.name.split(' ').join('_');
+			if (skill.level > 0 || skill.force_levels > 0) {
+				if (document.getElementById(id) == null) { addEffect("skill",skill.name,skill.i,"") }
+				else { updateEffect(id) }
+			} else {
+				if (document.getElementById(id) != null) { removeEffect(id) }
+			}
+		} }
 	}
 	update()	// needed?
 	// disables duplicate effects (non-skills)
@@ -1688,6 +1728,64 @@ function getAuraData(aura, lvl, source) {
 		else if (aura == "Holy Shock") { 
 			result.lDamage_min = auras[a].data.values[0][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);
 			result.lDamage_max = auras[a].data.values[1][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level); }
+	}
+	return result;
+}
+
+// getCSkillData - gets a list of stats corresponding to the cskill (item charge-skill)
+//	cskill: name of the skill
+//	lvl: level of the skill (1+)
+// result: indexed array of stats granted and their values
+// ---------------------------------
+function getCSkillData(cskill, lvl) {
+	var result = {};
+	var id = getId(cskill);
+	var skill = skills_all[effect_cskills[id].native_class][effect_cskills[id].i];
+	// Amazon
+	if (cskill == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; }
+	// Assassin
+	else if (cskill == "Cloak of Shadows") { result.defense_bonus = skill.data.values[0][lvl]; result.enemy_defense = skill.data.values[1][lvl]; result.duration = 8; }
+	else if (cskill == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
+	// Druid
+	else if (cskill == "Cyclone Armor") { result.absorb_elemental = skill.data.values[0][lvl]; }
+	else if (cskill == "Heart of Wolverine") { result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; }
+	else if (cskill == "Oak Sage") { result.max_life = skill.data.values[1][lvl]; }
+	else if (cskill == "Spirit of Barbs") { result.thorns_reflect = skill.data.values[1][lvl]; }
+	// Necromancer
+	else if (cskill == "Blood Golem") { result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl]; }
+	else if (cskill == "Iron Golem") {
+		if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") {
+			var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
+			var active = true;
+			for (id in effects) {
+				if (typeof(effects[id].info.enabled) != 'undefined') {
+					var effect = id.split('-')[0];
+					if (getId(aura) == effect) {
+						active = false;
+					}
+				}
+			}
+			var auraInfo = getAuraData(aura, aura_lvl, "golem");
+			for (affix in auraInfo) {
+				if (active == true) { result[affix] = auraInfo[affix] }
+				else { result[affix] = unequipped[affix] }
+			}
+		} }
+	}
+	else if (cskill == "Deadly Poison") {
+		result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 2; result.pDamage_duration_override = 2; result.enemy_pRes = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl];
+		if (character.class_name == "Necromancer") {
+			result.pDamage_min = skill.data.values[1][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
+			result.pDamage_max = skill.data.values[2][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
+		}
+	}
+	// Sorceress
+	else if (cskill == "Enflame") {
+		result.fDamage_min = skill.data.values[1][lvl]; result.fDamage_max = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl];
+		if (character.class_name == "Sorceress") {
+			result.fDamage_min = skill.data.values[1][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
+			result.fDamage_max = skill.data.values[2][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
+		}
 	}
 	return result;
 }
@@ -3394,15 +3492,10 @@ function getBaseId(base_name) {
 // checkIronGolem - 
 // ---------------------------------
 function checkIronGolem() {
-	if (character.class_name == "Necromancer" && (skills[8].level > 0 || skills[8].force_levels > 0)) {
-		var active = false;
-		for (effect in effects) { if (effect == "Iron_Golem" && typeof(effects[effect].info.enabled) != 'undefined') { if (effects[effect].info.enabled == 1) { active = true } } }
-		if (active != false) { document.getElementById("golem").style.display = "block"; document.getElementById("golem_spacing").style.display = "block"; }
-		else { document.getElementById("golem").style.display = "none"; document.getElementById("golem_spacing").style.display = "none" }
-	} else {
-		document.getElementById("golem").style.display = "none"
-		document.getElementById("golem_spacing").style.display = "none"
-	}
+	var active = false;
+	for (effect in effects) { if (effect.split("-")[0] == "Iron_Golem" && typeof(effects[effect].info.enabled) != 'undefined') { if (effects[effect].info.enabled == 1) { active = true } } }
+	if (active != false) { document.getElementById("golem").style.display = "block"; document.getElementById("golem_spacing").style.display = "block"; }
+	else { document.getElementById("golem").style.display = "none"; document.getElementById("golem_spacing").style.display = "none" }
 }
 
 // checkOffhand - 

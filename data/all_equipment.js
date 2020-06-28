@@ -49,7 +49,7 @@ var oskills_info = {
 	oskill_Zeal:{name:"Zeal",native_class:"paladin",i:23}, oskill_Vengeance:{name:"Vengeance",native_class:"paladin",i:25}, 
 	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, oskill_Enflame:{name:"Enflame",native_class:"sorceress",i:28}, 
 };
-
+var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10},Cloak_of_Shadows:{native_class:"assassin",i:14},Venom:{native_class:"assassin",i:18},Cyclone_Armor:{native_class:"druid",i:5},Heart_of_Wolverine:{native_class:"druid",i:23},Oak_Sage:{native_class:"druid",i:26},Spirit_of_Barbs:{native_class:"druid",i:29},Blood_Golem:{native_class:"necromancer",i:6},Iron_Golem:{native_class:"necromancer",i:8},Deadly_Poison:{native_class:"necromancer",i:11},Enflame:{native_class:"sorceress",i:28}};
 var non_items = [
 {name:"Miscellaneous"},
 {i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},					// check: verify whether this applies to skills gained solely from items

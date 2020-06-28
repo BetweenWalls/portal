@@ -12,7 +12,6 @@ Current Known Issues:
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * Unimplemented: mercenary stats
-* Unimplemented: skill buffs from item-charges
 * Unimplemented: breakpoint info for FCR, FBR, FHR
 
 Info: https://github.com/BetweenWalls/planner#planner
@@ -53,7 +52,6 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * saving/loading
 
 ### Upcoming Plans:
-* skill buffs from item-charges
 * more breakpoint info
 * mercenary stats & validation
 * tooltips for items & buffs
