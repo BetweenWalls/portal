@@ -49,7 +49,8 @@ var oskills_info = {
 	oskill_Zeal:{name:"Zeal",native_class:"paladin",i:23}, oskill_Vengeance:{name:"Vengeance",native_class:"paladin",i:25}, 
 	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, oskill_Enflame:{name:"Enflame",native_class:"sorceress",i:28}, 
 };
-var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10},Cloak_of_Shadows:{native_class:"assassin",i:14},Venom:{native_class:"assassin",i:18},Cyclone_Armor:{native_class:"druid",i:5},Heart_of_Wolverine:{native_class:"druid",i:23},Oak_Sage:{native_class:"druid",i:26},Spirit_of_Barbs:{native_class:"druid",i:29},Blood_Golem:{native_class:"necromancer",i:6},Iron_Golem:{native_class:"necromancer",i:8},Deadly_Poison:{native_class:"necromancer",i:11},Enflame:{native_class:"sorceress",i:28}};
+var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10}, Cloak_of_Shadows:{native_class:"assassin",i:14}, Venom:{native_class:"assassin",i:18}, Cyclone_Armor:{native_class:"druid",i:5}, Heart_of_Wolverine:{native_class:"druid",i:23}, Oak_Sage:{native_class:"druid",i:26}, Spirit_of_Barbs:{native_class:"druid",i:29}, Blood_Golem:{native_class:"necromancer",i:6}, Iron_Golem:{native_class:"necromancer",i:8}, Deadly_Poison:{native_class:"necromancer",i:11}, Enflame:{native_class:"sorceress",i:28}};
+var effect_ctcskills = {Venom:{native_class:"assassin",i:18}, Fade:{native_class:"assassin",i:15}, Cyclone_Armor:{native_class:"druid",i:5}, Chilling_Armor:{native_class:"sorceress",i:8}, Blaze:{native_class:"sorceress",i:24}, Enflame:{native_class:"sorceress",i:28}};
 var non_items = [
 {name:"Miscellaneous"},
 {i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},					// check: verify whether this applies to skills gained solely from items
@@ -182,7 +183,7 @@ var equipment = {
 {rarity:"rw", name:"Bramble ­ ­ - ­ ­ Archon Plate", req_level:63, defense:300, fhr:50, pDamage:50, max_mana:5, mana_regen:15, cRes_max:5, fRes:30, pRes:100, life_per_kill:13, base:"Archon Plate", aura:"Thorns", aura_lvl:21, cskill:[[13,"Spirit of Barbs",33]]},
 {rarity:"rw", name:"Chains of Honor ­ ­ - ­ ­ Archon Plate", req_level:65, e_def:70, all_skills:2, strength:20, life_leech:8, pdr:8, all_res:65, life_replenish:7, damage_vs_demons:200, damage_vs_undead:100, mf:25, base:"Archon Plate"},
 {rarity:"rw", name:"Enigma ­ ­ - ­ ­ Archon Plate", req_level:65, defense:775, all_skills:2, frw:45, strength_per_level:0.75, max_life:5, pdr:8, life_per_kill:14, damage_to_mana:15, mf_per_level:1, oskill_Warp:1, base:"Archon Plate", pod_changes:1},
-{rarity:"rw", name:"Fortitude ­ ­ - ­ ­ Archon Plate", req_level:63, defense:15, e_def:200, fcr:25, life_per_level:1.5, life_replenish:7, lRes_max:5, all_res:30, damage_to_mana:12, light_radius:1, damage_reduced:7, damage_bonus:300, base:"Archon Plate"},
+{rarity:"rw", name:"Fortitude ­ ­ - ­ ­ Archon Plate", req_level:63, defense:15, e_def:200, fcr:25, life_per_level:1.5, life_replenish:7, lRes_max:5, all_res:30, damage_to_mana:12, light_radius:1, damage_reduced:7, damage_bonus:300, base:"Archon Plate", ctc:[[20,15,"Chilling Armor","when struck"]]},
 {rarity:"rw", name:"Dragon ­ ­ - ­ ­ Archon Plate", req_level:61, defense:360, missile_defense:230, all_attributes:5, strength_per_level:0.375, lRes_max:5, damage_reduced:7, max_mana:5, base:"Archon Plate", aura:"Holy Fire", aura_lvl:14, ctc:[[20,18,"Venom","when struck"],[12,15,"Hydra","on striking"]]},
 {rarity:"rw", name:"Rain ­ ­ - ­ ­ Wyrmhide", req_level:63, skills_druid:2, mana:150, lRes:30, mDamage_reduced:7, damage_to_mana:15, extraGrizzly:1, base:"Wyrmhide", pod_changes:1, ctc:[[5,15,"Cyclone Armor","when struck"]]},
 {rarity:"rw", name:"Principle ­ ­ - ­ ­ Wyrmhide", req_level:55, skills_paladin:2, damage_vs_undead:50, life:150, slower_stam_drain:15, pRes_max:5, fRes:30, base:"Wyrmhide", ctc:[[100,5,"Holy Bolt","on striking"]]},
@@ -1853,7 +1854,7 @@ var cskills = [
 	"Poison Nova","Summon Spirit Wolf","Cyclone Armor","Summon Grizzly","Corpse Explosion",
 	"Teleport","Frozen Orb","Meteor","Nova","Amplify Damage","Blizzard","Enflame","Volcano",
 	"Firestorm","Holy Bolt","Raven","Hydra","Plague Javelin","Immolation Arrow",
-	// possible cskills (copied from wiki):
+	// other possible cskills (copied from wiki):
 	"Inner Sight","Magic Arrow","Fire Arrow","Cold Arrow","Multiple Shot","Exploding Arrow","Ice Arrow","Freezing Arrow","Power Strike","Power Strike","Charged Strike",
 	"Bash","Stun","Concentration","Grim Ward",
 	"Firestorm","Fissure","Twister","Volcano","Tornado",
@@ -1864,6 +1865,62 @@ var cskills = [
 */
 /*
 var ctcs = [
+	// in equipment[]:
+    // Non-Class
+	Ball Lightning		on striking, on attack
+	Delirium		when struck
+    // Assassin
+	Venom			when struck, on striking, when you level up
+	Fade			when struck
+	Mind Blast		when struck
+    // Barbarian
+	Howl			when struck
+	Taunt			on striking
+    // Druid
+	Tornado			on striking, when struck
+	Fissure			on striking, when struck
+	Cyclone Armor		when struck
+	Firestorm		on striking
+	Volcano			on striking
+	Molten Boulder		on striking
+	Twister			on striking
+    // Necromancer 
+	Poison Nova		when struck, on striking, when you die
+	Bone Spirit		on striking, when struck
+	Bone Spear		on striking, on attack
+	Desecrate		on attack
+	Bone Prison		when struck	// ?
+	Confuse			when struck, on striking
+	Lower Resist		when struck, on striking
+	Amplify Damage		when struck, on striking
+	Terror			when struck
+	Dim Vision		when struck 
+	Iron Maiden		when struck
+	Weaken			on striking
+	Life Tap		on striking
+	Decrepify		on striking
+    // Paladin
+	Holy Bolt		on striking, when struck
+	Fist of the Heavens	when struck, on striking
+    // Sorceress 
+	Blizzard		when struck, when you level-up, on striking, when you die
+	Frost Nova		when hit, on striking, when struck, when you level up
+	Frozen Orb		on attack, on striking
+	Chilling Armor		when struck
+	Ice Blast		on striking
+	Glacial Spike		on attack
+	Chain Lightning		when struck, on striking, on kill, on death, on attack, when you die
+	Charged Bolt		on striking, on attack, when struck
+	Nova			when struck, on attack, on striking, when you level up
+	Static Field		when struck, on striking
+	Discharge		on striking
+	Blaze			when struck, when you level-up, on level-up, when you level up
+	Meteor			on striking, when struck, when you die
+	Fire Ball		on striking, on attack
+	Fire Wall		when struck
+	Hydra			on striking
+	Enflame			on kill
+	
 	// possible ctc effects (copied from wiki):
 	"Fire Bolt","Charged Bolt","Ice Bolt","Frost Nova","Nova","Lightning Surge","Hydra","Amplify Damage",	// wiki is incomplete
 ];

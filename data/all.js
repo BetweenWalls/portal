@@ -827,6 +827,8 @@ function equip(group, val) {
 	var auraLevel = 0;
 	var cskillName = ["","",""];
 	var cskillLevel = [0,0,0];
+	var ctcskillName = ["","","",""];
+	var ctcskillLevel = [0,0,0,0];
 	var old_set_bonuses = "";
 	var old_set = "";
 	var old_set_before = 0;
@@ -858,6 +860,12 @@ function equip(group, val) {
 			for (let i = 0; i < equipped[group].cskill.length; i++) {
 				var cskill_name = equipped[group].cskill[i][1];
 				for (cskill in effect_cskills) { if (cskill.split('_').join(' ') == cskill_name) { removeEffect(cskill+"-"+group) } }
+			}
+		}
+		if (old_affix == "ctc") {
+			for (let i = 0; i < equipped[group].ctc.length; i++) {
+				var ctcskill_name = equipped[group].ctc[i][2];
+				for (ctcskill in effect_ctcskills) { if (ctcskill.split('_').join(' ') == ctcskill_name) { removeEffect(ctcskill+"-"+group) } }
 			}
 		}
 		if (old_affix != "set_bonuses") { equipped[group][old_affix] = unequipped[old_affix] }
@@ -951,6 +959,13 @@ function equip(group, val) {
 								var cskill_level = equipped[group].cskill[i][0];
 								var cskill_name = equipped[group].cskill[i][1];
 								for (cskill in effect_cskills) { if (cskill.split('_').join(' ') == cskill_name) { cskillName[i] = cskill_name; cskillLevel[i] = cskill_level; } }
+							}
+						}
+						if (affix == "ctc") {
+							for (let i = 0; i < equipped[group].ctc.length; i++) {
+								var ctcskill_level = equipped[group].ctc[i][1];
+								var ctcskill_name = equipped[group].ctc[i][2];
+								for (ctcskill in effect_ctcskills) { if (ctcskill.split('_').join(' ') == ctcskill_name) { ctcskillName[i] = ctcskill_name; ctcskillLevel[i] = ctcskill_level; } }
 							}
 						}
 					}
@@ -1065,6 +1080,11 @@ function equip(group, val) {
 	for (let i = 0; i < cskillName.length; i++) {
 		if (cskillName[i] != "" && cskillLevel[i] != 0) {
 			addEffect("cskill",cskillName[i],cskillLevel[i],group)
+		}
+	}
+	for (let i = 0; i < ctcskillName.length; i++) {
+		if (ctcskillName[i] != "" && ctcskillLevel[i] != 0) {
+			addEffect("ctcskill",ctcskillName[i],ctcskillLevel[i],group)
 		}
 	}
 	if (corruptsEquipped[group].name == "+ Enhanced Defense") { adjustDefenseCorruption(group,val) }
@@ -1375,7 +1395,8 @@ function setEffectData(origin, name, num, other) {
 	else if (origin == "skill") { data = character.getBuffData(skills[num]) }
 	else if (origin == "oskill") { data = character_any.getBuffData(skills_all[oskills_info["oskill_"+id].native_class][num]) }
 	else if (origin == "misc") { data = getMiscData(name,num); }
-	else if (origin == "cskill") { data = getCSkillData(name,num) }
+	else if (origin == "cskill") { data = getCSkillData(name,num,other) }
+	else if (origin == "ctcskill") { data = getCTCSkillData(name,num,other) }
 	if (effects[id].info.snapshot == 0) { for (affix in data) { effects[id][affix] = data[affix] } }
 	// TODO: remove 'snapshot' for class effects if their base skill level decreases?
 }
@@ -1389,7 +1410,7 @@ function rightClickEffect(event, id, direct) {
 	if (event != null) { if (event.ctrlKey) { mod = 1 } }
 	if (mod > 0) {
 		var idName = id.split("-")[0];
-		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem"))) {
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem")) || effects[id].info.origin == "ctcskill") {
 			effects[id].info.snapshot = 0
 			document.getElementById(id+"_ss").src = "./images/skills/none.png"
 			updateAllEffects()
@@ -1408,7 +1429,7 @@ function leftClickEffect(event, id) {
 	if (event != null) { if (event.ctrlKey) { mod = 1 } }
 	if (mod > 0) {
 		var idName = id.split("-")[0];
-		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem"))) {
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem")) || effects[id].info.origin == "ctcskill") {
 			if (effects[id].info.snapshot == 0) {
 				effects[id].info.snapshot = 1;
 				document.getElementById(id+"_ss").src = "./images/skills/snapshot.png";
@@ -1485,6 +1506,7 @@ function enableEffect(id) {
 		effects[id].info.enabled = 1
 		document.getElementById(id+"_e").src = effects[id].info.imageOn
 		for (affix in effects[id]) { if (affix != "info") { character[affix] += effects[id][affix] } }
+		if (effects[id].info.origin == "cskill" || effects[id].info.origin == "ctcskill") { disableEffect(id.split("-")[0]) }
 	}
 }
 
@@ -1536,15 +1558,28 @@ function updateAllEffects() {
 		}
 		if (match == 0) { removeEffect(id) }
 	} }
+	// updates ctcskill effects
+	for (id in effects) { if (effects[id].info.origin == "ctcskill") {
+		var match = 0;
+		var group = effects[id].info.other;
+		var ctcskill_level = effects[id].info.index;
+		var ctcskill_name = id.split("-")[0].split("_").join(" ");
+		if (typeof(equipped[group].ctc) != 'undefined' && equipped[group].ctc != "") {
+			for (unit in equipped[group].ctc) {
+				if (ctcskill_level == equipped[group].ctc[unit][1] && ctcskill_name == equipped[group].ctc[unit][2]) { match = 1 }
+			}
+		}
+		if (match == 0) { removeEffect(id) }
+	} }
 	update()	// needed?
 	// disables duplicate effects (non-skills)
 	for (id in effects) { if (document.getElementById(id) != null) { if (document.getElementById(id).getAttribute("class") == "hide") { document.getElementById(id).setAttribute("class","effect") } } }
 	var checkedEffects = {};
 	for (id in effects) { checkedEffects[id] = 0 }
 	for (id1 in effects) {
-		if (typeof(effects[id1].info.enabled) != 'undefined' && effects[id1].info.origin != "skill") {
+		if (typeof(effects[id1].info.enabled) != 'undefined' && effects[id1].info.origin != "skill" && effects[id1].info.origin != "oskill") {
 			for (id2 in effects) {
-				if (id1 != id2 && checkedEffects[id2] != 1 && typeof(effects[id2].info.enabled) != 'undefined' && effects[id2].info.origin != "skill") {
+				if (id1 != id2 && checkedEffects[id2] != 1 && typeof(effects[id2].info.enabled) != 'undefined' && effects[id2].info.origin != "skill" && effects[id2].info.origin != "oskill") {
 					var effect1 = id1.split('-')[0];
 					var effect2 = id2.split('-')[0];
 					var skillEnabled = 0;	// not used?
@@ -1734,27 +1769,33 @@ function getAuraData(aura, lvl, source) {
 }
 
 // getCSkillData - gets a list of stats corresponding to the cskill (item charge-skill)
-//	cskill: name of the skill
+//	name: name of the skill
 //	lvl: level of the skill (1+)
+//	group: source item group for the skill
 // result: indexed array of stats granted and their values
 // ---------------------------------
-function getCSkillData(cskill, lvl) {
+function getCSkillData(name, lvl, group) {
 	var result = {};
-	var id = getId(cskill);
-	var skill = skills_all[effect_cskills[id].native_class][effect_cskills[id].i];
+	var unit = getId(name);
+	var effect_id = unit+"-"+group;
+	var skill = skills_all[effect_cskills[unit].native_class][effect_cskills[unit].i];
 	// Amazon
-	if (cskill == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; }
+	if (name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; }
 	// Assassin
-	else if (cskill == "Cloak of Shadows") { result.defense_bonus = skill.data.values[0][lvl]; result.enemy_defense = skill.data.values[1][lvl]; result.duration = 8; }
-	else if (cskill == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
+	else if (name == "Cloak of Shadows") { result.defense_bonus = skill.data.values[0][lvl]; result.enemy_defense = skill.data.values[1][lvl]; result.duration = 8; }
+	else if (name == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
 	// Druid
-	else if (cskill == "Cyclone Armor") { result.absorb_elemental = skill.data.values[0][lvl]; }
-	else if (cskill == "Heart of Wolverine") { result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; }
-	else if (cskill == "Oak Sage") { result.max_life = skill.data.values[1][lvl]; }
-	else if (cskill == "Spirit of Barbs") { result.thorns_reflect = skill.data.values[1][lvl]; }
+	else if (name == "Cyclone Armor") { result.absorb_elemental = skill.data.values[0][lvl]; }
+	else if (name == "Heart of Wolverine") { result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; }
+	else if (name == "Oak Sage") { result.max_life = skill.data.values[1][lvl]; }
+	else if (name == "Spirit of Barbs") { result.thorns_reflect = skill.data.values[1][lvl]; }
 	// Necromancer
-	else if (cskill == "Blood Golem") { result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl]; }
-	else if (cskill == "Iron Golem") {
+	else if (name == "Blood Golem") {
+		if (effects[effect_id].info.enabled == 1) { for (id in effects) { if (id == "Iron_Golem" || id == unit) { disableEffect(id) } } }
+		result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl];
+	}
+	else if (name == "Iron Golem") {
+		if (effects[effect_id].info.enabled == 1) { for (id in effects) { if (id == "Blood_Golem" || id == unit) { disableEffect(id) } } }
 		if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") {
 			var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
 			var active = true;
@@ -1773,7 +1814,7 @@ function getCSkillData(cskill, lvl) {
 			}
 		} }
 	}
-	else if (cskill == "Deadly Poison") {
+	else if (name == "Deadly Poison") {
 		result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 2; result.pDamage_duration_override = 2; result.enemy_pRes = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl];
 		if (character.class_name == "Necromancer") {
 			result.pDamage_min = skill.data.values[1][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
@@ -1781,7 +1822,42 @@ function getCSkillData(cskill, lvl) {
 		}
 	}
 	// Sorceress
-	else if (cskill == "Enflame") {
+	else if (name == "Enflame") {
+		result.fDamage_min = skill.data.values[1][lvl]; result.fDamage_max = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl];
+		if (character.class_name == "Sorceress") {
+			result.fDamage_min = skill.data.values[1][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
+			result.fDamage_max = skill.data.values[2][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
+		}
+	}
+	return result;
+}
+
+// getCTCSkillData - gets a list of stats corresponding to the ctcskill (item chance-to-cast skill)
+//	name: name of the skill
+//	lvl: level of the skill (1+)
+//	group: source item group for the skill
+// result: indexed array of stats granted and their values
+// ---------------------------------
+function getCTCSkillData(name, lvl, group) {
+	var result = {};
+	var unit = getId(name);
+	var effect_id = unit+"-"+group;
+	var skill = skills_all[effect_ctcskills[unit].native_class][effect_ctcskills[unit].i];
+	// Assassin
+	if (name == "Fade") {
+		if (effects[effect_id].info.enabled == 1) { for (id in effects) { if (id == "Burst_of_Speed" || id == unit) { disableEffect(id) } } }
+		result.curse_reduction = skill.data.values[0][lvl]; result.all_res = skill.data.values[1][lvl]; result.pdr = skill.data.values[2][lvl]; result.duration = skill.data.values[3][lvl];
+	}
+	else if (name == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
+	// Druid
+	else if (name == "Cyclone Armor") { result.absorb_elemental = skill.data.values[0][lvl]; }
+	// Sorceress
+	else if (name == "Chilling Armor") {
+		if (effects[effect_id].info.enabled == 1) { for (id in effects) { if (id == "Shiver_Armor" || id == unit) { disableEffect(id) } } }
+		result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl];
+	}
+	else if (name == "Blaze") { result.life_regen = 2; result.duration = skill.data.values[0][lvl]; }
+	else if (name == "Enflame") {
 		result.fDamage_min = skill.data.values[1][lvl]; result.fDamage_max = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl];
 		if (character.class_name == "Sorceress") {
 			result.fDamage_min = skill.data.values[1][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);

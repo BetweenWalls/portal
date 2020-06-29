@@ -63,14 +63,18 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 	// result: indexed array including stats affected and their values
 	// ---------------------------------
 	getBuffData : function(skill) {
+		var id = skill.name.split(' ').join('_');
 		var lvl = skill.level + skill.extra_levels;
 		var result = {};
 		
 		if (skill.name == "Bone Offering") { result.defense_bonus = skill.data.values[2][lvl]; result.skeleton_bonus = skill.data.values[3][lvl]; result.curse_length_reduced = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Flesh Offering") { result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; }
-		if (skill.name == "Blood Golem") { disableGolems(skill); result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl]; }
+		if (skill.name == "Blood Golem") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
+			result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl];
+		}
 		if (skill.name == "Iron Golem") {
-			disableGolems(skill);
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
 			if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") {
 				var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
 				var active = true;
@@ -90,14 +94,21 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 			} }
 		}
 		if (skill.name == "Deadly Poison") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.pDamage_min = skill.data.values[1][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
 			result.pDamage_max = skill.data.values[2][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
 			result.pDamage_duration = 2; result.pDamage_duration_override = 2; result.enemy_pRes = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl];
 		}
 		if (skill.name == "Bone Armor") { result.absorb_melee = skill.data.values[0][lvl]; }
 		// No stat buffs:
-		if (skill.name == "Clay Golem") { disableGolems(skill); result.slow_target = skill.data.values[3][lvl]; }
-		if (skill.name == "Fire Golem") { disableGolems(skill); result.amountSummoned = 1+character.extraFireGolem; }
+		if (skill.name == "Clay Golem") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
+			result.slow_target = skill.data.values[3][lvl];
+		}
+		if (skill.name == "Fire Golem") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
+			result.amountSummoned = 1+character.extraFireGolem;
+		}
 		if (skill.name == "Raise Skeleton Warrior") { result.amountSummoned = skill.data.values[3][lvl]; }
 		if (skill.name == "Raise Skeletal Mage") { result.amountSummoned = skill.data.values[8][lvl]; }
 		if (skill.name == "Revive") { result.amountSummoned = skill.data.values[2][lvl]; result.duration = 600; }
@@ -160,20 +171,6 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		
 		var result = {min:skillMin,max:skillMax,ar:skillAr};
 		return result
-	}
-};
-
-// disableGolems - disable all but the selected golem
-//	skill: skill object for the specified golem
-// ---------------------------------
-function disableGolems(skill) {
-	var id = skill.name.split(' ').join('_');
-	var golems = [3,6,8,9];
-	for (let g = 0; g < golems.length; g++) {
-		var sk = skills[golems[g]].name.split(' ').join('_');
-		if (document.getElementById(sk) != null && sk != id && effects[id].info.enabled == 1 && effects[sk].info.enabled == 1) {
-			disableEffect(sk)
-		}
 	}
 };
 

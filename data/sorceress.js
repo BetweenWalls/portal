@@ -73,13 +73,11 @@ var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vi
 		var result = {};
 		
 		if (skill.name == "Shiver Armor") {
-			var sk = skills[8].name.split(' ').join('_');
-			if (document.getElementById(sk) != null && effects[id].info.enabled == 1) { disableEffect(sk) }	// disables Chilling Armor
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Chilling_Armor")) { disableEffect(effect_id) } } }
 			result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl];
 		}
 		if (skill.name == "Chilling Armor") {
-			var sk = skills[4].name.split(' ').join('_');
-			if (document.getElementById(sk) != null && effects[id].info.enabled == 1) { disableEffect(sk) }	// disables Shiver Armor
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Shiver_Armor")) { disableEffect(effect_id) } } }
 			result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl];
 		}
 		if (skill.name == "Frigerate") {	// TODO: Make always-active
@@ -88,11 +86,15 @@ var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vi
 			result.enemy_defense = skill.data.values[2][lvl];
 		}
 		if (skill.name == "Enflame") {		// TODO: Make always-active
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.fDamage_min = skill.data.values[1][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
 			result.fDamage_max = skill.data.values[2][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
 			result.ar_bonus = skill.data.values[3][lvl];
 		}
-		if (skill.name == "Blaze") { result.life_regen = 2; result.duration = skill.data.values[0][lvl]; }
+		if (skill.name == "Blaze") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
+			result.life_regen = 2; result.duration = skill.data.values[0][lvl];
+		}
 		if (skill.name == "Energy Shield") {
 			result.absorb_es_deplete = (6 + ~~(0.04*skills[13].level));	// TODO: fix
 			result.absorb_es_redirect = skill.data.values[2][lvl]; result.duration = skill.data.values[1][lvl];

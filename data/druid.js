@@ -87,13 +87,11 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 		var lycan_life = Math.min(1,(skills[12].level+skills[12].force_levels))*~~(skills[12].data.values[1][skills[12].level+skills[12].extra_levels]);
 		
 		if (skill.name == "Werewolf") {	// cannot be used with Werebear
-			var sk = skills[13].name.split(' ').join('_');
-			if (document.getElementById(sk) != null) { if (effects[id].info.enabled == 1) { disableEffect(sk) } }
+			if (effects[id].info.enabled == 1) { disableEffect("Werebear") }
 			result.max_life = (15 + lycan_life); result.max_stamina = 40; result.ar_bonus = skill.data.values[1][lvl]; result.ias_skill = skill.data.values[2][lvl]; result.damage_bonus = lycan_damage; result.duration = 1040;
 		}
 		if (skill.name == "Werebear") {	// cannot be used with Werewolf
-			var sk = skills[11].name.split(' ').join('_');
-			if (document.getElementById(sk) != null) { if (effects[id].info.enabled == 1) { disableEffect(sk) } }
+			if (effects[id].info.enabled == 1) { disableEffect("Werewolf") }
 			result.max_life = (25 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
 		}
 		if (skill.name == "Feral Rage") {	// only useable with Werewolf
@@ -118,12 +116,24 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 				result.damage_bonus = 0; result.duration = 0;
 			}
 		}
-		if (skill.name == "Heart of Wolverine") { result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; }
-		if (skill.name == "Oak Sage") { result.max_life = skill.data.values[1][lvl]; }
-		if (skill.name == "Spirit of Barbs") { result.thorns_reflect = skill.data.values[1][lvl]; }
+		if (skill.name == "Heart of Wolverine") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
+			result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl];
+		}
+		if (skill.name == "Oak Sage") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
+			result.max_life = skill.data.values[1][lvl];
+		}
+		if (skill.name == "Spirit of Barbs") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
+			result.thorns_reflect = skill.data.values[1][lvl];
+		}
 		if (skill.name == "Carrion Vine") { result.life_regen = skill.data.values[1][lvl]; }	// Check if "Heals: X percent" is equivalent to life_regen
 		if (skill.name == "Solar Creeper") { result.mana_regen = skill.data.values[1][lvl]; }	// Check if "Mana Recovery Rate: X" is equivalent to mana_regen
-		if (skill.name == "Cyclone Armor") { result.absorb_elemental = skill.data.values[0][lvl]; }
+		if (skill.name == "Cyclone Armor") {
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
+			result.absorb_elemental = skill.data.values[0][lvl];
+		}
 		// No stat buffs:
 		if (skill.name == "Armageddon") { result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Hurricane") { result.duration = skill.data.values[0][lvl]; }

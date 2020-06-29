@@ -187,10 +187,10 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 // ---------------------------------
 function disableAuras(skill) {
 	var id = skill.name.split(' ').join('_');
-	for (let s = 0; s < 20; s++) {
-		var sk = skills[s].name.split(' ').join('_');
-		if (document.getElementById(sk) != null && sk != id && effects[id].info.enabled == 1 && effects[sk].info.enabled == 1) {
-			disableEffect(sk)
+	if (effects[id].info.enabled == 1) {
+		for (let s = 0; s < 20; s++) {
+			var sk = skills[s].name.split(' ').join('_');
+			if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) { if (id != sk) { disableEffect(sk) } } }
 		}
 	}
 };
