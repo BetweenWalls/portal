@@ -1375,6 +1375,7 @@ function initializeEffect(origin, name, num, other) {
 	effects[id].info.index = num
 	effects[id].info.other = other
 	effects[id].info.snapshot = 0
+	effects[id].info.level = num
 	setEffectData(origin,name,num,other)
 	
 	if (settings.autocast == 1) { toggleEffect(id) }	// TODO: should also toggle-on if effect is always-active
@@ -1391,12 +1392,14 @@ function setEffectData(origin, name, num, other) {
 	var id = name.split(' ').join('_');
 	if (other != "") { id += ("-"+other) }
 	var data = {};
+	var lvl = effects[id].info.index
 	if (origin == "aura") { data = getAuraData(name,num,other) }
-	else if (origin == "skill") { data = character.getBuffData(skills[num]) }
-	else if (origin == "oskill") { data = character_any.getBuffData(skills_all[oskills_info["oskill_"+id].native_class][num]) }
+	else if (origin == "skill") { data = character.getBuffData(skills[num]); lvl = skills[num].level + skills[num].extra_levels; }
+	else if (origin == "oskill") { var skill = skills_all[oskills_info["oskill_"+id].native_class][num]; data = character_any.getBuffData(skill); lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills; }
 	else if (origin == "misc") { data = getMiscData(name,num); }
 	else if (origin == "cskill") { data = getCSkillData(name,num,other) }
 	else if (origin == "ctcskill") { data = getCTCSkillData(name,num,other) }
+	effects[id].info.level = lvl
 	if (effects[id].info.snapshot == 0) { for (affix in data) { effects[id][affix] = data[affix] } }
 	// TODO: remove 'snapshot' for class effects if their base skill level decreases?
 }
@@ -1452,8 +1455,6 @@ function leftClickEffect(event, id) {
 function removeEffect(id, direct) {
 	if (document.getElementById(id) != null) { if (effects[id].info.snapshot != 1) {
 		var on = effects[id].info.enabled;
-		var secondary = "";
-		if (on == 1) { if (typeof(effects[id].info.secondary) != 'undefined') { secondary = effects[id].info.secondary } }
 		var halt = 0;
 		if (direct != null && effects[id].info.origin != "misc") { halt = 1 }
 		if (effects[id].info.origin == "skill") {
@@ -1463,13 +1464,24 @@ function removeEffect(id, direct) {
 		}
 		if (effects[id].info.enabled == 1) { disableEffect(id) }
 		update()
+		//if (typeof(document.getElementById(id).info.enabled) != 'undefined') {
 		if (halt == 0) {
+			//document.getElementById(id+"_ss").remove();
+			//document.getElementById(id+"_e").remove();
+			//document.getElementById(id).setAttribute("class","hide")
 			document.getElementById(id).remove();
 			effects[id] = {info:{}}
-			if (on == 1 && secondary != "") { enableEffect(secondary); }
+			var secondary = "";
+			var secondary_level = 0;
+			if (on == 1) {
+				for (effect_id in effects) { if (typeof(effects[effect_id].info.enabled) != 'undefined') { if (effects[effect_id].info.level > secondary_level) { secondary = effect_id; secondary_level = effects[effect_id].info.level; } } }
+				if (secondary != "") { enableEffect(secondary) }
+			}
 			updateAllEffects()
 		}
+		//}
 		adjustStackedAuras()
+		//if (halt == 0) { for (effect_id in effects) { if (typeof(effects[effect_id].info.enabled) == 'undefined') { effects[effect_id] = null } } }
 	} }
 }
 
@@ -1573,34 +1585,33 @@ function updateAllEffects() {
 	} }
 	update()	// needed?
 	// disables duplicate effects (non-skills)
-	for (id in effects) { if (document.getElementById(id) != null) { if (document.getElementById(id).getAttribute("class") == "hide") { document.getElementById(id).setAttribute("class","effect") } } }
+	for (id in effects) { if (document.getElementById(id) != null) { if (document.getElementById(id).getAttribute("class") == "hide") { document.getElementById(id).setAttribute("class","effect-container") } } }
 	var checkedEffects = {};
 	for (id in effects) { checkedEffects[id] = 0 }
 	for (id1 in effects) {
 		if (typeof(effects[id1].info.enabled) != 'undefined' && effects[id1].info.origin != "skill" && effects[id1].info.origin != "oskill") {
 			for (id2 in effects) {
+			//	if (document.getElementById(id1).getAttribute("class") != "hide") {
 				if (id1 != id2 && checkedEffects[id2] != 1 && typeof(effects[id2].info.enabled) != 'undefined' && effects[id2].info.origin != "skill" && effects[id2].info.origin != "oskill") {
 					var effect1 = id1.split('-')[0];
 					var effect2 = id2.split('-')[0];
-					var skillEnabled = 0;	// not used?
-					if (typeof(effects[effect1]) != 'undefined') { if ((effects[effect1].info.enabled) != 'undefined') { if (effects[effect1].info.enabled == 1) { skillEnabled = 1; } } }
 					if (effect1 == effect2) {
 						if (document.getElementById(id1).getAttribute("class") != "hide" && document.getElementById(id2).getAttribute("class") != "hide") {
-							var magnitude1 = effects[id1].info.index;
-							var magnitude2 = effects[id2].info.index;
+							var magnitude1 = effects[id1].info.level;
+							var magnitude2 = effects[id2].info.level;
 							if (magnitude1 > magnitude2) {
+								//disableEffect(id2); enableEffect(id1);
 								document.getElementById(id2).setAttribute("class","hide");
-								document.getElementById(id1).setAttribute("class","effect");
-								effects[id1].info.secondary = id2;
-							}
-							else {
+								document.getElementById(id1).setAttribute("class","effect-container");
+							} else {
+								//disableEffect(id1); enableEffect(id2);
 								document.getElementById(id1).setAttribute("class","hide");
-								document.getElementById(id2).setAttribute("class","effect");
-								effects[id2].info.secondary = id1;
+								document.getElementById(id2).setAttribute("class","effect-container");
 							}
 						}
 					}
 				}
+			//	}
 			}
 		}
 		checkedEffects[id1] = 1
@@ -1614,9 +1625,8 @@ function updateAllEffects() {
 					var effect1 = id1.split('-')[0];
 					var effect2 = id2.split('-')[0];
 					if (effect1 == effect2) {
-						effects[id1].info.secondary = id2;
-						var magnitude1 = skills[effects[id1].info.index].level + skills[effects[id1].info.index].extra_levels;
-						var magnitude2 = effects[id2].info.index;
+						var magnitude1 = effects[id1].info.level;
+						var magnitude2 = effects[id2].info.level;
 						if (magnitude1 >= magnitude2) { disableEffect(id2); enableEffect(id1); }
 						else { disableEffect(id1); enableEffect(id2); }
 					}
@@ -1691,12 +1701,61 @@ function adjustStackedAuras() {
 // hoverEffectOn - 
 //	id: the effect's id
 // ---------------------------------
-function hoverEffectOn(id) {}
+function hoverEffectOn(id) {
+	var idName = id.split("-")[0];
+	var name = idName.split("_").join(" ");
+	document.getElementById("tooltip_effect").style.display = "block"
+	var offset = 30;
+	var done = false;
+	for (effect_id in effects) {
+		if (id == effect_id) { done = true }
+		if (done == false) {
+			if (effects[effect_id] != null) { if (typeof(effects[effect_id].info.enabled) != 'undefined') {
+				if (document.getElementById(effect_id).getAttribute("class") != "hide") { offset += 36 }
+			} }
+		}
+	}
+	var level = "Level "+effects[id].info.level; if (name == "Lifted Spirit" || name == "Righteous Fire") { level = "" }
+	var origin = effects[id].info.origin;
+	var other = effects[id].info.other;
+	var source = "";
+	var note = "";
+	var affixes = ""; for (affix in effects[id]) { if (affix != "info") { affixes += "<br>"+affix+": "+effects[id][affix] } }
+	if (origin != "skill" && origin != "oskill") {
+		source = "Source: "
+		var group = other;
+		var other_minion = other.split("_")[0];
+		if (other_minion == "mercenary") { group = other.split("_")[1]; }
+		if (other_minion == "mercenary") {
+			if (other == "mercenary") { source += "Mercenary" }
+			else { source += "Mercenary - "+mercEquipped[group].name }
+		} else if (other_minion == "golem") {
+			source += "Iron Golem - "+golemItem.name
+		} else if (other_minion == "combined") {
+			source = "Multiple Sources"
+		} else {
+			source += equipped[group].name
+		}
+		if (origin == "cskill") { for (let i = 0; i < equipped[group].cskill.length; i++) { if (equipped[group].cskill[i][1] == name) { note = "<br>"+equipped[group].cskill[i][2]+" charges" } } }
+		else if (origin == "ctcskill") { for (let i = 0; i < equipped[group].ctc.length; i++) { if (equipped[group].ctc[i][2] == name) { note = "<br>"+equipped[group].ctc[i][1]+"% chance to cast "+equipped[group].ctc[i][3] } } }
+	} else if (origin == "oskill") {
+		for (group in equipped) { if (typeof(equipped[group]["oskill_"+idName]) != 'undefined') { if (equipped[group]["oskill_"+idName] > 0) { source = equipped[group].name } } }
+	}
+	if (typeof(effects[id].duration) != 'undefined') { if (effects[id].duration > 0) { note += "<br>Duration: "+effects[id].duration+" seconds" } }
+	if (level != "" && source != "") { level += "<br>" }
+	if (source != "") { source = source.split(" ­ ")[0] }
+	//note += "<br>"
+	document.getElementById("tooltip_effect").style.top = offset+"px"
+	document.getElementById("effect_name").innerHTML = name
+	document.getElementById("effect_info").innerHTML = level+source+note//+affixes
+}
 
 // hoverEffectOff - 
 //	id: the effect's id
 // ---------------------------------
-function hoverEffectOff(id) {}
+function hoverEffectOff(id) {
+	document.getElementById("tooltip_effect").style.display = "none"
+}
 
 // resetEffects - Removes all effects
 // ---------------------------------
@@ -2897,38 +2956,53 @@ function skillOut() {
 
 // itemOut - hides item tooltip for Charm Inventory
 // ---------------------------------
-function itemOut() { document.getElementById("item_tooltip").style.display="none" }
+function itemOut() {
+	document.getElementById("tooltip_inventory").style.display = "none"
+}
 
 // itemHover - Shows item tooltip on mouse-over for Charm Inventory
 //	id: unique string identifier for item
 // ---------------------------------
 function itemHover(ev, id) {
 	var type = "charm";
-	var name = "";
 	var index = 0;
 	var stats = "";
-	var style = "display: block;"
 	var transfer = 0;
+	var color = "white";
 	for (let i = 1; i < inv.length; i++) { if (inv[i].id == id) { transfer = i } }
 	var val = inv[0]["in"][transfer];
-	name = val.split('_')[0];
+	var name = val.split('_')[0];
+	var height = 1;
 	for (let k = 0; k < socketables.length; k++) { if (socketables[k].name == name) { type = socketables[k].type; index = k; } }
 	if (type == "charm") {
-		style = "display: block; color: #634db0;"
-		if (name == "Annihilus" || name == "Hellfire Torch" || name == "Gheed's Fortune" || name == "Horadric Sigil") { style = "display: block; color: #928068;" }
-		if (equipped["charms"][val].size != "small" && equipped["charms"][val].size != "large" && equipped["charms"][val].size != "grand") { style = "display: block; color: #ff8080;" }
+		color = "#634db0"
+		if (name == "Annihilus" || name == "Hellfire Torch" || name == "Gheed's Fortune" || name == "Horadric Sigil") { color = "#928068" }
+		if (equipped["charms"][val].size != "small" && equipped["charms"][val].size != "large" && equipped["charms"][val].size != "grand") { color = "#ff8080" }
 		lastCharm = name
+		if (equipped["charms"][val].size == "large") { height = 2 }
+		if (equipped["charms"][val].size == "grand") { height = 3 }
 	} else {
-		if (type == "rune") { style = "display: block; color: orange;" }
-		else if (socketables[index].rarity == "unique") { style = "display: block; color: #928068;" }
-		else if (socketables[index].rarity == "magic") { style = "display: block; color: #8080ff;" }
-		else if (socketables[index].rarity == "rare") { style = "display: block; color: yellow;" }
-		else { style = "display: block; color: white;" }
+		if (type == "rune") { color = "orange" }
+		else if (socketables[index].rarity == "unique") { color = "#928068" }
+		else if (socketables[index].rarity == "magic") { color = "#8080ff" }
+		else if (socketables[index].rarity == "rare") { color = "yellow" }
 		lastSocketable = name
 	}
-	var display = name //+ "<br>" + stats
-	document.getElementById("item_tooltip").innerHTML = display
-	document.getElementById("item_tooltip").style = style
+	var cell_x = id[1]-1; if (cell_x == -1) { cell_x = 9 }
+	var cell_y = id[2]-1 + height;
+	var offset_x = 310;
+	var offset_y = 433;
+	offset_x += (10+cell_x*27)
+	offset_y += (124+cell_y*29)
+	document.getElementById("tooltip_inventory").style.top = offset_y+"px"
+	document.getElementById("tooltip_inventory").style.left = offset_x+"px"
+	document.getElementById("item_name").style.color = color
+	document.getElementById("item_name").innerHTML = name
+	document.getElementById("item_corruption").innerHTML = ""
+	document.getElementById("item_info1").innerHTML = ""
+	document.getElementById("item_info2").innerHTML = ""
+	document.getElementById("tooltip_inventory").style.display = "block"
+	if (name == "") { document.getElementById("tooltip_inventory").style.left = 950+"px" }
 	
 	// TODO better system:
 	
@@ -3087,7 +3161,7 @@ function trash(ev) {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	updateAllEffects()
-	document.getElementById("item_tooltip").innerHTML = ""
+	document.getElementById("tooltip_inventory").style.display = "none"
 }
 
 // getItemImage - gets the image filename for the specified item
@@ -3165,28 +3239,47 @@ function socketableSelect(ev) {
 //	group: equipment group name
 // ---------------------------------
 function equipmentHover(group) {
-	// TODO: Turn into actual hover-text, instead of using a premade empty area
+	var offset_x = 310;
+	var offset_y = 433;
 	var groupId = group;
 	if (group == "helm" || group == "armor" || group == "weapon" || group == "offhand") { groupId += "_" }
-	var selected = equipped[group].name;
-	if (selected != "none" && equipped[group].rarity == "rw") {
-		selected = selected.split(" ­ ­ - ­ ­ ")[0]+ " ­ ­ - ­ ­ " + equipped[group].base
+	if (groupId == "helm_") { offset_x += 2*30; offset_y += 60;
+	} else if (groupId == "armor_") { offset_x += 4*30; offset_y += 90;
+	} else if (groupId == "gloves") { offset_x += 6*30; offset_y += 60;
+	} else if (groupId == "boots") { offset_x += 6*30; offset_y += 120;
+	} else if (groupId == "belt") { offset_x += 4*30; offset_y += 120;
+	} else if (groupId == "amulet") { offset_x += 2.5*30; offset_y += 90;
+	} else if (groupId == "ring1") { offset_x += 2*30; offset_y += 120;
+	} else if (groupId == "ring2") { offset_x += 3*30; offset_y += 120;
+	} else if (groupId == "weapon_") { offset_x += 0; offset_y += 120;
+	} else if (groupId == "offhand_") { offset_x += 8*30; offset_y += 120;
 	}
-	if (selected != "none" && (group == "helm" || group == "armor" || (group == "weapon" && equipped[group].type != "javelin" && equipped[group].type != "thrown") || (group == "offhand" && equipped[group].type != "quiver"))) {
+	document.getElementById("tooltip_inventory").style.top = offset_y+"px"
+	document.getElementById("tooltip_inventory").style.left = offset_x+"px"
+	var name = "";
+	var sock = "";
+	var corruption = "";
+	var base = "";
+	if (equipped[group].name != "none" && (group == "helm" || group == "armor" || (group == "weapon" && equipped[group].type != "javelin" && equipped[group].type != "thrown") || (group == "offhand" && equipped[group].type != "quiver"))) {
 		var sockets = ~~corruptsEquipped[group].sockets + ~~equipped[group].sockets;
 		var base = "";
 		if (typeof(equipped[group].base) != 'undefined') { base = getBaseId(equipped[group].base) }
 		if (base == "") { sockets = Math.min(sockets,equipped[group].max_sockets) }
 		else { sockets = Math.min(sockets,bases[base].max_sockets) }
-		if (socketed[group].sockets > 0 || equipped[group].sockets > 0) { selected += " ["+sockets+"]" }
+		if (socketed[group].sockets > 0 || equipped[group].sockets > 0) { sock = " ["+sockets+"]"; }
 	}
-	if (selected != "none") {
-		if (corruptsEquipped[group].name != "none" && corruptsEquipped[group].name != "+ Sockets") { selected += (" "+corruptsEquipped[group].name) }
-		document.getElementById("item_tooltip").innerHTML = selected
-	} else {
-		document.getElementById("item_tooltip").innerHTML = ""
-	}
-	
+	if (equipped[group].name != "none" && corruptsEquipped[group].name != "none") { corruption = corruptsEquipped[group].name; }
+	if (typeof(equipped[group].base) != 'undefined' && equipped[group].base != "") { base = equipped[group].base }
+	if (equipped[group].name != "none" && (group == "ring1" || group == "ring2")) { base = "Ring" }
+	if (equipped[group].name != "none" && group == "amulet") { base = "Amulet" }
+	if (equipped[group].type == "quiver") { base = "Quiver" }
+	if (equipped[group].name != "none") { name = equipped[group].name.split(" ­ ")[0]; }
+
+	document.getElementById("item_name").innerHTML = name+sock
+	document.getElementById("item_info1").innerHTML = base
+	document.getElementById("item_corruption").innerHTML = corruption
+	document.getElementById("item_info2").innerHTML = ""
+		
 	var textColor = "white";
 	if (equipped[group].rarity == "set") { textColor = "#00f000" }
 	else if (equipped[group].rarity == "magic") { textColor = "#8080ff" }
@@ -3194,18 +3287,17 @@ function equipmentHover(group) {
 	else if (equipped[group].rarity == "craft") { textColor = "orange" }
 	else if (equipped[group].rarity == "rw") { textColor = "#b2a992" }
 	else if (equipped[group].rarity != "common") { textColor = "#928068" }
-	document.getElementById("item_tooltip").style.color = textColor
-	document.getElementById("item_tooltip").visibility = "visible"
-	document.getElementById("item_tooltip").style.display = "block"
+	document.getElementById("item_name").style.color = textColor
+	document.getElementById("tooltip_inventory").style.display = "block"
+	if (name == "") { document.getElementById("tooltip_inventory").style.left = 950+"px" }
 }
 
 // equipmentOut - stops showing equipment info (mouse-over ends)
 // ---------------------------------
 function equipmentOut() {
-	document.getElementById("item_tooltip").innerHTML = ""
-	document.getElementById("item_tooltip").visibility = "hidden"
-	document.getElementById("item_tooltip").style.display = "none"
+	document.getElementById("tooltip_inventory").style.display = "none"
 }
+
 
 // handleSocket - 
 //	group: equipment group name
@@ -3440,7 +3532,7 @@ function trashSocketable(event, ident, override) {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	// updateAllEffects()?
-	document.getElementById("item_tooltip").innerHTML = ""
+	document.getElementById("tooltip_inventory").style.display = "none"
 }
 
 // removeInvalidSockets - Handles indirect removal/validation of socketables

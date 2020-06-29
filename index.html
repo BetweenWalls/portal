@@ -146,10 +146,24 @@
 </div>
 
 <div id="full_interface" style="width: 1000px;" class="no-selection" oncontextmenu="return false">
-<div id="side" style="margin-left: 4px; margin-top: 4px; width: 125px; position: relative; float:right;"></div>
+<div id="side" style="margin-left: 4px; margin-top: 4px; width: 125px; position: relative; float:right; color:white;"></div>
 
 <div id="interface" style="width: 869px;">
+<div style="display: flex; justify-content: flex-end">
+  <div class ="hover" style="display:none; top:100px;" id="tooltip_effect">
+    <a id="effect_name" style="color: #00f000;"></a><br>
+    <a id="effect_info"></a><br>
+  </div>
+</div>
 
+<div style="display:flex; position:relative;">
+  <div class ="hover" style="display:none;" id="tooltip_inventory">
+    <a id="item_name" style="display:block;"></a>
+    <a id="item_info1" style="display:block;"></a>
+    <a id="item_corruption" style="display:block; color:#ff8080;"></a>
+    <a id="item_info2" style="display:block;"></a>
+  </div>
+</div>
 <div id="gui" class="no-selection" oncontextmenu="return false" style="position:relative; height:433px;">
 
 <!--		/GUI Stats		-->
@@ -383,7 +397,6 @@
 <div id="h01" ondrop="drop(event,10)" ondragover="allowDrop(event,10,1)" class="H Hx10 Hy1" onmouseover="itemHover(event, 'h01')" onmouseout="itemOut()"></div>
 
 </map>
-<div class="hover-item" id="item_tooltip"></div>
 </div> <!-- /charm inventory -->
 </div> <!-- /inventory -->
 

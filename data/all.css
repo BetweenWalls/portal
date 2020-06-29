@@ -28,13 +28,23 @@
 }
 .hover-item {
   position: absolute;
-  /*text-align: left;*/
+  text-align: center;
   color: white;
   background-color: black;
   opacity: 0.85;
   padding: 5px;
-  z-index: 6;
+  z-index: 7;
+  float: none;
   /*width: 288px;*/
+}
+.hover-effect {
+  position: relative;
+  text-align: center;
+  color: white;
+  background-color: black;
+  opacity: 0.85;
+  padding: 5px;
+  z-index: 7;
 }
 .point {
   position: absolute;
@@ -224,7 +234,7 @@ position:absolute;
   height: 0px;
   visibility: hidden;
   display: block;
-  z-index: 6;
+  z-index: 1;
   }
   
 .flex-box {

@@ -54,7 +54,6 @@ Character Skill Planner for Diablo 2: Path of Diablo
 ### Upcoming Plans:
 * more breakpoint info
 * mercenary stats & validation
-* tooltips for items & buffs
 
 ### Longterm Goals:
 * full GUI inventory/stash
