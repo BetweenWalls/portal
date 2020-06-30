@@ -1354,7 +1354,7 @@ function initializeEffect(origin, name, num, other) {
 	var dClass = document.createAttribute("class");			dClass.value = "effect-container";				newDiv.setAttributeNode(dClass);
 	var dId = document.createAttribute("id");			dId.value = id;							newDiv.setAttributeNode(dId);
 	var dHoverOn = document.createAttribute("onmouseover");		dHoverOn.value = "hoverEffectOn(this.id)";			newDiv.setAttributeNode(dHoverOn);
-	var dHoverOff = document.createAttribute("onmouseout");		dHoverOff.value = "hoverEffectOff(this.id)";			newDiv.setAttributeNode(dHoverOff);
+	var dHoverOff = document.createAttribute("onmouseout");		dHoverOff.value = "hoverEffectOff()";				newDiv.setAttributeNode(dHoverOff);
 	var dClickLeft = document.createAttribute("onclick");		dClickLeft.value = "leftClickEffect(event,this.id)";		newDiv.setAttributeNode(dClickLeft);
 	var dClickRight = document.createAttribute("oncontextmenu");	dClickRight.value = "rightClickEffect(event,this.id,1)";	newDiv.setAttributeNode(dClickRight);
 	
@@ -1406,7 +1406,7 @@ function setEffectData(origin, name, num, other) {
 	else if (origin == "misc") { data = getMiscData(name,num); }
 	else if (origin == "cskill") { data = getCSkillData(name,num,other) }
 	else if (origin == "ctcskill") { data = getCTCSkillData(name,num,other) }
-	effects[id].info.level = lvl
+	if (effects[id].info.snapshot == 0) { effects[id].info.level = lvl }
 	if (effects[id].info.snapshot == 0) { for (affix in data) { effects[id][affix] = data[affix] } }
 	// TODO: remove 'snapshot' for class effects if their base skill level decreases?
 }
@@ -1425,6 +1425,7 @@ function rightClickEffect(event, id, direct) {
 			document.getElementById(id+"_ss").src = "./images/skills/none.png"
 			updateAllEffects()
 			update()
+			if (typeof(effects[id].info.enabled) == 'undefined') { hoverEffectOff() }
 		}
 	} else {
 		removeEffect(id,direct)
@@ -1449,6 +1450,7 @@ function leftClickEffect(event, id) {
 			}
 			updateAllEffects()
 			update()
+			if (typeof(effects[id].info.enabled) == 'undefined') { hoverEffectOff() }
 		}
 	} else {
 		toggleEffect(id)
@@ -1761,9 +1763,8 @@ function hoverEffectOn(id) {
 }
 
 // hoverEffectOff - 
-//	id: the effect's id
 // ---------------------------------
-function hoverEffectOff(id) {
+function hoverEffectOff() {
 	document.getElementById("tooltip_effect").style.display = "none"
 }
 
@@ -3288,6 +3289,7 @@ function equipmentHover(group) {
 	if (equipped[group].name != "none" && group == "amulet") { base = "Amulet" }
 	if (equipped[group].type == "quiver") { base = "Quiver" }
 	if (equipped[group].name != "none") { name = equipped[group].name.split(" ­ ")[0]; }
+	if (name == "Harlequin Crest (Shako)") { name = "Harlequin Crest" }
 
 	document.getElementById("item_name").innerHTML = name+sock
 	document.getElementById("item_info1").innerHTML = base
@@ -3640,7 +3642,13 @@ function changeBase(group, change) {
 				character[affix] += bases[base][affix]
 			}
 		} }
-		if (equipped[group].tier == equipped[group].original_tier) { var name = equipped[group].name; equip(group,"none"); equip(group,name); }		// used to reset affixes such as req_lvl, req_strength, req_dexterity (since they are often different from the base affixes)
+		if (equipped[group].tier == equipped[group].original_tier) {	// used to reset affixes such as req_lvl, req_strength, req_dexterity (since they are often different from the base affixes)
+			var name = equipped[group].name;
+			equip(group,"none");
+			equip(group,name);
+			var options = document.getElementById("dropdown_"+group).options;
+			for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == equipped[group].name) {  document.getElementById("dropdown_"+group).selectedIndex = i } }
+		}
 		if (base == "Special_0") { var name = equipped[group].name; equip(group,"none"); equip(group,name); }
 		if (base == "Special_1" || base == "Special_2" || base == "Special_3") { document.getElementById(group+"_image").src = "./images/items/weapon/axe/Hand_Axe.png" }
 	}
