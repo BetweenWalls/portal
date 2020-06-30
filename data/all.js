@@ -1722,13 +1722,13 @@ function hoverEffectOn(id) {
 			} }
 		}
 	}
-	var level = "Level "+effects[id].info.level; if (name == "Lifted Spirit" || name == "Righteous Fire") { level = "" }
 	var origin = effects[id].info.origin;
 	var other = effects[id].info.other;
+	var level = "Level "+effects[id].info.level; if (name == "Lifted Spirit" || name == "Righteous Fire" || origin == "misc") { level = "" }
 	var source = "";
 	var note = "";
 	var affixes = ""; for (affix in effects[id]) { if (affix != "info") { affixes += "<br>"+affix+": "+effects[id][affix] } }
-	if (origin != "skill" && origin != "oskill") {
+	if (origin != "skill" && origin != "oskill" && origin != "misc") {
 		source = "Source: "
 		var group = other;
 		var other_minion = other.split("_")[0];
@@ -1747,8 +1747,11 @@ function hoverEffectOn(id) {
 		else if (origin == "ctcskill") { for (let i = 0; i < equipped[group].ctc.length; i++) { if (equipped[group].ctc[i][2] == name) { note = "<br>"+equipped[group].ctc[i][0]+"% chance to cast "+equipped[group].ctc[i][3] } } }
 	} else if (origin == "oskill") {
 		for (group in equipped) { if (typeof(equipped[group]["oskill_"+idName]) != 'undefined') { if (equipped[group]["oskill_"+idName] > 0) { source = equipped[group].name } } }
+	} else if (origin == "misc") {
+		source = "Source: "+non_items[effects[id].info.index].name.split(":")[0]
 	}
 	if (typeof(effects[id].duration) != 'undefined') { if (effects[id].duration > 0) { note += "<br>Duration: "+effects[id].duration+" seconds" } }
+	if (source == "Source: Potion") { note += " each" }
 	if (level != "" && source != "") { level += "<br>" }
 	if (source != "") { source = source.split(" ­ ")[0] }
 	//note += "<br>"
@@ -1940,7 +1943,7 @@ function getCTCSkillData(name, lvl, group) {
 // ---------------------------------
 function getMiscData(name, index) {
 	var result = {};
-	for (affix in non_items[index]) { if (affix != "i" && affix != "name" && affix != "duration" && affix != "recharge" && affix != "effect") {
+	for (affix in non_items[index]) { if (affix != "i" && affix != "name" && affix != "recharge" && affix != "effect") {
 		result[affix] = non_items[index][affix]
 	} }
 	return result
