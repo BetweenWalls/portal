@@ -7,6 +7,7 @@
 
 <link rel="stylesheet" type="text/css" href="./data/all.css">
 <!--<script type="text/javascript" src="./data/jquery-3.5.1.min.js"></script>-->
+<script type="text/javascript" src="./data/all_monsters.js"></script>
 <script type="text/javascript" src="./data/all_equipment.js"></script>
 <script type="text/javascript" src="./data/all.js"></script>
 <!--
@@ -306,7 +307,7 @@
 <select id="dropdown_merc_armor" onChange="equipMerc('armor', this.value)" onContextMenu="equipMerc('armor', 'armor')"></select>
 <select id="dropdown_merc_weapon" onChange="equipMerc('weapon', this.value)" onContextMenu="equipMerc('weapon', 'weapon')"></select>
 <select id="dropdown_merc_offhand" onChange="equipMerc('offhand', this.value)" onContextMenu="equipMerc('offhand', 'offhand')"></select>
-<br>
+<div id="merc_space" style="display:none;"></div>
 <div id="golem" style="display:none;"><br><select class="dropdown" id="dropdown_golem" onChange="setIronGolem(this.value)" onContextMenu="setIronGolem('none')"></select><br></div>
 <br>
 <select class="dropdown" id="dropdown_misc" onChange="addEffect('misc',this.value,this.selectedIndex,'')"></select>
@@ -536,8 +537,10 @@
 </div>
 
 <div style="width:869px;" id="stats_positioning_alignment">
-<div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+<div><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <div style="float:right; width:195px;" id="stats_column_5">
+	<div id="mercenary_spacing" style="display:none;"><br><br><br><br><br></div>
+	<div id="mercenary_spacing2" style="display:none;"><br></div>
 	<div id="golem_spacing" style="display:none;"><br><br><br></div>
 	<div style="margin-right:-100px;"><font size="2" id="flamme"></font></div>
 	<font size="2" id="itd"></font>
