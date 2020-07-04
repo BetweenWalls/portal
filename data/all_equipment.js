@@ -37,7 +37,7 @@ var unequipped = {		strength:0, dexterity:0, vitality:0, energy:0, life:0, mana:
 /* oskills  paladin	*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, oskill_Enflame:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
 // TODO: confirm oskill_Guided_Arrow (Widowmaker)
-				skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", 
+				skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, 
 };
 // TODO: Remove old instances of Arctic Blast (replaced with Frigerate on Frostwind sword)
 var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Arctic_Blast","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
@@ -238,7 +238,7 @@ var equipment = {
 {name:"Templar's Might", req_level:74, e_def:220, missile_defense:300, strength:15, vitality:15, fhr:20, stamina:50, skills_offensive:2, base:"Sacred Armor", img:"Templar's_Might"},
 {name:"Tyrael's Might", req_level:84, e_def:150, frw:20, damage_vs_demons:100, strength:30, all_res:30, cbf:1, cdr:10, peace:1, req:-100, ethereal:0, base:"Sacred Armor", pod_changes:1, img:"Tyrael's_Might"},
 {not:["sorceress"], name:"Ormus' Robes", req_level:75, defense:20, fcr:20, cDamage:15, fDamage:15, lDamage:15, mana_regen:15, skill_hydra:3, base:"Dusk Shroud", img:"Ormus'_Robes"},
-{set_IK:1, name:"Immortal King's Soul Cage", req_level:76, defense:400, pRes:50, skills_combat_barbarian:2, base:"Sacred Armor", rarity:"set", set_bonuses:["set_IK",{},{fhr:25},{cRes:40},{fRes:40},{lRes:40},{defense:300}], img:"Immortal_King's_Soul_Cage"},	// +50% Enhanced Defense ~= 300 defense (set bonus for 6 items)
+{set_IK:1, name:"Immortal King's Soul Cage", req_level:76, defense:400, pRes:50, skills_combat_barbarian:2, base:"Sacred Armor", rarity:"set", set_bonuses:["set_IK",{},{fhr:25},{cRes:40},{fRes:40},{lRes:40},{e_def:50}], img:"Immortal_King's_Soul_Cage"},	// +50% Enhanced Defense ~= 300 defense (set bonus for 6 items)
 {set_TR:1, name:"Tal Rasha's Guardianship", req_level:71, defense:400, mDamage_reduced:15, cRes:40, lRes:40, fRes:40, mf:88, req:-60, base:"Lacquered Plate", rarity:"set", set_bonuses:["set_TR",0,{fcr:10},{},{},{}], img:"Rattlecage"},
 {set_Mav:1, name:"M'avina's Embrace", req_level:70, defense:350, defense_per_level:4, skills_passives:2, req:-30, base:"Kraken Shell", rarity:"set", set_bonuses:["set_Mav",{},{},{fhr:30},{},{}], pod_changes:1, img:"M'avina's_Embrace", radius_FreezingArrow:40},
 {set_Ald:1, name:"Aldur's Deception", req_level:76, defense:300, req:-50, lRes:50, dexterity:15, strength:20, skills_elemental:1, skills_shapeshifting:1, base:"Shadow Plate", rarity:"set", set_bonuses:["set_Ald",{},{vitality:15},{vitality:15},{vitality:15}], img:"Aldur's_Deception"},
@@ -2228,6 +2228,7 @@ debug:1,
 //1:1,
 //2:1,
 //3:1,
+item_defense:1,
 
 skills_javelins:{index:["skills_javelins"], format:["+"," to Spear & Javelin Skills (Amazon only)"]},
 skills_passives:{index:["skills_passives"], format:["+"," to Passive Skills (Amazon only)"]},

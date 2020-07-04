@@ -719,7 +719,7 @@ function adjustCorruptionSockets(group) {
 //	val: name of equipped item
 // ---------------------------------
 function adjustDefenseCorruption(group, val) {
-	if (corruptsEquipped[group].name == "+ Enhanced Defense") {
+/*	if (corruptsEquipped[group].name == "+ Enhanced Defense") {
 		character.base_defense -= ~~(corruptsEquipped[group].base_defense)
 		if ((val != group && val != "none")) {
 			var multEth = 1;
@@ -735,6 +735,7 @@ function adjustDefenseCorruption(group, val) {
 			corruptsEquipped[group].base_defense = 0
 		}
 	}
+*/
 }
 
 // corrupt - Sets a corruption outcome for an item
@@ -799,10 +800,11 @@ function equipMerc(group, val) {
 					for (affix in bases[base]) {
 						if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands") {
 							if (typeof(mercEquipped[group][affix]) == 'undefined') { mercEquipped[group][affix] = unequipped[affix] }	// undefined (new) affixes get initialized to zero
-							if (affix == "base_defense") {
+						/*	if (affix == "base_defense") {
 								mercEquipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
 								mercenary[affix] += Math.ceil(multEth*multED*bases[base][affix])
-							} else if (affix == "base_damage_min" || affix == "base_damage_max") {
+							} else
+						*/	if (affix == "base_damage_min" || affix == "base_damage_max") {
 								mercEquipped[group][affix] = Math.ceil(multEth*bases[base][affix])
 								mercenary[affix] += Math.ceil(multEth*bases[base][affix])
 							} else if (affix == "req_strength" || affix == "req_dexterity") {
@@ -955,10 +957,11 @@ function equip(group, val) {
 				if (typeof(bases[base]) != 'undefined') { for (affix in bases[base]) {
 					if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands" && affix != "nonmetal") {	// test: twoHands still unused elsewhere? okay here?
 						if (typeof(equipped[group][affix]) == 'undefined') { equipped[group][affix] = unequipped[affix] }	// undefined (new) affixes get initialized to zero
-						if (affix == "base_defense") {										// TODO: consider renaming? ...group_defense, combined_defense, item_def, etc
+					/*	if (affix == "base_defense") {										// TODO: consider renaming? ...group_defense, combined_defense, item_def, etc
 							equipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
 							character[affix] += Math.ceil(multEth*multED*bases[base][affix])
-						} else if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
+						} else 
+					*/	if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
 							equipped[group][affix] = Math.ceil(multEth*bases[base][affix])
 							character[affix] += Math.ceil(multEth*bases[base][affix])
 						} else if (affix == "req_strength" || affix == "req_dexterity") {
@@ -2169,7 +2172,28 @@ function updatePrimaryStats() {
 	var stamina_addon = (vitTotal-c.starting_vitality)*c.stamina_per_vitality;
 	var mana_addon = (energyTotal-c.starting_energy)*c.mana_per_energy;
 	
-	var def = (c.base_defense + c.defense + c.level*c.defense_per_level + Math.floor(dexTotal/4)) * (1 + (c.defense_bonus + c.defense_skillup)/100);
+	var item_def = 0;
+	for (group in corruptsEquipped) {
+		if (typeof(equipped[group].base_defense) != 'undefined') { if (equipped[group].base_defense != unequipped.base_defense) {
+			var multEth = 1;
+			var multED = 1;
+			if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
+			if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
+			if (typeof(corruptsEquipped[group]["e_def"]) != 'undefined') { multED += (corruptsEquipped[group]["e_def"]/100) }
+			if (group == "helm" || group == "armor" || group == "weapon" || group == "offhand") { if (typeof(socketed[group].totals["e_def"]) != 'undefined') { multED += (socketed[group].totals["e_def"]/100) } }
+			if (typeof(equipped[group].set_bonuses) != 'undefined') {
+				for (let i = 2; i < equipped[group].set_bonuses.length; i++) { if (i <= character[equipped[group].set_bonuses[0]]) {
+					for (affix in equipped[group].set_bonuses[i]) { if (affix == "e_def") { multED += equipped[group].set_bonuses[i][affix]/100 } }
+				} }
+			}
+			equipped[group].item_defense = Math.ceil(multEth*multED*equipped[group].base_defense)// + ~~equipped[group].defense + Math.floor(~~equipped[group].defense_per_level*c.level)
+			item_def += equipped[group].item_defense
+			// TODO: Incorporate other defense affixes so item_defense can be referenced in the tooltip for total defense?
+		} } else {
+			//equipped[group].item_defense = ~~equipped[group].defense + Math.floor(~~equipped[group].defense_per_level*c.level)
+		}
+	}
+	var def = (item_def + c.defense + c.level*c.defense_per_level + Math.floor(dexTotal/4)) * (1 + (c.defense_bonus + c.defense_skillup)/100);
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const + (c.ar_per_socketed*socketed.offhand.socketsFilled)) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 	
 	var physDamage = getWeaponDamage(strTotal,dexTotal,"weapon",0);
@@ -3733,7 +3757,7 @@ function socket(event, group, source) {
 					socketed[group].items[index][affix_dest] = socketables[k][affix]
 					character[affix_dest] += socketables[k][affix]
 					socketed[group].totals[affix_dest] += socketables[k][affix]
-					if (affix == "e_def") {
+				/*	if (affix == "e_def") {
 						var multEth = 1;
 						var multED = 1 + socketables[k][affix][groupAffix]/100;
 						if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
@@ -3750,6 +3774,7 @@ function socket(event, group, source) {
 						character["defense"] += socketed[group].items[index]["base_defense"]
 						socketed[group].totals["base_defense"] += socketed[group].items[index]["base_defense"]
 					}
+				*/
 				}
 				if (affix == group || (affix == "armor" && group == "helm") || (affix == "armor" && group == "offhand" && typeof(socketables[k]["shield"]) == 'undefined' && offhandType != "weapon") || (affix == "shield" && group == "offhand" && offhandType != "weapon") || (affix == "weapon" && group == "offhand" && offhandType == "weapon")) {
 					for (groupAffix in socketables[k][affix]) {
@@ -3757,7 +3782,7 @@ function socket(event, group, source) {
 						socketed[group].items[index][groupAffix] = socketables[k][affix][groupAffix]
 						character[groupAffix] += socketables[k][affix][groupAffix]
 						socketed[group].totals[groupAffix] += socketables[k][affix][groupAffix]
-						if (groupAffix == "e_def") {	// TODO: Merge duplicated code
+					/*	if (groupAffix == "e_def") {	// TODO: Merge duplicated code
 							var multEth = 1;
 							var multED = 1 + socketables[k][affix][groupAffix]/100;
 							if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
@@ -3774,6 +3799,7 @@ function socket(event, group, source) {
 							character["defense"] += socketed[group].items[index]["base_defense"]
 							socketed[group].totals["base_defense"] += socketed[group].items[index]["base_defense"]
 						}
+					*/
 					}
 				}
 			}
@@ -3796,9 +3822,9 @@ function socket(event, group, source) {
 	inv[0].onpickup = "none"
 }
 
-/*// ---------------------------------
+// ---------------------------------
 function adjustDefenseSocket(group) {
-	var multEth = 1;
+/*	var multEth = 1;
 	var multED = 1 + socketables[k][affix][groupAffix]/100;
 	if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
 	if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
@@ -3813,7 +3839,8 @@ function adjustDefenseSocket(group) {
 	socketed[group].items[index]["base_defense"] = def_change
 	character["defense"] += socketed[group].items[index]["base_defense"]
 	socketed[group].totals["base_defense"] += socketed[group].items[index]["base_defense"]
-}*/
+*/
+}
 
 // allowSocket - Checks on mouse-over whether a socketable item may be added
 //	group: equipment group being mouse-over'd
@@ -3980,11 +4007,12 @@ function changeBase(group, change) {
 		if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
 		if (typeof(equipped[group]["req"]) != 'undefined') { multReq += (equipped[group]["req"]/100) }
 		for (affix in bases[base]) { if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands") {
-			if (affix == "base_defense") {
+		/*	if (affix == "base_defense") {
 				character[affix] -= equipped[group][affix]
 				equipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
 				character[affix] += equipped[group][affix]
-			} else if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
+			} else 
+		*/	if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
 				character[affix] -= equipped[group][affix]
 				equipped[group][affix] = Math.ceil(multEth*bases[base][affix])
 				character[affix] += equipped[group][affix]
@@ -4096,7 +4124,7 @@ function updateSocketTotals() {
 // updateItemDefenses - Recalculates added defense if items have extra Enhanced Defense (Pul Rune or corruption)
 // ---------------------------------
 function updateItemDefenses() {
-	// Needed to allow Pul Rune to function when added prior to armor... would be better to just re-add via other functions?
+/*	// Needed to allow Pul Rune to function when added prior to armor... would be better to just re-add via other functions?
 	var groups = ["helm", "armor", "weapon", "offhand"];
 	for (let g = 0; g < groups.length; g++) {
 		for (let i = 0; i < socketed[groups[g]].items.length; i++) {
@@ -4109,5 +4137,5 @@ function updateItemDefenses() {
 	}
 	// TODO: Implement for Enhanced Defense corruptions
 	//if (typeof(socketed[group].totals["e_def"]) != 'undefined') { multED += (socketed[group].totals["e_def"]/100) }	
+*/
 }
-
