@@ -53,7 +53,8 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		if (skill.name == "Battle Command") { result.all_skills = 1+Math.floor(skill.level/10); result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Shout") { result.defense_bonus = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Battle Orders") { result.max_stamina = skill.data.values[1][lvl]; result.max_life = skill.data.values[2][lvl]; result.max_mana = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl]; }
-		if (skill.name == "Frenzy") { if (offhandType == "weapon") { result.ias_skill = skill.data.values[4][lvl]; result.frw = skill.data.values[6][lvl]; result.duration = 7.5; } }	// consider auto-disabling
+		if (skill.name == "Frenzy") { result.ias_skill = skill.data.values[4][lvl]; result.frw = skill.data.values[6][lvl]; result.duration = 7.5; }
+		// TODO: Frenzy grants frw? not frw_skill?
 		// Debuffs:
 		if (skill.name == "Howl") { result.flee_distance = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Taunt") { result.enemy_damage = skill.data.values[0][lvl]; result.enemy_attack = skill.data.values[1][lvl]; }	// duration unlisted

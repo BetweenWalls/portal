@@ -141,30 +141,41 @@
       </div></div>
     </div>
   </div>
+<!--	filled via loadMonsters()
+  <div class="nav-dropdown">
+    <button class="nav-dropbtn">Enemy</button>
+    <div class="nav-dropdown-content" id="monsters">
+    </div>
+  </div>
+-->
   <div class="nav-dropdown">
     <button class="nav-dropbtn" style="cursor:pointer;" onClick="location.href='https://github.com/BetweenWalls/planner#planner'"><a href="https://github.com/BetweenWalls/planner#planner">About</a></button>
   </div>
 </div>
 
+<div style="display:flex; position:relative;width:1000px;">
+  <div class ="hover" style="display:none;" id="tooltip_inventory">
+    <a id="item_name" style="display:block;"></a>
+    <a id="item_info" style="display:block;"></a>
+    <a id="item_corruption" style="display:block; color:#ff8080;"></a>
+    <a id="item_affixes" style="display:block; color:#8080ff;"></a>
+    <a id="item_set_affixes" style="display:block; color:#00f000;"></a>
+    <a id="item_socketed_affixes" style="display:block; color:#8080ff;"></a>
+    <a id="item_group_affixes" style="display:block; color:#b2a992;"></a>
+  </div>
+</div>
 <div id="full_interface" style="width: 1000px;" class="no-selection" oncontextmenu="return false">
 <div id="side" style="margin-left: 4px; margin-top: 4px; width: 125px; position: relative; float:right; color:white;"></div>
 
 <div id="interface" style="width: 869px;">
 <div style="display: flex; justify-content: flex-end">
   <div class ="hover" style="display:none; top:100px;" id="tooltip_effect">
-    <a id="effect_name" style="color: #00f000;"></a><br>
-    <a id="effect_info"></a><br>
+    <a id="effect_name" style="display:block; color:#00f000;"></a>
+    <a id="effect_info" style="display:block;"></a>
+    <a id="effect_affixes" style="display:block; color:#8080ff;"></a>
   </div>
 </div>
 
-<div style="display:flex; position:relative;">
-  <div class ="hover" style="display:none;" id="tooltip_inventory">
-    <a id="item_name" style="display:block;"></a>
-    <a id="item_info1" style="display:block;"></a>
-    <a id="item_corruption" style="display:block; color:#ff8080;"></a>
-    <a id="item_info2" style="display:block;"></a>
-  </div>
-</div>
 <div id="gui" class="no-selection" oncontextmenu="return false" style="position:relative; height:433px;">
 
 <!--		/GUI Stats		-->

@@ -99,7 +99,7 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 			result.pDamage_max = skill.data.values[2][lvl] * (1 + (0.10*skills[15].level + 0.10*skills[19].level));
 			result.pDamage_duration = 2; result.pDamage_duration_override = 2; result.enemy_pRes = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl];
 		}
-		if (skill.name == "Bone Armor") { result.absorb_melee = skill.data.values[0][lvl]; }
+		if (skill.name == "Bone Armor") { result.absorb_melee = skill.data.values[0][lvl] + 20*skills[17].level + 20*skills[18].level; }
 		// No stat buffs:
 		if (skill.name == "Clay Golem") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }

@@ -95,7 +95,7 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 			result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]);
 			result.mana_regen = skill.data.values[1][lvl];
 		}
-		if (skill.name == "Redemption") { result.recovery_per_corpse = skill.data.values[0][lvl]/100 * skill.data.values[1][lvl]; }
+		if (skill.name == "Redemption") { result.redeem_chance = skill.data.values[0][lvl]; result.redeem_amount = skill.data.values[1][lvl]; }
 		if (skill.name == "Salvation") { result.fDamage = skill.data.values[0][lvl]; result.cDamage = skill.data.values[0][lvl]; result.lDamage = skill.data.values[0][lvl]; result.all_res = skill.data.values[1][lvl]; }
 	    // Offensive Auras
 		if (skill.name == "Might") { result.damage_bonus = skill.data.values[0][lvl]; }
@@ -109,7 +109,7 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		if (skill.name == "Holy Freeze") {
 			result.cDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
 			result.cDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
-			result.slow_enemies = skill.data.values[2][lvl];
+			result.slow_enemies = skill.data.values[4][lvl];
 		}
 		if (skill.name == "Holy Shock") {
 			result.lDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);

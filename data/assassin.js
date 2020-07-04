@@ -68,16 +68,16 @@ var character_assassin = {class_name:"Assassin", strength:20, dexterity:20, vita
 		var result = {};
 		var charges = 5;
 		
-		if (skill.name == "Fists of Ember") { if (equipped.weapon.type == "claw" || equipped.weapon.type == "dagger") { result.charge_ember = charges; result.fDamage_min = charges * skill.data.values[0][lvl]; result.fDamage_max = charges * skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; } }	// Consider automatically disabling whenever conditions aren't met? Would need to update effects after equip()
-		if (skill.name == "Fists of Thunder") { if (equipped.weapon.type == "claw" || equipped.weapon.type == "dagger") { result.charge_thunder = charges; result.lDamage_min = charges * skill.data.values[0][lvl]; result.lDamage_max = charges * skill.data.values[1][lvl]; result.duration = skill.data.values[2][lvl]; } }	// consider auto-disabling
-		if (skill.name == "Fists of Ice") { if (equipped.weapon.type == "claw" || equipped.weapon.type == "dagger") { result.charge_ice = charges; result.cDamage_min = charges * skill.data.values[0][lvl]; result.cDamage_max = charges * skill.data.values[1][lvl]; result.duration = skill.data.values[2][lvl]; } }		// consider auto-disabling
+		if (skill.name == "Fists of Ember") { result.charge_ember = charges; result.fDamage_min = charges * skill.data.values[0][lvl]; result.fDamage_max = charges * skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
+		if (skill.name == "Fists of Thunder") { result.charge_thunder = charges; result.lDamage_min = charges * skill.data.values[0][lvl]; result.lDamage_max = charges * skill.data.values[1][lvl]; result.duration = skill.data.values[2][lvl]; }
+		if (skill.name == "Fists of Ice") { result.charge_ice = charges; result.cDamage_min = charges * skill.data.values[0][lvl]; result.cDamage_max = charges * skill.data.values[1][lvl]; result.duration = skill.data.values[2][lvl]; }
 		if (skill.name == "Burst of Speed") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Fade")) { disableEffect(effect_id) } } }
 			result.ias_skill = skill.data.values[0][lvl]; result.velocity = skill.data.values[1][lvl]; result.duration = skill.data.values[2][lvl];
 		}
 		if (skill.name == "Fade") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Burst_of_Speed")) { disableEffect(effect_id) } } }
-			result.curse_reduction = skill.data.values[0][lvl]; result.all_res = skill.data.values[1][lvl]; result.pdr = skill.data.values[2][lvl]; result.duration = skill.data.values[3][lvl];
+			result.curse_length_reduced = skill.data.values[0][lvl]; result.all_res = skill.data.values[1][lvl]; result.pdr = skill.data.values[2][lvl]; result.duration = skill.data.values[3][lvl];
 		}
 		if (skill.name == "Venom") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
