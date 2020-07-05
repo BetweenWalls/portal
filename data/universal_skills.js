@@ -93,15 +93,15 @@ var character_any = {
 			result.max_life = (25 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
 		}
 		if (skill.name == "Feral Rage") {	// only useable with Werewolf
-			var valid = 0;
-			var sk = "Werewolf";
-			if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
-				valid = 1
+		//	var valid = 0;
+		//	var sk = "Werewolf";
+		//	if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
+		//		valid = 1
 				result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20;
-			} }
-			if (valid == 0) {
-				result.velocity = 0; result.life_leech = 0; result.duration = 0;
-			}
+		//	} }
+		//	if (valid == 0) {
+		//		result.velocity = 0; result.life_leech = 0; result.duration = 0;
+		//	}
 		}
 		if (skill.name == "Frigerate") {	// TODO: Make always-active?
 			result.cDamage_min = skill.data.values[0][lvl];

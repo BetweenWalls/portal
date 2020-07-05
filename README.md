@@ -13,6 +13,8 @@ Current Known Issues:
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * Unimplemented: mercenary stats
 * Unimplemented: breakpoint info for FCR, FBR, FHR
+* CtC (Chance to Cast) affixes from jewels not shown on tooltip for equipped items
+* DoT (Damage over Time) affixes are added without considering their time component
 
 Info: https://github.com/BetweenWalls/planner#planner
 

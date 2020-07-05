@@ -95,26 +95,26 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 			result.max_life = (25 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
 		}
 		if (skill.name == "Feral Rage") {	// only useable with Werewolf
-			var valid = 0;
-			var sk = skills[11].name.split(' ').join('_');
-			if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
-				valid = 1
+		//	var valid = 0;
+		//	var sk = skills[11].name.split(' ').join('_');
+		//	if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
+		//		valid = 1
 				result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20;
-			} }
-			if (valid == 0) {
-				result.velocity = 0; result.life_leech = 0; result.duration = 0;
-			}
+		//	} }
+		//	if (valid == 0) {
+		//		result.velocity = 0; result.life_leech = 0; result.duration = 0;
+		//	}
 		}
 		if (skill.name == "Maul") {	// only useable with Werebear
-			var valid = 0;
-			var sk = skills[13].name.split(' ').join('_');
-			if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
-				valid = 1
+		//	var valid = 0;
+		//	var sk = skills[13].name.split(' ').join('_');
+		//	if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
+		//		valid = 1
 				result.damage_bonus = skill.data.values[2][lvl]; result.duration = 20;
-			} }
-			if (valid == 0) {
-				result.damage_bonus = 0; result.duration = 0;
-			}
+		//	} }
+		//	if (valid == 0) {
+		//		result.damage_bonus = 0; result.duration = 0;
+		//	}
 		}
 		if (skill.name == "Heart of Wolverine") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }

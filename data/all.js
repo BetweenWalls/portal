@@ -1672,9 +1672,11 @@ function updateAllEffects() {
 	// disable incompatible effects
 	for (id in effects) {
 		if (id == "Fists_of_Ember") { if (equipped.weapon.type != "claw" && equipped.weapon.type != "dagger") { disableEffect(id) } }
-		if (id == "Fists_of_Thunder") { if (equipped.weapon.type != "claw" && equipped.weapon.type != "dagger") { disableEffect(id) } }
-		if (id == "Fists_of_Ice") { if (equipped.weapon.type != "claw" && equipped.weapon.type != "dagger") { disableEffect(id) } }
-		if (id == "Frenzy") { if (offhandType != "weapon") { disableEffect(id) } }
+		else if (id == "Fists_of_Thunder") { if (equipped.weapon.type != "claw" && equipped.weapon.type != "dagger") { disableEffect(id) } }
+		else if (id == "Fists_of_Ice") { if (equipped.weapon.type != "claw" && equipped.weapon.type != "dagger") { disableEffect(id) } }
+		else if (id == "Frenzy") { if (offhandType != "weapon") { disableEffect(id) } }
+		else if (id == "Maul") { if (effects["Werebear"].info.enabled != 1) { disableEffect(id) } }
+		else if (id == "Feral_Rage") { if (effects["Werewolf"].info.enabled != 1) { disableEffect(id) } }
 	}
 	update()
 }
@@ -3451,14 +3453,23 @@ function equipmentHover(group) {
 			}
 		}
 	}
-	// TODO: ctc affixes from socketed jewels
 	if (equipped[group].name != "none" && (group == "helm" || group == "armor" || group == "weapon" || group == "offhand")) {
 		updateSocketTotals()
 		for (affix in socketed[group].totals) {
 			if (stats[affix] != unequipped[affix] && stats[affix] != 1 && affix != "req_level" && affix != "ctc") {
 				var affix_info = getAffixLine(affix,"socketed",group,"");
 				if (affix_info[1] != 0) { socketed_affixes += affix_info[0]+"<br>" }
-			}
+			} else if (affix == "ctc") {
+			// TODO: ctc affixes from socketed jewels (ctc isn't added to totals since there's no function to add ctc variables to eachother)
+			/*	var source = socketed[group].totals;
+				var affix_line = "";
+				for (let i = 0; i < source[affix].length; i++) {
+					var line = source[affix][i][0]+"% chance to cast level "+source[affix][i][1]+" "+source[affix][i][2]+" "+source[affix][i][3];
+					affix_line += line
+					if (i < source[affix].length-1) { affix_line += "<br>" }
+				}
+				socketed_affixes += affix_line
+			*/}
 		}
 	}
 	// TODO: Reduce duplicated code from set bonuses - rewrite getAffixLine?
@@ -3466,7 +3477,7 @@ function equipmentHover(group) {
 		var bonuses = equipped[group].set_bonuses;
 		var set = bonuses[0];
 		var group_bonuses = sets[set];
-		var amount = character[set];
+		var amount = Math.round(character[set]);
 		var list_bonuses = {};
 		var list_group_bonuses = {};
 		for (let i = 1; i < bonuses.length; i++) {
