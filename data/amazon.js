@@ -75,12 +75,12 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.enemy_defense_flat = skill.data.values[0][lvl];
 		}
-		if (skill.name == "Lethal Strike") { result.cstrike_skillup = skill.data.values[0][lvl]; }
-		if (skill.name == "Penetrate") { result.ar_skillup = skill.data.values[0][lvl]; }
-		if (skill.name == "Pierce") { result.pierce_skillup = skill.data.values[0][lvl]; }
-		if (skill.name == "Dodge") { result.dodge_skillup = skill.data.values[0][lvl]; }
-		if (skill.name == "Avoid") { result.avoid_skillup = skill.data.values[0][lvl]; }
-		if (skill.name == "Evade") { result.evade_skillup = skill.data.values[0][lvl]; }
+		if (skill.name == "Lethal Strike") { result.cstrike = skill.data.values[0][lvl]; }
+		if (skill.name == "Penetrate") { result.ar_bonus = skill.data.values[0][lvl]; }
+		if (skill.name == "Pierce") { result.pierce = skill.data.values[0][lvl]; }
+		if (skill.name == "Dodge") { result.dodge = skill.data.values[0][lvl]; }
+		if (skill.name == "Avoid") { result.avoid = skill.data.values[0][lvl]; }
+		if (skill.name == "Evade") { result.evade = skill.data.values[0][lvl]; }
 		// No stat buffs:
 		if (skill.name == "Decoy") { result.duration = skill.data.values[8][lvl]; }
 		if (skill.name == "Valkyrie") { result.amountSummoned = 1+character.extraValkyrie; }

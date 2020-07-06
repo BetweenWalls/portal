@@ -2,7 +2,7 @@
 fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{},ironGolem:""};
 fileText = "";
 character = {};
-var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0};
+var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, block_skillup:0, velocity_skillup:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0};
 var base_stats = {level:1, skillpoints:0, statpoints:0, quests_completed:-1, running:-1, difficulty:3, strength_added:0, dexterity_added:0, vitality_added:0, energy_added:0, fRes_penalty:100, cRes_penalty:100, lRes_penalty:100, pRes_penalty:100, mRes_penalty:100, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0, fRes_max_base:75, cRes_max_base:75, lRes_max_base:75, pRes_max_base:75, mRes_max_base:75, set_bonuses:[0,0,{},{},{},{},{}]}
 
 var effects = {};
@@ -321,6 +321,8 @@ function setCharacterInfo(className) {
 	//updateStats()
 	document.getElementById("inputTextToSave").value = ""
 	update()
+	var class_names = ["","amazon","assassin","barbarian","druid","necromancer","paladin","sorceress"];
+	for (let c = 1; c < class_names.length; c++) { if (character.class_name.toLowerCase() == class_names[c]) { document.getElementById("dropdown_class").selectedIndex = c } }
 }
 
 // loadMonsters - 
@@ -545,9 +547,10 @@ function startup(choice) {
 	setIronGolem("none")
 	loadEquipment(choice)
 	clearIconSources()
+	resetEffects()
 	resetSkills()
 	resetEquipment()
-	resetEffects()
+	effects = {}
 	calculateSkillAmounts()
 	updateSkills()
 	document.getElementById("quests").checked = 0
@@ -1822,7 +1825,6 @@ function resetEffects() {
 	for (id in effects) { if (typeof(effects[id].info.snapshot) != 'undefined') { effects[id].info.snapshot = 0 } }
 	updateAllEffects()
 	for (id in effects) { if (document.getElementById(id) != null) { removeEffect(id) } }
-	effects = {}
 }
 
 // getAuraData - gets a list of stats corresponding to the aura (excludes synergy bonuses)
@@ -2096,14 +2098,12 @@ function getWeaponDamage(str, dex, group, thrown) {
 	}
 	// multiplier from skills
 	var weapon_skillup = 0;
-	if (c.class_name == "Barbarian" || c.class_name == "Assassin") {
-		if (type == "sword" || type == "axe" || type == "dagger") { weapon_skillup = c.edged_damage; c.ar_skillup = c.edged_ar; c.cstrike_skillup = c.edged_cstrike; }
-		else if (type == "polearm" || type == "spear") { weapon_skillup = c.pole_damage; c.ar_skillup = c.pole_ar; c.cstrike_skillup = c.pole_cstrike; }
-		else if (type == "mace" || type == "scepter" || type == "staff" || type == "hammer" || type == "club" || type == "wand") { weapon_skillup = c.blunt_damage; c.ar_skillup = c.blunt_ar; c.cstrike_skillup = c.blunt_cstrike; }
-		else if (type == "thrown" || type == "javelin") { weapon_skillup = c.thrown_damage; c.ar_skillup = c.thrown_ar; c.pierce_skillup = c.thrown_pierce; }	// check if javelins can benefit from Pole Weapon Mastery
-		else if (type == "claw") { weapon_skillup = c.claw_damage; c.ar_skillup = c.claw_ar; c.cstrike_skillup = c.claw_cstrike; }
-		else { weapon_skillup = 0; c.ar_skillup = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
-	}
+	if (type == "sword" || type == "axe" || type == "dagger") { weapon_skillup = c.edged_damage; c.ar_skillup = c.edged_ar; c.cstrike_skillup = c.edged_cstrike; }
+	else if (type == "polearm" || type == "spear") { weapon_skillup = c.pole_damage; c.ar_skillup = c.pole_ar; c.cstrike_skillup = c.pole_cstrike; }
+	else if (type == "mace" || type == "scepter" || type == "staff" || type == "hammer" || type == "club" || type == "wand") { weapon_skillup = c.blunt_damage; c.ar_skillup = c.blunt_ar; c.cstrike_skillup = c.blunt_cstrike; }
+	else if (type == "thrown" || type == "javelin") { weapon_skillup = c.thrown_damage; c.ar_skillup = c.thrown_ar; c.pierce_skillup = c.thrown_pierce; }	// check if javelins can benefit from Pole Weapon Mastery
+	else if (type == "claw") { weapon_skillup = c.claw_damage; c.ar_skillup = c.claw_ar; c.cstrike_skillup = c.claw_cstrike; }
+	else { weapon_skillup = 0; c.ar_skillup = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
 	var e_damage_other = 0;
 	if (offhandType == "weapon") { e_damage_other = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage)); }
 	var e_damage = c.e_damage + (c.level*c.e_max_damage_per_level) - e_damage_other;
@@ -2126,35 +2126,35 @@ function getNonPhysWeaponDamage(group) {
 	var c = character;
 	var energyTotal = (c.energy + c.all_attributes)*(1+c.max_energy/100);
 	var cDamage_sockets_filled = ~~(equipped.weapon.cDamage_per_socketed*socketed.weapon.socketsFilled)+~~(equipped.offhand.cDamage_per_socketed*socketed.offhand.socketsFilled);
-	var f_min = c.fDamage_min*(1+(c.fDamage+c.fDamage_skillup)/100);
-	var f_max = (c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100);
-	var c_min = (c.cDamage_min+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+(c.cDamage+c.cDamage_skillup)/100);
-	var c_max = (c.cDamage_max+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+(c.cDamage+c.cDamage_skillup)/100);
-	var l_min = c.lDamage_min*(1+(c.lDamage+c.lDamage_skillup)/100);
-	var l_max = (c.lDamage_max+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100);
+	var f_min = c.fDamage_min*(1+c.fDamage/100);
+	var f_max = (c.fDamage_max+(c.level*c.fDamage_max_per_level))*(1+c.fDamage/100);
+	var c_min = (c.cDamage_min+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+c.cDamage/100);
+	var c_max = (c.cDamage_max+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+c.cDamage/100);
+	var l_min = c.lDamage_min*(1+c.lDamage/100);
+	var l_max = (c.lDamage_max+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+c.lDamage/100);
 	var p_min = (c.pDamage_all+c.pDamage_min)*(1+c.pDamage/100);	// TODO: Damage over time should be separate from regular damage. Calculate poison bitrate.
 	var p_max = (c.pDamage_all+c.pDamage_max)*(1+c.pDamage/100);	//	 Also, poison doesn't overlap from different sources?
 	var m_min = c.mDamage_min;
 	var m_max = c.mDamage_max;
 	if (offhandType == "weapon") {
 		if (group == "weapon") {
-			f_min = (c.fDamage_min-~~(equipped.offhand.fDamage_min))*(1+(c.fDamage+c.fDamage_skillup)/100);
-			f_max = ((c.fDamage_max-~~(equipped.offhand.fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100);
-			c_min = ((c.cDamage_min-~~(equipped.offhand.cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+(c.cDamage+c.cDamage_skillup)/100);
-			c_max = ((c.cDamage_max-~~(equipped.offhand.cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+(c.cDamage+c.cDamage_skillup)/100);
-			l_min = (c.lDamage_min-~~(equipped.offhand.lDamage_min))*(1+(c.lDamage+c.lDamage_skillup)/100);
-			l_max = ((c.lDamage_max-~~(equipped.offhand.lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100);
+			f_min = (c.fDamage_min-~~(equipped.offhand.fDamage_min))*(1+c.fDamage/100);
+			f_max = ((c.fDamage_max-~~(equipped.offhand.fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+c.fDamage/100);
+			c_min = ((c.cDamage_min-~~(equipped.offhand.cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+c.cDamage/100);
+			c_max = ((c.cDamage_max-~~(equipped.offhand.cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+c.cDamage/100);
+			l_min = (c.lDamage_min-~~(equipped.offhand.lDamage_min))*(1+c.lDamage/100);
+			l_max = ((c.lDamage_max-~~(equipped.offhand.lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+c.lDamage/100);
 			p_min = (c.pDamage_all+c.pDamage_min-~~(equipped.offhand.pDamage_min))*(1+c.pDamage/100);
 			p_max = (c.pDamage_all+c.pDamage_max-~~(equipped.offhand.pDamage_max))*(1+c.pDamage/100);
 			m_min = c.mDamage_min - ~~(equipped.offhand.mDamage_min);
 			m_max = c.mDamage_max - ~~(equipped.offhand.mDamage_max);
 		} else {
-			f_min = (c.fDamage_min-~~(equipped.weapon.fDamage_min))*(1+(c.fDamage+c.fDamage_skillup)/100);
-			f_max = ((c.fDamage_max-~~(equipped.weapon.fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+(c.fDamage+c.fDamage_skillup)/100);
-			c_min = ((c.cDamage_min-~~(equipped.weapon.cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+(c.cDamage+c.cDamage_skillup)/100);
-			c_max = ((c.cDamage_max-~~(equipped.weapon.cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+(c.cDamage+c.cDamage_skillup)/100);
-			l_min = (c.lDamage_min-~~(equipped.weapon.lDamage_min))*(1+(c.lDamage+c.lDamage_skillup)/100);
-			l_max = ((c.lDamage_max-~~(equipped.weapon.lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+(c.lDamage+c.lDamage_skillup)/100);
+			f_min = (c.fDamage_min-~~(equipped.weapon.fDamage_min))*(1+c.fDamage/100);
+			f_max = ((c.fDamage_max-~~(equipped.weapon.fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+c.fDamage/100);
+			c_min = ((c.cDamage_min-~~(equipped.weapon.cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+c.cDamage/100);
+			c_max = ((c.cDamage_max-~~(equipped.weapon.cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+c.cDamage/100);
+			l_min = (c.lDamage_min-~~(equipped.weapon.lDamage_min))*(1+c.lDamage/100);
+			l_max = ((c.lDamage_max-~~(equipped.weapon.lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+c.lDamage/100);
 			p_min = (c.pDamage_all+c.pDamage_min-~~(equipped.weapon.pDamage_min))*(1+c.pDamage/100);
 			p_max = (c.pDamage_all+c.pDamage_max-~~(equipped.weapon.pDamage_max))*(1+c.pDamage/100);
 			m_min = c.mDamage_min - ~~(equipped.weapon.mDamage_min);
@@ -2296,7 +2296,7 @@ function updatePrimaryStats() {
 		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(256 * (100 + c.ias_skill + eIAS - c.baseSpeed) / 100)) - 1;
 		document.getElementById("ias").innerHTML += " ("+frames_per_attack+" fpa)"
 	}
-	if (c.flamme > 0) { document.getElementById("flamme").innerHTML = "Righteous Fire deals "+Math.floor((c.flamme/100*lifeTotal)*(1+(c.fDamage+c.fDamage_skillup)/100))+" damage per second<br>" } else { document.getElementById("flamme").innerHTML = "" }
+	if (c.flamme > 0) { document.getElementById("flamme").innerHTML = "Righteous Fire deals "+Math.floor((c.flamme/100*lifeTotal)*(1+c.fDamage/100))+" damage per second<br>" } else { document.getElementById("flamme").innerHTML = "" }
 }
 
 // updateSecondaryStats - Updates stats shown on the secondary (Path of Diablo) stat page
@@ -2344,13 +2344,13 @@ function updateSecondaryStats() {
 	if (MPH == "0m , 0r") { MPH = 0 }
 	document.getElementById("mana_per_hit").innerHTML = MPH
 	
-	document.getElementById("fdamage").innerHTML = c.fDamage + c.fDamage_skillup; if (c.fDamage > 0 || c.fDamage_skillup > 0) { document.getElementById("fdamage").innerHTML += "%" }
-	document.getElementById("cdamage").innerHTML = c.cDamage + c.cDamage_skillup; if (c.cDamage > 0 || c.cDamage_skillup > 0) { document.getElementById("cdamage").innerHTML += "%" }
-	document.getElementById("ldamage").innerHTML = c.lDamage + c.lDamage_skillup; if (c.lDamage > 0 || c.lDamage_skillup > 0) { document.getElementById("ldamage").innerHTML += "%" }
+	document.getElementById("fdamage").innerHTML = c.fDamage; if (c.fDamage > 0) { document.getElementById("fdamage").innerHTML += "%" }
+	document.getElementById("cdamage").innerHTML = c.cDamage; if (c.cDamage > 0) { document.getElementById("cdamage").innerHTML += "%" }
+	document.getElementById("ldamage").innerHTML = c.lDamage; if (c.lDamage > 0) { document.getElementById("ldamage").innerHTML += "%" }
 	document.getElementById("pdamage").innerHTML = c.pDamage; if (c.pDamage > 0) { document.getElementById("pdamage").innerHTML += "%" }
-	document.getElementById("fpierce").innerHTML = c.fPierce + c.fPierce_skillup; if (c.fPierce > 0 || c.fPierce_skillup > 0) { document.getElementById("fpierce").innerHTML += "%" }
-	document.getElementById("cpierce").innerHTML = c.cPierce + c.cPierce_skillup; if (c.cPierce > 0 || c.cPierce_skillup > 0) { document.getElementById("cpierce").innerHTML += "%" }
-	document.getElementById("lpierce").innerHTML = c.lPierce + c.lPierce_skillup; if (c.lPierce > 0 || c.lPierce_skillup > 0) { document.getElementById("lpierce").innerHTML += "%" }
+	document.getElementById("fpierce").innerHTML = c.fPierce; if (c.fPierce > 0) { document.getElementById("fpierce").innerHTML += "%" }
+	document.getElementById("cpierce").innerHTML = c.cPierce; if (c.cPierce > 0) { document.getElementById("cpierce").innerHTML += "%" }
+	document.getElementById("lpierce").innerHTML = c.lPierce; if (c.lPierce > 0) { document.getElementById("lpierce").innerHTML += "%" }
 	document.getElementById("ppierce").innerHTML = c.pPierce; if (c.pPierce > 0) { document.getElementById("ppierce").innerHTML += "%" }
 	
 	document.getElementById("pierce").innerHTML = c.pierce + c.pierce_skillup; if (c.pierce > 0 || c.pierce_skillup > 0) { document.getElementById("pierce").innerHTML += "%" }
@@ -2372,7 +2372,7 @@ function updateSecondaryStats() {
 	var lifeRegen = "";
 	if (c.life_regen > 0) { lifeRegen = c.life_regen+"% " }; if (c.life_replenish > 0) { lifeRegen += ("+"+c.life_replenish) }; if (c.life_regen == 0 && c.life_replenish == 0) { lifeRegen = 0 }
 	document.getElementById("life_regen").innerHTML = lifeRegen
-	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen + c.mana_regen_skillup,1)+"%"
+	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen,1)+"%"
 	
 	document.getElementById("damage_to_mana").innerHTML = c.damage_to_mana; if (c.damage_to_mana > 0) { document.getElementById("damage_to_mana").innerHTML += "%" }
 	
