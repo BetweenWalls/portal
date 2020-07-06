@@ -37,7 +37,7 @@ var unequipped = {		strength:0, dexterity:0, vitality:0, energy:0, life:0, mana:
 /* oskills  paladin	*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, oskill_Enflame:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
 // TODO: confirm oskill_Guided_Arrow (Widowmaker)
-				skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, 
+				skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0, dodge_skillup:0, avoid_skillup:0, evade_skillup:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
 };
 // TODO: Remove old instances of Arctic Blast (replaced with Frigerate on Frostwind sword)
 var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Arctic_Blast","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
@@ -2530,6 +2530,46 @@ skills_class:{index:["skills_class"], format:["+"," to Class Skills"]},
 skills_tree1:{index:["skills_tree1"], format:["+"," to Tree #1 Skills"]},
 skills_tree2:{index:["skills_tree2"], format:["+"," to Tree #2 Skills"]},
 skills_tree3:{index:["skills_tree3"], format:["+"," to Tree #3 Skills"]},
+
+stamina_skillup:{index:["stamina_skillup"], format:["+","% Stamina"]},
+frw_skillup:{index:["frw_skillup"], format:["+","% Faster Run/Walk"]},
+defense_skillup:{index:["defense_skillup"], format:["+","% Defense"]},
+resistance_skillup:{index:["resistance_skillup"], format:["+","% Resistances"]},
+cstrike_skillup:{index:["cstrike_skillup"], format:["+","% Critical Strike"]},
+ar_skillup:{index:["ar_skillup"], format:["+","% Attack Rating"]},
+pierce_skillup:{index:["pierce_skillup"], format:["+","% Pierce"]},
+fRes_skillup:{index:["fRes_skillup"], format:["+","% Fire Resist"]},
+cRes_skillup:{index:["cRes_skillup"], format:["+","% Cold Resist"]},
+lRes_skillup:{index:["lRes_skillup"], format:["+","% Lightning Resist"]},
+pRes_skillup:{index:["pRes_skillup"], format:["+","% Poison Resist"]},
+mana_regen_skillup:{index:["mana_regen_skillup"], format:["+","% Mana Recovery Rate"]},
+cPierce_skillup:{index:["cPierce_skillup"], format:["+","% Cold Pierce"]},
+lPierce_skillup:{index:["lPierce_skillup"], format:["+","% Lightning Pierce"]},
+fPierce_skillup:{index:["fPierce_skillup"], format:["+","% Fire Pierce"]},
+cDamage_skillup:{index:["cDamage_skillup"], format:["+","% Cold Damage"]},
+lDamage_skillup:{index:["lDamage_skillup"], format:["+","% Lightning Damage"]},
+fDamage_skillup:{index:["fDamage_skillup"], format:["+","% Fire Damage"]},
+block_skillup:{index:["block_skillup"], format:["+","% Block"]},
+velocity_skillup:{index:["velocity_skillup"], format:["+","% Velocity"]},
+dodge_skillup:{index:["dodge_skillup"], format:["+","% Dodge (against Melee Attacks when attacking or standing still)"]},
+avoid_skillup:{index:["avoid_skillup"], format:["+","% Dodge (against Missile Attacks when attacking or standing still)"]},
+evade_skillup:{index:["evade_skillup"], format:["+","% Dodge (when walking or running)"]},
+edged_damage:{index:["edged_damage"], format:["+","% Damage"]},
+edged_ar:{index:["edged_ar"], format:["+","% Attack Rating"]},
+edged_cstrike:{index:["edged_cstrike"], format:["+","% Critical Strike"]},
+pole_damage:{index:["pole_damage"], format:["+","% Damage"]},
+pole_ar:{index:["pole_ar"], format:["+","% Attack Rating"]},
+pole_cstrike:{index:["pole_cstrike"], format:["+","% Critical Strike"]},
+blunt_damage:{index:["blunt_damage"], format:["+","% Damage"]},
+blunt_ar:{index:["blunt_ar"], format:["+","% Attack Rating"]},
+blunt_cstrike:{index:["blunt_cstrike"], format:["+","% Critical Strike"]},
+thrown_damage:{index:["thrown_damage"], format:["+","% Damage"]},
+thrown_ar:{index:["thrown_ar"], format:["+","% Attack Rating"]},
+thrown_pierce:{index:["thrown_pierce"], format:["+","% Pierce"]},
+claw_damage:{index:["claw_damage"], format:["+","% Damage"]},
+claw_ar:{index:["claw_ar"], format:["+","% Attack Rating"]},
+claw_cstrike:{index:["claw_cstrike"], format:["+","% Critical Strike"]},
+
 };
 
 var stats_alternate = {

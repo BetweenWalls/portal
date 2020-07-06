@@ -55,6 +55,14 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		if (skill.name == "Battle Orders") { result.max_stamina = skill.data.values[1][lvl]; result.max_life = skill.data.values[2][lvl]; result.max_mana = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Frenzy") { result.ias_skill = skill.data.values[4][lvl]; result.frw = skill.data.values[6][lvl]; result.duration = 7.5; }
 		// TODO: Frenzy grants frw? not frw_skill?
+		if (skill.name == "Edged Weapon Mastery") { result.edged_damage = skill.data.values[0][lvl]; result.edged_ar = skill.data.values[1][lvl]; result.edged_cstrike = skill.data.values[2][lvl]; }
+		if (skill.name == "Pole Weapon Mastery") { result.pole_damage = skill.data.values[0][lvl]; result.pole_ar = skill.data.values[1][lvl]; result.pole_cstrike = skill.data.values[2][lvl]; }
+		if (skill.name == "Blunt Weapon Mastery") { result.blunt_damage = skill.data.values[0][lvl]; result.blunt_ar = skill.data.values[1][lvl]; result.blunt_cstrike = skill.data.values[2][lvl]; }
+		if (skill.name == "Thrown Weapon Mastery") { result.thrown_damage = skill.data.values[0][lvl]; result.thrown_ar = skill.data.values[1][lvl]; result.thrown_pierce = skill.data.values[2][lvl]; }
+		if (skill.name == "Increased Stamina") { result.stamina_skillup = skill.data.values[0][lvl]; }
+		if (skill.name == "Iron Skin") { result.defense_skillup = skill.data.values[0][lvl]; }
+		if (skill.name == "Increased Speed") { result.frw_skillup = skill.data.values[0][lvl]; }
+		if (skill.name == "Natural Resistance") { result.resistance_skillup = skill.data.values[0][lvl]; }
 		// Debuffs:
 		if (skill.name == "Howl") { result.flee_distance = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Taunt") { result.enemy_damage = skill.data.values[0][lvl]; result.enemy_attack = skill.data.values[1][lvl]; }	// duration unlisted

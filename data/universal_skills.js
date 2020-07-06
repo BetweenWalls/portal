@@ -76,10 +76,7 @@ var character_any = {
 		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][~~(character.oskill_Lycanthropy+character.all_skills)]);
 		var lycan_life = ~~(skills_all["druid"][12].data.values[1][~~(character.oskill_Lycanthropy+character.all_skills)]);
 		
-		if (skill.name == "Inner Sight") {	// TODO: Make always-active?
-			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
-			result.enemy_defense_flat = skill.data.values[0][lvl];
-		}
+		if (skill.name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; }	// TODO: Make always-active?
 		if (skill.name == "Lethal Strike") { result.cstrike = skill.data.values[0][lvl]; }	// TODO: Make always-active
 		if (skill.name == "Battle Command") { result.all_skills = 1; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Shout") { result.defense_bonus = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
@@ -92,17 +89,7 @@ var character_any = {
 			if (effects[id].info.enabled == 1) { disableEffect("Werewolf") }
 			result.max_life = (25 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
 		}
-		if (skill.name == "Feral Rage") {	// only useable with Werewolf
-		//	var valid = 0;
-		//	var sk = "Werewolf";
-		//	if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
-		//		valid = 1
-				result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20;
-		//	} }
-		//	if (valid == 0) {
-		//		result.velocity = 0; result.life_leech = 0; result.duration = 0;
-		//	}
-		}
+		if (skill.name == "Feral Rage") { result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20; }
 		if (skill.name == "Frigerate") {	// TODO: Make always-active?
 			result.cDamage_min = skill.data.values[0][lvl];
 			result.cDamage_max = skill.data.values[1][lvl];
@@ -118,6 +105,10 @@ var character_any = {
 			result.fDamage_max = skill.data.values[2][lvl];
 			result.ar_bonus = skill.data.values[3][lvl];
 		}
+		if (skill.name == "Edged Weapon Mastery") { result.edged_damage = skill.data.values[0][lvl]; result.edged_ar = skill.data.values[1][lvl]; result.edged_cstrike = skill.data.values[2][lvl]; }
+		if (skill.name == "Cold Mastery") { result.cPierce_skillup = skill.data.values[0][lvl]; result.cDamage_skillup = skill.data.values[1][lvl]; }
+		if (skill.name == "Fire Mastery") { result.fPierce_skillup = skill.data.values[0][lvl]; result.fDamage_skillup = skill.data.values[1][lvl]; }
+	
 	return result
 	},
 

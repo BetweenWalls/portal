@@ -94,28 +94,8 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 			if (effects[id].info.enabled == 1) { disableEffect("Werewolf") }
 			result.max_life = (25 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
 		}
-		if (skill.name == "Feral Rage") {	// only useable with Werewolf
-		//	var valid = 0;
-		//	var sk = skills[11].name.split(' ').join('_');
-		//	if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
-		//		valid = 1
-				result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20;
-		//	} }
-		//	if (valid == 0) {
-		//		result.velocity = 0; result.life_leech = 0; result.duration = 0;
-		//	}
-		}
-		if (skill.name == "Maul") {	// only useable with Werebear
-		//	var valid = 0;
-		//	var sk = skills[13].name.split(' ').join('_');
-		//	if (document.getElementById(sk) != null) { if (effects[sk].info.enabled == 1) {
-		//		valid = 1
-				result.damage_bonus = skill.data.values[2][lvl]; result.duration = 20;
-		//	} }
-		//	if (valid == 0) {
-		//		result.damage_bonus = 0; result.duration = 0;
-		//	}
-		}
+		if (skill.name == "Feral Rage") { result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20; }
+		if (skill.name == "Maul") { result.damage_bonus = skill.data.values[2][lvl]; result.duration = 20; }
 		if (skill.name == "Heart of Wolverine") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl];
@@ -254,8 +234,8 @@ var skills_druid = [
 {data:d142, key:"142", code:226, name:"Twister", i:6, req:[5,3], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, style:"display: block; top: 286px; left: 72px;", description:"Release several small whirlwinds that<br>cut a path through your enemies<br><br>Stun Length: 1 second<br>Mana Cost: 7", syn_title:"<br>Twister Receives Bonuses From:<br>", syn_text:"Tornado: +30% Damage per Level<br>Hurricane: +30% Damage per Level", graytext:"", text:["Damage: ","-",""]},
 {data:d151, key:"151", code:227, name:"Volcano", i:7, req:[4,1,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, style:"display: block; top: 354px; left: 2px;", description:"Summon forth a volcano to rain death<br>and destruction over your enemies<br><br>Mana Cost: 25", syn_title:"<br>Volcano Receives Bonuses From:<br>", syn_text:"Molten Boulder: +20% Physical Damage per Level<br>Fissure: +14% Fire Damage per Level<br>Armageddon: +14% Fire Damage per Level", graytext:"", text:["Damage: ","-","<br>Fire Damage: ","-",""]},
 {data:d152, key:"152", code:228, name:"Tornado", i:8, req:[6,5,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, style:"display: block; top: 354px; left: 72px;", description:"Create a funnel of wind and debris<br>to blast your enemies<br><br>Mana Cost: 10", syn_title:"<br>Tornado Receives Bonuses From:<br>", syn_text:"Cyclone Armor: +7% Damage per Level<br>Twister: +18% Damage per Level<br>Hurricane: +18% Damage per Level", graytext:"", text:["Damage: ","-",""]},
-{data:d161, key:"161", code:229, name:"Armageddon", i:9, req:[7,4,1,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:2, bindable:2, style:"display: block; top: 422px; left: 2px;", description:"Create a meteor shower to rain fiery<br>destruction on nearby enemies", syn_title:"<br>Armageddon Receives Bonuses From:<br>", syn_text:"Fissure: +2 Seconds per Level<br>Firestorm: +12% Fire Damage per Level<br>Molten Boulder: +12% Physical Damage per Level<br>Volcano: +12% Fire Damage per Level", graytext:"", text:["Duration: ","Damage: ","-","<br>Fire Damage: ","-",""]},
-{data:d162, key:"162", code:230, name:"Hurricane", i:10, req:[8,6,5,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:2, bindable:2, style:"display: block; top: 422px; left: 72px;", description:"Create a massive storm of wind and<br>debris to pound your enemies to bits", syn_title:"<br>Hurricane Receives Bonuses From:<br>", syn_text:"Cyclone Armor: +2 Seconds per Level<br>Twister: +4% Cold Damage per Level<br>Tornado: +4% Cold Damage per Level<br>Arctic Blast: +4% Cold Damage per Level", graytext:"", text:["Duration: ","Cold Damage: ","-",""]},
+{data:d161, key:"161", code:229, name:"Armageddon", i:9, req:[7,4,1,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, style:"display: block; top: 422px; left: 2px;", description:"Create a meteor shower to rain fiery<br>destruction on nearby enemies", syn_title:"<br>Armageddon Receives Bonuses From:<br>", syn_text:"Fissure: +2 Seconds per Level<br>Firestorm: +12% Fire Damage per Level<br>Molten Boulder: +12% Physical Damage per Level<br>Volcano: +12% Fire Damage per Level", graytext:"", text:["Duration: ","Damage: ","-","<br>Fire Damage: ","-",""]},
+{data:d162, key:"162", code:230, name:"Hurricane", i:10, req:[8,6,5,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, style:"display: block; top: 422px; left: 72px;", description:"Create a massive storm of wind and<br>debris to pound your enemies to bits", syn_title:"<br>Hurricane Receives Bonuses From:<br>", syn_text:"Cyclone Armor: +2 Seconds per Level<br>Twister: +4% Cold Damage per Level<br>Tornado: +4% Cold Damage per Level<br>Arctic Blast: +4% Cold Damage per Level", graytext:"", text:["Duration: ","Cold Damage: ","-",""]},
 
 {data:d211, key:"211", code:231, name:"Werewolf", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:5, bindable:1, style:"display: block; top: 82px; left: 204px;", description:"Transform into a werewolf", syn_title:"<br>Werewolf Receives Bonuses From:<br>", syn_text:"Lycanthropy", graytext:"", text:["Life: +","To Attack Rating: +"," percent<br>Attack Speed: +"," percent<br>Damage: +"," percent",""]},
 {data:d212, key:"212", code:232, name:"Lycanthropy", i:12, req:[11], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, style:"display: block; top: 82px; left: 234px;", description:"Passive - Improves damage and life<br>when in werewolf or werebear form", syn_title:"", syn_text:"", graytext:"", text:["Damage: +"," percent<br>Max Life: +"," percent",""]},
@@ -269,7 +249,7 @@ var skills_druid = [
 {data:d261, key:"261", code:240, name:"Fury", i:20, req:[16,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, style:"display: block; top: 422px; left: 204px;", description:"When in werewolf form, attack<br>either multiple adjacent targets<br>or one target multiple times", syn_title:"", syn_text:"", graytext:"", text:[""," hits<br>Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 4",""]},
 
 {data:d312, key:"312", code:241, name:"Raven", i:21, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, style:"display: block; top: 82px; left: 326px;", description:"Summon ravens to peck out<br>the eyes of your enemies<br><br>Raven attacks deal splash damage<br><br>3 Hits", syn_title:"<br>Raven Receives Bonuses From:<br>", syn_text:"Cyclone Armor: +20% Physical Damage per Level<br>Twister: +20% Physical Damage per Level<br>Arctic Blast: +21% Cold Damage per Level<br>1% Increased Cold Damage per Energy", graytext:"", text:["Ravens: ","<br>Damage: ","-","<br>Cold Damage: ","-","<br>Mana Cost per Raven: ",""]},
-{data:d313, key:"313", code:242, name:"Poison Creeper", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, style:"display: block; top: 82px; left: 496px;", description:"Summon a vine that spreads<br>disease to all it contacts", syn_title:"", syn_text:"", graytext:"", text:["Life: ","<br>Poison Damage: ","-","<br>over 5 seconds<br>Mana Cost: 8"]},
+{data:d313, key:"313", code:242, name:"Poison Creeper", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, style:"display: block; top: 82px; left: 496px;", description:"Summon a vine that spreads<br>disease to all it contacts", syn_title:"", syn_text:"", graytext:"", text:["Life: ","<br>Poison Damage: ","-","<br>over 5 seconds<br>Mana Cost: 8"]},
 {data:d321, key:"321", code:243, name:"Heart of Wolverine", i:23, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:5, bindable:1, style:"display: block; top: 150px; left: 336px;", description:"Summon a spirit pet that adds<br>to the damage and attack rating<br>of you and your party", syn_title:"", syn_text:"", graytext:"", text:["Life: ","<br>Damage: +"," percent<br>Attack Rating: +"," percent<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d322, key:"322", code:244, name:"Summon Spirit Wolf", i:24, req:[21], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, style:"display: block; top: 150px; left: 366px;", description:"Summon a wolf to fight by your side", syn_title:"<br>Summon Spirit Wolf Receives Bonuses From:<br>", syn_text:"Summon Dire Wolf<br>Summon Grizzly", graytext:"<br>One Wolf per Base Level. Max: 7<br>", text:["Wolves: ","<br>Mana Cost: 15<br>Life: ","Damage: ","-","<br>Attack Rating: +"," percent<br>Defense: +"," percent"]},
 {data:d333, key:"333", code:245, name:"Carrion Vine", i:25, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:4, bindable:1, style:"display: block; top: 218px; left: 466px;", description:"Summon a vine that eats corpses<br>and replenishes your life", syn_title:"", syn_text:"", graytext:"", text:["Life: ","<br>Heals: "," percent<br>Mana Cost: 10",""]},

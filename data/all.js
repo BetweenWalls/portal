@@ -2,7 +2,7 @@
 fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{},ironGolem:""};
 fileText = "";
 character = {};
-var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, edged_skillup:[0,0,0], pole_skillup:[0,0,0], blunt_skillup:[0,0,0], thrown_skillup:[0,0,0], claw_skillup:[0,0,0], mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0};
+var skill_bonuses = {stamina_skillup:0, frw_skillup:0, defense_skillup:0, resistance_skillup:0, cstrike_skillup:0, ar_skillup:0, pierce_skillup:0, fRes_skillup:0, cRes_skillup:0, lRes_skillup:0, pRes_skillup:0, mana_regen_skillup:0, cPierce_skillup:0, lPierce_skillup:0, fPierce_skillup:0, cDamage_skillup:0, lDamage_skillup:0, fDamage_skillup:0, block_skillup:0, velocity_skillup:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0};
 var base_stats = {level:1, skillpoints:0, statpoints:0, quests_completed:-1, running:-1, difficulty:3, strength_added:0, dexterity_added:0, vitality_added:0, energy_added:0, fRes_penalty:100, cRes_penalty:100, lRes_penalty:100, pRes_penalty:100, mRes_penalty:100, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0, fRes_max_base:75, cRes_max_base:75, lRes_max_base:75, pRes_max_base:75, mRes_max_base:75, set_bonuses:[0,0,{},{},{},{},{}]}
 
 var effects = {};
@@ -55,7 +55,7 @@ function update() {
 // return: 
 // ---------------------------------
 function getCharacterInfo() {
-	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','getSkillDamage','weapon_frames','wereform_frames','edged_skillup','blunt_skillup','pole_skillup','thrown_skillup','claw_skillup','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration','nonmetal','debug'];	// TODO: Prevent item qualities from being added as character qualities
+	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','getSkillDamage','weapon_frames','wereform_frames','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration','nonmetal','debug'];	// TODO: Prevent item qualities from being added as character qualities
 	var charInfo = "{character:{";
 	for (stat in character) {
 		var halt = 0;
@@ -1497,7 +1497,7 @@ function removeEffect(id, direct) {
 		if (effects[id].info.origin == "skill") {
 			halt = 1;
 			var skill = skills[effects[id].info.index];
-			if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) { if (skill.level == 0 && skill.force_levels == 0) { halt = 0 } } }
+			if (typeof(skill.effect) != 'undefined') { if (skill.effect > 0) { if (skill.level == 0 && skill.force_levels == 0) { halt = 0 } } }
 		}
 		if (effects[id].info.enabled == 1) { disableEffect(id) }
 		update()
@@ -1513,6 +1513,7 @@ function removeEffect(id, direct) {
 				for (effect_id in effects) { if (typeof(effects[effect_id].info.enabled) != 'undefined') { if (effects[effect_id].info.level > secondary_level) { secondary = effect_id; secondary_level = effects[effect_id].info.level; } } }
 				if (secondary != "") { enableEffect(secondary) }
 			}
+			document.getElementById("tooltip_effect").style.display = "none"
 			updateAllEffects()
 		}
 		adjustStackedAuras()
@@ -1563,7 +1564,7 @@ function updateAllEffects() {
 	// updates skill effects
 	for (let s = 0; s < skills.length; s++) {
 		var skill = skills[s];
-		if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) {
+		if (typeof(skill.effect) != 'undefined') { if (skill.effect > 0) {
 			var id = skill.name.split(' ').join('_');
 			if (skill.level > 0 || skill.force_levels > 0) {
 				if (document.getElementById(id) == null) { addEffect("skill",skill.name,skill.i,"") }
@@ -1579,7 +1580,7 @@ function updateAllEffects() {
 			var natClass = oskills_info[oskills[o]].native_class;
 			if (natClass != "none" && natClass != character.class_name.toLowerCase()) {
 				var skill = skills_all[natClass][oskills_info[oskills[o]].i]
-				if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) {
+				if (typeof(skill.effect) != 'undefined') { if (skill.effect > 0) {
 					var id = skill.name.split(' ').join('_');
 					if (character[oskills[o]] > 0) {
 						if (document.getElementById(id) == null) { addEffect("oskill",skill.name,skill.i,"") }
@@ -1677,6 +1678,13 @@ function updateAllEffects() {
 		else if (id == "Frenzy") { if (offhandType != "weapon") { disableEffect(id) } }
 		else if (id == "Maul") { if (effects["Werebear"].info.enabled != 1) { disableEffect(id) } }
 		else if (id == "Feral_Rage") { if (effects["Werewolf"].info.enabled != 1) { disableEffect(id) } }
+		else if (id == "Holy_Shield") { if (offhandType != "shield") { disableEffect(id) } }
+		else if (id == "Weapon_Block") { if (equipped.weapon.type != "claw" || equipped.offhand.type != "claw") { disableEffect(id) } }
+	//	else if (id == "Claw Mastery") { if (equipped.weapon.type != "claw" && equipped.offhand.type != "claw") { disableEffect(id) } }
+	//	else if (id == "Edged Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
+	//	else if (id == "Pole Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
+	//	else if (id == "Blunt Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
+	//	else if (id == "Thrown Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
 	}
 	update()
 }
@@ -2089,11 +2097,11 @@ function getWeaponDamage(str, dex, group, thrown) {
 	// multiplier from skills
 	var weapon_skillup = 0;
 	if (c.class_name == "Barbarian" || c.class_name == "Assassin") {
-		if (type == "sword" || type == "axe" || type == "dagger") { weapon_skillup = c.edged_skillup[0]; c.ar_skillup = c.edged_skillup[1]; c.cstrike_skillup = c.edged_skillup[2]; }
-		else if (type == "polearm" || type == "spear") { weapon_skillup = c.pole_skillup[0]; c.ar_skillup = c.pole_skillup[1]; c.cstrike_skillup = c.pole_skillup[2]; }
-		else if (type == "mace" || type == "scepter" || type == "staff" || type == "hammer" || type == "club" || type == "wand") { weapon_skillup = c.blunt_skillup[0]; c.ar_skillup = c.blunt_skillup[1]; c.cstrike_skillup = c.blunt_skillup[2]; }
-		else if (type == "thrown" || type == "javelin") { weapon_skillup = c.thrown_skillup[0]; c.ar_skillup = c.thrown_skillup[1]; c.pierce_skillup = c.thrown_skillup[2]; }	// check if javelins can benefit from Pole Weapon Mastery
-		else if (type == "claw") { weapon_skillup = c.claw_skillup[0]; c.ar_skillup = c.claw_skillup[1]; c.cstrike_skillup = c.claw_skillup[2]; }
+		if (type == "sword" || type == "axe" || type == "dagger") { weapon_skillup = c.edged_damage; c.ar_skillup = c.edged_ar; c.cstrike_skillup = c.edged_cstrike; }
+		else if (type == "polearm" || type == "spear") { weapon_skillup = c.pole_damage; c.ar_skillup = c.pole_ar; c.cstrike_skillup = c.pole_cstrike; }
+		else if (type == "mace" || type == "scepter" || type == "staff" || type == "hammer" || type == "club" || type == "wand") { weapon_skillup = c.blunt_damage; c.ar_skillup = c.blunt_ar; c.cstrike_skillup = c.blunt_cstrike; }
+		else if (type == "thrown" || type == "javelin") { weapon_skillup = c.thrown_damage; c.ar_skillup = c.thrown_ar; c.pierce_skillup = c.thrown_pierce; }	// check if javelins can benefit from Pole Weapon Mastery
+		else if (type == "claw") { weapon_skillup = c.claw_damage; c.ar_skillup = c.claw_ar; c.cstrike_skillup = c.claw_cstrike; }
 		else { weapon_skillup = 0; c.ar_skillup = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
 	}
 	var e_damage_other = 0;
@@ -2612,73 +2620,9 @@ function calculateSkillAmounts() {
 			document.getElementById("p"+skills[s].key).innerHTML = display
 		} else { document.getElementById("p"+skills[s].key).innerHTML = "" }
 	}
-	calculateSkillPassives(character.class_name)
 	var skillChoices = "";
 	for (let s = 0; s < skills.length; s++) {
 		if (skills[s].level > 0 || skills[s].force_levels > 0) { skillChoices += '<option class="gray">'+skills[s].name+'</option>' }
-	}
-}
-
-// calculateSkillPassives - Updates passive skills
-//	className: name of the character class
-// ---------------------------------
-function calculateSkillPassives(className) {
-	// TODO: Transfer to getBuffData()?
-	if (className == "Amazon") {
-		if (skills[11].level > 0 || skills[11].force_levels > 0) { character.cstrike_skillup = ~~skills[11].data.values[0][skills[11].level+skills[11].extra_levels]; } else { character.cstrike_skillup = 0 }
-		if (skills[15].level > 0 || skills[15].force_levels > 0) { character.ar_skillup = ~~skills[15].data.values[0][skills[15].level+skills[15].extra_levels]; } else { character.ar_skillup = 0 }
-		if (skills[19].level > 0 || skills[19].force_levels > 0) { character.pierce_skillup = ~~skills[19].data.values[0][skills[19].level+skills[19].extra_levels]; } else { character.pierce_skillup = 0 }
-		//if (skills[13].level > 0 || skills[13].force_levels > 0) { character.dodge_skillup = ~~skills[13].data.values[0][skills[13].level+skills[13].extra_levels]; } else { character.dodge_skillup = 0 }
-		//if (skills[14].level > 0 || skills[14].force_levels > 0) { character.avoid_skillup = ~~skills[14].data.values[0][skills[14].level+skills[14].extra_levels]; } else { character.avoid_skillup = 0 }
-		//if (skills[16].level > 0 || skills[16].force_levels > 0) { character.evade_skillup = ~~skills[16].data.values[0][skills[16].level+skills[16].extra_levels]; } else { character.evade_skillup = 0 }
-	} else if (className == "Assassin") {
-		if ((skills[13].level > 0 || skills[13].force_levels > 0) && equipped.weapon.type == "claw" && equipped.offhand.type == "claw") { character.block_skillup = ~~skills[13].data.values[0][skills[13].level+skills[13].extra_levels]; } else { character.block_skillup = 0 }
-		if (skills[9].level > 0 || skills[9].force_levels > 0) {
-			character.claw_skillup[0] = ~~skills[9].data.values[0][skills[9].level+skills[9].extra_levels];
-			character.claw_skillup[1] = ~~skills[9].data.values[1][skills[9].level+skills[9].extra_levels];
-			character.claw_skillup[2] = ~~skills[9].data.values[2][skills[9].level+skills[9].extra_levels];
-		} else { character.claw_skillup = [0,0,0] }
-	} else if (className == "Barbarian") {
-		if (skills[10].level > 0 || skills[10].force_levels > 0) {
-			character.edged_skillup[0] = ~~skills[10].data.values[0][skills[10].level+skills[10].extra_levels];
-			character.edged_skillup[1] = ~~skills[10].data.values[1][skills[10].level+skills[10].extra_levels];
-			character.edged_skillup[2] = ~~skills[10].data.values[2][skills[10].level+skills[10].extra_levels];
-		} else { character.edged_skillup = [0,0,0] }
-		if (skills[11].level > 0 || skills[11].force_levels > 0) {
-			character.pole_skillup[0] = ~~skills[11].data.values[0][skills[11].level+skills[11].extra_levels];
-			character.pole_skillup[1] = ~~skills[11].data.values[1][skills[11].level+skills[11].extra_levels];
-			character.pole_skillup[2] = ~~skills[11].data.values[2][skills[11].level+skills[11].extra_levels];
-		} else { character.pole_skillup = [0,0,0] }
-		if (skills[12].level > 0 || skills[12].force_levels > 0) {
-			character.blunt_skillup[0] = ~~skills[12].data.values[0][skills[12].level+skills[12].extra_levels];
-			character.blunt_skillup[1] = ~~skills[12].data.values[1][skills[12].level+skills[12].extra_levels];
-			character.blunt_skillup[2] = ~~skills[12].data.values[2][skills[12].level+skills[12].extra_levels];
-		} else { character.blunt_skillup = [0,0,0] }
-		if (skills[13].level > 0 || skills[13].force_levels > 0) {
-			character.thrown_skillup[0] = ~~skills[13].data.values[0][skills[13].level+skills[13].extra_levels];
-			character.thrown_skillup[1] = ~~skills[13].data.values[1][skills[13].level+skills[13].extra_levels];
-			character.thrown_skillup[2] = ~~skills[13].data.values[2][skills[13].level+skills[13].extra_levels];
-		} else { character.thrown_skillup = [0,0,0] }
-		if (skills[14].level > 0 || skills[14].force_levels > 0) { character.stamina_skillup = ~~skills[14].data.values[0][skills[14].level+skills[14].extra_levels]; } else { character.stamina_skillup = 0 }
-		if (skills[15].level > 0 || skills[15].force_levels > 0) { character.defense_skillup = ~~skills[15].data.values[0][skills[15].level+skills[15].extra_levels]; } else { character.defense_skillup = 0 }
-		if (skills[16].level > 0 || skills[16].force_levels > 0) { character.frw_skillup = ~~skills[16].data.values[0][skills[16].level+skills[16].extra_levels]; } else { character.frw_skillup = 0 }
-		if (skills[17].level > 0 || skills[17].force_levels > 0) { character.resistance_skillup = ~~skills[17].data.values[0][skills[17].level+skills[17].extra_levels]; } else { character.resistance_skillup = 0 }
-	} else if (className == "Sorceress") {
-		//if (skills[23].level > 0 || skills[28].level > 0 || skills[23].force_levels > 0 || skills[28].force_levels > 0) { character.ar_skillup = ~~skills[23].data.values[0][skills[23].level+skills[23].extra_levels] + ~~skills[28].data.values[3][skills[28].level+skills[28].extra_levels]; } else { character.ar_skillup = 0; }
-		if (skills[23].level > 0 || skills[23].force_levels > 0) { character.ar_skillup = ~~skills[23].data.values[0][skills[23].level+skills[23].extra_levels]; } else { character.ar_skillup = 0; }
-		if (skills[23].level > 0 || skills[23].force_levels > 0) { character.mana_regen_skillup = ~~skills[23].data.values[1][skills[23].level+skills[23].extra_levels]; } else { character.mana_regen_skillup = 0; }
-		if (skills[10].level > 0 || skills[10].force_levels > 0) {
-			character.cPierce_skillup = ~~skills[10].data.values[0][skills[10].level+skills[10].extra_levels];
-			character.cDamage_skillup = ~~skills[10].data.values[1][skills[10].level+skills[10].extra_levels];
-		} else { character.cPierce_skillup = 0; character.cDamage_skillup = 0; }
-		if (skills[20].level > 0 || skills[20].force_levels > 0) {
-			character.lPierce_skillup = ~~skills[20].data.values[0][skills[20].level+skills[20].extra_levels];
-			character.lDamage_skillup = ~~skills[20].data.values[1][skills[20].level+skills[20].extra_levels];
-		} else { character.lPierce_skillup = 0; character.lDamage_skillup = 0; }
-		if (skills[30].level > 0 || skills[30].force_levels > 0) {
-			character.fPierce_skillup = ~~skills[30].data.values[0][skills[30].level+skills[30].extra_levels];
-			character.fDamage_skillup = ~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels];
-		} else { character.fPierce_skillup = 0; character.fDamage_skillup = 0; }
 	}
 }
 
@@ -2803,10 +2747,6 @@ function skillUp(event, skill, levels) {
 			}
 		}
 	}
-//	if (typeof(skill.effect) != 'undefined') { if (skill.effect > 2) {
-//		skillHover(skill)
-//		modifyEffect(skill)
-//	} }
 	skillHover(skill)
     if (skill.bindable > 0 && (old_level == 0 || (old_level > 0 && skill.level == 0 && skill.force_levels == 0))) {
 	updateSkills()
