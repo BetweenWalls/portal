@@ -717,30 +717,6 @@ function adjustCorruptionSockets(group) {
 	updateStats()
 }
 
-// adjustDefenseCorruption - Adjusts the defense granted by 'Enhanced Defense'
-//	group: item group (helm, armor, weapon, offhand)
-//	val: name of equipped item
-// ---------------------------------
-function adjustDefenseCorruption(group, val) {
-/*	if (corruptsEquipped[group].name == "+ Enhanced Defense") {
-		character.base_defense -= ~~(corruptsEquipped[group].base_defense)
-		if ((val != group && val != "none")) {
-			var multEth = 1;
-			var multED = 1 + corruptsEquipped[group].e_def/100;
-			if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
-			if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
-			var base = getBaseId(equipped[group].base);
-			var defense_old = equipped[group].base_defense;
-			var defense_new = Math.floor(bases[base].base_defense * multEth * multED);
-			corruptsEquipped[group].base_defense = defense_new - defense_old
-			character.base_defense += corruptsEquipped[group].base_defense
-		} else {
-			corruptsEquipped[group].base_defense = 0
-		}
-	}
-*/
-}
-
 // corrupt - Sets a corruption outcome for an item
 //	group: name of item's group
 //	val: name of corruption
@@ -763,7 +739,6 @@ function corrupt(group, val) {
 			}
 		}
 		if (val == "+ Sockets") { adjustCorruptionSockets(group) }
-		if (val == "+ Enhanced Defense") { adjustDefenseCorruption(group,equipped[group].name) }
 	}
 	updateSocketTotals()
 	update()
@@ -803,11 +778,7 @@ function equipMerc(group, val) {
 					for (affix in bases[base]) {
 						if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands") {
 							if (typeof(mercEquipped[group][affix]) == 'undefined') { mercEquipped[group][affix] = unequipped[affix] }	// undefined (new) affixes get initialized to zero
-						/*	if (affix == "base_defense") {
-								mercEquipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
-								mercenary[affix] += Math.ceil(multEth*multED*bases[base][affix])
-							} else
-						*/	if (affix == "base_damage_min" || affix == "base_damage_max") {
+							if (affix == "base_damage_min" || affix == "base_damage_max") {
 								mercEquipped[group][affix] = Math.ceil(multEth*bases[base][affix])
 								mercenary[affix] += Math.ceil(multEth*bases[base][affix])
 							} else if (affix == "req_strength" || affix == "req_dexterity") {
@@ -960,11 +931,7 @@ function equip(group, val) {
 				if (typeof(bases[base]) != 'undefined') { for (affix in bases[base]) {
 					if (affix != "group" && affix != "type" && affix != "upgrade" && affix != "downgrade" && affix != "subtype" && affix != "only" && affix != "def_low" && affix != "def_high" && affix != "durability" && affix != "range" && affix != "twoHands" && affix != "nonmetal") {	// test: twoHands still unused elsewhere? okay here?
 						if (typeof(equipped[group][affix]) == 'undefined') { equipped[group][affix] = unequipped[affix] }	// undefined (new) affixes get initialized to zero
-					/*	if (affix == "base_defense") {										// TODO: consider renaming? ...group_defense, combined_defense, item_def, etc
-							equipped[group][affix] = Math.ceil(multEth*multED*bases[base][affix])
-							character[affix] += Math.ceil(multEth*multED*bases[base][affix])
-						} else 
-					*/	if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
+						if (affix == "base_damage_min" || affix == "base_damage_max" || affix == "throw_min" || affix == "throw_max" || affix == "base_min_alternate" || affix == "base_max_alternate") {
 							equipped[group][affix] = Math.ceil(multEth*bases[base][affix])
 							character[affix] += Math.ceil(multEth*bases[base][affix])
 						} else if (affix == "req_strength" || affix == "req_dexterity") {
@@ -1125,7 +1092,6 @@ function equip(group, val) {
 			addEffect("ctcskill",ctcskillName[i],ctcskillLevel[i],group)
 		}
 	}
-	if (corruptsEquipped[group].name == "+ Enhanced Defense") { adjustDefenseCorruption(group,val) }
 	update()
 	updateAllEffects()
 }
@@ -1629,7 +1595,6 @@ function updateAllEffects() {
 	for (id1 in effects) {
 		if (typeof(effects[id1].info.enabled) != 'undefined' && effects[id1].info.origin != "skill" && effects[id1].info.origin != "oskill") {
 			for (id2 in effects) {
-			//	if (document.getElementById(id1).getAttribute("class") != "hide") {
 				if (id1 != id2 && checkedEffects[id2] != 1 && typeof(effects[id2].info.enabled) != 'undefined' && effects[id2].info.origin != "skill" && effects[id2].info.origin != "oskill") {
 					var effect1 = id1.split('-')[0];
 					var effect2 = id2.split('-')[0];
@@ -1638,18 +1603,15 @@ function updateAllEffects() {
 							var magnitude1 = effects[id1].info.level;
 							var magnitude2 = effects[id2].info.level;
 							if (magnitude1 > magnitude2) {
-								//disableEffect(id2); enableEffect(id1);
 								document.getElementById(id2).setAttribute("class","hide");
 								document.getElementById(id1).setAttribute("class","effect-container");
 							} else {
-								//disableEffect(id1); enableEffect(id2);
 								document.getElementById(id1).setAttribute("class","hide");
 								document.getElementById(id2).setAttribute("class","effect-container");
 							}
 						}
 					}
 				}
-			//	}
 			}
 		}
 		checkedEffects[id1] = 1
@@ -3613,41 +3575,7 @@ function getAffixLine(affix, loc, group, subgroup) {
 	var result = [affix_line,value_combined];
 	return result
 }
-/*
-// updateCTC - 
-// ---------------------------------
-function updateCTC() {
-	var stats = "";
-	for (group in equipped) {
-		if (typeof(equipped[group].ctc) != 'undefined') {
-			if (equipped[group].ctc != "") {
-				for (let i = 0; i < equipped[group].ctc.length; i++) {
-					var stat = equipped[group].ctc[i][0]+"% chance to cast level "+equipped[group].ctc[i][1]+" "+equipped[group].ctc[i][2]+" "+equipped[group].ctc[i][3];
-					stats += (stat + "<br>")
-				}
-			}
-		}
-	}
-	document.getElementById("ctc").innerHTML = stats
-}
 
-// updateChargeSkills - 
-// ---------------------------------
-function updateChargeSkills() {
-	var stats = "";
-	for (group in equipped) {
-		if (typeof(equipped[group].cskill) != 'undefined') {
-			if (equipped[group].cskill != "") {
-				for (let i = 0; i < equipped[group].cskill.length; i++) {
-					var stat = "Level "+equipped[group].cskill[i][0]+" "+equipped[group].cskill[i][1]+" ("+equipped[group].cskill[i][2]+" charges)";
-					stats += (stat + "<br>")
-				}
-			}
-		}
-	}
-	document.getElementById("cskill").innerHTML = stats
-}
-*/
 // handleSocket - 
 //	group: equipment group name
 //	source: inventory space to drag from if event is null
@@ -3708,24 +3636,6 @@ function socket(event, group, source) {
 					socketed[group].items[index][affix_dest] = socketables[k][affix]
 					character[affix_dest] += socketables[k][affix]
 					socketed[group].totals[affix_dest] += socketables[k][affix]
-				/*	if (affix == "e_def") {
-						var multEth = 1;
-						var multED = 1 + socketables[k][affix][groupAffix]/100;
-						if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
-						if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
-						var def_change = 0;
-						if (equipped[group].name != "none") {
-							var base = getBaseId(equipped[group].base);
-							var defense_old = equipped[group].base_defense;
-							var defense_new = Math.floor(bases[base].base_defense * multEth * multED);
-							def_change = defense_new - defense_old
-						}
-						if (typeof(socketed[group].totals["base_defense"]) == 'undefined') { socketed[group].totals["base_defense"] = 0 }
-						socketed[group].items[index]["base_defense"] = def_change
-						character["defense"] += socketed[group].items[index]["base_defense"]
-						socketed[group].totals["base_defense"] += socketed[group].items[index]["base_defense"]
-					}
-				*/
 				}
 				if (affix == group || (affix == "armor" && group == "helm") || (affix == "armor" && group == "offhand" && typeof(socketables[k]["shield"]) == 'undefined' && offhandType != "weapon") || (affix == "shield" && group == "offhand" && offhandType != "weapon") || (affix == "weapon" && group == "offhand" && offhandType == "weapon")) {
 					for (groupAffix in socketables[k][affix]) {
@@ -3733,24 +3643,6 @@ function socket(event, group, source) {
 						socketed[group].items[index][groupAffix] = socketables[k][affix][groupAffix]
 						character[groupAffix] += socketables[k][affix][groupAffix]
 						socketed[group].totals[groupAffix] += socketables[k][affix][groupAffix]
-					/*	if (groupAffix == "e_def") {	// TODO: Merge duplicated code
-							var multEth = 1;
-							var multED = 1 + socketables[k][affix][groupAffix]/100;
-							if (typeof(equipped[group]["ethereal"]) != 'undefined') { if (equipped[group]["ethereal"] == 1) { multEth = 1.5; } }
-							if (typeof(equipped[group]["e_def"]) != 'undefined') { multED += (equipped[group]["e_def"]/100) }
-							var def_change = 0;
-							if (equipped[group].name != "none") {
-								var base = getBaseId(equipped[group].base);
-								var defense_old = equipped[group].base_defense;
-								var defense_new = Math.floor(bases[base].base_defense * multEth * multED);
-								def_change = defense_new - defense_old
-							}
-							if (typeof(socketed[group].totals["base_defense"]) == 'undefined') { socketed[group].totals["base_defense"] = 0 }
-							socketed[group].items[index]["base_defense"] = def_change
-							character["defense"] += socketed[group].items[index]["base_defense"]
-							socketed[group].totals["base_defense"] += socketed[group].items[index]["base_defense"]
-						}
-					*/
 					}
 				}
 			}
@@ -4069,24 +3961,4 @@ function updateSocketTotals() {
 			} }
 		}
 	}
-}
-
-// TODO: Finish implementing and call from appropriate functions?
-// updateItemDefenses - Recalculates added defense if items have extra Enhanced Defense (Pul Rune or corruption)
-// ---------------------------------
-function updateItemDefenses() {
-/*	// Needed to allow Pul Rune to function when added prior to armor... would be better to just re-add via other functions?
-	var groups = ["helm", "armor", "weapon", "offhand"];
-	for (let g = 0; g < groups.length; g++) {
-		for (let i = 0; i < socketed[groups[g]].items.length; i++) {
-			for (affix in socketed[groups[g]].items[i]) { if (affix == "e_def") {
-				character["base_defense"] -= socketed[groups[g]].items[i]["base_defense"]
-				socketed[groups[g]].totals["base_defense"] -= socketed[groups[g]].items[i]["base_defense"]
-				// TODO: Recalculate base_defense from e_def
-			} }
-		}
-	}
-	// TODO: Implement for Enhanced Defense corruptions
-	//if (typeof(socketed[group].totals["e_def"]) != 'undefined') { multED += (socketed[group].totals["e_def"]/100) }	
-*/
 }

@@ -153,7 +153,7 @@
   </div>
 </div>
 
-<div style="display:flex; position:relative;width:1000px;">
+<div style="display:flex; position:relative;width:910px;">
   <div class ="hover" style="display:none;" id="tooltip_inventory">
     <a id="item_name" style="display:block;"></a>
     <a id="item_info" style="display:block;"></a>
@@ -164,10 +164,10 @@
     <a id="item_group_affixes" style="display:block; color:#b2a992;"></a>
   </div>
 </div>
-<div id="full_interface" style="width: 1000px;" class="no-selection" oncontextmenu="return false">
-<div id="side" style="margin-left: 4px; margin-top: 4px; width: 125px; position: relative; float:right; color:white;"></div>
+<div id="full_interface" style="width:910px;" class="no-selection" oncontextmenu="return false">
+<div id="side" style="margin-top:4px; position:relative; float:right; color:white;"></div>
 
-<div id="interface" style="width: 869px;">
+<div id="interface" style="width:869px;">
 <div style="display: flex; justify-content: flex-end">
   <div class ="hover" style="display:none; top:100px;" id="tooltip_effect">
     <a id="effect_name" style="display:block; color:#00f000;"></a>
@@ -607,7 +607,7 @@ function initial_load() {
 	
 	// select random class
 	var random = Math.floor(Math.random() * 7);
-	var classes = ["amazon","assassin","barbarian","druid","necromancer","paladin","sorceress"]
+	var classes = ["amazon","assassin","barbarian","druid","necromancer","paladin","sorceress"];
 	var initial_class = classes[random];
 	skills = skills_all[initial_class]
 	equipment.ring2 = equipment.ring1
