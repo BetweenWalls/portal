@@ -37,7 +37,7 @@ var unequipped = {		strength:0, dexterity:0, vitality:0, energy:0, life:0, mana:
 /* oskills  paladin	*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, oskill_Enflame:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
 // TODO: confirm oskill_Guided_Arrow (Widowmaker)
-				experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
+				durability_extra:0, experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
 };
 // TODO: Remove old instances of Arctic Blast (replaced with Frigerate on Frostwind sword)
 var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Arctic_Blast","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
@@ -681,7 +681,7 @@ var equipment = {
 {name:"Moonfall", req_level:41, ctc:[[5,6,"Meteor","on striking"]], e_damage:150, damage_min:10, damage_max:15, fDamage_min:55, fDamage_max:115, mDamage_reduced:12, light_radius:2, type:"mace", base:"Jagged Star", img:"Bloodrise", cskill:[[11,"Meteor",60]]},
 {name:"Baezil's Vortex", req_level:45, ctc:[[5,8,"Nova","on striking"]], e_damage:200, lDamage_min:1, lDamage_max:150, ias:20, lRes:25, mana:100, type:"mace", base:"Knout", img:"The_General's_Tan_Do_Li_Ga", cskill:[[15,"Nova",80]]},
 {name:"Earthshaker", req_level:43, ctc:[[5,7,"Fissure","on striking"]], skills_elemental:3, e_damage:180, ias:30, blind_on_hit:1, knockback:1, type:"hammer", base:"Battle Hammer"},
-{name:"Bloodtree Stump", req_level:48, skills_masteries:2, skill_Blunt_Weapon_Mastery:3, e_damage:220, cblow:50, all_res:20, strength:25, twoHanded:1, type:"hammer", base:"War Club"},
+{name:"Bloodtree Stump", req_level:48, skills_masteries:2, skill_Blunt_Weapon_Mastery:3, e_damage:220, cblow:50, all_res:20, strength:25, durability_extra:40, twoHanded:1, type:"hammer", base:"War Club"},
 {name:"The Gavel of Pain", req_level:45, ctc:[[5,1,"Iron Maiden","when struck"],[5,1,"Amplify Damage","on striking"]], e_damage:160, damage_min:12, damage_max:30, thorns:26, indestructible:1, ethereal:0, twoHanded:1, type:"hammer", base:"Martel de Fer", img:"The_Gavel_of_Pain", cskill:[[8,"Amplify Damage",3]]},
 {name:"Nord's Tenderizer", req_level:68, e_damage:330, cDamage_min:205, cDamage_max:455, freezes_target:4, cAbsorb:15, ias:25, ar_bonus:180, type:"club", base:"Truncheon", img:"Felloak", cskill:[[16,"Blizzard",12]]},
 {name:"Demon Limb", req_level:63, e_damage:230, damage_vs_demons:123, fDamage_min:222, fDamage_max:333, life_leech:13, fRes:20, autorepair:1, type:"club", base:"Tyrant Club", img:"Stoutnail", cskill:[[23,"Enflame",20]]},
@@ -904,7 +904,7 @@ var equipment = {
 {only:"paladin", rarity:"rw", name:"Ancient's Pledge ­ ­ - ­ ­ Crown Shield", req_level:21, e_def:50, cRes:43, lRes:48, fRes:48, pRes:48, damage_to_mana:10, all_res:45, type:"shield", base:"Crown Shield"},
 {not:["paladin"], rarity:"rw", name:"Ancient's Pledge ­ ­ - ­ ­ Grim Shield", req_level:25, e_def:50, cRes:43, lRes:48, fRes:48, pRes:48, damage_to_mana:10, type:"shield", base:"Grim Shield"},
 {name:"Pelta Lunata", req_level:2, e_def:40, defense:30, ibc:20, fbr:40, energy:10, vitality:10, strength:2, type:"shield", base:"Buckler", img:"Pelta_Lunata"},
-{name:"Umbral Disk", req_level:9, e_def:50, defense:30, ibc:30, blind_on_hit:1, life:20, dexterity:10, light_radius:-2, durability:15, type:"shield", base:"Small Shield", img:"Umbral_Disk"},
+{name:"Umbral Disk", req_level:9, e_def:50, defense:30, ibc:30, blind_on_hit:1, life:20, dexterity:10, light_radius:-2, durability_extra:15, type:"shield", base:"Small Shield", img:"Umbral_Disk"},
 {name:"Stormguild", req_level:13, e_def:60, defense:30, ibc:30, lRes:25, lDamage_min:1, lDamage_max:6, thorns:3, mDamage_reduced:1, type:"shield", base:"Large Shield", img:"Stormguild"},
 {name:"Steelclash", req_level:17, skills_paladin:1, e_def:100, defense:20, ibc:20, all_res:15, light_radius:3, damage_reduced:3, type:"shield", base:"Kite Shield", img:"Steelclash"},
 {name:"Swordback Hold", req_level:15, e_def:60, defense:10, ibc:20, owounds:50, thorns:10, type:"shield", base:"Spiked Shield", img:"Swordback_Hold"},
@@ -2042,7 +2042,7 @@ fDamage_max_per_level:{index:["fDamage_max_per_level","fDamage_max_per_level"], 
 cDamage_max_per_level:{index:["cDamage_max_per_level","cDamage_max_per_level"], format:["+"," to Maximum Cold Damage ("," per level)"], mult:["level",1]},
 kick_min:1,
 kick_damage_per_level:{index:["kick_damage_per_level","kick_damage_per_level"], format:["+"," Kick Damage ("," per level)"], mult:["level",1]},
-smite_min:1,//{index:["smite_min","smite_max"], format:["Smite Damage: +","-",""]},
+smite_min:{index:["smite_min","smite_max"], format:["Smite Damage: +","-",""]},
 smite_max:1,
 e_damage:{index:["e_damage"], format:["+","% Enhanced Damage"]},
 e_max_damage_per_level:{index:["e_max_damage_per_level","e_max_damage_per_level"], format:["+","% Enhanced Maximum Damage (","% per level)"], mult:["level",1]},
@@ -2230,6 +2230,7 @@ debug:1,
 //3:1,
 item_defense:1,
 experience:{index:["experience"], format:["+","% Experience Gained"]},
+durability_extra:{index:["durability_extra"], format:["+"," Durability"]},
 
 skills_javelins:{index:["skills_javelins"], format:["+"," to Spear & Javelin Skills (Amazon only)"]},
 skills_passives:{index:["skills_passives"], format:["+"," to Passive Skills (Amazon only)"]},

@@ -3348,7 +3348,7 @@ function equipmentHover(group) {
 		}
 	}
 	for (affix in equipped[group]) {
-		if (equipped[group][affix] != unequipped[affix] && stats[affix] != unequipped[affix] && stats[affix] != 1 && affix != "velocity") {
+		if (equipped[group][affix] != unequipped[affix] && stats[affix] != unequipped[affix] && stats[affix] != 1 && affix != "velocity" && affix != "smite_min") {
 			var affix_info = getAffixLine(affix,"equipped",group,"");
 			if (affix_info[1] != 0) {
 				if (affix == "base_damage_min" || affix == "base_defense" || affix == "req_level" || affix == "req_strength" || affix == "req_dexterity" || affix == "durability" || affix == "baseSpeed" || affix == "range" || affix == "throw_min" || affix == "base_min_alternate" || affix == "block" || affix == "velocity") { main_affixes += affix_info[0]+"<br>" }
