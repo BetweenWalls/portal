@@ -2394,6 +2394,7 @@ function updateTertiaryStats() {
 	if (c.reset_cooldown_on_kill > 0) { statlines += c.reset_cooldown_on_kill+"% Chance to Reset Skill Cooldown on Kill<br>" }
 	if (c.cdr_on_striking > 0) { statlines += "Gain "+c.cdr_on_striking+"% Reduced Skill Cooldown For 4 Seconds On Striking<br>" }
 	if (c.reanimate > 0) { statlines += c.reanimate+"% Reanimate As: Returned<br>" }
+	if (c.experience > 0) { statlines += "+"+c.experience+"% Experience Gained<br>" }
 	document.getElementById("statlines").innerHTML = statlines
 	updateCTC()
 	updateChargeSkills()
