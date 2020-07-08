@@ -1417,7 +1417,7 @@ function rightClickEffect(event, id, direct) {
 	if (event != null) { if (event.ctrlKey) { mod = 1 } }
 	if (mod > 0) {
 		var idName = id.split("-")[0];
-		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem")) || effects[id].info.origin == "ctcskill") {
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id == "Battle_Orders" || id == "Battle_Command" || id == "Shiver_Armor")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem")) || effects[id].info.origin == "ctcskill") {
 			effects[id].info.snapshot = 0
 			document.getElementById(id+"_ss").src = "./images/skills/none.png"
 			updateAllEffects()
@@ -1437,7 +1437,7 @@ function leftClickEffect(event, id) {
 	if (event != null) { if (event.ctrlKey) { mod = 1 } }
 	if (mod > 0) {
 		var idName = id.split("-")[0];
-		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id != "Inner_Sight" && id != "Frigerate" && id != "Enflame")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem")) || effects[id].info.origin == "ctcskill") {
+		if ((effects[id].info.origin == "skill" && skills[effects[id].info.index].effect > 3) || (effects[id].info.origin == "oskill" && (id == "Battle_Orders" || id == "Battle_Command" || id == "Shiver_Armor")) || (effects[id].info.origin == "cskill" && (idName != "Inner_Sight" && idName != "Heart_of_Wolverine" && idName != "Oak_Sage" && idName != "Spirit_of_Barbs" && idName != "Blood_Golem" && idName != "Iron_Golem")) || effects[id].info.origin == "ctcskill") {
 			if (effects[id].info.snapshot == 0) {
 				effects[id].info.snapshot = 1;
 				document.getElementById(id+"_ss").src = "./images/skills/snapshot.png";
@@ -1496,6 +1496,7 @@ function toggleEffect(id) {
 	if (effects[id].info.enabled == 1) {
 		disableEffect(id)
 	} else {
+		if (id.split("-")[0] == "Iron_Golem") { if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") { for (effect_id in effects) { if (effect_id.split("-")[0] == getId(golemItem.aura)) { disableEffect(effect_id) } } } } }
 		enableEffect(id)
 	}
 	updateEffect(id)	// current effect prioritized
@@ -1645,12 +1646,22 @@ function updateAllEffects() {
 		else if (id == "Feral_Rage") { if (effects["Werewolf"].info.enabled != 1) { disableEffect(id) } }
 		else if (id == "Holy_Shield") { if (offhandType != "shield") { disableEffect(id) } }
 		else if (id == "Weapon_Block") { if (equipped.weapon.type != "claw" || equipped.offhand.type != "claw") { disableEffect(id) } }
-	//	else if (id == "Claw Mastery") { if (equipped.weapon.type != "claw" && equipped.offhand.type != "claw") { disableEffect(id) } }
-	//	else if (id == "Edged Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
-	//	else if (id == "Pole Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
-	//	else if (id == "Blunt Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
-	//	else if (id == "Thrown Weapon Mastery") { if (equipped.weapon.type != "" && equipped.offhand.type != "") { disableEffect(id) } }
+	//	else if (id == "Claw_Mastery") { if (equipped.weapon.type != "claw" && equipped.offhand.type != "claw") { disableEffect(id) } else { enableEffect(id) } }
+	//	else if (id == "Edged_Weapon_Mastery") { if (equipped.weapon.type != "sword" && equipped.weapon.type != "axe" && equipped.weapon.type != "dagger" && equipped.offhand.type != "sword" && equipped.offhand.type != "axe" && equipped.offhand.type != "dagger") { disableEffect(id) } else { enableEffect(id) } }
+	//	else if (id == "Pole_Weapon_Mastery") { if (equipped.weapon.type != "polearm" && equipped.weapon.type != "spear" && equipped.offhand.type != "polearm" && equipped.offhand.type != "spear") { disableEffect(id) } else { enableEffect(id) } }
+	//	else if (id == "Blunt_Weapon_Mastery") { if (equipped.weapon.type != "mace" && equipped.weapon.type != "scepter" && equipped.weapon.type != "staff" && equipped.weapon.type != "wand" && equipped.offhand.type != "mace" && equipped.offhand.type != "scepter" && equipped.offhand.type != "staff" && equipped.offhand.type != "wand") { disableEffect(id) } else { enableEffect(id) } }
+	//	else if (id == "Thrown_Weapon_Mastery") { if (equipped.weapon.type != "thrown" && equipped.weapon.type != "javelin" && equipped.offhand.type != "thrown" && equipped.offhand.type != "javelin") { disableEffect(id) } else { enableEffect(id) } }
 	}
+	for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') { if (effects[id].info.enabled == 1) { if (id.split("-")[0] == "Iron_Golem") {
+		if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "" && golemItem.aura != "Righteous Fire") {
+			var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
+			for (effect_id in effects) {
+				if (typeof(effects[effect_id].info.enabled) != 'undefined') { if (effects[effect_id].info.enabled == 1) {
+					if (getId(aura) == effect_id.split('-')[0]) { disableEffect(id) }
+				} }
+			}
+		} }
+	} } } }
 	update()
 }
 
@@ -1737,8 +1748,8 @@ function hoverEffectOn(id) {
 	var source = "";
 	var note = "";
 	var affixes = "";
-	for (affix in effects[id]) { if (affix != "info" && affix != "duration") {
-		if (stats[affix] != unequipped[affix] && stats[affix] != 1 && affix != "info" && affix != "duration") {
+	for (affix in effects[id]) { if (affix != "info" && affix != "duration" && affix != "radius") {
+		if (stats[affix] != unequipped[affix] && stats[affix] != 1) {
 			var affix_info = getAffixLine(affix,"effects",id,"");
 			if (affix_info[1] != 0) { affixes += affix_info[0]+"<br>" }
 		}
@@ -1747,12 +1758,10 @@ function hoverEffectOn(id) {
 		source = "Source: "
 		var group = other;
 		var other_minion = other.split("_")[0];
-		if (other_minion == "mercenary") { group = other.split("_")[1]; }
 		if (other_minion == "mercenary") {
+			group = other.split("_")[1]
 			if (other == "mercenary") { source += "Mercenary" }
 			else { source += "Mercenary - "+mercEquipped[group].name }
-		} else if (other_minion == "golem") {
-			source += "Iron Golem - "+golemItem.name
 		} else if (other_minion == "combined") {
 			source = "Multiple Sources"
 		} else {
@@ -1761,12 +1770,19 @@ function hoverEffectOn(id) {
 		if (origin == "cskill") { for (let i = 0; i < equipped[group].cskill.length; i++) { if (equipped[group].cskill[i][1] == name) { note = "<br>"+equipped[group].cskill[i][2]+" charges" } } }
 		else if (origin == "ctcskill") { for (let i = 0; i < equipped[group].ctc.length; i++) { if (equipped[group].ctc[i][2] == name) { note = "<br>"+equipped[group].ctc[i][0]+"% chance to cast "+equipped[group].ctc[i][3] } } }
 	} else if (origin == "oskill") {
-		for (group in equipped) { if (typeof(equipped[group]["oskill_"+idName]) != 'undefined') { if (equipped[group]["oskill_"+idName] > 0) { source = equipped[group].name } } }
+		for (group in equipped) { if (typeof(equipped[group]["oskill_"+idName]) != 'undefined') { if (equipped[group]["oskill_"+idName] > 0) { source = "Source: "+equipped[group].name } } }
+		if (source == "" && (id == "Battle_Command" || id == "Battle_Orders")) { source = "Source: Call to Arms (unequipped)" }
+		if (source == "" && id == "Shiver_Armor") { source = "Source: Medusa's Gaze (unequipped)" }
 	} else if (origin == "misc") {
 		source = "Source: "+non_items[effects[id].info.index].name.split(":")[0]
 	}
-	if (typeof(effects[id].duration) != 'undefined') { if (effects[id].duration > 0) { note += "<br>Duration: "+effects[id].duration+" seconds" } }
+	if (typeof(effects[id].duration) != 'undefined') { if (effects[id].duration != 0) { note += "<br>Duration: "+effects[id].duration+" seconds" } }
 	if (source == "Source: Potion") { note += " each" }
+	if (id.split("-")[0] == "Iron_Golem" && golemItem.name != "none") {
+		note += "<br>Item: "+golemItem.name.split(" ­ ")[0]
+		if (affixes != "") { note += "<br>"+golemItem.aura }
+	}
+	if (typeof(effects[id].radius) != 'undefined') { if (effects[id].radius != 0) { note += "<br>Radius: "+effects[id].radius+" yards" } }
 	if (level != "" && source != "") { level += "<br>" }
 	if (source != "") { source = source.split(" ­ ")[0] }
 	document.getElementById("tooltip_effect").style.top = offset+"px"
@@ -1807,32 +1823,32 @@ function getAuraData(aura, lvl, source) {
 		if (auras_extra[u].name == aura) { auras = auras_extra; a = u; }
 	}
 	// Defensive Auras
-	if (aura == "Prayer") { result.life_regen = 1; result.life_replenish = auras[a].data.values[0][lvl]; }
-	else if (aura == "Resist Fire") { result.fRes = auras[a].data.values[1][lvl]; result.fRes_max = auras[a].data.values[2][lvl]; }
-	else if (aura == "Defiance") { result.defense_bonus = auras[a].data.values[0][lvl]; }
-	else if (aura == "Resist Cold") { result.cRes = auras[a].data.values[1][lvl]; result.cRes_max = auras[a].data.values[2][lvl]; }
-	else if (aura == "Cleansing") { result.poison_length_reduced = auras[a].data.values[2][lvl]; result.curse_length_reduced = auras[a].data.values[2][lvl]; }
-	else if (aura == "Resist Lightning") { result.lRes = auras[a].data.values[1][lvl]; result.lRes_max = auras[a].data.values[2][lvl]; }
-	else if (aura == "Vigor") { result.velocity = auras[a].data.values[0][lvl]; result.max_stamina = auras[a].data.values[1][lvl]; result.heal_stam = auras[a].data.values[2][lvl]; }
-	else if (aura == "Meditation") { result.mana_regen = auras[a].data.values[1][lvl]; }
-	else if (aura == "Redemption") { result.redeem_chance = auras[a].data.values[0][lvl]; result.redeem_amount = auras[a].data.values[1][lvl]; }
-	else if (aura == "Salvation") { result.fDamage = auras[a].data.values[0][lvl]; result.cDamage = auras[a].data.values[0][lvl]; result.lDamage = auras[a].data.values[0][lvl]; result.all_res = auras[a].data.values[1][lvl]; }
+	if (aura == "Prayer") { result.life_regen = 1; result.life_replenish = auras[a].data.values[0][lvl]; result.radius = 21.3; }
+	else if (aura == "Resist Fire") { result.fRes = auras[a].data.values[1][lvl]; result.fRes_max = auras[a].data.values[2][lvl]; result.radius = 28; }
+	else if (aura == "Defiance") { result.defense_bonus = auras[a].data.values[0][lvl]; result.radius = 21.3; }
+	else if (aura == "Resist Cold") { result.cRes = auras[a].data.values[1][lvl]; result.cRes_max = auras[a].data.values[2][lvl]; result.radius = 28; }
+	else if (aura == "Cleansing") { result.poison_length_reduced = auras[a].data.values[2][lvl]; result.curse_length_reduced = auras[a].data.values[2][lvl]; result.radius = 21.3; }
+	else if (aura == "Resist Lightning") { result.lRes = auras[a].data.values[1][lvl]; result.lRes_max = auras[a].data.values[2][lvl]; result.radius = 28; }
+	else if (aura == "Vigor") { result.velocity = auras[a].data.values[0][lvl]; result.max_stamina = auras[a].data.values[1][lvl]; result.heal_stam = auras[a].data.values[2][lvl]; result.radius = 21.3; }
+	else if (aura == "Meditation") { result.mana_regen = auras[a].data.values[1][lvl]; result.radius = 21.3; }
+	else if (aura == "Redemption") { result.redeem_chance = auras[a].data.values[0][lvl]; result.redeem_amount = auras[a].data.values[1][lvl]; result.radius = 16; }
+	else if (aura == "Salvation") { result.fDamage = auras[a].data.values[0][lvl]; result.cDamage = auras[a].data.values[0][lvl]; result.lDamage = auras[a].data.values[0][lvl]; result.all_res = auras[a].data.values[1][lvl]; result.radius = 28; }
 	// Offensive Auras
-	else if (aura == "Might") { result.damage_bonus = auras[a].data.values[0][lvl]; }
-	else if (aura == "Holy Fire") { result.fDamage_min = auras[a].data.values[0][lvl]; result.fDamage_max = auras[a].data.values[1][lvl]; }
-	else if (aura == "Precision") { result.cstrike = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; if (source == "mercenary" || source == "golem") { result.pierce = auras[a].data.values[1][lvl] } else { result.pierce = auras[a].data.values[0][lvl] }}
-	else if (aura == "Blessed Aim") { result.ar_bonus = auras[a].data.values[2][lvl]; result.hammer_on_hit = auras[a].data.values[1][lvl]; }
-	else if (aura == "Concentration") { result.ar_bonus = auras[a].data.values[0][lvl]; result.damage_bonus = auras[a].data.values[1][lvl]; result.hammer_bonus = auras[a].data.values[2][lvl]; }
-	else if (aura == "Holy Freeze") { result.cDamage_min = auras[a].data.values[0][lvl]; result.cDamage_max = auras[a].data.values[1][lvl]; result.slow_enemies = auras[a].data.values[4][lvl]; }
-	else if (aura == "Holy Shock") { result.lDamage_min = auras[a].data.values[0][lvl]; result.lDamage_max = auras[a].data.values[1][lvl]; }
-	else if (aura == "Sanctuary") { result.damage_vs_undead = auras[a].data.values[0][lvl]; }
-	else if (aura == "Fanaticism") { result.ias_skill = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; if (source == "mercenary" || source == "golem") { result.damage_bonus = auras[a].data.values[0][lvl] } else { result.damage_bonus = auras[a].data.values[1][lvl] }}
-	else if (aura == "Conviction") { result.enemy_defense = auras[a].data.values[0][lvl]; result.enemy_fRes = auras[a].data.values[1][lvl]; result.enemy_cRes = auras[a].data.values[1][lvl]; result.enemy_lRes = auras[a].data.values[1][lvl]; result.enemy_pRes = auras[a].data.values[1][lvl]; }
+	else if (aura == "Might") { result.damage_bonus = auras[a].data.values[0][lvl]; result.radius = 16; }
+	else if (aura == "Holy Fire") { result.fDamage_min = auras[a].data.values[0][lvl]; result.fDamage_max = auras[a].data.values[1][lvl]; result.radius = 12; }
+	else if (aura == "Precision") { result.cstrike = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; result.radius = 16; if (source == "mercenary" || source == "golem") { result.pierce = auras[a].data.values[1][lvl] } else { result.pierce = auras[a].data.values[0][lvl] }}
+	else if (aura == "Blessed Aim") { result.ar_bonus = auras[a].data.values[2][lvl]; result.hammer_on_hit = auras[a].data.values[1][lvl]; result.radius = 16; }
+	else if (aura == "Concentration") { result.ar_bonus = auras[a].data.values[0][lvl]; result.damage_bonus = auras[a].data.values[1][lvl]; result.hammer_bonus = auras[a].data.values[2][lvl]; result.radius = 16; }
+	else if (aura == "Holy Freeze") { result.cDamage_min = auras[a].data.values[0][lvl]; result.cDamage_max = auras[a].data.values[1][lvl]; result.slow_enemies = auras[a].data.values[4][lvl]; result.radius = 13.3; }
+	else if (aura == "Holy Shock") { result.lDamage_min = auras[a].data.values[0][lvl]; result.lDamage_max = auras[a].data.values[1][lvl]; result.radius = 18.6; }
+	else if (aura == "Sanctuary") { result.damage_vs_undead = auras[a].data.values[0][lvl]; result.radius = 12.6; }
+	else if (aura == "Fanaticism") { result.ias_skill = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; result.radius = 12; if (source == "mercenary" || source == "golem") { result.damage_bonus = auras[a].data.values[0][lvl] } else { result.damage_bonus = auras[a].data.values[1][lvl] }}
+	else if (aura == "Conviction") { result.enemy_defense = auras[a].data.values[0][lvl]; result.enemy_fRes = auras[a].data.values[1][lvl]; result.enemy_cRes = auras[a].data.values[1][lvl]; result.enemy_lRes = auras[a].data.values[1][lvl]; result.enemy_pRes = auras[a].data.values[1][lvl]; result.radius = 21.3; }
 	// Others
-	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; }
-	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; }
-	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
-	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; }
+	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; result.radius = "?"; }
+	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; result.enemy_defense_flat = auras[a].values[1][lvl]; }
+	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; result.radius = 5; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
+	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; result.radius = "?"; }
 	// Paladin Synergies
 	if (character.class_name == "Paladin") {
 		if (aura == "Cleansing") { result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]); }
@@ -1859,41 +1875,28 @@ function getAuraData(aura, lvl, source) {
 function getCSkillData(name, lvl, group) {
 	var result = {};
 	var unit = getId(name);
-	var effect_id = unit+"-"+group;
+	var id = unit+"-"+group;
 	var skill = skills_all[effect_cskills[unit].native_class][effect_cskills[unit].i];
 	// Amazon
-	if (name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; }
+	if (name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
 	// Assassin
 	else if (name == "Cloak of Shadows") { result.defense_bonus = skill.data.values[0][lvl]; result.enemy_defense = skill.data.values[1][lvl]; result.duration = 8; }
 	else if (name == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
 	// Druid
 	else if (name == "Cyclone Armor") { result.absorb_elemental = skill.data.values[0][lvl]; }
-	else if (name == "Heart of Wolverine") { result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; }
-	else if (name == "Oak Sage") { result.max_life = skill.data.values[1][lvl]; }
-	else if (name == "Spirit of Barbs") { result.thorns_reflect = skill.data.values[1][lvl]; }
+	else if (name == "Heart of Wolverine") { result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; result.radius = skill.data.values[3][lvl]; }
+	else if (name == "Oak Sage") { result.max_life = skill.data.values[1][lvl]; result.radius = skill.data.values[2][lvl]; }
+	else if (name == "Spirit of Barbs") { result.thorns_reflect = skill.data.values[1][lvl]; result.radius = skill.data.values[2][lvl]; }
 	// Necromancer
 	else if (name == "Blood Golem") {
-		if (effects[effect_id].info.enabled == 1) { for (id in effects) { if (id == "Iron_Golem" || id == unit) { disableEffect(id) } } }
-		result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl];
+		if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
+		result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl]; result.radius = skill.data.values[5][lvl];
 	}
 	else if (name == "Iron Golem") {
-		if (effects[effect_id].info.enabled == 1) { for (id in effects) { if (id == "Blood_Golem" || id == unit) { disableEffect(id) } } }
+		if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
 		if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") {
-			var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
-			var active = true;
-			for (id in effects) {
-				if (typeof(effects[id].info.enabled) != 'undefined') {
-					var effect = id.split('-')[0];
-					if (getId(aura) == effect) {
-						active = false;
-					}
-				}
-			}
-			var auraInfo = getAuraData(aura, aura_lvl, "golem");
-			for (affix in auraInfo) {
-				if (active == true) { result[affix] = auraInfo[affix] }
-				else { result[affix] = unequipped[affix] }
-			}
+			var auraInfo = getAuraData(golemItem.aura, golemItem.aura_lvl, "golem");
+			for (affix in auraInfo) { result[affix] = auraInfo[affix] }
 		} }
 	}
 	else if (name == "Deadly Poison") {
@@ -2168,6 +2171,17 @@ function updatePrimaryStats() {
 	var def = (item_def + c.defense + c.level*c.defense_per_level + Math.floor(dexTotal/4)) * (1 + (c.defense_bonus + c.defense_skillup)/100);
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const + (c.ar_per_socketed*socketed.offhand.socketsFilled)) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 	
+/*	// Poison Calculation Testing
+	var pDamage = c.pDamage_all;
+	var pDuration = c.pDamage_duration;
+	var pFrames = pDuration*25;
+	var pAmount = Math.floor(pDamage*256/pFrames + (pFrames-1)/pFrames);
+	var pBite = pAmount*pFrames;
+	var pTotal_duration = Math.floor(pFrames / c.pDamage_duration);	// sum
+	var pTotal_damage = Math.round(pAmount * pTotal_duration);	// sum
+	document.getElementById("f4").innerHTML = c.pDamage_all+" over "+c.pDamage_duration+"s = "+Math.round(pTotal_damage/((256/25)*pDuration))+" "+pBite/pFrames
+	document.getElementById("c4").innerHTML = pAmount+" "+pTotal_duration+" "+Math.round(pTotal_damage/(pDamage/pDuration))
+*/
 	var physDamage = getWeaponDamage(strTotal,dexTotal,"weapon",0);
 	var dmg = getNonPhysWeaponDamage("weapon");
 	var basic_min = Math.floor(physDamage[0]*physDamage[2] + dmg.fMin + dmg.cMin + dmg.lMin + dmg.pMin + dmg.mMin);
@@ -2204,6 +2218,7 @@ function updatePrimaryStats() {
 	var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
 	enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level
 	var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
+	enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)+c.enemy_defense_flat)
 	var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * ar / (ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
 
 	document.getElementById("strength").innerHTML = Math.floor(strTotal)
@@ -2321,7 +2336,9 @@ function updateSecondaryStats() {
 	document.getElementById("cstrike").innerHTML = c.cstrike + c.cstrike_skillup; if (c.cstrike > 0 || c.cstrike_skillup > 0) { document.getElementById("cstrike").innerHTML += "%" }
 	document.getElementById("owounds").innerHTML = c.owounds; if (c.owounds > 0) { document.getElementById("owounds").innerHTML += "%" }
 	
-	document.getElementById("mf").innerHTML = Math.floor(c.mf + c.level*c.mf_per_level); if (c.mf != 0 || c.mf_per_level != 0) { document.getElementById("mf").innerHTML += "%" }
+	var mf = Math.floor(c.mf + c.level*c.mf_per_level);
+	var eMF = Math.floor(mf*250/(mf+250));
+	document.getElementById("mf").innerHTML = mf; if (c.mf != 0 || c.mf_per_level != 0) { document.getElementById("mf").innerHTML += "% ("+eMF+"%)" }
 	document.getElementById("gf").innerHTML = c.gf; if (c.gf != 0) { document.getElementById("gf").innerHTML += "%" }
 	
 	document.getElementById("damage_vs_demons").innerHTML = c.damage_vs_demons; if (c.damage_vs_demons > 0) { document.getElementById("damage_vs_demons").innerHTML += "%" }
@@ -2941,6 +2958,7 @@ function checkSkill(skillName, num) {
 		var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
 		enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level
 		var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
+		enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)+c.enemy_defense_flat)
 		var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * outcome.ar / (outcome.ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
 		
 		var output = ": " + outcome.min + "-" + outcome.max + " {"+Math.ceil((outcome.min+outcome.max)/2)+"}";

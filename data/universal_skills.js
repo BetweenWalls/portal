@@ -76,11 +76,11 @@ var character_any = {
 		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][~~(character.oskill_Lycanthropy+character.all_skills)]);
 		var lycan_life = ~~(skills_all["druid"][12].data.values[1][~~(character.oskill_Lycanthropy+character.all_skills)]);
 		
-		if (skill.name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; }	// TODO: Make always-active?
+		if (skill.name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }	// TODO: Make always-active?
 		if (skill.name == "Lethal Strike") { result.cstrike = skill.data.values[0][lvl]; }	// TODO: Make always-active
 		if (skill.name == "Battle Command") { result.all_skills = 1; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Shout") { result.defense_bonus = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
-		if (skill.name == "Battle Orders") { result.max_stamina = skill.data.values[1][lvl]; result.max_life = skill.data.values[2][lvl]; result.max_mana = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl]; }
+		if (skill.name == "Battle Orders") { result.max_stamina = skill.data.values[1][lvl]; result.max_life = Math.round(skill.data.values[2][lvl]/2); result.max_mana = Math.round(skill.data.values[3][lvl]/2); result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Werewolf") {	// cannot be used with Werebear
 			if (effects[id].info.enabled == 1) { disableEffect("Werebear") }
 			result.max_life = (15 + lycan_life); result.max_stamina = 40; result.ar_bonus = skill.data.values[1][lvl]; result.ias_skill = skill.data.values[2][lvl]; result.damage_bonus = lycan_damage; result.duration = 1040;
@@ -93,17 +93,17 @@ var character_any = {
 		if (skill.name == "Frigerate") {	// TODO: Make always-active?
 			result.cDamage_min = skill.data.values[0][lvl];
 			result.cDamage_max = skill.data.values[1][lvl];
-			result.enemy_defense = skill.data.values[2][lvl];
+			result.enemy_defense = skill.data.values[2][lvl]; result.radius = "?";
 		}
 		if (skill.name == "Shiver Armor") {
-			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
+			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Chilling_Armor")) { disableEffect(effect_id) } } }
 			result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl];
 		}
 		if (skill.name == "Enflame") {		// TODO: Make always-active?
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.fDamage_min = skill.data.values[1][lvl];
 			result.fDamage_max = skill.data.values[2][lvl];
-			result.ar_bonus = skill.data.values[3][lvl];
+			result.ar_bonus = skill.data.values[3][lvl]; result.radius = "?";
 		}
 		if (skill.name == "Edged Weapon Mastery") { result.edged_damage = skill.data.values[0][lvl]; result.edged_ar = skill.data.values[1][lvl]; result.edged_cstrike = skill.data.values[2][lvl]; }
 		if (skill.name == "Cold Mastery") { result.cPierce = skill.data.values[0][lvl]; result.cDamage = skill.data.values[1][lvl]; }

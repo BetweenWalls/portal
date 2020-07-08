@@ -73,7 +73,7 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 		if (skill.name == "Phase Run") { result.fhr = 30; result.velocity = 30; result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Inner Sight") {	// TODO: Make always-active
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
-			result.enemy_defense_flat = skill.data.values[0][lvl];
+			result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl];
 		}
 		if (skill.name == "Lethal Strike") { result.cstrike = skill.data.values[0][lvl]; }
 		if (skill.name == "Penetrate") { result.ar_bonus = skill.data.values[0][lvl]; }

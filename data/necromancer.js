@@ -67,30 +67,17 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		var lvl = skill.level + skill.extra_levels;
 		var result = {};
 		
-		if (skill.name == "Bone Offering") { result.defense_bonus = skill.data.values[2][lvl]; result.skeleton_bonus = skill.data.values[3][lvl]; result.curse_length_reduced = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; }
-		if (skill.name == "Flesh Offering") { result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; }
+		if (skill.name == "Bone Offering") { result.defense_bonus = skill.data.values[2][lvl]; result.skeleton_bonus = skill.data.values[3][lvl]; result.curse_length_reduced = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
+		if (skill.name == "Flesh Offering") { result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
 		if (skill.name == "Blood Golem") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
-			result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl];
+			result.life_per_ranged_hit = skill.data.values[3][lvl]; result.life_per_hit = skill.data.values[4][lvl]; result.radius = skill.data.values[5][lvl];
 		}
 		if (skill.name == "Iron Golem") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { var idName = effect_id.split("-")[0]; if (effect_id != id && (idName == "Blood_Golem" || idName == "Iron_Golem" || idName == "Clay_Golem" || idName == "Fire_Golem")) { disableEffect(effect_id) } } }
-			if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "") {
-				var aura = golemItem.aura; var aura_lvl = golemItem.aura_lvl;
-				var active = true;
-				for (id in effects) {
-					if (typeof(effects[id].info.enabled) != 'undefined') {
-						var effect = id.split('-')[0];
-						if (getId(aura) == effect) {
-							active = false;
-						}
-					}
-				}
-				var auraInfo = getAuraData(aura, aura_lvl, "golem");
-				for (affix in auraInfo) {
-					if (active == true) { result[affix] = auraInfo[affix] }
-					else { result[affix] = unequipped[affix] }
-				}
+			if (typeof(golemItem.aura) != 'undefined') { if (golemItem.aura != "" && golemItem.aura != "Righteous Fire") {
+				var auraInfo = getAuraData(golemItem.aura, golemItem.aura_lvl, "golem");
+				for (affix in auraInfo) { result[affix] = auraInfo[affix] }
 			} }
 		}
 		if (skill.name == "Deadly Poison") {

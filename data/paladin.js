@@ -81,43 +81,45 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		if (skill.i < 20) { disableAuras(skill) }
 		
 	    // Defensive Auras	
-		if (skill.name == "Prayer") { result.life_regen = 1; result.life_replenish = skill.data.values[0][lvl]; }
-		if (skill.name == "Resist Fire") { result.fRes = skill.data.values[1][lvl]; result.fRes_max = skill.data.values[2][lvl]; }
-		if (skill.name == "Defiance") { result.defense_bonus = skill.data.values[0][lvl]; }
-		if (skill.name == "Resist Cold") { result.cRes = skill.data.values[1][lvl]; result.cRes_max = skill.data.values[2][lvl]; }
+		if (skill.name == "Prayer") { result.life_regen = 1; result.life_replenish = skill.data.values[0][lvl]; result.radius = 21.3; }
+		if (skill.name == "Resist Fire") { result.fRes = skill.data.values[1][lvl]; result.fRes_max = skill.data.values[2][lvl]; result.radius = 28; }
+		if (skill.name == "Defiance") { result.defense_bonus = skill.data.values[0][lvl]; result.radius = 21.3; }
+		if (skill.name == "Resist Cold") { result.cRes = skill.data.values[1][lvl]; result.cRes_max = skill.data.values[2][lvl]; result.radius = 28; }
 		if (skill.name == "Cleansing") {
 			result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]);
-			result.poison_length_reduced = skill.data.values[2][lvl]; result.curse_length_reduced = skill.data.values[2][lvl];
+			result.poison_length_reduced = skill.data.values[2][lvl]; result.curse_length_reduced = skill.data.values[2][lvl]; result.radius = 21.3; 
 		}
-		if (skill.name == "Resist Lightning") { result.lRes = skill.data.values[1][lvl]; result.lRes_max = skill.data.values[2][lvl]; }
-		if (skill.name == "Vigor") { result.velocity = skill.data.values[0][lvl]; result.max_stamina = skill.data.values[1][lvl]; result.heal_stam = skill.data.values[2][lvl]; }
+		if (skill.name == "Resist Lightning") { result.lRes = skill.data.values[1][lvl]; result.lRes_max = skill.data.values[2][lvl]; result.radius = 28; }
+		if (skill.name == "Vigor") { result.velocity = skill.data.values[0][lvl]; result.max_stamina = skill.data.values[1][lvl]; result.heal_stam = skill.data.values[2][lvl]; result.radius = 21.3; }
 		if (skill.name == "Meditation") {
 			result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]);
-			result.mana_regen = skill.data.values[1][lvl];
+			result.mana_regen = skill.data.values[1][lvl]; result.radius = 21.3; 
 		}
-		if (skill.name == "Redemption") { result.redeem_chance = skill.data.values[0][lvl]; result.redeem_amount = skill.data.values[1][lvl]; }
-		if (skill.name == "Salvation") { result.fDamage = skill.data.values[0][lvl]; result.cDamage = skill.data.values[0][lvl]; result.lDamage = skill.data.values[0][lvl]; result.all_res = skill.data.values[1][lvl]; }
+		if (skill.name == "Redemption") { result.redeem_chance = skill.data.values[0][lvl]; result.redeem_amount = skill.data.values[1][lvl]; result.radius = 16; }
+		if (skill.name == "Salvation") { result.fDamage = skill.data.values[0][lvl]; result.cDamage = skill.data.values[0][lvl]; result.lDamage = skill.data.values[0][lvl]; result.all_res = skill.data.values[1][lvl]; result.radius = 28; }
 	    // Offensive Auras
-		if (skill.name == "Might") { result.damage_bonus = skill.data.values[0][lvl]; }
+		if (skill.name == "Might") { result.damage_bonus = skill.data.values[0][lvl]; result.radius = 16; }
 		if (skill.name == "Holy Fire") {
 			result.fDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level);
 			result.fDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level);
+			result.radius = 12;
 		}
-		if (skill.name == "Precision") { result.pierce = skill.data.values[0][lvl]; result.cstrike = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; }
-		if (skill.name == "Blessed Aim") { result.ar_bonus = skill.data.values[2][lvl]; result.hammer_on_hit = skill.data.values[1][lvl]; }
-		if (skill.name == "Concentration") { result.ar_bonus = skill.data.values[0][lvl]; result.damage_bonus = skill.data.values[1][lvl]; result.hammer_bonus = skill.data.values[2][lvl]; }
+		if (skill.name == "Precision") { result.pierce = skill.data.values[0][lvl]; result.cstrike = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; result.radius = 16; }
+		if (skill.name == "Blessed Aim") { result.ar_bonus = skill.data.values[2][lvl]; result.hammer_on_hit = skill.data.values[1][lvl]; result.radius = 16; }
+		if (skill.name == "Concentration") { result.ar_bonus = skill.data.values[0][lvl]; result.damage_bonus = skill.data.values[1][lvl]; result.hammer_bonus = skill.data.values[2][lvl]; result.radius = 16; }
 		if (skill.name == "Holy Freeze") {
 			result.cDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
 			result.cDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
-			result.slow_enemies = skill.data.values[4][lvl];
+			result.slow_enemies = skill.data.values[4][lvl]; result.radius = 13.3;
 		}
 		if (skill.name == "Holy Shock") {
 			result.lDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);
 			result.lDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);
+			result.radius = 18.6;
 		}
-		if (skill.name == "Sanctuary") { result.damage_vs_undead = skill.data.values[0][lvl]; }
-		if (skill.name == "Fanaticism") { result.damage_bonus = skill.data.values[1][lvl]; result.ias_skill = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; }
-		if (skill.name == "Conviction") { result.enemy_defense = skill.data.values[0][lvl]; result.enemy_fRes = skill.data.values[1][lvl]; result.enemy_cRes = skill.data.values[1][lvl]; result.enemy_lRes = skill.data.values[1][lvl]; result.enemy_pRes = skill.data.values[1][lvl]; }
+		if (skill.name == "Sanctuary") { result.damage_vs_undead = skill.data.values[0][lvl]; result.radius = 12.6; }
+		if (skill.name == "Fanaticism") { result.damage_bonus = skill.data.values[1][lvl]; result.ias_skill = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; result.radius = 12; }
+		if (skill.name == "Conviction") { result.enemy_defense = skill.data.values[0][lvl]; result.enemy_fRes = skill.data.values[1][lvl]; result.enemy_cRes = skill.data.values[1][lvl]; result.enemy_lRes = skill.data.values[1][lvl]; result.enemy_pRes = skill.data.values[1][lvl]; result.radius = 21.3; }
 	    // Combat
 		if (skill.name == "Holy Shield") {
 			result.defense_skillup = skill.data.values[3][lvl] + 15*skills[2].level;

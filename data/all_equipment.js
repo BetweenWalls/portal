@@ -292,6 +292,7 @@ var equipment = {
 {only:"sorceress", name:"Ormus' Robes (Meteor)", req_level:75, skill_Meteor:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Hydra)", req_level:75, skill_Hydra:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Fire Mastery)", req_level:75, skill_Fire_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
+// check: are any Sorceress skills excluded? Some sources say these cannot appear: Hydra, Frozen Orb, Cold Mastery, Lightning Mastery, Fire Mastery
 	],
     gloves: [
 {name:"Gloves"},
@@ -979,12 +980,12 @@ var equipment = {
 {rarity:"magic", name:"C-Res,Life Small Charm", size:"small", req_level:39, cRes:11, life:20},			// Sapphire Small Charm of Vita
 {rarity:"magic", name:"L-Res,Life Small Charm", size:"small", req_level:39, lRes:11, life:20},			// Amber Small Charm of Vita
 {rarity:"magic", name:"P-Res,Life Small Charm", size:"small", req_level:39, pRes:11, life:20},			// Emerald Small Charm of Vita
-{rarity:"magic", name:"AR,Damage,FHR Small Charm", size:"small", req_level:29, ar:20, damage_max:3, fhr:5},	// Fine Small Charm of Balance
-{rarity:"magic", name:"AR,Damage,FRW Small Charm", size:"small", req_level:36, ar:20, damage_max:3, frw:3},	// Fine Small Charm of Inertia
+{rarity:"magic", name:"AR,Damage,FHR Small Charm", size:"small", req_level:29, damage_max:3, ar:20, fhr:5},	// Fine Small Charm of Balance
+{rarity:"magic", name:"AR,Damage,FRW Small Charm", size:"small", req_level:36, damage_max:3, ar:20, frw:3},	// Fine Small Charm of Inertia
 {rarity:"magic", name:"Pestilent Small Charm of Anthrax", size:"small", req_level:80, pDamage_all:451, pDamage_duration:12},
-{rarity:"magic", name:"AR,Damage,Life Small Charm", size:"small", req_level:39, ar:20, damage_max:3, life:20},	// Fine Small Charm of Vita
-{rarity:"magic", name:"AR,Damage,Life Large Charm", size:"large", req_level:66, ar:48, damage_max:6, life:35},	// Sharp Large Charm of Vita
-{rarity:"magic", name:"AR,Damage,Life Grand Charm", size:"grand", req_level:83, ar:76, damage_max:10, life:45},	// Sharp Grand Charm of Vita
+{rarity:"magic", name:"AR,Damage,Life Small Charm", size:"small", req_level:39, damage_max:3, ar:20, life:20},	// Fine Small Charm of Vita
+{rarity:"magic", name:"AR,Damage,Life Large Charm", size:"large", req_level:66, damage_max:6, ar:48, life:35},	// Sharp Large Charm of Vita
+{rarity:"magic", name:"AR,Damage,Life Grand Charm", size:"grand", req_level:83, damage_max:10, ar:76, life:45},	// Sharp Grand Charm of Vita
 //{name:"Horadrim Sigil", size:"grand", req_level:80, all_attributes:3},
 	// Hodradrim Sigil is a legacy item (non-ladder only) that was available during Season 6 and 7. (July 13, 2018 - July 31, 2019)
 	// It was limited to 1 per character, but no longer has such limitations since being removed from the base game in Patch #17 (Tourmaline).
@@ -1040,10 +1041,10 @@ var equipment = {
 				oskill_Warp:1, oskill_Ball_Lightning:1,
 				oskill_Inner_Sight:1, oskill_Lethal_Strike:1, oskill_Valkyrie:1, oskill_Magic_Arrow:1, oskill_Guided_Arrow:1, oskill_Multiple_Shot:1,
 				oskill_Battle_Command:1, oskill_Battle_Orders:1, oskill_Battle_Cry:1, oskill_Bash:1, oskill_Edged_Weapon_Mastery:1,
-				oskill_Arctic_Blast:1, oskill_Lycanthropy:1, oskill_Werebear:1, oskill_Werewolf:1, oskill_Feral_Rage:1, oskill_Flame_Dash:1, oskill_Summon_Dire_Wolf:1,
+				oskill_Lycanthropy:1, oskill_Werebear:1, oskill_Werewolf:1, oskill_Feral_Rage:1, oskill_Flame_Dash:1, oskill_Summon_Dire_Wolf:1,
 				oskill_Desecrate:1,
 				oskill_Zeal:1, oskill_Vengeance:1,
-				oskill_Shiver_Armor:1, oskill_Cold_Mastery:1, oskill_Hydra:1, oskill_Fire_Ball:1, oskill_Fire_Wall:1, oskill_Meteor:1, oskill_Fire_Mastery:1, oskill_Enflame:1	},
+				oskill_Frigerate:1, oskill_Shiver_Armor:1, oskill_Cold_Mastery:1, oskill_Hydra:1, oskill_Fire_Ball:1, oskill_Fire_Wall:1, oskill_Meteor:1, oskill_Fire_Mastery:1, oskill_Enflame:1	},
 *//*
 {debug:1, name:"everything", req_level:100, // not made for production, may have glitches
 				strength:1, dexterity:1, vitality:1, energy:1, life:1, mana:1, defense:1, ar:1, stamina:1, block:1, base_defense:1, 
@@ -1056,7 +1057,8 @@ var equipment = {
 				enemy_fRes:-1, enemy_cRes:-1, enemy_lRes:-1, enemy_pRes:-1, enemy_defense:-1, enemy_defense_flat:-1, target_defense:-1, monster_defense_per_hit:-1, slows_target:1, slow_enemies:1, freezes_target:1, flee_on_hit:1, blind_on_hit:1, 
 				itd:1, pmh:1, cbf:1, peace:1, knockback:1, half_freeze:1, melee_splash:1, glow:1, 
 				bonus_corpse_explosion:1, phys_Lightning_Surge:1, extraValkyrie:1, extraGrizzly:1, extraFireGolem:1, extraHydra:1, radius_FreezingArrow:1, reset_cooldown_on_kill:1, cdr_on_striking:1, reanimate:1, 
-				flamme:1, ias_skill:1, ar_shrine_bonus:1, charge_ember:1, charge_thunder:1, charge_ice:1, skeleton_bonus:1, hammer_bonus:1, hammer_on_hit:1, recovery_per_corpse:1, absorb_elemental:1, absorb_melee:1, absorb_es_redirect:1, absorb_es_deplete:1, duration:1, radius:1, amountSummoned:1, enemy_damage:1, enemy_attack:1, enemy_physRes:1, enemy_allRes:1, fleeing:1, flee_distance:1, dimmedVision:1, confused:1, attraction:1, enemy_ias:1, enemy_frw:1	}
+				flamme:1, ias_skill:1, ar_shrine_bonus:1, charge_ember:1, charge_thunder:1, charge_ice:1, skeleton_bonus:1, hammer_bonus:1, hammer_on_hit:1, redeem_chance:1, redeem_amount:1, absorb_elemental:1, absorb_melee:1, absorb_es_redirect:1, absorb_es_deplete:1, duration:1, radius:1, amountSummoned:1, enemy_damage:1, enemy_attack:1, enemy_physRes:1, enemy_allRes:1, fleeing:1, flee_distance:1, dimmedVision:1, confused:1, attraction:1, enemy_ias:1, enemy_frw:1, 
+				experience:1, },
 */
 {debug:1, name:"+1% increased attack speed", req_level:100, ias:1},
 	],
@@ -2203,7 +2205,7 @@ absorb_melee:{index:["absorb_melee"], format:["Absorbs "," damage"]},
 absorb_es_redirect:{index:["absorb_es_redirect"], format:["Absorbs ","%"]},
 absorb_es_deplete:{index:["absorb_es_deplete"], format:["Efficiency: ","%"]},
 duration:{index:["duration"], format:["Duration: "," seconds"]},
-radius:1,//{index:["radius"], format:["Radius: "," yards"]},
+radius:{index:["radius"], format:["Radius: "," yards"]},
 amountSummoned:1,
 enemy_damage:1,
 enemy_attack:1,

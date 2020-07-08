@@ -98,15 +98,15 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 		if (skill.name == "Maul") { result.damage_bonus = skill.data.values[2][lvl]; result.duration = 20; }
 		if (skill.name == "Heart of Wolverine") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
-			result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl];
+			result.damage_bonus = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl]; result.radius = skill.data.values[3][lvl];
 		}
 		if (skill.name == "Oak Sage") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
-			result.max_life = skill.data.values[1][lvl];
+			result.max_life = skill.data.values[1][lvl]; result.radius = skill.data.values[2][lvl];
 		}
 		if (skill.name == "Spirit of Barbs") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
-			result.thorns_reflect = skill.data.values[1][lvl];
+			result.thorns_reflect = skill.data.values[1][lvl]; result.radius = skill.data.values[2][lvl];
 		}
 		if (skill.name == "Carrion Vine") { result.life_regen = skill.data.values[1][lvl]; }	// Check if "Heals: X percent" is equivalent to life_regen
 		if (skill.name == "Solar Creeper") { result.mana_regen = skill.data.values[1][lvl]; }	// Check if "Mana Recovery Rate: X" is equivalent to mana_regen
