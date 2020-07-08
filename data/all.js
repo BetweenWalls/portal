@@ -2218,7 +2218,7 @@ function updatePrimaryStats() {
 	var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
 	enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level
 	var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
-	enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)+c.enemy_defense_flat)
+	enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)/100+c.enemy_defense_flat)
 	var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * ar / (ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
 
 	document.getElementById("strength").innerHTML = Math.floor(strTotal)
@@ -2958,7 +2958,7 @@ function checkSkill(skillName, num) {
 		var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
 		enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level
 		var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
-		enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)+c.enemy_defense_flat)
+		enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)/100+c.enemy_defense_flat)
 		var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * outcome.ar / (outcome.ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
 		
 		var output = ": " + outcome.min + "-" + outcome.max + " {"+Math.ceil((outcome.min+outcome.max)/2)+"}";
