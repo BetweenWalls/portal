@@ -93,7 +93,7 @@ var character_any = {
 		if (skill.name == "Frigerate") {	// TODO: Make always-active?
 			result.cDamage_min = skill.data.values[0][lvl];
 			result.cDamage_max = skill.data.values[1][lvl];
-			result.enemy_defense = skill.data.values[2][lvl]; result.radius = "?";
+			result.enemy_defense = skill.data.values[2][lvl]; result.radius = 16;
 		}
 		if (skill.name == "Shiver Armor") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Chilling_Armor")) { disableEffect(effect_id) } } }
@@ -103,7 +103,7 @@ var character_any = {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.fDamage_min = skill.data.values[1][lvl];
 			result.fDamage_max = skill.data.values[2][lvl];
-			result.ar_bonus = skill.data.values[3][lvl]; result.radius = "?";
+			result.ar_bonus = skill.data.values[3][lvl]; result.radius = 16;
 		}
 		if (skill.name == "Edged Weapon Mastery") { result.edged_damage = skill.data.values[0][lvl]; result.edged_ar = skill.data.values[1][lvl]; result.edged_cstrike = skill.data.values[2][lvl]; }
 		if (skill.name == "Cold Mastery") { result.cPierce = skill.data.values[0][lvl]; result.cDamage = skill.data.values[1][lvl]; }

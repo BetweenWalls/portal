@@ -1845,10 +1845,10 @@ function getAuraData(aura, lvl, source) {
 	else if (aura == "Fanaticism") { result.ias_skill = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; result.radius = 12; if (source == "mercenary" || source == "golem") { result.damage_bonus = auras[a].data.values[0][lvl] } else { result.damage_bonus = auras[a].data.values[1][lvl] }}
 	else if (aura == "Conviction") { result.enemy_defense = auras[a].data.values[0][lvl]; result.enemy_fRes = auras[a].data.values[1][lvl]; result.enemy_cRes = auras[a].data.values[1][lvl]; result.enemy_lRes = auras[a].data.values[1][lvl]; result.enemy_pRes = auras[a].data.values[1][lvl]; result.radius = 21.3; }
 	// Others
-	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; result.radius = "?"; }
+	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; result.radius = 16; }	// TODO: radius is a guess - get confirmation
 	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; result.enemy_defense_flat = auras[a].values[1][lvl]; }
 	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; result.radius = 5; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
-	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; result.radius = "?"; }
+	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; result.radius = 16; }	// TODO: radius is a guess - get confirmation
 	// Paladin Synergies
 	if (character.class_name == "Paladin") {
 		if (aura == "Cleansing") { result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]); }
@@ -2430,6 +2430,21 @@ function updateCTC() {
 				}
 			}
 		}
+	}
+	// TODO: Add socketed ctc effects to socketed.totals so this can be simplified? Duplicate code in equipmentHover()
+	var ctc_possible = ["100% chance to cast level 29 Blaze when you level up","100% chance to cast level 43 Frost Nova when you level up","100% chance to cast level 41 Nova when you level up","100% chance to cast level 23 Venom when you level up"];
+	var ctc_included = [0,0,0,0];
+	for (group in socketed) {
+		for (let i = 0; i < socketed[group].items.length; i++) { for (affix in socketed[group].items[i]) { if (affix == "ctc") {
+			var source = socketed[group].items[i];
+			for (let j = 0; j < source[affix].length; j++) {
+				var line = source[affix][j][0]+"% chance to cast level "+source[affix][j][1]+" "+source[affix][j][2]+" "+source[affix][j][3];
+				for (let k = 0; k < ctc_possible.length; k++) { if (line == ctc_possible[k]) {
+					if (ctc_included[k] == 0) { stats += line+"<br>" }
+					ctc_included[k] = 1
+				} }
+			}
+		} } }
 	}
 	document.getElementById("ctc").innerHTML = stats
 }
@@ -3380,18 +3395,22 @@ function equipmentHover(group) {
 			if (stats[affix] != unequipped[affix] && stats[affix] != 1 && affix != "req_level" && affix != "ctc") {
 				var affix_info = getAffixLine(affix,"socketed",group,"");
 				if (affix_info[1] != 0) { socketed_affixes += affix_info[0]+"<br>" }
-			} else if (affix == "ctc") {
-			// TODO: ctc affixes from socketed jewels (ctc isn't added to totals since there's no function to add ctc variables to eachother)
-			/*	var source = socketed[group].totals;
-				var affix_line = "";
-				for (let i = 0; i < source[affix].length; i++) {
-					var line = source[affix][i][0]+"% chance to cast level "+source[affix][i][1]+" "+source[affix][i][2]+" "+source[affix][i][3];
-					affix_line += line
-					if (i < source[affix].length-1) { affix_line += "<br>" }
-				}
-				socketed_affixes += affix_line
-			*/}
+			}
 		}
+		var ctc_possible = ["100% chance to cast level 29 Blaze when you level up","100% chance to cast level 43 Frost Nova when you level up","100% chance to cast level 41 Nova when you level up","100% chance to cast level 23 Venom when you level up"];
+		var ctc_included = [0,0,0,0];
+		for (let i = 0; i < socketed[group].items.length; i++) { for (affix in socketed[group].items[i]) { if (affix == "ctc") {
+			var source = socketed[group].items[i];
+			var affix_line = "";
+			for (let j = 0; j < source[affix].length; j++) {
+				var line = source[affix][j][0]+"% chance to cast level "+source[affix][j][1]+" "+source[affix][j][2]+" "+source[affix][j][3];
+				for (let k = 0; k < ctc_possible.length; k++) { if (line == ctc_possible[k]) {
+					if (ctc_included[k] == 0) { affix_line += line+"<br>" }
+					ctc_included[k] = 1
+				} }
+			}
+			socketed_affixes += affix_line
+		} } }
 	}
 	// TODO: Reduce duplicated code from set bonuses - rewrite getAffixLine?
 	if (typeof(equipped[group].rarity) != 'undefined') { if (equipped[group].rarity == "set") {

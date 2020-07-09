@@ -13,7 +13,6 @@ Current Known Issues:
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * Unimplemented: mercenary stats
 * Unimplemented: breakpoint info for FCR, FBR, FHR
-* CtC (Chance to Cast) affixes from jewels not shown on tooltip for equipped items
 * DoT (Damage over Time) affixes are added without considering their time component
 
 Info: https://github.com/BetweenWalls/planner#planner
@@ -24,6 +23,7 @@ Code Organization:
 	all.css			Defines style elements
 	all.js			Holds most of the program logic
 	all_equipment.js	Contains item data
+	all_monsters.js 	Contains enemy data
 	amazon.js   		Skill data (amazon)
 	assassin.js		Skill data (assassin)
 	barbarian.js		Skill data (barbarian)
