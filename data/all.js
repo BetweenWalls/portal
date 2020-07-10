@@ -1077,7 +1077,10 @@ function equip(group, val) {
 		if (typeof(equipped[group].base) != 'undefined') { base = equipped[group].base }
 		document.getElementById(group+"_image").src = getItemImage(group,base,src)
 	} else {
-		document.getElementById(group+"_image").src = "./images/items/none.png"
+		var img = "./images/items/none.png"
+		if (group == "helm" || group == "armor" || group == "boots" || group == "belt" || group == "weapon" || group == "offhand") { img = "./images/items/blank_"+group+".png" }
+		document.getElementById(group+"_image").src = img
+		document.getElementById("tooltip_inventory").style.display = "none"
 	}
 	
 	if (auraName != "" && auraLevel != 0) {		// TODO: Why does this break things if called earlier? (item image wasn't appearing)
@@ -2359,6 +2362,7 @@ function updateSecondaryStats() {
 	if (c.running > 0) { movespeed = round(9 * movement) } else { movespeed = round(6 * movement) }
 	document.getElementById("velocity").innerHTML = movespeed + " yds/s"
 	document.getElementById("frw").innerHTML = Math.floor(c.frw + c.frw_skillup); if (c.frw > 0 || c.frw_skillup > 0) { document.getElementById("frw").innerHTML += "%" }
+	//document.getElementById("frw").innerHTML += " ("+movespeed+" yds/s)"
 	
 	document.getElementById("life_leech").innerHTML = c.life_leech; if (c.life_leech > 0) { document.getElementById("life_leech").innerHTML += "%" }
 	document.getElementById("mana_leech").innerHTML = c.mana_leech; if (c.mana_leech > 0) { document.getElementById("mana_leech").innerHTML += "%" }
