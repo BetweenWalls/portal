@@ -1,21 +1,13 @@
 
-// FCR breakpoints
-//	base frames: 15
-//	var fcr_bp = [0, 9, 30, 48, 75, 125]
-// FHR breakpoints
-//	base frames: 9 or 13 (with Spears or Staves)
-//	var fhr_bp = [0, 7, 15, 27, 48, 86, 200]
-//	var fhr_bp = [0, 3, 7, 13, 20, 32, 48, 75, 129, 280]	(with Spears or Staves)
-// FBR breakpoints
-//	base frames: 5 or 2 (if Holy Shield is active)
-//	var fbr_bp = [0, 13, 32, 86, 200]
-//	var fbr_bp = [0, 86]	(with Holy Shield active)
-// Skills that may adjust IAS breakpoints:
-//	Sacrifice, Zeal, Vengeance, Conversion, Smite
-
 var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitality:25, energy:15, life:55, mana:15, stamina:189, levelup_life:2.5, levelup_stamina:1, levelup_mana:1.5, ar_per_dexterity:5, life_per_vitality:3, stamina_per_vitality:1, mana_per_energy:1.5, starting_strength:25, starting_dexterity:20, starting_vitality:25, starting_energy:15, ar_const:20, block_const:3, skill_layout:"./images/paladin.png", mana_regen:1.66,
 	weapon_frames:{dagger:16, sword:[14,17.5], axe:[14,17], mace:[14,20], thrown:14, staff:17, polearm:17, scepter:14, wand:14, javelin:19, spear:19, bow:15, crossbow:19},
-
+	// Skills that may adjust IAS breakpoints: Sacrifice, Zeal, Vengeance, Conversion, Smite
+	fcr_frames:15, fcr_bp:[0, 9, 30, 48, 75, 125],
+	fhr_frames:9, fhr_bp:[0, 7, 15, 27, 48, 86, 200],
+	fhr_frames_alt:13, fhr_bp_alt:[0, 3, 7, 13, 20, 32, 48, 75, 129, 280],	// Spears or Staves
+	fbr_frames:5, fbr_bp:[0, 13, 32, 86, 200],
+	fbr_frames_alt:2, fbr_bp_alt:[0, 86],	// Holy Shield active
+	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

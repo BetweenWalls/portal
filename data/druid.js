@@ -1,27 +1,19 @@
 
-// FCR breakpoints
-//	base frames: 18, 16 (Werebear or Werewolf)
-//	var fcr_bp = [0, 4, 10, 19, 30, 46, 68, 99, 163]
-//	var fcr_bp = [0, 7, 15, 26, 40, 63, 99, 163]	(Werebear)
-//	var fcr_bp = [0, 6, 14, 26, 40, 60, 95, 157]	(Werewolf)
-// FHR breakpoints
-//	base frames: 13, 14 (1-hand swinging weapons), 13 (Werebear), 7 (Werewolf)
-//	var fhr_bp = [0, 5, 10, 16, 26, 39, 56, 86, 152, 377]
-//	var fhr_bp = [0, 3, 7, 13, 19, 29, 42, 63, 99, 174, 456]	(1-hand swinging weapons: axes, maces, sword, throwing axes, wands)
-//	var fhr_bp = [0, 5, 10, 16, 24, 37, 54, 86, 152, 360]	(Werebear)
-//	var fhr_bp = [0, 9, 20, 42, 86, 280]	(Werewolf)
-// FBR breakpoints
-//	base frames: 11, 12 (Werebear), 9 (Werewolf)
-//	var fbr_bp = [0, 6, 13, 20, 32, 52, 86, 174, 600]
-//	var fbr_bp = [0, 5, 10, 16, 27, 40, 65, 109, 223]	(Werebear)
-//	var fbr_bp = [0, 7, 15, 27, 48, 86, 200]	(Werewolf)
-// Skills that may adjust IAS breakpoints:
-//	Feral Rage, Hunger, Rabies, Fury
-
 var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:25, energy:20, life:55, mana:20, stamina:184, levelup_life:1.5, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:15, starting_dexterity:20, starting_vitality:25, starting_energy:20, ar_const:5, block_const:6, skill_layout:"./images/druid.png", mana_regen:1.66,	// block_const = 5 while shapeshifted
 	weapon_frames:{dagger:20, sword:[20,21], axe:[20,17], mace:[20,20], thrown:20, staff:17, polearm:17, scepter:20, wand:20, javelin:23, spear:23, bow:15, crossbow:19},
 	wereform_frames:{dagger:22, sword:[22,25], axe:[22,20], mace:[22,23], thrown:22, staff:20, polearm:20, scepter:22, wand:22, javelin:27, spear:27, bow:19, crossbow:24},
-
+	// Skills that may adjust IAS breakpoints: Feral Rage, Hunger, Rabies, Fury
+	fcr_frames:18, fcr_bp:[0, 4, 10, 19, 30, 46, 68, 99, 163],
+	fcr_frames_werebear:16, fcr_bp_werebear:[0, 7, 15, 26, 40, 63, 99, 163],
+	fcr_frames_werewolf:16, fcr_bp_werewolf:[0, 6, 14, 26, 40, 60, 95, 157],
+	fhr_frames:13, fhr_bp:[0, 5, 10, 16, 26, 39, 56, 86, 152, 377],
+	fhr_frames_alt:14, fhr_bp_alt:[0, 3, 7, 13, 19, 29, 42, 63, 99, 174, 456],	// 1-hand swinging weapons (axes, maces, swords, throwing axes, wands)
+	fhr_frames_werebear:13, fhr_bp_werebear:[0, 5, 10, 16, 24, 37, 54, 86, 152, 360],
+	fhr_frames_werewolf:7, fhr_bp_werewolf:[0, 9, 20, 42, 86, 280],
+	fbr_frames:11, fbr_bp:[0, 6, 13, 20, 32, 52, 86, 174, 600],
+	fbr_frames_werebear:12, fbr_bp_werebear:[0, 5, 10, 16, 27, 40, 65, 109, 223],
+	fbr_frames_werewolf:9, fbr_bp_werewolf:[0, 7, 15, 27, 48, 86, 200],
+	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

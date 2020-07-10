@@ -1,19 +1,10 @@
 
-// FCR breakpoints
-//	base frames: 15
-//	var fcr_bp = [0, 9, 18, 30, 48, 75, 125]
-// FHR breakpoints
-//	base frames: 13
-//	var fhr_bp = [0, 5, 10, 16, 26, 39, 56, 86, 152, 377]
-// FBR breakpoints
-//	base frames: 11
-//	var fbr_bp = [0, 6, 13, 20, 32, 52, 86, 174, 600]
-// Skills that may adjust IAS breakpoints:
-//	none
-
 var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25, vitality:15, energy:25, life:45, mana:25, stamina:179, levelup_life:2, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:15, starting_dexterity:25, starting_vitality:15, starting_energy:25, ar_const:-10, block_const:6, skill_layout:"./images/necromancer.png", mana_regen:1.66,
 	weapon_frames:{dagger:18, sword:[18,22], axe:[18,19], mace:[18,22], thrown:18, staff:19, polearm:19, scepter:18, wand:18, javelin:23, spear:23, bow:17, crossbow:19},
-
+	fcr_frames:15, fcr_bp:[0, 9, 18, 30, 48, 75, 125],
+	fhr_frames:13, fhr_bp:[0, 5, 10, 16, 26, 39, 56, 86, 152, 377],
+	fbr_frames:11, fbr_bp:[0, 6, 13, 20, 32, 52, 86, 174, 600],
+	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

@@ -1,20 +1,11 @@
 
-// FCR breakpoints
-//	base frames: 13 or 19 (for Lightning Surge & Chain Lightning)
-//	var fcr_bp = [0, 9, 20, 37, 63, 105, 200]
-//	var fcr_bp = [0, 7, 15, 23, 35, 52, 78, 117, 194]	(for Lightning Surge & Chain Lightning)
-// FHR breakpoints
-//	base frames: 15
-//	var fhr_bp = [0, 5, 9, 14, 20, 30, 42, 60, 86, 142, 280]
-// FBR breakpoints
-//	base frames: 9
-//	var fbr_bp = [0, 7, 15, 27, 48, 86, 200]
-// Skills that may adjust IAS breakpoints:
-//	none
-
 var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vitality:10, energy:35, life:40, mana:35, stamina:174, levelup_life:1.5, levelup_stamina:1, levelup_mana:2, ar_per_dexterity:5, life_per_vitality:2, stamina_per_vitality:1, mana_per_energy:2, starting_strength:10, starting_dexterity:25, starting_vitality:10, starting_energy:35, ar_const:-15, block_const:5, skill_layout:"./images/sorceress.png", mana_regen:1.66,
 	weapon_frames:{dagger:16, sword:[17,21], axe:[17,15], mace:[17,20], thrown:17, staff:15, polearm:15, scepter:17, wand:17, javelin:20, spear:20, bow:16, crossbow:19, orb:17},
-
+	fcr_frames:13, fcr_bp:[0, 9, 20, 37, 63, 105, 200],
+	fcr_frames_alt:19, fcr_bp_alt:[0, 7, 15, 23, 35, 52, 78, 117, 194],	// Lightning Surge & Chain Lightning
+	fhr_frames:15, fhr_bp:[0, 5, 9, 14, 20, 30, 42, 60, 86, 142, 280],
+	fbr_frames:9, fbr_bp:[0, 7, 15, 27, 48, 86, 200],
+	
 	// getSkillData - gets skill info from the skills data table
 	//	skill: skill object for the skill in question
 	//	lvl: level of the skill

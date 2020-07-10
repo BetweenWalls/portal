@@ -1060,7 +1060,14 @@ var equipment = {
 				flamme:1, ias_skill:1, ar_shrine_bonus:1, charge_ember:1, charge_thunder:1, charge_ice:1, skeleton_bonus:1, hammer_bonus:1, hammer_on_hit:1, redeem_chance:1, redeem_amount:1, absorb_elemental:1, absorb_melee:1, absorb_es_redirect:1, absorb_es_deplete:1, duration:1, radius:1, amountSummoned:1, enemy_damage:1, enemy_attack:1, enemy_physRes:1, enemy_allRes:1, fleeing:1, flee_distance:1, dimmedVision:1, confused:1, attraction:1, enemy_ias:1, enemy_frw:1, 
 				experience:1, },
 */
-{debug:1, name:"+1% increased attack speed", req_level:100, ias:1},
+{debug:1, name:"+1% ias", req_level:100, ias:1},
+{debug:1, name:"+5% ias", req_level:100, ias:5},
+{debug:1, name:"+1% fcr", req_level:100, fcr:1},
+{debug:1, name:"+5% fcr", req_level:100, fcr:5},
+{debug:1, name:"+1% fbr", req_level:100, fbr:1},
+{debug:1, name:"+5% fbr", req_level:100, fbr:5},
+{debug:1, name:"+1% fhr", req_level:100, fhr:1},
+{debug:1, name:"+5% fhr", req_level:100, fhr:5},
 	],
 };
 

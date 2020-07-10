@@ -542,6 +542,8 @@ function loadGolem() {
 //	choice: name of new character class
 // ---------------------------------
 function startup(choice) {
+	var character_setup = character_all[choice]
+	for (stat in character_setup) { character[stat] = character_setup[stat] }
 	//loadMonsters()
 	setMercenary("none")
 	setIronGolem("none")
@@ -557,15 +559,14 @@ function startup(choice) {
 	document.getElementById("running").checked = 0
 	document.getElementById("difficulty3").checked = 1
 	skills = skills_all[choice]
-	character_setup = character_all[choice]
 	for (stat in base_stats) { character[stat] = base_stats[stat] }
 	for (stat in unequipped) { character[stat] = unequipped[stat] }
 	for (stat in character_setup) { character[stat] = character_setup[stat] }
 	setIconSources(choice)
 	updateSkillIcons()
-	updateStats()
 	document.getElementById("skill_tree").src = character_setup.skill_layout
 	init()
+	updateStats()
 }
 
 // reset - Calls startup() with the specified class name
@@ -2301,9 +2302,56 @@ function updateSecondaryStats() {
 	document.getElementById("mabsorb").innerHTML = c.mAbsorb_flat
 	
 	document.getElementById("cdr").innerHTML = c.cdr; if (c.cdr > 0) { document.getElementById("cdr").innerHTML += "%" }
-	document.getElementById("fcr").innerHTML = (c.fcr + Math.floor(c.level*c.fcr_per_level)); if (c.fcr > 0 || c.fcr_per_level > 0) { document.getElementById("fcr").innerHTML += "%" }
-	document.getElementById("fbr").innerHTML = c.fbr; if (c.fbr > 0) { document.getElementById("fbr").innerHTML += "%" }
+	var fcrTotal = c.fcr + Math.floor(c.level*c.fcr_per_level);
+	
+	var fcr_f = c.fcr_frames;
+	for (let i = 1; i < c.fcr_bp.length; i++) { if (fcrTotal >= c.fcr_bp[i]) { fcr_f -= 1 } }
+	
+	var fhr_f = c.fhr_frames;
+	for (let i = 1; i < c.fhr_bp.length; i++) { if (c.fhr >= c.fhr_bp[i]) { fhr_f -= 1 } }
+	if (c.class_name == "Paladin") { if (equipped.weapon.type == "spear" || equipped.weapon.type == "staff") {
+		fhr_f = c.fhr_frames_alt;
+		for (let i = 1; i < c.fhr_bp_alt.length; i++) { if (c.fhr >= c.fhr_bp_alt[i]) { fhr_f -= 1 } }
+	} }
+	if (c.class_name == "Druid") { if (equipped.weapon.twoHanded != 1 && (equipped.weapon.type == "axe" || equipped.weapon.type == "mace" || equipped.weapon.type == "sword" || equipped.weapon.type == "wand")) {	// TODO: Also include throwing axes?
+		fhr_f = c.fhr_frames_alt;
+		for (let i = 1; i < c.fhr_bp_alt.length; i++) { if (c.fhr >= c.fhr_bp_alt[i]) { fhr_f -= 1 } }
+	} }
+	
+	var fbr_f = c.fbr_frames;
+	for (let i = 1; i < c.fbr_bp.length; i++) { if (c.fbr >= c.fbr_bp[i]) { fbr_f -= 1 } }
+	if (c.class_name == "Amazon") { if (equipped.weapon.twoHanded != 1 && (equipped.weapon.type == "axe" || equipped.weapon.type == "mace" || equipped.weapon.type == "sword" || equipped.weapon.type == "wand")) {	// TODO: Also include throwing axes?
+		fbr_f = c.fbr_frames_alt;
+		for (let i = 1; i < c.fbr_bp_alt.length; i++) { if (c.fbr >= c.fbr_bp_alt[i]) { fbr_f -= 1 } }
+	} }
+	if (c.class_name == "Paladin") { if (effects["Holy_Shield"] != null) { if (typeof(effects["Holy_Shield"].info.enabled) != 'undefined') { if (effects["Holy_Shield"].info.enabled == 1) {
+		fbr_f = c.fbr_frames_alt;
+		for (let i = 1; i < c.fbr_bp_alt.length; i++) { if (c.fbr >= c.fbr_bp_alt[i]) { fbr_f -= 1 } }
+	} } } }
+	
+	if (effects["Werebear"] != null) { if (typeof(effects["Werebear"].info.enabled) != 'undefined') { if (effects["Werebear"].info.enabled == 1) {
+		fcr_f = character_druid.fcr_frames_werebear
+		for (let i = 1; i < character_druid.fcr_bp_werebear.length; i++) { if (fcrTotal >= character_druid.fcr_bp_werebear[i]) { fcr_f -= 1 } }
+		fhr_f = character_druid.fhr_frames_werebear
+		for (let i = 1; i < character_druid.fhr_bp_werebear.length; i++) { if (c.fhr >= character_druid.fhr_bp_werebear[i]) { fhr_f -= 1 } }
+		fbr_f = character_druid.fbr_frames_werebear
+		for (let i = 1; i < character_druid.fbr_bp_werebear.length; i++) { if (c.fbr >= character_druid.fbr_bp_werebear[i]) { fbr_f -= 1 } }
+	} } }
+	if (effects["Werewolf"] != null) { if (typeof(effects["Werewolf"].info.enabled) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) {
+		fcr_f = character_druid.fcr_frames_werewolf
+		for (let i = 1; i < character_druid.fcr_bp_werewolf.length; i++) { if (fcrTotal >= character_druid.fcr_bp_werewolf[i]) { fcr_f -= 1 } }
+		fhr_f = character_druid.fhr_frames_werewolf
+		for (let i = 1; i < character_druid.fhr_bp_werewolf.length; i++) { if (c.fhr >= character_druid.fhr_bp_werewolf[i]) { fhr_f -= 1 } }
+		fbr_f = character_druid.fbr_frames_werewolf
+		for (let i = 1; i < character_druid.fbr_bp_werewolf.length; i++) { if (c.fbr >= character_druid.fbr_bp_werewolf[i]) { fbr_f -= 1 } }
+	} } }
+	
+	document.getElementById("fcr").innerHTML = fcrTotal; if (fcrTotal > 0) { document.getElementById("fcr").innerHTML += "%" }
 	document.getElementById("fhr").innerHTML = c.fhr; if (c.fhr > 0) { document.getElementById("fhr").innerHTML += "%" }
+	document.getElementById("fbr").innerHTML = c.fbr; if (c.fbr > 0) { document.getElementById("fbr").innerHTML += "%" }
+	if (fcrTotal > 0 || equipped.weapon.name != "none" || equipped.offhand.name != "none") { document.getElementById("fcr").innerHTML += " ("+fcr_f+"f)" }
+	if (c.fhr > 0 || equipped.weapon.name != "none" || equipped.offhand.name != "none") { document.getElementById("fhr").innerHTML += " ("+fhr_f+"f)" }
+	if (c.fbr > 0 || c.block > 0 || c.block_skillup > 0) { document.getElementById("fbr").innerHTML += " ("+fbr_f+"f)" }
 	
 	// actual movespeed
 	var movespeed = 9;
@@ -2994,6 +3042,12 @@ function checkSkill(skillName, num) {
 		//if (outcome.ar != 0) { document.getElementById("ar_skill"+num).innerHTML += " ... " + outcome.ar }
 	} else {
 		document.getElementById("offhand_skill"+num).style.display = "none"
+	}
+	if (skillName == "Lightning Surge" || skillName == "Chain Lightning") {
+		var fcrTotal = character.fcr + character.level*character.fcr_per_level;
+		var fcr_f = c.fcr_frames_alt;
+		for (let i = 1; i < c.fcr_bp_alt.length; i++) { if (fcrTotal >= c.fcr_bp_alt[i]) { fcr_f -= 1 } }
+		document.getElementById("ar_skill"+num).innerHTML = "Cast Rate: "+fcr_f+" frames"
 	}
 	
 	updateSkills()

@@ -11,9 +11,7 @@ Current Known Issues:
 * Charms can't be moved into a new space below the original space if they overlap eachother
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
-* Unimplemented: mercenary stats
-* Unimplemented: breakpoint info for FCR, FBR, FHR
-* DoT (Damage over Time) affixes are added without considering their time component
+* DoT (Damage over Time) stats are added without considering their time component
 
 Info: https://github.com/BetweenWalls/planner#planner
 
@@ -38,7 +36,7 @@ Text below this is formatted for the github info page
 
 # [Planner](https://BetweenWalls.github.io/planner/)
 
-Character Skill Planner for Diablo 2: Path of Diablo
+Character Planner for Diablo 2: Path of Diablo
 
 ### [Download](https://github.com/BetweenWalls/planner/archive/master.zip)
 
@@ -53,11 +51,9 @@ Character Skill Planner for Diablo 2: Path of Diablo
 * snapshotting
 * saving/loading
 
-### Upcoming Plans:
-* more breakpoint info
-* mercenary stats & validation
-
-### Longterm Goals:
+### Future Goals:
+* mercenary stats
+* IAS breakpoint info (frames per attack) for skills which don't use normal breakpoints
 * full GUI inventory/stash
 * custom item creation & editing
 * custom item-pool saving
