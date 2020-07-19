@@ -39,6 +39,22 @@ var inv = [		// Charm Inventory
 {x:1,y:1,empty:1,load:"",id:"h14"},{x:1,y:1,empty:1,load:"",id:"h24"},{x:1,y:1,empty:1,load:"",id:"h34"},{x:1,y:1,empty:1,load:"",id:"h44"},{x:1,y:1,empty:1,load:"",id:"h54"},{x:1,y:1,empty:1,load:"",id:"h64"},{x:1,y:1,empty:1,load:"",id:"h74"},{x:1,y:1,empty:1,load:"",id:"h84"},{x:1,y:1,empty:1,load:"",id:"h94"},{x:1,y:1,empty:1,load:"",id:"h04"}
 ];
 
+var colors = {
+	White:"#dddddd",
+	Gray:"#707070",
+	Blue:"#6666bb",	
+	Yellow:"#cccc77",
+	Gold:"#9b885e",
+	Green:"#00f000",
+	DarkGreen:"#255d16",
+	Tan:"#9b8c6d",
+	Black:"Black",
+	Orange:"#c48736",
+	Purple:"#9b2aea",
+	Red:"#cc6666",
+	Indigo:"#9980ff"
+};
+
 // update - Updates everything
 // ---------------------------------
 function update() {
@@ -1292,7 +1308,7 @@ function addSocketable(val) {
 	val = val + append
 	
 	var socketable = 'socketable';
-	var itemHTML = '<img style="width: 28; height: 28; pointer-events: auto; z-index:5;" id="' + val + '" src="' + itemImage + '" draggable="true" ondragstart="dragSocketable(event)" width="28" height="28" oncontextmenu="trashSocketable(event,\''+val+'\',0)" onmouseover="itemHover(event, this.value)" onmouseout="itemOut()" onclick="socketableSelect(event)">';
+	var itemHTML = '<img style="width: 28; height: 28; pointer-events: auto; z-index:5;" id="' + val + '" src="' + itemImage + '" draggable="true" ondragstart="dragSocketable(event)" width="28" height="28" oncontextmenu="trashSocketable(event,this.id,0)" onmouseover="itemHover(event, this.value)" onmouseout="itemOut()" onclick="socketableSelect(event)">';
 	var insertion = "";
 	var space_found = 0;
 	var empty = 1;
@@ -2072,7 +2088,7 @@ function getWeaponDamage(str, dex, group, thrown) {
 	var statBonus = 0;
 	if (typeof(type) != 'undefined') { 
 		if (type == "hammer") { statBonus = (str*1.1/100) }
-		else if (typeof(equipped[group].only) != 'undefined') { if ((type == "spear" || type == "javelin") && equipped[group].only == "amazon") { statBonus = ((str*0.8/100)+(dex*0.5/100)) } }
+		else if ((type == "spear" || type == "javelin") && equipped[group].only == "amazon") { statBonus = ((str*0.8/100)+(dex*0.5/100)) }
 		else if (type == "bow" || type == "crossbow" || type == "javelin") { statBonus = (dex/100) }						// check if javelins are counted as missile weapons or throwing weapons
 		else if (type == "dagger" || type == "thrown" || type == "claw" || type == "javelin") { statBonus = ((str*0.75/100)+(dex*0.75/100)) }	// check if javelins are counted as missile weapons or throwing weapons
 		else  { statBonus = (str/100) }
@@ -3106,7 +3122,7 @@ function itemHover(ev, id) {
 	var type = "charm";
 	var index = 0;
 	var transfer = 0;
-	var color = "white";
+	var color = "White";
 	for (let i = 1; i < inv.length; i++) { if (inv[i].id == id) { transfer = i } }
 	var val = inv[0]["in"][transfer];
 	var name = val.split("_")[0];
@@ -3114,19 +3130,21 @@ function itemHover(ev, id) {
 	if (typeof(equipped["charms"][val]) == 'undefined') { for (let k = 0; k < socketables.length; k++) { if (socketables[k].name == name) { type = socketables[k].type; index = k; } } }
 	if (type == "charm") {
 		//name = equipped.charms[val].name
-		color = "#9980ff"
-		if (name == "Annihilus" || name == "Hellfire Torch" || name == "Gheed's Fortune" || name == "Horadric Sigil") { color = "#928068" }
-		if (equipped["charms"][val].size != "small" && equipped["charms"][val].size != "large" && equipped["charms"][val].size != "grand") { color = "#ff8080" }
+		color = "Indigo"
+		if (name == "Annihilus" || name == "Hellfire Torch" || name == "Gheed's Fortune" || name == "Horadric Sigil") { color = "Gold" }
+		if (equipped["charms"][val].size != "small" && equipped["charms"][val].size != "large" && equipped["charms"][val].size != "grand") { color = "Red" }
 		lastCharm = name
 		if (equipped["charms"][val].size == "large") { height = 2 }
-		if (equipped["charms"][val].size == "grand") { height = 3 }
+		else if (equipped["charms"][val].size == "grand") { height = 3 }
+		if (name.substr(0,3) == "+1 " && height == 3) { name = name.substr(3) }
 	} else {
-		if (type == "rune") { color = "orange" }
-		else if (socketables[index].rarity == "unique") { color = "#928068" }
-		else if (socketables[index].rarity == "magic") { color = "#8080ff" }
-		else if (socketables[index].rarity == "rare") { color = "yellow" }
+		if (type == "rune") { color = "Orange" }
+		else if (socketables[index].rarity == "unique") { color = "Gold" }
+		else if (socketables[index].rarity == "magic") { color = "Blue" }
+		else if (socketables[index].rarity == "rare") { color = "Yellow" }
 		lastSocketable = name
 	}
+
 	var cell_x = id[1]-1; if (cell_x == -1) { cell_x = 9 }
 	var cell_y = id[2]-1 + height;
 	var offset_x = 350;
@@ -3164,7 +3182,7 @@ function itemHover(ev, id) {
 			} }
 		} }
 	}
-	document.getElementById("item_name").style.color = color
+	document.getElementById("item_name").style.color = colors[color]
 	document.getElementById("item_name").innerHTML = name
 	document.getElementById("item_info").innerHTML = main_affixes
 	document.getElementById("item_corruption").innerHTML = ""
@@ -3422,11 +3440,11 @@ function equipmentHover(group) {
 	var base = "";
 	if (equipped[group].name != "none" && (group == "helm" || group == "armor" || (group == "weapon" && equipped[group].type != "javelin" && equipped[group].type != "thrown") || (group == "offhand" && equipped[group].type != "quiver"))) {
 		var sockets = ~~corruptsEquipped[group].sockets + ~~equipped[group].sockets;
-		var base = "";
-		if (typeof(equipped[group].base) != 'undefined') { base = getBaseId(equipped[group].base) }
-		if (base == "") { sockets = Math.min(sockets,equipped[group].max_sockets) }
-		else { sockets = Math.min(sockets,bases[base].max_sockets) }
-		if (socketed[group].sockets > 0 || equipped[group].sockets > 0) { sock = " ["+sockets+"]"; }
+		sockets = Math.min(sockets,equipped[group].max_sockets)
+		if (socketed[group].sockets > 0 || equipped[group].sockets > 0) {
+			if (corruptsEquipped[group].name == "none") { sock = "<font color='"+colors.Gray+"'> ["+sockets+"]</font>" }
+			else { sock = "<font color='"+colors.Red+"'> ["+sockets+"]</font>" }
+		}
 	}
 	if (typeof(equipped[group].base) != 'undefined' && equipped[group].base != "") { base = equipped[group].base }
 	if (equipped[group].name != "none" && (group == "ring1" || group == "ring2")) { base = "Ring" }
@@ -3435,6 +3453,7 @@ function equipmentHover(group) {
 	if (equipped[group].name != "none") { name = equipped[group].name.split(" ­ ")[0]; }
 	if (name == "Harlequin Crest (Shako)") { name = "Harlequin Crest" }
 	if (base.split("_")[0] != "Special") { base = "<br>"+base }
+	if (equipped[group].rarity == "common" || equipped[group].rarity == "magic") { base = "" }
 	var corruption = "";
 	var affixes = "";
 	var main_affixes = "";
@@ -3573,8 +3592,17 @@ function equipmentHover(group) {
 		if (set_group_affixes != "") { set_group_affixes = "<br>"+group_bonuses[0]+":<br>"+set_group_affixes }
 	} }
 	if (socketed_affixes != "") { socketed_affixes = "<br>"+socketed_affixes }
-	
-	document.getElementById("item_name").innerHTML = name+sock+base
+	var runeword = "";
+	if (equipped[group].rarity == "rw") {
+		var rw_name = equipped[group].name.split(" ­ ")[0].split(" ").join("_").split("'").join("");
+		var runes = "";
+		var i = 0;
+		for (i = 0; i < runewords[rw_name].length; i++) { runes += runewords[rw_name][i]; }
+		runeword = "<br>"+"<font color='"+colors.Gold+"'>'"+runes+"'</font>"
+		name = "<font color='"+colors.Gold+"'>"+name+"</font>"
+		affixes += "Socketed ("+i+")<br>"
+	}
+	document.getElementById("item_name").innerHTML = name+sock+base+runeword
 	document.getElementById("item_info").innerHTML = main_affixes
 	document.getElementById("item_corruption").innerHTML = corruption
 	document.getElementById("item_affixes").innerHTML = affixes
@@ -3582,14 +3610,14 @@ function equipmentHover(group) {
 	document.getElementById("item_socketed_affixes").innerHTML = socketed_affixes
 	document.getElementById("item_group_affixes").innerHTML = set_group_affixes
 	
-	var textColor = "white";
-	if (equipped[group].rarity == "set") { textColor = "#00f000" }
-	else if (equipped[group].rarity == "magic") { textColor = "#8080ff" }
-	else if (equipped[group].rarity == "rare") { textColor = "yellow" }
-	else if (equipped[group].rarity == "craft") { textColor = "orange" }
-	else if (equipped[group].rarity == "rw") { textColor = "#b2a992" }
-	else if (equipped[group].rarity != "common") { textColor = "#928068" }
-	document.getElementById("item_name").style.color = textColor
+	var textColor = "Gold";
+	if (equipped[group].rarity == "set") { textColor = "Green" }
+	else if (equipped[group].rarity == "magic") { textColor = "Blue" }
+	else if (equipped[group].rarity == "rare") { textColor = "Yellow" }
+	else if (equipped[group].rarity == "craft") { textColor = "Orange" }
+	else if ((equipped[group].rarity == "common" || equipped[group].rarity == "rw") && equipped[group].ethereal == 1) { textColor = "Gray" }
+	else if (equipped[group].rarity == "common" || equipped[group].rarity == "rw") { textColor = "White" }
+	document.getElementById("item_name").style.color = colors[textColor]
 	document.getElementById("tooltip_inventory").style.display = "block"
 	
 	var wid = Math.floor(document.getElementById(groupId).getBoundingClientRect().width/2 - document.getElementById("tooltip_inventory").getBoundingClientRect().width/2);

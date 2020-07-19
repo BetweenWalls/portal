@@ -580,6 +580,8 @@ var equipment = {
 {not:["amazon","assassin","necromancer","paladin","sorceress"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ War Pike", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"spear", base:"War Pike"},
 {not:["amazon","assassin","druid","necromancer","paladin","sorceress"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Colossus Blade", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"sword", base:"Colossus Blade"},
 {not:["amazon","barbarian","Barb (merc)"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Phase Blade", req_level:69, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, type:"sword", base:"Phase Blade"},
+{only:"barbarian", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Thunder Maul", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"hammer", base:"Thunder Maul"},
+//{only:"barbarian", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Glorious Axe", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"axe", base:"Glorious Axe"},
 {rarity:"rw", name:"Pride ­ ­ - ­ ­ Giant Thresher", sup:15, req_level:67, ctc:[[25,17,"Fire Wall","when struck"]], aura:"Concentration", aura_lvl:20, ar_bonus:300, damage_vs_demons_per_level:1, lDamage_min:50, lDamage_max:280, dstrike:20, blind_on_hit:1, freezes_target:3, vitality:10, life_replenish:8, gf_per_level:1.875, twoHanded:1, type:"polearm", base:"Giant Thresher"},
 {rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Caduceus", req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, skill_Salvation:3, skill_Vengeance:3, skill_Redemption:3, type:"scepter", base:"Caduceus"},
 {not:["amazon","assassin","druid","necromancer","paladin","sorceress"], rarity:"rw", name:"Eternity ­ ­ - ­ ­ Colossus Sword", req_level:63, e_damage:310, indestructible:1, ethereal:1, damage_min:9, life_leech:7, cblow:20, blind_on_hit:1, slows_target:33, mana_regen:16, cbf:1, mf:30, twoHanded:1, type:"sword", base:"Colossus Sword", cskill:[[8,"Revive",88]]},
@@ -972,22 +974,22 @@ var equipment = {
 {only:"sorceress", rarity:"magic", name:"+1 Chilling Grand Charm", size:"grand", req_level:42, skills_cold:1},
 {only:"sorceress", rarity:"magic", name:"+1 Sparking Grand Charm", size:"grand", req_level:42, skills_lightning:1},
 {only:"sorceress", rarity:"magic", name:"+1 Burning Grand Charm", size:"grand", req_level:42, skills_fire:1},
-{rarity:"magic", name:"Mana,Life Small Charm", size:"small", req_level:40, mana:17, life:20},			// Serpent's Small Charm of Vita
-{rarity:"magic", name:"Res,FRW Small Charm", size:"small", req_level:36, all_res:5, frw:3},			// Shimmering Small Charm of Inertia
-{rarity:"magic", name:"Res,MF Small Charm", size:"small", req_level:33, all_res:5, mf:7},			// Shimmering Small Charm of Good Luck
-{rarity:"magic", name:"Res,Life Small Charm", size:"small", req_level:39, all_res:5, life:20},			// Shimmering Small Charm of Vita
-{rarity:"magic", name:"F-Res,Life Small Charm", size:"small", req_level:39, fRes:11, life:20},			// Ruby Small Charm of Vita
-{rarity:"magic", name:"C-Res,Life Small Charm", size:"small", req_level:39, cRes:11, life:20},			// Sapphire Small Charm of Vita
-{rarity:"magic", name:"L-Res,Life Small Charm", size:"small", req_level:39, lRes:11, life:20},			// Amber Small Charm of Vita
-{rarity:"magic", name:"P-Res,Life Small Charm", size:"small", req_level:39, pRes:11, life:20},			// Emerald Small Charm of Vita
-{rarity:"magic", name:"AR,Damage,FHR Small Charm", size:"small", req_level:29, damage_max:3, ar:20, fhr:5},	// Fine Small Charm of Balance
-{rarity:"magic", name:"AR,Damage,FRW Small Charm", size:"small", req_level:36, damage_max:3, ar:20, frw:3},	// Fine Small Charm of Inertia
+{rarity:"magic", name:"Serpent's Small Charm of Vita", size:"small", req_level:40, mana:17, life:20},
+{rarity:"magic", name:"Shimmering Small Charm of Inertia", size:"small", req_level:36, all_res:5, frw:3},
+{rarity:"magic", name:"Shimmering Small Charm of Good Luck", size:"small", req_level:33, all_res:5, mf:7},
+{rarity:"magic", name:"Shimmering Small Charm of Vita", size:"small", req_level:39, all_res:5, life:20},
+{rarity:"magic", name:"Ruby Small Charm of Vita", size:"small", req_level:39, fRes:11, life:20},
+{rarity:"magic", name:"Sapphire Small Charm of Vita", size:"small", req_level:39, cRes:11, life:20},
+{rarity:"magic", name:"Amber Small Charm of Vita", size:"small", req_level:39, lRes:11, life:20},
+{rarity:"magic", name:"Emerald Small Charm of Vita", size:"small", req_level:39, pRes:11, life:20},
+{rarity:"magic", name:"Fine Small Charm of Balance", size:"small", req_level:29, damage_max:3, ar:20, fhr:5},
+{rarity:"magic", name:"Fine Small Charm of Inertia", size:"small", req_level:36, damage_max:3, ar:20, frw:3},
 {rarity:"magic", name:"Pestilent Small Charm of Anthrax", size:"small", req_level:80, pDamage_all:451, pDamage_duration:12},
-{rarity:"magic", name:"AR,Damage,Life Small Charm", size:"small", req_level:39, damage_max:3, ar:20, life:20},	// Fine Small Charm of Vita
-{rarity:"magic", name:"AR,Damage,Life Large Charm", size:"large", req_level:66, damage_max:6, ar:48, life:35},	// Sharp Large Charm of Vita
-{rarity:"magic", name:"AR,Damage,Life Grand Charm", size:"grand", req_level:83, damage_max:10, ar:76, life:45},	// Sharp Grand Charm of Vita
-//{name:"Horadrim Sigil", size:"grand", req_level:80, all_attributes:3},
-	// Hodradrim Sigil is a legacy item (non-ladder only) that was available during Season 6 and 7. (July 13, 2018 - July 31, 2019)
+{rarity:"magic", name:"Fine Small Charm of Vita", size:"small", req_level:39, damage_max:3, ar:20, life:20},
+{rarity:"magic", name:"Sharp Large Charm of Vita", size:"large", req_level:66, damage_max:6, ar:48, life:35},
+{rarity:"magic", name:"Sharp Grand Charm of Vita", size:"grand", req_level:83, damage_max:10, ar:76, life:45},
+//{name:"Horadric Sigil", size:"grand", req_level:80, all_attributes:3},
+	// Hodradric Sigil is a legacy item (non-ladder only) that was available during Season 6 and 7. (July 13, 2018 - July 31, 2019)
 	// It was limited to 1 per character, but no longer has such limitations since being removed from the base game in Patch #17 (Tourmaline).
 	// Possible affixes:
 	//	Amazon
@@ -1081,8 +1083,8 @@ var socketables = [
 {name:"Scintillating Jewel of Fervor", type:"jewel", rarity:"magic", req_level:29, all_res:15, ias:15},
 {name:"Brute's Jewel of Fervor", type:"jewel", rarity:"magic", req_level:29, ias:15, melee_splash:1},
 {name:"Vermillion Jewel of Carnage", type:"jewel", rarity:"magic", req_level:44, damage_max:30},
-{name:"Res,FHR,ED,Splash Jewel", type:"jewel", rarity:"rare", req_level:34, all_res:10, fhr:7, e_damage:30, melee_splash:1},
-{name:"Res,FHR,MpK,DtM Jewel", type:"jewel", rarity:"rare", req_level:33, all_res:10, fhr:7, mana_per_kill:3, damage_to_mana:12},
+{name:"Brawler's Jewel", type:"jewel", rarity:"rare", req_level:34, all_res:10, fhr:7, e_damage:30, melee_splash:1},
+{name:"Mage's Jewel", type:"jewel", rarity:"rare", req_level:33, all_res:10, fhr:7, mana_per_kill:3, damage_to_mana:12},
 /*	magic only affix values
 {name:"Ruby Jewel", type:"jewel", rarity:"magic", req_level:50, e_damage:40},
 {name:"Jewel of Fervor", type:"jewel", rarity:"magic", req_level:29, ias:15},
@@ -1302,6 +1304,89 @@ var sets = {
 	set_Sigon:["Sigon's Complete Steel",{},{life_leech:10},{defense:100},{},{},{mana:20, fRes:12, fDamage_max:24, thorns:12, damage_reduced:7}],
 	set_Tancred:["Tancred's Battlegear",{},{lDamage_min:15, lDamage_max:15},{life_leech:5},{},{slows_target:35, mana_leech:5, all_res:10, gf:75}],
 	set_Vidala:["Vidala's Rig",{},{ar:75},{dexterity:15},{cDamage_min:15, cDamage_max:20, pierce:50, freezes_target:1, dexterity:15, strength:10}],
+};
+
+var runewords = {
+	Breath_of_the_Dying:["Vex","Hel","El","Eld","Zod","Eth"],
+	Pride:["Cham","Sur","Io","Lo"],
+	Hand_of_Justice:["Sur","Cham","Amn","Lo"],
+	Eternity:["Amn","Ber","Ist","Sol","Sur"],
+	Doom:["Hel","Ohm","Um","Lo","Cham"],
+	Last_Wish:["Jah","Mal","Jah","Sur","Jah","Ber"],
+	Destruction:["Vex","Lo","Ber","Jah","Ko"],
+	Enigma:["Jah","Ith","Ber"],
+	Phoenix:["Vex","Vex","Lo","Jah"],
+	Brand:["Jah","Lo","Mal","Gul"],
+	Faith:["Ohm","Jah","Lem","Eld"],
+	Famine:["Fal","Ohm","Ort","Jah"],
+	Fury:["Jah","Gul","Eth"],
+	Dream:["Io","Jah","Pul"],
+	Ice:["Amn","Shael","Jah","Lo"],
+	Infinity:["Ber","Mal","Ber","Ist"],
+	Chains_of_Honor:["Dol","Um","Ber","Ist"],
+	Beast:["Ber","Tir","Um","Mal","Lum"],
+	Wrath:["Pul","Lum","Ber","Mal"],
+	Dragon:["Sur","Lo","Sol"],
+	Bramble:["Ral","Ohm","Sur","Eth"],
+	Wind:["Sur","El"],
+	Grief:["Eth","Tir","Lo","Mal","Ral"],
+	Fortitude:["El","Sol","Dol","Lo"],
+	Exile:["Vex","Ohm","Ist","Dol"],
+	Call_to_Arms:["Amn","Ral","Mal","Ist","Ohm"],
+	Chaos:["Fal","Ohm","Um"],
+	Death:["Hel","El","Vex","Ort","Gul"],
+	Silence:["Dol","Eld","Hel","Ist","Tir","Vex"],
+	Heart_of_the_Oak:["Ko","Vex","Pul","Thul"],
+	Kingslayer:["Mal","Um","Gul","Fal"],
+	Rift:["Hel","Ko","Lem","Gul"],
+	Principle:["Ral","Gul","Eld"],
+	Delirium:["Lem","Ist","Io"],
+	Oath:["Shael","Pul","Mal","Lum"],
+	Sanctuary:["Ko","Ko","Mal"],
+	Venom:["Tal","Dol","Mal"],
+	Rain:["Ort","Mal","Ith"],
+	Prudence:["Mal","Tir"],
+	Bone:["Sol","Um","Um"],
+	Gloom:["Fal","Um","Pul"],
+	Stone:["Shael","Um","Pul","Lum"],
+	Duress:["Shael","Um","Thul"],
+	Crescent_Moon:["Shael","Um","Tir"],
+	Enlightenment:["Pul","Ral","Sol"],
+	Lawbringer:["Amn","Lem","Ko"],
+	Wealth:["Lem","Ko","Tir"],
+	Voice_of_Reason:["Lem","Ko","El","Eld"],
+	Passion:["Dol","Ort","Eld","Lem"],
+	Treachery:["Shael","Thul","Lem"],
+	Obedience:["Hel","Ko","Thul","Eth","Fal"],
+	Lionheart:["Hel","Lum","Fal"],
+	Melody:["Shael","Ko","Nef"],
+	Harmony:["Tir","Ith","Sol","Ko"],
+	Memory:["Lum","Io","Sol","Eth"],
+	Splendor:["Eth","Lum"],
+	Smoke:["Nef","Lum"],
+	White:["Dol","Io"],
+	Black:["Thul","Io","Nef"],
+	Myth:["Hel","Amn","Nef"],
+	Peace:["Shael","Thul","Amn"],
+	Rhyme:["Shael","Eth"],
+	Honor:["Amn","El","Ith","Tir","Sol"],
+	Lore:["Ort","Sol"],
+	Insight:["Ral","Tir","Tal","Sol"],
+	Radiance:["Nef","Sol","Ith"],
+	Spirit:["Tal","Thul","Ort","Amn"],
+	Kings_Grace:["Amn","Ral","Thul"],
+	Edge:["Tir","Tal","Amn"],
+	Strength:["Amn","Tir"],
+	Holy_Thunder:["Eth","Ral","Ort","Tal"],
+	Ancients_Pledge:["Ral","Ort","Tal"],
+	Zephyr:["Ort","Eth"],
+	Leaf:["Tir","Ral"],
+	Stealth:["Tal","Eth"],
+	Malice:["Ith","El","Eth"],
+	Nadir:["Nef","Tir"],
+	Steel:["Tir","El"],
+	Pattern:["Tal","Ort","Tir"],
+	Plague:["Cham","Fal","Um"],
 };
 
 /* automods = 
