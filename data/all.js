@@ -17,6 +17,7 @@ var offhandType = "none";
 var lastCharm = "";		// last charm on mouse-over
 var lastSocketable = "";	// last gem/rune/jewel on mouse-over
 var lastSelected = "";
+//var settings = {coupling:1, autocast:1, filter:0}
 var settings = {coupling:1, autocast:1}
 var monsterID = 2;
 var MAX = 20;		// Highest Skill Hardpoints
@@ -525,7 +526,7 @@ function loadGolem() {
 			var metal = true;
 			if (group == "amulet" || group == "ring1" || group == "ring2" || item.type == "quiver" || item.special > 0 || item.rarity == "magic" || item.only == "Desert Guard" || item.only == "Iron Wolf" || item.only == "Barb (merc)") { metal = false }
 			else if (typeof(item.base) != 'undefined') { if (typeof(bases[getBaseId(item.base)].nonmetal) != 'undefined') { if (bases[getBaseId(item.base)].nonmetal == 1) { metal = false } } }
-			// TODO: Adjust equipment list to exclude 'duplicates' and include runewords that can made in metal bases
+			// TODO: Adjust equipment list to exclude 'duplicates' and include runewords that can be made in metal bases (but are only currently available in non-metal bases)
 			if (metal == true) {
 				var addon = "";
 				if (item == equipment[group][0]) { addon = "<option class='gray-all' style='color:gray' disabled>" + item.name + "</option>" }
@@ -2043,6 +2044,17 @@ function toggleCoupling(coupling) {
 function toggleAutocast(autocast) {
 	if (autocast.checked) { settings.autocast = 1 } else { settings.autocast = 0 }
 }
+
+/*
+// toggleFilter - 
+//	value: name identifier for 'Filter Simulation' checkbox element
+// ---------------------------------
+function toggleFilter(value) {
+	if (value.checked) { settings.filter = 1 } else { settings.filter = 0 }
+	if (settings.filter == 1) { document.getElementById("filtration").style.display = "block" }
+	else { document.getElementById("filtration").style.display = "none" }
+}
+*/
 
 // getWeaponDamage - Calculates physical min/max damage and multiplier for an equipped weapon
 //	str: total strength

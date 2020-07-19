@@ -40,7 +40,7 @@ Character Planner for Diablo 2: Path of Diablo
 
 ### [Download](https://github.com/BetweenWalls/planner/archive/master.zip)
 
-### Features So Far:
+### Features:
 * all skill info up to level 60
 * synergy calculation for all skills
 * display section for active skill(s)
@@ -66,7 +66,7 @@ Character Planner for Diablo 2: Path of Diablo
 * pvp info
 * character comparison tool
 * comparison to original D2 skills/stats
-* comparison of skill effectiveness per level/class
+* comparison of skill effectiveness (dps, area affected) per level/class
 * dynamic item/skill recommendations
 
 ### Feedback:

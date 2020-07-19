@@ -21,8 +21,7 @@
   position: absolute;
   text-align: center;
   color: white;
-  background-color: black;
-  opacity: 0.85;
+  background-color: rgba(0,0,0,0.85);
   padding: 5px;
   z-index: 7;
 }
@@ -30,8 +29,7 @@
   position: absolute;
   text-align: center;
   color: white;
-  background-color: black;
-  opacity: 0.85;
+  background-color: rgba(0,0,0,0.85);
   padding: 5px;
   z-index: 7;
   float: none;
@@ -41,8 +39,7 @@
   position: relative;
   text-align: center;
   color: white;
-  background-color: black;
-  opacity: 0.85;
+  background-color: rgba(0,0,0,0.85);
   padding: 5px;
   z-index: 7;
 }
