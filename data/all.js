@@ -3057,7 +3057,7 @@ function checkSkill(skillName, num) {
 		var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * outcome.ar / (outcome.ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
 		
 		var output = ": " + outcome.min + "-" + outcome.max + " {"+Math.ceil((outcome.min+outcome.max)/2)+"}";
-		if (outcome.min != 0 && outcome.max != 0) { document.getElementById("skill"+num+"_info").innerHTML = output } else { document.getElementById("skill"+num+"_info").innerHTML = ":" }
+		if (~~outcome.min != 0 && ~~outcome.max != 0) { document.getElementById("skill"+num+"_info").innerHTML = output } else { document.getElementById("skill"+num+"_info").innerHTML = ":" }
 		if (outcome.ar != 0) { document.getElementById("ar_skill"+num).innerHTML = "AR: " + outcome.ar + " ("+hit_chance+"%)" } else { document.getElementById("ar_skill"+num).innerHTML = "" }
 	}
 	if (offhandType == "weapon" && (skillName == "Dual Strike" || skillName == "Frenzy" || skillName == "Whirlwind") && equipped.weapon.name != "none") {
@@ -3119,6 +3119,7 @@ function itemOut() {
 //	id: unique string identifier for item
 // ---------------------------------
 function itemHover(ev, id) {
+	var base = "";
 	var type = "charm";
 	var index = 0;
 	var transfer = 0;
@@ -3134,15 +3135,19 @@ function itemHover(ev, id) {
 		if (name == "Annihilus" || name == "Hellfire Torch" || name == "Gheed's Fortune" || name == "Horadric Sigil") { color = "Gold" }
 		if (equipped["charms"][val].size != "small" && equipped["charms"][val].size != "large" && equipped["charms"][val].size != "grand") { color = "Red" }
 		lastCharm = name
-		if (equipped["charms"][val].size == "large") { height = 2 }
-		else if (equipped["charms"][val].size == "grand") { height = 3 }
+		if (equipped["charms"][val].size == "large") { height = 2; base = "<br>Large Charm"; }
+		else if (equipped["charms"][val].size == "grand") { height = 3; base = "<br>Grand Charm"; }
+		else { base = "<br>Small Charm" }
 		if (name.substr(0,3) == "+1 " && height == 3) { name = name.substr(3) }
+		if (equipped["charms"][val].rarity == "magic" || equipped["charms"][val].debug == 1) { base = "" }
 	} else {
 		if (type == "rune") { color = "Orange" }
 		else if (socketables[index].rarity == "unique") { color = "Gold" }
 		else if (socketables[index].rarity == "magic") { color = "Blue" }
 		else if (socketables[index].rarity == "rare") { color = "Yellow" }
 		lastSocketable = name
+		name = name.split(" (")[0]
+		if (type == "jewel" && socketables[index].rarity != "magic") { base = "<br>Jewel" }
 	}
 
 	var cell_x = id[1]-1; if (cell_x == -1) { cell_x = 9 }
@@ -3183,7 +3188,7 @@ function itemHover(ev, id) {
 		} }
 	}
 	document.getElementById("item_name").style.color = colors[color]
-	document.getElementById("item_name").innerHTML = name
+	document.getElementById("item_name").innerHTML = name+base
 	document.getElementById("item_info").innerHTML = main_affixes
 	document.getElementById("item_corruption").innerHTML = ""
 	document.getElementById("item_affixes").innerHTML = affixes
@@ -3447,11 +3452,15 @@ function equipmentHover(group) {
 		}
 	}
 	if (typeof(equipped[group].base) != 'undefined' && equipped[group].base != "") { base = equipped[group].base }
-	if (equipped[group].name != "none" && (group == "ring1" || group == "ring2")) { base = "Ring" }
-	if (equipped[group].name != "none" && group == "amulet") { base = "Amulet" }
-	if (equipped[group].type == "quiver") { base = "Quiver" }
-	if (equipped[group].name != "none") { name = equipped[group].name.split(" ­ ")[0]; }
-	if (name == "Harlequin Crest (Shako)") { name = "Harlequin Crest" }
+	else if (equipped[group].name != "none" && (group == "ring1" || group == "ring2")) { base = "Ring" }
+	else if (equipped[group].name != "none" && group == "amulet") { base = "Amulet" }
+	else if (equipped[group].type == "quiver") { base = "Arrows" }
+	else if (equipped[group].type == "jewel") { base = "Jewel" }
+	else if (equipped[group].size == "small") { base = "Small Charm" }
+	else if (equipped[group].size == "large") { base = "Large Charm" }
+	else if (equipped[group].size == "grand") { base = "Grand Charm" }
+	
+	if (equipped[group].name != "none") { name = equipped[group].name.split(" ­ ")[0].split(" (")[0]; }
 	if (base.split("_")[0] != "Special") { base = "<br>"+base }
 	if (equipped[group].rarity == "common" || equipped[group].rarity == "magic") { base = "" }
 	var corruption = "";
