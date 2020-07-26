@@ -1,109 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--	If you're reading this, you're probably interested in my code. It has become rather messy without having any need to share it with others. I would be happy to see that change, so drop me a line sometime.  (BetweenWalls on reddit, BetweenWalls#2390 on discord) -->
+
 <head>
 <title>Path of Diablo Planner</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="./data/all.css">
-<!--<script type="text/javascript" src="./data/jquery-3.5.1.min.js"></script>-->
+<link rel="shortcut icon" type="image/x-icon" href="./images/tab_icon.png">
 <script type="text/javascript" src="./data/all_monsters.js"></script>
 <script type="text/javascript" src="./data/all_equipment.js"></script>
 <script type="text/javascript" src="./data/all.js"></script>
-<!--
-<script type="text/javascript" src="./data/functions/all.js"></script>
-<script type="text/javascript" src="./data/functions/file_io.js"></script>
-<script type="text/javascript" src="./data/functions/effects.js"></script>
-<script type="text/javascript" src="./data/functions/inventory.js"></script>
-<script type="text/javascript" src="./data/functions/items.js"></script>
-<script type="text/javascript" src="./data/functions/skills.js"></script>
--->
-<!--
-<style type="text/css">
-
-</style>
--->
-<link rel="shortcut icon" href="./images/tab_icon.png" type="image/x-icon">
 
 </head>
 <body class="background" onload="initial_load()">
-<!--
-<div id='cssmenu'>
-<ul>
-   <li><a>File</a>
-      <ul>
-         <li><a><label class="button-file"> ­ ­ ­ ­ Save ­ ­ <button style="display:none" onclick="saveTextAsFile()"></button></label></a></li>
-         <li><a>Load</a></li>
-      </ul>
-   </li>
-   <li><a>Preferences</a>
-      <ul>
-         <li><a>Skill-Level Coupling</a></li>
-         <li><a>New Effects Begin Enabled</a></li>
-      </ul>
-   </li>
-   <li class='active'><a>Character</a>
-      <ul>
-         <li><a>Difficulty</a>
-            <ul>
-               <li><a>Normal</a></li>
-               <li><a>Nightmare</a></li>
-               <li><a>Hell</a></li>
-            </ul>
-         </li>
-         <li><a><input style="float:right;" id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);"><label for="quests">Quests Completed</label></a>
-            <ul>
-               <li><a>Normal</a>
-		  <ul>
-		     <li><a>1.1</a></li>
-		     <li><a>2.1</a></li>
-		     <li><a>3.3</a></li>
-		     <li><a>3.4</a></li>
-		     <li><a>4.1</a></li>
-		     <li><a>5.3</a></li>
-		  </ul>
-	       </li>
-               <li><a>Nightmare</a>
-		  <ul>
-		     <li><a>1.1</a></li>
-		     <li><a>2.1</a></li>
-		     <li><a>3.3</a></li>
-		     <li><a>3.4</a></li>
-		     <li><a>4.1</a></li>
-		     <li><a>5.3</a></li>
-		  </ul>
-	       </li>
-               <li><a>Hell</a>
-		  <ul>
-		     <li><a>1.1</a></li>
-		     <li><a>2.1</a></li>
-		     <li><a>3.3</a></li>
-		     <li><a>3.4</a></li>
-		     <li><a>4.1</a></li>
-		     <li><a>5.3</a></li>
-		  </ul>
-	       </li>
-            </ul>
-         </li>
-         <li><a><input style="float:right;" id="running" type="checkbox" name="running" onclick="return toggleRunning(this);"><label for="running">Running</label></a></li>
-      </ul>
-   </li>
-   <li><a href="https://github.com/BetweenWalls/planner#planner">About</a></li>
-</ul>
-</div>
--->
 
 <div id="main">
 
-<div class="navbar" oncontextmenu="return false">
+<div class="navbar">
   <div class="nav-dropdown">
     <button class="nav-dropbtn">File</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item" onclick="saveTextAsFile()"><div class="nav-text">
-	<label> ­ ­ ­ ­ Save ­ ­ </label>
+        <label> ­ ­ ­ ­ Save ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-text">
-	<label> ­ ­ ­ ­ Load ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></input></label>
+        <label> ­ ­ ­ ­ Load ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></input></label>
       </div></div>
     </div>
   </div>
@@ -111,39 +35,33 @@
     <button class="nav-dropbtn">Preferences</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
-	<input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
-	<label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
+        <label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-	<input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
-	<label for="autocast"> ­ ­ ­ ­ New Effects Begin Enabled ­ ­ </label>
+        <input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
+        <label for="autocast"> ­ ­ ­ ­ New Effects Begin Enabled ­ ­ </label>
       </div></div>
-<!--	
-      <div class="nav-dropdown-content-item"><div class="nav-option">
-	<input id="filter" type="checkbox" name="filter" value="0" onclick="return toggleFilter(this);">
-	<label for="filter"> ­ ­ ­ ­ Filter Simulation ­ ­ </label>
-      </div></div>
--->
     </div>
   </div>
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Character</button>
     <div class="nav-dropdown-content" style="min-width:260px;">
       <div class="nav-dropdown-content-item"><div class="nav-difficulty"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
-	<input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
-	<label for="difficulty">Normal</label>
-	<input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
-	<label for="difficulty">Nightmare</label>
-	<input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
-	<label for="difficulty">Hell ­ ­ </label>
+        <input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
+        <label for="difficulty">Normal</label>
+        <input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
+        <label for="difficulty">Nightmare</label>
+        <input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
+        <label for="difficulty">Hell ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-	<input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
-	<label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
+        <label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-	<input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
-	<label for="running"> ­ ­ ­ ­ Running ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
+        <label for="running"> ­ ­ ­ ­ Running ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
     </div>
   </div>
@@ -424,13 +342,10 @@
 <div class="no-selection" style="display: block; height:235px; width: 330px; position: relative;">
 <div class="gray">
 <div style="margin-bottom: 15px;">
-<!--<a style="visibility:visible;">Damage per Second: </a><a id="dps"></a><br>-->
-<!--<a style="visibility:visible;">Chance to Hit: </a><a id="hit"></a><br>-->
 	<a>Basic Attack: </a><a id="basic_attack"></a><br>
 	<div id="offhand_basic" style="display:none;"> ­ ­ ­ ­ ­ ­ ­ Offhand: <a id="offhand_basic_damage"></a><br></div>
 	<a>Attack Rating: </a><a id="ar"></a>
 </div>
-
 <div>
 	<div id="skillDetail1" style="height: 22px; position: relative; z-index: 3; margin-top: -5px;">
 	<select class="dropdown-skill" id="dropdown_skill1" onChange="checkSkill(this.value, 1)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 1', 1)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 1</option></select><a id="skill1_info">: </a>
@@ -438,7 +353,6 @@
 	<div id="offhand_skill1" style="display:none;"><a id="offhand_skill1_damage"></a><br></div>
 	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill1"></a>
 </div>
-
 <div>
 	<div id="skillDetail2" style="height: 22px; position: relative; z-index: 3; margin-top: 5px;">
 	<select class="dropdown-skill" id="dropdown_skill2" onChange="checkSkill(this.value, 2)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 2', 2)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 2</option></select><a id="skill2_info">: </a>
@@ -446,7 +360,6 @@
 	<div id="offhand_skill2" style="display:none;"><a id="offhand_skill2_damage"></a><br></div>
 	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill2"></a>
 </div>
-
 </div>
 </div> <!-- /skill details -->
 
@@ -586,24 +499,8 @@
 </div>	<!-- /stats -->
 </div>	<!-- /interface -->
 </div>	<!-- /full_interface -->
-<!--
-<div id="filtration" style="display:none;">
-<br><br><br><br><br><br><br>
-<div style="width:869px; color:white; float:right;">
-<div class="dropdown" id="equipment" style="width:200px; height:20px; position:relative; z-index:6;">
-<select class="dropdown" id="dropdown_item" onChange="setItem(this.value)">Select Item</select>
-</div>
-Filter A: 
-Filter B: 
-</div>
-</div>
--->
 </div>	<!-- /main -->
-
-</div>
-
 </body>
-
 </html>
 
 <script type="text/javascript" src="./data/amazon.js"></script>
@@ -616,8 +513,7 @@ Filter B:
 <script type="text/javascript" src="./data/universal_skills.js"></script>
 
 <script>
-
-//
+// initial_load - selects a random class and starts the program
 // ---------------------------------
 function initial_load() {
 	skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
@@ -632,5 +528,4 @@ function initial_load() {
 	corruptions.ring2 = corruptions.ring1
 	startup(initial_class)
 }
-
 </script>

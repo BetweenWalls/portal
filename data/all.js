@@ -10,18 +10,17 @@ var duplicateEffects = {};
 var skillList = []; var skillOptions = [];
 var selectedSkill = [" ­ ­ ­ ­ Skill 1", " ­ ­ ­ ­ Skill 2"];
 
-var offhandSetup = "";	// temporary variable
-var tempSetup = 0;	// temporary variable
+var offhandSetup = "";		// temporary variable
+var tempSetup = 0;			// temporary variable
 var mercenary = {name:"",level:1,base_aura:"",base_aura_level:1};
 var offhandType = "none";
-var lastCharm = "";		// last charm on mouse-over
+var lastCharm = "";			// last charm on mouse-over
 var lastSocketable = "";	// last gem/rune/jewel on mouse-over
 var lastSelected = "";
-//var settings = {coupling:1, autocast:1, filter:0}
 var settings = {coupling:1, autocast:1}
 var monsterID = 2;
-var MAX = 20;		// Highest Skill Hardpoints
-var LIMIT = 60;		// Highest Skill Data
+var MAX = 20;				// Highest Skill Hardpoints
+var LIMIT = 60;				// Highest Skill Data
 var RES_CAP = 95;
 
 var socketed = {	// Gems/Runes/Jewels Socketed in Equipment
@@ -281,7 +280,7 @@ function setCharacterInfo(className) {
 	}
 	for (group in corruptsEquipped) {
 		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
-		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)
+		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }	// duplicated (things break for some reason when a while/for loop is used instead)
 		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)
 	}
 	character.level = fileInfo.character.level
@@ -407,14 +406,14 @@ function loadItems(group, dropdown, className) {
 						else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
 					}
 					choices += addon
-					if (className == "assassin" && item.name == "Offhand") { choices += offhandSetup }	// weapons inserted into offhand list
+					if (className == "assassin" && item.name == "Offhand") { choices += offhandSetup }	// weapons inserted into offhand dropdown list
 					if (className == "assassin" && item.type == "claw") { choices_offhand += addon }
 					if (className == "barbarian" && item.name != "Weapon" && (typeof(item.twoHanded) == 'undefined' || item.twoHanded != 1 || item.type == "sword")) { choices_offhand += addon }
 				}
 			}
 		}
 		if (group == "weapon") { offhandSetup = choices_offhand }
-		if (className == "barbarian" && group == "offhand") { choices += offhandSetup }	// weapons inserted into offhand list
+		if (className == "barbarian" && group == "offhand") { choices += offhandSetup }	// weapons inserted into offhand dropdown list
 		document.getElementById(dropdown).innerHTML = choices
 	}
 }
@@ -508,12 +507,11 @@ function getMercenaryAuraLevel(hlvl) {
 	var result = 1;
 	var diff = 0.23;
 	result = Math.min(18,Math.floor((1-diff)+diff*hlvl));
-	//if (mercenary.base_aura == "Might") { result = Math.min(3,result) }	// TODO: Confirm whether Barbarian Merc's aura maxes out at level 3
-//	old calculation for aura level:
-//	if (hlvl > 9 && hlvl < 31) { result = (3+((hlvl-9)*10/32)) }
-//	else if (hlvl > 30 && hlvl < 55) { result = (10+((hlvl-31)*10/32)) }
-//	else if (hlvl > 54) { result = 18 }
-	// TODO: Is the Might aura still uncapped? (up to level 31)
+	//if (mercenary.base_aura == "Might") { result = Math.min(3,result) }	// TOCHECK: Confirm whether Barbarian Merc's aura maxes out at level 3 (compared to level 18 for other mercenaries)
+	//old calculation for aura level:
+	//if (hlvl > 9 && hlvl < 31) { result = (3+((hlvl-9)*10/32)) }
+	//else if (hlvl > 30 && hlvl < 55) { result = (10+((hlvl-31)*10/32)) }
+	//else if (hlvl > 54) { result = 18 }
 	result += ~~mercenary.all_skills
 	return result;
 }
@@ -540,9 +538,8 @@ function loadGolem() {
 		for (itemNew in equipment[group]) {
 			var item = equipment[group][itemNew];
 			var metal = true;
-			if (group == "amulet" || group == "ring1" || group == "ring2" || item.type == "quiver" || item.special > 0 || item.rarity == "magic" || item.only == "Desert Guard" || item.only == "Iron Wolf" || item.only == "Barb (merc)") { metal = false }
+			if (group == "amulet" || group == "ring1" || group == "ring2" || item.type == "quiver" || item.special > 0 || item.rarity == "magic" || item.only == "Desert Guard" || item.only == "Iron Wolf" || item.only == "Barb (merc)" || item.nonmetal == 1) { metal = false }
 			else if (typeof(item.base) != 'undefined') { if (typeof(bases[getBaseId(item.base)].nonmetal) != 'undefined') { if (bases[getBaseId(item.base)].nonmetal == 1) { metal = false } } }
-			// TODO: Adjust equipment list to exclude 'duplicates' and include runewords that can be made in metal bases (but are only currently available in non-metal bases)
 			if (metal == true) {
 				var addon = "";
 				if (item == equipment[group][0]) { addon = "<option class='gray-all' style='color:gray' disabled>" + item.name + "</option>" }
@@ -833,7 +830,7 @@ function equipMerc(group, val) {
 						}
 					}
 				}
-				// TODO: implement set bonuses
+				// TODO: implement set bonuses for mercenaries
 			}
 		}
 		updateMercenary()
@@ -932,7 +929,10 @@ function equip(group, val) {
 			}
 		}
 	}
-	
+	// reset item object, to preserve normal affix order
+	equipped[group] = {name:"none",tier:0}
+	if (group == "weapon" || group == "offhand") { equipped[group].type = "" }
+	if (group == "weapon") { equipped[group].twoHanded = 0 }	// this line may be unnecessary
 	// add affixes to character
 	for (item in equipment[src_group]) {
 		if (equipment[src_group][item].name == val) {
@@ -2061,17 +2061,6 @@ function toggleAutocast(autocast) {
 	if (autocast.checked) { settings.autocast = 1 } else { settings.autocast = 0 }
 }
 
-/*
-// toggleFilter - 
-//	value: name identifier for 'Filter Simulation' checkbox element
-// ---------------------------------
-function toggleFilter(value) {
-	if (value.checked) { settings.filter = 1 } else { settings.filter = 0 }
-	if (settings.filter == 1) { document.getElementById("filtration").style.display = "block" }
-	else { document.getElementById("filtration").style.display = "none" }
-}
-*/
-
 // getWeaponDamage - Calculates physical min/max damage and multiplier for an equipped weapon
 //	str: total strength
 //	dex: total dexterity
@@ -3018,9 +3007,16 @@ function updateSkills() {
 //	num: 1 or 2 (for skill1 or skill2)
 // ---------------------------------
 function checkSkill(skillName, num) {
+	if (skillName == " ­ ­ ­ ­ Skill "+num) { document.getElementById("dropdown_skill"+num).selectedIndex = 0 }
+	if (document.getElementById("dropdown_skill"+num).selectedIndex == 0) { skillName = " ­ ­ ­ ­ Skill "+num }
 	selectedSkill[num-1] = skillName
 	var native_skill = 0;
-	for (let s = 0; s < skills.length; s++) { if (skillName == skills[s].name) { native_skill = 1 } }
+	var skill = {};
+	var index = 0;
+	for (let s = 0; s < skills.length; s++) { if (skillName == skills[s].name) {
+		native_skill = 1
+		skill = skills[s]
+	} }
 	
 	var c = character;
 	var strTotal = (c.strength + c.all_attributes + (c.level-1)*c.strength_per_level);
@@ -3036,14 +3032,6 @@ function checkSkill(skillName, num) {
 	dmg = getNonPhysWeaponDamage("weapon")
 	var nonPhys_min = Math.floor(dmg.fMin + dmg.cMin + dmg.lMin + dmg.pMin + dmg.mMin);
 	var nonPhys_max = Math.floor(dmg.fMax + dmg.cMax + dmg.lMax + dmg.pMax + dmg.mMax);
-	
-	var skill = {};
-	for (let s = 0; s < skills.length; s++) {
-		if (skills[s].name == skillName) { 
-			skill = skills[s]
-			document.getElementById("dropdown_skill"+num).selectedIndex = s
-		}
-	}
 	
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
 		var outcome = {min:0,max:0,ar:0};

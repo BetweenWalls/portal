@@ -1,51 +1,51 @@
 
 
-var equipped = { helm:{name:"none",tier:0}, armor:{name:"none",tier:0}, gloves:{name:"none",tier:0}, boots:{name:"none",tier:0}, belt:{name:"none",tier:0}, amulet:{name:"none",tier:0}, ring1:{name:"none",tier:0}, ring2:{name:"none",tier:0}, weapon:{name:"none",tier:0, twoHanded:0, type:""}, offhand:{name:"none",tier:0, type:""}, charms:{name:"none"} };
+var equipped = { helm:{name:"none",tier:0}, armor:{name:"none",tier:0}, gloves:{name:"none",tier:0}, boots:{name:"none",tier:0}, belt:{name:"none",tier:0}, amulet:{name:"none",tier:0}, ring1:{name:"none",tier:0}, ring2:{name:"none",tier:0}, weapon:{name:"none",tier:0,twoHanded:0,type:""}, offhand:{name:"none",tier:0,type:""}, charms:{name:"none"} };
 var mercEquipped = { helm:{name:"none"}, armor:{name:"none"}, weapon:{name:"none"}, offhand:{name:"none"} };
 var corruptsEquipped = { helm:{name:"none"}, armor:{name:"none"}, gloves:{name:"none"}, boots:{name:"none"}, belt:{name:"none"}, amulet:{name:"none"}, ring1:{name:"none"}, ring2:{name:"none"}, weapon:{name:"none"}, offhand:{name:"none"} };
 var golemItem = {name:"none"};
 
-var unequipped = {		strength:0, dexterity:0, vitality:0, energy:0, life:0, mana:0, defense:0, ar:0, stamina:0, block:0, base_defense:0, 
-/* main stats		*/	fRes_max:0, cRes_max:0, lRes_max:0, pRes_max:0, mRes_max:0, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0,
-/* stats		*/	cdr:0, fcr:0, fbr:0, fhr:0, frw:0, ias:0, pierce:0, cblow:0, dstrike:0, cstrike:0, owounds:0, fDamage:0, cDamage:0, lDamage:0, pDamage:0, fPierce:0, cPierce:0, lPierce:0, pPierce:0, pdr:0, damage_reduced:0, mDamage_reduced:0, mf:0, gf:0, life_leech:0, mana_leech:0, life_per_hit:0, mana_per_hit:0, life_per_ranged_hit:0, mana_per_ranged_hit:0, fAbsorb:0, cAbsorb:0, lAbsorb:0, fAbsorb_flat:0, cAbsorb_flat:0, lAbsorb_flat:0, mAbsorb_flat:0, 
-/* stats (indirect)	*/	all_skills:0, all_attributes:0, all_res:0, velocity:0, max_life:0, max_mana:0, max_stamina:0, damage_bonus:0, defense_bonus:0, ar_bonus:0, ar_bonus_per_level:0, max_energy:0, ias_per_8_dexterity:0, ar_per_socketed:0, all_skills_ember:0, baseSpeed:0, 
+var unequipped = {			strength:0, dexterity:0, vitality:0, energy:0, life:0, mana:0, defense:0, ar:0, stamina:0, block:0, base_defense:0, 
+/* main stats			*/	fRes_max:0, cRes_max:0, lRes_max:0, pRes_max:0, mRes_max:0, fRes:0, cRes:0, lRes:0, pRes:0, mRes:0,
+/* stats				*/	cdr:0, fcr:0, fbr:0, fhr:0, frw:0, ias:0, pierce:0, cblow:0, dstrike:0, cstrike:0, owounds:0, fDamage:0, cDamage:0, lDamage:0, pDamage:0, fPierce:0, cPierce:0, lPierce:0, pPierce:0, pdr:0, damage_reduced:0, mDamage_reduced:0, mf:0, gf:0, life_leech:0, mana_leech:0, life_per_hit:0, mana_per_hit:0, life_per_ranged_hit:0, mana_per_ranged_hit:0, fAbsorb:0, cAbsorb:0, lAbsorb:0, fAbsorb_flat:0, cAbsorb_flat:0, lAbsorb_flat:0, mAbsorb_flat:0, 
+/* stats (indirect)		*/	all_skills:0, all_attributes:0, all_res:0, velocity:0, max_life:0, max_mana:0, max_stamina:0, damage_bonus:0, defense_bonus:0, ar_bonus:0, ar_bonus_per_level:0, max_energy:0, ias_per_8_dexterity:0, ar_per_socketed:0, all_skills_ember:0, baseSpeed:0, 
 /* stats (per level)	*/	life_per_level:0, mana_per_level:0, defense_per_level:0, ar_per_level:0, stamina_per_level:0, strength_per_level:0, dexterity_per_level:0, vitality_per_level:0, fRes_per_level:0, cRes_per_level:0, lRes_per_level:0, pRes_per_level:0, fAbsorb_flat_per_level:0, cAbsorb_flat_per_level:0, mf_per_level:0, gf_per_level:0, fcr_per_level:0, dstrike_per_level:0, e_def_per_level:0, 
-/* attack damage	*/	base_damage_min:0, base_damage_max:0, damage_min:0, damage_max:0, fDamage_min:0, fDamage_max:0, cDamage_min:0, cDamage_max:0, lDamage_min:0, lDamage_max:0, pDamage_min:0, pDamage_max:0, pDamage_all:0, pDamage_duration:0, pDamage_duration_override:0, mDamage_min:0, mDamage_max:0, min_damage_per_level:0, max_damage_per_level:0, fDamage_max_per_level:0, cDamage_max_per_level:0, kick_min:2, kick_damage_per_level:0, smite_min:0, smite_max:0, e_damage:0, e_max_damage_per_level:0, lDamage_max_per_2_energy:0, cDamage_per_ice:0, cDamage_per_socketed:0, 
-/* other		*/	ctc:"", cskill:"", ibc:0, life_per_kill:0, mana_per_kill:0, life_replenish:0, life_regen:0, mana_regen:0, damage_to_mana:0, missile_defense:0, melee_defense:0, damage_vs_demons:0, damage_vs_undead:0, ar_vs_demons:0, ar_vs_undead:0, ar_vs_undead_per_level:0, damage_vs_undead_per_level:0, damage_vs_demons_per_level:0, life_per_demon_kill:0, thorns_lightning:0, thorns:0, thorns_per_level:0, thorns_reflect:0, poison_length_reduced:0, curse_length_reduced:0, light_radius:0, slower_stam_drain:0, heal_stam:0, heal_stam_per_level:0, discount:0, 
+/* attack damage		*/	base_damage_min:0, base_damage_max:0, damage_min:0, damage_max:0, fDamage_min:0, fDamage_max:0, cDamage_min:0, cDamage_max:0, lDamage_min:0, lDamage_max:0, pDamage_min:0, pDamage_max:0, pDamage_all:0, pDamage_duration:0, pDamage_duration_override:0, mDamage_min:0, mDamage_max:0, min_damage_per_level:0, max_damage_per_level:0, fDamage_max_per_level:0, cDamage_max_per_level:0, kick_min:2, kick_damage_per_level:0, smite_min:0, smite_max:0, e_damage:0, e_max_damage_per_level:0, lDamage_max_per_2_energy:0, cDamage_per_ice:0, cDamage_per_socketed:0, 
+/* other				*/	ctc:"", cskill:"", ibc:0, life_per_kill:0, mana_per_kill:0, life_replenish:0, life_regen:0, mana_regen:0, damage_to_mana:0, missile_defense:0, melee_defense:0, damage_vs_demons:0, damage_vs_undead:0, ar_vs_demons:0, ar_vs_undead:0, ar_vs_undead_per_level:0, damage_vs_undead_per_level:0, damage_vs_demons_per_level:0, life_per_demon_kill:0, thorns_lightning:0, thorns:0, thorns_per_level:0, thorns_reflect:0, poison_length_reduced:0, curse_length_reduced:0, light_radius:0, slower_stam_drain:0, heal_stam:0, heal_stam_per_level:0, discount:0, 
 /* other, affects enemy	*/	enemy_fRes:0, enemy_cRes:0, enemy_lRes:0, enemy_pRes:0, enemy_defense:0, enemy_defense_flat:0, target_defense:0, monster_defense_per_hit:0, slows_target:0, slow_enemies:0, freezes_target:0, flee_on_hit:0, blind_on_hit:0, 
-/* other, boolean	*/	itd:0, pmh:0, cbf:0, peace:0, knockback:0, half_freeze:0, melee_splash:0, glow:0, 
-/* item properties	*/	sockets:0, e_def:0, req:0, ethereal:0, indestructible:0, autorepair:0, autoreplenish:0, stack_size:0, twoHanded:0, twoHands:0, range:0, throw_min:0, throw_max:0, base_min_alternate:0, base_max_alternate:0, def_low:0, def_high:0, durability:0, max_sockets:0, tier:0, nonmetal:0, name:"none", group:"", type:"", set_bonuses:"", rarity:"", size:"", not:"", only:"", upgrade:"", downgrade:"", aura:"", aura_lvl:0, special:0, pod_changes:0, sup:0, req_level:0, req_strength:0, req_dexterity:0, 
-/* sets			*/	set_IK:0, set_Mav:0, set_Gris:0, set_TO:0, set_TR:0, set_Nat:0, set_Ald:0, set_BK:0, set_Disciple:0, set_Angelic:0, set_Cathan:0, set_Cow:0, set_Brethren:0, set_Hwanin:0, set_Naj:0, set_Orphan:0, set_Sander:0, set_Sazabi:0, set_Arcanna:0, set_Arctic:0, set_Berserker:0, set_Civerb:0, set_Cleglaw:0, set_Death:0, set_Hsarus:0, set_Infernal:0, set_Iratha:0, set_Isenhart:0, set_Milabrega:0, set_Sigon:0, set_Tancred:0, set_Vidala:0,
-/* misc			*/	bonus_corpse_explosion:0, phys_Lightning_Surge:0, extraValkyrie:0, extraGrizzly:0, extraFireGolem:0, extraHydra:0, radius_FreezingArrow:0, reset_cooldown_on_kill:0, cdr_on_striking:0, reanimate:0, 
-/* misc (non-item)	*/	flamme:0, ias_skill:0, ar_shrine_bonus:0, charge_ember:0, charge_thunder:0, charge_ice:0, skeleton_bonus:0, hammer_bonus:0, hammer_on_hit:0, redeem_chance:0, redeem_amount:0, absorb_elemental:0, absorb_melee:0, absorb_es_redirect:0, absorb_es_deplete:0, duration:0, radius:0, amountSummoned:0, enemy_damage:0, enemy_attack:0, enemy_physRes:0, enemy_allRes:0, fleeing:0, flee_distance:0, dimmedVision:0, confused:0, attraction:0, enemy_ias:0, enemy_frw:0, 
+/* other, boolean		*/	itd:0, pmh:0, cbf:0, peace:0, knockback:0, half_freeze:0, melee_splash:0, glow:0, 
+/* item properties		*/	sockets:0, e_def:0, req:0, ethereal:0, indestructible:0, autorepair:0, autoreplenish:0, stack_size:0, twoHanded:0, twoHands:0, range:0, throw_min:0, throw_max:0, base_min_alternate:0, base_max_alternate:0, def_low:0, def_high:0, durability:0, max_sockets:0, tier:0, nonmetal:0, name:"none", group:"", type:"", set_bonuses:"", rarity:"", size:"", not:"", only:"", upgrade:"", downgrade:"", aura:"", aura_lvl:0, special:0, pod_changes:0, sup:0, req_level:0, req_strength:0, req_dexterity:0, 
+/* sets					*/	set_IK:0, set_Mav:0, set_Gris:0, set_TO:0, set_TR:0, set_Nat:0, set_Ald:0, set_BK:0, set_Disciple:0, set_Angelic:0, set_Cathan:0, set_Cow:0, set_Brethren:0, set_Hwanin:0, set_Naj:0, set_Orphan:0, set_Sander:0, set_Sazabi:0, set_Arcanna:0, set_Arctic:0, set_Berserker:0, set_Civerb:0, set_Cleglaw:0, set_Death:0, set_Hsarus:0, set_Infernal:0, set_Iratha:0, set_Isenhart:0, set_Milabrega:0, set_Sigon:0, set_Tancred:0, set_Vidala:0,
+/* misc					*/	bonus_corpse_explosion:0, phys_Lightning_Surge:0, extraValkyrie:0, extraGrizzly:0, extraFireGolem:0, extraHydra:0, radius_FreezingArrow:0, reset_cooldown_on_kill:0, cdr_on_striking:0, reanimate:0, 
+/* misc (non-item)		*/	flamme:0, ias_skill:0, ar_shrine_bonus:0, charge_ember:0, charge_thunder:0, charge_ice:0, skeleton_bonus:0, hammer_bonus:0, hammer_on_hit:0, redeem_chance:0, redeem_amount:0, absorb_elemental:0, absorb_melee:0, absorb_es_redirect:0, absorb_es_deplete:0, duration:0, radius:0, amountSummoned:0, enemy_damage:0, enemy_attack:0, enemy_physRes:0, enemy_allRes:0, fleeing:0, flee_distance:0, dimmedVision:0, confused:0, attraction:0, enemy_ias:0, enemy_frw:0, 
 
 /*   not used (yet?)	*///	energy_per_level:0, lAbsorb_flat_per_level:0, mAbsorb_flat_per_level:0, mAbsorb:0, lDamage_max_per_level:0, pDamage_max_per_level:0, e_damage_per_level:0, ar_vs_demons_per_level:0, stun_length:0, base:"", img:"", original_tier:0, 
 
-/* skill tabs		*/	skills_javelins:0, skills_passives:0, skills_bows:0, skills_martial:0, skills_shadow:0, skills_traps:0, skills_warcries:0, skills_masteries:0, skills_combat_barbarian:0, skills_elemental:0, skills_shapeshifting:0, skills_summoning_druid:0, skills_summoning_necromancer:0, skills_poisonBone:0, skills_curses:0, skills_offensive:0, skills_defensive:0, skills_combat_paladin:0, skills_cold:0, skills_lightning:0, skills_fire:0, skills_amazon:0, skills_assassin:0, skills_barbarian:0, skills_druid:0, skills_necromancer:0, skills_paladin:0, skills_sorceress:0, skills_fire_all:0, skills_cold_all:0, skills_poison_all:0,
-/* skills   amazon	*/	skill_Jab:0, skill_Power_Strike:0, skill_Poison_Javelin:0, skill_Fend:0, skill_Lightning_Bolt:0, skill_Charged_Strike:0, skill_Plague_Javelin:0, skill_Ground_Slam:0, skill_Lightning_Strike:0, skill_Lightning_Fury:0, skill_Inner_Sight:0, skill_Lethal_Strike:0, skill_Phase_Run:0, skill_Dodge:0, skill_Avoid:0, skill_Penetrate:0, skill_Evade:0, skill_Decoy:0, skill_Valkyrie:0, skill_Pierce:0, skill_Cold_Arrow:0, skill_Magic_Arrow:0, skill_Multiple_Shot:0, skill_Fire_Arrow:0, skill_Ice_Arrow:0, skill_Guided_Arrow:0, skill_Exploding_Arrow:0, skill_Strafe:0, skill_Immolation_Arrow:0, skill_Freezing_Arrow:0, 
+/* skill tabs			*/	skills_javelins:0, skills_passives:0, skills_bows:0, skills_martial:0, skills_shadow:0, skills_traps:0, skills_warcries:0, skills_masteries:0, skills_combat_barbarian:0, skills_elemental:0, skills_shapeshifting:0, skills_summoning_druid:0, skills_summoning_necromancer:0, skills_poisonBone:0, skills_curses:0, skills_offensive:0, skills_defensive:0, skills_combat_paladin:0, skills_cold:0, skills_lightning:0, skills_fire:0, skills_amazon:0, skills_assassin:0, skills_barbarian:0, skills_druid:0, skills_necromancer:0, skills_paladin:0, skills_sorceress:0, skills_fire_all:0, skills_cold_all:0, skills_poison_all:0,
+/* skills   amazon		*/	skill_Jab:0, skill_Power_Strike:0, skill_Poison_Javelin:0, skill_Fend:0, skill_Lightning_Bolt:0, skill_Charged_Strike:0, skill_Plague_Javelin:0, skill_Ground_Slam:0, skill_Lightning_Strike:0, skill_Lightning_Fury:0, skill_Inner_Sight:0, skill_Lethal_Strike:0, skill_Phase_Run:0, skill_Dodge:0, skill_Avoid:0, skill_Penetrate:0, skill_Evade:0, skill_Decoy:0, skill_Valkyrie:0, skill_Pierce:0, skill_Cold_Arrow:0, skill_Magic_Arrow:0, skill_Multiple_Shot:0, skill_Fire_Arrow:0, skill_Ice_Arrow:0, skill_Guided_Arrow:0, skill_Exploding_Arrow:0, skill_Strafe:0, skill_Immolation_Arrow:0, skill_Freezing_Arrow:0, 
 /* skills   assassin	*/	skill_Dual_Strike:0, skill_Fists_of_Ember:0, skill_Fists_of_Thunder:0, skill_Fists_of_Ice:0, skill_Static_Strike:0, skill_Dragon_Talon:0, skill_Emberstorm:0, skill_Dragon_Flight:0, skill_Blades_of_Ice:0, skill_Claw_Mastery:0, skill_Psychic_Hammer:0, skill_Burst_of_Speed:0, skill_Mind_Barrier:0, skill_Weapon_Block:0, skill_Cloak_of_Shadows:0, skill_Fade:0, skill_Shadow_Warrior:0, skill_Mind_Blast:0, skill_Venom:0, skill_Shadow_Master:0, skill_Fire_Blast:0, skill_Shock_Web:0, skill_Blade_Throw:0, skill_Charged_Bolt_Sentry:0, skill_Wake_of_Fire:0, skill_Blade_Fury:0, skill_Lightning_Sentry:0, skill_Wake_of_Inferno:0, skill_Death_Sentry:0, skill_Blade_Shield:0, skill_Dragon_Tail:0, 
 /* skills   barbarian	*/	skill_Howl:0, skill_Find_Potion:0, skill_Taunt:0, skill_Shout:0, skill_Find_Item:0, skill_Battle_Cry:0, skill_Battle_Orders:0, skill_Grim_Ward:0, skill_War_Cry:0, skill_Battle_Command:0, skill_Edged_Weapon_Mastery:0, skill_Pole_Weapon_Mastery:0, skill_Blunt_Weapon_Mastery:0, skill_Thrown_Weapon_Mastery:0, skill_Increased_Stamina:0, skill_Iron_Skin:0, skill_Increased_Speed:0, skill_Natural_Resistance:0, skill_Frenzy:0, skill_Concentrate:0, skill_Cleave:0, skill_Stun:0, skill_Leap:0, skill_Power_Throw:0, skill_Bash:0, skill_Leap_Attack:0, skill_Ethereal_Throw:0, skill_Whirlwind:0, skill_One_Handed_Weapon_Mastery:0, skill_Two_Handed_Weapon_Mastery:0, 
-/* skills   druid	*/	skill_Firestorm:0, skill_Molten_Boulder:0, skill_Flame_Dash:0, skill_Arctic_Blast:0, skill_Fissure:0, skill_Cyclone_Armor:0, skill_Twister:0, skill_Volcano:0, skill_Tornado:0, skill_Armageddon:0, skill_Hurricane:0, skill_Werewolf:0, skill_Lycanthropy:0, skill_Werebear:0, skill_Feral_Rage:0, skill_Maul:0, skill_Rabies:0, skill_Fire_Claws:0, skill_Hunger:0, skill_Shock_Wave:0, skill_Fury:0, skill_Raven:0, skill_Poison_Creeper:0, skill_Heart_of_Wolverine:0, skill_Summon_Spirit_Wolf:0, skill_Carrion_Vine:0, skill_Oak_Sage:0, skill_Summon_Dire_Wolf:0, skill_Solar_Creeper:0, skill_Spirit_of_Barbs:0, skill_Summon_Grizzly:0, 
+/* skills   druid		*/	skill_Firestorm:0, skill_Molten_Boulder:0, skill_Flame_Dash:0, skill_Arctic_Blast:0, skill_Fissure:0, skill_Cyclone_Armor:0, skill_Twister:0, skill_Volcano:0, skill_Tornado:0, skill_Armageddon:0, skill_Hurricane:0, skill_Werewolf:0, skill_Lycanthropy:0, skill_Werebear:0, skill_Feral_Rage:0, skill_Maul:0, skill_Rabies:0, skill_Fire_Claws:0, skill_Hunger:0, skill_Shock_Wave:0, skill_Fury:0, skill_Raven:0, skill_Poison_Creeper:0, skill_Heart_of_Wolverine:0, skill_Summon_Spirit_Wolf:0, skill_Carrion_Vine:0, skill_Oak_Sage:0, skill_Summon_Dire_Wolf:0, skill_Solar_Creeper:0, skill_Spirit_of_Barbs:0, skill_Summon_Grizzly:0, 
 /* skills   necromancer	*/	skill_Summon_Mastery:0, skill_Raise_Skeleton_Warrior:0, skill_Bone_Offering:0, skill_Clay_Golem:0, skill_Flesh_Offering:0, skill_Raise_Skeletal_Mage:0, skill_Blood_Golem:0, skill_Convocation:0, skill_Iron_Golem:0, skill_Fire_Golem:0, skill_Revive:0, skill_Deadly_Poison:0, skill_Teeth:0, skill_Bone_Armor:0, skill_Corpse_Explosion:0, skill_Desecrate:0, skill_Bone_Spear:0, skill_Bone_Wall:0, skill_Bone_Spirit:0, skill_Poison_Nova:0, skill_Amplify_Damage:0, skill_Dim_Vision:0, skill_Hemorrhage:0, skill_Weaken:0, skill_Iron_Maiden:0, skill_Terror:0, skill_Confuse:0, skill_Life_Tap:0, skill_Attract:0, skill_Decrepify:0, skill_Lower_Resist:0, 
-/* skills   paladin	*/	skill_Prayer:0, skill_Resist_Fire:0, skill_Defiance:0, skill_Resist_Cold:0, skill_Cleansing:0, skill_Resist_Lightning:0, skill_Vigor:0, skill_Meditation:0, skill_Redemption:0, skill_Salvation:0, skill_Might:0, skill_Holy_Fire:0, skill_Precision:0, skill_Blessed_Aim:0, skill_Concentration:0, skill_Holy_Freeze:0, skill_Holy_Shock:0, skill_Sanctuary:0, skill_Fanaticism:0, skill_Conviction:0, skill_Sacrifice:0, skill_Smite:0, skill_Holy_Bolt:0, skill_Zeal:0, skill_Charge:0, skill_Vengeance:0, skill_Blessed_Hammer:0, skill_Conversion:0, skill_Holy_Shield:0, skill_Fist_of_the_Heavens:0, skill_Dashing_Strike:0, 
+/* skills   paladin		*/	skill_Prayer:0, skill_Resist_Fire:0, skill_Defiance:0, skill_Resist_Cold:0, skill_Cleansing:0, skill_Resist_Lightning:0, skill_Vigor:0, skill_Meditation:0, skill_Redemption:0, skill_Salvation:0, skill_Might:0, skill_Holy_Fire:0, skill_Precision:0, skill_Blessed_Aim:0, skill_Concentration:0, skill_Holy_Freeze:0, skill_Holy_Shock:0, skill_Sanctuary:0, skill_Fanaticism:0, skill_Conviction:0, skill_Sacrifice:0, skill_Smite:0, skill_Holy_Bolt:0, skill_Zeal:0, skill_Charge:0, skill_Vengeance:0, skill_Blessed_Hammer:0, skill_Conversion:0, skill_Holy_Shield:0, skill_Fist_of_the_Heavens:0, skill_Dashing_Strike:0, 
 /* skills   sorceress	*/	skill_Ice_Bolt:0, skill_Frigerate:0, skill_Frost_Nova:0, skill_Ice_Blast:0, skill_Shiver_Armor:0, skill_Glacial_Spike:0, skill_Blizzard:0, skill_Freezing_Pulse:0, skill_Chilling_Armor:0, skill_Frozen_Orb:0, skill_Cold_Mastery:0, skill_Charged_Bolt:0, skill_Static_Field:0, skill_Telekinesis:0, skill_Nova:0, skill_Lightning_Surge:0, skill_Chain_Lightning:0, skill_Teleport:0, skill_Discharge:0, skill_Energy_Shield:0, skill_Lightning_Mastery:0, skill_Thunder_Storm:0, skill_Fire_Bolt:0, skill_Warmth:0, skill_Blaze:0, skill_Immolate:0, skill_Fire_Ball:0, skill_Fire_Wall:0, skill_Enflame:0, skill_Meteor:0, skill_Fire_Mastery:0, skill_Hydra:0, 
-/* oskills		*/	oskill_Warp:0, oskill_Ball_Lightning:0,	// Enigma, Ondal's Wisdom
-/* oskills  amazon	*/	oskill_Inner_Sight:0, oskill_Lethal_Strike:0, oskill_Valkyrie:0, oskill_Magic_Arrow:0, oskill_Guided_Arrow:0, oskill_Multiple_Shot:0,	// Blackoak Shield, Insight, Harmony, Witherstring, Wizendraw, Witchwild String, Widowmaker, Doomslinger
+/* oskills				*/	oskill_Warp:0, oskill_Ball_Lightning:0,	// Enigma, Ondal's Wisdom
+/* oskills  amazon		*/	oskill_Inner_Sight:0, oskill_Lethal_Strike:0, oskill_Valkyrie:0, oskill_Magic_Arrow:0, oskill_Guided_Arrow:0, oskill_Multiple_Shot:0,	// Blackoak Shield, Insight, Harmony, Witherstring, Wizendraw, Witchwild String, Widowmaker, Doomslinger
 /* oskills  barbarian	*/	oskill_Battle_Command:0, oskill_Battle_Orders:0, oskill_Battle_Cry:0, oskill_Bash:0, oskill_Edged_Weapon_Mastery:0,	// Call to Arms, Passion, The Grandfather
-/* oskills  druid	*/	oskill_Arctic_Blast:0, oskill_Lycanthropy:0, oskill_Werebear:0, oskill_Werewolf:0, oskill_Feral_Rage:0, oskill_Flame_Dash:0, oskill_Summon_Dire_Wolf:0,	// Frostwind, Wolfhowl, Beast, Flamebellow, Boneflesh
+/* oskills  druid		*/	oskill_Lycanthropy:0, oskill_Werebear:0, oskill_Werewolf:0, oskill_Feral_Rage:0, oskill_Flame_Dash:0, oskill_Summon_Dire_Wolf:0,	// Frostwind, Wolfhowl, Beast, Flamebellow, Boneflesh
 /* oskills  necromancer	*/	oskill_Desecrate:0,	// Radament's Sphere
-/* oskills  paladin	*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
+/* oskills  paladin		*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, oskill_Enflame:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
-// TODO: confirm oskill_Guided_Arrow (Widowmaker)
+// TOCHECK: confirm oskill_Guided_Arrow (Widowmaker)
 				durability_extra:0, experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
 };
-// TODO: Remove old instances of Arctic Blast (replaced with Frigerate on Frostwind sword)
-var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Arctic_Blast","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
+
+var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
 var oskills_info = {
 	oskill_Warp:{name:"Warp",native_class:"none",i:0}, oskill_Ball_Lightning:{name:"Ball Lightning",native_class:"none",i:1},
 	oskill_Inner_Sight:{name:"Inner Sight",native_class:"amazon",i:10}, oskill_Lethal_Strike:{name:"Lethal Strike",native_class:"amazon",i:11}, oskill_Valkyrie:{name:"Valkyrie",native_class:"amazon",i:18}, oskill_Magic_Arrow:{name:"Magic Arrow",native_class:"amazon",i:21}, oskill_Guided_Arrow:{name:"Guided Arrow",native_class:"amazon",i:25}, oskill_Multiple_Shot:{name:"Multiple Shot",native_class:"amazon",i:22},
 	oskill_Battle_Command:{name:"Battle Command",native_class:"barbarian",i:9}, oskill_Battle_Orders:{name:"Battle Orders",native_class:"barbarian",i:6}, oskill_Battle_Cry:{name:"Battle Cry",native_class:"barbarian",i:5}, oskill_Bash:{name:"Bash",native_class:"barbarian",i:24}, oskill_Edged_Weapon_Mastery:{name:"Edged Weapon Mastery",native_class:"barbarian",i:10},
-	oskill_Arctic_Blast:{name:"Arctic Blast",native_class:"druid",i:3}, oskill_Lycanthropy:{name:"Lycanthropy",native_class:"druid",i:12}, oskill_Werebear:{name:"Werebear",native_class:"druid",i:13}, oskill_Werewolf:{name:"Werewolf",native_class:"druid",i:11}, oskill_Feral_Rage:{name:"Feral Rage",native_class:"druid",i:14}, oskill_Flame_Dash:{name:"Flame Dash",native_class:"druid",i:2}, oskill_Summon_Dire_Wolf:{name:"Summon Dire Wolf",native_class:"druid",i:27}, 
+	oskill_Lycanthropy:{name:"Lycanthropy",native_class:"druid",i:12}, oskill_Werebear:{name:"Werebear",native_class:"druid",i:13}, oskill_Werewolf:{name:"Werewolf",native_class:"druid",i:11}, oskill_Feral_Rage:{name:"Feral Rage",native_class:"druid",i:14}, oskill_Flame_Dash:{name:"Flame Dash",native_class:"druid",i:2}, oskill_Summon_Dire_Wolf:{name:"Summon Dire Wolf",native_class:"druid",i:27}, 
 	oskill_Desecrate:{name:"Desecrate",native_class:"necromancer",i:15}, 
 	oskill_Zeal:{name:"Zeal",native_class:"paladin",i:23}, oskill_Vengeance:{name:"Vengeance",native_class:"paladin",i:25}, 
 	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, oskill_Enflame:{name:"Enflame",native_class:"sorceress",i:28}, 
@@ -54,16 +54,16 @@ var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10}, Cloak_of_Shadows
 var effect_ctcskills = {Venom:{native_class:"assassin",i:18}, Fade:{native_class:"assassin",i:15}, Cyclone_Armor:{native_class:"druid",i:5}, Chilling_Armor:{native_class:"sorceress",i:8}, Blaze:{native_class:"sorceress",i:24}, Enflame:{native_class:"sorceress",i:28}};
 var non_items = [
 {name:"Miscellaneous"},
-{i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},					// check: verify whether this applies to skills gained solely from items
-{i:2, name:"Shrine: Combat", damage_bonus:200, ar_shrine_bonus:200, duration:96, recharge:240, effect:"Combat"},	// AR bonus can stack with other Combat shrines
+{i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},								// TOCHECK: verify whether this applies to skills gained solely from items
+{i:2, name:"Shrine: Combat", damage_bonus:200, ar_shrine_bonus:200, duration:96, recharge:240, effect:"Combat"},	// AR bonus can stack with other Combat shrines (unimplemented)
 {i:3, name:"Shrine: Armor", defense_bonus:100, duration:96, recharge:240, effect:"Armor"},
 {i:4, name:"Shrine: Mana Regeneration", mana_regen:400, duration:96, recharge:240, effect:"Mana_Regeneration"},
 {i:5, name:"Shrine: Fire Resist", fRes:75, duration:144, recharge:240, effect:"Resist_Fire"},
 {i:6, name:"Shrine: Cold Resist", cRes:75, duration:144, recharge:240, effect:"Resist_Cold"},
 {i:7, name:"Shrine: Lightning Resist", lRes:75, duration:144, recharge:240, effect:"Resist_Lightning"},
 {i:8, name:"Shrine: Poison Resist", pRes:75, duration:144, recharge:240, effect:"Resist_Poison"},
-{i:9, name:"Potion: Thawing", cRes:50, duration:30, effect:"Thawing"},							// stackable duration (unimplemented)
-{i:10, name:"Potion: Antitode", pRes:50, duration:30, effect:"Antidote"},						// stackable duration (unimplemented)
+{i:9, name:"Potion: Thawing", cRes:50, duration:30, effect:"Thawing"},												// stackable duration (unimplemented)
+{i:10, name:"Potion: Antitode", pRes:50, duration:30, effect:"Antidote"},											// stackable duration (unimplemented)
 ];
 
 var mercenaries = [
@@ -122,12 +122,15 @@ var equipment = {
 {not:["barbarian","druid"], rarity:"rw", name:"Radiance ­ ­ - ­ ­ Death Mask", req_level:27, e_def:75, missile_defense:30, vitality:10, energy:10, mana:33, damage_reduced:7, mDamage_reduced:3, damage_to_mana:15, light_radius:5, base:"Death Mask"},
 {only:"barbarian", rarity:"rw", name:"Delirium ­ ­ - ­ ­ Lion Helm", req_level:51, ctc:[[1,50,"Delirium","when struck"],[6,14,"Mind Blast","when struck"],[14,13,"Terror","when struck"],[11,18,"Confuse","on striking"]], all_skills:2, skill_War_Cry:3, skill_Grim_Ward:3, skill_Battle_Orders:3, defense:261, vitality:10, gf:50, mf:25, base:"Lion Helm", cskill:[[17,"Attract",60]]},
 {only:"barbarian", rarity:"rw", name:"Lore ­ ­ - ­ ­ Jawbone Visor", req_level:27, all_skills:1, skill_Battle_Orders:3, skill_Shout:3, skill_Iron_Skin:3, energy:10, lRes:30, damage_reduced:7, mana_per_kill:2, light_radius:2, base:"Jawbone Visor"},
-{only:"barbarian", rarity:"rw", name:"Radiance ­ ­ - ­ ­ Rage Mask", req_level:27, e_def:75, skill_Battle_Orders:3, skill_Leap:1, skill_Shout:3, missile_defense:30, vitality:10, energy:10, mana:33, damage_reduced:7, mDamage_reduced:3, damage_to_mana:15, light_radius:5, base:"Rage Mask"},
+{only:"barbarian", rarity:"rw", name:"Radiance ­ ­ - ­ ­ Rage Mask", req_level:27, e_def:75, skill_Battle_Orders:3, skill_Leap:1, skill_Shout:3, missile_defense:30, vitality:10, energy:10, mana:33, damage_reduced:7, mDamage_reduced:3, damage_to_mana:15, light_radius:5, base:"Rage Mask", nonmetal:1},
 {only:"druid", rarity:"rw", name:"Delirium ­ ­ - ­ ­ Griffon Headdress", req_level:51, ctc:[[1,50,"Delirium","when struck"],[6,14,"Mind Blast","when struck"],[14,13,"Terror","when struck"],[11,18,"Confuse","on striking"]], all_skills:2, skill_Oak_Sage:3, skill_Summon_Grizzly:3, skill_Summon_Dire_Wolf:3, defense:261, vitality:10, gf:50, mf:25, base:"Griffon Headdress", cskill:[[17,"Attract",60]]},
 {only:"druid", rarity:"rw", name:"Lore ­ ­ - ­ ­ Alpha Helm", req_level:27, all_skills:1, skill_Summon_Spirit_Wolf:3, skill_Heart_of_Wolverine:3, skill_Raven:3, energy:10, lRes:30, damage_reduced:7, mana_per_kill:2, light_radius:2, base:"Alpha Helm"},
 {only:"druid", rarity:"rw", name:"Radiance ­ ­ - ­ ­ Sacred Feathers", req_level:27, skill_Cyclone_Armor:3, skill_Armageddon:3, skill_Hurricane:3, e_def:75, missile_defense:30, vitality:10, energy:10, mana:33, damage_reduced:7, mDamage_reduced:3, damage_to_mana:15, light_radius:5, base:"Sacred Feathers"},
 {rarity:"rw", name:"Dream ­ ­ - ­ ­ Diadem", req_level:65, ctc:[[10,15,"Confuse","when struck"]], aura:"Holy Shock", aura_lvl:13, e_def:30, defense:220, fhr:30, vitality:10, mana_per_level:0.625, all_res:20, mf:25, max_life:5, base:"Diadem"},
 {rarity:"rw", name:"Nadir ­ ­ - ­ ­ Bone Helm", req_level:13, e_def:50, defense:10, missile_defense:30, strength:5, mana_per_kill:2, gf:-33, light_radius:-3, base:"Bone Helm", cskill:[[13,"Cloak of Shadows",9]]},
+	// Iron Golem RW replacements
+	{only:"none", rarity:"rw", name:"Lore ­ ­ - ­ ­ Coronet", req_level:27, all_skills:1, energy:10, lRes:30, damage_reduced:7, mana_per_kill:2, light_radius:2, base:"Coronet"},
+	{only:"none", rarity:"rw", name:"Nadir ­ ­ - ­ ­ Circlet", req_level:13, e_def:50, defense:10, missile_defense:30, strength:5, mana_per_kill:2, gf:-33, light_radius:-3, base:"Circlet", cskill:[[13,"Cloak of Shadows",9]]},
 {name:"Biggin's Bonnet", req_level:3, defense:14, damage_bonus:30, ar:30, mana:15, life:15, base:"Cap", img:"Biggin's_Bonnet"},
 {name:"Tarnhelm", req_level:15, all_skills:1, mf:50, gf:75, base:"Skull Cap", img:"Tarnhelm"},
 {name:"Coif of Glory", req_level:14, defense:10, thorns_lightning:7, blind_on_hit:1, lRes:15, missile_defense:100, base:"Helm", img:"Coif_of_Glory"},
@@ -176,7 +179,7 @@ var equipment = {
 {set_Berserker:1, name:"Berserker's Headgear", req_level:3, defense:15, fRes:25, base:"Helm", rarity:"set", set_bonuses:["set_Berserker",{},{ar_per_level:8},{}], img:"Berserker's_Headgear"},
 {not:["Rogue Scout","Desert Guard","Iron Wolf","Barb (merc)"], rarity:"rare", name:"Vanguard's Diadem", req_level:67, skills_class:2, frw:30, fcr:20, strength:30, all_res:20, pRes:40, base:"Diadem"},
 {only:"assassin", rarity:"craft", name:"Psychic Caster Demonhead", req_level:55, skills_shadow:2, mana_regen:10, mana:20, mana_leech:4, mana_per_level:0.75, life:60, e_def:200, fhr:10, ar_bonus:5, light_radius:5, base:"Demonhead"},
-{only:"assassin", rarity:"craft", name:"Sensei's Blood Armet", req_level:51, skills_martial:2, dstrike:10, life:80, life_leech:4, ar_bonus_per_level:1, e_def:200, fhr:10, ar_bonus:5, light_radius:5, base:"Armet"},
+{only:"assassin", rarity:"craft", name:"Sensei's Blood Armet", req_level:51, skills_martial:2, dstrike:10, life:80, life_leech:4, ar_bonus_per_level:1, e_def:200, fhr:10, ar_bonus:5, light_radius:5, base:"Armet", nonmetal:1},
 {only:"barbarian", rarity:"craft", name:"Veteran's Blood Armet", req_level:51, skills_combat_barbarian:2, dstrike:10, life:80, life_leech:4, ar_bonus_per_level:1, e_def:200, fhr:10, ar_bonus:5, light_radius:5, base:"Armet"},
 	],
     armor: [
@@ -201,6 +204,19 @@ var equipment = {
 {rarity:"rw", name:"Myth ­ ­ - ­ ­ Mage Plate", req_level:25, ctc:[[3,1,"Howl","when struck"],[10,1,"Taunt","on striking"]], skills_barbarian:2, missile_defense:30, life_replenish:10, thorns:14, req:-15, extraValkyrie:1, base:"Mage Plate"},
 {rarity:"rw", name:"Peace ­ ­ - ­ ­ Mage Plate", req_level:29, skills_amazon:2, oskill_Lethal_Strike:2, fhr:20, cRes:30, thorns:14, base:"Mage Plate", pod_changes:1},
 {rarity:"rw", name:"Stealth ­ ­ - ­ ­ Light Plate", req_level:17, frw:25, fcr:25, fhr:25, dexterity:6, mana_regen:15, stamina:15, pRes:30, mDamage_reduced:3, base:"Light Plate"},
+	// Iron Golem RW replacements
+	{only:"none", rarity:"rw", name:"Rain ­ ­ - ­ ­ Archon Plate", req_level:63, ctc:[[5,15,"Cyclone Armor","when struck"]], skills_druid:2, mana:150, lRes:30, mDamage_reduced:7, damage_to_mana:15, extraGrizzly:1, base:"Archon Plate", pod_changes:1},
+	{only:"none", rarity:"rw", name:"Principle ­ ­ - ­ ­ Archon Plate", req_level:55, ctc:[[100,5,"Holy Bolt","on striking"]], skills_paladin:2, damage_vs_undead:50, life:150, slower_stam_drain:15, pRes_max:5, fRes:30, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Prudence ­ ­ - ­ ­ Archon Plate", req_level:49, fhr:25, e_def:170, all_res:35, damage_reduced:3, mDamage_reduced:17, mana_per_kill:2, light_radius:1, autorepair:1, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Bone ­ ­ - ­ ­ Archon Plate", req_level:47, ctc:[[15,3,"Terror","when struck"]], skills_necromancer:2, mana:150, all_res:30, damage_reduced:7, extraFireGolem:1, base:"Archon Plate", pod_changes:1},
+	{only:"none", rarity:"rw", name:"Gloom ­ ­ - ­ ­ Archon Plate", req_level:47, ctc:[[15,3,"Dim Vision","when struck"]], fhr:10, e_def:260, strength:10, all_res:45, half_freeze:1, damage_to_mana:5, light_radius:-3, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Stone ­ ­ - ­ ­ Archon Plate", req_level:47, fhr:60, e_def:290, missile_defense:300, strength:16, vitality:16, energy:10, all_res:15, base:"Archon Plate", cskill:[[16,"Molten Boulder",80],[16,"Clay Golem",16]]},
+	{only:"none", rarity:"rw", name:"Duress ­ ­ - ­ ­ Archon Plate", req_level:47, fhr:40, damage_bonus:20, cDamage_min:37, cDamage_max:133, cblow:15, owounds:33, e_def:200, slower_stam_drain:-20, cRes:30, all_res:15, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Enlightenment ­ ­ - ­ ­ Archon Plate", req_level:45, ctc:[[5,15,"Blaze","when struck"],[5,15,"Fire Ball","on striking"]], skills_sorceress:2, skill_Warmth:1, e_def:30, fRes:30, damage_reduced:7, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Wealth ­ ­ - ­ ­ Archon Plate", req_level:43, dexterity:10, mana_per_kill:2, gf:300, mf:100, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Treachery ­ ­ - ­ ­ Archon Plate", req_level:43, ctc:[[5,15,"Fade","when struck"],[25,15,"Venom","on striking"]], skills_assassin:2, ias:45, fhr:20, cRes:30, gf:50, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Lionheart ­ ­ - ­ ­ Archon Plate", req_level:41, damage_bonus:20, strength:25, dexterity:15, vitality:20, energy:10, life:50, all_res:30, req:-30, base:"Archon Plate"},
+	{only:"none", rarity:"rw", name:"Smoke ­ ­ - ­ ­ Archon Plate", req_level:37, fhr:20, e_defense:75, missile_defense:280, energy:10, all_res:50, light_radius:-1, base:"Archon Plate", cskill:[[6,"Weaken",18]]},
 {name:"Greyform", defense:20, life_leech:5, mDamage_reduced:3, cRes:20, fRes:20, dexterity:10, base:"Quilted Armor", img:"Greyform"},
 {name:"Blinkbat's Form", req_level:12, defense:25, missile_defense:50, frw:10, fhr:40, fDamage_min:3, fDamage_max:6, base:"Leather Armor", img:"Blinkbat's_Form"},
 {name:"The Centurion", req_level:14, defense:30, life_replenish:5, ar:50, mana:15, stamina:15, life:15, slower_stam_drain:25, damage_reduced:2, base:"Hard Leather Armor", img:"The_Centurion"},
@@ -292,7 +308,7 @@ var equipment = {
 {only:"sorceress", name:"Ormus' Robes (Meteor)", req_level:75, skill_Meteor:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Hydra)", req_level:75, skill_Hydra:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Fire Mastery)", req_level:75, skill_Fire_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
-// check: are any Sorceress skills excluded? Some sources say these cannot appear: Hydra, Frozen Orb, Cold Mastery, Lightning Mastery, Fire Mastery
+// TOCHECK: are any Sorceress skills excludedfrom Ormus' Robes? Some sources say these cannot appear: Hydra, Frozen Orb, Cold Mastery, Lightning Mastery, Fire Mastery
 	],
     gloves: [
 {name:"Gloves"},
@@ -345,7 +361,7 @@ var equipment = {
 {name:"Gore Rider", req_level:47, frw:30, cblow:15, dstrike:15, owounds:10, e_def:200, stamina:20, req:-25, base:"War Boots"},
 {name:"Sandstorm Trek", req_level:64, frw:20, fhr:20, e_def:170, stamina_per_level:1, strength:15, vitality:15, slower_stam_drain:50, pRes:70, base:"Scarabshell Boots"},
 {name:"Marrowwalk (Flesh)", req_level:66, frw:20, skill_Summon_Mastery:2, skill_Flesh_Offering:1, skill_Bone_Offering:0, e_def:200, strength:20, dexterity:17, mana_regen:10, heal_stam:10, half_freeze:1, base:"Boneweave Boots", pod_changes:1, cskill:[[12,"Life Tap",10]]},
-{only:"necromancer", name:"Marrowwalk (Bone)", req_level:66, frw:20, skill_Summon_Mastery:2, skill_Flesh_Offering:0, skill_Bone_Offering:1, e_def:200, strength:20, dexterity:17, mana_regen:10, heal_stam:10, half_freeze:1, base:"Boneweave Boots", pod_changes:1, cskill:[[12,"Life Tap",10]]},
+{only:"necromancer", name:"Marrowwalk (Bone)", req_level:66, frw:20, skill_Summon_Mastery:2, skill_Flesh_Offering:0, skill_Bone_Offering:1, e_def:200, strength:20, dexterity:17, mana_regen:10, heal_stam:10, half_freeze:1, base:"Boneweave Boots", pod_changes:1, cskill:[[12,"Life Tap",10]], nonmetal:1},
 {name:"Shadow Dancer", req_level:71, frw:30, skills_shadow:2, e_def:100, fhr:30, dexterity:25, req:-20, base:"Myrmidon Greaves", img:"Shadow_Dancer"},
 {set_IK:1, name:"Immortal King's Pillar", req_level:31, defense:75, frw:40, ar:110, life:44, base:"War Boots", rarity:"set", set_bonuses:["set_IK",{},{mf:25},{skills_combat_barbarian:2},{defense:140},{half_freeze:1},{}]},
 {set_Nat:1, name:"Natalya's Soul", req_level:25, frw:40, defense:125, heal_stam_per_level:0.25, cRes:25, lRes:25, base:"Mesh Boots", rarity:"set", set_bonuses:["set_Nat",{},{},{},{}], img:"Natalya's_Soul"},
@@ -463,17 +479,17 @@ var equipment = {
 {rarity:"magic", name:"Fortuitous Ring of Fortune", req_level:31, mf:40},
 	],
     ring2: [],	// Automatically copied from ring1
-    weapon: [		// TODO: Add a "rank" parameter to allow weapons to be displayed in different orders per class, without needing to duplicate entries using "only" and "not"
-{name:"Weapon"},	// TODO: If duplicates are shown for a single class, a "version" parameter could be used instead of tacking such info onto the item's name (which is shown on mouse-over)
+    weapon: [	// TODO: Add a "rank" parameter? It would allow weapons to be displayed in different orders per class, without needing to duplicate entries using "only" and "not"
+{name:"Weapon"},
 // Mercenary Runewords
 {only:"Rogue Scout",	rarity:"rw", name:"Plague ­ ­ - ­ ­ Hydra Bow", sup:15, twoHanded:1, req_level:67, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"bow", base:"Hydra Bow", pod_changes:1},
 {only:"Desert Guard",	rarity:"rw", name:"Plague ­ ­ - ­ ­ Giant Thresher", ethereal:1, twoHanded:1, req_level:68, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"polearm", base:"Giant Thresher", pod_changes:1},
-{only:"Iron Wolf",	rarity:"rw", name:"Plague ­ ­ - ­ ­ Cryptic Sword", ethereal:1, req_level:67, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"sword", base:"Cryptic Sword", pod_changes:1},
+{only:"Iron Wolf",		rarity:"rw", name:"Plague ­ ­ - ­ ­ Cryptic Sword", ethereal:1, req_level:67, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"sword", base:"Cryptic Sword", pod_changes:1},
 {only:"Barb (merc)",	rarity:"rw", name:"Plague ­ ­ - ­ ­ Legend Sword", ethereal:1, twoHanded:1, req_level:67, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"sword", base:"Legend Sword", pod_changes:1},
 {only:"Rogue Scout",	rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Hydra Bow", sup:15, req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, type:"bow", base:"Hydra Bow"},
 {only:"Rogue Scout",	rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Hydra Bow", sup:15, twoHanded:1, req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, type:"bow", base:"Hydra Bow"},
 {only:"Desert Guard",	rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Giant Thresher", ethereal:1, twoHanded:1, req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, type:"polearm", base:"Giant Thresher"},
-{only:"Iron Wolf",	rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Phase Blade", sup:15, req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, type:"sword", base:"Phase Blade"},
+{only:"Iron Wolf",		rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Phase Blade", sup:15, req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, type:"sword", base:"Phase Blade"},
 {only:"Barb (merc)",	rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, twoHanded:1, type:"sword", base:"Colossus Sword"},
 {only:"Desert Guard",	rarity:"rw", name:"Eternity ­ ­ - ­ ­ Great Poleaxe", req_level:63, e_damage:310, indestructible:1, damage_min:9, life_leech:7, cblow:20, blind_on_hit:1, slows_target:33, mana_regen:16, cbf:1, mf:30, ethereal:1, twoHanded:1, type:"polearm", base:"Great Poleaxe", cskill:[[8,"Revive",88]]},
 {only:"Desert Guard",	rarity:"rw", name:"Destruction ­ ­ - ­ ­ Giant Thresher", ethereal:1, req_level:68, ctc:[[23,12,"Volcano","on striking"],[5,23,"Molten Boulder","on striking"],[100,45,"Meteor","when you die"],[15,22,"Nova","on attack"]], e_damage:350, itd:1, mDamage_min:100, mDamage_max:180, mana_leech:7, cblow:20, dstrike:20, pmh:1, dexterity:10, twoHanded:1, type:"polearm", base:"Giant Thresher"},
@@ -481,10 +497,10 @@ var equipment = {
 {only:"Desert Guard",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Giant Thresher", ethereal:1, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"polearm", base:"Giant Thresher", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"sword", base:"Colossus Sword", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
 {only:"Desert Guard",	rarity:"rw", name:"Fury ­ ­ - ­ ­ Thresher", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, twoHanded:1, type:"polearm", base:"Thresher"},
-{only:"Iron Wolf",	rarity:"rw", name:"Fury ­ ­ - ­ ­ Mythical Sword", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, type:"sword", base:"Mythical Sword"},
+{only:"Iron Wolf",		rarity:"rw", name:"Fury ­ ­ - ­ ­ Mythical Sword", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, type:"sword", base:"Mythical Sword"},
 {only:"Barb (merc)",	rarity:"rw", name:"Fury ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, twoHanded:1, type:"sword", base:"Colossus Sword"},
 {only:"Desert Guard",	rarity:"rw", name:"Wind ­ ­ - ­ ­ Mancatcher", ethereal:1, twoHanded:1, req_level:61, e_damage:160, frw:20, ias:40, fhr:15, target_defense:-50, ar:50, blind_on_hit:1, light_radius:1, type:"spear", base:"Mancatcher", ctc:[[10,9,"Tornado","on striking"]], cskill:[[13,"Twister",127]]},
-{only:"Iron Wolf",	rarity:"rw", name:"Wind ­ ­ - ­ ­ Ataghan", ethereal:1, req_level:61, e_damage:160, frw:20, ias:40, fhr:15, target_defense:-50, ar:50, blind_on_hit:1, light_radius:1, type:"sword", base:"Ataghan", ctc:[[10,9,"Tornado","on striking"]], cskill:[[13,"Twister",127]]},
+{only:"Iron Wolf",		rarity:"rw", name:"Wind ­ ­ - ­ ­ Ataghan", ethereal:1, req_level:61, e_damage:160, frw:20, ias:40, fhr:15, target_defense:-50, ar:50, blind_on_hit:1, light_radius:1, type:"sword", base:"Ataghan", ctc:[[10,9,"Tornado","on striking"]], cskill:[[13,"Twister",127]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Wind ­ ­ - ­ ­ Legend Sword", ethereal:1, twoHanded:1, req_level:61, e_damage:160, frw:20, ias:40, fhr:15, target_defense:-50, ar:50, blind_on_hit:1, light_radius:1, type:"sword", base:"Legend Sword", ctc:[[10,9,"Tornado","on striking"]], cskill:[[13,"Twister",127]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Grief ­ ­ - ­ ­ Colossus Sword", ethereal:1, twoHanded:1, req_level:60, type:"sword", ias:40, itd:1, target_defense:-25, enemy_pRes:-25, dstrike:20, pmh:1, mana_per_kill:2, life_per_kill:15, fDamage_min:5, fDamage_max:30, min_damage_per_level:3.375, max_damage_per_level:3.625, base:"Colossus Sword", pod_changes:1},
 {only:"Rogue Scout",	rarity:"rw", name:"Fortitude ­ ­ - ­ ­ Ward Bow", sup:15, twoHanded:1, req_level:60, ctc:[[20,15,"Chilling Armor","when struck"]], fcr:25, damage_bonus:300, damage_min:9, ar:50, dstrike:20, flee_on_hit:25, e_def:200, life_per_level:1.5, all_res:30, damage_to_mana:12, light_radius:1, type:"bow", base:"Ward Bow"},
@@ -492,33 +508,33 @@ var equipment = {
 {only:"Barb (merc)",	rarity:"rw", name:"Fortitude ­ ­ - ­ ­ Colossus Sword", ethereal:1, twoHanded:1, req_level:60, ctc:[[20,15,"Chilling Armor","when struck"]], fcr:25, damage_bonus:300, damage_min:9, ar:50, dstrike:20, flee_on_hit:25, e_def:200, life_per_level:1.5, all_res:30, damage_to_mana:12, light_radius:1, type:"sword", base:"Colossus Sword"},
 {only:"Rogue Scout",	rarity:"rw", name:"Call to Arms ­ ­ - ­ ­ Ward Bow", sup:15, twoHanded:1, req_level:60, all_skills:1, oskill_Battle_Cry:4, oskill_Battle_Orders:6, oskill_Battle_Command:6, ias:40, e_damage:290, fDamage_min:5, fDamage_max:30, life_leech:7, pmh:1, life_replenish:12, mf:30, type:"bow", base:"Ward Bow", pod_changes:1},			// Battle Order's life and mana bonuses are halved
 {only:"Desert Guard",	rarity:"rw", name:"Call to Arms ­ ­ - ­ ­ Thresher", ethereal:1, twoHanded:1, req_level:57, all_skills:1, oskill_Battle_Cry:4, oskill_Battle_Orders:6, oskill_Battle_Command:6, ias:40, e_damage:290, fDamage_min:5, fDamage_max:30, life_leech:7, pmh:1, life_replenish:12, mf:30, type:"polearm", base:"Thresher", pod_changes:1},		// Battle Order's life and mana bonuses are halved
-{only:"Iron Wolf",	rarity:"rw", name:"Call to Arms ­ ­ - ­ ­ Phase Blade", sup:15, req_level:57, all_skills:1, oskill_Battle_Cry:4, oskill_Battle_Orders:6, oskill_Battle_Command:6, ias:40, e_damage:290, fDamage_min:5, fDamage_max:30, life_leech:7, pmh:1, life_replenish:12, mf:30, type:"sword", base:"Phase Blade", pod_changes:1},				// Battle Order's life and mana bonuses are halved
+{only:"Iron Wolf",		rarity:"rw", name:"Call to Arms ­ ­ - ­ ­ Phase Blade", sup:15, req_level:57, all_skills:1, oskill_Battle_Cry:4, oskill_Battle_Orders:6, oskill_Battle_Command:6, ias:40, e_damage:290, fDamage_min:5, fDamage_max:30, life_leech:7, pmh:1, life_replenish:12, mf:30, type:"sword", base:"Phase Blade", pod_changes:1},				// Battle Order's life and mana bonuses are halved
 {only:"Barb (merc)",	rarity:"rw", name:"Call to Arms ­ ­ - ­ ­ Colossus Sword", ethereal:1, twoHanded:1, req_level:60, all_skills:1, oskill_Battle_Cry:4, oskill_Battle_Orders:6, oskill_Battle_Command:6, ias:40, e_damage:290, fDamage_min:5, fDamage_max:30, life_leech:7, pmh:1, life_replenish:12, mf:30, type:"sword", base:"Colossus Sword", pod_changes:1},	// Battle Order's life and mana bonuses are halved
 {only:"Rogue Scout",	rarity:"rw", name:"Silence ­ ­ - ­ ­ Crusader Bow", sup:15, req_level:57, aura:"Cleansing", aura_lvl:7, all_skills:2, ias:20, e_damage:200, fhr:20, damage_vs_undead:75, ar_vs_undead:50, mana_leech:11, blind_on_hit:33, flee_on_hit:25, all_res:75, mana_per_kill:2, mf:30, req:-20, twoHanded:1, type:"bow", base:"Crusader Bow", pod_changes:1},
 {only:"Desert Guard",	rarity:"rw", name:"Silence ­ ­ - ­ ­ Thresher", ethereal:1, req_level:57, aura:"Cleansing", aura_lvl:7, all_skills:2, ias:20, e_damage:200, fhr:20, damage_vs_undead:75, ar_vs_undead:50, mana_leech:11, blind_on_hit:33, flee_on_hit:25, all_res:75, mana_per_kill:2, mf:30, req:-20, twoHanded:1, type:"polearm", base:"Thresher", pod_changes:1},
-{only:"Iron Wolf",	rarity:"rw", name:"Kingslayer ­ ­ - ­ ­ Conquest Sword", ethereal:1, req_level:57, e_damage:270, ias:30, target_defense:-25, ar_bonus:20, cblow:33, owounds:50, oskill_Vengeance:1, pmh:1, strength:10, gf:40, type:"sword", base:"Conquest Sword"},
+{only:"Iron Wolf",		rarity:"rw", name:"Kingslayer ­ ­ - ­ ­ Conquest Sword", ethereal:1, req_level:57, e_damage:270, ias:30, target_defense:-25, ar_bonus:20, cblow:33, owounds:50, oskill_Vengeance:1, pmh:1, strength:10, gf:40, type:"sword", base:"Conquest Sword"},
 {only:"Desert Guard",	rarity:"rw", name:"Rift ­ ­ - ­ ­ Thresher", ethereal:1, twoHanded:1, req_level:57, ar_bonus:20, mDamage_min:160, mDamage_max:250, fDamage_min:60, fDamage_max:180, all_attributes:10, dexterity:10, damage_to_mana:38, gf:75, req:-20, type:"polearm", base:"Thresher", ctc:[[20,16,"Tornado","on striking"],[16,21,"Frozen Orb","on attack"]], cskill:[[15,"Iron Maiden",40]]},
-{only:"Iron Wolf",	rarity:"rw", name:"Oath ­ ­ - ­ ­ Cryptic Sword", req_level:60, e_damage:340, ias:50, damage_vs_demons:75, ar_vs_demons:100, pmh:1, energy:10, mAbsorb_flat:15, indestructible:1, ethereal:1, type:"sword", base:"Cryptic Sword", ctc:[[30,20,"Bone Spirit","on striking"]], cskill:[[16,"Heart of Wolverine",20],[17,"Iron Golem",14]]},
+{only:"Iron Wolf",		rarity:"rw", name:"Oath ­ ­ - ­ ­ Cryptic Sword", req_level:60, e_damage:340, ias:50, damage_vs_demons:75, ar_vs_demons:100, pmh:1, energy:10, mAbsorb_flat:15, indestructible:1, ethereal:1, type:"sword", base:"Cryptic Sword", ctc:[[30,20,"Bone Spirit","on striking"]], cskill:[[16,"Heart of Wolverine",20],[17,"Iron Golem",14]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Oath ­ ­ - ­ ­ Colossus Sword", req_level:60, e_damage:340, ias:50, damage_vs_demons:75, ar_vs_demons:100, pmh:1, energy:10, mAbsorb_flat:15, indestructible:1, ethereal:1, twoHanded:1, type:"sword", base:"Colossus Sword", ctc:[[30,20,"Bone Spirit","on striking"]], cskill:[[16,"Heart of Wolverine",20],[17,"Iron Golem",14]]},
 {only:"Rogue Scout",	rarity:"rw", name:"Venom ­ ­ - ­ ­ Great Bow", sup:15, twoHanded:1, req_level:51, itd:1, pDamage_all:273, pDamage_duration:6, mana_leech:7, pmh:1, flee_on_hit:25, type:"bow", base:"Great Bow", pod_changes:1, cskill:[[13,"Poison Nova",11],[15,"Desecrate",27]]},
 {only:"Desert Guard",	rarity:"rw", name:"Venom ­ ­ - ­ ­ Mancatcher", ethereal:1, twoHanded:1, req_level:58, itd:1, pDamage_all:273, pDamage_duration:6, mana_leech:7, pmh:1, flee_on_hit:25, type:"spear", base:"Mancatcher", pod_changes:1, cskill:[[13,"Poison Nova",11],[15,"Desecrate",27]]},
-{only:"Iron Wolf",	rarity:"rw", name:"Venom ­ ­ - ­ ­ Phase Blade", sup:15, req_level:54, itd:1, pDamage_all:273, pDamage_duration:6, mana_leech:7, pmh:1, flee_on_hit:25, type:"sword", base:"Phase Blade", pod_changes:1, cskill:[[13,"Poison Nova",11],[15,"Desecrate",27]]},
+{only:"Iron Wolf",		rarity:"rw", name:"Venom ­ ­ - ­ ­ Phase Blade", sup:15, req_level:54, itd:1, pDamage_all:273, pDamage_duration:6, mana_leech:7, pmh:1, flee_on_hit:25, type:"sword", base:"Phase Blade", pod_changes:1, cskill:[[13,"Poison Nova",11],[15,"Desecrate",27]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Venom ­ ­ - ­ ­ Legend Sword", ethereal:1, twoHanded:1, req_level:49, itd:1, pDamage_all:273, pDamage_duration:6, mana_leech:7, pmh:1, flee_on_hit:25, type:"sword", base:"Legend Sword", pod_changes:1, cskill:[[13,"Poison Nova",11],[15,"Desecrate",27]]},
-{only:"Iron Wolf",	rarity:"rw", name:"Crescent Moon ­ ­ - ­ ­ Phase Blade", sup:15, req_level:54, e_damage:220, ias:20, enemy_lRes:-35, owounds:25, mAbsorb_flat:11, mana_per_kill:2, type:"sword", base:"Phase Blade", ctc:[[10,17,"Chain Lightning","on striking"],[7,13,"Static Field","on striking"]], cskill:[[18,"Summon Spirit Wolf",30]]},
+{only:"Iron Wolf",		rarity:"rw", name:"Crescent Moon ­ ­ - ­ ­ Phase Blade", sup:15, req_level:54, e_damage:220, ias:20, enemy_lRes:-35, owounds:25, mAbsorb_flat:11, mana_per_kill:2, type:"sword", base:"Phase Blade", ctc:[[10,17,"Chain Lightning","on striking"],[7,13,"Static Field","on striking"]], cskill:[[18,"Summon Spirit Wolf",30]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Crescent Moon ­ ­ - ­ ­ Legend Sword", ethereal:1, req_level:47, e_damage:220, ias:20, enemy_lRes:-35, owounds:25, mAbsorb_flat:11, mana_per_kill:2, twoHanded:1, type:"sword", base:"Legend Sword", ctc:[[10,17,"Chain Lightning","on striking"],[7,13,"Static Field","on striking"]], cskill:[[18,"Summon Spirit Wolf",30]]},
-{only:"Iron Wolf",	rarity:"rw", name:"Lawbringer ­ ­ - ­ ­ Cryptic Sword", ethereal:1, req_level:43, ctc:[[20,7,"Decrepify","on striking"]], aura:"Sanctuary", aura_lvl:18, target_defense:-50, fDamage_min:150, fDamage_max:210, cDamage_min:130, cDamage_max:180, life_leech:7, peace:1, missile_defense:250, dexterity:10, gf:75, type:"sword", base:"Cryptic Sword", pod_changes:1},
-{only:"Iron Wolf",	rarity:"rw", name:"Voice of Reason ­ ­ - ­ ­ Phase Blade", sup:15, req_level:54, ar:50, damage_vs_demons:350, damage_vs_undead:375, ar_vs_undead:50, cDamage_min:100, cDamage_max:220, enemy_cRes:-24, dexterity:10, cbf:1, gf:75, light_radius:1, twoHanded:1, type:"sword", base:"Phase Blade", ctc:[[15,13,"Frozen Orb","on striking"],[18,20,"Ice Blast","on striking"]]},
+{only:"Iron Wolf",		rarity:"rw", name:"Lawbringer ­ ­ - ­ ­ Cryptic Sword", ethereal:1, req_level:43, ctc:[[20,7,"Decrepify","on striking"]], aura:"Sanctuary", aura_lvl:18, target_defense:-50, fDamage_min:150, fDamage_max:210, cDamage_min:130, cDamage_max:180, life_leech:7, peace:1, missile_defense:250, dexterity:10, gf:75, type:"sword", base:"Cryptic Sword", pod_changes:1},
+{only:"Iron Wolf",		rarity:"rw", name:"Voice of Reason ­ ­ - ­ ­ Phase Blade", sup:15, req_level:54, ar:50, damage_vs_demons:350, damage_vs_undead:375, ar_vs_undead:50, cDamage_min:100, cDamage_max:220, enemy_cRes:-24, dexterity:10, cbf:1, gf:75, light_radius:1, twoHanded:1, type:"sword", base:"Phase Blade", ctc:[[15,13,"Frozen Orb","on striking"],[18,20,"Ice Blast","on striking"]]},
 {only:"Rogue Scout",	rarity:"rw", name:"Passion ­ ­ - ­ ­ Blade Bow", sup:15, twoHanded:1, req_level:45, e_damage:210, ias:25, ar_bonus:80, damage_vs_undead:75, ar_vs_undead:50, lDamage_min:1, lDamage_max:50, oskill_Bash:1, oskill_Zeal:1, blind_on_hit:10, flee_on_hit:25, gf:75, type:"bow", base:"Blade Bow", pod_changes:1, cskill:[[3,"Heart of Wolverine",12]]},
 {only:"Desert Guard",	rarity:"rw", name:"Passion ­ ­ - ­ ­ Thresher", ethereal:1, twoHanded:1, req_level:57, e_damage:210, ias:25, ar_bonus:80, damage_vs_undead:75, ar_vs_undead:50, lDamage_min:1, lDamage_max:50, oskill_Bash:1, oskill_Zeal:1, blind_on_hit:10, flee_on_hit:25, gf:75, type:"polearm", base:"Thresher", pod_changes:1, cskill:[[3,"Heart of Wolverine",12]]},
-{only:"Iron Wolf",	rarity:"rw", name:"Passion ­ ­ - ­ ­ Cryptic Sword", ethereal:1, req_level:60, e_damage:210, ias:25, ar_bonus:80, damage_vs_undead:75, ar_vs_undead:50, lDamage_min:1, lDamage_max:50, oskill_Bash:1, oskill_Zeal:1, blind_on_hit:10, flee_on_hit:25, gf:75, type:"sword", base:"Cryptic Sword", pod_changes:1, cskill:[[3,"Heart of Wolverine",12]]},
+{only:"Iron Wolf",		rarity:"rw", name:"Passion ­ ­ - ­ ­ Cryptic Sword", ethereal:1, req_level:60, e_damage:210, ias:25, ar_bonus:80, damage_vs_undead:75, ar_vs_undead:50, lDamage_min:1, lDamage_max:50, oskill_Bash:1, oskill_Zeal:1, blind_on_hit:10, flee_on_hit:25, gf:75, type:"sword", base:"Cryptic Sword", pod_changes:1, cskill:[[3,"Heart of Wolverine",12]]},
 {only:"Barb (merc)",	rarity:"rw", name:"Passion ­ ­ - ­ ­ Highland Blade", ethereal:1, twoHanded:1, req_level:49, e_damage:210, ias:25, ar_bonus:80, damage_vs_undead:75, ar_vs_undead:50, lDamage_min:1, lDamage_max:50, oskill_Bash:1, oskill_Zeal:1, blind_on_hit:10, flee_on_hit:25, gf:75, type:"sword", base:"Highland Blade", pod_changes:1, cskill:[[3,"Heart of Wolverine",12]]},
 {only:"Desert Guard",	rarity:"rw", name:"Honor ­ ­ - ­ ­ Grim Scythe", ethereal:1, twoHanded:1, req_level:27, e_damage:160, all_skills:1, damage_min:9, damage_max:9, ar:250, life_leech:7, dstrike:25, strength:10, life_replenish:10, mana_per_kill:2, light_radius:1, type:"polearm", base:"Grim Scythe"},
-{only:"Iron Wolf",	rarity:"rw", name:"Honor ­ ­ - ­ ­ Dimensional Blade", ethereal:1, req_level:27, e_damage:160, all_skills:1, damage_min:9, damage_max:9, ar:250, life_leech:7, dstrike:25, strength:10, life_replenish:10, mana_per_kill:2, light_radius:1, type:"sword", base:"Dimensional Blade"},
+{only:"Iron Wolf",		rarity:"rw", name:"Honor ­ ­ - ­ ­ Dimensional Blade", ethereal:1, req_level:27, e_damage:160, all_skills:1, damage_min:9, damage_max:9, ar:250, life_leech:7, dstrike:25, strength:10, life_replenish:10, mana_per_kill:2, light_radius:1, type:"sword", base:"Dimensional Blade"},
 {only:"Barb (merc)",	rarity:"rw", name:"Honor ­ ­ - ­ ­ Executioner Sword", ethereal:1, twoHanded:1, req_level:27, e_damage:160, all_skills:1, damage_min:9, damage_max:9, ar:250, life_leech:7, dstrike:25, strength:10, life_replenish:10, mana_per_kill:2, light_radius:1, type:"sword", base:"Executioner Sword"},
-{only:"Iron Wolf",	rarity:"rw", name:"King's Grace ­ ­ - ­ ­ Battle Sword", ethereal:1, req_level:25, e_damage:100, ar:150, damage_vs_demons:100, ar_vs_demons:100, damage_vs_undead:50, ar_vs_undead:100, fDamage_min:5, fDamage_max:30, cDamage_min:3, cDamage_max:14, life_leech:7, type:"sword", base:"Battle Sword"},
+{only:"Iron Wolf",		rarity:"rw", name:"King's Grace ­ ­ - ­ ­ Battle Sword", ethereal:1, req_level:25, e_damage:100, ar:150, damage_vs_demons:100, ar_vs_demons:100, damage_vs_undead:50, ar_vs_undead:100, fDamage_min:5, fDamage_max:30, cDamage_min:3, cDamage_max:14, life_leech:7, type:"sword", base:"Battle Sword"},
 {only:"Desert Guard",	rarity:"rw", name:"Strength ­ ­ - ­ ­ War Fork", ethereal:1, twoHanded:1, req_level:26, e_damage:35, life_leech:7, cblow:25, strength:20, vitality:10, mana_per_kill:2, life_per_hit:8, type:"spear", base:"War Fork", pod_changes:1},
 {only:"Desert Guard",	rarity:"rw", name:"Malice ­ ­ - ­ ­ Battle Scythe", ethereal:1, twoHanded:1, req_level:25, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"polearm", base:"Battle Scythe"},
-{only:"Iron Wolf",	rarity:"rw", name:"Malice ­ ­ - ­ ­ Rune Sword", ethereal:1, req_level:25, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"sword", base:"Rune Sword"},
+{only:"Iron Wolf",		rarity:"rw", name:"Malice ­ ­ - ­ ­ Rune Sword", ethereal:1, req_level:25, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"sword", base:"Rune Sword"},
 {only:"Barb (merc)",	rarity:"rw", name:"Malice ­ ­ - ­ ­ Zweihander", ethereal:1, twoHanded:1, req_level:25, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"sword", base:"Zweihander"},
 // Class Weapons
 {only:"amazon", name:"Titan's Revenge", req_level:42, skills_javelins:2, skills_amazon:2, e_damage:200, damage_min:25, damage_max:50, life_leech:9, frw:30, strength:20, dexterity:20, autoreplenish:1, type:"javelin", base:"Ceremonial Javelin"},
@@ -576,12 +592,12 @@ var equipment = {
 {not:["amazon"], rarity:"rw", 	name:"Zephyr ­ ­ - ­ ­ Gothic Bow", sup:15, req_level:25, e_damage:33, frw:25, ias:25, target_defense:-25, ar:66, lDamage_min:1, lDamage_max:50, defense:25, skill_Phase_Run:3, twoHanded:1, type:"bow", base:"Gothic Bow", pod_changes:1},
 // Runewords
 {not:["amazon","assassin","sorceress","Iron Wolf","Barb (merc)"], rarity:"rw", name:"Plague ­ ­ - ­ ­ Phase Blade", sup:15, req_level:67, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"sword", base:"Phase Blade", pod_changes:1},
-{only:"amazon", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Matriarchal Pike", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], skills_javelins:3, indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"spear", base:"Matriarchal Pike"},
+{only:"amazon", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Matriarchal Pike", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], skills_javelins:3, indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"spear", base:"Matriarchal Pike", nonmetal:1},
 {not:["amazon","assassin","necromancer","paladin","sorceress"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ War Pike", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"spear", base:"War Pike"},
-{not:["amazon","assassin","druid","necromancer","paladin","sorceress"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Colossus Blade", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"sword", base:"Colossus Blade"},
+{not:["amazon","assassin","druid","necromancer","paladin","sorceress"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Colossus Blade", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"sword", base:"Colossus Blade", nonmetal:1},
 {not:["amazon","barbarian","Barb (merc)"], rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Phase Blade", req_level:69, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, type:"sword", base:"Phase Blade"},
-{only:"barbarian", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Thunder Maul", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"hammer", base:"Thunder Maul"},
-//{only:"barbarian", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Glorious Axe", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"axe", base:"Glorious Axe"},
+{only:"barbarian", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Thunder Maul", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"hammer", base:"Thunder Maul", nonmetal:1},
+//{only:"barbarian", rarity:"rw", name:"Breath of the Dying ­ ­ - ­ ­ Glorious Axe", req_level:69, twoHanded:1, ctc:[[50,20,"Poison Nova","when you Kill an Enemy"]], indestructible:1, ias:60, e_damage:400, target_defense:-25, ar:50, damage_vs_undead:200, ar_vs_undead:50, mana_leech:7, life_leech:15, pmh:1, all_attributes:30, light_radius:1, req:-20, ethereal:1, type:"axe", base:"Glorious Axe", nonmetal:1},
 {rarity:"rw", name:"Pride ­ ­ - ­ ­ Giant Thresher", sup:15, req_level:67, ctc:[[25,17,"Fire Wall","when struck"]], aura:"Concentration", aura_lvl:20, ar_bonus:300, damage_vs_demons_per_level:1, lDamage_min:50, lDamage_max:280, dstrike:20, blind_on_hit:1, freezes_target:3, vitality:10, life_replenish:8, gf_per_level:1.875, twoHanded:1, type:"polearm", base:"Giant Thresher"},
 {rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Caduceus", req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, skill_Salvation:3, skill_Vengeance:3, skill_Redemption:3, type:"scepter", base:"Caduceus"},
 {not:["amazon","assassin","druid","necromancer","paladin","sorceress"], rarity:"rw", name:"Eternity ­ ­ - ­ ­ Colossus Sword", req_level:63, e_damage:310, indestructible:1, ethereal:1, damage_min:9, life_leech:7, cblow:20, blind_on_hit:1, slows_target:33, mana_regen:16, cbf:1, mf:30, twoHanded:1, type:"sword", base:"Colossus Sword", cskill:[[8,"Revive",88]]},
@@ -614,18 +630,23 @@ var equipment = {
 {rarity:"rw", name:"Voice of Reason ­ ­ - ­ ­ Highland Blade", sup:15, req_level:49, ctc:[[15,13,"Frozen Orb","on striking"],[18,20,"Ice Blast","on striking"]], ar:50, damage_vs_demons:350, damage_vs_undead:375, ar_vs_undead:50, cDamage_min:100, cDamage_max:220, enemy_cRes:-24, dexterity:10, cbf:1, gf:75, light_radius:1, twoHanded:1, type:"sword", base:"Highland Blade"},
 {rarity:"rw", name:"Passion ­ ­ - ­ ­ Small Crescent", sup:15, req_level:45, e_damage:210, ias:25, ar_bonus:80, damage_vs_undead:75, ar_vs_undead:50, lDamage_min:1, lDamage_max:50, oskill_Bash:1, oskill_Zeal:1, blind_on_hit:10, flee_on_hit:25, gf:75, type:"axe", base:"Small Crescent", pod_changes:1, cskill:[[3,"Heart of Wolverine",12]]},
 {rarity:"rw", name:"Obedience ­ ­ - ­ ­ Thresher", sup:15, req_level:57, ctc:[[30,21,"Enflame","on kill"]], e_damage:370, fhr:40, target_defense:-25, cDamage_min:3, cDamage_max:14, enemy_fRes:-25, cblow:40, defense:300, strength:10, dexterity:10, all_res:30, req:-20, twoHanded:1, type:"polearm", base:"Thresher"},
-{rarity:"rw", name:"Black ­ ­ - ­ ­ Tyrant Club", sup:15, req_level:42, e_damage:120, ias:15, ar:200, cDamage_min:3, cDamage_max:14, cblow:40, knockback:1, vitality:10, mDamage_reduced:2, type:"mace", base:"Tyrant Club", cskill:[[4,"Corpse Explosion",12]]},
+{rarity:"rw", name:"Black ­ ­ - ­ ­ Devil Star", sup:15, req_level:42, e_damage:120, ias:15, ar:200, cDamage_min:3, cDamage_max:14, cblow:40, knockback:1, vitality:10, mDamage_reduced:2, type:"mace", base:"Devil Star", cskill:[[4,"Corpse Explosion",12]]},
 {rarity:"rw", name:"Honor ­ ­ - ­ ­ Knout", sup:15, req_level:27, all_skills:1, e_damage:160, damage_min:9, damage_max:9, ar:250, life_leech:7, dstrike:25, strength:10, life_replenish:10, mana_per_kill:2, light_radius:1, type:"mace", base:"Knout"},
 {rarity:"rw", name:"Insight ­ ­ - ­ ­ Partizan", sup:15, req_level:27, aura:"Meditation", aura_lvl:17, e_damage:260, fcr:35, damage_min:9, ar_bonus:250, fDamage_min:5, fDamage_max:30, pDamage_all:75, pDamage_duration:5, oskill_Lethal_Strike:6, all_attributes:5, mana_per_kill:2, mf:23, twoHanded:1, type:"polearm", base:"Partizan"},
 {rarity:"rw", name:"Spirit ­ ­ - ­ ­ Crystal Sword", type:"sword", req_level:25, all_skills:2, fcr_per_level:0.375, fhr:55, life_leech:7, mana_per_level:1, missile_defense:75, mAbsorb_flat:8, pDamage_all:75, pDamage_duration:5, lDamage_min:1, lDamage_max:50, cDamage_min:3, cDamage_max:14, base:"Crystal Sword", pod_changes:1},
 {rarity:"rw", name:"King's Grace ­ ­ - ­ ­ Zweihander", sup:15, req_level:25, e_damage:100, ar:150, damage_vs_demons:100, ar_vs_demons:100, damage_vs_undead:50, ar_vs_undead:100, fDamage_min:5, fDamage_max:30, cDamage_min:3, cDamage_max:14, life_leech:7, twoHanded:1, type:"sword", base:"Zweihander"},
 {rarity:"rw", name:"Strength ­ ­ - ­ ­ Cutlass", sup:15, req_level:25, e_damage:35, life_leech:7, cblow:25, strength:20, vitality:10, mana_per_kill:2, life_per_hit:8, type:"sword", base:"Cutlass", pod_changes:1},
-{rarity:"rw", name:"Malice ­ ­ - ­ ­ Barbed Club", sup:15, req_level:20, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"club", base:"Barbed Club"},
+{rarity:"rw", name:"Malice ­ ­ - ­ ­ Jagged Star", sup:15, req_level:20, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"mace", base:"Jagged Star"},
 {rarity:"rw", name:"Steel ­ ­ - ­ ­ Scimitar", sup:15, req_level:13, e_damage:20, ias:25, damage_min:3, damage_max:3, ar:50, owounds:50, mana_per_kill:2, light_radius:1, type:"sword", base:"Scimitar"},
 {rarity:"rw", name:"Holy Thunder ­ ­ - ­ ­ Divine Scepter", req_level:25, e_damage:60, damage_max:10, target_defense:-25, fDamage_min:5, fDamage_max:30, lDamage_min:21, lDamage_max:110, pDamage_all:75, pDamage_duration:5, lRes_max:5, lRes:60, skill_Fist_of_the_Heavens:3, skill_Vigor:3, skill_Holy_Shock:6, type:"scepter", base:"Divine Scepter", pod_changes:1, cskill:[[7,"Teleport",60]]},
 {rarity:"rw", name:"Leaf ­ ­ - ­ ­ Jo Staff", req_level:19, skills_fire_all:3, fDamage_min:5, fDamage_max:30, skill_Blaze:6, skill_Warmth:6, skill_Fire_Bolt:6, defense_per_level:2, cRes:33, mana_per_kill:2, twoHanded:1, type:"staff", base:"Jo Staff", pod_changes:1},
 {rarity:"rw", name:"Memory ­ ­ - ­ ­ Gothic Staff", req_level:37, skills_sorceress:3, fcr:33, damage_min:9, target_defense:-25, defense_bonus:50, vitality:10, energy:10, max_mana:20, phys_Lightning_Surge:35, skill_Static_Field:2, skill_Energy_Shield:6, skill_Lightning_Surge:3, skill_Lightning_Mastery:3, twoHanded:1, type:"staff", base:"Gothic Staff", pod_changes:1},
 {not:["necromancer"], rarity:"rw", name:"White ­ ­ - ­ ­ Bone Wand", req_level:35, skills_poisonBone:3, fcr:20, flee_on_hit:25, vitality:10, mana:13, mDamage_reduced:4, skill_Summon_Mastery:4, skill_Bone_Armor:3, skill_Bone_Spear:2, type:"wand", base:"Bone Wand"},
+	// Iron Golem RW replacements
+	{only:"none", rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Scourge", sup:15, req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, type:"mace", base:"Scourge", pod_changes:1},
+	{only:"none", rarity:"rw", name:"Grief ­ ­ - ­ ­ Scourge", type:"mace", sup:15, req_level:59, ias:40, itd:1, target_defense:-25, enemy_pRes:-25, dstrike:20, pmh:1, mana_per_kill:2, life_per_kill:15, fDamage_min:5, fDamage_max:30, min_damage_per_level:3.375, max_damage_per_level:3.625, base:"Scourge", pod_changes:1},
+	{only:"none", rarity:"rw", name:"Fortitude ­ ­ - ­ ­ Scourge", sup:15, req_level:59, ctc:[[20,15,"Chilling Armor","when struck"]], e_damage:300, defense_bonus:200, fcr:25, life_per_level:1.5, all_res:30, damage_to_mana:12, light_radius:1, damage_min:9, ar:50, dstrike:20, flee_on_hit:25, type:"mace", base:"Scourge"},
+	{only:"none", rarity:"rw", name:"Spirit ­ ­ - ­ ­ Knout", type:"mace", req_level:25, all_skills:2, fcr_per_level:0.375, fhr:55, life_leech:7, mana_per_level:1, missile_defense:75, mAbsorb_flat:8, pDamage_all:75, pDamage_duration:5, lDamage_min:1, lDamage_max:50, cDamage_min:3, cDamage_max:14, base:"Knout", pod_changes:1},
 // Special
 {name:"Horadric Malus", type:"hammer", req_strength:15, req_dexterity:15, special:1, damage_vs_undead:150, base_damage_min:6, base_damage_max:15, durability:83, max_sockets:2, img:"Horadric_Malus", tier:0},
 {name:"Staff of Kings", type:"staff", twoHanded:1, req_strength:25, special:1, damage_vs_undead:50, base_damage_min:10, base_damage_max:15, durability:0, ias:50, all_res:10, max_sockets:2, img:"Staff_of_Kings", tier:0},
@@ -755,7 +776,6 @@ var equipment = {
 {name:"Swordguard", req_level:48, e_damage:180, defense_per_level:5, damage_to_mana:30, all_res:20, fhr:20, ibc:20, missile_defense:100, melee_defense:200, req:-50, twoHanded:1, type:"sword", base:"Executioner Sword", img:"Swordguard"},
 {name:"Djinn Slayer", req_level:65, e_damage:240, damage_vs_demons:150, ar_vs_demons:300, fDamage_min:250, fDamage_max:500, mana_leech:6, lAbsorb_flat:7, sockets:2, type:"sword", base:"Ataghan", img:"Blood_Crescent"},
 {name:"Bloodmoon", req_level:61, e_damage:260, life_leech:15, owounds:50, life_per_kill:13, type:"sword", base:"Elegant Blade", img:"Bloodmoon", cskill:[[15,"Blood Golem",9]]},
-//{name:"Frostwind", req_level:70, e_damage:230, ias:25, cDamage_min:237, cDamage_max:486, oskill_Arctic_Blast:14, freezes_target:4, cAbsorb:15, half_freeze:1, type:"sword", base:"Cryptic Sword", pod_changes:1, img:"Frostwind"},
 {name:"Frostwind", req_level:70, e_damage:230, ias:25, cDamage_min:237, cDamage_max:486, oskill_Frigerate:14, freezes_target:4, cAbsorb:15, half_freeze:1, type:"sword", base:"Cryptic Sword", pod_changes:1, img:"Frostwind"},
 {name:"Flamebellow", req_level:71, ctc:[[12,16,"Firestorm","on striking"]], skills_fire_all:3, oskill_Flame_Dash:18, e_damage:240, fDamage_min:233, fDamage_max:482, strength:20, vitality:10, fAbsorb:30, twoHanded:1, type:"sword", base:"Balrog Blade", pod_changes:1, img:"Flamebellow"},
 {name:"Doombringer", req_level:69, ctc:[[8,3,"Weaken","on striking"]], e_damage:250, damage_min:30, damage_max:100, ar_bonus:40, max_life:20, life_leech:7, indestructible:1, ethereal:0, twoHanded:1, type:"sword", base:"Champion Sword", img:"Doombringer"},
@@ -889,9 +909,9 @@ var equipment = {
 {only:"paladin", set_Gris:1, name:"Griswold's Honor", req_level:68, defense:108, fbr:65, ibc:20, all_res:45, sockets:3, type:"shield", base:"Vortex Shield", rarity:"set", set_bonuses:["set_Gris",{},{},{},{}], img:"Griswold's_Honor"},
 {only:"paladin", rarity:"rw", name:"Exile ­ ­ - ­ ­ Sacred Targe", req_level:57, ctc:[[15,5,"Life Tap","on striking"]], aura:"Defiance", aura_lvl:16, skills_offensive:2, fbr:30, freezes_target:1, e_def:260, life_replenish:7, cRes_max:5, fRes_max:5, mf:25, all_res:45, autorepair:1, ethereal:1, type:"shield", base:"Sacred Targe"},
 {only:"paladin", rarity:"rw", name:"Spirit ­ ­ - ­ ­ Sacred Targe", req_level:47, all_skills:2, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, all_res:45, type:"shield", base:"Sacred Targe"},
-{not:["paladin"], rarity:"rw", name:"Spirit ­ ­ - ­ ­ Monarch", req_level:54, all_skills:2, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, type:"shield", base:"Monarch"},
+{not:["paladin"], rarity:"rw", name:"Spirit ­ ­ - ­ ­ Monarch", req_level:54, all_skills:2, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, type:"shield", base:"Monarch", nonmetal:1},
 {only:"paladin", rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Sacred Targe", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, all_res:45, type:"shield", base:"Sacred Targe", pod_changes:1},
-{not:["paladin"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Monarch", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, type:"shield", base:"Monarch", pod_changes:1},
+{not:["paladin"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Monarch", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, type:"shield", base:"Monarch", pod_changes:1, nonmetal:1},
 {only:"paladin", rarity:"rw", name:"Dream ­ ­ - ­ ­ Sacred Targe", req_level:65, ctc:[[10,15,"Confuse","when struck"]], aura:"Holy Shock", aura_lvl:13, e_def:30, defense:220, fhr:30, vitality:10, mana_per_level:0.625, all_res:65, mf:25, max_life:5, type:"shield", base:"Sacred Targe", pod_changes:1},
 {not:["paladin"], rarity:"rw", name:"Dream ­ ­ - ­ ­ Troll Nest", req_level:65, ctc:[[10,15,"Confuse","when struck"]], aura:"Holy Shock", aura_lvl:13, e_def:30, defense:220, fhr:30, vitality:10, mana_per_level:0.625, all_res:20, mf:25, max_life:5, type:"shield", base:"Troll Nest", pod_changes:1},
 {only:"paladin", rarity:"rw", name:"Dragon ­ ­ - ­ ­ Sacred Targe", req_level:61, ctc:[[20,18,"Venom","when struck"],[12,15,"Hydra","on striking"]], aura:"Holy Fire", aura_lvl:14, defense:360, missile_defense:230, all_attributes:5, strength_per_level:0.375, lRes_max:5, damage_reduced:7, mana:50, all_res:45, type:"shield", base:"Sacred Targe"},
@@ -936,7 +956,7 @@ var equipment = {
 {set_Sigon:1, name:"Sigon's Guard", req_level:6, all_skills:1, ibc:20, type:"shield", base:"Tower Shield", rarity:"set", set_bonuses:["set_Sigon",{},{},{},{},{},{}], img:"Bverrit_Keep"},
 {set_Cleglaw:1, name:"Cleglaw's Claw", req_level:4, defense:17, poison_length_reduced:75, type:"shield", base:"Small Shield", rarity:"set", set_bonuses:["set_Cleglaw",{},{all_res:15},{}], img:"Cleglaw's_Claw"},
 {set_Hsarus:1, name:"Hsarus' Iron Fist", req_level:3, damage_reduced:2, strength:10, type:"shield", base:"Buckler", rarity:"set", set_bonuses:["set_Hsarus",{},{defense_per_level:2.5},{}], img:"Hsarus'_Iron_Fist"},
-{only:"paladin", rarity:"craft", name:"Priest's Safety Monarch", req_level:58, skills_paladin:2, damage_reduced:4, mDamage_reduced:2, mRes:10, e_def:230, all_res:20, ibc:20, fbr:30, fhr:17, req:-30, type:"shield", base:"Monarch"},
+{only:"paladin", rarity:"craft", name:"Priest's Safety Monarch", req_level:58, skills_paladin:2, damage_reduced:4, mDamage_reduced:2, mRes:10, e_def:230, all_res:20, ibc:20, fbr:30, fhr:17, req:-30, type:"shield", base:"Monarch", nonmetal:1},
 {not:["paladin"], rarity:"craft", name:"Safety Monarch", req_level:43, damage_reduced:4, mDamage_reduced:2, mRes:10, e_def:230, all_res:20, defense_per_level:3, ibc:20, fbr:30, fhr:17, req:-30, type:"shield", base:"Monarch"},
 // Quivers
 {not:["amazon"], rarity:"rare", name:"Bolts of Doom", type:"quiver", req_level:65, all_skills:1, pierce:25, mf_per_level:0.5, mf:35, life_per_ranged_hit:16, mana_per_ranged_hit:9, base:"Bolts"},
@@ -988,19 +1008,19 @@ var equipment = {
 {rarity:"magic", name:"Fine Small Charm of Vita", size:"small", req_level:39, damage_max:3, ar:20, life:20},
 {rarity:"magic", name:"Sharp Large Charm of Vita", size:"large", req_level:66, damage_max:6, ar:48, life:35},
 {rarity:"magic", name:"Sharp Grand Charm of Vita", size:"grand", req_level:83, damage_max:10, ar:76, life:45},
-//{name:"Horadric Sigil", size:"grand", req_level:80, all_attributes:3},
-	// Hodradric Sigil is a legacy item (non-ladder only) that was available during Season 6 and 7. (July 13, 2018 - July 31, 2019)
+//{name:"Horadrim Sigil", size:"grand", req_level:80, all_attributes:3},
+	// Hodradrim Sigil is a legacy item (non-ladder only) that was available during Season 6 and 7. (July 13, 2018 - July 31, 2019)
 	// It was limited to 1 per character, but no longer has such limitations since being removed from the base game in Patch #17 (Tourmaline).
 	// Possible affixes:
 	//	Amazon
 	//		Lightning Bolt Fires 2 Additional Projectiles
 	//		+X to Phase Run Duration
-	//		+X% Magic Arrow Damage Converted to Magic		(now available on Moonfire)
-	//		Magic Arrow Fires 2 Additional Arrows			(now available on Moonfire)
-	//		Fire Arrow Fires 2 Additional Arrows			(now available on Dragonbreath)
-	//		Ice Arrow Fires 2 Additional Arrows			(now available on Ice Shards)
-	//		Cold Arrow Fires 2 Additional Projectiles		(now available on Hailstorm)
-	//		+40% to Freezing Arrow Radius				(now available on M'avina's Embrace)
+	//		+X% Magic Arrow Damage Converted to Magic			(now available on Moonfire)
+	//		Magic Arrow Fires 2 Additional Arrows				(now available on Moonfire)
+	//		Fire Arrow Fires 2 Additional Arrows				(now available on Dragonbreath)
+	//		Ice Arrow Fires 2 Additional Arrows					(now available on Ice Shards)
+	//		Cold Arrow Fires 2 Additional Projectiles			(now available on Hailstorm)
+	//		+40% to Freezing Arrow Radius						(now available on M'avina's Embrace)
 	//	Assassin
 	//		+X Fire Damage per Fists of Ember Charge
 	//		+X% increased Charged Bolt Sentry projectile speed
@@ -1018,28 +1038,28 @@ var equipment = {
 	//		Raised Skeletons have X% chance of Open Wounds
 	//		+X% increased Skeleton Mage projectile speed
 	//		Corpse Explosion deals +5% of Maximum Corpse Life	(now available on Corpsemourn)
-	//		Bone Spear Fires 2 Additional Projectiles		(now available with 100+ energy, also on Bonehew)
+	//		Bone Spear Fires 2 Additional Projectiles			(now available with 100+ energy, also on Bonehew)
 	//	Paladin
 	//		X% Reduced Dashing Strike Cooldown
 	//		+X% Increased Holy Fire Area Damage Rate
-	//		Holy Bolt Fires 2 Additional Projectiles		(now available with 100+ energy)
+	//		Holy Bolt Fires 2 Additional Projectiles			(now available with 100+ energy)
 	//	Sorceress
 	//		+X% to Glacial Spike radius
 	//		+X% to Fire Blast radius
-	//		Can Summon One Additional Hydra				(now available on Hexfire)
+	//		Can Summon One Additional Hydra						(now available on Hexfire)
 	//
 {debug:1, name:"+1 (each) skill", req_level:100, 
-	/* amazon	*/	skill_Jab:1, skill_Power_Strike:1, skill_Poison_Javelin:1, skill_Fend:1, skill_Lightning_Bolt:1, skill_Charged_Strike:1, skill_Plague_Javelin:1, skill_Ground_Slam:1, skill_Lightning_Strike:1, skill_Lightning_Fury:1, skill_Inner_Sight:1, skill_Lethal_Strike:1, skill_Phase_Run:1, skill_Dodge:1, skill_Avoid:1, skill_Penetrate:1, skill_Evade:1, skill_Decoy:1, skill_Valkyrie:1, skill_Pierce:1, skill_Cold_Arrow:1, skill_Magic_Arrow:1, skill_Multiple_Shot:1, skill_Fire_Arrow:1, skill_Ice_Arrow:1, skill_Guided_Arrow:1, skill_Exploding_Arrow:1, skill_Strafe:1, skill_Immolation_Arrow:1, skill_Freezing_Arrow:1,
-	/* assassin	*/	skill_Dual_Strike:1, skill_Fists_of_Ember:1, skill_Fists_of_Thunder:1, skill_Fists_of_Ice:1, skill_Static_Strike:1, skill_Dragon_Talon:1, skill_Emberstorm:1, skill_Dragon_Flight:1, skill_Blades_of_Ice:1, skill_Claw_Mastery:1, skill_Psychic_Hammer:1, skill_Burst_of_Speed:1, skill_Mind_Barrier:1, skill_Weapon_Block:1, skill_Cloak_of_Shadows:1, skill_Fade:1, skill_Shadow_Warrior:1, skill_Mind_Blast:1, skill_Venom:1, skill_Shadow_Master:1, skill_Fire_Blast:1, skill_Shock_Web:1, skill_Blade_Throw:1, skill_Charged_Bolt_Sentry:1, skill_Wake_of_Fire:1, skill_Blade_Fury:1, skill_Lightning_Sentry:1, skill_Wake_of_Inferno:1, skill_Death_Sentry:1, skill_Blade_Shield:1, skill_Dragon_Tail:1,
+	/* amazon		*/	skill_Jab:1, skill_Power_Strike:1, skill_Poison_Javelin:1, skill_Fend:1, skill_Lightning_Bolt:1, skill_Charged_Strike:1, skill_Plague_Javelin:1, skill_Ground_Slam:1, skill_Lightning_Strike:1, skill_Lightning_Fury:1, skill_Inner_Sight:1, skill_Lethal_Strike:1, skill_Phase_Run:1, skill_Dodge:1, skill_Avoid:1, skill_Penetrate:1, skill_Evade:1, skill_Decoy:1, skill_Valkyrie:1, skill_Pierce:1, skill_Cold_Arrow:1, skill_Magic_Arrow:1, skill_Multiple_Shot:1, skill_Fire_Arrow:1, skill_Ice_Arrow:1, skill_Guided_Arrow:1, skill_Exploding_Arrow:1, skill_Strafe:1, skill_Immolation_Arrow:1, skill_Freezing_Arrow:1,
+	/* assassin		*/	skill_Dual_Strike:1, skill_Fists_of_Ember:1, skill_Fists_of_Thunder:1, skill_Fists_of_Ice:1, skill_Static_Strike:1, skill_Dragon_Talon:1, skill_Emberstorm:1, skill_Dragon_Flight:1, skill_Blades_of_Ice:1, skill_Claw_Mastery:1, skill_Psychic_Hammer:1, skill_Burst_of_Speed:1, skill_Mind_Barrier:1, skill_Weapon_Block:1, skill_Cloak_of_Shadows:1, skill_Fade:1, skill_Shadow_Warrior:1, skill_Mind_Blast:1, skill_Venom:1, skill_Shadow_Master:1, skill_Fire_Blast:1, skill_Shock_Web:1, skill_Blade_Throw:1, skill_Charged_Bolt_Sentry:1, skill_Wake_of_Fire:1, skill_Blade_Fury:1, skill_Lightning_Sentry:1, skill_Wake_of_Inferno:1, skill_Death_Sentry:1, skill_Blade_Shield:1, skill_Dragon_Tail:1,
 	/* barbarian	*/	skill_Howl:1, skill_Find_Potion:1, skill_Taunt:1, skill_Shout:1, skill_Find_Item:1, skill_Battle_Cry:1, skill_Battle_Orders:1, skill_Grim_Ward:1, skill_War_Cry:1, skill_Battle_Command:1, skill_Edged_Weapon_Mastery:1, skill_Pole_Weapon_Mastery:1, skill_Blunt_Weapon_Mastery:1, skill_Thrown_Weapon_Mastery:1, skill_Increased_Stamina:1, skill_Iron_Skin:1, skill_Increased_Speed:1, skill_Natural_Resistance:1, skill_Frenzy:1, skill_Concentrate:1, skill_Cleave:1, skill_Stun:1, skill_Leap:1, skill_Power_Throw:1, skill_Bash:1, skill_Leap_Attack:1, skill_Ethereal_Throw:1, skill_Whirlwind:1, skill_One_Handed_Weapon_Mastery:1, skill_Two_Handed_Weapon_Mastery:1,
-	/* druid	*/	skill_Firestorm:1, skill_Molten_Boulder:1, skill_Flame_Dash:1, skill_Arctic_Blast:1, skill_Fissure:1, skill_Cyclone_Armor:1, skill_Twister:1, skill_Volcano:1, skill_Tornado:1, skill_Armageddon:1, skill_Hurricane:1, skill_Werewolf:1, skill_Lycanthropy:1, skill_Werebear:1, skill_Feral_Rage:1, skill_Maul:1, skill_Rabies:1, skill_Fire_Claws:1, skill_Hunger:1, skill_Shock_Wave:1, skill_Fury:1, skill_Raven:1, skill_Poison_Creeper:1, skill_Heart_of_Wolverine:1, skill_Summon_Spirit_Wolf:1, skill_Carrion_Vine:1, skill_Oak_Sage:1, skill_Summon_Dire_Wolf:1, skill_Solar_Creeper:1, skill_Spirit_of_Barbs:1, skill_Summon_Grizzly:1,
+	/* druid		*/	skill_Firestorm:1, skill_Molten_Boulder:1, skill_Flame_Dash:1, skill_Arctic_Blast:1, skill_Fissure:1, skill_Cyclone_Armor:1, skill_Twister:1, skill_Volcano:1, skill_Tornado:1, skill_Armageddon:1, skill_Hurricane:1, skill_Werewolf:1, skill_Lycanthropy:1, skill_Werebear:1, skill_Feral_Rage:1, skill_Maul:1, skill_Rabies:1, skill_Fire_Claws:1, skill_Hunger:1, skill_Shock_Wave:1, skill_Fury:1, skill_Raven:1, skill_Poison_Creeper:1, skill_Heart_of_Wolverine:1, skill_Summon_Spirit_Wolf:1, skill_Carrion_Vine:1, skill_Oak_Sage:1, skill_Summon_Dire_Wolf:1, skill_Solar_Creeper:1, skill_Spirit_of_Barbs:1, skill_Summon_Grizzly:1,
 	/* necromancer	*/	skill_Summon_Mastery:1, skill_Raise_Skeleton_Warrior:1, skill_Bone_Offering:1, skill_Clay_Golem:1, skill_Flesh_Offering:1, skill_Raise_Skeletal_Mage:1, skill_Blood_Golem:1, skill_Convocation:1, skill_Iron_Golem:1, skill_Fire_Golem:1, skill_Revive:1, skill_Deadly_Poison:1, skill_Teeth:1, skill_Bone_Armor:1, skill_Corpse_Explosion:1, skill_Desecrate:1, skill_Bone_Spear:1, skill_Bone_Wall:1, skill_Bone_Spirit:1, skill_Poison_Nova:1, skill_Amplify_Damage:1, skill_Dim_Vision:1, skill_Hemorrhage:1, skill_Weaken:1, skill_Iron_Maiden:1, skill_Terror:1, skill_Confuse:1, skill_Life_Tap:1, skill_Attract:1, skill_Decrepify:1, skill_Lower_Resist:1,
-	/* paladin	*/	skill_Prayer:1, skill_Resist_Fire:1, skill_Defiance:1, skill_Resist_Cold:1, skill_Cleansing:1, skill_Resist_Lightning:1, skill_Vigor:1, skill_Meditation:1, skill_Redemption:1, skill_Salvation:1, skill_Might:1, skill_Holy_Fire:1, skill_Precision:1, skill_Blessed_Aim:1, skill_Concentration:1, skill_Holy_Freeze:1, skill_Holy_Shock:1, skill_Sanctuary:1, skill_Fanaticism:1, skill_Conviction:1, skill_Sacrifice:1, skill_Smite:1, skill_Holy_Bolt:1, skill_Zeal:1, skill_Charge:1, skill_Vengeance:1, skill_Blessed_Hammer:1, skill_Conversion:1, skill_Holy_Shield:1, skill_Fist_of_the_Heavens:1, skill_Dashing_Strike:1,
+	/* paladin		*/	skill_Prayer:1, skill_Resist_Fire:1, skill_Defiance:1, skill_Resist_Cold:1, skill_Cleansing:1, skill_Resist_Lightning:1, skill_Vigor:1, skill_Meditation:1, skill_Redemption:1, skill_Salvation:1, skill_Might:1, skill_Holy_Fire:1, skill_Precision:1, skill_Blessed_Aim:1, skill_Concentration:1, skill_Holy_Freeze:1, skill_Holy_Shock:1, skill_Sanctuary:1, skill_Fanaticism:1, skill_Conviction:1, skill_Sacrifice:1, skill_Smite:1, skill_Holy_Bolt:1, skill_Zeal:1, skill_Charge:1, skill_Vengeance:1, skill_Blessed_Hammer:1, skill_Conversion:1, skill_Holy_Shield:1, skill_Fist_of_the_Heavens:1, skill_Dashing_Strike:1,
 	/* sorceress	*/	skill_Ice_Bolt:1, skill_Frigerate:1, skill_Frost_Nova:1, skill_Ice_Blast:1, skill_Shiver_Armor:1, skill_Glacial_Spike:1, skill_Blizzard:1, skill_Freezing_Pulse:1, skill_Chilling_Armor:1, skill_Frozen_Orb:1, skill_Cold_Mastery:1, skill_Charged_Bolt:1, skill_Static_Field:1, skill_Telekinesis:1, skill_Nova:1, skill_Lightning_Surge:1, skill_Chain_Lightning:1, skill_Teleport:1, skill_Discharge:1, skill_Energy_Shield:1, skill_Lightning_Mastery:1, skill_Thunder_Storm:1, skill_Fire_Bolt:1, skill_Warmth:1, skill_Blaze:1, skill_Immolate:1, skill_Fire_Ball:1, skill_Fire_Wall:1, skill_Enflame:1, skill_Meteor:1, skill_Fire_Mastery:1, skill_Hydra:1	},
 {debug:1, name:"+1 skill", req_level:100, all_skills:1},
 {debug:1, name:"+20 skills", req_level:100, all_skills:20},
 /*
-{debug:1, name:"+1 each oskill", req_level:100,
+{debug:1, name:"+1 each oskill", req_level:100, // not made for production, may have glitches
 				oskill_Warp:1, oskill_Ball_Lightning:1,
 				oskill_Inner_Sight:1, oskill_Lethal_Strike:1, oskill_Valkyrie:1, oskill_Magic_Arrow:1, oskill_Guided_Arrow:1, oskill_Multiple_Shot:1,
 				oskill_Battle_Command:1, oskill_Battle_Orders:1, oskill_Battle_Cry:1, oskill_Bash:1, oskill_Edged_Weapon_Mastery:1,
@@ -1929,11 +1949,6 @@ var bases = {	// Note: damage_vs_undead:50 is included for blunt weapons, but ot
 };
 
 /*
-var affixes = [
-	// TODO: Implement affix ranges so required level can be accurately calculated when items are modified
-];
-*/
-/*
 var cskills = [
 	// in equipment[]:
 	"Attract","Cloak of Shadows","Venom","Spirit of Barbs","Molten Boulder",
@@ -1954,60 +1969,60 @@ var cskills = [
 /*
 var ctcs = [
 	// in equipment[]:
-    // Non-Class
+  // Non-Class
 	Ball Lightning		on striking, on attack
-	Delirium		when struck
-    // Assassin
-	Venom			when struck, on striking, when you level up
-	Fade			when struck
-	Mind Blast		when struck
-    // Barbarian
-	Howl			when struck
-	Taunt			on striking
-    // Druid
-	Tornado			on striking, when struck
-	Fissure			on striking, when struck
+	Delirium			when struck
+  // Assassin
+	Venom				when struck, on striking, when you level up
+	Fade				when struck
+	Mind Blast			when struck
+  // Barbarian
+	Howl				when struck
+	Taunt				on striking
+  // Druid
+	Tornado				on striking, when struck
+	Fissure				on striking, when struck
 	Cyclone Armor		when struck
-	Firestorm		on striking
-	Volcano			on striking
+	Firestorm			on striking
+	Volcano				on striking
 	Molten Boulder		on striking
-	Twister			on striking
-    // Necromancer 
-	Poison Nova		when struck, on striking, when you die
-	Bone Spirit		on striking, when struck
-	Bone Spear		on striking, on attack
-	Desecrate		on attack
-	Bone Prison		when struck	// ?
-	Confuse			when struck, on striking
+	Twister				on striking
+  // Necromancer 
+	Poison Nova			when struck, on striking, when you die
+	Bone Spirit			on striking, when struck
+	Bone Spear			on striking, on attack
+	Desecrate			on attack
+	Bone Prison			when struck	// ?
+	Confuse				when struck, on striking
 	Lower Resist		when struck, on striking
 	Amplify Damage		when struck, on striking
-	Terror			when struck
-	Dim Vision		when struck 
-	Iron Maiden		when struck
-	Weaken			on striking
-	Life Tap		on striking
-	Decrepify		on striking
-    // Paladin
-	Holy Bolt		on striking, when struck
+	Terror				when struck
+	Dim Vision			when struck 
+	Iron Maiden			when struck
+	Weaken				on striking
+	Life Tap			on striking
+	Decrepify			on striking
+  // Paladin
+	Holy Bolt			on striking, when struck
 	Fist of the Heavens	when struck, on striking
-    // Sorceress 
-	Blizzard		when struck, when you level-up, on striking, when you die
-	Frost Nova		when hit, on striking, when struck, when you level up
-	Frozen Orb		on attack, on striking
+  // Sorceress 
+	Blizzard			when struck, when you level-up, on striking, when you die
+	Frost Nova			when hit, on striking, when struck, when you level up
+	Frozen Orb			on attack, on striking
 	Chilling Armor		when struck
-	Ice Blast		on striking
+	Ice Blast			on striking
 	Glacial Spike		on attack
 	Chain Lightning		when struck, on striking, on kill, on death, on attack, when you die
 	Charged Bolt		on striking, on attack, when struck
-	Nova			when struck, on attack, on striking, when you level up
+	Nova				when struck, on attack, on striking, when you level up
 	Static Field		when struck, on striking
-	Discharge		on striking
-	Blaze			when struck, when you level-up, on level-up, when you level up
-	Meteor			on striking, when struck, when you die
-	Fire Ball		on striking, on attack
-	Fire Wall		when struck
-	Hydra			on striking
-	Enflame			on kill
+	Discharge			on striking
+	Blaze				when struck, when you level-up, on level-up, when you level up
+	Meteor				on striking, when struck, when you die
+	Fire Ball			on striking, on attack
+	Fire Wall			when struck
+	Hydra				on striking
+	Enflame				on kill
 	
 	// possible ctc effects (copied from wiki):
 	"Fire Bolt","Charged Bolt","Ice Bolt","Frost Nova","Nova","Lightning Surge","Hydra","Amplify Damage",	// wiki is incomplete
@@ -2599,7 +2614,6 @@ oskill_Battle_Cry:{index:["oskill_Battle_Cry"], format:["+"," to Battle Cry"]},
 oskill_Bash:{index:["oskill_Bash"], format:["+"," to Bash"]},
 oskill_Edged_Weapon_Mastery:{index:["oskill_Edged_Weapon_Mastery"], format:["+"," to Edged Weapon Mastery"]},
 
-oskill_Arctic_Blast:{index:["oskill_Arctic_Blast"], format:["+"," to Arctic Blast"]},
 oskill_Lycanthropy:{index:["oskill_Lycanthropy"], format:["+"," to Lycanthropy"]},
 oskill_Werebear:{index:["oskill_Werebear"], format:["+"," to Werebear"]},
 oskill_Werewolf:{index:["oskill_Werewolf"], format:["+"," to Werewolf"]},
