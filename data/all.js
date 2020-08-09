@@ -1970,6 +1970,8 @@ function getCTCSkillData(name, lvl, group) {
 			result.fDamage_max = skill.data.values[2][lvl] * (1 + (0.12*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
 		}
 	}
+	// Necromancer
+	else if (name == "Flesh Offering") { result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
 	return result;
 }
 

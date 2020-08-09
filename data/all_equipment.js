@@ -51,7 +51,7 @@ var oskills_info = {
 	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, oskill_Enflame:{name:"Enflame",native_class:"sorceress",i:28}, 
 };
 var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10}, Cloak_of_Shadows:{native_class:"assassin",i:14}, Venom:{native_class:"assassin",i:18}, Cyclone_Armor:{native_class:"druid",i:5}, Heart_of_Wolverine:{native_class:"druid",i:23}, Oak_Sage:{native_class:"druid",i:26}, Spirit_of_Barbs:{native_class:"druid",i:29}, Blood_Golem:{native_class:"necromancer",i:6}, Iron_Golem:{native_class:"necromancer",i:8}, Deadly_Poison:{native_class:"necromancer",i:11}, Enflame:{native_class:"sorceress",i:28}};
-var effect_ctcskills = {Venom:{native_class:"assassin",i:18}, Fade:{native_class:"assassin",i:15}, Cyclone_Armor:{native_class:"druid",i:5}, Chilling_Armor:{native_class:"sorceress",i:8}, Blaze:{native_class:"sorceress",i:24}, Enflame:{native_class:"sorceress",i:28}};
+var effect_ctcskills = {Venom:{native_class:"assassin",i:18}, Fade:{native_class:"assassin",i:15}, Cyclone_Armor:{native_class:"druid",i:5}, Chilling_Armor:{native_class:"sorceress",i:8}, Blaze:{native_class:"sorceress",i:24}, Enflame:{native_class:"sorceress",i:28}, Flesh_Offering:{native_class:"necromancer",i:4}};
 var non_items = [
 {name:"Miscellaneous"},
 {i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},								// TOCHECK: verify whether this applies to skills gained solely from items
@@ -676,7 +676,7 @@ var equipment = {
 {name:"Ume's Lament", req_level:28, skills_necromancer:2, fcr:20, mana:40, flee_on_hit:50, skill_Decrepify:2, skill_Terror:3, type:"wand", base:"Grim Wand", img:"Ume's_Lament"},
 {name:"Suicide Branch", req_level:33, all_skills:1, fcr:50, max_mana:10, all_res:10, life:40, thorns:25, type:"wand", base:"Burnt Wand"},
 {name:"Carin Shard", req_level:35, skills_necromancer:1, skills_summoning_necromancer:2, fcr:10, mana_per_level:1.25, life_per_level:1.25, fhr:30, life_replenish:5, type:"wand", base:"Petrified Wand", img:"Carin_Shard"},
-{name:"Arm of King Leoric", req_level:36, ctc:[[10,2,"Bone Prison","when struck"],[5,10,"Bone Spirit","when struck"]], skills_summoning_necromancer:2, skills_poisonBone:2, mana_per_level:1.25, fcr:10, skill_Terror:2, skill_Raise_Skeletal_Mage:2, skill_Summon_Mastery:3, skill_Raise_Skeleton_Warrior:3, type:"wand", base:"Tomb Wand", img:"Gravenspine"},	// check: Bone Prison?
+{name:"Arm of King Leoric", req_level:36, ctc:[[10,2,"Flesh Offering","when struck"],[5,10,"Bone Spirit","when struck"]], skills_summoning_necromancer:2, skills_poisonBone:2, mana_per_level:1.25, fcr:10, skill_Terror:2, skill_Raise_Skeletal_Mage:2, skill_Summon_Mastery:3, skill_Raise_Skeleton_Warrior:3, type:"wand", base:"Tomb Wand", img:"Gravenspine"},
 {name:"Blackhand Key", req_level:41, skills_necromancer:2, skills_curses:1, damage_to_mana:20, fcr:30, fRes:37, life:50, light_radius:-2, type:"wand", base:"Grave Wand", img:"Blackhand_Key", cskill:[[13,"Grim Ward",30]]},
 {name:"Boneshade", req_level:79, skills_necromancer:2, skill_Bone_Spirit:2, skill_Bone_Spear:3, skill_Bone_Wall:3, skill_Bone_Armor:5, skill_Teeth:5, fcr:25, type:"wand", base:"Lich Wand", img:"Gravenspine"},
 {name:"Death's Web", req_level:66, all_skills:2, skills_poisonBone:2, enemy_pRes:-50, mana_per_kill:12, life_per_kill:12, type:"wand", base:"Unearthed Wand", img:"Death's_Web"},
@@ -819,7 +819,7 @@ var equipment = {
 {name:"The Tannr Gorerod", req_level:27, e_damage:100, fDamage_min:23, fDamage_max:54, ar:60, fRes:15, fRes_max:15, life:30, light_radius:3, twoHanded:1, type:"spear", base:"Pike", img:"The_Tannr_Gorerod"},
 {name:"The Impaler", req_level:31, e_damage:170, owounds:40, ias:20, itd:1, ar:150, pmh:1, skill_Impale:5, skill_Power_Strike:3, twoHanded:1, type:"spear", base:"War Spear", img:"The_Impaler"},
 {name:"Kelpie Snare", req_level:33, e_damage:180, damage_min:30, damage_max:50, slows_target:75, life_per_level:1.25, fRes:50, strength:10, twoHanded:1, type:"spear", base:"Fuscina", img:"Razortine"},
-{name:"Soulfeast Time", req_level:35, e_damage:190, ar:250, life_leech:7, mana_leech:7, slower_stam_drain:20, req:-20, twoHanded:1, type:"spear", base:"War Fork", img:"Soulfeast_Tine"},
+{name:"Soulfeast Tine", req_level:35, e_damage:190, ar:250, life_leech:7, mana_leech:7, slower_stam_drain:20, req:-20, twoHanded:1, type:"spear", base:"War Fork", img:"Soulfeast_Tine"},
 {name:"Hone Sundan", req_level:37, e_damage:200, damage_min:20, damage_max:40, cblow:45, autorepair:1, sockets:3, twoHanded:1, type:"spear", base:"Yari", img:"Lance_of_Yaggai"},
 {name:"Spire of Honor", req_level:39, skills_combat_paladin:3, e_damage:200, damage_min:20, damage_max:40, damage_vs_demons_per_level:1.5, fhr:20, life_replenish:20, ar_bonus:25, defense_bonus:25, light_radius:3, twoHanded:1, type:"spear", base:"Lance", img:"Spire_of_Honor"},
 {name:"Arioc's Needle", req_level:81, all_skills:4, e_damage:230, dstrike:50, pDamage_all:394, pDamage_duration:10, ias:30, itd:1, twoHanded:1, type:"spear", base:"Hyperion Spear"},
@@ -1988,11 +1988,11 @@ var ctcs = [
 	Molten Boulder		on striking
 	Twister				on striking
   // Necromancer 
+	Flesh Offering		when struck
 	Poison Nova			when struck, on striking, when you die
 	Bone Spirit			on striking, when struck
 	Bone Spear			on striking, on attack
 	Desecrate			on attack
-	Bone Prison			when struck	// ?
 	Confuse				when struck, on striking
 	Lower Resist		when struck, on striking
 	Amplify Damage		when struck, on striking
