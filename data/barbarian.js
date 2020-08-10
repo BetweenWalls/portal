@@ -15,7 +15,7 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
 		
-		if (skill.name == "War Cry" && elem < 2) { 		result *= ((1 + (0.16*skills[2].level + 0.16*skills[8].level))) }
+		if (skill.name == "War Cry" && elem < 2) { 		result *= ((1 + (0.16*skills[2].level + 0.16*skills[5].level))) }
 		if (skill.name == "Battle Command" && elem == 0) { 	result = 1+Math.floor(skill.level/10) }
 		
 		if (skill.name == "Frenzy" && elem == 0) { 		result = skills[24].level }
