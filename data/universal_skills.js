@@ -21,7 +21,7 @@ var character_any = {
 		if (skillName == "Ball Lightning") { skill = sk_Ball_Lightning }
 
 		var result = skill.data.values[elem][lvl];
-		var lycan_lvl = ~~character["oskill_lycanthropy"] + character.all_skills;
+		var lycan_lvl = ~~character["oskill_lycanthropy"] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
 		var phys_min = ((1+(character.e_damage+character.damage_bonus)/100)*((character.level-1)*character.min_damage_per_level+character.base_damage_min))+character.damage_min;
 		var phys_max = ((1+(character.e_damage+character.damage_bonus)/100)*((character.level-1)*character.max_damage_per_level+character.base_damage_max))+character.damage_max;
 	
@@ -32,9 +32,9 @@ var character_any = {
 	// Druid
 		if (skillName == "Flame Dash" && elem == 0) {			result = 8 }
 		if (skillName == "Flame Dash" && elem < 3 && elem > 0) {	result *= ((1 + 0.01*(character.energy + character.all_attributes)*(1+character.max_energy/100)) * (1+character.fDamage/100)) }
-		if (skillName == "Werewolf" && elem == 0) {			result = (15 + skills[12].data.values[1][lycan_lvl]) }
+		if (skillName == "Werewolf" && elem == 0) {			result = (10 + skills[12].data.values[1][lycan_lvl]) }
 		if (skillName == "Werewolf" && elem == 3) {			result = (skills[12].data.values[0][lycan_lvl]) }
-		if (skillName == "Werebear" && elem == 0) {			result = (25 + skills[12].data.values[1][lycan_lvl]) }
+		if (skillName == "Werebear" && elem == 0) {			result = (15 + skills[12].data.values[1][lycan_lvl]) }
 		if (skillName == "Werebear" && elem == 1) {			result += (skills[12].data.values[0][lycan_lvl]) }
 		if (skillName == "Summon Dire Wolf" && elem == 3) {		result = ((1 + (skill.data.values[6][lvl] / 100)) * skill.data.values[elem][character.difficulty]) }
 	// Necromancer
@@ -70,10 +70,10 @@ var character_any = {
 	// ---------------------------------
 	getBuffData : function(skill) {
 		var id = skill.name.split(' ').join('_');
-		var lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills;
+		var lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
 		var result = {};
-		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][~~(character.oskill_Lycanthropy+character.all_skills)]);
-		var lycan_life = ~~(skills_all["druid"][12].data.values[1][~~(character.oskill_Lycanthropy+character.all_skills)]);
+		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][~~(character.oskill_Lycanthropy+character.all_skills+Math.ceil(character.all_skills_per_level*character.level))]);
+		var lycan_life = ~~(skills_all["druid"][12].data.values[1][~~(character.oskill_Lycanthropy+character.all_skills+Math.ceil(character.all_skills_per_level*character.level))]);
 		
 		if (skill.name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }	// TODO: Make always-active?
 		if (skill.name == "Lethal Strike") { result.cstrike = skill.data.values[0][lvl]; }	// TODO: Make always-active
@@ -98,12 +98,6 @@ var character_any = {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Chilling_Armor")) { disableEffect(effect_id) } } }
 			result.defense_bonus = skill.data.values[1][lvl]; result.duration = skill.data.values[0][lvl];
 		}
-		if (skill.name == "Enflame") {		// TODO: Make always-active?
-			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
-			result.fDamage_min = skill.data.values[1][lvl];
-			result.fDamage_max = skill.data.values[2][lvl];
-			result.ar_bonus = skill.data.values[3][lvl]; result.radius = 16;
-		}
 		if (skill.name == "Edged Weapon Mastery") { result.edged_damage = skill.data.values[0][lvl]; result.edged_ar = skill.data.values[1][lvl]; result.edged_cstrike = skill.data.values[2][lvl]; }
 		if (skill.name == "Cold Mastery") { result.cPierce = skill.data.values[0][lvl]; result.cDamage = skill.data.values[1][lvl]; }
 		if (skill.name == "Fire Mastery") { result.fPierce = skill.data.values[0][lvl]; result.fDamage = skill.data.values[1][lvl]; }
@@ -119,7 +113,7 @@ var character_any = {
 	// ---------------------------------
 	getSkillDamage : function(skillName, ar, phys_min, phys_max, phys_mult, nonPhys_min, nonPhys_max) {
 		var nameMod = "oskill_"+skillName.split(" ").join("_");
-		var lvl = ~~character[nameMod] + character.all_skills;
+		var lvl = ~~character[nameMod] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
 		var ar_bonus = 0; var damage_bonus = 0; var weapon_damage = 100;
 		var damage_min = 0; var damage_max = 0;
 		var fDamage_min = 0; var fDamage_max = 0;
@@ -145,7 +139,7 @@ var character_any = {
 		else if (skillName == "Vengeance") {		attack = 1; spell = 0; fDamage_min = character_any.getSkillData(skillName,lvl,2); fDamage_max = character_any.getSkillData(skillName,lvl,3); cDamage_min = character_any.getSkillData(skillName,lvl,4); cDamage_max = character_any.getSkillData(skillName,lvl,5); lDamage_min = character_any.getSkillData(skillName,lvl,6); lDamage_max = character_any.getSkillData(skillName,lvl,7); ar_bonus = character_any.getSkillData(skillName,lvl,11); }
 		else if (skillName == "Fire Ball") {		attack = 0; spell = 1; lvl += character.skills_fire_all; fDamage_min = character_any.getSkillData(skillName,lvl,0); fDamage_max = character_any.getSkillData(skillName,lvl,1); }
 		else if (skillName == "Fire Wall") {		attack = 0; spell = 1; lvl += character.skills_fire_all; fDamage_min = character_any.getSkillData(skillName,lvl,0); fDamage_max = character_any.getSkillData(skillName,lvl,1); }
-		else if (skillName == "Meteor") {		attack = 0; spell = 1; lvl += character.skills_fire_all; fDamage_min = character_any.getSkillData(skillName,lvl,0); fDamage_max = character_any.getSkillData(skillName,lvl,1); }
+		else if (skillName == "Meteor") {		attack = 0; spell = 1; lvl += character.skills_fire_all; damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); fDamage_min = character.getSkillData(skill,lvl,2); fDamage_max = character.getSkillData(skill,lvl,3); }
 		else if (skillName == "Hydra") {		attack = 0; spell = 1; lvl += character.skills_fire_all; fDamage_min = character_any.getSkillData(skillName,lvl,1); fDamage_max = character_any.getSkillData(skillName,lvl,2); }
 
 	//	TODO: check weapon requirements (only conflict would be a Passion bow, which grants Bash & Zeal...) & werewolf/werebear requirements

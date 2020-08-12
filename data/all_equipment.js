@@ -35,12 +35,13 @@ var unequipped = {			strength:0, dexterity:0, vitality:0, energy:0, life:0, mana
 /* oskills  druid		*/	oskill_Lycanthropy:0, oskill_Werebear:0, oskill_Werewolf:0, oskill_Feral_Rage:0, oskill_Flame_Dash:0, oskill_Summon_Dire_Wolf:0,	// Frostwind, Wolfhowl, Beast, Flamebellow, Boneflesh
 /* oskills  necromancer	*/	oskill_Desecrate:0,	// Radament's Sphere
 /* oskills  paladin		*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
-/* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, oskill_Enflame:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
+/* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0, 	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set, Lava Gout
 // TOCHECK: confirm oskill_Guided_Arrow (Widowmaker)
 				durability_extra:0, experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
+				summon_damage:0, summon_defense:0, skill_Double_Swing:0, skill_Molten_Strike:0, all_skills_per_level:0, reset_on_kill:0, 
 };
 
-var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery","oskill_Enflame"];
+var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery"];
 var oskills_info = {
 	oskill_Warp:{name:"Warp",native_class:"none",i:0}, oskill_Ball_Lightning:{name:"Ball Lightning",native_class:"none",i:1},
 	oskill_Inner_Sight:{name:"Inner Sight",native_class:"amazon",i:10}, oskill_Lethal_Strike:{name:"Lethal Strike",native_class:"amazon",i:11}, oskill_Valkyrie:{name:"Valkyrie",native_class:"amazon",i:18}, oskill_Magic_Arrow:{name:"Magic Arrow",native_class:"amazon",i:21}, oskill_Guided_Arrow:{name:"Guided Arrow",native_class:"amazon",i:25}, oskill_Multiple_Shot:{name:"Multiple Shot",native_class:"amazon",i:22},
@@ -48,9 +49,9 @@ var oskills_info = {
 	oskill_Lycanthropy:{name:"Lycanthropy",native_class:"druid",i:12}, oskill_Werebear:{name:"Werebear",native_class:"druid",i:13}, oskill_Werewolf:{name:"Werewolf",native_class:"druid",i:11}, oskill_Feral_Rage:{name:"Feral Rage",native_class:"druid",i:14}, oskill_Flame_Dash:{name:"Flame Dash",native_class:"druid",i:2}, oskill_Summon_Dire_Wolf:{name:"Summon Dire Wolf",native_class:"druid",i:27}, 
 	oskill_Desecrate:{name:"Desecrate",native_class:"necromancer",i:15}, 
 	oskill_Zeal:{name:"Zeal",native_class:"paladin",i:23}, oskill_Vengeance:{name:"Vengeance",native_class:"paladin",i:25}, 
-	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, oskill_Enflame:{name:"Enflame",native_class:"sorceress",i:28}, 
+	oskill_Frigerate:{name:"Frigerate",native_class:"sorceress",i:1}, oskill_Shiver_Armor:{name:"Shiver Armor",native_class:"sorceress",i:4}, oskill_Cold_Mastery:{name:"Cold Mastery",native_class:"sorceress",i:10}, oskill_Hydra:{name:"Hydra",native_class:"sorceress",i:31}, oskill_Fire_Ball:{name:"Fire Ball",native_class:"sorceress",i:26}, oskill_Fire_Wall:{name:"Fire Wall",native_class:"sorceress",i:27}, oskill_Meteor:{name:"Meteor",native_class:"sorceress",i:29}, oskill_Fire_Mastery:{name:"Fire Mastery",native_class:"sorceress",i:30}, 
 };
-var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10}, Cloak_of_Shadows:{native_class:"assassin",i:14}, Venom:{native_class:"assassin",i:18}, Cyclone_Armor:{native_class:"druid",i:5}, Heart_of_Wolverine:{native_class:"druid",i:23}, Oak_Sage:{native_class:"druid",i:26}, Spirit_of_Barbs:{native_class:"druid",i:29}, Blood_Golem:{native_class:"necromancer",i:6}, Iron_Golem:{native_class:"necromancer",i:8}, Deadly_Poison:{native_class:"necromancer",i:11}, Enflame:{native_class:"sorceress",i:28}};
+var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10}, Phase_Run:{native_class:"amazon",i:12}, Cloak_of_Shadows:{native_class:"assassin",i:14}, Venom:{native_class:"assassin",i:18}, Cyclone_Armor:{native_class:"druid",i:5}, Heart_of_Wolverine:{native_class:"druid",i:23}, Oak_Sage:{native_class:"druid",i:26}, Spirit_of_Barbs:{native_class:"druid",i:29}, Blood_Golem:{native_class:"necromancer",i:6}, Iron_Golem:{native_class:"necromancer",i:8}, Deadly_Poison:{native_class:"necromancer",i:11}, Enflame:{native_class:"sorceress",i:28}};
 var effect_ctcskills = {Venom:{native_class:"assassin",i:18}, Fade:{native_class:"assassin",i:15}, Cyclone_Armor:{native_class:"druid",i:5}, Chilling_Armor:{native_class:"sorceress",i:8}, Blaze:{native_class:"sorceress",i:24}, Enflame:{native_class:"sorceress",i:28}, Flesh_Offering:{native_class:"necromancer",i:4}};
 var non_items = [
 {name:"Miscellaneous"},
@@ -148,7 +149,7 @@ var equipment = {
 {name:"Crown of Thieves", req_level:49, e_def:200, life_leech:12, fRes:33, mana:35, life:50, dexterity:25, gf:100, base:"Grand Crown", img:"Crown_of_Thieves"},
 {name:"Vampire Gaze", req_level:41, e_def:100, life_leech:8, mana_leech:8, pdr:20, slower_stam_drain:15, cDamage_min:6, cDamage_max:22, mDamage_reduced:15, base:"Grim Helm", img:"Vampire_Gaze"},
 {name:"Harlequin Crest (Shako)", req_level:62, all_skills:2, all_attributes:2, life_per_level:1.5, mana_per_level:1.5, pdr:10, mf:50, base:"Shako", img:"Harlequin_Crest"},
-{name:"Steel Shade", req_level:62, e_def:130, ias:15, life_replenish:18, mana_leech:8, fAbsorb_flat:11, life_per_hit:89, base:"Armet", pod_changes:1, img:"Steel_Shade"},
+{name:"Steel Shade", req_level:62, e_def:130, ias:15, life_replenish:18, mana_leech:8, fAbsorb_flat:11, life_per_hit:71, base:"Armet", pod_changes:1, img:"Steel_Shade"},
 {name:"Veil of Steel", req_level:73, defense:140, e_def:60, all_res:50, strength:15, vitality:15, light_radius:-4, base:"Spired Helm", img:"Veil_of_Steel"},
 {name:"Nightwing's Veil", req_level:67, all_skills:2, e_def:120, cDamage:15, dexterity:20, cAbsorb_flat:9, base:"Spired Helm", img:"Nightwing's_Veil"},
 {name:"Andariel's Visage", req_level:83, ctc:[[15,15,"Poison Nova","when struck"]], all_skills:2, e_def:150, ias:20, life_leech:10, strength:30, fRes:-30, pRes:70, pRes_max:10, base:"Demonhead", cskill:[[3,"Venom",20]]},
@@ -168,7 +169,7 @@ var equipment = {
 {set_Cow:1, name:"Cow King's Horns", req_level:25, defense:75, half_freeze:1, thorns:10, damage_to_mana:35, base:"War Hat", rarity:"set", set_bonuses:["set_Cow",{},{},{},{}]},
 {set_Sander:1, name:"Sander's Paragon", req_level:25, defense_per_level:1, thorns:8, mf:35, base:"Cap", rarity:"set", set_bonuses:["set_Sander",{},{},{},{}], img:"Sander's_Paragon"},
 {set_Hwanin:1, name:"Hwanin's Splendor", req_level:45, e_def:100, life_replenish:20, mDamage_reduced:10, cRes:37, base:"Grand Crown", rarity:"set", set_bonuses:["set_Hwanin",{},{},{},{}], img:"Hwanin's_Splendor"},
-{set_Tancred:1, name:"Tancred's Skull", req_level:20, damage_bonus:10, ar:40, base:"Bone Helm", rarity:"set", set_bonuses:["set_Tancred",{},{all_res:10},{},{},{}], img:"Tancred's_Skull"},
+{set_Tancred:1, name:"Tancred's Skull", req_level:20, damage_bonus:10, ar:40, summon_damage:15, summon_defense:15, base:"Bone Helm", rarity:"set", set_bonuses:["set_Tancred",{},{all_res:10},{},{},{}], img:"Tancred's_Skull"},
 {set_Milabrega:1, name:"Milabrega's Diadem", req_level:17, mana:15, life:15, base:"Crown", rarity:"set", set_bonuses:["set_Milabrega",{},{cRes:40},{},{}], img:"Milabrega's_Diadem"},
 {set_Iratha:1, name:"Iratha's Coil", req_level:15, lRes:30, fRes:30, base:"Crown", rarity:"set", set_bonuses:["set_Iratha",{},{defense_per_level:2},{},{}], img:"Undead_Crown"},
 {set_Arcanna:1, name:"Arcanna's Head", req_level:15, life_replenish:4, thorns:2, base:"Skull Cap", rarity:"set", set_bonuses:["set_Arcanna",{},{defense_per_level:3},{lRes:15},{}], img:"Arcanna's_Head"},
@@ -324,7 +325,7 @@ var equipment = {
 {name:"Venom Grip", req_level:29, defense:25, e_def:160, cblow:5, pDamage_all:60, pDamage_duration:4, life_leech:5, pRes_max:5, pRes:30, base:"Demonhide Gloves"},
 {name:"Gravepalm", req_level:32, e_def:180, damage_vs_undead:200, ar_vs_undead:200, energy:10, strength:10, base:"Sharkskin Gloves"},
 {name:"Ghoulhide", req_level:36, e_def:190, ar_vs_undead_per_level:8, damage_vs_undead_per_level:2, mana_leech:5, life:20, base:"Heavy Bracers"},
-{name:"Lava Gout", req_level:42, oskill_Enflame:10, e_def:200, half_freeze:1, fDamage_min:13, fDamage_max:46, ias:20, fRes:24, base:"Battle Gauntlets", pod_changes:1},
+{name:"Lava Gout", req_level:42, ctc:[[2,10,"Enflame","on striking"]], e_def:200, half_freeze:1, fDamage_min:13, fDamage_max:46, ias:20, fRes:24, base:"Battle Gauntlets", pod_changes:1},
 {name:"Hellmouth", req_level:47, ctc:[[4,12,"Firestorm","on striking"],[2,4,"Meteor","on striking"]], e_def:200, fAbsorb_flat:15, fDamage_min:15, fDamage_max:72, base:"War Gauntlets"},
 {name:"Dracul's Grasp", req_level:76, ctc:[[5,10,"Life Tap","on striking"]], e_def:120, strength:15, life_per_kill:10, owounds:25, life_leech:10, base:"Vampirebone Gloves", img:"Dracul's_Grasp"},
 {name:"Soul Drainer", req_level:74, e_def:120, pierce:7, life_leech:7, mana_leech:7, monster_defense_per_hit:-50, dexterity:7, base:"Vambraces", pod_changes:1, img:"Soul_Drainer", cskill:[[8,"Weaken",34]]},
@@ -368,7 +369,7 @@ var equipment = {
 {set_Ald:1, name:"Aldur's Advance", req_level:45, frw:40, stamina:180, damage_to_mana:10, heal_stam:32, life:50, fRes:50, indestructible:1, base:"Battle Boots", rarity:"set", set_bonuses:["set_Ald",{},{dexterity:15},{dexterity:15},{dexterity:15}], img:"Aldur's_Advance"},
 {set_Disciple:1, name:"Rite of Passage", req_level:29, frw:30, defense:25, stamina:25, half_freeze:1, base:"Demonhide Boots", rarity:"set", set_bonuses:["set_Disciple",{},{},{},{},{}], pod_changes:1, img:"Rite_of_Passage"},
 {set_Sander:1, name:"Sander's Riprap", req_level:20, frw:40, ar:100, dexterity:10, strength:5, base:"Heavy Boots", rarity:"set", set_bonuses:["set_Sander",{},{},{},{},{}], img:"Sander's_Riprap"},
-{set_Tancred:1, name:"Tancred's Hobnails", req_level:20, heal_stam:25, dexterity:10, base:"Boots", rarity:"set", set_bonuses:["set_Tancred",{},{frw:30},{strength:10},{},{}]},
+{set_Tancred:1, name:"Tancred's Hobnails", req_level:20, heal_stam:25, dexterity:10, summon_damage:15, base:"Boots", rarity:"set", set_bonuses:["set_Tancred",{},{frw:30},{strength:10},{},{}]},
 {set_Vidala:1, name:"Vidala's Fetlock", req_level:14, frw:30, stamina:150, pierce:15, base:"Light Plated Boots", rarity:"set", set_bonuses:["set_Vidala",{},{all_res:8},{},{}], pod_changes:1, img:"Vidala's_Fetlock"},
 {set_Cow:1, name:"Cow King's Hooves", req_level:13, frw:30, defense:35, fDamage_min:25, fDamage_max:35, dexterity:20, mf:25, base:"Heavy Boots", rarity:"set", set_bonuses:["set_Cow",{},{},{}]},
 {set_Sigon:1, name:"Sigon's Sabot", req_level:6, frw:20, cRes:40, base:"Greaves", rarity:"set", set_bonuses:["set_Sigon",{},{ar:50},{mf:50},{},{},{}], img:"Sigon's_Sabot"},
@@ -425,10 +426,10 @@ var equipment = {
 {name:"Metalgrid", req_level:81, ar:450, defense:350, all_res:35, cskill:[[22,"Iron Golem",11],[12,"Iron Maiden",20]]},
 {set_TR:1, name:"Tal Rasha's Adjudication", req_level:67, skills_sorceress:2, lRes:33, mana:42, life:50, lDamage_min:3, lDamage_max:32, rarity:"set", set_bonuses:["set_TR",0,{},{},{fcr:10},{}]},
 {set_Disciple:1, name:"Telling of Beads", req_level:30, all_skills:1, pRes:50, cRes:18, thorns:10, rarity:"set", set_bonuses:["set_Disciple",{},{},{},{},{}], pod_changes:1},
-{set_Tancred:1, name:"Tancred's Weird", req_level:20, damage_reduced:2, mDamage_reduced:1, rarity:"set", set_bonuses:["set_Tancred",{},{mf:78},{ar:60},{},{}]},
+{set_Tancred:1, name:"Tancred's Weird", req_level:20, damage_reduced:2, mDamage_reduced:1, summon_damage:20, rarity:"set", set_bonuses:["set_Tancred",{},{mf:78},{ar:60},{},{}]},
 {set_Iratha:1, name:"Iratha's Collar", req_level:15, poison_length_reduced:75, pRes:30, rarity:"set", set_bonuses:["set_Iratha",{},{all_res:15},{},{}]},
 {set_Arcanna:1, name:"Arcanna's Sign", req_level:15, mana_regen:20, mana:15, rarity:"set", set_bonuses:["set_Arcanna",{},{mf:50},{fRes:20},{}]},
-{set_Vidala:1, name:"Vidala's Snare", req_level:14, cRes:20, life:15, rarity:"set", set_bonuses:["set_Vidala",{},{mf:50},{},{}]},
+{set_Vidala:1, name:"Vidala's Snare", req_level:14, cRes:20, life:15, pierce:10, rarity:"set", set_bonuses:["set_Vidala",{},{mf:50},{},{}]},
 {set_Civerb:1, name:"Civerb's Icon", req_level:9, life_replenish:4, mana_regen:40, rarity:"set", set_bonuses:["set_Civerb",{},{cRes:25},{defense:25}]},
 {set_Cathan:1, name:"Cathan's Sigil", req_level:11, fhr:10, thorns_lightning:5, rarity:"set", set_bonuses:["set_Cathan",{},{ar:50},{mf:25},{},{}]},
 {set_Angelic:1, name:"Angelic Wings", req_level:12, damage_to_mana:20, light_radius:3, rarity:"set", set_bonuses:["set_Angelic",{},{life:75},{all_skills:1},{}]},
@@ -457,8 +458,9 @@ var equipment = {
 {only:"sorceress", rarity:"magic", name:"Glacial Amulet", req_level:42, skills_cold:3},
 {only:"sorceress", rarity:"magic", name:"Powered Amulet", req_level:42, skills_lightning:3},
 {only:"sorceress", rarity:"magic", name:"Volcanic Amulet", req_level:42, skills_fire:3},
-{rarity:"craft", name:"Blood Amulet", req_level:89, skills_class:2, life_leech:12, life:20, frw:10, strength:30, mana_leech:5, all_res:20},
-{rarity:"craft", name:"Caster Amulet", req_level:89, skills_class:2, mana_regen:10, mana:100, fcr:20, all_res:20, strength:30, dexterity:20},
+{rarity:"craft", name:"Blood Amulet", req_level:89, skills_class:2, frw:10, life_leech:4, mana_leech:5, life:20, strength:35, all_res:20},
+{rarity:"craft", name:"Caster Amulet", req_level:89, skills_class:2, fcr:20, mana_regen:10, mana:20, strength:30, energy:5, all_res:20},
+{rarity:"craft", name:"Hitpower Amulet", req_level:89, ctc:[[5,4,"Frost Nova","when hit"]], skills_class:2, fcr:10, all_res:20, strength:30, thorns:6, summon_damage:15},
 	],
     ring1: [
 {name:"Ring"},
@@ -493,9 +495,9 @@ var equipment = {
 {only:"Barb (merc)",	rarity:"rw", name:"Hand of Justice ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:67, ctc:[[100,36,"Blaze","when you level-up"],[100,48,"Meteor","when you die"]], aura:"Holy Fire", aura_lvl:16, ias:33, e_damage:330, itd:1, enemy_fRes:-20, life_leech:7, dstrike:20, blind_on_hit:1, freezes_target:3, twoHanded:1, type:"sword", base:"Colossus Sword"},
 {only:"Desert Guard",	rarity:"rw", name:"Eternity ­ ­ - ­ ­ Great Poleaxe", req_level:63, e_damage:310, indestructible:1, damage_min:9, life_leech:7, cblow:20, blind_on_hit:1, slows_target:33, mana_regen:16, cbf:1, mf:30, ethereal:1, twoHanded:1, type:"polearm", base:"Great Poleaxe", cskill:[[8,"Revive",88]]},
 {only:"Desert Guard",	rarity:"rw", name:"Destruction ­ ­ - ­ ­ Giant Thresher", ethereal:1, req_level:68, ctc:[[23,12,"Volcano","on striking"],[5,23,"Molten Boulder","on striking"],[100,45,"Meteor","when you die"],[15,22,"Nova","on attack"]], e_damage:350, itd:1, mDamage_min:100, mDamage_max:180, mana_leech:7, cblow:20, dstrike:20, pmh:1, dexterity:10, twoHanded:1, type:"polearm", base:"Giant Thresher"},
-{only:"Rogue Scout",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Hydra Bow", sup:15, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"bow", base:"Hydra Bow", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
-{only:"Desert Guard",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Giant Thresher", ethereal:1, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"polearm", base:"Giant Thresher", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
-{only:"Barb (merc)",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"sword", base:"Colossus Sword", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
+{only:"Rogue Scout",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Hydra Bow", sup:15, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"bow", base:"Hydra Bow", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
+{only:"Desert Guard",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Giant Thresher", ethereal:1, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"polearm", base:"Giant Thresher", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
+{only:"Barb (merc)",	rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:65, aura:"Redemption", aura_lvl:10, e_damage:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, twoHanded:1, type:"sword", base:"Colossus Sword", pod_changes:1, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]]},
 {only:"Desert Guard",	rarity:"rw", name:"Fury ­ ­ - ­ ­ Thresher", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, twoHanded:1, type:"polearm", base:"Thresher"},
 {only:"Iron Wolf",		rarity:"rw", name:"Fury ­ ­ - ­ ­ Mythical Sword", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, type:"sword", base:"Mythical Sword"},
 {only:"Barb (merc)",	rarity:"rw", name:"Fury ­ ­ - ­ ­ Colossus Sword", ethereal:1, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, twoHanded:1, type:"sword", base:"Colossus Sword"},
@@ -607,7 +609,7 @@ var equipment = {
 {not:["barbarian","Barb (merc)"], rarity:"rw", name:"Last Wish ­ ­ - ­ ­ Phase Blade", sup:15, req_level:65, ctc:[[6,11,"Fade","when struck"],[10,18,"Life Tap","on striking"],[20,20,"Charged Bolt","on attack"]], aura:"Might", aura_lvl:17, e_damage:375, itd:1, cblow:70, pmh:1, blind_on_hit:1, mf_per_level:0.5, type:"sword", base:"Phase Blade"},
 {not:["amazon","assassin","druid","necromancer","paladin","sorceress"], rarity:"rw", name:"Destruction ­ ­ - ­ ­ Colossus Sword", sup:15, req_level:65, ctc:[[23,12,"Volcano","on striking"],[5,23,"Molten Boulder","on striking"],[100,45,"Meteor","when you die"],[15,22,"Nova","on attack"]], e_damage:350, itd:1, mDamage_min:100, mDamage_max:180, mana_leech:7, cblow:20, dstrike:20, pmh:1, dexterity:10, twoHanded:1, type:"sword", base:"Colossus Sword"},
 {not:["barbarian","Barb (merc)"], rarity:"rw", name:"Destruction ­ ­ - ­ ­ Phase Blade", sup:15, req_level:65, ctc:[[23,12,"Volcano","on striking"],[5,23,"Molten Boulder","on striking"],[100,45,"Meteor","when you die"],[15,22,"Nova","on attack"]], e_damage:350, itd:1, mDamage_min:100, mDamage_max:180, mana_leech:7, cblow:20, dstrike:20, pmh:1, dexterity:10, type:"sword", base:"Phase Blade"},
-{not:["Barb (merc)"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Phase Blade", sup:15, req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, type:"sword", base:"Phase Blade", pod_changes:1},
+{not:["Barb (merc)"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Phase Blade", sup:15, req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, e_damage:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, type:"sword", base:"Phase Blade", pod_changes:1},
 {rarity:"rw", name:"Famine ­ ­ - ­ ­ Legendary Mallet", sup:15, req_level:65, e_damage:370, ias:30, itd:1, mDamage_min:180, mDamage_max:200, fDamage_min:50, fDamage_max:200, cDamage_min:50, cDamage_max:200, lDamage_min:51, lDamage_max:250, life_leech:12, pmh:1, strength:10, type:"hammer", base:"Legendary Mallet"},
 {rarity:"rw", name:"Fury ­ ­ - ­ ­ Berserker Axe", sup:15, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, type:"axe", base:"Berserker Axe"},
 {rarity:"rw", name:"Infinity ­ ­ - ­ ­ Giant Thresher", sup:15, req_level:63, ctc:[[50,20,"Chain Lightning","on kill"]], aura:"Conviction", aura_lvl:21, e_damage:170, frw:35, enemy_lRes:-55, cblow:40, pmh:1, vitality_per_level:0.5, mf:30, twoHanded:1, type:"polearm", base:"Giant Thresher", pod_changes:1, cskill:[[21,"Cyclone Armor",30]]},
@@ -633,7 +635,7 @@ var equipment = {
 {rarity:"rw", name:"Black ­ ­ - ­ ­ Devil Star", sup:15, req_level:42, e_damage:120, ias:15, ar:200, cDamage_min:3, cDamage_max:14, cblow:40, knockback:1, vitality:10, mDamage_reduced:2, type:"mace", base:"Devil Star", cskill:[[4,"Corpse Explosion",12]]},
 {rarity:"rw", name:"Honor ­ ­ - ­ ­ Knout", sup:15, req_level:27, all_skills:1, e_damage:160, damage_min:9, damage_max:9, ar:250, life_leech:7, dstrike:25, strength:10, life_replenish:10, mana_per_kill:2, light_radius:1, type:"mace", base:"Knout"},
 {rarity:"rw", name:"Insight ­ ­ - ­ ­ Partizan", sup:15, req_level:27, aura:"Meditation", aura_lvl:17, e_damage:260, fcr:35, damage_min:9, ar_bonus:250, fDamage_min:5, fDamage_max:30, pDamage_all:75, pDamage_duration:5, oskill_Lethal_Strike:6, all_attributes:5, mana_per_kill:2, mf:23, twoHanded:1, type:"polearm", base:"Partizan"},
-{rarity:"rw", name:"Spirit ­ ­ - ­ ­ Crystal Sword", type:"sword", req_level:25, all_skills:2, fcr_per_level:0.375, fhr:55, life_leech:7, mana_per_level:1, missile_defense:75, mAbsorb_flat:8, pDamage_all:75, pDamage_duration:5, lDamage_min:1, lDamage_max:50, cDamage_min:3, cDamage_max:14, base:"Crystal Sword", pod_changes:1},
+{rarity:"rw", name:"Spirit ­ ­ - ­ ­ Crystal Sword", type:"sword", req_level:25, all_skills_per_level:0.0162, fcr_per_level:0.375, fhr:55, life_leech:7, mana_per_level:1, missile_defense:75, mAbsorb_flat:8, pDamage_all:75, pDamage_duration:5, lDamage_min:1, lDamage_max:50, cDamage_min:3, cDamage_max:14, base:"Crystal Sword", pod_changes:1},
 {rarity:"rw", name:"King's Grace ­ ­ - ­ ­ Zweihander", sup:15, req_level:25, e_damage:100, ar:150, damage_vs_demons:100, ar_vs_demons:100, damage_vs_undead:50, ar_vs_undead:100, fDamage_min:5, fDamage_max:30, cDamage_min:3, cDamage_max:14, life_leech:7, twoHanded:1, type:"sword", base:"Zweihander"},
 {rarity:"rw", name:"Strength ­ ­ - ­ ­ Cutlass", sup:15, req_level:25, e_damage:35, life_leech:7, cblow:25, strength:20, vitality:10, mana_per_kill:2, life_per_hit:8, type:"sword", base:"Cutlass", pod_changes:1},
 {rarity:"rw", name:"Malice ­ ­ - ­ ­ Jagged Star", sup:15, req_level:20, e_damage:33, damage_max:9, target_defense:-25, ar:50, owounds:100, pmh:1, monster_defense_per_hit:-100, life_replenish:-5, type:"mace", base:"Jagged Star"},
@@ -643,10 +645,10 @@ var equipment = {
 {rarity:"rw", name:"Memory ­ ­ - ­ ­ Gothic Staff", req_level:37, skills_sorceress:3, fcr:33, damage_min:9, target_defense:-25, defense_bonus:50, vitality:10, energy:10, max_mana:20, phys_Lightning_Surge:35, skill_Static_Field:2, skill_Energy_Shield:6, skill_Lightning_Surge:3, skill_Lightning_Mastery:3, twoHanded:1, type:"staff", base:"Gothic Staff", pod_changes:1},
 {not:["necromancer"], rarity:"rw", name:"White ­ ­ - ­ ­ Bone Wand", req_level:35, skills_poisonBone:3, fcr:20, flee_on_hit:25, vitality:10, mana:13, mDamage_reduced:4, skill_Summon_Mastery:4, skill_Bone_Armor:3, skill_Bone_Spear:2, type:"wand", base:"Bone Wand"},
 	// Iron Golem RW replacements
-	{only:"none", rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Scourge", sup:15, req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, e_damage:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, type:"mace", base:"Scourge", pod_changes:1},
+	{only:"none", rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Scourge", sup:15, req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, e_damage:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, type:"mace", base:"Scourge", pod_changes:1},
 	{only:"none", rarity:"rw", name:"Grief ­ ­ - ­ ­ Scourge", type:"mace", sup:15, req_level:59, ias:40, itd:1, target_defense:-25, enemy_pRes:-25, dstrike:20, pmh:1, mana_per_kill:2, life_per_kill:15, fDamage_min:5, fDamage_max:30, min_damage_per_level:3.375, max_damage_per_level:3.625, base:"Scourge", pod_changes:1},
 	{only:"none", rarity:"rw", name:"Fortitude ­ ­ - ­ ­ Scourge", sup:15, req_level:59, ctc:[[20,15,"Chilling Armor","when struck"]], e_damage:300, defense_bonus:200, fcr:25, life_per_level:1.5, all_res:30, damage_to_mana:12, light_radius:1, damage_min:9, ar:50, dstrike:20, flee_on_hit:25, type:"mace", base:"Scourge"},
-	{only:"none", rarity:"rw", name:"Spirit ­ ­ - ­ ­ Knout", type:"mace", req_level:25, all_skills:2, fcr_per_level:0.375, fhr:55, life_leech:7, mana_per_level:1, missile_defense:75, mAbsorb_flat:8, pDamage_all:75, pDamage_duration:5, lDamage_min:1, lDamage_max:50, cDamage_min:3, cDamage_max:14, base:"Knout", pod_changes:1},
+	{only:"none", rarity:"rw", name:"Spirit ­ ­ - ­ ­ Long Sword", type:"mace", req_level:25, all_skills_per_level:0.0162, fcr_per_level:0.375, fhr:55, life_leech:7, mana_per_level:1, missile_defense:75, mAbsorb_flat:8, pDamage_all:75, pDamage_duration:5, lDamage_min:1, lDamage_max:50, cDamage_min:3, cDamage_max:14, base:"Long Sword", pod_changes:1},
 // Special
 {name:"Horadric Malus", type:"hammer", req_strength:15, req_dexterity:15, special:1, damage_vs_undead:150, base_damage_min:6, base_damage_max:15, durability:83, max_sockets:2, img:"Horadric_Malus", tier:0},
 {name:"Staff of Kings", type:"staff", twoHanded:1, req_strength:25, special:1, damage_vs_undead:50, base_damage_min:10, base_damage_max:15, durability:0, ias:50, all_res:10, max_sockets:2, img:"Staff_of_Kings", tier:0},
@@ -908,10 +910,10 @@ var equipment = {
 {only:"paladin", name:"Dragonscale", req_level:80, oskill_Hydra:10, e_def:200, fDamage_min:211, fDamage_max:371, fDamage:15, fRes_max:5, strength:25, fAbsorb:20, type:"shield", base:"Zakarum Shield"},
 {only:"paladin", set_Gris:1, name:"Griswold's Honor", req_level:68, defense:108, fbr:65, ibc:20, all_res:45, sockets:3, type:"shield", base:"Vortex Shield", rarity:"set", set_bonuses:["set_Gris",{},{},{},{}], img:"Griswold's_Honor"},
 {only:"paladin", rarity:"rw", name:"Exile ­ ­ - ­ ­ Sacred Targe", req_level:57, ctc:[[15,5,"Life Tap","on striking"]], aura:"Defiance", aura_lvl:16, skills_offensive:2, fbr:30, freezes_target:1, e_def:260, life_replenish:7, cRes_max:5, fRes_max:5, mf:25, all_res:45, autorepair:1, ethereal:1, type:"shield", base:"Sacred Targe"},
-{only:"paladin", rarity:"rw", name:"Spirit ­ ­ - ­ ­ Sacred Targe", req_level:47, all_skills:2, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, all_res:45, type:"shield", base:"Sacred Targe"},
-{not:["paladin"], rarity:"rw", name:"Spirit ­ ­ - ­ ­ Monarch", req_level:54, all_skills:2, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, type:"shield", base:"Monarch", nonmetal:1},
-{only:"paladin", rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Sacred Targe", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, all_res:45, type:"shield", base:"Sacred Targe", pod_changes:1},
-{not:["paladin"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Monarch", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:400, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, type:"shield", base:"Monarch", pod_changes:1, nonmetal:1},
+{only:"paladin", rarity:"rw", name:"Spirit ­ ­ - ­ ­ Sacred Targe", req_level:47, all_skills_per_level:0.0162, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, all_res:45, type:"shield", base:"Sacred Targe"},
+{not:["paladin"], rarity:"rw", name:"Spirit ­ ­ - ­ ­ Monarch", req_level:54, all_skills_per_level:0.0162, fcr:35, fhr:55, vitality:22, mana:112, cRes:35, lRes:35, pRes:35, missile_defense:250, thorns:14, mAbsorb_flat:8, type:"shield", base:"Monarch", nonmetal:1},
+{only:"paladin", rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Sacred Targe", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, all_res:45, type:"shield", base:"Sacred Targe", pod_changes:1},
+{not:["paladin"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Monarch", req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, damage_bonus:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, life:50, lRes_max:5, fRes_max:10, type:"shield", base:"Monarch", pod_changes:1, nonmetal:1},
 {only:"paladin", rarity:"rw", name:"Dream ­ ­ - ­ ­ Sacred Targe", req_level:65, ctc:[[10,15,"Confuse","when struck"]], aura:"Holy Shock", aura_lvl:13, e_def:30, defense:220, fhr:30, vitality:10, mana_per_level:0.625, all_res:65, mf:25, max_life:5, type:"shield", base:"Sacred Targe", pod_changes:1},
 {not:["paladin"], rarity:"rw", name:"Dream ­ ­ - ­ ­ Troll Nest", req_level:65, ctc:[[10,15,"Confuse","when struck"]], aura:"Holy Shock", aura_lvl:13, e_def:30, defense:220, fhr:30, vitality:10, mana_per_level:0.625, all_res:20, mf:25, max_life:5, type:"shield", base:"Troll Nest", pod_changes:1},
 {only:"paladin", rarity:"rw", name:"Dragon ­ ­ - ­ ­ Sacred Targe", req_level:61, ctc:[[20,18,"Venom","when struck"],[12,15,"Hydra","on striking"]], aura:"Holy Fire", aura_lvl:14, defense:360, missile_defense:230, all_attributes:5, strength_per_level:0.375, lRes_max:5, damage_reduced:7, mana:50, all_res:45, type:"shield", base:"Sacred Targe"},
@@ -1066,7 +1068,7 @@ var equipment = {
 				oskill_Lycanthropy:1, oskill_Werebear:1, oskill_Werewolf:1, oskill_Feral_Rage:1, oskill_Flame_Dash:1, oskill_Summon_Dire_Wolf:1,
 				oskill_Desecrate:1,
 				oskill_Zeal:1, oskill_Vengeance:1,
-				oskill_Frigerate:1, oskill_Shiver_Armor:1, oskill_Cold_Mastery:1, oskill_Hydra:1, oskill_Fire_Ball:1, oskill_Fire_Wall:1, oskill_Meteor:1, oskill_Fire_Mastery:1, oskill_Enflame:1	},
+				oskill_Frigerate:1, oskill_Shiver_Armor:1, oskill_Cold_Mastery:1, oskill_Hydra:1, oskill_Fire_Ball:1, oskill_Fire_Wall:1, oskill_Meteor:1, oskill_Fire_Mastery:1	},
 *//*
 {debug:1, name:"everything", req_level:100, // not made for production, may have glitches
 				strength:1, dexterity:1, vitality:1, energy:1, life:1, mana:1, defense:1, ar:1, stamina:1, block:1, base_defense:1, 
@@ -1199,11 +1201,11 @@ var corruptions = {	// Note: non-socket corruptions include +1 socket if possibl
 	helm: [
 		{name:"Helm"},
 		{name:"+ Sockets", sockets:3},
+		{name:"+ Pierce", pierce:20, sockets:1},
 		{name:"+ Life per Hit", life_per_hit:14, life_per_ranged_hit:10, sockets:1},
 		{name:"+ Strength", strength:10, sockets:1},
 		{name:"+ Energy", energy:10, sockets:1},
 		{name:"+ Life", life:15, sockets:1},
-		{name:"+ Enhanced Defense", e_def:25, sockets:1},
 	],
 	armor: [
 		{name:"Armor"},
@@ -2634,7 +2636,6 @@ oskill_Fire_Ball:{index:["oskill_Fire_Ball"], format:["+"," to Fire Ball"]},
 oskill_Fire_Wall:{index:["oskill_Fire_Wall"], format:["+"," to Fire Wall"]},
 oskill_Meteor:{index:["oskill_Meteor"], format:["+"," to Meteor"]},
 oskill_Fire_Mastery:{index:["oskill_Fire_Mastery"], format:["+"," to Fire Mastery"]},
-oskill_Enflame:{index:["oskill_Enflame"], format:["+"," to Enflame"]},
 
 skills_class:{index:["skills_class"], format:["+"," to Class Skills"]},
 skills_tree1:{index:["skills_tree1"], format:["+"," to Tree #1 Skills"]},
@@ -2673,6 +2674,12 @@ claw_damage:{index:["claw_damage"], format:["+","% Damage"]},
 claw_ar:{index:["claw_ar"], format:["+","% Attack Rating"]},
 claw_cstrike:{index:["claw_cstrike"], format:["+","% Critical Strike"]},
 
+summon_damage:{index:["summon_damage"], format:["Summons deal +","% Increased Damage"]},
+summon_defense:{index:["summon_defense"], format:["Summons have +","% Enhanced Defense"]},
+skill_Ground_Slam:{index:["skill_Molten_Strike"], format:["+"," to Molten Strike (Amazon only)"]},
+skill_Double_Swing:{index:["skill_Double_Swing"], format:["+"," to Double Swing (Barbarian only)"]},
+all_skills_per_level:{index:["all_skills_per_level"], format:["+"," to All Skills (based on character level)"], mult:["level"]},
+reset_on_kill:{index:["reset_on_kill"], format:["Chance to Reset Duration on Kill: ","%"]},
 };
 
 var stats_alternate = {

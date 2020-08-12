@@ -512,7 +512,7 @@ function getMercenaryAuraLevel(hlvl) {
 	//if (hlvl > 9 && hlvl < 31) { result = (3+((hlvl-9)*10/32)) }
 	//else if (hlvl > 30 && hlvl < 55) { result = (10+((hlvl-31)*10/32)) }
 	//else if (hlvl > 54) { result = 18 }
-	result += ~~mercenary.all_skills
+	result += ~~mercenary.all_skills + Math.ceil(mercenary.all_skills_per_level*mercenary.level)
 	return result;
 }
 
@@ -1420,7 +1420,7 @@ function setEffectData(origin, name, num, other) {
 	var lvl = effects[id].info.index
 	if (origin == "aura") { data = getAuraData(name,num,other) }
 	else if (origin == "skill") { data = character.getBuffData(skills[num]); lvl = skills[num].level + skills[num].extra_levels; }
-	else if (origin == "oskill") { var skill = skills_all[oskills_info["oskill_"+id].native_class][num]; data = character_any.getBuffData(skill); lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills; }
+	else if (origin == "oskill") { var skill = skills_all[oskills_info["oskill_"+id].native_class][num]; data = character_any.getBuffData(skill); lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level); }
 	else if (origin == "misc") { data = getMiscData(name,num); }
 	else if (origin == "cskill") { data = getCSkillData(name,num,other) }
 	else if (origin == "ctcskill") { data = getCTCSkillData(name,num,other) }
@@ -1900,6 +1900,7 @@ function getCSkillData(name, lvl, group) {
 	var skill = skills_all[effect_cskills[unit].native_class][effect_cskills[unit].i];
 	// Amazon
 	if (name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
+	else if (name == "Phase Run") { result.fhr = 30; result.velocity = 30; result.duration = skill.data.values[0][lvl]; }
 	// Assassin
 	else if (name == "Cloak of Shadows") { result.defense_bonus = skill.data.values[0][lvl]; result.enemy_defense = skill.data.values[1][lvl]; result.duration = 8; }
 	else if (name == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
@@ -1971,7 +1972,7 @@ function getCTCSkillData(name, lvl, group) {
 		}
 	}
 	// Necromancer
-	else if (name == "Flesh Offering") { result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
+	else if (name == "Flesh Offering") { result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }	// TODO: implement for summons: result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; 
 	return result;
 }
 
@@ -2472,6 +2473,8 @@ function updateTertiaryStats() {
 	if (c.peace > 0) { document.getElementById("peace").innerHTML = "Slain Monsters Rest in Peace<br>" } else { document.getElementById("peace").innerHTML = "" }
 	if (c.glow > 0) { document.getElementById("glow").innerHTML = "Character is Glowing<br>" } else { document.getElementById("glow").innerHTML = "" }
 	var statlines = "";
+	if (c.summon_damage > 0) { statlines += "Summons deal +"+c.summon_damage+"% Increased Damage<br>" }
+	if (c.summon_defense > 0) { statlines += "Summons have +"+c.summon_defense+"% Enhanced Defense<br>" }
 	if (c.bonus_corpse_explosion > 0) { statlines += "Corpse Explosion deals +"+c.bonus_corpse_explosion+"% of Maximum Corpse life<br>" }
 	if (c.phys_Lightning_Surge > 0) { statlines += "Lightning Surge Deals "+c.phys_Lightning_Surge+"% Extra Damage As Physical<br>" }
 	if (c.extraValkyrie > 0) { statlines += "Can Summon One Additional Valkyrie<br>" }
@@ -2574,7 +2577,7 @@ function calculateSkillAmounts() {
 	// TODO: move function to character files?
 	for (s = 0; s < skills.length; s++) {
 		skills[s].extra_levels = 0
-		skills[s].extra_levels += character.all_skills
+		skills[s].extra_levels += character.all_skills + Math.ceil(character.all_skills_per_level*character.level)
 		skills[s].extra_levels += character.skills_class
 		var display = skills[s].level;
 		var skill_id = "skill_" + getId(skills[s].name);
@@ -3677,7 +3680,10 @@ function getAffixLine(affix, loc, group, subgroup) {
 			if (isNaN(value) == false) { value_combined += value }
 			var rounding = true;
 			if (stat.mult != null) {
-				if (stat.mult[i] != 1) { value *= character[stat.mult[i]] }
+				if (stat.mult[i] != 1) {
+					value *= character[stat.mult[i]]
+					if (affix == "all_skills_per_level") { value = Math.ceil(value) }
+				}
 				else { rounding = false }
 			}
 			if (isNaN(value) == false && rounding == true) { value = round(value) }
@@ -3970,9 +3976,8 @@ function changeBase(group, change) {
 	if (typeof(equipped[group].base) == 'undefined' && typeof(equipped[group].special) != 'undefined') { base_name = "Special_0" }
 	var base = getBaseId(base_name);
 	var halt = 0;
-	if ((typeof(equipped[group].rarity) == 'undefined' || equipped[group].rarity == "set") && change == "downgrade" && equipped[group].tier <= equipped[group].original_tier) { halt = 1 }		// prevents unique/set from being downgraded below their baseline
-	//if (typeof(equipped[group].rarity) != 'undefined' && equipped[group].rarity != "rare") { halt = 1 }	// limit to unique/rare
-	if (equipped[group].rarity == "set") { halt = 1 }							// limit set items
+	if ((typeof(equipped[group].rarity) == 'undefined' || equipped[group].rarity == "unique" || equipped[group].rarity == "set") && change == "downgrade" && equipped[group].tier <= equipped[group].original_tier) { halt = 1 }		// prevents unique/set from being downgraded below their baseline
+	//if (typeof(equipped[group].rarity) != 'undefined' && equipped[group].rarity != "unique" && equipped[group].rarity != "rare" && equipped[group].rarity != "set") { halt = 1 }	// limit to unique/rare/set
 	if (typeof(bases[base][change]) != 'undefined' && halt == 0) {
 		base = bases[base][change];
 		equipped[group].base = base;
@@ -4097,3 +4102,40 @@ function updateSocketTotals() {
 		}
 	}
 }
+
+// Notes for Organization Overhaul:
+//   TODO...
+//   variable names for item classification 
+//		slot - equipment slot for item  ("helm","armor","boots","gloves","belt","amulet","ring1","ring2","weapon","offhand")
+//		group - similar to slot, but generalized for the item  ("helm","armor","boots","gloves","belt","amulet","ring","weapon","offhand","charm","socketable")
+//		subgroup - in between group/type, maybe? might allow "helm","shield", and combo weapons ("throwing weapon","amazon_weapon"...) to be used via the same variable? or would a true/false system (so multiple variables can be checked) be more convenient?
+//		type - more specific to the item  ("armor","boots","gloves","belt","amulet","ring","charm" are the same, but "helm","weapon","offhand","socketable" have more variety - "helm","circlet","barbarian helm","druid helm",    "axe","mace","sword","dagger","throwing weapon","javelin","spear","polearm","bow","crossbow","staff","wand","scepter","claw","orb","amazon weapon",    "shield","paladin shield","necromancer shield","quiver",    "jewel","rune","gem","misc")
+//		subtype - "club","mace","hammer"?
+//   variable names for item affixes
+//		item affix variables (from item_affixes.js) can be converted to whatever is needed 1:1 (so variables being worked with may be more human-readable)
+//		item affix codes (used in filters) cannot all be converted 1:1 from other variables
+//			sometimes multiple codes refer to the same variable
+//			sometimes codes refer to calculated values
+//		min/max damage variables
+//			damage over time
+//				poison damage - values used for calculation (from item_affixes.js or elsewhere) are different than tooltip displayed values
+//				...how to calculate from poison 'bitrate'?
+//				burning damage - should this have its own variables?
+//			variable names (e.g. fDamage_min, fDamage_max, fDamage)
+//				replace fDamage (percent bonus) with bonus_fDamage
+//				...same for other 3 elements, magic, & physical
+//		e_def/defense_bonus - distinction needed?
+//		e_damage/damage_bonus - distinction needed?
+//   data organization for item affixes
+//		available affixes
+//			when base item is updated (ilvl, group, type, base, rarity, name), available affixes may change (any affix that is already selected should remain selected if possible)
+//			...add variables to 'data' to store selected categories/values so they can be easily compared to list of newly available affix categories 
+//			...maybe info can be shown when considering things in the opposite direction? for example, show the ilvl range for the currently available affixes?
+//   user interface
+//		is there a way to indicate if/when an item's filter display would change?  (so the user doesn't need to test so many combinations)
+//		...maybe just using non-item differences like CLVL, DIFFICULTY, CHARSTAT15, etc.
+//
+
+// PATCH 19 TODO:
+//	* what happened to the damage conversion with Molten Strike?
+//	* why is Meteor damage not matching expected values with Fire Mastery?
