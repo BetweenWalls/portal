@@ -2242,7 +2242,7 @@ function updatePrimaryStats() {
 	}
 	
 	//var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
-	var enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level (or as close as possible if the area level isn't available in the selected difficulty)
+	var enemy_lvl = Math.min(~~c.level,89);	// temp, sets 'area level' at the character's level (or as close as possible if the area level isn't available in the selected difficulty)
 	if (c.difficulty == 1) { enemy_lvl = Math.min(43,enemy_lvl) }
 	else if (c.difficulty == 2) { enemy_lvl = Math.max(36,Math.min(66,enemy_lvl)) }
 	else if (c.difficulty == 3) { enemy_lvl = Math.max(67,enemy_lvl) }
@@ -3048,8 +3048,11 @@ function checkSkill(skillName, num) {
 		if (native_skill == 0) { outcome = character_any.getSkillDamage(skillName, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
 		else { outcome = c.getSkillDamage(skill, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
 		
-		var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
-		enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level
+		//var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
+		var enemy_lvl = Math.min(~~c.level,89);	// temp, sets 'area level' at the character's level (or as close as possible if the area level isn't available in the selected difficulty)
+		if (c.difficulty == 1) { enemy_lvl = Math.min(43,enemy_lvl) }
+		else if (c.difficulty == 2) { enemy_lvl = Math.max(36,Math.min(66,enemy_lvl)) }
+		else if (c.difficulty == 3) { enemy_lvl = Math.max(67,enemy_lvl) }
 		var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
 		enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)/100+c.enemy_defense_flat)
 		var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * outcome.ar / (outcome.ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
@@ -3058,7 +3061,7 @@ function checkSkill(skillName, num) {
 		if (~~outcome.min != 0 && ~~outcome.max != 0) { document.getElementById("skill"+num+"_info").innerHTML = output } else { document.getElementById("skill"+num+"_info").innerHTML = ":" }
 		if (outcome.ar != 0) { document.getElementById("ar_skill"+num).innerHTML = "AR: " + outcome.ar + " ("+hit_chance+"%)" } else { document.getElementById("ar_skill"+num).innerHTML = "" }
 	}
-	if (offhandType == "weapon" && (skillName == "Dual Strike" || skillName == "Frenzy" || skillName == "Whirlwind") && equipped.weapon.name != "none") {
+	if (offhandType == "weapon" && (skillName == "Dual Strike" || skillName == "Double Swing" || skillName == "Frenzy" || skillName == "Whirlwind") && equipped.weapon.name != "none") {
 		document.getElementById("offhand_skill"+num).style.display = "inline"
 		document.getElementById("offhand_skill"+num).style.margin = "0px 0px 0px "+(document.getElementById("dropdown_skill"+num).clientWidth+10)+"px"
 		var physDamage_offhand = getWeaponDamage(strTotal,dexTotal,"offhand",0);
