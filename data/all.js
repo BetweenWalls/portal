@@ -71,11 +71,16 @@ function update() {
 // return: 
 // ---------------------------------
 function getCharacterInfo() {
-	var not_applicable = [0,1,2,3,'getSkillData','getBuffData','getSkillDamage','weapon_frames','wereform_frames','skill_layout','name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration','nonmetal','debug'];	// TODO: Prevent item qualities from being added as character qualities
+	var not_applicable = [
+		0,1,2,3,	// TODO: Fix, these should never be variable names (is an array being treated as a regular variable somewhere?)
+		'getSkillData','getBuffData','getSkillDamage','skill_layout','weapon_frames','wereform_frames','fcr_bp','fcr_bp_alt','fcr_bp_werebear','fcr_bp_werewolf','fhr_bp','fhr_bp_alt','fhr_bp_werebear','fhr_bp_werewolf','fbr_bp','fbr_bp_alt','fbr_bp_werebear','fbr_bp_werewolf',
+		'name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration','nonmetal','debug'	// TODO: Prevent item qualities from being added as character qualities
+	];
 	var charInfo = "{character:{";
 	for (stat in character) {
 		var halt = 0;
 		for (let i = 0; i < not_applicable.length; i++) { if (stat == not_applicable[i]) { halt = 1 } }
+		if (isNaN(Number(stat)) == false && character[stat] == "undefined") { halt = 1 }	// TODO: determine why numbers are being added to character (especially 0,1,2,3 which are being defined as NaN instead of just undefined)
 		if ((typeof(unequipped[stat]) != 'undefined' && character[stat] == unequipped[stat]) || unequipped[stat] == "") { halt = 1 }
 		if (halt == 0 || stat == "statpoints" || stat == "strength_added" || stat == "dexterity_added" || stat == "vitality_added" || stat == "energy_added" || stat == "strength" || stat == "dexterity" || stat == "vitality" || stat == "energy" || stat == "life" || stat == "mana" || stat == "stamina" || stat == "mana_regen") { charInfo += (stat+":"+character[stat]+",") }
 	}
@@ -303,8 +308,8 @@ function setCharacterInfo(className) {
 	var options = document.getElementById("dropdown_golem").options;
 	for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.ironGolem) { document.getElementById("dropdown_golem").selectedIndex = i } }
 	setIronGolem(fileInfo.ironGolem)
-	checkSkill(fileInfo.selectedSkill[0], 1)
-	checkSkill(fileInfo.selectedSkill[1], 2)
+	selectedSkill[0] = fileInfo.selectedSkill[0]
+	selectedSkill[1] = fileInfo.selectedSkill[1]
 	for (effect in fileInfo.effects) { if (typeof(fileInfo.effects[effect].info.snapshot) != 'undefined') { if (fileInfo.effects[effect].info.snapshot == 1) {
 		var active = 0;
 		var new_effect = 0;
@@ -505,14 +510,10 @@ function updateMercenary() {
 // ---------------------------------
 function getMercenaryAuraLevel(hlvl) {
 	var result = 1;
-	var diff = 0.23;
-	result = Math.min(18,Math.floor((1-diff)+diff*hlvl));
-	//if (mercenary.base_aura == "Might") { result = Math.min(3,result) }	// TOCHECK: Confirm whether Barbarian Merc's aura maxes out at level 3 (compared to level 18 for other mercenaries)
-	//old calculation for aura level:
-	//if (hlvl > 9 && hlvl < 31) { result = (3+((hlvl-9)*10/32)) }
-	//else if (hlvl > 30 && hlvl < 55) { result = (10+((hlvl-31)*10/32)) }
-	//else if (hlvl > 54) { result = 18 }
-	result += ~~mercenary.all_skills + Math.ceil(mercenary.all_skills_per_level*mercenary.level)
+	if (hlvl >= 9 && hlvl <= 42) { result = (3+Math.floor((hlvl-9)*7/32)) }
+	else if (hlvl >= 43 && hlvl <= 74) { result = (11+((hlvl-43)*7/32)) }
+	else if (hlvl >= 75) { result = 18 }
+	result = Math.min(18,(result + ~~mercenary.all_skills + ~~Math.ceil(mercenary.all_skills_per_level*hlvl)))
 	return result;
 }
 
@@ -1866,10 +1867,10 @@ function getAuraData(aura, lvl, source) {
 	else if (aura == "Fanaticism") { result.ias_skill = auras[a].data.values[2][lvl]; result.ar_bonus = auras[a].data.values[3][lvl]; result.radius = 12; if (source == "mercenary" || source == "golem") { result.damage_bonus = auras[a].data.values[0][lvl] } else { result.damage_bonus = auras[a].data.values[1][lvl] }}
 	else if (aura == "Conviction") { result.enemy_defense = auras[a].data.values[0][lvl]; result.enemy_fRes = auras[a].data.values[1][lvl]; result.enemy_cRes = auras[a].data.values[1][lvl]; result.enemy_lRes = auras[a].data.values[1][lvl]; result.enemy_pRes = auras[a].data.values[1][lvl]; result.radius = 21.3; }
 	// Others
-	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; result.radius = 16; }	// TODO: radius is a guess - get confirmation
-	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; result.enemy_defense_flat = auras[a].values[1][lvl]; }
+	else if (aura == "Thorns") { result.thorns_reflect = auras[a].values[0][lvl]; result.radius = 16; }	// TOCHECK: radius is a guess - get confirmation
+	else if (aura == "Inner Sight") { result.enemy_defense_flat = auras[a].values[0][lvl]; result.radius = auras[a].values[1][lvl]; }
 	else if (aura == "Righteous Fire") { result.flamme = auras[a].values[0][lvl]; result.radius = 5; }		// No buffs. Deals 45% of max life as fire damage per second in a small area.
-	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; result.radius = 16; }	// TODO: radius is a guess - get confirmation
+	else if (aura == "Lifted Spirit") { result.damage_bonus = auras[a].values[0][lvl]; result.fDamage = auras[a].values[0][lvl]; result.cDamage = auras[a].values[0][lvl]; result.lDamage = auras[a].values[0][lvl]; result.pDamage = auras[a].values[0][lvl]; result.radius = 16; }	// TOCHECK: radius is a guess - get confirmation
 	// Paladin Synergies
 	if (character.class_name == "Paladin") {
 		if (aura == "Cleansing") { result.life_replenish = Math.min(1,(skills[0].level+skills[0].force_levels))*~~(skills[0].data.values[0][skills[0].level+skills[0].extra_levels]); }
@@ -1900,7 +1901,7 @@ function getCSkillData(name, lvl, group) {
 	var skill = skills_all[effect_cskills[unit].native_class][effect_cskills[unit].i];
 	// Amazon
 	if (name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
-	else if (name == "Phase Run") { result.fhr = 30; result.velocity = 30; result.duration = skill.data.values[0][lvl]; }
+	else if (name == "Phase Run") { result.fhr = 30; result.velocity = 30; result.duration = skill.data.values[0][lvl]; result.reset_on_kill = skill.data.values[1][lvl]; }
 	// Assassin
 	else if (name == "Cloak of Shadows") { result.defense_bonus = skill.data.values[0][lvl]; result.enemy_defense = skill.data.values[1][lvl]; result.duration = 8; }
 	else if (name == "Venom") { result.pDamage_min = skill.data.values[1][lvl]; result.pDamage_max = skill.data.values[2][lvl]; result.pDamage_duration = 0.4; result.pDamage_duration_override = 0.4; result.duration = skill.data.values[0][lvl]; }
@@ -2037,8 +2038,9 @@ function changeDifficulty(diff) {
 		else if (diff == 3) { character[penalties[p]] = 100 }
 	}
 	//document.getElementById("difficulty"+diff).checked = true
-	updatePrimaryStats()
-	updateOther()
+	updateStats()
+	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
+	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 }
 
 // changeMonster - Changes the target monster
@@ -2239,8 +2241,11 @@ function updatePrimaryStats() {
 		document.getElementById("block").innerHTML = ""
 	}
 	
-	var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
-	enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level
+	//var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];
+	var enemy_lvl = Math.min(~~c.level,89)	// temp, sets 'area level' at the character's level (or as close as possible if the area level isn't available in the selected difficulty)
+	if (c.difficulty == 1) { enemy_lvl = Math.min(43,enemy_lvl) }
+	else if (c.difficulty == 2) { enemy_lvl = Math.max(36,Math.min(66,enemy_lvl)) }
+	else if (c.difficulty == 3) { enemy_lvl = Math.max(67,enemy_lvl) }
 	var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
 	enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)/100+c.enemy_defense_flat)
 	var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * ar / (ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
@@ -4137,5 +4142,5 @@ function updateSocketTotals() {
 //
 
 // PATCH 19 TODO:
-//	* what happened to the damage conversion with Molten Strike?
+//	* what happened to the damage conversion with Molten Strike? (patch notes said 80% physical damage converted to fire)
 //	* why is Meteor damage not matching expected values with Fire Mastery?
