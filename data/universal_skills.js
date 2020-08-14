@@ -1,4 +1,6 @@
 
+// TOCHECK: Does Fire Ball work as a synergy for Meteor (and vice versa) if both are oskills?
+
 var character_any = {
 	
 	// getSkillData - gets skill info from the appropriate skills data table
@@ -57,8 +59,9 @@ var character_any = {
 	// Sorceress
 		if (skillName == "Fire Ball" && elem < 2) { 			result *= (1+character.fDamage/100) }
 		if (skillName == "Fire Wall" && elem < 2) { 			result *= (1+character.fDamage/100) }
-		if (skillName == "Meteor" && elem < 2) { 			result *= (1+character.fDamage/100) }
-		if (skillName == "Meteor" && elem < 4 && elem > 1) { 		result *= (1+character.fDamage/100) }
+		if (skill.name == "Meteor" && elem < 2) { 				result *= (1+character.fDamage/100) }	// physical damage multipled by fire bonus (25% of total fire damage as extra physical damage)
+		if (skill.name == "Meteor" && elem < 4 && elem > 1) { 	result *= (1+character.fDamage/100) }
+		if (skill.name == "Meteor" && elem < 6 && elem > 3) { 	result *= (1+character.fDamage/100) }
 		if (skillName == "Hydra" && elem < 3 && elem > 0) { 		result *= (1+character.fDamage/100) }
 
 	return result

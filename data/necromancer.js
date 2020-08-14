@@ -13,23 +13,23 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 	// ---------------------------------
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
-		var sum_damage = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_damage = (1+((~~skills[0].data.values[4][skills[0].level+skills[0].extra_levels]) / 100)); }
-		var sum_life = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_life = (1+((~~skills[0].data.values[3][skills[0].level+skills[0].extra_levels]) / 100)); }
+		var sum_damage = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_damage = (1+((~~skills[0].data.values[4][skills[0].level+skills[0].extra_levels]) / 100)) }; sum_damage += (character.summon_damage_bonus/100 + character.summon_damage/100);
+		var sum_life = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_life = (1+((~~skills[0].data.values[3][skills[0].level+skills[0].extra_levels]) / 100)) };
 		var diffResult = skill.data.values[elem][character.difficulty];
 		
-		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {	result *= (sum_damage + character.skeleton_bonus/100 + character.summon_damage/100) }
+		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {	result *= sum_damage }
 		if (skill.name == "Raise Skeleton Warrior" && elem == 2) {	result = (sum_life * (diffResult + (6 * skill.level))) }
-		if (skill.name == "Clay Golem" && elem < 2) {			result = ((sum_damage + character.summon_damage/100) * diffResult) }
+		if (skill.name == "Clay Golem" && elem < 2) {			result = (sum_damage * diffResult) }
 		if (skill.name == "Clay Golem" && elem == 2) {			result = (sum_life * diffResult) }
-		if (skill.name == "Raise Skeletal Mage" && elem < 7) {		result *= (sum_damage + character.skeleton_bonus/100 + character.summon_damage/100) }
+		if (skill.name == "Raise Skeletal Mage" && elem < 7) {		result *= sum_damage }
 		if (skill.name == "Raise Skeletal Mage" && elem == 7) {		result = (sum_life * (diffResult + (6 * skill.level))) }
-		if (skill.name == "Blood Golem" && elem < 2) {			result = ((sum_damage + character.summon_damage/100) * diffResult) }
+		if (skill.name == "Blood Golem" && elem < 2) {			result = (sum_damage * diffResult) }
 		if (skill.name == "Blood Golem" && elem == 2) {			result = (sum_life * diffResult) }
-		if (skill.name == "Iron Golem" && elem < 2) {			result = ((sum_damage + character.summon_damage/100) * diffResult) }
+		if (skill.name == "Iron Golem" && elem < 2) {			result = (sum_damage * diffResult) }
 		if (skill.name == "Iron Golem" && elem == 2) {			result = (sum_life * diffResult) }
-		if (skill.name == "Fire Golem" && elem < 2) {			result *= (sum_damage + character.summon_damage/100) }
+		if (skill.name == "Fire Golem" && elem < 2) {			result *= sum_damage }
 		if (skill.name == "Fire Golem" && elem == 2) {			result = (sum_life * diffResult + 0.01*skill.level*diffResult) }
-		if (skill.name == "Fire Golem" && elem > 3 && elem < 6) {	result *= (sum_damage + character.summon_damage/100) }
+		if (skill.name == "Fire Golem" && elem > 3 && elem < 6) {	result *= sum_damage }
 		if (skill.name == "Revive" && elem == 0) {			result = (skill.data.values[elem][1] + Math.min(1,(skills[0].level+skills[0].force_levels))*~~skills[0].data.values[0][skills[0].level+skills[0].extra_levels]) }
 		if (skill.name == "Revive" && elem == 1) {			result = (skill.data.values[elem][1] + Math.min(1,(skills[0].level+skills[0].force_levels))*~~skills[0].data.values[1][skills[0].level+skills[0].extra_levels]) }
 
@@ -58,7 +58,7 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 		var lvl = skill.level + skill.extra_levels;
 		var result = {};
 		
-		if (skill.name == "Bone Offering") { result.skeleton_bonus = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }	// TODO: Implement for summons: result.defense_bonus = skill.data.values[2][lvl]; result.curse_length_reduced = skill.data.values[4][lvl]; 
+		if (skill.name == "Bone Offering") { result.summon_damage_bonus = skill.data.values[3][lvl]; result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }	// TODO: Implement for summons: result.defense_bonus = skill.data.values[2][lvl]; result.curse_length_reduced = skill.data.values[4][lvl]; 
 		if (skill.name == "Flesh Offering") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && effect_id.split("-")[0] == id) { disableEffect(effect_id) } } }
 			result.duration = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl];	// TODO: Implement for summons: result.fcr = skill.data.values[2][lvl]; result.ias_skill = skill.data.values[3][lvl]; result.velocity = skill.data.values[4][lvl]; 
