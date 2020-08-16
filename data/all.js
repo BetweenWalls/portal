@@ -4143,8 +4143,3 @@ function updateSocketTotals() {
 //		is there a way to indicate if/when an item's filter display would change?  (so the user doesn't need to test so many combinations)
 //		...maybe just using non-item differences like CLVL, DIFFICULTY, CHARSTAT15, etc.
 //
-
-// PATCH 19 TODO:
-//	* what happened to the damage conversion with Molten Strike? (patch notes said 80% physical damage converted to fire)
-//	* why is Meteor damage not matching expected values with Fire Mastery?
-//	* Does Magic Arrow also shoot 2 additional arrows with 100+ dexterity?
