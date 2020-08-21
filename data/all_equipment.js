@@ -1,5 +1,4 @@
 
-
 var equipped = { helm:{name:"none",tier:0}, armor:{name:"none",tier:0}, gloves:{name:"none",tier:0}, boots:{name:"none",tier:0}, belt:{name:"none",tier:0}, amulet:{name:"none",tier:0}, ring1:{name:"none",tier:0}, ring2:{name:"none",tier:0}, weapon:{name:"none",tier:0,twoHanded:0,type:""}, offhand:{name:"none",tier:0,type:""}, charms:{name:"none"} };
 var mercEquipped = { helm:{name:"none"}, armor:{name:"none"}, weapon:{name:"none"}, offhand:{name:"none"} };
 var corruptsEquipped = { helm:{name:"none"}, armor:{name:"none"}, gloves:{name:"none"}, boots:{name:"none"}, belt:{name:"none"}, amulet:{name:"none"}, ring1:{name:"none"}, ring2:{name:"none"}, weapon:{name:"none"}, offhand:{name:"none"} };
@@ -38,7 +37,7 @@ var unequipped = {			strength:0, dexterity:0, vitality:0, energy:0, life:0, mana
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set
 // TOCHECK: confirm oskill_Guided_Arrow (Widowmaker)
 				durability_extra:0, experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
-				summon_damage:0, summon_defense:0, all_skills_per_level:0, reset_on_kill:0, 
+				summon_damage:0, summon_defense:0, all_skills_per_level:0, reset_on_kill:0, bonus_sanctuary_rate:0, 
 };
 
 var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery"];
@@ -689,7 +688,7 @@ var equipment = {
 {name:"Zakarum's Hand", req_level:37, ctc:[[6,5,"Blizzard","on striking"]], e_damage:220, ias:30, mana_leech:8, itd:1, mana_regen:10, heal_stam:15, skill_Holy_Shock:2, skill_Holy_Freeze:2, type:"scepter", base:"Rune Scepter"},
 {name:"The Fetid Sprinkler", req_level:38, ctc:[[10,1,"Confuse","on striking"],[5,1,"Decrepify","on striking"]], skills_paladin:2, e_damage:190, damage_min:15, damage_max:25, pDamage_all:160, pDamage_duration:4, ar:200, type:"scepter", base:"Holy Water Sprinkler"},
 {name:"Hand of Blessed Light", req_level:42, ctc:[[5,4,"Fist of the Heavens","on striking"]], skills_paladin:2, e_damage:160, damage_min:20, damage_max:45, ar_bonus:100, mana_regen:15, defense:50, skill_Fist_of_the_Heavens:2, skill_Holy_Bolt:4, light_radius:4, type:"scepter", base:"Divine Scepter"},
-{name:"Heaven's Light", req_level:61, skills_paladin:3, e_damage:300, target_defense:-33, ias:20, cblow:33, life_per_demon_kill:20, light_radius:3, type:"scepter", base:"Mighty Scepter", pod_changes:1},	// pod_changes: +50% Increased Sanctuary Area Damage Rate (no longer comes with 1-2 sockets)
+{name:"Heaven's Light", req_level:61, skills_paladin:3, e_damage:300, target_defense:-33, ias:20, cblow:33, life_per_demon_kill:20, light_radius:3, bonus_sanctuary_rate:50, type:"scepter", base:"Mighty Scepter", pod_changes:1},
 {name:"The Redeemer", req_level:72, skills_paladin:2, e_damage:300, damage_min:120, damage_vs_demons:250, target_defense:-33, skill_Redemption:4, skill_Holy_Bolt:4, light_radius:3, req:-60, type:"scepter", base:"Mighty Scepter", pod_changes:1},	// check pod_changes?
 {name:"Astreon's Iron Ward", type:"scepter", req_level:66, skills_combat_paladin:4, e_damage:290, damage_min:40, damage_max:85, mDamage_min:80, mDamage_max:240, cblow:33, slows_target:25, damage_reduced:7, ias:10, bonus_ar:200, base:"Caduceus"},
 // Maces
@@ -2679,6 +2678,7 @@ summon_damage:{index:["summon_damage"], format:["Summons deal +","% Increased Da
 summon_defense:{index:["summon_defense"], format:["Summons have +","% Enhanced Defense"]},
 all_skills_per_level:{index:["all_skills_per_level"], format:["+"," to All Skills (based on character level)"], mult:["level"]},
 reset_on_kill:{index:["reset_on_kill"], format:["Chance to Reset Duration on Kill: ","%"]},
+bonus_sanctuary_rate:{index:["bonus_sanctuary_rate"], format:["+","% Increased Sanctuary Area Damage Rate"]},
 };
 
 var stats_alternate = {

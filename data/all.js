@@ -2478,6 +2478,7 @@ function updateTertiaryStats() {
 	if (c.peace > 0) { document.getElementById("peace").innerHTML = "Slain Monsters Rest in Peace<br>" } else { document.getElementById("peace").innerHTML = "" }
 	if (c.glow > 0) { document.getElementById("glow").innerHTML = "Character is Glowing<br>" } else { document.getElementById("glow").innerHTML = "" }
 	var statlines = "";
+	if (c.bonus_sanctuary_rate > 0) { statlines += "+"+c.bonus_sanctuary_rate+"% Increased Sanctuary Area Damage Rate<br>" }
 	if (c.summon_damage > 0) { statlines += "Summons deal +"+c.summon_damage+"% Increased Damage<br>" }
 	if (c.summon_defense > 0) { statlines += "Summons have +"+c.summon_defense+"% Enhanced Defense<br>" }
 	if (c.bonus_corpse_explosion > 0) { statlines += "Corpse Explosion deals +"+c.bonus_corpse_explosion+"% of Maximum Corpse life<br>" }

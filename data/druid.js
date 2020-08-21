@@ -41,9 +41,9 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 		if (skill.name == "Hurricane" && elem == 0) { 			result += (2*skills[5].level) }
 		if (skill.name == "Hurricane" && elem < 3 && elem > 0) { 	result *= ((1 + (0.04*skills[3].level + 0.04*skills[6].level + 0.04*skills[8].level)) * (1+character.cDamage/100)) }
 		
-		if (skill.name == "Werewolf" && elem == 0) { if (skills[12].level > 0) { result = (15 + skills[12].data.values[1][skills[12].level+skills[12].extra_levels]) } else { result = 15 } }
+		if (skill.name == "Werewolf" && elem == 0) { if (skills[12].level > 0) { result = (10 + skills[12].data.values[1][skills[12].level+skills[12].extra_levels]) } else { result = 10 } }
 		if (skill.name == "Werewolf" && elem == 3) { if (skills[12].level > 0) { result = (skills[12].data.values[0][skills[12].level+skills[12].extra_levels]) } else { result = 0 } }
-		if (skill.name == "Werebear" && elem == 0) { if (skills[12].level > 0) { result = (25 + skills[12].data.values[1][skills[12].level+skills[12].extra_levels]) } else { result = 25 } }
+		if (skill.name == "Werebear" && elem == 0) { if (skills[12].level > 0) { result = (15 + skills[12].data.values[1][skills[12].level+skills[12].extra_levels]) } else { result = 15 } }
 		if (skill.name == "Werebear" && elem == 1) { if (skills[12].level > 0) { result += (skills[12].data.values[0][skills[12].level+skills[12].extra_levels]) } }
 		if (skill.name == "Fire Claws" && elem < 2) { result *= ((1 + (0.10*skills[0].level + 0.10*skills[1].level + 0.10*skills[4].level + 0.10*skills[7].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Shock Wave" && elem < 2) { result *= (1 + (0.08*skills[15].level)) }
