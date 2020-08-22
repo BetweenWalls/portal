@@ -2428,7 +2428,7 @@ function updateSecondaryStats() {
 	var lifeRegen = "";
 	if (c.life_regen > 0) { lifeRegen = c.life_regen+"% " }; if (c.life_replenish > 0) { lifeRegen += ("+"+c.life_replenish) }; if (c.life_regen == 0 && c.life_replenish == 0) { lifeRegen = 0 }
 	document.getElementById("life_regen").innerHTML = lifeRegen
-	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen,1)+"%"
+	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen,1)+"%"	// TODO: mana_regen should multiply base regen (1.66%) instead of being additive
 	
 	document.getElementById("damage_to_mana").innerHTML = c.damage_to_mana; if (c.damage_to_mana > 0) { document.getElementById("damage_to_mana").innerHTML += "%" }
 	
@@ -2478,6 +2478,7 @@ function updateTertiaryStats() {
 	if (c.peace > 0) { document.getElementById("peace").innerHTML = "Slain Monsters Rest in Peace<br>" } else { document.getElementById("peace").innerHTML = "" }
 	if (c.glow > 0) { document.getElementById("glow").innerHTML = "Character is Glowing<br>" } else { document.getElementById("glow").innerHTML = "" }
 	var statlines = "";
+	if (c.all_skills_ember > 0) { statlines += "+"+c.all_skills_ember+" to All Skills when 5 Ember Charges are active<br>" }
 	if (c.bonus_sanctuary_rate > 0) { statlines += "+"+c.bonus_sanctuary_rate+"% Increased Sanctuary Area Damage Rate<br>" }
 	if (c.summon_damage > 0) { statlines += "Summons deal +"+c.summon_damage+"% Increased Damage<br>" }
 	if (c.summon_defense > 0) { statlines += "Summons have +"+c.summon_defense+"% Enhanced Defense<br>" }
@@ -2585,6 +2586,7 @@ function calculateSkillAmounts() {
 		skills[s].extra_levels = 0
 		skills[s].extra_levels += character.all_skills + Math.ceil(character.all_skills_per_level*character.level)
 		skills[s].extra_levels += character.skills_class
+		if (character.charge_ember == 5) { skills[s].extra_levels += character.all_skills_ember }
 		var display = skills[s].level;
 		var skill_id = "skill_" + getId(skills[s].name);
 		skills[s].force_levels = character[skill_id]

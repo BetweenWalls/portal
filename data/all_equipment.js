@@ -35,9 +35,9 @@ var unequipped = {			strength:0, dexterity:0, vitality:0, energy:0, life:0, mana
 /* oskills  necromancer	*/	oskill_Desecrate:0,	// Radament's Sphere
 /* oskills  paladin		*/	oskill_Zeal:0, oskill_Vengeance:0,	// Chaos, Passion, Kingslayer
 /* oskills  sorceress	*/	oskill_Frigerate:0, oskill_Shiver_Armor:0, oskill_Cold_Mastery:0, oskill_Hydra:0, oskill_Fire_Ball:0, oskill_Fire_Wall:0, oskill_Meteor:0, oskill_Fire_Mastery:0,	// Frostwind, Medusa's Gaze, Bing Sz Wang, Dragonscale, Trang-Oul's Set
-// TOCHECK: confirm oskill_Guided_Arrow (Widowmaker)
-				durability_extra:0, experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
-				summon_damage:0, summon_defense:0, all_skills_per_level:0, reset_on_kill:0, bonus_sanctuary_rate:0, 
+
+							durability_extra:0, experience:0, skills_class:0, skills_tree1:0, skills_tree2:0, skills_tree3:0, weapon:"", armor:"", shield:"", item_defense:0, block_skillup:0, velocity_skillup:0, dodge:0, avoid:0, evade:0, edged_damage:0, edged_ar:0, edged_cstrike:0, pole_damage:0, pole_ar:0, pole_cstrike:0, blunt_damage:0, blunt_ar:0, blunt_cstrike:0, thrown_damage:0, thrown_ar:0, thrown_pierce:0, claw_damage:0, claw_ar:0, claw_cstrike:0, 
+							summon_damage:0, summon_defense:0, all_skills_per_level:0, reset_on_kill:0, bonus_sanctuary_rate:0, 
 };
 
 var oskills = ["oskill_Warp","oskill_Ball_Lightning","oskill_Inner_Sight","oskill_Lethal_Strike","oskill_Valkyrie","oskill_Magic_Arrow","oskill_Guided_Arrow","oskill_Multiple_Shot","oskill_Battle_Command","oskill_Battle_Orders","oskill_Battle_Cry","oskill_Bash","oskill_Edged_Weapon_Mastery","oskill_Lycanthropy","oskill_Werebear","oskill_Werewolf","oskill_Feral_Rage","oskill_Flame_Dash","oskill_Summon_Dire_Wolf","oskill_Desecrate","oskill_Zeal","oskill_Vengeance","oskill_Frigerate","oskill_Shiver_Armor","oskill_Cold_Mastery","oskill_Hydra","oskill_Fire_Ball","oskill_Fire_Wall","oskill_Meteor","oskill_Fire_Mastery"];
@@ -54,7 +54,7 @@ var effect_cskills = {Inner_Sight:{native_class:"amazon",i:10}, Phase_Run:{nativ
 var effect_ctcskills = {Venom:{native_class:"assassin",i:18}, Fade:{native_class:"assassin",i:15}, Cyclone_Armor:{native_class:"druid",i:5}, Chilling_Armor:{native_class:"sorceress",i:8}, Blaze:{native_class:"sorceress",i:24}, Enflame:{native_class:"sorceress",i:28}, Flesh_Offering:{native_class:"necromancer",i:4}};
 var non_items = [
 {name:"Miscellaneous"},
-{i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},								// TOCHECK: verify whether this applies to skills gained solely from items
+{i:1, name:"Shrine: Skill", all_skills:2, duration:96, recharge:240, effect:"Skill"},
 {i:2, name:"Shrine: Combat", damage_bonus:200, ar_shrine_bonus:200, duration:96, recharge:240, effect:"Combat"},	// AR bonus can stack with other Combat shrines (unimplemented)
 {i:3, name:"Shrine: Armor", defense_bonus:100, duration:96, recharge:240, effect:"Armor"},
 {i:4, name:"Shrine: Mana Regeneration", mana_regen:400, duration:96, recharge:240, effect:"Mana_Regeneration"},
@@ -287,7 +287,7 @@ var equipment = {
 {only:"sorceress", name:"Ormus' Robes (Freezing Pulse)", req_level:75, skill_Freezing_Pulse:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Chilling Armor)", req_level:75, skill_Chilling_Armor:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Frozen Orb)", req_level:75, skill_Frozen_Orb:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
-{only:"sorceress", name:"Ormus' Robes (Cold Mastery)", req_level:75, skill_Cold_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
+//{only:"sorceress", name:"Ormus' Robes (Cold Mastery)", req_level:75, skill_Cold_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Charged Bolt)", req_level:75, skill_Charged_Bolt:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Static Field)", req_level:75, skill_Static_Field:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Telekinesis)", req_level:75, skill_Telekinesis:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
@@ -297,7 +297,7 @@ var equipment = {
 {only:"sorceress", name:"Ormus' Robes (Teleport)", req_level:75, skill_Teleport:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Discharge)", req_level:75, skill_Discharge:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Energy Shield)", req_level:75, skill_Energy_Shield:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
-{only:"sorceress", name:"Ormus' Robes (Lightning Mastery)", req_level:75, skill_Lightning_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
+//{only:"sorceress", name:"Ormus' Robes (Lightning Mastery)", req_level:75, skill_Lightning_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Fire Bolt)", req_level:75, skill_Fire_Bolt:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Warmth)", req_level:75, skill_Warmth:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Blaze)", req_level:75, skill_Blaze:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
@@ -307,8 +307,8 @@ var equipment = {
 {only:"sorceress", name:"Ormus' Robes (Enflame)", req_level:75, skill_Enflame:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Meteor)", req_level:75, skill_Meteor:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
 {only:"sorceress", name:"Ormus' Robes (Hydra)", req_level:75, skill_Hydra:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
-{only:"sorceress", name:"Ormus' Robes (Fire Mastery)", req_level:75, skill_Fire_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
-// TOCHECK: are any Sorceress skills excludedfrom Ormus' Robes? Some sources say these cannot appear: Hydra, Frozen Orb, Cold Mastery, Lightning Mastery, Fire Mastery
+//{only:"sorceress", name:"Ormus' Robes (Fire Mastery)", req_level:75, skill_Fire_Mastery:3, fcr:20, cDamage:15, lDamage:15, fDamage:15, defense:20, mana_regen:15, base:"Dusk Shroud", img:"Ormus'_Robes"},
+// TOCHECK: are any Sorceress skills excluded from Ormus' Robes? Some sources say these cannot appear: Hydra, Frozen Orb, Cold Mastery, Lightning Mastery, Fire Mastery
 	],
     gloves: [
 {name:"Gloves"},
@@ -553,7 +553,7 @@ var equipment = {
 {only:"assassin", name:"Bartuc's Cut-Throat", req_level:42, skills_assassin:2, skills_martial:1, e_damage:200, damage_min:25, damage_max:50, fhr:30, bonus_ar:20, life_leech:9, strength:20, dexterity:20, type:"claw", base:"Greater Talons"},
 {only:"assassin", name:"Jade Talon", type:"claw", req_level:66, skills_martial:2, skills_shadow:2, e_damage:240, fhr:30, mana_leech:15, all_res:50, base:"Wrist Sword"},
 {only:"assassin", name:"Shadow Killer", type:"claw", req_level:78, e_damage:220, target_defense:-25, freezes_target:2, mana_per_kill:15, cDamage_per_ice:16, indestructible:1, ethereal:1, base:"Battle Cestus", pod_changes:1, img:"Shadow_Killer"},
-{only:"assassin", name:"Firelizard's Talons", type:"claw", req_level:67, skills_martial:3, skills_fire_all:2, skill_Fists_of_Ember:2, e_damage:270, fDamage_min:236, fDamage_max:480, ias:15, fRes:70, all_skills_ember:1, base:"Feral Claws", pod_changes:1},	// all_skills_ember:1 (+1 all skills when 5 ember charges are active) TODO: implement
+{only:"assassin", name:"Firelizard's Talons", type:"claw", req_level:67, skills_martial:3, skills_fire_all:2, skill_Fists_of_Ember:2, e_damage:270, fDamage_min:236, fDamage_max:480, ias:15, fRes:70, all_skills_ember:1, base:"Feral Claws", pod_changes:1},
 {only:"assassin", set_Nat:1, name:"Natalya's Mark", type:"claw", req_level:79, e_damage:200, damage_vs_undead:200, damage_vs_demons:200, fDamage_min:12, fDamage_max:17, itd:1, ias:40, cDamage_min:50, cDamage_max:50, base:"Scissors Suwayyah", rarity:"set", set_bonuses:["set_Nat",{},{},{},{}], img:"Natalya's_Mark"},
 {only:"assassin", rarity:"rw", name:"Plague ­ ­ - ­ ­ Suwayyah", req_level:67, ctc:[[25,15,"Poison Nova","on striking"],[20,12,"Lower Resist","when struck"]], aura:"Cleansing", aura_lvl:17, all_skills:2, skill_Blade_Shield:3, skill_Venom:3, skill_Fade:3, damage_vs_demons:380, enemy_pRes:-23, dstrike_per_level:0.375, owounds:25, freezes_target:3, strength:10, type:"claw", base:"Suwayyah", pod_changes:1},
 {only:"assassin", rarity:"magic", name:"Cunning Suwayyah of Evisceration", type:"claw", req_level:65, damage_max:63, skills_traps:3, skill_Wake_of_Fire:3, skill_Blade_Shield:3, skill_Lightning_Sentry:3, base:"Suwayyah"},
@@ -611,7 +611,7 @@ var equipment = {
 {not:["Barb (merc)"], rarity:"rw", name:"Phoenix ­ ­ - ­ ­ Phase Blade", sup:15, req_level:65, ctc:[[100,40,"Blaze","on level-up"],[40,22,"Fire Ball","on striking"]], aura:"Redemption", aura_lvl:10, e_damage:350, enemy_fRes:-28, missile_defense:400, fAbsorb_flat:21, itd:1, mana_leech:14, dstrike:20, type:"sword", base:"Phase Blade", pod_changes:1},
 {rarity:"rw", name:"Famine ­ ­ - ­ ­ Legendary Mallet", sup:15, req_level:65, e_damage:370, ias:30, itd:1, mDamage_min:180, mDamage_max:200, fDamage_min:50, fDamage_max:200, cDamage_min:50, cDamage_max:200, lDamage_min:51, lDamage_max:250, life_leech:12, pmh:1, strength:10, type:"hammer", base:"Legendary Mallet"},
 {rarity:"rw", name:"Fury ­ ­ - ­ ­ Berserker Axe", sup:15, req_level:65, e_damage:209, ias:40, itd:1, target_defense:-25, ar_bonus:20, life_leech:6, dstrike:33, owounds:66, pmh:1, skill_Frenzy:5, type:"axe", base:"Berserker Axe"},
-{rarity:"rw", name:"Infinity ­ ­ - ­ ­ Giant Thresher", sup:15, req_level:63, ctc:[[50,20,"Chain Lightning","on kill"]], aura:"Conviction", aura_lvl:21, e_damage:170, frw:35, enemy_lRes:-55, cblow:40, pmh:1, vitality_per_level:0.5, mf:30, twoHanded:1, type:"polearm", base:"Giant Thresher", pod_changes:1, cskill:[[21,"Cyclone Armor",30]]},
+{rarity:"rw", name:"Infinity ­ ­ - ­ ­ Giant Thresher", sup:15, req_level:63, ctc:[[50,20,"Chain Lightning","on kill"]], aura:"Conviction", aura_lvl:12, e_damage:170, frw:35, enemy_lRes:-55, cblow:40, pmh:1, vitality_per_level:0.5, mf:30, twoHanded:1, type:"polearm", base:"Giant Thresher", pod_changes:1, cskill:[[21,"Cyclone Armor",30]]},
 {rarity:"rw", name:"Beast ­ ­ - ­ ­ Berserker Axe", sup:15, req_level:63, aura:"Fanaticism", aura_lvl:9, oskill_Werebear:3, oskill_Lycanthropy:3, ias:40, e_damage:270, cblow:20, owounds:25, pmh:1, strength:40, energy:10, mana_per_kill:2, type:"axe", base:"Berserker Axe", cskill:[[13,"Summon Grizzly",5]]},
 {rarity:"rw", name:"Wind ­ ­ - ­ ­ Tomahawk", sup:15, req_level:61, ctc:[[10,9,"Tornado","on striking"]], cskill:[[13,"Twister",127]], e_damage:160, frw:20, ias:40, fhr:15, target_defense:-50, ar:50, blind_on_hit:1, light_radius:1, type:"axe", base:"Tomahawk"},
 {not:["Barb (merc)"], rarity:"rw", name:"Grief ­ ­ - ­ ­ Phase Blade", type:"sword", sup:15, req_level:59, ias:40, itd:1, target_defense:-25, enemy_pRes:-25, dstrike:20, pmh:1, mana_per_kill:2, life_per_kill:15, fDamage_min:5, fDamage_max:30, min_damage_per_level:3.375, max_damage_per_level:3.625, base:"Phase Blade", pod_changes:1},
@@ -917,8 +917,8 @@ var equipment = {
 {not:["paladin"], rarity:"rw", name:"Dream ­ ­ - ­ ­ Troll Nest", req_level:65, ctc:[[10,15,"Confuse","when struck"]], aura:"Holy Shock", aura_lvl:13, e_def:30, defense:220, fhr:30, vitality:10, mana_per_level:0.625, all_res:20, mf:25, max_life:5, type:"shield", base:"Troll Nest", pod_changes:1},
 {only:"paladin", rarity:"rw", name:"Dragon ­ ­ - ­ ­ Sacred Targe", req_level:61, ctc:[[20,18,"Venom","when struck"],[12,15,"Hydra","on striking"]], aura:"Holy Fire", aura_lvl:14, defense:360, missile_defense:230, all_attributes:5, strength_per_level:0.375, lRes_max:5, damage_reduced:7, mana:50, all_res:45, type:"shield", base:"Sacred Targe"},
 {not:["paladin"], rarity:"rw", name:"Dragon ­ ­ - ­ ­ Troll Nest", req_level:61, ctc:[[20,18,"Venom","when struck"],[12,15,"Hydra","on striking"]], aura:"Holy Fire", aura_lvl:14, defense:360, missile_defense:230, all_attributes:5, strength_per_level:0.375, lRes_max:5, damage_reduced:7, mana:50, type:"shield", base:"Troll Nest"},
-{only:"paladin", rarity:"rw", name:"Sanctuary ­ ­ - ­ ­ Sacred Targe", req_level:49, fhr:20, fbr:20, ibc:20, e_def:160, missile_defense:250, dexterity:20, all_res:115, mDamage_reduced:7, type:"shield", base:"Sacred Targe", cskill:[[12,"Slow Missiles",60]]},	// TODO: check if this still has Slow Missile charges?
-{not:["paladin"], rarity:"rw", name:"Sanctuary ­ ­ - ­ ­ Troll Nest", req_level:49, fhr:20, fbr:20, ibc:20, e_def:160, missile_defense:250, dexterity:20, all_res:70, mDamage_reduced:7, type:"shield", base:"Troll Nest", cskill:[[12,"Slow Missiles",60]]},		// TODO: check if this still has Slow Missile charges?
+{only:"paladin", rarity:"rw", name:"Sanctuary ­ ­ - ­ ­ Sacred Targe", req_level:49, fhr:20, fbr:20, ibc:20, e_def:160, missile_defense:250, dexterity:20, all_res:115, mDamage_reduced:7, type:"shield", base:"Sacred Targe", cskill:[[12,"Phase Run",60]]},
+{not:["paladin"], rarity:"rw", name:"Sanctuary ­ ­ - ­ ­ Troll Nest", req_level:49, fhr:20, fbr:20, ibc:20, e_def:160, missile_defense:250, dexterity:20, all_res:70, mDamage_reduced:7, type:"shield", base:"Troll Nest", cskill:[[12,"Phase Run",60]]},
 {only:"paladin", rarity:"rw", name:"Splendor ­ ­ - ­ ­ Gilded Shield", req_level:38, all_skills:1, fcr:10, fbr:20, e_def:100, energy:10, mana_regen:15, gf:50, mf:20, light_radius:3, type:"shield", all_res:45, base:"Gilded Shield"},
 {only:"necromancer", rarity:"rw", name:"Splendor ­ ­ - ­ ­ Hierophant Trophy", req_level:40, all_skills:1, fcr:10, fbr:20, e_def:100, energy:10, mana_regen:15, gf:50, mf:20, light_radius:3, pDamage_min:20, pDamage_max:50, pDamage_duration:4, skill_Deadly_Poison:3, skill_Desecrate:3, skill_Bone_Spear:3, type:"shield", base:"Hierophant Trophy"},
 {not:["paladin","necromancer"], rarity:"rw", name:"Splendor ­ ­ - ­ ­ Troll Nest", req_level:37, all_skills:1, fcr:10, fbr:20, e_def:100, energy:10, mana_regen:15, gf:50, mf:20, light_radius:3, type:"shield", base:"Troll Nest"},
