@@ -10,10 +10,27 @@
 
 <link rel="stylesheet" type="text/css" href="./data/all.css">
 <link rel="shortcut icon" type="image/x-icon" href="./images/tab_icon.png">
-<script type="text/javascript" src="./data/all_monsters.js"></script>
-<script type="text/javascript" src="./data/all_equipment.js"></script>
-<script type="text/javascript" src="./data/all.js"></script>
-
+<script type="text/javascript" src="./data/monsters.js"></script>
+<script type="text/javascript" src="./data/items.js"></script>
+<script type="text/javascript" src="./data/item_metadata.js"></script>
+<script type="text/javascript" src="./data/basic_variables.js"></script>
+<script type="text/javascript" src="./data/skills/amazon.js"></script>
+<script type="text/javascript" src="./data/skills/assassin.js"></script>
+<script type="text/javascript" src="./data/skills/barbarian.js"></script>
+<script type="text/javascript" src="./data/skills/druid.js"></script>
+<script type="text/javascript" src="./data/skills/necromancer.js"></script>
+<script type="text/javascript" src="./data/skills/paladin.js"></script>
+<script type="text/javascript" src="./data/skills/sorceress.js"></script>
+<script type="text/javascript" src="./data/skills/universal_skills.js"></script>
+<script type="text/javascript" src="./data/functions/basic.js"></script>
+<script type="text/javascript" src="./data/functions/dropdown_setup.js"></script>
+<script type="text/javascript" src="./data/functions/dropdown_choices.js"></script>
+<script type="text/javascript" src="./data/functions/stat_and_skill_choices.js"></script>
+<script type="text/javascript" src="./data/functions/inventory.js"></script>
+<script type="text/javascript" src="./data/functions/inventory_drag_and_drop.js"></script>
+<script type="text/javascript" src="./data/functions/effects.js"></script>
+<script type="text/javascript" src="./data/functions/updating.js"></script>
+<script type="text/javascript" src="./data/functions/file_save_and_load.js"></script>
 </head>
 <body class="background" onload="initial_load()">
 
@@ -503,15 +520,6 @@
 </body>
 </html>
 
-<script type="text/javascript" src="./data/amazon.js"></script>
-<script type="text/javascript" src="./data/assassin.js"></script>
-<script type="text/javascript" src="./data/barbarian.js"></script>
-<script type="text/javascript" src="./data/druid.js"></script>
-<script type="text/javascript" src="./data/necromancer.js"></script>
-<script type="text/javascript" src="./data/paladin.js"></script>
-<script type="text/javascript" src="./data/sorceress.js"></script>
-<script type="text/javascript" src="./data/universal_skills.js"></script>
-
 <script>
 // initial_load - selects a random class and starts the program
 // ---------------------------------
@@ -524,8 +532,11 @@ function initial_load() {
 	var classes = ["amazon","assassin","barbarian","druid","necromancer","paladin","sorceress"];
 	var initial_class = classes[random];
 	skills = skills_all[initial_class]
+	// duplicate info where needed
 	equipment.ring2 = equipment.ring1
 	corruptions.ring2 = corruptions.ring1
+	auras_extra[1].values = skills_amazon[10].data.values
+	// begin program
 	startup(initial_class)
 }
 </script>
