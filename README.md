@@ -57,8 +57,10 @@ Character Planner for Diablo 2: Path of Diablo
 * dynamic item/skill recommendations
 
 ### Feedback:
-[Reddit](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/)
+[Reddit](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/) (archived)
 
 [Github](https://github.com/BetweenWalls/planner/wiki/Feedback-for-Skill-Planner)
+
+Send me a message ([BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit, @BetweenWalls#2390 on discord)
 
 This project will likely be made open-source at some point, but if you want to contribute directly before that point, any improvements would be welcome.
