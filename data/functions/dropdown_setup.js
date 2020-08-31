@@ -193,7 +193,7 @@ function updateMercenary() {
 function getMercenaryAuraLevel(hlvl) {
 	var result = 1;
 	if (hlvl >= 9 && hlvl <= 42) { result = (3+Math.floor((hlvl-9)*7/32)) }
-	else if (hlvl >= 43 && hlvl <= 74) { result = (11+((hlvl-43)*7/32)) }
+	else if (hlvl >= 43 && hlvl <= 74) { result = (11+Math.floor((hlvl-43)*7/32)) }
 	else if (hlvl >= 75) { result = 18 }
 	result = Math.min(18,(result + ~~mercenary.all_skills + ~~Math.ceil(mercenary.all_skills_per_level*hlvl)))
 	return result;
