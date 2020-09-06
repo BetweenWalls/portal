@@ -259,10 +259,8 @@ function updatePrimaryStats() {
 			// TODO: Add fpa/aps to skills (many skills attack multiple times at different speeds, or interact with IAS differently)
 			if (weaponType == "club" || weaponType == "hammer") { weaponType = "mace" }
 			weaponFrames = c.weapon_frames[weaponType];
-			if (c.class_name == "Druid") {
-				if (document.getElementById(getId(skills[11].name)) != null) { if (effects[getId(skills[11].name)].info.enabled == 1) { weaponFrames = c.wereform_frames[weaponType] } }
-				if (document.getElementById(getId(skills[13].name)) != null) { if (effects[getId(skills[13].name)].info.enabled == 1) { weaponFrames = c.wereform_frames[weaponType] } }
-			}
+			if (typeof(effects["Werewolf"]) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType] } }
+			if (typeof(effects["Werebear"]) != 'undefined') { if (effects["Werebear"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType] } }
 			if (weaponType == "sword" || weaponType == "axe" || weaponType == "mace") { if (equipped.weapon.twoHanded == 1) { weaponFrames = weaponFrames[1]; } else { weaponFrames = weaponFrames[0]; } }
 		}
 		weaponFrames += 1
