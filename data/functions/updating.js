@@ -459,6 +459,10 @@ function updateTertiaryStats() {
 	if (c.reset_cooldown_on_kill > 0) { statlines += c.reset_cooldown_on_kill+"% Chance to Reset Skill Cooldown on Kill<br>" }
 	if (c.cdr_on_striking > 0) { statlines += "Gain "+c.cdr_on_striking+"% Reduced Skill Cooldown For 4 Seconds On Striking<br>" }
 	if (c.reanimate > 0) { statlines += c.reanimate+"% Reanimate As: Returned<br>" }
+	if (c.half_Battle_Orders > 0) { statlines += "Battle Order's life and mana bonuses are halved<br>" }	// TODO: make a note about this only applying if the character doesn't innately have the skill?
+	if (c.extra_Bone_Spears > 0) { statlines += "Bone Spear fires "+c.extra_Bone_Spears+" Additional Projectiles<br>" }
+	if (c.extra_Cold_Arrows > 0) { statlines += "Cold Arrow fires "+c.extra_Cold_Arrows+" Additional Arrows<br>" }
+	if (c.extra_Magic_Arrows > 0) { statlines += "Magic Arrow fires "+c.extra_Magic_Arrows+" Additional Arrows<br>" }
 	if (c.experience > 0) { statlines += "+"+c.experience+"% Experience Gained<br>" }
 	document.getElementById("statlines").innerHTML = statlines
 	updateCTC()

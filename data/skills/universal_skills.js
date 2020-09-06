@@ -23,7 +23,7 @@ var character_any = {
 		if (skillName == "Ball Lightning") { skill = sk_Ball_Lightning }
 
 		var result = skill.data.values[elem][lvl];
-		var lycan_lvl = ~~character["oskill_lycanthropy"] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
+		var lycan_lvl = ~~character["oskill_Lycanthropy"] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
 		var phys_min = ((1+(character.e_damage+character.damage_bonus)/100)*((character.level-1)*character.min_damage_per_level+character.base_damage_min))+character.damage_min;
 		var phys_max = ((1+(character.e_damage+character.damage_bonus)/100)*((character.level-1)*character.max_damage_per_level+character.base_damage_max))+character.damage_max;
 	
@@ -75,21 +75,21 @@ var character_any = {
 		var id = skill.name.split(' ').join('_');
 		var lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
 		var result = {};
-		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][~~(character.oskill_Lycanthropy+character.all_skills+Math.ceil(character.all_skills_per_level*character.level))]);
-		var lycan_life = ~~(skills_all["druid"][12].data.values[1][~~(character.oskill_Lycanthropy+character.all_skills+Math.ceil(character.all_skills_per_level*character.level))]);
+		var lycan_lvl = ~~character["oskill_Lycanthropy"] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
+		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][lycan_lvl]);
+		var lycan_life = ~~(skills_all["druid"][12].data.values[1][lycan_lvl]);
 		
 		if (skill.name == "Inner Sight") { result.enemy_defense_flat = skill.data.values[0][lvl]; result.radius = skill.data.values[1][lvl]; }
 		if (skill.name == "Lethal Strike") { result.cstrike = skill.data.values[0][lvl]; }
 		if (skill.name == "Battle Command") { result.all_skills = 1; result.duration = skill.data.values[1][lvl]; }
-		if (skill.name == "Shout") { result.defense_bonus = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Battle Orders") { result.max_stamina = skill.data.values[1][lvl]; result.max_life = Math.round(skill.data.values[2][lvl]/2); result.max_mana = Math.round(skill.data.values[3][lvl]/2); result.duration = skill.data.values[0][lvl]; }
 		if (skill.name == "Werewolf") {	// cannot be used with Werebear
 			if (effects[id].info.enabled == 1) { disableEffect("Werebear") }
-			result.max_life = (15 + lycan_life); result.max_stamina = 40; result.ar_bonus = skill.data.values[1][lvl]; result.ias_skill = skill.data.values[2][lvl]; result.damage_bonus = lycan_damage; result.duration = 1040;
+			result.max_life = (10 + lycan_life); result.max_stamina = 40; result.ar_bonus = skill.data.values[1][lvl]; result.ias_skill = skill.data.values[2][lvl]; result.damage_bonus = lycan_damage; result.duration = 1040;
 		}
 		if (skill.name == "Werebear") {	// cannot be used with Werewolf
 			if (effects[id].info.enabled == 1) { disableEffect("Werewolf") }
-			result.max_life = (25 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
+			result.max_life = (15 + lycan_life); result.damage_bonus = skill.data.values[1][lvl] + lycan_damage; result.defense_bonus = skill.data.values[2][lvl]; result.duration = 1040;
 		}
 		if (skill.name == "Feral Rage") { result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20; }
 		if (skill.name == "Frigerate") {

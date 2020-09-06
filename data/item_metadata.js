@@ -968,6 +968,10 @@ radius_FreezingArrow:{index:["radius_FreezingArrow"], format:["+","% to Freezing
 reset_cooldown_on_kill:{index:["reset_cooldown_on_kill"], format:["","% Chance to Reset Skill Cooldown on Kill"]},
 cdr_on_striking:{index:["cdr_on_striking"], format:["","% Reduced Skill Cooldown For 4 Seconds On Striking"]},
 reanimate:{index:["reanimate"], format:["","% reanimate as: Returned"]},
+half_Battle_Orders:{index:[], format:["Battle Order's life and mana bonuses are halved"]},
+extra_Bone_Spears:{index:["extra_Bone_Spears"], format:["Bone Spear fires "," Additional Projectiles"]},
+extra_Cold_Arrows:{index:["extra_Cold_Arrows"], format:["Cold Arrow fires "," Additional Arrows"]},
+extra_Magic_Arrows:{index:["extra_Magic_Arrows"], format:["Magic Arrow fires "," Additional Arrows"]},
 
 flamme:{index:["flamme"], format:["","% of Life dealt per second as fire"]},
 ias_skill:{index:["ias_skill"], format:["+","% Increased Attack Speed"]},
