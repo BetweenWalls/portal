@@ -140,14 +140,15 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		var skillMin = 0; var skillMax = 0; var skillAr = 0;
 		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage
 		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
-		var smite_min = 0; var smite_max = 0;
 		var strTotal = (character.strength + character.all_attributes + (character.level-1)*character.strength_per_level);	// used in Smite calculation
+		var nonWeaponED = ~~socketed.helm.totals.e_damage + ~~socketed.armor.totals.e_damage + ~~socketed.offhand.totals.e_damage;	// used in Smite calculation
+		var damage_enhanced = character.damage_bonus + character.e_damage;
 		
 	//	if (skill.name == "Holy Fire") {				attack = 0; spell = 2; }
 	//	else if (skill.name == "Holy Freeze") {			attack = 0; spell = 2; }
 	//	else if (skill.name == "Holy Shock") {			attack = 0; spell = 2; }
 		if (skill.name == "Sacrifice") {				attack = 1; spell = 0; weapon_damage = 150; ar_bonus = character.getSkillData(skill,lvl,0); damage_bonus = character.getSkillData(skill,lvl,1); }
-		else if (skill.name == "Smite") {				attack = 1; spell = 1; phys_min = 0; phys_max = 0; phys_mult = (1+(strTotal+character.damage_bonus)/100); damage_bonus = character.getSkillData(skill,lvl,0); smite_min = character.smite_min + equipped.offhand.smite_min + character.damage_min + (character.level-1)*character.min_damage_per_level; smite_max = character.smite_max + equipped.offhand.smite_max + character.damage_min + (character.level-1)*character.max_damage_per_level; }	// TODO: Add ED from non-weapon sockets to phys_mult
+		else if (skill.name == "Smite") {				attack = 1; spell = 1; phys_min = 0; phys_max = 0; nonPhys_min = 0; nonPhys_max = 0; damage_bonus = character.getSkillData(skill,lvl,0); damage_enhanced = strTotal+character.damage_bonus+nonWeaponED-~~equipped.weapon.sup; damage_min = character.smite_min + character.damage_min + character.level*character.min_damage_per_level; damage_max = character.smite_max + character.damage_max + character.level*character.max_damage_per_level; }
 		else if (skill.name == "Holy Bolt") {			attack = 0; spell = 1; mDamage_min = character.getSkillData(skill,lvl,0); mDamage_max = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Zeal") {				attack = 1; spell = 0; ar_bonus = character.getSkillData(skill,lvl,0); damage_bonus = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Charge") {				attack = 1; spell = 0; ar_bonus = character.getSkillData(skill,lvl,1); damage_bonus = character.getSkillData(skill,lvl,0); }
@@ -162,12 +163,11 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 			else { if (equipped.weapon.type == skill.reqWeapon[w]) { match = 1 } }
 		} if (match == 0) { spell = 2 } }
 		
-		var damage_enhanced = character.damage_bonus + character.e_damage;
 		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; nonPhys_min = 0; nonPhys_max = 0; damage_enhanced = 0; }
 		nonPhys_min += (fDamage_min + cDamage_min + lDamage_min + pDamage_min + mDamage_min);
 		nonPhys_max += (fDamage_max + cDamage_max + lDamage_max + pDamage_max + mDamage_max);
-		phys_min = (~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + ((damage_min + smite_min) * (1+(damage_bonus+damage_enhanced)/100)));
-		phys_max = (~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + ((damage_max + smite_max) * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_min = (~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_max = (~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_max * (1+(damage_bonus+damage_enhanced)/100)));
 		if (spell != 2) { skillMin = Math.floor(phys_min+nonPhys_min); skillMax = Math.floor(phys_max+nonPhys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		
