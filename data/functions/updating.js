@@ -579,8 +579,7 @@ function calculateSkillAmounts() {
 		var skill_id = "skill_" + getId(skills[s].name);
 		skills[s].force_levels = character[skill_id]
 		var oskill_id = "o"+skill_id;
-		if (typeof(character[oskill_id]) != 'undefined') { skills[s].force_levels += character[oskill_id] }
-		// TODO: use skills_all to store calculated offskill levels?
+		if (typeof(character[oskill_id]) != 'undefined') { skills[s].force_levels += Math.min(3,character[oskill_id]) }
 		if (character.class_name == "Amazon") {
 			skills[s].extra_levels += character.skills_amazon
 			if (s < 10) {
