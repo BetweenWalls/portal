@@ -92,21 +92,21 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 	    // Offensive Auras
 		if (skill.name == "Might") { result.damage_bonus = skill.data.values[0][lvl]; result.radius = 16; }
 		if (skill.name == "Holy Fire") {
-			result.fDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level);
-			result.fDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level);
+			result.fDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level) * (1+character.fDamage/100);
+			result.fDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[1].level + 0.06*skills[9].level) * (1+character.fDamage/100);
 			result.radius = 12;
 		}
 		if (skill.name == "Precision") { result.pierce = skill.data.values[0][lvl]; result.cstrike = skill.data.values[2][lvl]; result.ar_bonus = skill.data.values[3][lvl]; result.radius = 16; }
 		if (skill.name == "Blessed Aim") { result.ar_bonus = skill.data.values[2][lvl]; result.hammer_on_hit = skill.data.values[1][lvl]; result.radius = 16; }
 		if (skill.name == "Concentration") { result.ar = skill.data.values[0][lvl]; result.damage_bonus = skill.data.values[1][lvl]; result.hammer_bonus = skill.data.values[2][lvl]; result.radius = 16; }
 		if (skill.name == "Holy Freeze") {
-			result.cDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
-			result.cDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level);
+			result.cDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level) * (1+character.cDamage/100);
+			result.cDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[3].level + 0.06*skills[9].level) * (1+character.cDamage/100);
 			result.slow_enemies = skill.data.values[4][lvl]; result.radius = 13.3;
 		}
 		if (skill.name == "Holy Shock") {
-			result.lDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);
-			result.lDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level);
+			result.lDamage_min = skill.data.values[0][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level) * (1+character.lDamage/100);
+			result.lDamage_max = skill.data.values[1][lvl] * (1 + 0.04*skills[5].level + 0.06*skills[9].level) * (1+character.lDamage/100);
 			result.radius = 18.6;
 		}
 		if (skill.name == "Sanctuary") { result.damage_vs_undead = skill.data.values[0][lvl]; result.radius = 12.6; }

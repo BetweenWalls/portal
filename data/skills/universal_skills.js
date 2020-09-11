@@ -93,8 +93,8 @@ var character_any = {
 		}
 		if (skill.name == "Feral Rage") { result.velocity = skill.data.values[1][lvl]; result.life_leech = skill.data.values[3][lvl]; result.duration = 20; }
 		if (skill.name == "Frigerate") {
-			result.cDamage_min = skill.data.values[0][lvl];
-			result.cDamage_max = skill.data.values[1][lvl];
+			result.cDamage_min = skill.data.values[0][lvl] * (1+character.cDamage/100);
+			result.cDamage_max = skill.data.values[1][lvl] * (1+character.cDamage/100);
 			result.enemy_defense = skill.data.values[2][lvl]; result.radius = 16;
 		}
 		if (skill.name == "Shiver Armor") {

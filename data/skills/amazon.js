@@ -100,12 +100,13 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 		var skillMin = 0; var skillMax = 0; var skillAr = 0;
 		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage, 2 = includes basic throw damage
 		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
+		var damage_enhanced = character.damage_bonus + character.e_damage;
 
 		if (skill.name == "Jab") { 						attack = 1; spell = 0; ar_bonus = character.getSkillData(skill,lvl,0); damage_bonus = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Power Strike") { 		attack = 1; spell = 0; ar_bonus = character.getSkillData(skill,lvl,0); lDamage_min = character.getSkillData(skill,lvl,1); lDamage_max = character.getSkillData(skill,lvl,2); }
 		else if (skill.name == "Poison Javelin") {		attack = 2; spell = 0; pDamage_min = character.getSkillData(skill,lvl,0); pDamage_max = character.getSkillData(skill,lvl,1); pDamage_duration = 5; }
 		else if (skill.name == "Fend") { 				attack = 1; spell = 0; weapon_damage = 125; ar_bonus = character.getSkillData(skill,lvl,0); damage_bonus = character.getSkillData(skill,lvl,1); }
-		else if (skill.name == "Lightning Bolt") {		attack = 2; spell = 1; lDamage_min = phys_min*(1+character.lDamage/100) + character.getSkillData(skill,lvl,0); lDamage_max = phys_max*(1+character.lDamage/100) + character.getSkillData(skill,lvl,1); }
+		else if (skill.name == "Lightning Bolt") {		attack = 2; spell = 1; nonPhys_min = 0; nonPhys_max = 0; lDamage_min = phys_min+character.lDamage_min + character.getSkillData(skill,lvl,0); lDamage_max = phys_max+character.lDamage_max+(character.lDamage_max_per_2_energy*Math.floor((character.energy+character.all_attributes)*(1+character.max_energy/100)/2)) + character.getSkillData(skill,lvl,1); }	// lDamage bonus only applies to skill damage
 		else if (skill.name == "Charged Strike") {		attack = 1; spell = 1; lDamage_min = character.getSkillData(skill,lvl,1); lDamage_max = character.getSkillData(skill,lvl,2); }
 		else if (skill.name == "Plague Javelin") {		attack = 2; spell = 0; ar_bonus = character.getSkillData(skill,lvl,0); pDamage_min = character.getSkillData(skill,lvl,1); pDamage_max = character.getSkillData(skill,lvl,2); pDamage_duration = 5; }
 		else if (skill.name == "Molten Strike") { 		attack = 1; spell = 0; ar_bonus = character.getSkillData(skill,lvl,0); weapon_damage = 0.2*85; fDamage_min = 0.8*0.85*phys_min*(1+character.fDamage/100) + character.getSkillData(skill,lvl,1); fDamage_max = 0.8*0.85*phys_max*(1+character.fDamage/100) + character.getSkillData(skill,lvl,2); }
@@ -128,7 +129,6 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 			if (equipped.weapon.type == skill.reqWeapon[w]) { match = 1 }
 		} if (match == 0) { spell = 2 } }
 		
-		var damage_enhanced = character.damage_bonus + character.e_damage;
 		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; nonPhys_min = 0; nonPhys_max = 0; damage_enhanced = 0; }
 		nonPhys_min += (fDamage_min + cDamage_min + lDamage_min + pDamage_min + mDamage_min);
 		nonPhys_max += (fDamage_max + cDamage_max + lDamage_max + pDamage_max + mDamage_max);
