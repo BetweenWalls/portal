@@ -56,12 +56,12 @@ function getWeaponDamage(str, dex, group, thrown) {
 	}
 	// multiplier from skills
 	var weapon_skillup = 0;
-	if (type == "sword" || type == "axe" || type == "dagger") { weapon_skillup = c.edged_damage; c.ar_skillup = c.edged_ar; c.cstrike_skillup = c.edged_cstrike; }
-	else if (type == "polearm" || type == "spear") { weapon_skillup = c.pole_damage; c.ar_skillup = c.pole_ar; c.cstrike_skillup = c.pole_cstrike; }
-	else if (type == "mace" || type == "scepter" || type == "staff" || type == "hammer" || type == "club" || type == "wand") { weapon_skillup = c.blunt_damage; c.ar_skillup = c.blunt_ar; c.cstrike_skillup = c.blunt_cstrike; }
-	else if (type == "thrown" || type == "javelin") { weapon_skillup = c.thrown_damage; c.ar_skillup = c.thrown_ar; c.pierce_skillup = c.thrown_pierce; }	// check if javelins can benefit from Pole Weapon Mastery
-	else if (type == "claw") { weapon_skillup = c.claw_damage; c.ar_skillup = c.claw_ar; c.cstrike_skillup = c.claw_cstrike; }
-	else { weapon_skillup = 0; c.ar_skillup = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
+	if (type == "sword" || type == "axe" || type == "dagger") { weapon_skillup = c.edged_damage; c.ar_skillup2 = c.edged_ar; c.cstrike_skillup = c.edged_cstrike; }
+	else if (type == "polearm" || type == "spear") { weapon_skillup = c.pole_damage; c.ar_skillup2 = c.pole_ar; c.cstrike_skillup = c.pole_cstrike; }
+	else if (type == "mace" || type == "scepter" || type == "staff" || type == "hammer" || type == "club" || type == "wand") { weapon_skillup = c.blunt_damage; c.ar_skillup2 = c.blunt_ar; c.cstrike_skillup = c.blunt_cstrike; }
+	else if (type == "thrown" || type == "javelin") { weapon_skillup = c.thrown_damage; c.ar_skillup2 = c.thrown_ar; c.pierce_skillup = c.thrown_pierce; }	// check if javelins can benefit from Pole Weapon Mastery
+	else if (type == "claw") { weapon_skillup = c.claw_damage; c.ar_skillup2 = c.claw_ar; c.cstrike_skillup = c.claw_cstrike; }
+	else { weapon_skillup = 0; c.ar_skillup2 = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
 	var e_damage_other = 0;
 	if (offhandType == "weapon") { e_damage_other = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage)); }
 	var e_damage = c.e_damage + (c.level*c.e_max_damage_per_level) - e_damage_other;
@@ -162,7 +162,7 @@ function updatePrimaryStats() {
 		}
 	}
 	var def = (item_def + c.defense + c.level*c.defense_per_level + Math.floor(dexTotal/4)) * (1 + (c.defense_bonus + c.defense_skillup)/100);
-	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const + (c.ar_per_socketed*socketed.offhand.socketsFilled)) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
+	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const + (c.ar_per_socketed*socketed.offhand.socketsFilled)) * (1+(c.ar_skillup + c.ar_skillup2 + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 	
 /*	// Poison Calculation Testing
 	var pDamage = c.pDamage_all;
@@ -808,7 +808,7 @@ function checkSkill(skillName, num) {
 	var strTotal = (c.strength + c.all_attributes + (c.level-1)*c.strength_per_level);
 	var dexTotal = (c.dexterity + c.all_attributes + (c.level-1)*c.dexterity_per_level);
 	var energyTotal = Math.floor((c.energy + c.all_attributes)*(1+c.max_energy/100));
-	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const) * (1+(c.ar_skillup + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
+	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const) * (1+(c.ar_skillup + c.ar_skillup2 + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 
 	var physDamage = [0,0,1];
 	if (skillName == "Poison Javelin" || skillName == "Lightning Bolt" || skillName == "Plague Javelin" || skillName == "Lightning Fury" || skillName == "Power Throw" || skillName == "Ethereal Throw") {
