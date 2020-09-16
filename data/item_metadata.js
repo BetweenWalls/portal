@@ -1355,6 +1355,11 @@ summon_defense:{index:["summon_defense"], format:["Summons have +","% Enhanced D
 all_skills_per_level:{index:["all_skills_per_level"], format:["+"," to All Skills (based on character level)"], mult:["level"]},
 reset_on_kill:{index:["reset_on_kill"], format:["Chance to Reset Duration on Kill: ","%"]},
 bonus_sanctuary_rate:{index:["bonus_sanctuary_rate"], format:["+","% Increased Sanctuary Area Damage Rate"]},
+extra_arrows_Cold_Arrow:{index:["extra_arrows_Cold_Arrow"], format:["Cold Arrow Fires "," Additional Projectiles"]},
+extra_arrows_Magic_Arrow:{index:["extra_arrows_Magic_Arrow"], format:["Magic Arrow Fires "," Additional Arrows"]},
+extra_arrows_Fire_Arrow:{index:["extra_arrows_Fire_Arrow"], format:["Fire Arrow Fires "," Additional Arrows"]},
+extra_arrows_Ice_Arrow:{index:["extra_arrows_Ice_Arrow"], format:["Ice Arrow Fires "," Additional Arrows"]},
+extra_conversion_Magic_Arrow:{index:["extra_conversion_Magic_Arrow"], format:["+","% Magic Arrow Damage Converted to Magic"]},
 };
 
 var stats_alternate = {
