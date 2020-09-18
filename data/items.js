@@ -152,8 +152,8 @@ var equipment = {
 {rarity:"rw", name:"Treachery ­ ­ - ­ ­ Wyrmhide", req_level:43, ctc:[[5,15,"Fade","when struck"],[25,15,"Venom","on striking"]], skills_assassin:2, ias:45, fhr:20, cRes:30, gf:50, base:"Wyrmhide"},
 {rarity:"rw", name:"Lionheart ­ ­ - ­ ­ Dusk Shroud", req_level:41, damage_bonus:20, strength:25, dexterity:15, vitality:20, energy:10, life:50, all_res:30, req:-30, base:"Dusk Shroud"},
 {rarity:"rw", name:"Smoke ­ ­ - ­ ­ Dusk Shroud", req_level:37, fhr:20, e_defense:75, missile_defense:280, energy:10, all_res:50, light_radius:-1, base:"Dusk Shroud", cskill:[[6,"Weaken",18]]},
-{rarity:"rw", name:"Myth ­ ­ - ­ ­ Mage Plate", req_level:25, ctc:[[3,1,"Howl","when struck"],[10,1,"Taunt","on striking"]], skills_barbarian:2, missile_defense:30, life_replenish:10, thorns:14, req:-15, extraValkyrie:1, base:"Mage Plate"},
-{rarity:"rw", name:"Peace ­ ­ - ­ ­ Mage Plate", req_level:29, skills_amazon:2, oskill_Lethal_Strike:2, fhr:20, cRes:30, thorns:14, base:"Mage Plate", pod_changes:1},
+{rarity:"rw", name:"Myth ­ ­ - ­ ­ Mage Plate", req_level:25, ctc:[[3,1,"Howl","when struck"],[10,1,"Taunt","on striking"]], skills_barbarian:2, missile_defense:30, life_replenish:10, thorns:14, req:-15, base:"Mage Plate"},
+{rarity:"rw", name:"Peace ­ ­ - ­ ­ Mage Plate", req_level:29, skills_amazon:2, oskill_Lethal_Strike:2, fhr:20, cRes:30, thorns:14, extraValkyrie:1, base:"Mage Plate", pod_changes:1},
 {rarity:"rw", name:"Stealth ­ ­ - ­ ­ Light Plate", req_level:17, frw:25, fcr:25, fhr:25, dexterity:6, mana_regen:15, stamina:15, pRes:30, mDamage_reduced:3, base:"Light Plate"},
 	// Iron Golem RW replacements
 	{only:"none", rarity:"rw", name:"Rain ­ ­ - ­ ­ Archon Plate", req_level:63, ctc:[[5,15,"Cyclone Armor","when struck"]], skills_druid:2, mana:150, lRes:30, mDamage_reduced:7, damage_to_mana:15, extraGrizzly:1, base:"Archon Plate", pod_changes:1},
