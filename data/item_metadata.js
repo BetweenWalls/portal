@@ -970,8 +970,12 @@ cdr_on_striking:{index:["cdr_on_striking"], format:["","% Reduced Skill Cooldown
 reanimate:{index:["reanimate"], format:["","% reanimate as: Returned"]},
 half_Battle_Orders:{index:[], format:["Battle Order's life and mana bonuses are halved"]},
 extra_Bone_Spears:{index:["extra_Bone_Spears"], format:["Bone Spear fires "," Additional Projectiles"]},
-extra_Cold_Arrows:{index:["extra_Cold_Arrows"], format:["Cold Arrow fires "," Additional Arrows"]},
-extra_Magic_Arrows:{index:["extra_Magic_Arrows"], format:["Magic Arrow fires "," Additional Arrows"]},
+bonus_sanctuary_rate:{index:["bonus_sanctuary_rate"], format:["+","% Increased Sanctuary Area Damage Rate"]},
+extra_arrows_Cold_Arrow:{index:["extra_arrows_Cold_Arrow"], format:["Cold Arrow Fires "," Additional Projectiles"]},
+extra_arrows_Magic_Arrow:{index:["extra_arrows_Magic_Arrow"], format:["Magic Arrow Fires "," Additional Arrows"]},
+extra_arrows_Fire_Arrow:{index:["extra_arrows_Fire_Arrow"], format:["Fire Arrow Fires "," Additional Arrows"]},
+extra_arrows_Ice_Arrow:{index:["extra_arrows_Ice_Arrow"], format:["Ice Arrow Fires "," Additional Arrows"]},
+extra_conversion_Magic_Arrow:{index:["extra_conversion_Magic_Arrow"], format:["+","% Magic Arrow Damage Converted to Magic"]},
 
 flamme:{index:["flamme"], format:["","% of Life dealt per second as fire"]},
 ias_skill:{index:["ias_skill"], format:["+","% Increased Attack Speed"]},
@@ -1313,10 +1317,10 @@ oskill_Fire_Wall:{index:["oskill_Fire_Wall"], format:["+"," to Fire Wall"]},
 oskill_Meteor:{index:["oskill_Meteor"], format:["+"," to Meteor"]},
 oskill_Fire_Mastery:{index:["oskill_Fire_Mastery"], format:["+"," to Fire Mastery"]},
 
-skills_class:{index:["skills_class"], format:["+"," to Class Skills"]},
-skills_tree1:{index:["skills_tree1"], format:["+"," to Tree #1 Skills"]},
-skills_tree2:{index:["skills_tree2"], format:["+"," to Tree #2 Skills"]},
-skills_tree3:{index:["skills_tree3"], format:["+"," to Tree #3 Skills"]},
+skills_class:{index:["skills_class"], format:["+"," to Class Skills"]},		// unneeded once item customization gets implemented
+skills_tree1:{index:["skills_tree1"], format:["+"," to Tree #1 Skills"]},	// unused
+skills_tree2:{index:["skills_tree2"], format:["+"," to Tree #2 Skills"]},	// unused
+skills_tree3:{index:["skills_tree3"], format:["+"," to Tree #3 Skills"]},	// unused
 
 stamina_skillup:{index:["stamina_skillup"], format:["+","% Stamina"]},
 frw_skillup:{index:["frw_skillup"], format:["+","% Faster Run/Walk"]},
@@ -1354,12 +1358,9 @@ summon_damage:{index:["summon_damage"], format:["Summons deal +","% Increased Da
 summon_defense:{index:["summon_defense"], format:["Summons have +","% Enhanced Defense"]},
 all_skills_per_level:{index:["all_skills_per_level"], format:["+"," to All Skills (based on character level)"], mult:["level"]},
 reset_on_kill:{index:["reset_on_kill"], format:["Chance to Reset Duration on Kill: ","%"]},
-bonus_sanctuary_rate:{index:["bonus_sanctuary_rate"], format:["+","% Increased Sanctuary Area Damage Rate"]},
-extra_arrows_Cold_Arrow:{index:["extra_arrows_Cold_Arrow"], format:["Cold Arrow Fires "," Additional Projectiles"]},
-extra_arrows_Magic_Arrow:{index:["extra_arrows_Magic_Arrow"], format:["Magic Arrow Fires "," Additional Arrows"]},
-extra_arrows_Fire_Arrow:{index:["extra_arrows_Fire_Arrow"], format:["Fire Arrow Fires "," Additional Arrows"]},
-extra_arrows_Ice_Arrow:{index:["extra_arrows_Ice_Arrow"], format:["Ice Arrow Fires "," Additional Arrows"]},
-extra_conversion_Magic_Arrow:{index:["extra_conversion_Magic_Arrow"], format:["+","% Magic Arrow Damage Converted to Magic"]},
+
+ctc_temp1:{index:[], format:["10% chance to cast level 15 Nova on striking"]},			// TODO: refine equip() & related functions to allow ctc affixes to function as item set bonuses  (M'avina's Caster)
+ctc_temp2:{index:[], format:["25% chance to cast level 5 Static Field when struck"]},	// TODO: refine equip() & related functions to allow ctc affixes to function as shared set bonuses  (Cow King's Leathers)
 };
 
 var stats_alternate = {

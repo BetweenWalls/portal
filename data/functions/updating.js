@@ -457,11 +457,16 @@ function updateTertiaryStats() {
 	if (c.reset_cooldown_on_kill > 0) { statlines += c.reset_cooldown_on_kill+"% Chance to Reset Skill Cooldown on Kill<br>" }
 	if (c.cdr_on_striking > 0) { statlines += "Gain "+c.cdr_on_striking+"% Reduced Skill Cooldown For 4 Seconds On Striking<br>" }
 	if (c.reanimate > 0) { statlines += c.reanimate+"% Reanimate As: Returned<br>" }
-	if (c.half_Battle_Orders > 0) { statlines += "Battle Order's life and mana bonuses are halved<br>" }	// TODO: make a note about this only applying if the character doesn't innately have the skill?
+	if (c.half_Battle_Orders > 0 && c.class_name != "Barbarian") { statlines += "Battle Order's life and mana bonuses are halved<br>" }
 	if (c.extra_Bone_Spears > 0) { statlines += "Bone Spear fires "+c.extra_Bone_Spears+" Additional Projectiles<br>" }
-	if (c.extra_Cold_Arrows > 0) { statlines += "Cold Arrow fires "+c.extra_Cold_Arrows+" Additional Arrows<br>" }
-	if (c.extra_Magic_Arrows > 0) { statlines += "Magic Arrow fires "+c.extra_Magic_Arrows+" Additional Arrows<br>" }
+	if (c.extra_conversion_Magic_Arrow > 0) { statlines += "+"+c.extra_conversion_Magic_Arrow+"% Magic Arrow Damage Converted to Magic<br>" }
+	if (c.extra_arrows_Ice_Arrow > 0) { statlines += "Ice Arrow fires "+c.extra_arrows_Ice_Arrow+" Additional Arrows<br>" }
+	if (c.extra_arrows_Cold_Arrow > 0) { statlines += "Cold Arrow fires "+c.extra_arrows_Cold_Arrow+" Additional Projectiles<br>" }
+	if (c.extra_arrows_Magic_Arrow > 0) { statlines += "Magic Arrow fires "+c.extra_arrows_Magic_Arrow+" Additional Arrows<br>" }
+	if (c.extra_arrows_Fire_Arrow > 0) { statlines += "Fire Arrow fires "+c.extra_arrows_Fire_Arrow+" Additional Arrows<br>" }
 	if (c.experience > 0) { statlines += "+"+c.experience+"% Experience Gained<br>" }
+	if (c.ctc_temp1 > 0) { statlines += "10% chance to cast level 15 Nova on striking<br>" }
+	if (c.ctc_temp2 > 0) { statlines += "25% chance to cast level 5 Static Field when struck<br>" }
 	document.getElementById("statlines").innerHTML = statlines
 	updateCTC()
 	updateChargeSkills()

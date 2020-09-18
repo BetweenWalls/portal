@@ -47,6 +47,7 @@ Character Planner for Diablo 2: Path of Diablo
 * Corruptions may be selected via the narrow dropdowns to the left of each item dropdown
 * Upgrading can be done by ctrl-clicking the equipped item (ctrl + right-click to downgrade)
 * Snapshot effects by ctrl-clicking the effect's icon
+* Add jewels/runes/gems to items by dragging them from the inventory to an equipment slot (the equipped item must have open sockets)
 
 ### Feedback:
 [Reddit](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/) (archived)

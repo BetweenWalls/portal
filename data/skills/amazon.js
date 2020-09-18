@@ -35,22 +35,23 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 			bow_max = (character.base_damage_max * (1+(character.e_damage+(character.level*character.e_max_damage_per_level))/100) + character.damage_max + (character.level-1)*character.max_damage_per_level);
 			bow_mult = (1+dexTotal/100+character.damage_bonus/100);
 		}
-		if (skill.name == "Decoy" && elem == 0) {			result = Math.max(1, skills[22].level) }
-		if (skill.name == "Decoy" && elem == 1) {			result = Math.floor(bow_min*bow_mult) }
-		if (skill.name == "Decoy" && elem == 2) {			result = Math.floor(bow_max*bow_mult) }
-		if (skill.name == "Decoy" && elem > 2 && elem < 5) {	result *= (1 + character.summon_damage/100) }
-		if (skill.name == "Valkyrie" && elem < 2) { 			result *= (1 + (0.20*skills[1].level + 0.20*skills[8].level + character.summon_damage/100)) }
-		if (skill.name == "Valkyrie" && elem > 1 && elem < 4) { 	result *= (1 + (0.18*skills[0].level + 0.18*skills[3].level + character.summon_damage/100)) }
+		if (skill.name == "Decoy" && elem == 0) {						result = Math.max(1, skills[22].level) }
+		if (skill.name == "Decoy" && elem == 1) {						result = Math.floor(bow_min*bow_mult) }
+		if (skill.name == "Decoy" && elem == 2) {						result = Math.floor(bow_max*bow_mult) }
+		if (skill.name == "Decoy" && elem > 2 && elem < 5) {			result *= (1 + character.summon_damage/100) }
+		if (skill.name == "Valkyrie" && elem < 2) { 					result *= (1 + (0.20*skills[1].level + 0.20*skills[8].level + character.summon_damage/100)) }
+		if (skill.name == "Valkyrie" && elem > 1 && elem < 4) { 		result *= (1 + (0.18*skills[0].level + 0.18*skills[3].level + character.summon_damage/100)) }
 		
-		if (skill.name == "Cold Arrow" && elem > 0 && elem < 3) { 	result *= ((1 + (0.12*skills[24].level)) * (1+character.cDamage/100)) }
-		if (skill.name == "Ice Arrow" && elem < 2) { 			result *= ((1 + (0.10*skills[20].level)) * (1+character.cDamage/100)) }
-		if (skill.name == "Ice Arrow" && elem == 2) { 			result *= (1 + (0.05*skills[29].level)) }
-		if (skill.name == "Freezing Arrow" && elem == 0) { 		result = 3.3 * (1+character.radius_FreezingArrow/100) }
+		if (skill.name == "Magic Arrow" && elem == 0) { 				result += character.extra_conversion_Magic_Arrow }
+		if (skill.name == "Cold Arrow" && elem > 0 && elem < 3) { 		result *= ((1 + (0.12*skills[24].level)) * (1+character.cDamage/100)) }
+		if (skill.name == "Ice Arrow" && elem < 2) { 					result *= ((1 + (0.10*skills[20].level)) * (1+character.cDamage/100)) }
+		if (skill.name == "Ice Arrow" && elem == 2) { 					result *= (1 + (0.05*skills[29].level)) }
+		if (skill.name == "Freezing Arrow" && elem == 0) { 				result = 3.3 * (1+character.radius_FreezingArrow/100) }
 		if (skill.name == "Freezing Arrow" && elem > 0 && elem < 3) { 	result *= ((1 + (0.21*skills[20].level + 0.02*skills[24].level)) * (1+character.cDamage/100)) }
-		if (skill.name == "Freezing Arrow" && elem == 3) { 		result = (2 * (1 + 0.05*skills[24].level)) }
+		if (skill.name == "Freezing Arrow" && elem == 3) { 				result = (2 * (1 + 0.05*skills[24].level)) }
 		if (skill.name == "Fire Arrow" && (elem == 1 || elem == 2 || elem == 4 || elem == 5)) { result *= ((1 + (0.12*skills[26].level)) * (1+character.fDamage/100)) }
-		if (skill.name == "Exploding Arrow" && elem < 2) { 		result *= ((1 + (0.20*skills[21].level + 0.20*skills[23].level)) * (1+character.fDamage/100)) }
-		if (skill.name == "Immolation Arrow" && elem < 2) { 		result *= ((1 + (0.15*skills[26].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Exploding Arrow" && elem < 2) { 				result *= ((1 + (0.20*skills[21].level + 0.20*skills[23].level)) * (1+character.fDamage/100)) }
+		if (skill.name == "Immolation Arrow" && elem < 2) { 			result *= ((1 + (0.15*skills[26].level)) * (1+character.fDamage/100)) }
 		if (skill.name == "Immolation Arrow" && elem > 1 && elem < 4) { result *= ((1 + (0.16*skills[23].level)) * (1+character.fDamage/100)) }
 	return result
 	},
@@ -115,7 +116,7 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 	//	else if (skill.name == "Decoy") {				attack = 0; spell = 1; }
 	//	else if (skill.name == "Valkyrie") {			attack = 0; spell = 1; }
 		else if (skill.name == "Cold Arrow") {			attack = 1; spell = 0; weapon_damage = 100-character.getSkillData(skill,lvl,0); cDamage_min = phys_min*character.getSkillData(skill,lvl,0)/100*(1+character.cDamage/100) + character.getSkillData(skill,lvl,1); cDamage_max = phys_max*character.getSkillData(skill,lvl,0)/100*(1+character.cDamage/100) + character.getSkillData(skill,lvl,2); ar_bonus = character.getSkillData(skill,lvl,4); }
-		else if (skill.name == "Magic Arrow") {			attack = 1; spell = 0; weapon_damage = 100-character.getSkillData(skill,lvl,0); mDamage_min = phys_min*character.getSkillData(skill,lvl,0)/100 + character.getSkillData(skill,lvl,1); mDamage_max = phys_max*character.getSkillData(skill,lvl,0)/100 + character.getSkillData(skill,lvl,2); ar_bonus = character.getSkillData(skill,lvl,3); }	// mDamage or regular damage?
+		else if (skill.name == "Magic Arrow") {			attack = 1; spell = 0; weapon_damage = 100-character.getSkillData(skill,lvl,0); mDamage_min = phys_min*character.getSkillData(skill,lvl,0)/100 + character.getSkillData(skill,lvl,1); mDamage_max = phys_max*character.getSkillData(skill,lvl,0)/100 + character.getSkillData(skill,lvl,2); ar_bonus = character.getSkillData(skill,lvl,3); }	// mDamage or regular damage? is damage converted to Magic after all enhancements?
 		else if (skill.name == "Multiple Shot") {		attack = 1; spell = 0; damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Fire Arrow") {			attack = 1; spell = 0; weapon_damage = 100-character.getSkillData(skill,lvl,0); fDamage_min = phys_min*character.getSkillData(skill,lvl,0)/100*(1+character.fDamage/100) + character.getSkillData(skill,lvl,4); fDamage_max = phys_max*character.getSkillData(skill,lvl,0)/100*(1+character.fDamage/100) + character.getSkillData(skill,lvl,5); ar_bonus = character.getSkillData(skill,lvl,3); }
 		else if (skill.name == "Ice Arrow") {			attack = 1; spell = 0; cDamage_min = character.getSkillData(skill,lvl,0); cDamage_max = character.getSkillData(skill,lvl,1); ar_bonus = character.getSkillData(skill,lvl,3); }
