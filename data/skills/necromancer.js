@@ -13,7 +13,7 @@ var character_necromancer = {class_name:"Necromancer", strength:15, dexterity:25
 	// ---------------------------------
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
-		var sum_damage = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_damage = (1+((~~skills[0].data.values[4][skills[0].level+skills[0].extra_levels]) / 100)) }; sum_damage += (character.summon_damage_bonus/100 + character.summon_damage/100);
+		var sum_damage = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_damage = (1+((~~skills[0].data.values[4][skills[0].level+skills[0].extra_levels]) / 100)) }; sum_damage += (character.summon_damage_bonus/100 + character.summon_damage/100);	// TODO: are both of these needed?
 		var sum_life = 1; if (skills[0].level > 0 || skills[0].force_levels > 0) { sum_life = (1+((~~skills[0].data.values[3][skills[0].level+skills[0].extra_levels]) / 100)) };
 		var diffResult = skill.data.values[elem][character.difficulty];
 		
