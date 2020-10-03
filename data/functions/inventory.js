@@ -58,8 +58,8 @@ function getItemImage(group, base_name, source) {
 				if (type == "hammer" || type == "club") { type = "mace" }
 				prefix += ("weapon/" + type + "/special/")
 			} else {
-				prefix += (group + "/")
-				prefix += "special/"
+				if (group == "amulet") { prefix += "amulet/" }
+				else {	prefix += (group + "/special/") }
 			}
 		// jewelry, quivers (arrows)
 		} else {

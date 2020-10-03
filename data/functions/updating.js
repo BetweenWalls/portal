@@ -443,6 +443,7 @@ function updateTertiaryStats() {
 	if (c.peace > 0) { document.getElementById("peace").innerHTML = "Slain Monsters Rest in Peace<br>" } else { document.getElementById("peace").innerHTML = "" }
 	if (c.glow > 0) { document.getElementById("glow").innerHTML = "Character is Glowing<br>" } else { document.getElementById("glow").innerHTML = "" }
 	var statlines = "";
+	if (c.fade > 0) { statlines += "Character is Faded<br>" }
 	if (c.all_skills_ember > 0) { statlines += "+"+c.all_skills_ember+" to All Skills when 5 Ember Charges are active<br>" }
 	if (c.bonus_sanctuary_rate > 0) { statlines += "+"+c.bonus_sanctuary_rate+"% Increased Sanctuary Area Damage Rate<br>" }
 	if (c.summon_damage > 0) { statlines += "Summons deal +"+c.summon_damage+"% Increased Damage<br>" }
@@ -454,6 +455,8 @@ function updateTertiaryStats() {
 	if (c.extraFireGolem > 0) { statlines += "Can Summon One Additional Fire Golem<br>" }
 	if (c.extraHydra > 0) { statlines += "Can Summon One Additional Hydra<br>" }
 	if (c.radius_FreezingArrow > 0) { statlines += "+"+c.radius_FreezingArrow+"% to Freezing Arrow Radius<br>" }
+	if (c.explosive_attack > 0) { statlines += "Fires Explosive Arrows or Bolts<br>" }
+	if (c.magic_attack > 0) { statlines += "Fires Magic Arrows<br>" }
 	if (c.reset_cooldown_on_kill > 0) { statlines += c.reset_cooldown_on_kill+"% Chance to Reset Skill Cooldown on Kill<br>" }
 	if (c.cdr_on_striking > 0) { statlines += "Gain "+c.cdr_on_striking+"% Reduced Skill Cooldown For 4 Seconds On Striking<br>" }
 	if (c.reanimate > 0) { statlines += c.reanimate+"% Reanimate As: Returned<br>" }

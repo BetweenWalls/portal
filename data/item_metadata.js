@@ -885,6 +885,7 @@ knockback:{index:[], format:["Knockback"]},
 half_freeze:{index:[], format:["Half Freeze Duration"]},
 melee_splash:{index:[], format:["Melee Attacks deal Splash Damage"]},
 glow:1,
+fade:1,
 
 sockets:{index:["sockets"], format:["Socketed (",")"]},
 e_def:{index:["e_def"], format:["+","% Enhanced Defense"]},
@@ -1358,6 +1359,8 @@ summon_damage:{index:["summon_damage"], format:["Summons deal +","% Increased Da
 summon_defense:{index:["summon_defense"], format:["Summons have +","% Enhanced Defense"]},
 all_skills_per_level:{index:["all_skills_per_level"], format:["+"," to All Skills (based on character level)"], mult:["level"]},
 reset_on_kill:{index:["reset_on_kill"], format:["Chance to Reset Duration on Kill: ","%"]},
+explosive_attack:{index:[], format:["Fires Explosive Arrows or Bolts"]},
+magic_attack:{index:[], format:["Fires Magic Arrows"]},
 
 ctc_temp1:{index:[], format:["10% chance to cast level 15 Nova on striking"]},			// TODO: refine equip() & related functions to allow ctc affixes to function as item set bonuses  (M'avina's Caster)
 ctc_temp2:{index:[], format:["25% chance to cast level 5 Static Field when struck"]},	// TODO: refine equip() & related functions to allow ctc affixes to function as shared set bonuses  (Cow King's Leathers)
