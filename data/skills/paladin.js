@@ -1,6 +1,6 @@
 
 var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitality:25, energy:15, life:55, mana:15, stamina:189, levelup_life:2.5, levelup_stamina:1, levelup_mana:1.5, ar_per_dexterity:5, life_per_vitality:3, stamina_per_vitality:1, mana_per_energy:1.5, starting_strength:25, starting_dexterity:20, starting_vitality:25, starting_energy:15, ar_const:20, block_const:3, skill_layout:"./images/paladin.png", mana_regen:1.66,
-	weapon_frames:{dagger:16, sword:[14,17.5], axe:[14,17], mace:[14,20], thrown:14, staff:17, polearm:17, scepter:14, wand:14, javelin:19, spear:19, bow:15, crossbow:19},
+	weapon_frames:{dagger:16, sword:[14,17], axe:[14,17], mace:[14,17], thrown:[14,16], staff:17, polearm:17, scepter:14, wand:14, javelin:16, spear:19, bow:15, crossbow:19},
 	// Skills that may adjust IAS breakpoints: Sacrifice, Zeal, Vengeance, Conversion, Smite
 	fcr_frames:15, fcr_bp:[0, 9, 30, 48, 75, 125],
 	fhr_frames:9, fhr_bp:[0, 7, 15, 27, 48, 86, 200],

@@ -407,11 +407,11 @@ var bases = {	// Note: damage_vs_undead:50 is included for blunt weapons, but ot
 	Kriss:{group:"weapon", type:"dagger", base_damage_min:2, base_damage_max:11, req_dexterity:45, durability:24, baseSpeed:-20, max_sockets:3, upgrade:"Cinquedeas", tier:1},
 	Blade:{group:"weapon", type:"dagger", base_damage_min:4, base_damage_max:15, req_strength:35, req_dexterity:51, durability:24, baseSpeed:-10, max_sockets:2, upgrade:"Stilleto", tier:1},
 	Poignard:{group:"weapon", type:"dagger", base_damage_min:6, base_damage_max:8, req_level:19, req_strength:25, durability:16, baseSpeed:-20, max_sockets:1, upgrade:"Bone Knife", downgrade:"Dagger", tier:2},
-	Rondel:{group:"weapon", type:"dagger", base_damage_min:10, base_damage_max:26, req_level:24, req_strength:25, req_dexterity:58, durability:20, baseSpeed:0, max_sockets:1, upgrade:"Mithral Point", downgrade:"Dirk", tier:2},
+	Rondel:{group:"weapon", type:"dagger", base_damage_min:10, base_damage_max:26, req_level:24, req_strength:25, req_dexterity:58, durability:20, baseSpeed:0, max_sockets:1, upgrade:"Mithril Point", downgrade:"Dirk", tier:2},
 	Cinquedeas:{group:"weapon", type:"dagger", base_damage_min:6, base_damage_max:18, req_level:25, req_strength:25, req_dexterity:88, durability:24, baseSpeed:-20, max_sockets:3, upgrade:"Fanged Knife", downgrade:"Kris", tier:2},
 	Stilleto:{group:"weapon", type:"dagger", base_damage_min:19, base_damage_max:36, req_level:25, req_strength:47, req_dexterity:97, durability:24, baseSpeed:-10, max_sockets:2, upgrade:"Legend Spike", downgrade:"Blade", tier:2},
 	Bone_Knife:{group:"weapon", type:"dagger", base_damage_min:23, base_damage_max:49, req_level:43, req_strength:38, req_dexterity:75, durability:26, baseSpeed:-20, max_sockets:1, downgrade:"Poignard", tier:3},
-	Mithral_Point:{group:"weapon", type:"dagger", base_damage_min:37, base_damage_max:53, req_level:52, req_strength:55, req_dexterity:98, durability:55, baseSpeed:0, max_sockets:1, downgrade:"Rondel", tier:3},
+	Mithril_Point:{group:"weapon", type:"dagger", base_damage_min:37, base_damage_max:53, req_level:52, req_strength:55, req_dexterity:98, durability:55, baseSpeed:0, max_sockets:1, downgrade:"Rondel", tier:3},
 	Fanged_Knife:{group:"weapon", type:"dagger", base_damage_min:15, base_damage_max:57, req_level:62, req_strength:42, req_dexterity:86, durability:36, baseSpeed:-20, max_sockets:3, downgrade:"Cinquedeas", tier:3},
 	Legend_Spike:{group:"weapon", type:"dagger", base_damage_min:31, base_damage_max:47, req_level:66, req_strength:65, req_dexterity:67, durability:47, baseSpeed:-10, max_sockets:2, downgrade:"Stilleto", tier:3},
 	// thrown

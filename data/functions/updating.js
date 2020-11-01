@@ -197,7 +197,7 @@ function updatePrimaryStats() {
 	var block_shield = c.block;
 	if (c.class_name == "Amazon" || c.class_name == "Assassin" || c.class_name == "Barbarian") { block_shield -= 5 }
 	if (c.class_name == "Druid" || (c.class_name == "Necromancer" && equipped.offhand.only != "necromancer") || c.class_name == "Sorceress") { block_shield -= 10 }
-	var block = Math.min(((Math.max(0,block_shield) + c.ibc)*(dexTotal-15)/(c.level*2)),(block_shield+c.ibc))
+	var block = (Math.max(0,block_shield) + c.ibc)*(dexTotal-15)/(c.level*2)
 	if (c.block_skillup > 0) { block = Math.min((c.block_skillup*(dexTotal-15)/(c.level*2)),c.block_skillup) }
 	if (c.running > 0) { block = Math.min(25,block/3) }
 	if (c.block > 0 || c.block_skillup > 0) {
@@ -247,25 +247,44 @@ function updatePrimaryStats() {
 	document.getElementById("mres").innerHTML = magicRes
 	
 	var ias = c.ias + Math.floor(dexTotal/8)*c.ias_per_8_dexterity;
-	var ias_total = ias + c.ias_skill;
 	if (offhandType == "weapon" && typeof(equipped.offhand.ias) != 'undefined') { ias -= equipped.offhand.ias }
+	var ias_total = ias + c.ias_skill;
 	document.getElementById("ias").innerHTML = ias_total; if (ias_total > 0) { document.getElementById("ias").innerHTML += "%" }
 	if (equipped.weapon.type != "" && equipped.weapon.special != 1) {
 		var weaponType = equipped.weapon.type;
 		var eIAS = Math.floor(120*ias/(120+ias));
 		var weaponFrames = 0;
+		var weaponSpeedModifier = c.baseSpeed - ~~equipped.offhand.baseSpeed;
+		var anim_speed = 256;
 		if (weaponType != "") {
-			// TODO: Check weapon speed for 'thrown' weapons - additional baseSpeed (WSM) penalty of 30?
-			// TODO: Add fpa/aps to skills (many skills attack multiple times at different speeds, or interact with IAS differently)
+			// TODO: Add fpa/aps to skills (many skills attack multiple times at different speeds, or interact with IAS differently (e.g. +30 WSM for throwing skills))
 			if (weaponType == "club" || weaponType == "hammer") { weaponType = "mace" }
 			weaponFrames = c.weapon_frames[weaponType];
-			if (typeof(effects["Werewolf"]) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType] } }
-			if (typeof(effects["Werebear"]) != 'undefined') { if (effects["Werebear"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType] } }
+			if (typeof(effects["Werewolf"]) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType]; anim_speed = 256; } }
+			if (typeof(effects["Werebear"]) != 'undefined') { if (effects["Werebear"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType]; anim_speed = 224; } }
 			if (weaponType == "sword" || weaponType == "axe" || weaponType == "mace") { if (equipped.weapon.twoHanded == 1) { weaponFrames = weaponFrames[1]; } else { weaponFrames = weaponFrames[0]; } }
+			if (weaponType == "thrown") { if (equipped.weapon.subtype == "dagger") { weaponFrames = weaponFrames[1]; } else { weaponFrames = weaponFrames[0]; } }
+			if (weaponType == "claw") { anim_speed = 208 }	// can't interact with werewolf/werebear frames due to itemization
 		}
 		weaponFrames += 1
-		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(256 * (100 + c.ias_skill + eIAS - c.baseSpeed) / 100)) - 1;
-		document.getElementById("ias").innerHTML += " ("+frames_per_attack+" fpa)"
+		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(anim_speed * (100 + c.ias_skill + eIAS - weaponSpeedModifier) / 100)) - 1;
+		/*
+		// TODO: implement wereform IAS frame info
+		if (typeof(effects["Werewolf"]) != 'undefined' || typeof(effects["Werebear"]) != 'undefined') {	if (effects["Werewolf"].info.enabled == 1 || effects["Werebear"].info.enabled == 1) {
+			var wereFrames = 0;
+			var frames_neutral = 0;
+			var frames_char = frames_per_attack;
+			if (typeof(effects["Werewolf"]) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) { wereFrames = 12; frames_neutral = 9; } }
+			if (typeof(effects["Werebear"]) != 'undefined') { if (effects["Werebear"].info.enabled == 1) { wereFrames = 13; frames_neutral = 10; } }
+			if (weaponType == "sword") { if (equipped.weapon.twoHanded == 1) { frames_char = wereFrames } }
+			anim_speed = Math.floor(256*frames_neutral/Math.floor(256*frames_char/Math.floor((100+~~equipped.weapon.ias - weaponSpeedModifier)*256/100)))
+			frames_per_attack = Math.ceil((wereFrames*256)/Math.floor(anim_speed * (100 + c.ias_skill + eIAS - weaponSpeedModifier) / 100)) - 1;
+		} }
+		*/
+		// TODO: implement basic IAS breakpoints for dual-wielding
+		if (offhandType != "weapon") {
+			document.getElementById("ias").innerHTML += " ("+frames_per_attack+" fpa)"
+		}
 	}
 	if (c.flamme > 0) { document.getElementById("flamme").innerHTML = "Righteous Fire deals "+Math.floor((c.flamme/100*lifeTotal)*(1+c.fDamage/100))+" damage per second<br>" } else { document.getElementById("flamme").innerHTML = "" }
 }
