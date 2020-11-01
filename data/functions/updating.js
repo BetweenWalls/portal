@@ -267,7 +267,8 @@ function updatePrimaryStats() {
 			if (weaponType == "claw") { anim_speed = 208 }	// can't interact with werewolf/werebear frames due to itemization
 		}
 		weaponFrames += 1
-		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(anim_speed * (100 + c.ias_skill + eIAS - weaponSpeedModifier) / 100)) - 1;
+		var combined_ias = Math.min(175,Math.max(15,(100 + c.ias_skill + eIAS - weaponSpeedModifier)));
+		var frames_per_attack = Math.ceil((weaponFrames*256)/Math.floor(anim_speed * combined_ias / 100)) - 1;
 		/*
 		// TODO: implement wereform IAS frame info
 		if (typeof(effects["Werewolf"]) != 'undefined' || typeof(effects["Werebear"]) != 'undefined') {	if (effects["Werewolf"].info.enabled == 1 || effects["Werebear"].info.enabled == 1) {
