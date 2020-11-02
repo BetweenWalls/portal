@@ -1,8 +1,8 @@
-# [Planner](https://BetweenWalls.github.io/planner/)
+# [Portal](https://BetweenWalls.github.io/portal/)
 
 Character Planner for Diablo 2: Path of Diablo
 
-### [Download](https://github.com/BetweenWalls/planner/archive/master.zip)
+### [Download](https://github.com/BetweenWalls/portal/archive/master.zip)
 
 ### Features:
 * all skill info up to level 60
@@ -47,13 +47,9 @@ Character Planner for Diablo 2: Path of Diablo
 * Corruptions may be selected via the narrow dropdowns to the left of each item dropdown
 * Upgrading can be done by ctrl-clicking the equipped item (ctrl + right-click to downgrade)
 * Snapshot effects by ctrl-clicking the effect's icon
-* Add jewels/runes/gems to items by dragging them from the inventory to an equipment slot (the equipped item must have open sockets)
+* Add jewels/runes/gems to items by dragging them from the inventory to an equipment slot that has open sockets
 
 ### Feedback:
-[Reddit](https://www.reddit.com/r/pathofdiablo/comments/f81e5u/character_skill_calculator_with_skill_info_up_to/) (archived)
+Portal is open-source. Improvements can be contributed by anyone through github.
 
-[Github](https://github.com/BetweenWalls/planner/wiki/Feedback-for-Skill-Planner)
-
-Send me a message ([BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit, @BetweenWalls#2390 on discord)
-
-This project will likely be made open-source at some point, but if you want to contribute directly before that point, any improvements would be welcome.
+Feel free to message me ([BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit, @BetweenWalls#2390 on discord)
