@@ -28,7 +28,7 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		if (skill.name == "Stun" && elem < 2) { 			result *= (1 + (0.10*skills[24].level + 0.10*skills[8].level)) }
 		if (skill.name == "Stun" && elem == 2) { 			result += (5*skills[19].level) }
 		if (skill.name == "Bash" && elem == 2) { 			result += (5*skills[19].level) }
-		if (skill.name == "Bash" && elem == 3) { 			result *= (1 + (0.10*skills[21].level)) }
+		if (skill.name == "Bash" && elem == 3) { 			result += (10*skills[21].level) }
 		if (skill.name == "Leap Attack" && elem == 0) { 	result += (20*skills[22].level) }
 		if (skill.name == "Ethereal Throw" && elem < 2) { 	result *= (1 + (0.04*skills[23].level + 0.04*skills[24].level)) }
 
