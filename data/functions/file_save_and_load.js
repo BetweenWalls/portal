@@ -69,9 +69,10 @@ function saveTextAsFile() {
 	var textToSave = document.getElementById("inputTextToSave").value;
 	var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
 	var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-
+	
+	var file_prefix = "pod_"; if (game_version == 3) { file_prefix = "pd2_" }
 	var downloadLink = document.createElement("a");
-	downloadLink.download = "pod_"+character.class_name.toLowerCase();
+	downloadLink.download = file_prefix+character.class_name.toLowerCase();
 	downloadLink.innerHTML = "Download File";
 	downloadLink.href = textToSaveAsURL;
 	downloadLink.onclick = destroyClickedElement;
