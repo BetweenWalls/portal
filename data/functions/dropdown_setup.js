@@ -52,9 +52,18 @@ function loadItems(group, dropdown, className) {
 						if (group != "charms") { addon = "<option selected>" + "­ ­ ­ ­ " + item.name + "</option>" }
 						else { addon = "<option disabled selected>" + "­ ­ ­ ­ " + item.name + "</option>" }
 					} else {
-						if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
-						else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
-						else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
+						if (game_version != 3) {
+							if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
+							else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
+							else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
+						} else {
+							// PD2 loading
+							if (typeof(item.only) != 'undefined' || (typeof(item.debug) != 'undefined' && typeof(item.all_skills) != 'undefined')) {
+								if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
+								else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
+								else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
+							}
+						}
 					}
 					choices += addon
 					if (className == "assassin" && item.name == "Offhand") { choices += offhandSetup }	// weapons inserted into offhand dropdown list

@@ -260,8 +260,8 @@ function updatePrimaryStats() {
 			// TODO: Add fpa/aps to skills (many skills attack multiple times at different speeds, or interact with IAS differently (e.g. +30 WSM for throwing skills))
 			if (weaponType == "club" || weaponType == "hammer") { weaponType = "mace" }
 			weaponFrames = c.weapon_frames[weaponType];
-			if (typeof(effects["Werewolf"]) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType]; anim_speed = 256; } }
-			if (typeof(effects["Werebear"]) != 'undefined') { if (effects["Werebear"].info.enabled == 1) { weaponFrames = character_druid.wereform_frames[weaponType]; anim_speed = 224; } }
+			if (typeof(effects["Werewolf"]) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) { weaponFrames = character_all.druid.wereform_frames[weaponType]; anim_speed = 256; } }
+			if (typeof(effects["Werebear"]) != 'undefined') { if (effects["Werebear"].info.enabled == 1) { weaponFrames = character_all.druid.wereform_frames[weaponType]; anim_speed = 224; } }
 			if (weaponType == "sword" || weaponType == "axe" || weaponType == "mace") { if (equipped.weapon.twoHanded == 1) { weaponFrames = weaponFrames[1]; } else { weaponFrames = weaponFrames[0]; } }
 			if (weaponType == "thrown") { if (equipped.weapon.subtype == "dagger") { weaponFrames = weaponFrames[1]; } else { weaponFrames = weaponFrames[0]; } }
 			if (weaponType == "claw") { anim_speed = 208 }	// can't interact with werewolf/werebear frames due to itemization
@@ -347,20 +347,20 @@ function updateSecondaryStats() {
 	} } } }
 	
 	if (effects["Werebear"] != null) { if (typeof(effects["Werebear"].info.enabled) != 'undefined') { if (effects["Werebear"].info.enabled == 1) {
-		fcr_f = character_druid.fcr_frames_werebear
-		for (let i = 1; i < character_druid.fcr_bp_werebear.length; i++) { if (fcrTotal >= character_druid.fcr_bp_werebear[i]) { fcr_f -= 1 } }
-		fhr_f = character_druid.fhr_frames_werebear
-		for (let i = 1; i < character_druid.fhr_bp_werebear.length; i++) { if (c.fhr >= character_druid.fhr_bp_werebear[i]) { fhr_f -= 1 } }
-		fbr_f = character_druid.fbr_frames_werebear
-		for (let i = 1; i < character_druid.fbr_bp_werebear.length; i++) { if (c.fbr >= character_druid.fbr_bp_werebear[i]) { fbr_f -= 1 } }
+		fcr_f = character_all.druid.fcr_frames_werebear
+		for (let i = 1; i < character_all.druid.fcr_bp_werebear.length; i++) { if (fcrTotal >= character_all.druid.fcr_bp_werebear[i]) { fcr_f -= 1 } }
+		fhr_f = character_all.druid.fhr_frames_werebear
+		for (let i = 1; i < character_all.druid.fhr_bp_werebear.length; i++) { if (c.fhr >= character_all.druid.fhr_bp_werebear[i]) { fhr_f -= 1 } }
+		fbr_f = character_all.druid.fbr_frames_werebear
+		for (let i = 1; i < character_all.druid.fbr_bp_werebear.length; i++) { if (c.fbr >= character_all.druid.fbr_bp_werebear[i]) { fbr_f -= 1 } }
 	} } }
 	if (effects["Werewolf"] != null) { if (typeof(effects["Werewolf"].info.enabled) != 'undefined') { if (effects["Werewolf"].info.enabled == 1) {
-		fcr_f = character_druid.fcr_frames_werewolf
-		for (let i = 1; i < character_druid.fcr_bp_werewolf.length; i++) { if (fcrTotal >= character_druid.fcr_bp_werewolf[i]) { fcr_f -= 1 } }
-		fhr_f = character_druid.fhr_frames_werewolf
-		for (let i = 1; i < character_druid.fhr_bp_werewolf.length; i++) { if (c.fhr >= character_druid.fhr_bp_werewolf[i]) { fhr_f -= 1 } }
-		fbr_f = character_druid.fbr_frames_werewolf
-		for (let i = 1; i < character_druid.fbr_bp_werewolf.length; i++) { if (c.fbr >= character_druid.fbr_bp_werewolf[i]) { fbr_f -= 1 } }
+		fcr_f = character_all.druid.fcr_frames_werewolf
+		for (let i = 1; i < character_all.druid.fcr_bp_werewolf.length; i++) { if (fcrTotal >= character_all.druid.fcr_bp_werewolf[i]) { fcr_f -= 1 } }
+		fhr_f = character_all.druid.fhr_frames_werewolf
+		for (let i = 1; i < character_all.druid.fhr_bp_werewolf.length; i++) { if (c.fhr >= character_all.druid.fhr_bp_werewolf[i]) { fhr_f -= 1 } }
+		fbr_f = character_all.druid.fbr_frames_werewolf
+		for (let i = 1; i < character_all.druid.fbr_bp_werewolf.length; i++) { if (c.fbr >= character_all.druid.fbr_bp_werewolf[i]) { fbr_f -= 1 } }
 	} } }
 	
 	document.getElementById("fcr").innerHTML = fcrTotal; if (fcrTotal > 0) { document.getElementById("fcr").innerHTML += "%" }
@@ -853,7 +853,7 @@ function checkSkill(skillName, num) {
 	
 	if (skillName != " ­ ­ ­ ­ Skill 1" && skillName != " ­ ­ ­ ­ Skill 2") {
 		var outcome = {min:0,max:0,ar:0};
-		if (native_skill == 0) { outcome = character_any.getSkillDamage(skillName, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
+		if (native_skill == 0) { outcome = character_all.any.getSkillDamage(skillName, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
 		else { outcome = c.getSkillDamage(skill, ar, physDamage[0], physDamage[1], physDamage[2], nonPhys_min, nonPhys_max); }
 		
 		//var enemy_lvl = ~~MonStats[monsterID][4+c.difficulty];

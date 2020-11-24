@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>Portal (Planner for Path of Diablo)</title>
+<title>Portal (Planner for Diablo II)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,6 +29,14 @@
 <script type="text/javascript" src="./data/skills/paladin.js"></script>
 <script type="text/javascript" src="./data/skills/sorceress.js"></script>
 <script type="text/javascript" src="./data/skills/universal_skills.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/amazon.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/assassin.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/barbarian.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/druid.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/necromancer.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/paladin.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/sorceress.js"></script>
+<script type="text/javascript" src="./data/skills/PD2/universal_skills.js"></script>
 <script type="text/javascript" src="./data/functions/basic.js"></script>
 <script type="text/javascript" src="./data/functions/dropdown_setup.js"></script>
 <script type="text/javascript" src="./data/functions/dropdown_choices.js"></script>
@@ -57,13 +65,27 @@
     </div>
   </div>
   <div class="nav-dropdown">
+    <button class="nav-dropbtn">Version</button>
+    <div class="nav-dropdown-content">
+      <div class="nav-dropdown-content-item"><div class="nav-option">
+        <label for="version" onclick="return changeVersion(1);"><input id="version1" type="radio" name="version" disabled> ­ Vanilla ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+      </div></div>
+      <div class="nav-dropdown-content-item"><div class="nav-option">
+        <label for="version" onclick="return changeVersion(2);"><input id="version2" type="radio" name="version" checked> ­ Path of Diablo ­ ­ </label>
+      </div></div>
+      <div class="nav-dropdown-content-item"><div class="nav-option">
+        <label for="version" onclick="return changeVersion(3);"><input id="version3" type="radio" name="version"> ­ Project D2 ­ ­ ­ ­ ­ ­ ­ ­ </label>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-dropdown">
     <button class="nav-dropbtn">Preferences</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
         <label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
-      <div class="nav-dropdown-content-item"><div class="nav-option">
+      <div class="nav-dropdown-content-item" id="nav_autocast"><div class="nav-option">
         <input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
         <label for="autocast"> ­ ­ ­ ­ New Effects Begin Enabled ­ ­ </label>
       </div></div>
@@ -72,7 +94,7 @@
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Character</button>
     <div class="nav-dropdown-content" style="min-width:260px;">
-      <div class="nav-dropdown-content-item"><div class="nav-difficulty"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
+      <div class="nav-dropdown-content-item" id="nav_difficulty"><div class="nav-difficulty"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
         <input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
         <label for="difficulty">Normal</label>
         <input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
@@ -84,7 +106,7 @@
         <input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
         <label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
-      <div class="nav-dropdown-content-item"><div class="nav-option">
+      <div class="nav-dropdown-content-item" id="nav_running"><div class="nav-option">
         <input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
         <label for="running"> ­ ­ ­ ­ Running ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
@@ -248,6 +270,7 @@
 
 <!--	Equipment Menus 	-->
 <div class="dropdown" id="equipment" style="float: right; width:200px; height:20px; margin-right:2px; position: relative; z-index: 6;">
+<div id="equipment_a" style="display:block;">
 <select class="dropdown" id="dropdown_helm" onChange="equip('helm', this.value)" onContextMenu="equip('helm', 'helm')"></select>
 <select class="dropdown" id="dropdown_armor" onChange="equip('armor', this.value)" onContextMenu="equip('armor', 'armor')"></select>
 <select class="dropdown" id="dropdown_gloves" onChange="equip('gloves', this.value)" onContextMenu="equip('gloves', 'gloves')"></select>
@@ -259,7 +282,9 @@
 <select class="dropdown" id="dropdown_weapon" onChange="equip('weapon', this.value)" onContextMenu="equip('weapon', 'weapon')"></select>
 <select class="dropdown" id="dropdown_offhand" onChange="equip('offhand', this.value)" onContextMenu="equip('offhand', 'offhand')"></select>
 <br><br>
+</div>
 <select class="dropdown" id="dropdown_charms" onChange="addCharm(this.value)"></select>
+<div id="equipment_b" style="display:block;">
 <select class="dropdown" id="dropdown_socketables" onChange="addSocketable(this.value)"></select>
 <br><br>
 <select class="dropdown" id="dropdown_mercenary" onChange="setMercenary(this.value)" onContextMenu="setMercenary('none')"></select>
@@ -271,6 +296,7 @@
 <div id="golem" style="display:none;"><br><select class="dropdown" id="dropdown_golem" onChange="setIronGolem(this.value)" onContextMenu="setIronGolem('none')"></select><br></div>
 <br>
 <select class="dropdown" id="dropdown_misc" onChange="addEffect('misc',this.value,this.selectedIndex,'')"></select>
+</div>
 </div> <!-- /Equipment Menus -->
 
 <!--	Corruption Options	-->
@@ -364,8 +390,8 @@
 </div> <!-- /gui -->
 
 <!--		skill details		-->
-<div class="no-selection" style="display: block; height:235px; width: 330px; position: relative;">
-<div class="gray">
+<div class="no-selection" id="skill_details" style="display: block; height:235px; width: 330px; position: relative;">
+<div class="gray" id="skill_details_active">
 <div style="margin-bottom: 15px;">
 	<a>Basic Attack: </a><a id="basic_attack"></a><br>
 	<div id="offhand_basic" style="display:none;"> ­ ­ ­ ­ ­ ­ ­ Offhand: <a id="offhand_basic_damage"></a><br></div>
@@ -386,6 +412,7 @@
 	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill2"></a>
 </div>
 </div>
+<div class="gray" id="skill_details_inactive" style="display:none;"></div>
 </div> <!-- /skill details -->
 
 <!--		stats		-->
@@ -522,6 +549,9 @@
 </div>
 <textarea style="border:none; background-color:black; resize:none; float:left;" id="inputTextToSave" cols="1" rows="1"></textarea>
 </div>	<!-- /stats -->
+
+<div id="debug_space" style="display:none; height:370px; width:800px;"></div>
+
 </div>	<!-- /interface -->
 </div>	<!-- /full_interface -->
 </div>	<!-- /main -->
@@ -533,7 +563,7 @@
 // ---------------------------------
 function initial_load() {
 	skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
-	character_all = {amazon:character_amazon, assassin:character_assassin, barbarian:character_barbarian, druid:character_druid, necromancer:character_necromancer, paladin:character_paladin, sorceress:character_sorceress}
+	character_all = {amazon:character_amazon, assassin:character_assassin, barbarian:character_barbarian, druid:character_druid, necromancer:character_necromancer, paladin:character_paladin, sorceress:character_sorceress, any:character_any}
 	
 	// select random class
 	var random = Math.floor(Math.random() * 7);
@@ -543,7 +573,7 @@ function initial_load() {
 	// duplicate info where needed
 	equipment.ring2 = equipment.ring1
 	corruptions.ring2 = corruptions.ring1
-	auras_extra[1].values = skills_amazon[10].data.values
+	auras_extra[1].values = skills_all.amazon[10].data.values
 	// begin program
 	startup(initial_class)
 }

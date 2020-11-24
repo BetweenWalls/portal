@@ -16,6 +16,7 @@
 	resetCorruptions
 	toggleQuests
 	toggleRunning
+	changeVersion
 	changeDifficulty
 	toggleCoupling
 	toggleAutocast
@@ -24,6 +25,7 @@
 	round
 	getId
 	getBaseId
+	showMissingInfo
 	
 ......................... dropdown_choices
 	corrupt

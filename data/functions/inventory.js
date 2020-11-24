@@ -139,6 +139,7 @@ function itemHover(ev, id) {
 	var cell_y = id[2]-1 + height;
 	var offset_x = 350;
 	var offset_y = 433;
+	if (game_version == 3) { offset_y = 313 }
 	offset_x += (10+cell_x*28)
 	offset_y += (124+cell_y*29)
 	var main_affixes = "";

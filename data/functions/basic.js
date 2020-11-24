@@ -14,6 +14,7 @@
 	resetCorruptions
 	toggleQuests
 	toggleRunning
+	changeVersion
 	changeDifficulty
 	toggleCoupling
 	toggleAutocast
@@ -22,6 +23,7 @@
 	round
 	getId
 	getBaseId
+	showMissingInfo
 */
 
 // startup - Resets everything and starts a new character
@@ -54,6 +56,7 @@ function startup(choice) {
 	document.getElementById("skill_tree").src = character_setup.skill_layout
 	init()
 	updateStats()
+	showMissingInfo(choice)		// temporary
 }
 
 // reset - Calls startup() with the specified class name
@@ -248,6 +251,50 @@ function toggleRunning(running) {
 	updateStats()
 }
 
+// changeVersion - Changes the version of the game
+//	v: game version (1-3)
+// ---------------------------------
+function changeVersion(v) {
+	if (game_version != v) {
+		game_version = v
+		if (document.getElementById("version"+v).disabled != true) { document.getElementById("version"+v).checked = true }
+		if (v == 1) {
+			// TODO: implement vanilla info
+		} else if (v == 2) {
+			skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
+			character_all = {amazon:character_amazon, assassin:character_assassin, barbarian:character_barbarian, druid:character_druid, necromancer:character_necromancer, paladin:character_paladin, sorceress:character_sorceress, any:character_any}
+			document.getElementById("stats").style.display = "block"
+			document.getElementById("skill_details_active").style.display = "block"
+			document.getElementById("gui_equipment").style.display = "block"
+			document.getElementById("equipment_corruptions").style.display = "block"
+			document.getElementById("equipment_a").style.display = "block"
+			document.getElementById("equipment_b").style.display = "block"
+			document.getElementById("side").style.display = "block"
+			document.getElementById("nav_autocast").style.display = "block"
+			document.getElementById("nav_difficulty").style.display = "block"
+			document.getElementById("nav_running").style.display = "block"
+			document.getElementById("debug_space").style.display = "none"
+			document.getElementById("skill_details_inactive").style.display = "none"
+		} else if (v == 3) {
+			skills_all = {amazon:skills_pd2_amazon, assassin:skills_pd2_assassin, barbarian:skills_pd2_barbarian, druid:skills_pd2_druid, necromancer:skills_pd2_necromancer, paladin:skills_pd2_paladin, sorceress:skills_pd2_sorceress}
+			character_all = {amazon:character_pd2_amazon, assassin:character_pd2_assassin, barbarian:character_pd2_barbarian, druid:character_pd2_druid, necromancer:character_pd2_necromancer, paladin:character_pd2_paladin, sorceress:character_pd2_sorceress, any:character_pd2_any}
+			document.getElementById("stats").style.display = "none"
+			document.getElementById("skill_details_active").style.display = "none"
+			document.getElementById("gui_equipment").style.display = "none"
+			document.getElementById("equipment_corruptions").style.display = "none"
+			document.getElementById("equipment_a").style.display = "none"
+			document.getElementById("equipment_b").style.display = "none"
+			document.getElementById("side").style.display = "none"
+			document.getElementById("nav_autocast").style.display = "none"
+			document.getElementById("nav_difficulty").style.display = "none"
+			document.getElementById("nav_running").style.display = "none"
+			document.getElementById("debug_space").style.display = "block"
+			document.getElementById("skill_details_inactive").style.display = "block"
+		}
+		reset(character.class_name)
+	}
+}
+
 // changeDifficulty - Changes the game difficulty
 //	diff: game difficulty (1-3)
 // ---------------------------------
@@ -339,4 +386,35 @@ function getId(name) {
 // ---------------------------------
 function getBaseId(base_name) {
 	return base_name.split(" ").join("_").split("-").join("_").split("s'").join("s").split("'s").join("s");
+}
+
+// showMissingInfo - Displays information about which skills are lacking data
+//	c: character class
+// ---------------------------------
+function showMissingInfo(c) {
+	if (game_version == 3) {
+		var info = "<br>"+c.toUpperCase()+"<br>";
+		if (c == "amazon" || c == "assassin" || c == "barbarian") {
+			info += "Skill data is complete (all skills, levels 1-60)<br><br>"
+			info += "Skill data for other classes is incomplete"
+		} else {
+			info += "Skill data is incomplete<br><br>"
+			if (c == "druid") {
+				info += "26/31 skills have data only for levels 1-20<br>"
+				info += "­ ­ 5/31 skills have no data<br>"
+			} else if (c == "necromancer") {
+				info += "14/32 skills have data only for levels 1-30<br>"
+				info += "18/32 skills have no data<br>"
+			} else if (c == "paladin") {
+				info += "31/33 skills have data only for levels 1-30<br>"
+				info += "­ ­ 2/33 skills have no data<br>"
+			} else if (c == "sorceress") {
+				info += "­ ­ 6/33 skills have data only for levels 1-30<br>"
+				info += "­ ­ 4/33 skills have data only for levels 1-20<br>"
+				info += "23/33 skills have no data<br>"
+			}
+		}
+		info += "<br>You can help by adding missing data to the <a href='https://projectdiablo2.miraheze.org/wiki/Main_Page'>wiki</a>"
+		document.getElementById("skill_details_inactive").innerHTML = info
+	}
 }
