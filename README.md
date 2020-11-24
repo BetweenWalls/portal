@@ -1,6 +1,6 @@
 # [Portal](https://BetweenWalls.github.io/portal/)
 
-Character Planner for Diablo 2: Path of Diablo
+Character Planner for Diablo 2
 
 ### [Download](https://github.com/BetweenWalls/portal/archive/master.zip)
 

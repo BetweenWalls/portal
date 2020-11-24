@@ -576,5 +576,10 @@ function initial_load() {
 	auras_extra[1].values = skills_all.amazon[10].data.values
 	// begin program
 	startup(initial_class)
+	
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const v = urlParams.get('v');
+	if (v.toLowerCase() == "pd2" || v == "3") { changeVersion(3) }
 }
 </script>
