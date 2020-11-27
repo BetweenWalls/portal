@@ -56,7 +56,7 @@ function startup(choice) {
 	document.getElementById("skill_tree").src = character_setup.skill_layout
 	init()
 	updateStats()
-	showMissingInfo(choice)		// temporary
+	showMissingInfo(choice)		// temporary (until skill data is complete)
 }
 
 // reset - Calls startup() with the specified class name
@@ -271,7 +271,6 @@ function changeVersion(v) {
 			document.getElementById("equipment_b").style.display = "block"
 			document.getElementById("side").style.display = "block"
 			document.getElementById("nav_autocast").style.display = "block"
-			document.getElementById("nav_difficulty").style.display = "block"
 			document.getElementById("nav_running").style.display = "block"
 			document.getElementById("debug_space").style.display = "none"
 			document.getElementById("skill_details_inactive").style.display = "none"
@@ -286,7 +285,6 @@ function changeVersion(v) {
 			document.getElementById("equipment_b").style.display = "none"
 			document.getElementById("side").style.display = "none"
 			document.getElementById("nav_autocast").style.display = "none"
-			document.getElementById("nav_difficulty").style.display = "none"
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("debug_space").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
@@ -416,5 +414,6 @@ function showMissingInfo(c) {
 		}
 		info += "<br>You can help by adding missing data to the <a href='https://projectdiablo2.miraheze.org/wiki/Main_Page'>wiki</a>"
 		document.getElementById("skill_details_inactive").innerHTML = info
+		document.getElementById("debug_space").innerHTML = "See <a href='https://github.com/BetweenWalls/PD2-Singleplayer#pd2-singleplayer'>PD2-Singleplayer</a> to setup in-game character planning/testing"
 	}
 }

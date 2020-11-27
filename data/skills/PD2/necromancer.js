@@ -13,7 +13,6 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 	// ---------------------------------
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
-		var diffResult = skill.data.values[elem][character.difficulty];
 		
 		var warrior_life = ~~skills[0].data.values[4][skills[0].level+skills[0].extra_levels];
 		var warrior_damage = ~~skills[0].data.values[5][skills[0].level+skills[0].extra_levels];
@@ -22,23 +21,25 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		var golem_life = ~~skills[4].data.values[1][skills[4].level+skills[4].extra_levels];
 		var golem_attack = ~~skills[4].data.values[2][skills[4].level+skills[4].extra_levels];
 		
-		if (skill.name == "Raise Skeleton Warrior" && elem == 4) {			result += warrior_life }
+		// TODO: Blood Golem seems to be a synergy for other golem skills? It adds 5% of the golem's "base life" (level 0 value) per level
+		
+		if (skill.name == "Raise Skeleton Warrior" && elem == 4) {			result = skill.data.values[elem][character.difficulty][lvl] + warrior_life }
 		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {			result = ((result + warrior_damage) * (1 + 0.08*skills[5].level + 0.08*skills[0].level)) }
-		if (skill.name == "Raise Skeletal Mage" && elem == 9) {				result += mage_life }
+		if (skill.name == "Raise Skeletal Mage" && elem == 9) {				result = skill.data.values[elem][character.difficulty][lvl] + mage_life }
 		if (skill.name == "Raise Skeletal Mage" && elem > 0 && elem < 9) {	result *= (1 + 0.08*skills[1].level + mage_damage/100) }
 		if (skill.name == "Clay Golem" && elem == 0) {						result += golem_attack }
 		if (skill.name == "Clay Golem" && elem == 1) {						result += (35*skills[8].level) }
-		if (skill.name == "Clay Golem" && elem == 2) {						result *= (1 + golem_life/100) }
+		if (skill.name == "Clay Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] * (1+golem_life/100) }
 		if (skill.name == "Clay Golem" && elem > 2 && elem < 5) {			result *= (1 + 0.20*skills[6].level + 0.20*skills[8].level + 0.20*skills[9].level) }
 		if (skill.name == "Blood Golem" && elem == 0) {						result += (20*skills[3].level + golem_attack) }
 		if (skill.name == "Blood Golem" && elem == 1) {						result += (35*skills[8].level) }
-		if (skill.name == "Blood Golem" && elem == 2) {						result *= (1 + golem_life/100) }
+		if (skill.name == "Blood Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] * (1+golem_life/100) }
 		if (skill.name == "Blood Golem" && elem > 3 && elem < 6) {			result *= (1 + 0.15*skills[3].level + 0.15*skills[8].level + 0.15*skills[9].level) }
 		if (skill.name == "Iron Golem" && elem == 2) {						result += (20*skills[3].level + golem_attack) }
-		if (skill.name == "Iron Golem" && elem == 4) {						result *= (1 + golem_life/100) }
+		if (skill.name == "Iron Golem" && elem == 4) {						result = skill.data.values[elem][character.difficulty][lvl] * (1+golem_life/100) }
 		if (skill.name == "Iron Golem" && elem < 2) {						result *= (1 + 0.05*skills[3].level + 0.05*skills[6].level + 0.05*skills[9].level) }
 		if (skill.name == "Fire Golem" && elem == 0) {						result += (20*skills[3].level + golem_attack) }
-		if (skill.name == "Fire Golem" && elem == 2) {						result *= (1 + golem_life/100) }
+		if (skill.name == "Fire Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] * (1+golem_life/100) }
 		if (skill.name == "Fire Golem" && elem > 2 && elem < 7) {			result *= (1 + 0.10*skills[3].level + 0.10*skills[6].level + 0.10*skills[8].level) }
 		if (skill.name == "Golem Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/5) }
 		
@@ -128,7 +129,11 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["damage max",2,3,4,5,6,8,10,12,14,16,18,21,23,26,29,32,37,43,48,54,], 
 		["Attack Bonus",80,155,230,305,380,455,530,605,680,755,830,905,980,1055,1130,1205,1280,1355,1430,1505,1580,1655,1730,1805,1880,1955,2030,2405,2480,2555,], 
 		["Defense",25,45,65,85,105,125,145,165,185,205,225,245,265,285,305,325,345,365,385,405,425,445,465,485,505,525,545,565,585,605,], 
-		["Life",21,21,21,31,42,52,63,73,84,94,105,115,126,136,147,157,168,178,189,199,], 
+		["Life",
+			["Life (Normal)",21,21,21,31,42,52,63,73,84,94,105,115,126,136,147,157,168,178,189,199,], 
+			["Life (Nightmare)",30,], 
+			["Life (Hell)",42,], 
+		], 
 		["# of Skeletons",1,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,], 
 		["Mana Cost",6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,], 
 ]};
@@ -136,7 +141,11 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 /*[ 3] Clay Golem		*/ var d122 = {index:[2,""], values:[
 		["attack"], 
 		["defense"], 
-		["Hit Points",115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,], 
+		["Life",
+			["Life (Normal)",115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,], 
+			["Life (Nightmare)",345,390,], 
+			["Life (Hell)",575,650,], 
+		], 
 		["damage min",11,22,33,44,55,66,77,88,99,110,121,132,143,154,165,176,187,198,209,220,231,242,253,264,275,286,297,308,319,330,], 
 		["damage max",15,30,45,60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,], 
 		["Attack Bonus",20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,], 
@@ -159,13 +168,21 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["cold max"], 
 		["fire min"], 
 		["fire max"], 
-		["life"], 
+		["Life",
+			["Life (Normal)",61,], 
+			["Life (Nightmare)",88,], 
+			["Life (Hell)",123,], 
+		], 
 		["mana cost"], 
 ]};
 /*[ 6] Blood Golem		*/ var d142 = {index:[2,""], values:[
 		["attack"], 
 		["defense"], 
-		["Life",859,1082,1305,1528,1751,1974,2197,2420,2643,2866,3089,3312,3535,3758,3981,4204,4427,4650,4873,5096,], 
+		["Life",
+			["Life (Normal)",231,], 
+			["Life (Nightmare)",446,], 
+			["Life (Hell)",732,828,], 
+		], 
 		["Life on Hit",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,], 
 		["damage min",10,13,17,20,24,27,31,34,38,41,45,48,52,55,59,62,66,69,73,76,], 
 		["damage max",27,36,45,55,64,74,83,93,102,112,121,130,140,149,159,168,178,187,197,206,], 
@@ -179,14 +196,22 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["damage max"], 
 		["attack"], 
 		["defense"], 
-		["Life",1372,1715,2058,2401,2744,3087,3430,3773,4116,4459,4802,5145,5488,5831,6174,6517,6860,7203,7546,7889,], 
+		["Life",
+			["Life (Normal)",321,], 
+			["Life (Nightmare)",624,], 
+			["Life",1029,], 
+		], 
 		["Thorns %",150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,], 
 		["Defense Bonus",35,70,105,140,175,210,245,280,315,350,385,420,455,490,525,560,595,640,665,700,], 
 ]};
 /*[ 9] Fire Golem		*/ var d162 = {index:[2,""], values:[
 		["attack"], 
 		["defense"], 
-		["life"], 
+		["Life",
+			["Life (Normal)",180,], 
+			["Life (Nightmare)",295,], 
+			["Life (Hell)",468,], 
+		], 
 		["fire min"], 
 		["fire max"], 
 		["holy fire min"], 

@@ -45,13 +45,19 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Carrion Vine" && elem == 2) {				result += (4*skills[26].level + 4*skills[28].level) }
 		if (skill.name == "Solar Creeper" && elem == 1) {				result += (1*skills[26].level + 1*skills[25].level) }
 		if (skill.name == "Solar Creeper" && elem == 2) {				result += (3*skills[26].level + 3*skills[25].level) }
+//		if (skill.name == "Heart of Wolverine" && elem == 0) {			result = skill.data.values[elem][character.difficulty][lvl] }
+//		if (skill.name == "Spirit of Barbs" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
+//		if (skill.name == "Oak Sage" && elem == 0) {					result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Oak Sage" && elem == 1) {					result += (0.5*skills[25].level + 0.5*skills[28].level) }
 		if (skill.name == "Raven" && elem < 4) {						result *= (1 + 0.12*skills[24].level + 0.12*skills[27].level + 0.12*skills[30].level) }
+//		if (skill.name == "Summon Spirit Wolf" && elem == 0) {			result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Summon Spirit Wolf" && elem>0 && elem<3) {	result *= (1 + 0.06*skills[21].level + 0.06*skills[27].level + 0.06*skills[30].level + 0.06*skills[11].level - 0.09*skills[13].level) }
-		if (skill.name == "Summon Dire Wolf" && elem > 0 && elem < 3) {	result *= (1 + 0.04*skills[21].level + 0.04*skills[24].level + 0.04*skills[30].level + 0.04*skills[11].level - 0.06*skills[13].level) }
 		if (skill.name == "Summon Dire Wolf" && elem == 0) {			result += (25*skills[24].level) }
-		if (skill.name == "Summon Grizzly" && elem > 0 && elem < 3) {	result *= (1 + 0.06*skills[21].level + 0.06*skills[24].level + 0.06*skills[27].level + 0.06*skills[13].level - 0.12*skills[11].level) }
+//		if (skill.name == "Summon Dire Wolf" && elem == 2) {			result = skill.data.values[elem][character.difficulty][lvl] }
+		if (skill.name == "Summon Dire Wolf" && elem > 2 && elem < 5) {	result *= (1 + 0.04*skills[21].level + 0.04*skills[24].level + 0.04*skills[30].level + 0.04*skills[11].level - 0.06*skills[13].level) }
+//		if (skill.name == "Summon Grizzly" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Summon Grizzly" && elem == 1) {				result += (25*skills[24].level) }
+		if (skill.name == "Summon Grizzly" && elem > 2 && elem < 5) {	result *= (1 + 0.06*skills[21].level + 0.06*skills[24].level + 0.06*skills[27].level + 0.06*skills[13].level - 0.12*skills[11].level) }
 		
 	return result
 	},
@@ -222,19 +228,27 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["Mana Cost",1.5,1.7,2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,], 
 ]};
 /*[22] Poison Creeper	*/ var d313 = {index:[0,""], values:[
-		["Life",50,62,75,87,100,112,125,137,150,162,175,187,200,212,225,237,250,262,275,287,], 
+		["Life (All Difficulties)",50,62,75,87,100,112,125,137,150,162,175,187,200,212,225,237,250,262,275,287,], 
 		["poison min",4,7,10,12,15,18,21,23,28,33,37,42,47,52,56,61,67,73,78,84,], 
 		["poison max",6,8,11,14,17,19,22,25,30,34,39,44,48,53,58,63,68,74,80,86,], 
 ]};
 /*[23]Heart of Wolverine*/ var d321 = {index:[0,""], values:[
-		["Life",136,142,149,156,163,170,176,183,190,197,204,210,217,224,231,238,244,251,258,265,], 
+		["Life",
+			["Life (Normal)",136,142,149,156,163,170,176,183,190,197,204,210,217,224,231,238,244,251,258,265,], 
+			["Life (Nightmare)",336,], 
+			["Life (Hell)",872,], 
+		], 
 		["Damage +%",20,27,34,41,48,55,62,69,76,83,90,97,104,111,118,125,132,139,146,153,], 
 		["Attack Rating +%",25,32,39,46,53,60,67,74,81,88,95,102,109,116,123,130,137,144,151,158,], 
 		["Radius X Yards",20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,], 
 		["Mana Cost",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,], 
 ]};
 /*[24] Spirit Wolf		*/ var d332 = {index:[1,""], values:[
-		["Life",171,222,272,323,373,423,474,524,575,625,675,726,776,827,877,927,978,1028,1079,1079,], 
+		["Life",
+			["Life (Normal)",113,], 
+			["Life (Nightmare)",185,], 
+			["Life (Hell)",219,], 
+		], 
 		["damage min",12,15,18,21,24,28,31,34,38,42,46,50,55,59,63,67,72,78,83,88,], 
 		["damage max",18,21,24,28,31,34,37,40,44,48,53,57,61,65,69,73,79,84,89,94,], 
 		["Wolves",1,2,3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,], 
@@ -242,12 +256,16 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["Passive Defense Bonus +%",50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,], 
 ]};
 /*[25] Carrion Vine		*/ var d333 = {index:[0,""], values:[
-		["Life",95,118,142,166,190,213,237,261,285,308,332,356,380,403,427,451,475,498,522,546,], 
+		["Life (All Difficulties)",95,118,142,166,190,213,237,261,285,308,332,356,380,403,427,451,475,498,522,546,], 
 		["heal min",24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,], 
 		["heal max",44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,], 
 ]};
 /*[26] Oak Sage			*/ var d361 = {index:[0,""], values:[
-		["Life",120,120,121,121,121,122,123,124,126,126,127,128,128,129,130,130,132,133,133,134,], 
+		["Life",
+			["Life (Normal)",120,120,121,121,121,122,123,124,126,126,127,128,128,129,130,130,132,133,133,134,], 
+			["Life (Nightmare)",420,], 
+			["Life (Hell)",1240,], 
+		], 
 		["Heals",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,], 
 		["Life granted",65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,], 
 		["Radius X Yards",20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,], 
@@ -256,26 +274,38 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 /*[27] Dire Wolf		*/ var d352 = {index:[2," percent"], values:[
 		["Attack Rating %",], 
 		["Defense %",], 
-		["Life",], 
+		["Life",
+			["Life (Normal)",171,], 
+			["Life (Nightmare)",193,], 
+			["Life (Hell)",216,], 
+		], 
 		["damage min",], 
 		["damage max",], 
 		["Wolves",], 
 		["Life Bonus %",], 
 ]};
 /*[28] Solar Creeper	*/ var d353 = {index:[0,""], values:[
-		["Life"], 
+		["Life (All Difficulties)",165,], 
 		["mana recovery min",], 
 		["mana recovery max",], 
 		["mana cost",], 
 ]};
 /*[29] Spirit of Barbs	*/ var d341 = {index:[0,""], values:[
-		["Life",213,244,276,308,340,372,404,436,468,500,532,564,596,628,660,692,724,756,788,820,], 
+		["Life",
+			["Life (Normal)",213,244,276,308,340,372,404,436,468,500,532,564,596,628,660,692,724,756,788,820,], 
+			["Life (Nightmare)",413,], 
+			["Life (Hell)",1026,], 
+		], 
 		["Damage Returned",15,23,31,39,47,55,63,71,87,103,119,135,151,167,183,199,227,255,283,311,], 
 		["Radius X Yards",20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,], 
 ]};
 /*[30] Grizzly			*/ var d362 = {index:[3," percent"], values:[
-		["Life",], 
+		["Life",
+			["Life (Normal)",676,], 
+			["Life (Nightmare)",1352,], 
+			["Life (Hell)",2028,], 
+		], 
 		["Attack Rating %",], 
 		["Defense %",], 
 		["damage min",], 
