@@ -392,24 +392,17 @@ function getBaseId(base_name) {
 function showMissingInfo(c) {
 	if (game_version == 3) {
 		var info = "<br>"+c.toUpperCase()+"<br>";
-		if (c == "amazon" || c == "assassin" || c == "barbarian") {
+		if (c == "amazon" || c == "assassin" || c == "barbarian" || c == "paladin") {
 			info += "Skill data is complete (all skills, levels 1-60)<br><br>"
 			info += "Skill data for other classes is incomplete"
 		} else {
 			info += "Skill data is incomplete<br><br>"
 			if (c == "druid") {
-				info += "26/31 skills have data only for levels 1-20<br>"
-				info += "­ ­ 5/31 skills have no data<br>"
+				info += "­ ­ 9/31 skills are missing data<br>"
 			} else if (c == "necromancer") {
-				info += "14/32 skills have data only for levels 1-30<br>"
-				info += "18/32 skills have no data<br>"
-			} else if (c == "paladin") {
-				info += "31/33 skills have data only for levels 1-30<br>"
-				info += "­ ­ 2/33 skills have no data<br>"
+				info += "­ ­ 11/32 skills are missing data<br>"
 			} else if (c == "sorceress") {
-				info += "­ ­ 6/33 skills have data only for levels 1-30<br>"
-				info += "­ ­ 4/33 skills have data only for levels 1-20<br>"
-				info += "23/33 skills have no data<br>"
+				info += "­ ­ 14/33 skills are missing data<br>"
 			}
 		}
 		info += "<br>You can help by adding missing data to the <a href='https://projectdiablo2.miraheze.org/wiki/Main_Page'>wiki</a>"
