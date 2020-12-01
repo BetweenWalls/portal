@@ -23,7 +23,6 @@
 	round
 	getId
 	getBaseId
-	showMissingInfo
 */
 
 // startup - Resets everything and starts a new character
@@ -56,7 +55,6 @@ function startup(choice) {
 	document.getElementById("skill_tree").src = character_setup.skill_layout
 	init()
 	updateStats()
-	showMissingInfo(choice)		// temporary (until skill data is complete)
 }
 
 // reset - Calls startup() with the specified class name
@@ -384,29 +382,4 @@ function getId(name) {
 // ---------------------------------
 function getBaseId(base_name) {
 	return base_name.split(" ").join("_").split("-").join("_").split("s'").join("s").split("'s").join("s");
-}
-
-// showMissingInfo - Displays information about which skills are lacking data
-//	c: character class
-// ---------------------------------
-function showMissingInfo(c) {
-	if (game_version == 3) {
-		var info = "<br>"+c.toUpperCase()+"<br>";
-		if (c == "amazon" || c == "assassin" || c == "barbarian" || c == "paladin") {
-			info += "Skill data is complete (all skills, levels 1-60)<br><br>"
-			info += "Skill data for other classes is incomplete"
-		} else {
-			info += "Skill data is incomplete<br><br>"
-			if (c == "druid") {
-				info += "­ ­ 9/31 skills are missing data<br>"
-			} else if (c == "necromancer") {
-				info += "­ ­ 11/32 skills are missing data<br>"
-			} else if (c == "sorceress") {
-				info += "­ ­ 14/33 skills are missing data<br>"
-			}
-		}
-		info += "<br>You can help by adding missing data to the <a href='https://projectdiablo2.miraheze.org/wiki/Main_Page'>wiki</a>"
-		document.getElementById("skill_details_inactive").innerHTML = info
-		document.getElementById("debug_space").innerHTML = "See <a href='https://github.com/BetweenWalls/PD2-Singleplayer#pd2-singleplayer'>PD2-Singleplayer</a> to setup in-game character planning/testing"
-	}
 }
