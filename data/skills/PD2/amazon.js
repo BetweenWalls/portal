@@ -33,7 +33,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Valkyrie" && elem == 3) { 						result += (40*skills[15].level) }
 		
 		if (skill.name == "Magic Arrow" && elem > 1 && elem < 4) { 			result *= (1 + 0.15*skills[10].level + 0.15*skills[12].level + 0.15*skills[25].level) }
-		if (skill.name == "Guided Arrow" && elem < 1) { 					result = skills[21].level }
+		if (skill.name == "Guided Arrow" && elem == 0) { 					result = skills[21].level }
 		if (skill.name == "Cold Arrow" && elem > 1 && elem < 4) { 			result *= ((1 + 0.22*skills[21].level + 0.20*skills[24].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Ice Arrow" && elem > 0 && elem < 3) { 			result *= ((1 + 0.20*skills[21].level + 0.14*skills[20].level + 0.14*skills[29].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Ice Arrow" && elem == 3) { 						result = 1 * (1 + 0.05*skills[20].level + 0.05*skills[29].level) }
