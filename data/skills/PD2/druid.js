@@ -58,12 +58,13 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Summon Dire Wolf" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.04*skills[21].level + 0.04*skills[24].level + 0.04*skills[30].level + 0.04*skills[11].level - 0.06*skills[13].level)) + ((~~skills[30].data.values[5][skills[30].level+(skills[30].extra_levels*Math.min(1,skills[30].level))])/100)) }
 		if (skill.name == "Summon Grizzly" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Summon Grizzly" && elem == 1) {				result = 25 + 25*(skills[24].level+(skills[24].extra_levels*Math.min(1,skills[24].level))) }
-		if (skill.name == "Summon Grizzly" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[24].level + 0.06*skills[27].level + 0.06*skills[13].level - 0.12*skills[11].level))) }
+		if (skill.name == "Summon Grizzly" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[24].level + 0.06*skills[27].level + 0.06*skills[13].level - 0.12*skills[11].level)) + skill.data.values[5][lvl]/100) }
 		
 		// Note: Attack Bonus synergy (from Spirit Wolf) is soft
 		// Note: Damage Bonus on Grizzly tooltip is an undocumented soft synergy for Spirit/Dire Wolf
 		// Note: Negative synergies cannot reduce total bonus to a negative value (and don't affect Grizzly soft synergy)
 		// TODO: Damage calculation is still not exactly correct in some scenarios for Spirit/Dire Wolf. How are they meant to be calculated?
+		// TODO: Is the Grizzly damage calculation correct? It seems the in-game tooltip includes the damage bonus in the 'base damage' before synergies are multiplied, which is not how things are usually done.
 		
 	return result
 	},
@@ -314,8 +315,8 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		], 
 		["Attack Rating %",], 
 		["Defense %",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
-		["damage min",25,31,37,44,52,61,70,79,92,105,119,133,149,165,182,200,222,244,268,292,318,345,376,408,441,476,512,549,591,634,680,726,774,823,874,926,979,1034,1090,1148,1207,1267,1329,1393,1457,1523,1591,1660,1730,1801,1875,1949,2025,2102,2181,2261,2342,2425,2509,2595,], 
-		["damage max",37,44,52,60,69,78,88,99,112,126,141,157,173,191,209,228,250,274,298,324,351,378,410,443,478,513,550,588,631,676,722,769,818,869,920,973,1028,1084,1141,1199,1259,1321,1384,1448,1514,1581,1649,1719,1790,1863,1937,2012,2089,2168,2247,2328,2411,2495,2580,2666,], 
+		["base damage min",20,23,26,29,32,35,38,41,45,49,53,57,61,65,69,73,78,83,88,93,98,103,109,115,121,127,133,139,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,265,272,279,286,293,300,307,314,321,328,335,342,349,356,363,], 
+		["base damage max",30,33,36,39,42,45,48,51,55,59,63,67,71,75,79,83,88,93,98,103,108,113,119,125,131,137,143,149,156,163,170,177,184,191,198,205,212,219,226,233,240,247,254,261,268,275,282,289,296,303,310,317,324,331,338,345,352,359,366,373,], 
 		["Damage Bonus %",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 ]};
 
