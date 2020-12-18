@@ -5,14 +5,13 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 ### [Download](https://github.com/BetweenWalls/portal/archive/master.zip)
 
 ### Features:
-* all skill info up to level 60
-* synergy calculation for all skills
-* display section for active skill(s)
+* all skill info up to level 60 & synergy calculations
+* display section for skill damage
 * character stats
 * mercenary selection
 * equipment selection & modification (corrupting, socketing, upgrading)
 * charm inventory
-* snapshotting
+* snapshotting for buffs
 * saving/loading
 
 ### Controls:
@@ -29,6 +28,7 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * DoT (Damage over Time) stats are added without considering their time component
+* Dual-Wielding damage may be incorrect (on-weapon damage affixes affect both weapons)
 
 ### Future Goals:
 * mercenary stats
