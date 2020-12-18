@@ -53,8 +53,6 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 	//	effect: array element object for the buff
 	// result: indexed array including stats affected and their values
 	// ---------------------------------
-//	getBuffData : function(effect) {
-//		var skill = skills[effect.skill];
 	getBuffData : function(skill) {
 		var id = skill.name.split(' ').join('_');
 		var lvl = skill.level + skill.extra_levels;

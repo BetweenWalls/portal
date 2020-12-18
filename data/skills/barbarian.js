@@ -83,6 +83,8 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage, 2 = includes basic throw damage
 		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
 		if (typeof(skill.damaging) != 'undefined') { attack = skill.damaging.attack; spell = skill.damaging.spell; }
+		var e_damage_offhand = 0; if (offhandType == "weapon") { e_damage_offhand = (~~(equipped["offhand"].e_damage) + ~~(socketed["offhand"].totals.e_damage) + ~~(corruptsEquipped["offhand"].e_damage)); };
+		var damage_enhanced = character.damage_bonus + character.e_damage - e_damage_offhand;
 
 		if (skill.name == "War Cry") {				damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Double Swing") { 	damage_bonus = character.getSkillData(skill,lvl,0); ar_bonus = character.getSkillData(skill,lvl,1); }
@@ -91,7 +93,7 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		else if (skill.name == "Cleave") { 			weapon_damage = 60; damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Stun") { 			mDamage_min = character.getSkillData(skill,lvl,0); mDamage_max = character.getSkillData(skill,lvl,1); ar_bonus = character.getSkillData(skill,lvl,2); }
 		else if (skill.name == "Power Throw") {		weapon_damage = 120; ar_bonus = character.getSkillData(skill,lvl,1); damage_min = character.getSkillData(skill,lvl,2); damage_max = character.getSkillData(skill,lvl,3); }	
-		else if (skill.name == "Bash") { 			weapon_damage = 110-(110/100*character.getSkillData(skill,lvl,0)); ar_bonus = character.getSkillData(skill,lvl,2); damage_bonus = character.getSkillData(skill,lvl,3); mDamage_min = phys_min*(110/100*character.getSkillData(skill,lvl,0))/100; mDamage_max = phys_max*(110/100*character.getSkillData(skill,lvl,0))/100; }
+		else if (skill.name == "Bash") { 			weapon_damage = 110-(110/100*character.getSkillData(skill,lvl,0)); ar_bonus = character.getSkillData(skill,lvl,2); damage_bonus = character.getSkillData(skill,lvl,3); mDamage_min = phys_min*((110/100*character.getSkillData(skill,lvl,0))/100)*(phys_mult+damage_bonus/100); mDamage_max = phys_max*((110/100*character.getSkillData(skill,lvl,0))/100)*(phys_mult+damage_bonus/100); }
 		else if (skill.name == "Leap Attack") {		weapon_damage = 175; ar_bonus = character.getSkillData(skill,lvl,1); damage_bonus = character.getSkillData(skill,lvl,0); }
 		else if (skill.name == "Ethereal Throw") { 	weapon_damage = 60; mDamage_min = character.getSkillData(skill,lvl,0); mDamage_max = character.getSkillData(skill,lvl,1); }
 		else if (skill.name == "Whirlwind") {		ar_bonus = character.getSkillData(skill,lvl,1); damage_bonus = character.getSkillData(skill,lvl,0); }
@@ -105,12 +107,11 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 			}
 		} if (match == 0) { spell = 2 } }
 		
-		var damage_enhanced = character.damage_bonus + character.e_damage;
 		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; nonPhys_min = 0; nonPhys_max = 0; damage_enhanced = 0; }
 		nonPhys_min += (fDamage_min + cDamage_min + lDamage_min + pDamage_min + mDamage_min);
 		nonPhys_max += (fDamage_max + cDamage_max + lDamage_max + pDamage_max + mDamage_max);
-		phys_min = (~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
-		phys_max = (~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_max * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_min = (~~phys_min * (phys_mult + damage_bonus/100) * (1 + (weapon_damage-100)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_max = (~~phys_max * (phys_mult + damage_bonus/100) * (1 + (weapon_damage-100)/100) + (damage_max * (1+(damage_bonus+damage_enhanced+(character.level*character.e_max_damage_per_level))/100)));
 		if (spell != 2) { skillMin = Math.floor(phys_min+nonPhys_min); skillMax = Math.floor(phys_max+nonPhys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		

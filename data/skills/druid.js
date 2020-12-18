@@ -137,6 +137,7 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 		var skillMin = 0; var skillMax = 0; var skillAr = 0;
 		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage
 		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
+		var damage_enhanced = character.damage_bonus + character.e_damage;
 		
 		if (skill.name == "Firestorm") { 				attack = 0; spell = 1; fDamage_min = character.getSkillData(skill,lvl,1); fDamage_max = character.getSkillData(skill,lvl,2); }
 		else if (skill.name == "Molten Boulder") { 		attack = 0; spell = 1; damage_min = character.getSkillData(skill,lvl,0); damage_max = character.getSkillData(skill,lvl,1); fDamage_min = character.getSkillData(skill,lvl,2); fDamage_max = character.getSkillData(skill,lvl,3); }
@@ -170,12 +171,11 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 			if (match == 0) { spell = 2 }
 		}
 		
-		var damage_enhanced = character.damage_bonus + character.e_damage;
 		if (attack == 0) { phys_min = 0; phys_max = 0; phys_mult = 1; nonPhys_min = 0; nonPhys_max = 0; damage_enhanced = 0; }
 		nonPhys_min += (fDamage_min + cDamage_min + lDamage_min + pDamage_min + mDamage_min);
 		nonPhys_max += (fDamage_max + cDamage_max + lDamage_max + pDamage_max + mDamage_max);
-		phys_min = (~~phys_min * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
-		phys_max = (~~phys_max * (phys_mult + (weapon_damage-100+damage_bonus)/100) + (damage_max * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_min = (~~phys_min * (phys_mult + damage_bonus/100) * (1 + (weapon_damage-100)/100) + (damage_min * (1+(damage_bonus+damage_enhanced)/100)));
+		phys_max = (~~phys_max * (phys_mult + damage_bonus/100) * (1 + (weapon_damage-100)/100) + (damage_max * (1+(damage_bonus+damage_enhanced+(character.level*character.e_max_damage_per_level))/100)));
 		if (spell != 2) { skillMin = Math.floor(phys_min+nonPhys_min); skillMax = Math.floor(phys_max+nonPhys_max); }
 		if (spell == 0) { skillAr = Math.floor(ar*(1+ar_bonus/100)); }
 		

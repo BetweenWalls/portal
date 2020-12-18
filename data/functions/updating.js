@@ -63,13 +63,19 @@ function getWeaponDamage(str, dex, group, thrown) {
 	else if (type == "claw") { weapon_skillup = c.claw_damage; c.ar_skillup2 = c.claw_ar; c.cstrike_skillup = c.claw_cstrike; }
 	else { weapon_skillup = 0; c.ar_skillup2 = 0; c.cstrike_skillup = 0; c.pierce_skillup = 0; }
 	var e_damage_other = 0;
-	if (offhandType == "weapon") { e_damage_other = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage)); }
-	var e_damage = c.e_damage + (c.level*c.e_max_damage_per_level) - e_damage_other;
+	var phys_min_other = 0;
+	var phys_max_other = 0;
+	if (offhandType == "weapon") {
+		e_damage_other = (~~(equipped[other].e_damage) + ~~(socketed[other].totals.e_damage) + ~~(corruptsEquipped[other].e_damage))
+		phys_min_other = ~~equipped[other].damage_min + c.level*~~equipped[other].min_damage_per_level
+		phys_max_other = ~~equipped[other].damage_max + c.level*~~equipped[other].max_damage_per_level
+	}
+	var e_damage = c.e_damage - e_damage_other;
 	var base_min = equipped[group].base_damage_min;
 	var base_max = equipped[group].base_damage_max;
 	if (thrown == 1) { base_min = ~~(equipped[group].throw_min); base_max = ~~(equipped[group].throw_max); }
-	var phys_min = (base_min * (1+e_damage/100) + c.damage_min + (c.level-1)*c.min_damage_per_level);
-	var phys_max = (base_max * (1+e_damage/100) + c.damage_max + (c.level-1)*c.max_damage_per_level);
+	var phys_min = (base_min * (1+e_damage/100) + c.damage_min + c.level*c.min_damage_per_level - phys_min_other);
+	var phys_max = (base_max * (1+(e_damage+(c.level*c.e_max_damage_per_level))/100) + c.damage_max + c.level*c.max_damage_per_level - phys_max_other);
 	var phys_mult = (1+statBonus+(c.damage_bonus+weapon_skillup)/100);
 	var values = [phys_min, phys_max, phys_mult];
 	
@@ -82,6 +88,8 @@ function getWeaponDamage(str, dex, group, thrown) {
 // ---------------------------------
 function getNonPhysWeaponDamage(group) {
 	var c = character;
+	var other = "offhand";
+	if (group == "offhand") { other = "weapon" }
 	var energyTotal = (c.energy + c.all_attributes)*(1+c.max_energy/100);
 	var cDamage_sockets_filled = ~~(equipped.weapon.cDamage_per_socketed*socketed.weapon.socketsFilled)+~~(equipped.offhand.cDamage_per_socketed*socketed.offhand.socketsFilled);
 	var f_min = c.fDamage_min*(1+c.fDamage/100);
@@ -95,29 +103,16 @@ function getNonPhysWeaponDamage(group) {
 	var m_min = c.mDamage_min;
 	var m_max = c.mDamage_max;
 	if (offhandType == "weapon") {
-		if (group == "weapon") {
-			f_min = (c.fDamage_min-~~(equipped.offhand.fDamage_min))*(1+c.fDamage/100);
-			f_max = ((c.fDamage_max-~~(equipped.offhand.fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+c.fDamage/100);
-			c_min = ((c.cDamage_min-~~(equipped.offhand.cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+c.cDamage/100);
-			c_max = ((c.cDamage_max-~~(equipped.offhand.cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+c.cDamage/100);
-			l_min = (c.lDamage_min-~~(equipped.offhand.lDamage_min))*(1+c.lDamage/100);
-			l_max = ((c.lDamage_max-~~(equipped.offhand.lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+c.lDamage/100);
-			p_min = (c.pDamage_all+c.pDamage_min-~~(equipped.offhand.pDamage_min))*(1+c.pDamage/100);
-			p_max = (c.pDamage_all+c.pDamage_max-~~(equipped.offhand.pDamage_max))*(1+c.pDamage/100);
-			m_min = c.mDamage_min - ~~(equipped.offhand.mDamage_min);
-			m_max = c.mDamage_max - ~~(equipped.offhand.mDamage_max);
-		} else {
-			f_min = (c.fDamage_min-~~(equipped.weapon.fDamage_min))*(1+c.fDamage/100);
-			f_max = ((c.fDamage_max-~~(equipped.weapon.fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+c.fDamage/100);
-			c_min = ((c.cDamage_min-~~(equipped.weapon.cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+c.cDamage/100);
-			c_max = ((c.cDamage_max-~~(equipped.weapon.cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+c.cDamage/100);
-			l_min = (c.lDamage_min-~~(equipped.weapon.lDamage_min))*(1+c.lDamage/100);
-			l_max = ((c.lDamage_max-~~(equipped.weapon.lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+c.lDamage/100);
-			p_min = (c.pDamage_all+c.pDamage_min-~~(equipped.weapon.pDamage_min))*(1+c.pDamage/100);
-			p_max = (c.pDamage_all+c.pDamage_max-~~(equipped.weapon.pDamage_max))*(1+c.pDamage/100);
-			m_min = c.mDamage_min - ~~(equipped.weapon.mDamage_min);
-			m_max = c.mDamage_max - ~~(equipped.weapon.mDamage_max);
-		}
+		f_min = (c.fDamage_min-~~(equipped[other].fDamage_min))*(1+c.fDamage/100);
+		f_max = ((c.fDamage_max-~~(equipped[other].fDamage_max))+(c.level*c.fDamage_max_per_level))*(1+c.fDamage/100);
+		c_min = ((c.cDamage_min-~~(equipped[other].cDamage_min))+(c.cDamage_per_ice*c.charge_ice)+cDamage_sockets_filled)*(1+c.cDamage/100);
+		c_max = ((c.cDamage_max-~~(equipped[other].cDamage_max))+(c.cDamage_per_ice*c.charge_ice)+(c.level*c.cDamage_max_per_level)+cDamage_sockets_filled)*(1+c.cDamage/100);
+		l_min = (c.lDamage_min-~~(equipped[other].lDamage_min))*(1+c.lDamage/100);
+		l_max = ((c.lDamage_max-~~(equipped[other].lDamage_max))+(Math.floor(energyTotal/2)*c.lDamage_max_per_2_energy))*(1+c.lDamage/100);
+		p_min = (c.pDamage_all+c.pDamage_min-~~(equipped[other].pDamage_min))*(1+c.pDamage/100);
+		p_max = (c.pDamage_all+c.pDamage_max-~~(equipped[other].pDamage_max))*(1+c.pDamage/100);
+		m_min = c.mDamage_min - ~~(equipped[other].mDamage_min);
+		m_max = c.mDamage_max - ~~(equipped[other].mDamage_max);
 	}
 	var values = {fMin:f_min,fMax:f_max,cMin:c_min,cMax:c_max,lMin:l_min,lMax:l_max,pMin:p_min,pMax:p_max,mMin:m_min,mMax:m_max};
 	return values
@@ -249,7 +244,7 @@ function updatePrimaryStats() {
 	var ias = c.ias + Math.floor(dexTotal/8)*c.ias_per_8_dexterity;
 	if (offhandType == "weapon" && typeof(equipped.offhand.ias) != 'undefined') { ias -= equipped.offhand.ias }
 	var ias_total = ias + c.ias_skill;
-	document.getElementById("ias").innerHTML = ias_total; if (ias_total > 0) { document.getElementById("ias").innerHTML += "%" }
+	document.getElementById("ias").innerHTML = ias; if (ias > 0) { document.getElementById("ias").innerHTML += "%" }
 	if (equipped.weapon.type != "" && equipped.weapon.special != 1) {
 		var weaponType = equipped.weapon.type;
 		var eIAS = Math.floor(120*ias/(120+ias));
