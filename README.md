@@ -28,7 +28,12 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * DoT (Damage over Time) stats are added without considering their time component
-* Dual-Wielding damage may be incorrect (on-weapon damage affixes affect both weapons)
+* Dual-Wielding damage may be incorrect (some on-weapon damage affixes affect both weapons)
+* Minion damage may be incorrect (most bonuses from auras/items aren't included)
+
+### Notes:
+* Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level and won't be accurate for most bosses or enemies of different levels
+* Effective Magic Find (displayed after Magic Find) shows how much is applied to uniques
 
 ### Future Goals:
 * mercenary stats
