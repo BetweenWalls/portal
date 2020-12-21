@@ -561,17 +561,28 @@ function changeBase(group, change) {
 				character[affix] += equipped[group][affix]
 			} else if (affix == "req_strength" || affix == "req_dexterity") {
 				equipped[group][affix] = Math.max(0,Math.ceil(multReq*bases[base][affix] - reqEth))
-			} else if (affix == "req_lvl") {
+			} else if (affix == "req_level") {
 				equipped[group]["tier"] = bases[base]["tier"]
-				var req_change = (5 * (equipped[group].tier - equipped[group].original_tier));
-				equipped[group][affix] = bases[base][affix] + req_change
+				if (change == "upgrade" && equipped[group].tier > equipped[group].original_tier) {
+					if ((equipped[group][affix]+5) <= bases[base][affix]) {
+						equipped[group][affix] = bases[base][affix]
+					} else {
+						equipped[group][affix] += 5
+					}
+				} else {
+					if (equipped[group].tier > equipped[group].original_tier) {		// downgrading back to the original base is already handled below
+						var req_level_original = 0; for (item in equipment[group]) { if (equipment[group][item].name == equipped[group].name) { req_level_original = equipment[group][item].req_level } };	// original level requirement isn't available without looking up original item
+						equipped[group][affix] = bases[base][affix]
+						if ((req_level_original+5) > equipped[group][affix]) { equipped[group][affix] = req_level_original+5 }
+					}
+				}
 			} else {		// any affixes that are undefined should not be checked (base upgrades/downgrades share the same affixes)
 				character[affix] -= equipped[group][affix]
 				equipped[group][affix] = bases[base][affix]
 				character[affix] += bases[base][affix]
 			}
 		} }
-		if (equipped[group].tier == equipped[group].original_tier) {	// used to reset affixes such as req_lvl, req_strength, req_dexterity (since they are often different from the base affixes)
+		if (equipped[group].tier == equipped[group].original_tier) {	// used to reset affixes such as req_level, req_strength, req_dexterity (since they are often different from the base affixes)
 			var name = equipped[group].name;
 			equip(group,"none");
 			equip(group,name);
