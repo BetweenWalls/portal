@@ -218,7 +218,7 @@ function skillHover(skill) {
 // skillOut - Hides skill tooltip
 // ---------------------------------
 function skillOut() {
-	document.getElementById("tooltip").style.display="none"
+	document.getElementById("tooltip").style.display = "none"
 	checkRequirements()
 }
 

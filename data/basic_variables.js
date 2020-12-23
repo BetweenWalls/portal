@@ -17,12 +17,13 @@ var offhandType = "none";
 var lastCharm = "";			// last charm on mouse-over
 var lastSocketable = "";	// last gem/rune/jewel on mouse-over
 var lastSelected = "";
-var settings = {coupling:1, autocast:1}
+var settings = {coupling:1, autocast:1, parameters:0}
 var monsterID = 2;
 var MAX = 20;				// Highest Skill Hardpoints
 var LIMIT = 60;				// Highest Skill Data
 var RES_CAP = 95;
 var game_version = 2;
+var loaded = 0;
 
 var socketed = {	// Gems/Runes/Jewels Socketed in Equipment
 	helm:{sockets:0, socketsFilled:0, totals:{}, items:[{id:"",name:""},{id:"",name:""},{id:"",name:""}]},

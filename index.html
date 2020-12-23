@@ -68,19 +68,23 @@
     <button class="nav-dropbtn">Version</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
-        <label for="version" onclick="return changeVersion(1);"><input id="version1" type="radio" name="version" disabled> ­ Vanilla ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="version" onclick="return changeVersion(1,'');"><input id="version1" type="radio" name="version" disabled> ­ Vanilla ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-        <label for="version" onclick="return changeVersion(2);"><input id="version2" type="radio" name="version" checked> ­ Path of Diablo ­ ­ </label>
+        <label for="version" onclick="return changeVersion(2,'');"><input id="version2" type="radio" name="version" checked> ­ Path of Diablo ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-        <label for="version" onclick="return changeVersion(3);"><input id="version3" type="radio" name="version"> ­ Project D2 ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="version" onclick="return changeVersion(3,'');"><input id="version3" type="radio" name="version"> ­ Project D2 ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
     </div>
   </div>
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Preferences</button>
     <div class="nav-dropdown-content">
+      <div class="nav-dropdown-content-item"><div class="nav-option">
+        <input id="parameters" type="checkbox" name="parameters" value="0" onclick="return toggleParameters(this);">
+        <label for="parameters"> ­ ­ ­ ­ URL Parameters ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+      </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
         <label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
@@ -570,16 +574,37 @@ function initial_load() {
 	var classes = ["amazon","assassin","barbarian","druid","necromancer","paladin","sorceress"];
 	var initial_class = classes[random];
 	skills = skills_all[initial_class]
+	
 	// duplicate info where needed
 	equipment.ring2 = equipment.ring1
 	corruptions.ring2 = corruptions.ring1
 	auras_extra[1].values = skills_all.amazon[10].data.values
-	// begin program
-	startup(initial_class)
 	
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	const v = urlParams.get('v');
-	if (v.toLowerCase() == "pd2" || v == "3") { changeVersion(3) }
+	// check URL parameters
+	var version = game_version;
+	params = new URLSearchParams(window.location.search);
+	if (params.has('v') == true) {
+		var v = params.get('v');
+		if (v.toLowerCase() == "pd2" || v == "3") { version = 3 }
+		else { params.set('v', version) }
+	} else {
+		params.set('v', version)
+	}
+	if (params.has('class') == true) {
+		if (classes.includes(params.get('class').toLowerCase()) == true) {
+			initial_class = params.get('class').toLowerCase()
+		}
+	}
+	
+	// begin program
+	if (version == 3) {
+		changeVersion(version, initial_class)	// version = Project D2
+	} else {
+		startup(initial_class)	// version = Path of Diablo  (default)
+	}
+	loaded = 1
+	loadParams()
+	skillHover(skills[0])
+	skillOut()
 }
 </script>

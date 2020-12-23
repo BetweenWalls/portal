@@ -211,22 +211,22 @@ function setCharacterInfo(className) {
 	if (character.quests_completed != fileInfo.character.quests_completed) { document.getElementById("quests").checked = true; toggleQuests(document.getElementById("quests")) }
 	for (let s = 0; s < skills.length; s++) { if (~~fileInfo.skills[s][0] > 0) { skillUp(null,skills[s],~~fileInfo.skills[s][0]) } }
 	skillOut()
-	for (group in corruptsEquipped) {
+	for (group in corruptsEquipped) {	// equipment
 		var options = document.getElementById("dropdown_"+group).options;
 		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.equipped[group].name) {  document.getElementById("dropdown_"+group).selectedIndex = i } }
 		equip(group,fileInfo.equipped[group].name)
 	}
-	for (group in corruptsEquipped) {
+	for (group in corruptsEquipped) {	// corruptions
 		var options = document.getElementById("corruptions_"+group).options;
 		for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.corruptsEquipped[group].name) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
 		corrupt(group,fileInfo.corruptsEquipped[group].name)
 	}
-	for (group in corruptsEquipped) {
+	for (group in corruptsEquipped) {	// upgrades & downgrades
 		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
 		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }
 		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }
 	}
-	for (group in corruptsEquipped) {
+	for (group in corruptsEquipped) {	// upgrades & downgrades (duplicated)
 		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
 		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }	// duplicated (things break for some reason when a while/for loop is used instead)
 		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)

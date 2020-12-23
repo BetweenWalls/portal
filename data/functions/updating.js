@@ -18,6 +18,7 @@
 	checkIronGolem
 	checkOffhand
 	updateSocketTotals
+	updateURL
 */
 
 // update - Updates everything
@@ -31,6 +32,7 @@ function update() {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	checkIronGolem()
+	if (loaded == 1) { updateURL() }
 }
 
 // getWeaponDamage - Calculates physical min/max damage and multiplier for an equipped weapon
@@ -120,7 +122,7 @@ function getNonPhysWeaponDamage(group) {
 
 // updateStats - Updates all stats
 // ---------------------------------
-function updateStats() { updatePrimaryStats(); updateOther(); updateSecondaryStats(); updateTertiaryStats(); }
+function updateStats() { if (loaded == 1) { updatePrimaryStats(); updateOther(); updateSecondaryStats(); updateTertiaryStats(); } }
 
 // updatePrimaryStats - Updates stats shown by the default (original D2) stat page
 // ---------------------------------
@@ -208,7 +210,7 @@ function updatePrimaryStats() {
 	if (c.difficulty == 1) { enemy_lvl = Math.min(43,enemy_lvl) }
 	else if (c.difficulty == 2) { enemy_lvl = Math.max(36,Math.min(66,enemy_lvl)) }
 	else if (c.difficulty == 3) { enemy_lvl = Math.max(67,enemy_lvl) }
-	var enemy_def = (MonStats[monsterID][8] * MonLevel[enemy_lvl][c.difficulty])/100;
+	var enemy_def = (~~MonStats[monsterID][8] * ~~MonLevel[enemy_lvl][c.difficulty])/100;
 	enemy_def = Math.max(0,enemy_def + enemy_def*(c.enemy_defense+c.target_defense)/100+c.enemy_defense_flat)
 	var hit_chance = Math.round(Math.max(5,Math.min(95,(100 * ar / (ar + enemy_def)) * (2 * c.level / (c.level + enemy_lvl)))));
 
@@ -923,4 +925,70 @@ function updateSocketTotals() {
 			} }
 		}
 	}
+}
+
+// updateURL - Updates the character parameters in the browser URL
+// ---------------------------------
+function updateURL() {
+	// TODO: Implement inverse of loadParams()
+	//params.set('v', game_version)		// handled elsewhere currently
+	params.set('class', character.class_name.toLowerCase())
+	params.set('level', ~~character.level)
+	params.set('difficulty', ~~character.difficulty)
+	params.set('quests', ~~character.quests_completed)
+	if (game_version == 2) { params.set('running', ~~character.running) } else if (params.has('running')) { params.delete('running') }
+	params.set('strength', ~~character.strength_added)
+	params.set('dexterity', ~~character.dexterity_added)
+	params.set('vitality', ~~character.vitality_added)
+	params.set('energy', ~~character.energy_added)
+	params.set('url', ~~settings.parameters)
+	params.set('coupling', ~~settings.coupling)
+	if (game_version == 2) { params.set('autocast', ~~settings.autocast) } else if (params.has('autocast')) { params.delete('autocast') }
+//	for (let s = 0; s < skills.length; s++) {
+//		if (skills[s].level > 0) { params.set('s'+s, skills[s].level) }
+//	}
+	var param_skills = '';
+	for (let s = 0; s < skills.length; s++) {
+		var skill_level = skills[s].level;
+		if (skill_level < 10) { skill_level = '0'+skill_level }
+		param_skills += skill_level
+	}
+	params.set('skills', param_skills)
+	if (game_version == 2) {
+/*		for (group in corruptsEquipped) {
+			params.delete(group)
+			if (equipped[group].name != "none") { params.set(group, equipped[group].name) }
+			params.delete(group+"-tier")
+			if (~~equipped[group].tier > ~~equipped[group].original_tier) { params.set(group+"-tier", equipped[group].tier) }
+			params.delete(group+"-corruption")
+			if (corruptsEquipped[group].name != "none") { params.set(group+"-corruption", corruptsEquipped[group].name) }
+		}
+		params.set('mercenary', mercenary.name)
+		for (group in mercEquipped) {
+			params.delete(group+"-merc")
+			if (mercEquipped[group].name != "none") { params.set(group+"-merc", mercEquipped[group].name) }
+		}
+		for (group in socketed) { for (let i = 0; i < socketed[group].items.length; i++) {
+			params.delete(group+"-sock")
+			params.append(group+"-sock", socketed[group].items[i].name)
+		} }
+		
+	//	for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') {
+	//		//charInfo += (id+":{enabled:"+effects[id].info.enabled+",snapshot:"+effects[id].info.snapshot)
+	//		//params.set(id, effects[id].info.enabled)
+	//		if (effects[id].info.snapshot == 1) {
+	//			//charInfo += (",origin:"+effects[id].info.origin+",index:"+effects[id].info.index)
+	//			for (affix in effects[id]) { if (affix != "info") {
+	//				//charInfo += (","+affix+":"+effects[id][affix])
+	//			} }
+	//		}
+	//	} }
+	//	charInfo += "},selectedSkill:["+selectedSkill[0]+","+selectedSkill[1]
+	//	charInfo += "},ironGolem:"+golemItem.name
+*/
+	}
+	params.delete('charm')
+	for (charm in equipped.charms) { if (typeof(equipped.charms[charm].name) != 'undefined' && equipped.charms[charm].name != 'none') { params.append('charm', equipped.charms[charm].name) }}
+	
+	if (settings.parameters == 1) { window.history.replaceState({}, '', `${location.pathname}?${params}`) }
 }
