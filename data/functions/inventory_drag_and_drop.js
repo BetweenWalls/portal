@@ -88,6 +88,7 @@ function drop(ev,cell) {
 		if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 		if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 		// updateAllEffects()?
+		updateURL()
 	}
 }
 
@@ -219,6 +220,7 @@ function socket(event, group, source) {
 		if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 		if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 		// updateAllEffects()?
+		updateURL()
 	}
 	// inventory destination
 	for (let s = 1; s <= inv[0].in.length; s++) {
@@ -321,5 +323,6 @@ function trashSocketable(event, ident, override) {
 	if (selectedSkill[0] != " ­ ­ ­ ­ Skill 1") { checkSkill(selectedSkill[0], 1) }
 	if (selectedSkill[1] != " ­ ­ ­ ­ Skill 2") { checkSkill(selectedSkill[1], 2) }
 	// updateAllEffects()?
+	updateURL()
 	document.getElementById("tooltip_inventory").style.display = "none"
 }

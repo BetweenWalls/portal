@@ -930,13 +930,15 @@ function updateSocketTotals() {
 // updateURL - Updates the character parameters in the browser URL
 // ---------------------------------
 function updateURL() {
-	// TODO: Implement inverse of loadParams()
+	var param_quests = ~~character.quests_completed; if (param_quests == -1) { param_quests = 0 };
+	var param_run = ~~character.running; if (param_run == -1) { param_run = 0 };
+	
 	//params.set('v', game_version)		// handled elsewhere currently
 	params.set('class', character.class_name.toLowerCase())
 	params.set('level', ~~character.level)
 	params.set('difficulty', ~~character.difficulty)
-	params.set('quests', ~~character.quests_completed)
-	if (game_version == 2) { params.set('running', ~~character.running) } else if (params.has('running')) { params.delete('running') }
+	params.set('quests', param_quests)
+	if (game_version == 2) { params.set('running', param_run) } else if (params.has('running')) { params.delete('running') }
 	params.set('strength', ~~character.strength_added)
 	params.set('dexterity', ~~character.dexterity_added)
 	params.set('vitality', ~~character.vitality_added)
@@ -944,9 +946,6 @@ function updateURL() {
 	params.set('url', ~~settings.parameters)
 	params.set('coupling', ~~settings.coupling)
 	if (game_version == 2) { params.set('autocast', ~~settings.autocast) } else if (params.has('autocast')) { params.delete('autocast') }
-//	for (let s = 0; s < skills.length; s++) {
-//		if (skills[s].level > 0) { params.set('s'+s, skills[s].level) }
-//	}
 	var param_skills = '';
 	for (let s = 0; s < skills.length; s++) {
 		var skill_level = skills[s].level;
@@ -954,41 +953,46 @@ function updateURL() {
 		param_skills += skill_level
 	}
 	params.set('skills', param_skills)
-	if (game_version == 2) {
-/*		for (group in corruptsEquipped) {
-			params.delete(group)
-			if (equipped[group].name != "none") { params.set(group, equipped[group].name) }
-			params.delete(group+"-tier")
-			if (~~equipped[group].tier > ~~equipped[group].original_tier) { params.set(group+"-tier", equipped[group].tier) }
-			params.delete(group+"-corruption")
-			if (corruptsEquipped[group].name != "none") { params.set(group+"-corruption", corruptsEquipped[group].name) }
+	
+	if (game_version == 2) {	// these features are only available on the PoD version
+		params.set('selected', selectedSkill[0]+','+selectedSkill[1])
+		for (group in corruptsEquipped) {
+			var param_equipped = equipped[group].name+','+equipped[group].tier+','+corruptsEquipped[group].name
+			for (group_sock in socketed) { if (group == group_sock) {
+				for (let i = 0; i < socketed[group].items.length; i++) {
+					param_equipped += ','+socketed[group].items[i].name
+				}
+			} }
+			params.set(group, param_equipped)
 		}
-		params.set('mercenary', mercenary.name)
-		for (group in mercEquipped) {
-			params.delete(group+"-merc")
-			if (mercEquipped[group].name != "none") { params.set(group+"-merc", mercEquipped[group].name) }
-		}
-		for (group in socketed) { for (let i = 0; i < socketed[group].items.length; i++) {
-			params.delete(group+"-sock")
-			params.append(group+"-sock", socketed[group].items[i].name)
+		params.delete('effect')
+		for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') {
+			var param_effect = id+','+effects[id].info.enabled+','+effects[id].info.snapshot;
+			if (effects[id].info.snapshot == 1) {
+				param_effect += ','+effects[id].info.origin+','+effects[id].info.index
+				for (affix in effects[id]) { if (affix != "info") {
+					param_effect += ','+affix+','+effects[id][affix]
+				} }
+			}
+			params.append('effect', param_effect)
 		} }
-		
-	//	for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') {
-	//		//charInfo += (id+":{enabled:"+effects[id].info.enabled+",snapshot:"+effects[id].info.snapshot)
-	//		//params.set(id, effects[id].info.enabled)
-	//		if (effects[id].info.snapshot == 1) {
-	//			//charInfo += (",origin:"+effects[id].info.origin+",index:"+effects[id].info.index)
-	//			for (affix in effects[id]) { if (affix != "info") {
-	//				//charInfo += (","+affix+":"+effects[id][affix])
-	//			} }
-	//		}
-	//	} }
-	//	charInfo += "},selectedSkill:["+selectedSkill[0]+","+selectedSkill[1]
-	//	charInfo += "},ironGolem:"+golemItem.name
-*/
+		params.delete('mercenary')
+		var param_mercenary = mercenary.name;
+		if (mercenary.name == "­ ­ ­ ­ Mercenary") { param_mercenary = "none" }
+		for (group in mercEquipped) { param_mercenary += ','+mercEquipped[group].name }
+		params.set('mercenary', param_mercenary)
+		params.delete('irongolem')
+		if (golemItem.name != "none") { params.set('irongolem', golemItem.name) }
 	}
+	
 	params.delete('charm')
 	for (charm in equipped.charms) { if (typeof(equipped.charms[charm].name) != 'undefined' && equipped.charms[charm].name != 'none') { params.append('charm', equipped.charms[charm].name) }}
 	
 	if (settings.parameters == 1) { window.history.replaceState({}, '', `${location.pathname}?${params}`) }
+	
+	// TODO: Shorten URL?
+	//var params_string = params.toString();
+	//params_string = params_string.split("%2C").join(",")
+	//params_string = params_string.split("%C2%AD").join("~")
+	//if (settings.parameters == 1) { window.history.replaceState({}, '', `${location.pathname}?`+params_string) }
 }

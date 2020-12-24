@@ -223,13 +223,13 @@ function setCharacterInfo(className) {
 	}
 	for (group in corruptsEquipped) {	// upgrades & downgrades
 		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
-		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }
-		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }
+		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut(); }
+		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut(); }
 	}
 	for (group in corruptsEquipped) {	// upgrades & downgrades (duplicated)
 		var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
-		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }	// duplicated (things break for some reason when a while/for loop is used instead)
-		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }		// duplicated (things break for some reason when a while/for loop is used instead)
+		if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut(); }	// duplicated (things break for some reason when a while/for loop is used instead)
+		if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut(); }		// duplicated (things break for some reason when a while/for loop is used instead)
 	}
 	character.level = fileInfo.character.level
 	//for (let i = 1; i < fileInfo.character.level, i++) { changeLevel(null,1) }
@@ -258,7 +258,7 @@ function setCharacterInfo(className) {
 		var new_effect = 0;
 		if (typeof(effects[effect]) != 'undefined') {
 			if (fileInfo.effects[effect].info.enabled == 1) { active = 1; toggleEffect(effect); }
-		} else {
+		} else {	// add temporary levels
 			new_effect = 1;
 			var info = fileInfo.effects[effect].info;
 			if (info.origin == "skill") { skills[info.index].level += 1 }
@@ -272,7 +272,7 @@ function setCharacterInfo(className) {
 				effects[effect][affix] = fileInfo.effects[effect][affix]
 			} }
 			if (active == 1) { toggleEffect(effect) }
-			if (new_effect == 1) {
+			if (new_effect == 1) {	// remove temporary levels
 				var info = fileInfo.effects[effect].info;
 				if (info.origin == "skill") { skills[info.index].level -= 1 }
 				if (info.origin == "oskill") { character["oskill_"+effect] -= 1 }

@@ -430,8 +430,13 @@ function getBaseId(base_name) {
 // loadParams - load character details from URL parameters
 // ---------------------------------
 function loadParams() {
-	// TODO: Implement more
 	if (params.has('level') == true) {		// if level is a parameter, all parameters are checked
+		// TODO: Shorten URL?
+		//var params_string = params.toString();
+		//params_string = params_string.split(",").join("%2C")
+		//params_string = params_string.split("~").join("%C2%AD")
+		//params = new URLSearchParams(params_string);
+		
 		var spent_skillpoints = 0;
 		var param_level = ~~params.get('level');
 		var param_diff = ~~params.get('difficulty');
@@ -442,11 +447,33 @@ function loadParams() {
 		var param_vit = ~~params.get('vitality');
 		var param_ene = ~~params.get('energy');
 		var param_url = ~~params.get('url');
-		var param_coupling = ~~params.get('coupling');
-		var param_autocast = ~~params.get('autocast');
-		var param_skills = params.get('skills');
-		var param_charms = params.getAll('charm');
-		var param_helm = params.get('helm');
+		var param_coupling = 1;
+		if (params.has('coupling') == true) { param_coupling = params.get('coupling') }
+		var param_autocast = 1;
+		if (params.has('autocast') == true) { param_autocast = params.get('autocast') }
+		var param_skills = '0000000000000000000000000000000000000000000000000000000000000000000000';
+		if (params.has('skills') == true) { param_skills = params.get('skills') }
+		var param_charms = [];
+		if (params.has('charm') == true) { param_charms = params.getAll('charm') }
+		
+		var param_effects = [];											// per effect: id,enabled,snapshot ...if snapshot=1: ,origin,index ...per affix: ,affix,value
+		if (params.has('effect') == true) { param_effects = params.getAll('effect') }
+		var param_mercenary = "none";									// name ...per merc group: ,itemname
+		if (params.has('mercenary') == true) { param_mercenary = params.get('mercenary').split(',') }
+		var param_irongolem = 'none';
+		if (params.has('irongolem') == true) { param_irongolem = params.get('irongolem') }
+		var param_selected = [" ­ ­ ­ ­ Skill 1"," ­ ­ ­ ­ Skill 2"];	// selectedSkill[0],selectedSkill[1]
+		if (params.has('selected') == true) { param_selected = params.get('selected').split(',') }
+		var param_equipped = 0;											// per group: name,tier,corruption ...per socketable space: ,socketablename
+		if (params.has('helm') && params.has('boots') && params.has('weapon')) {
+			param_equipped = {}
+			for (group in corruptsEquipped) { param_equipped[group] = params.get(group).split(',') }
+		}
+		for (e in param_effects) { param_effects[e] = param_effects[e].split(',') }
+		
+		if (param_quests == 0) { param_quests = -1 }
+		if (param_run == 0) { param_run = -1 }
+		
 		character.level = param_level
 		character.strength_added = param_str
 		character.dexterity_added = param_dex
@@ -478,10 +505,6 @@ function loadParams() {
 			params.set('url', ~~settings.parameters)
 			window.history.replaceState({}, '', `${location.pathname}?${params}`)
 		}
-	//	for (let s = 0; s < skills.length; s++) {
-	//		skills[s].level = ~~params.get('s'+s)
-	//		spent_skillpoints += skills[s].level
-	//	}
 		for (let s = 0; s < skills.length; s++) {
 			skills[s].level = ~~(param_skills[s*2]+param_skills[s*2+1])
 			spent_skillpoints += skills[s].level
@@ -495,33 +518,86 @@ function loadParams() {
 		character.life += (character.levelup_life*(character.level-1))
 		character.mana += (character.levelup_mana*(character.level-1))
 		character.stamina += (character.levelup_stamina*(character.level-1))
-		if (game_version == 2) {
-			/*
-			for (group in corruptsEquipped) {	// equipment
-				var options = document.getElementById("dropdown_"+group).options;
-				for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.equipped[group].name) {  document.getElementById("dropdown_"+group).selectedIndex = i } }
-				equip(group,fileInfo.equipped[group].name)
+		if (game_version == 2) {	// these features are only available on the PoD version
+			
+			// setup equipment
+			if (param_equipped != 0) {
+				for (group in corruptsEquipped) { if (param_equipped[group][0] != "none") {	// equipment
+					var options = document.getElementById("dropdown_"+group).options;
+					for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == param_equipped[group][0]) {  document.getElementById("dropdown_"+group).selectedIndex = i } }
+					equip(group,param_equipped[group][0])
+				} }
+				for (group in corruptsEquipped) { if (param_equipped[group][2] != "none") {	// corruptions
+					var options = document.getElementById("corruptions_"+group).options;
+					for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == param_equipped[group][2]) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
+					corrupt(group,param_equipped[group][2])
+				} }
+				for (group in corruptsEquipped) {	// upgrades & downgrades
+					var baseDiff = ~~param_equipped[group][1] - ~~equipped[group].tier;
+					if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }
+					if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }
+				}
+				for (group in corruptsEquipped) {	// upgrades & downgrades (duplicated)
+					var baseDiff = ~~param_equipped[group][1] - ~~equipped[group].tier;
+					if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut(); }
+					if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut(); }
+				}
+				for (group in socketed) { for (let i = 3; i < param_equipped[group].length; i++) { if (param_equipped[group][i] != "") { addSocketable(param_equipped[group][i]); inv[tempSetup].load = group; tempSetup = 0; } } }
+				for (let s = 1; s < inv[0].in.length; s++) { if (inv[s].empty != 1) { inv[0].onpickup = inv[0].in[s]; handleSocket(null,inv[s].load,s); } }	// socketables get moved to equipment
 			}
-			for (group in corruptsEquipped) {	// corruptions
-				var options = document.getElementById("corruptions_"+group).options;
-				for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == fileInfo.corruptsEquipped[group].name) {  document.getElementById("corruptions_"+group).selectedIndex = i } }
-				corrupt(group,fileInfo.corruptsEquipped[group].name)
+			
+			// setup mercenary & iron golem
+			if (param_mercenary != "none") {
+				setMercenary(param_mercenary[0])
+				var g = 1;
+				for (group in mercEquipped) {
+					if (param_mercenary[g] != 'none') {
+						var options = document.getElementById("dropdown_merc_"+group).options;
+						for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == param_mercenary[g]) {  document.getElementById("dropdown_merc_"+group).selectedIndex = i } }
+						equipMerc(group,param_mercenary[g])
+					}
+					g += 1
+				}
 			}
-			for (group in corruptsEquipped) {	// upgrades & downgrades
-				var baseDiff = ~~fileInfo.equipped[group].tier - ~~equipped[group].tier;
-				if (baseDiff < 0) { changeBase(group, "downgrade"); equipmentOut() }
-				if (baseDiff > 0) { changeBase(group, "upgrade"); equipmentOut() }
+			if (param_irongolem != "none") {
+				var options = document.getElementById("dropdown_golem").options;
+				for (let i = 0; i < options.length; i++) { if (options[i].innerHTML == param_irongolem) { document.getElementById("dropdown_golem").selectedIndex = i } }
+				setIronGolem(param_irongolem)
 			}
-			*/
-			// equipped ...	for each: name, tier (if not equal to original_tier)
-			// corrupts	...	for each: name
-			// socketed	...	names
-			// effects	...	name, enabled, snapshot
-			// selectedSkill
-			// mercenary	... name
-			// mercEquipped ... for each: name
-			// settings	...	parameters, coupling, autocast
-			// iron golem	... item name
+			
+			// setup effects
+			if (param_effects != []) {
+				for (e in param_effects) { for (let i = 1; i < non_items.length; i++) {		// shrine effects
+					if (param_effects[e][0] == non_items[i].effect) { addEffect('misc',non_items[i].name,i,'') }
+				} }
+				for (e in param_effects) { if (param_effects[e][2] == 1) {	// snapshotted effects
+					var active = 0;
+					var new_effect = 0;
+					if (typeof(effects[param_effects[e][0]]) != 'undefined') {
+						if (param_effects[e][1] == 1) { active = 1; toggleEffect(param_effects[e][0]); }
+					} else {	// add temporary levels
+						new_effect = 1;
+						if (param_effects[e][3] == "skill") { skills[param_effects[e][4]].level += 1 }
+						if (param_effects[e][3] == "oskill") { character["oskill_"+param_effects[e][0]] += 1 }
+						addEffect(param_effects[e][3],param_effects[e][0].split('_').join(' '),param_effects[e][4],"")	// addEffect() doesn't work with zero skill levels, so this implementation is 'hacky'
+						if (param_effects[e][1] == 1) { active = 1; toggleEffect(param_effects[e][0]); }
+					}
+						effects[param_effects[e][0]].info.snapshot = 1;
+						document.getElementById(param_effects[e][0]+"_ss").src = "./images/skills/snapshot.png";
+						for (let a = 5; a < param_effects[e].length; a=a+2) {
+							effects[param_effects[e][0]][param_effects[e][a]] = param_effects[e][a+1]
+						}
+						if (active == 1) { toggleEffect(param_effects[e][0]) }
+						if (new_effect == 1) {	// remove temporary levels
+							if (param_effects[e][3] == "skill") { skills[param_effects[e][4]].level -= 1 }
+							if (param_effects[e][3] == "oskill") { character["oskill_"+param_effects[e][0]] -= 1 }
+						}
+				} }
+				if (effects != {}) { for (effect in effects) { if (typeof(effects[effect].info.enabled) != 'undefined') { for (e in param_effects) { if (param_effects[e][0] == effect) { if (param_effects[e][1] != effects[effect].info.enabled) { toggleEffect(effect) } } } } } }
+			}
+			
+			selectedSkill[0] = param_selected[0]
+			selectedSkill[1] = param_selected[1]
 		}
 		for (let i = 0; i < param_charms.length; i++) { addCharm(param_charms[i]) }
 		if (param_coupling == 0) {
