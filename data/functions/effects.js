@@ -245,7 +245,7 @@ function updateAllEffects() {
 				if (document.getElementById(id) == null) { addEffect("skill",skill.name,skill.i,"") }
 				else { updateEffect(id) }
 			} else {
-				if (document.getElementById(id) != null) { removeEffect(id) }
+				if (document.getElementById(id) != null) { removeEffect(id,null) }
 			}
 		} }
 	}
@@ -261,7 +261,7 @@ function updateAllEffects() {
 						if (document.getElementById(id) == null) { addEffect("oskill",skill.name,skill.i,"") }
 						else { updateEffect(id) }
 					} else {
-						if (document.getElementById(id) != null) { removeEffect(id) }
+						if (document.getElementById(id) != null) { removeEffect(id,null) }
 					}
 				} }
 			}
@@ -278,7 +278,7 @@ function updateAllEffects() {
 				if (cskill_level == equipped[group].cskill[unit][0] && cskill_name == equipped[group].cskill[unit][1]) { match = 1 }
 			}
 		}
-		if (match == 0) { removeEffect(id) }
+		if (match == 0) { removeEffect(id,null) }
 	} }
 	// updates ctcskill effects
 	for (id in effects) { if (effects[id].info.origin == "ctcskill") {
@@ -291,7 +291,7 @@ function updateAllEffects() {
 				if (ctcskill_level == equipped[group].ctc[unit][1] && ctcskill_name == equipped[group].ctc[unit][2]) { match = 1 }
 			}
 		}
-		if (match == 0) { removeEffect(id) }
+		if (match == 0) { removeEffect(id,null) }
 	} }
 	update()	// needed?
 	// disables duplicate effects (non-skills)
@@ -507,7 +507,7 @@ function hoverEffectOff() {
 function resetEffects() {
 	for (id in effects) { if (typeof(effects[id].info.snapshot) != 'undefined') { effects[id].info.snapshot = 0 } }
 	updateAllEffects()
-	for (id in effects) { if (document.getElementById(id) != null) { removeEffect(id) } }
+	for (id in effects) { if (document.getElementById(id) != null) { removeEffect(id,null) } }
 }
 
 // getAuraData - gets a list of stats corresponding to the aura (excludes synergy bonuses)

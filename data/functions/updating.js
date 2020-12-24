@@ -939,6 +939,7 @@ function updateURL() {
 	params.set('difficulty', ~~character.difficulty)
 	params.set('quests', param_quests)
 	if (game_version == 2) { params.set('running', param_run) } else if (params.has('running')) { params.delete('running') }
+	//params.set('running', param_run)
 	params.set('strength', ~~character.strength_added)
 	params.set('dexterity', ~~character.dexterity_added)
 	params.set('vitality', ~~character.vitality_added)
@@ -946,6 +947,7 @@ function updateURL() {
 	params.set('url', ~~settings.parameters)
 	params.set('coupling', ~~settings.coupling)
 	if (game_version == 2) { params.set('autocast', ~~settings.autocast) } else if (params.has('autocast')) { params.delete('autocast') }
+	//params.set('autocast', ~~settings.autocast)
 	var param_skills = '';
 	for (let s = 0; s < skills.length; s++) {
 		var skill_level = skills[s].level;
@@ -953,6 +955,11 @@ function updateURL() {
 		param_skills += skill_level
 	}
 	params.set('skills', param_skills)
+	params.delete('selected')
+	for (group in corruptsEquipped) { params.delete(group) }
+	params.delete('effect')
+	params.delete('mercenary')
+	params.delete('irongolem')
 	
 	if (game_version == 2) {	// these features are only available on the PoD version
 		params.set('selected', selectedSkill[0]+','+selectedSkill[1])
@@ -965,23 +972,24 @@ function updateURL() {
 			} }
 			params.set(group, param_equipped)
 		}
-		params.delete('effect')
-		for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') {
-			var param_effect = id+','+effects[id].info.enabled+','+effects[id].info.snapshot;
-			if (effects[id].info.snapshot == 1) {
-				param_effect += ','+effects[id].info.origin+','+effects[id].info.index
-				for (affix in effects[id]) { if (affix != "info") {
-					param_effect += ','+affix+','+effects[id][affix]
-				} }
-			}
-			params.append('effect', param_effect)
-		} }
-		params.delete('mercenary')
+	}
+	
+	for (id in effects) { if (typeof(effects[id].info.enabled) != 'undefined') {
+		var param_effect = id+','+effects[id].info.enabled+','+effects[id].info.snapshot;
+		if (effects[id].info.snapshot == 1) {
+			param_effect += ','+effects[id].info.origin+','+effects[id].info.index
+			for (affix in effects[id]) { if (affix != "info") {
+				param_effect += ','+affix+','+effects[id][affix]
+			} }
+		}
+		params.append('effect', param_effect)
+	} }
+		
+	if (game_version == 2) {	// these features are only available on the PoD version
 		var param_mercenary = mercenary.name;
 		if (mercenary.name == "­ ­ ­ ­ Mercenary") { param_mercenary = "none" }
 		for (group in mercEquipped) { param_mercenary += ','+mercEquipped[group].name }
 		params.set('mercenary', param_mercenary)
-		params.delete('irongolem')
 		if (golemItem.name != "none") { params.set('irongolem', golemItem.name) }
 	}
 	

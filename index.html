@@ -395,20 +395,21 @@
 
 <!--		skill details		-->
 <div class="no-selection" id="skill_details" style="display: block; height:235px; width: 330px; position: relative;">
+<div id="ar_spacing" style="display:none;"><br><br><br><br><br><br><br><br></div>
 <div class="gray" id="skill_details_active">
-<div style="margin-bottom: 15px;">
-	<a>Basic Attack: </a><a id="basic_attack"></a><br>
+<div id="skill_details_basic" style="margin-bottom: 15px;">
+	<div id="mainhand_basic"><a>Basic Attack: </a><a id="basic_attack"></a><br></div>
 	<div id="offhand_basic" style="display:none;"> ­ ­ ­ ­ ­ ­ ­ Offhand: <a id="offhand_basic_damage"></a><br></div>
 	<a>Attack Rating: </a><a id="ar"></a>
 </div>
-<div>
+<div id="skill_details_1">
 	<div id="skillDetail1" style="height: 22px; position: relative; z-index: 3; margin-top: -5px;">
 	<select class="dropdown-skill" id="dropdown_skill1" onChange="checkSkill(this.value, 1)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 1', 1)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 1</option></select><a id="skill1_info">: </a>
 	</div>
 	<div id="offhand_skill1" style="display:none;"><a id="offhand_skill1_damage"></a><br></div>
 	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill1"></a>
 </div>
-<div>
+<div id="skill_details_2">
 	<div id="skillDetail2" style="height: 22px; position: relative; z-index: 3; margin-top: 5px;">
 	<select class="dropdown-skill" id="dropdown_skill2" onChange="checkSkill(this.value, 2)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 2', 2)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 2</option></select><a id="skill2_info">: </a>
 	</div>

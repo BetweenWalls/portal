@@ -6,13 +6,12 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 
 ### Features:
 * all skill info up to level 60 & synergy calculations
-* display section for skill damage
-* character stats
-* mercenary selection
+* skill damage calculation, character stats
 * equipment selection & modification (corrupting, socketing, upgrading)
+* mercenary selection
 * charm inventory
 * snapshotting for buffs
-* saving/loading
+* saving/loading, URL-sharing
 
 ### Controls:
 * Click on the character's level or class to change them

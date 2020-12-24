@@ -268,6 +268,10 @@ function changeVersion(v, char_class) {
 			character_all = {amazon:character_amazon, assassin:character_assassin, barbarian:character_barbarian, druid:character_druid, necromancer:character_necromancer, paladin:character_paladin, sorceress:character_sorceress, any:character_any}
 			document.getElementById("stats").style.display = "block"
 			document.getElementById("skill_details_active").style.display = "block"
+		//	document.getElementById("mainhand_basic").style.display = "block"
+		//	document.getElementById("skill_details_1").style.display = "block"
+		//	document.getElementById("skill_details_2").style.display = "block"
+		//	document.getElementById("ar_spacing").style.display = "none"
 			document.getElementById("gui_equipment").style.display = "block"
 			document.getElementById("equipment_corruptions").style.display = "block"
 			document.getElementById("equipment_a").style.display = "block"
@@ -282,6 +286,10 @@ function changeVersion(v, char_class) {
 			character_all = {amazon:character_pd2_amazon, assassin:character_pd2_assassin, barbarian:character_pd2_barbarian, druid:character_pd2_druid, necromancer:character_pd2_necromancer, paladin:character_pd2_paladin, sorceress:character_pd2_sorceress, any:character_pd2_any}
 			document.getElementById("stats").style.display = "none"
 			document.getElementById("skill_details_active").style.display = "none"
+		//	document.getElementById("mainhand_basic").style.display = "none"
+		//	document.getElementById("skill_details_1").style.display = "none"
+		//	document.getElementById("skill_details_2").style.display = "none"
+		//	document.getElementById("ar_spacing").style.display = "block"
 			document.getElementById("gui_equipment").style.display = "none"
 			document.getElementById("equipment_corruptions").style.display = "none"
 			document.getElementById("equipment_a").style.display = "none"
@@ -291,6 +299,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("debug_space").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
+			settings.autocast = 1
 		}
 		
 		// character class handling
@@ -303,7 +312,15 @@ function changeVersion(v, char_class) {
 		}
 		if (classes.includes(char_class) == false) { char_class = rand_class }
 		
-		reset(char_class)
+		// reset some things		TODO: fix normal reset functionality & updating 		...this is only necessary for Lightning Mastery when switching from PD2 to PoD? Why? ...something to do with the other masteries (Fire & Cold) being oskills?
+		for (id in effects) {
+			effects[id].info.enabled = 0
+			effects[id].info.snapshot = 0
+			skills[effects[id].info.index].level = 0
+			updateEffect(id)
+			disableEffect(id)
+			removeEffect(id,null)
+		}
 		
 		// update URL
 		params.set('v', v)
@@ -313,6 +330,8 @@ function changeVersion(v, char_class) {
 			if (v == 3) { window.history.replaceState({}, '', `${location.pathname}?v=PD2`) }
 			else { window.history.replaceState({}, '', `${location.pathname}`) }
 		}
+		
+		reset(char_class)
 	}
 }
 
@@ -518,7 +537,8 @@ function loadParams() {
 		character.life += (character.levelup_life*(character.level-1))
 		character.mana += (character.levelup_mana*(character.level-1))
 		character.stamina += (character.levelup_stamina*(character.level-1))
-		if (game_version == 2) {	// these features are only available on the PoD version
+		
+		//if (game_version == 2) {	// these features are only available on the PoD version
 			
 			// setup equipment
 			if (param_equipped != 0) {
@@ -598,7 +618,7 @@ function loadParams() {
 			
 			selectedSkill[0] = param_selected[0]
 			selectedSkill[1] = param_selected[1]
-		}
+		//}
 		for (let i = 0; i < param_charms.length; i++) { addCharm(param_charms[i]) }
 		if (param_coupling == 0) {
 			document.getElementById("coupling").checked = false
