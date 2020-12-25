@@ -35,7 +35,7 @@ var character_sorceress = {class_name:"Sorceress", strength:10, dexterity:25, vi
 		if (skill.name == "Nova" && elem < 2) { 						result *= ((1 + (0.03*sk[18].level)) * (1+c.lDamage/100)) }
 		if (skill.name == "Lightning Surge" && elem < 2) { 				result *= ((1 + (0.05*sk[11].level + 0.05*sk[16].level)) * (1+c.lDamage/100)) }
 		if (skill.name == "Chain Lightning" && elem < 3 && elem > 0) { 	result *= ((1 + (0.03*sk[11].level + 0.03*sk[15].level)) * (1+c.lDamage/100)) }
-		if (skill.name == "Teleport" && elem < 1) { 					result = Math.max(0, (0.05*Math.floor((character.mana + (character.level-1)*character.mana_per_level + ((((character.energy + character.all_attributes)*(1+character.max_energy/100))-character.starting_energy)*character.mana_per_energy)) * (1 + character.max_mana/100)) - result)) }
+		if (skill.name == "Teleport" && elem == 0) { 					result = Math.max(0, (0.05*Math.floor((character.mana + character.level*character.mana_per_level + ((((character.energy + character.all_attributes)*(1+character.max_energy/100))-character.starting_energy)*character.mana_per_energy)) * (1 + character.max_mana/100)) - result)) }
 		if (skill.name == "Discharge" && elem < 3 && elem > 0) { 		result *= ((1 + 0.03*sk[12].level + 0.03*sk[14].level + 0.01*Math.floor(((character.energy + character.all_attributes)*(1+character.max_energy/100))/2)) * (1+c.lDamage/100)) }
 		if (skill.name == "Energy Shield" && elem == 0) { 				result = (4*sk[13].level + 6) }
 		if (skill.name == "Thunder Storm" && elem == 0) { 				result = (2.75 - (0.12*sk[17].level)) }

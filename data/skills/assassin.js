@@ -107,7 +107,7 @@ var character_assassin = {class_name:"Assassin", strength:20, dexterity:20, vita
 		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
 		if (typeof(skill.damaging) != 'undefined') { attack = skill.damaging.attack; spell = skill.damaging.spell; }
 		var kick_damage_min = 0; var kick_damage_max = 0; var kick_bonus = 0;
-		var strTotal = (character.strength + character.all_attributes + (character.level-1)*character.strength_per_level);	// used in Kick calculations
+		var strTotal = (character.strength + character.all_attributes + character.level*character.strength_per_level);	// used in Kick calculations
 		var e_damage_offhand = 0; if (offhandType == "weapon") { e_damage_offhand = (~~(equipped["offhand"].e_damage) + ~~(socketed["offhand"].totals.e_damage) + ~~(corruptsEquipped["offhand"].e_damage)) };
 		var damage_enhanced = character.damage_bonus + character.e_damage - e_damage_offhand;
 

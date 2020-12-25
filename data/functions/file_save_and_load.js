@@ -17,7 +17,7 @@ function getCharacterInfo() {
 		'getSkillData','getBuffData','getSkillDamage','skill_layout','weapon_frames','wereform_frames','fcr_bp','fcr_bp_alt','fcr_bp_werebear','fcr_bp_werewolf','fhr_bp','fhr_bp_alt','fhr_bp_werebear','fhr_bp_werewolf','fbr_bp','fbr_bp_alt','fbr_bp_werebear','fbr_bp_werewolf',
 		'name','type','rarity','not','only','ctc','cskill','set_bonuses','group','size','upgrade','downgrade','aura','tier','weapon','armor','shield','max_sockets','duration','nonmetal','debug'	// TODO: Prevent item qualities from being added as character qualities
 	];
-	var charInfo = "{character:{";
+	var charInfo = "{version:"+game_version+",character:{";
 	for (stat in character) {
 		var halt = 0;
 		for (let i = 0; i < not_applicable.length; i++) { if (stat == not_applicable[i]) { halt = 1 } }
@@ -109,7 +109,11 @@ function loadFileAsText() {
 // ---------------------------------
 function parseFile(file) {
 	fileInfo = {character:{class_name:""},skills:[],equipped:{charms:[]},corruptsEquipped:{},mercEquipped:{},socketed:{helm:[],armor:[],weapon:[],offhand:[]},effects:{},selectedSkill:["",""],mercenary:"",settings:{},ironGolem:""};	// reset fileInfo
-
+	
+	if (file.includes("version:")) {
+		var new_version = file.split("version:")[1].split(",character:")[0];
+		fileInfo.version = ~~new_version
+	}
 	var new_character = file.split("character:{")[1].split("},skills:")[0].split(",");
 	for (let i = 0; i < new_character.length; i++) {
 		var split = new_character[i].split(":");
@@ -203,6 +207,8 @@ function parseFile(file) {
 //	className: name of character class
 // ---------------------------------
 function setCharacterInfo(className) {
+	if (typeof(fileInfo.version) == 'undefined') { changeVersion(2,className) }
+	else { changeVersion(fileInfo.version,className) }
 	startup(className)
 	if (settings.coupling == 0) { document.getElementById("coupling").checked = true; toggleCoupling(document.getElementById("coupling")); }
 	if (settings.autocast == 0) { document.getElementById("autocast").checked = true; toggleAutocast(document.getElementById("autocast")); }

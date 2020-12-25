@@ -30,9 +30,9 @@ var character_amazon = {class_name:"Amazon", strength:20, dexterity:25, vitality
 		var bow_max = 1;
 		var bow_mult = 1;
 		if (skill.name == "Decoy" && (equipped.weapon.type == "bow" || equipped.weapon.type == "crossbow") && (elem == 1 || elem == 2)) {
-			var dexTotal = (character.dexterity + character.all_attributes + (character.level-1)*character.dexterity_per_level);
-			bow_min = (character.base_damage_min * (1+character.e_damage/100) + character.damage_min + (character.level-1)*character.min_damage_per_level);
-			bow_max = (character.base_damage_max * (1+(character.e_damage+(character.level*character.e_max_damage_per_level))/100) + character.damage_max + (character.level-1)*character.max_damage_per_level);
+			var dexTotal = (character.dexterity + character.all_attributes + character.level*character.dexterity_per_level);
+			bow_min = (character.base_damage_min * (1+character.e_damage/100) + character.damage_min + character.level*character.min_damage_per_level);
+			bow_max = (character.base_damage_max * (1+(character.e_damage+(character.level*character.e_max_damage_per_level))/100) + character.damage_max + character.level*character.max_damage_per_level);
 			bow_mult = (1+dexTotal/100+character.damage_bonus/100);
 		}
 		if (skill.name == "Decoy" && elem == 0) {						result = Math.max(1, skills[22].level) }

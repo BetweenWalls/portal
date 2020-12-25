@@ -128,9 +128,9 @@ function updateStats() { if (loaded == 1) { updatePrimaryStats(); updateOther();
 // ---------------------------------
 function updatePrimaryStats() {
 	var c = character;
-	var strTotal = (c.strength + c.all_attributes + (c.level-1)*c.strength_per_level);
-	var dexTotal = (c.dexterity + c.all_attributes + (c.level-1)*c.dexterity_per_level);
-	var vitTotal = (c.vitality + c.all_attributes + (c.level-1)*c.vitality_per_level);
+	var strTotal = (c.strength + c.all_attributes + c.level*c.strength_per_level);
+	var dexTotal = (c.dexterity + c.all_attributes + c.level*c.dexterity_per_level);
+	var vitTotal = (c.vitality + c.all_attributes + c.level*c.vitality_per_level);
 	var energyTotal = (c.energy + c.all_attributes)*(1+c.max_energy/100);
 	
 	var life_addon = (vitTotal-c.starting_vitality)*c.life_per_vitality;
@@ -227,10 +227,10 @@ function updatePrimaryStats() {
 	if (c.running > 0) { document.getElementById("defense").style.color = "brown" }
 	else { document.getElementById("defense").style.color = "gray" }
 	document.getElementById("ar").innerHTML = Math.floor(ar)+" ("+hit_chance+"%)"
-	document.getElementById("stamina").innerHTML = Math.floor((c.stamina + (c.level-1)*c.stamina_per_level + stamina_addon) * (1+c.stamina_skillup/100) * (1+c.max_stamina/100))
-	var lifeTotal = Math.floor((c.life + (c.level-1)*c.life_per_level + life_addon) * (1 + c.max_life/100));
+	document.getElementById("stamina").innerHTML = Math.floor((c.stamina + c.level*c.stamina_per_level + stamina_addon) * (1+c.stamina_skillup/100) * (1+c.max_stamina/100))
+	var lifeTotal = Math.floor((c.life + c.level*c.life_per_level + life_addon) * (1 + c.max_life/100));
 	document.getElementById("life").innerHTML = lifeTotal
-	document.getElementById("mana").innerHTML = Math.floor((c.mana + (c.level-1)*c.mana_per_level + mana_addon) * (1 + c.max_mana/100))
+	document.getElementById("mana").innerHTML = Math.floor((c.mana + c.level*c.mana_per_level + mana_addon) * (1 + c.max_mana/100))
 	document.getElementById("level").innerHTML = c.level
 	document.getElementById("class_name").innerHTML = c.class_name
 	document.getElementById("remainingstats").innerHTML = c.statpoints
@@ -414,7 +414,9 @@ function updateSecondaryStats() {
 	var lifeRegen = "";
 	if (c.life_regen > 0) { lifeRegen = c.life_regen+"% " }; if (c.life_replenish > 0) { lifeRegen += ("+"+c.life_replenish) }; if (c.life_regen == 0 && c.life_replenish == 0) { lifeRegen = 0 }
 	document.getElementById("life_regen").innerHTML = lifeRegen
-	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen,1)+"%"	// TODO: mana_regen should multiply base regen (1.66%) instead of being additive
+	document.getElementById("mana_regen").innerHTML = Math.round(c.mana_regen,1)+"%"	// TODO: mana_regen should multiply base regen (1.66%) instead of being additive? Or is the 1.66 value meant to be 166%?
+	//var manaTotal = Math.floor((c.mana + c.level*c.mana_per_level + mana_addon) * (1 + c.max_mana/100));
+	//var manaRegeneratedPerSecond = 25 * Math.floor(Math.floor(256*manaTotal/(25*120)) * ((100+c.mana_regen)/100)) / 256;
 	
 	document.getElementById("damage_to_mana").innerHTML = c.damage_to_mana; if (c.damage_to_mana > 0) { document.getElementById("damage_to_mana").innerHTML += "%" }
 	
@@ -599,6 +601,7 @@ function removeInvalidSockets(group) {
 // ---------------------------------
 function calculateSkillAmounts() {
 	// TODO: move function to character files?
+	// TODO: make adjustments for PD2
 	for (s = 0; s < skills.length; s++) {
 		skills[s].extra_levels = 0
 		skills[s].extra_levels += character.all_skills + Math.ceil(character.all_skills_per_level*character.level)
@@ -834,8 +837,8 @@ function checkSkill(skillName, num) {
 	} }
 	
 	var c = character;
-	var strTotal = (c.strength + c.all_attributes + (c.level-1)*c.strength_per_level);
-	var dexTotal = (c.dexterity + c.all_attributes + (c.level-1)*c.dexterity_per_level);
+	var strTotal = (c.strength + c.all_attributes + c.level*c.strength_per_level);
+	var dexTotal = (c.dexterity + c.all_attributes + c.level*c.dexterity_per_level);
 	var energyTotal = Math.floor((c.energy + c.all_attributes)*(1+c.max_energy/100));
 	var ar = ((dexTotal - 7) * 5 + c.ar + c.level*c.ar_per_level + c.ar_const) * (1+(c.ar_skillup + c.ar_skillup2 + c.ar_bonus + c.level*c.ar_bonus_per_level)/100) * (1+c.ar_shrine_bonus/100);
 

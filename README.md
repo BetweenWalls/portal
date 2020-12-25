@@ -45,7 +45,7 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * custom item-pool saving
 * options for individual quests
 * option for strict character validation (prevent invalid character states instead of just making text red)
-* character importing/sharing
+* character importing
 * monster stat calculations
 * debuff tracking
 * party tracking (i.e. buffs from party members)

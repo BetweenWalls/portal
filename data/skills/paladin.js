@@ -20,7 +20,7 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		if (skill.name == "Resist Fire" && elem == 0) { 		result = Math.floor(skill.level/4); character.fRes_skillup = result; }
 		if (skill.name == "Resist Cold" && elem == 0) { 		result = Math.floor(skill.level/4); character.cRes_skillup = result; }
 		if (skill.name == "Resist Lightning" && elem == 0) { 	result = Math.floor(skill.level/4); character.lRes_skillup = result; }
-		if (skill.name == "Prayer" && elem == 1) { 				result = ((Math.floor((character.life + (character.level-1)*character.life_per_level + (((character.vitality + character.all_attributes + (character.level-1)*character.vitality_per_level)-character.starting_vitality)*character.life_per_vitality)) * (1 + character.max_life/100)))*0.01 + skill.data.values[0][lvl]) }
+		if (skill.name == "Prayer" && elem == 1) { 				result = Math.floor((character.life + character.level*character.life_per_level + (((character.vitality + character.all_attributes + character.level*character.vitality_per_level)-character.starting_vitality)*character.life_per_vitality)) * (1 + character.max_life/100))*0.01 + skill.data.values[0][lvl] }
 		if (skill.name == "Cleansing" && elem == 0) {			result = Math.min(1,(skills[0].level+skills[0].force_levels))*~~skills[0].data.values[0][skills[0].level+skills[0].extra_levels] }
 		if (skill.name == "Cleansing" && elem == 1) {			result = Math.floor(skill.level/2); character.pRes_skillup = result; }
 		if (skill.name == "Meditation" && elem == 0) {			result = Math.min(1,(skills[0].level+skills[0].force_levels))*~~skills[0].data.values[0][skills[0].level+skills[0].extra_levels] }
@@ -40,8 +40,8 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		var phys_min = 0;
 		var phys_max = 0;
 		if (skill.name == "Vengeance" && equipped.weapon.name != "none" && elem < 8) {
-			phys_min = (character.base_damage_min * (1+character.e_damage/100) + character.damage_min + (character.level-1)*character.min_damage_per_level);
-			phys_max = (character.base_damage_max * (1+character.e_damage/100) + character.damage_max + (character.level-1)*character.max_damage_per_level);
+			phys_min = (character.base_damage_min * (1+character.e_damage/100) + character.damage_min + character.level*character.min_damage_per_level);
+			phys_max = (character.base_damage_max * (1+character.e_damage/100) + character.damage_max + character.level*character.max_damage_per_level);
 		}
 		if (skill.name == "Vengeance" && elem == 0) { 						result = phys_min }
 		if (skill.name == "Vengeance" && elem == 1) { 						result = phys_max }
@@ -140,7 +140,7 @@ var character_paladin = {class_name:"Paladin", strength:25, dexterity:20, vitali
 		var skillMin = 0; var skillMax = 0; var skillAr = 0;
 		var attack = 0;	// 0 = no basic damage, 1 = includes basic attack damage
 		var spell = 2;	// 0 = uses attack rating, 1 = no attack rating, 2 = non-damaging
-		var strTotal = (character.strength + character.all_attributes + (character.level-1)*character.strength_per_level);	// used in Smite calculation
+		var strTotal = (character.strength + character.all_attributes + character.level*character.strength_per_level);	// used in Smite calculation
 		var nonWeaponED = ~~socketed.helm.totals.e_damage + ~~socketed.armor.totals.e_damage + ~~socketed.offhand.totals.e_damage;	// used in Smite calculation
 		var damage_enhanced = character.damage_bonus + character.e_damage;
 		
