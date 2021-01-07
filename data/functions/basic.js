@@ -449,7 +449,7 @@ function getBaseId(base_name) {
 // loadParams - load character details from URL parameters
 // ---------------------------------
 function loadParams() {
-	if (params.has('level') == true) {		// if level is a parameter, all parameters are checked
+	//if (params.has('level') == true) {		// if level is a parameter, all parameters are checked
 		// TODO: Shorten URL?
 		//var params_string = params.toString();
 		//params_string = params_string.split(",").join("%2C")
@@ -457,14 +457,14 @@ function loadParams() {
 		//params = new URLSearchParams(params_string);
 		
 		var spent_skillpoints = 0;
-		var param_level = ~~params.get('level');
+		var param_level = Math.floor(Math.max(1,Math.min(99,~~params.get('level'))));
 		var param_diff = ~~params.get('difficulty');
 		var param_quests = ~~params.get('quests');
 		var param_run = ~~params.get('running');
-		var param_str = ~~params.get('strength');
-		var param_dex = ~~params.get('dexterity');
-		var param_vit = ~~params.get('vitality');
-		var param_ene = ~~params.get('energy');
+		var param_str = Math.max(0,Math.min(505,~~params.get('strength')));
+		var param_dex = Math.max(0,Math.min(505,~~params.get('dexterity')));
+		var param_vit = Math.max(0,Math.min(505,~~params.get('vitality')));
+		var param_ene = Math.max(0,Math.min(505,~~params.get('energy')));
 		var param_url = ~~params.get('url');
 		var param_coupling = 1;
 		if (params.has('coupling') == true) { param_coupling = params.get('coupling') }
@@ -484,21 +484,22 @@ function loadParams() {
 		var param_selected = [" ­ ­ ­ ­ Skill 1"," ­ ­ ­ ­ Skill 2"];	// selectedSkill[0],selectedSkill[1]
 		if (params.has('selected') == true) { param_selected = params.get('selected').split(',') }
 		var param_equipped = 0;											// per group: name,tier,corruption ...per socketable space: ,socketablename
-		if (params.has('helm') && params.has('boots') && params.has('weapon')) {
+		if (params.has('helm') && params.has('armor') && params.has('gloves') && params.has('boots') && params.has('belt') && params.has('amulet') && params.has('ring1') && params.has('ring2') && params.has('weapon') && params.has('offhand')) {
 			param_equipped = {}
 			for (group in corruptsEquipped) { param_equipped[group] = params.get(group).split(',') }
 		}
 		for (e in param_effects) { param_effects[e] = param_effects[e].split(',') }
 		
-		if (param_quests == 0) { param_quests = -1 }
-		if (param_run == 0) { param_run = -1 }
+		if (param_quests != 1) { param_quests = 0 }
+		if (param_run != 1) { param_run = 0 }
+		if ((param_str+param_dex+param_vit+param_ene) > (5*param_level + 15*param_quests)) { param_str = 0; param_dex = 0; param_vit = 0; param_ene = 0; }
 		
 		character.level = param_level
 		character.strength_added = param_str
 		character.dexterity_added = param_dex
 		character.vitality_added = param_vit
 		character.energy_added = param_ene
-		if (param_diff == 1 || param_diff == 2) {
+		if (param_diff == 1 || param_diff == 2 || param_diff == 3) {
 			document.getElementById("difficulty"+param_diff).checked = true
 			changeDifficulty(param_diff)
 		}
@@ -630,7 +631,7 @@ function loadParams() {
 			//toggleAutocast(param_autocast)	// TODO: fix toggleAutocast parameter to take a boolean rather than the UI element
 			settings.autocast = param_autocast
 		}
-	}
+	//}
 	updateSkills()
 	updateAllEffects()
 	updateURL()

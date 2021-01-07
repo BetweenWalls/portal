@@ -83,7 +83,7 @@
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="parameters" type="checkbox" name="parameters" value="0" onclick="return toggleParameters(this);">
-        <label for="parameters"> ­ ­ ­ ­ URL Parameters ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="parameters"> ­ ­ ­ ­ Shareable URL ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
@@ -594,6 +594,7 @@ function initial_load() {
 	if (params.has('class') == true) {
 		if (classes.includes(params.get('class').toLowerCase()) == true) {
 			initial_class = params.get('class').toLowerCase()
+			skills = skills_all[initial_class]
 		}
 	}
 	

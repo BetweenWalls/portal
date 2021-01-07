@@ -667,7 +667,7 @@ var equipment = {
 {name:"Schaefer's Hammer", req_level:79, ctc:[[15,26,"Ball Lightning","on striking"]], e_damage:130, max_damage_per_level:2, lDamage_min:50, lDamage_max:200, ar_per_level:8, ias:20, lRes:75, life:50, light_radius:1, indestructible:1, ethereal:0, type:"hammer", base:"Legendary Mallet", pod_changes:1, img:"Ironstone"},
 {name:"Windhammer", req_level:68, ctc:[[33,22,"Twister","on striking"]], e_damage:230, cblow:50, ias:60, type:"hammer", twoHanded:1, base:"Ogre Maul", img:"Windhammer"},
 {name:"Earth Shifter", req_level:69, ctc:[[25,14,"Fissure","on striking"]], skills_elemental:7, ias:10, e_damage:300, cblow:33, fcr:10, type:"hammer", twoHanded:1, base:"Thunder Maul", cskill:[[14,"Volcano",30]]},
-{name:"The Cranium Basher", twoHanded:1, req_level:87, ctc:[[4,1,"Amplify Damage","on striking"]], e_damage:240, damage_min:20, damage_max:20, ias:20, cblow:75, all_res:25, strength:25, ethereal:0, type:"hammer", base:"Thunder Maul"},
+{name:"The Cranium Basher", twoHanded:1, req_level:87, ctc:[[4,1,"Amplify Damage","on striking"]], e_damage:240, damage_min:20, damage_max:20, ias:20, cblow:75, all_res:25, strength:25, ethereal:0, indestructible:1, type:"hammer", base:"Thunder Maul"},
 // Axes
 {name:"The Gnasher", req_level:5, e_damage:70, cblow:20, owounds:50, strength:8, type:"axe", base:"Hand Axe", img:"The_Gnasher"},
 {name:"Deathspade", req_level:9, e_damage:70, damage_min:8, ar_bonus:15, blind_on_hit:1, mana_per_kill:4, type:"axe", base:"Axe", img:"Deathspade"},
