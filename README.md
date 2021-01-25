@@ -23,7 +23,7 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * Add jewels/runes/gems to items by dragging them from the inventory to an equipment slot that has open sockets
 
 ### Known Issues:
-* Charms can't be moved into a new space below the original space if they overlap eachother
+* Charms can't be moved into a new space below the original space if those spaces overlap
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * DoT (Damage over Time) stats are added without considering their time component
@@ -31,7 +31,7 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * Minion damage may be incorrect (most bonuses from auras/items aren't included)
 
 ### Notes:
-* Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level and won't be accurate for most bosses or enemies of different levels
+* Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level - it won't be accurate for bosses or monsters at much higher/lower levels
 * Effective Magic Find (displayed after Magic Find) shows how much is applied to uniques
 
 ### Future Goals:
@@ -54,7 +54,9 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * dynamic item/skill recommendations
 
 ### Feedback:
-Feel free to message me ([BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit, @BetweenWalls#2390 on discord)
+Please report errors and incorrect information. Other feedback is welcome too.
+
+Send feedback to [BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit, or @BetweenWalls#2390 on discord.
 
 Portal is open-source, so improvements can be contributed by anyone through github. Here are the basic steps:
 * Create a duplicate version of this repository (fork)
