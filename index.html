@@ -57,10 +57,10 @@
     <button class="nav-dropbtn">File</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item" onclick="saveTextAsFile()"><div class="nav-text">
-        <label> ­ ­ ­ ­ Save ­ ­ </label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-text">
-        <label> ­ ­ ­ ­ Load ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ <input type="file" id="fileToLoad" onchange="loadFileAsText()"></input></label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;Load&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="fileToLoad" onchange="loadFileAsText()"></input></label>
       </div></div>
     </div>
   </div>
@@ -68,13 +68,13 @@
     <button class="nav-dropbtn">Version</button>
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
-        <label for="version" onclick="return changeVersion(1,'');"><input id="version1" type="radio" name="version" disabled> ­ Vanilla ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="version" onclick="return changeVersion(1,'');"><input id="version1" type="radio" name="version" disabled>&nbsp;Vanilla&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-        <label for="version" onclick="return changeVersion(2,'');"><input id="version2" type="radio" name="version" checked> ­ Path of Diablo ­ ­ </label>
+        <label for="version" onclick="return changeVersion(2,'');"><input id="version2" type="radio" name="version" checked>&nbsp;Path of Diablo&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
-        <label for="version" onclick="return changeVersion(3,'');"><input id="version3" type="radio" name="version"> ­ Project D2 ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="version" onclick="return changeVersion(3,'');"><input id="version3" type="radio" name="version">&nbsp;Project D2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       </div></div>
     </div>
   </div>
@@ -83,36 +83,36 @@
     <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="parameters" type="checkbox" name="parameters" value="0" onclick="return toggleParameters(this);">
-        <label for="parameters"> ­ ­ ­ ­ Shareable URL ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="parameters">&nbsp;&nbsp;&nbsp;&nbsp;Shareable URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="coupling" type="checkbox" name="coupling" value="1" onclick="return toggleCoupling(this);" checked>
-        <label for="coupling"> ­ ­ ­ ­ Skill-Level Coupling ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="coupling">&nbsp;&nbsp;&nbsp;&nbsp;Skill-Level Coupling&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item" id="nav_autocast"><div class="nav-option">
         <input id="autocast" type="checkbox" name="autocast" value="1" onclick="return toggleAutocast(this);" checked>
-        <label for="autocast"> ­ ­ ­ ­ New Effects Begin Enabled ­ ­ </label>
+        <label for="autocast">&nbsp;&nbsp;&nbsp;&nbsp;New Effects Begin Enabled&nbsp;&nbsp;</label>
       </div></div>
     </div>
   </div>
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Character</button>
     <div class="nav-dropdown-content" style="min-width:260px;">
-      <div class="nav-dropdown-content-item" id="nav_difficulty"><div class="nav-difficulty"> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ Difficulty: <br> ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ 
+      <div class="nav-dropdown-content-item" id="nav_difficulty"><div class="nav-difficulty">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Difficulty: <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
         <label for="difficulty">Normal</label>
         <input id="difficulty2" type="radio" name="difficulty" onclick="return changeDifficulty(2);">
         <label for="difficulty">Nightmare</label>
         <input id="difficulty3" type="radio" name="difficulty" onclick="return changeDifficulty(3);" checked>
-        <label for="difficulty">Hell ­ ­ </label>
+        <label for="difficulty">Hell&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item"><div class="nav-option">
         <input id="quests" type="checkbox" name="quests" onclick="return toggleQuests(this);">
-        <label for="quests"> ­ ­ ­ ­ Quests Completed ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="quests">&nbsp;&nbsp;&nbsp;&nbsp;Quests Completed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       </div></div>
       <div class="nav-dropdown-content-item" id="nav_running"><div class="nav-option">
         <input id="running" type="checkbox" name="running" onclick="return toggleRunning(this);">
-        <label for="running"> ­ ­ ­ ­ Running ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ </label>
+        <label for="running">&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       </div></div>
     </div>
   </div>
