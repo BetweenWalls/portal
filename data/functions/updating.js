@@ -239,7 +239,8 @@ function updatePrimaryStats() {
 	document.getElementById("cres").innerHTML = (c.cRes + c.all_res - c.cRes_penalty + c.resistance_skillup) + " / " + Math.min(RES_CAP,(c.cRes_max_base + c.cRes_max + c.cRes_skillup)) + "%"
 	document.getElementById("lres").innerHTML = (c.lRes + c.all_res - c.lRes_penalty + c.resistance_skillup) + " / " + Math.min(RES_CAP,(c.lRes_max_base + c.lRes_max + c.lRes_skillup)) + "%"
 	document.getElementById("pres").innerHTML = (c.pRes + c.all_res - c.pRes_penalty + c.resistance_skillup) + " / " + Math.min(RES_CAP,(c.pRes_max_base + c.pRes_max + c.pRes_skillup)) + "%"
-	var magicRes = (c.mRes - c.mRes_penalty)+"%";
+	var magicRes = c.mRes;
+	if (c.mRes > 0 || c.mDamage_reduced > 0) { magicRes += "%" }
 	if (c.mDamage_reduced > 0) { magicRes += (" +"+c.mDamage_reduced) }
 	document.getElementById("mres").innerHTML = magicRes
 	
@@ -430,8 +431,19 @@ function updateSecondaryStats() {
 // ---------------------------------
 function updateTertiaryStats() {
 	var c = character;
-	document.getElementById("poison_reduction").innerHTML = Math.min(75,c.poison_length_reduced); if (c.poison_length_reduced > 0) { document.getElementById("poison_reduction").innerHTML += "%" }
-	document.getElementById("curse_reduction").innerHTML = Math.min(75,c.curse_length_reduced); if (c.curse_length_reduced > 0) { document.getElementById("curse_reduction").innerHTML += "%" }
+	var pLength = 0; if (c.difficulty == 2) { pLength = 40 }; if (c.difficulty == 3) { pLength = 100 };		// TODO: implement as character stat similar to resistance penalties?
+	var cLength = c.curse_length_reduced;	// TODO: implement curse_length_reduced as multiplicative rather than additive?
+	var cL_Cleansing = 0;
+	var cL_Fade = 0;
+	for (e in effects) {
+		if (typeof(effects[e].info.enabled) != 'undefined') { if (effects[e].info.enabled == 1) {
+			if (e.split("-")[0] == "Cleansing") { cL_Cleansing = effects[e].curse_length_reduced }
+			if (e.split("-")[0] == "Fade") { cL_Fade = effects[e].curse_length_reduced }
+		} }
+	}
+	if (cL_Cleansing > 0 && cL_Fade > 0) { cLength = 100 - Math.floor(100-cL_Cleansing - (100-cL_Cleansing)*(cL_Fade/100)) }
+	document.getElementById("poison_reduction").innerHTML = Math.min(75,c.poison_length_reduced-pLength); if (c.poison_length_reduced-pLength != 0) { document.getElementById("poison_reduction").innerHTML += "%" };
+	document.getElementById("curse_reduction").innerHTML = cLength; if (cLength > 0) { document.getElementById("curse_reduction").innerHTML += "%" };
 	var thorns = c.thorns_reflect;
 	if (c.thorns_reflect == 0) { thorns = Math.floor(c.thorns_lightning + c.thorns + c.level*c.thorns_per_level) } else { thorns += "%"; if (c.thorns > 0 || c.thorns_per_level > 0) { thorns += (" +"+Math.floor(c.thorns_lightning + c.thorns + c.level*c.thorns_per_level)) } }
 	document.getElementById("thorns").innerHTML = thorns
