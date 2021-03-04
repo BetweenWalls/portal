@@ -404,16 +404,16 @@ var bases = {	// Note: damage_vs_undead:50 is included for blunt weapons, but ot
 	// dagger
 	Dagger:{group:"weapon", type:"dagger", base_damage_min:1, base_damage_max:4, durability:16, baseSpeed:-20, max_sockets:1, upgrade:"Poignard", tier:1},
 	Dirk:{group:"weapon", type:"dagger", base_damage_min:3, base_damage_max:9, req_dexterity:25, durability:20, baseSpeed:0, max_sockets:1, upgrade:"Rondel", tier:1},
-	Kriss:{group:"weapon", type:"dagger", base_damage_min:2, base_damage_max:11, req_dexterity:45, durability:24, baseSpeed:-20, max_sockets:3, upgrade:"Cinquedeas", tier:1},
-	Blade:{group:"weapon", type:"dagger", base_damage_min:4, base_damage_max:15, req_strength:35, req_dexterity:51, durability:24, baseSpeed:-10, max_sockets:2, upgrade:"Stilleto", tier:1},
+	Kris:{group:"weapon", type:"dagger", base_damage_min:2, base_damage_max:11, req_dexterity:45, durability:24, baseSpeed:-20, max_sockets:3, upgrade:"Cinquedeas", tier:1},
+	Blade:{group:"weapon", type:"dagger", base_damage_min:4, base_damage_max:15, req_strength:35, req_dexterity:51, durability:24, baseSpeed:-10, max_sockets:2, upgrade:"Stiletto", tier:1},
 	Poignard:{group:"weapon", type:"dagger", base_damage_min:6, base_damage_max:8, req_level:19, req_strength:25, durability:16, baseSpeed:-20, max_sockets:1, upgrade:"Bone Knife", downgrade:"Dagger", tier:2},
 	Rondel:{group:"weapon", type:"dagger", base_damage_min:10, base_damage_max:26, req_level:24, req_strength:25, req_dexterity:58, durability:20, baseSpeed:0, max_sockets:1, upgrade:"Mithril Point", downgrade:"Dirk", tier:2},
 	Cinquedeas:{group:"weapon", type:"dagger", base_damage_min:6, base_damage_max:18, req_level:25, req_strength:25, req_dexterity:88, durability:24, baseSpeed:-20, max_sockets:3, upgrade:"Fanged Knife", downgrade:"Kris", tier:2},
-	Stilleto:{group:"weapon", type:"dagger", base_damage_min:19, base_damage_max:36, req_level:25, req_strength:47, req_dexterity:97, durability:24, baseSpeed:-10, max_sockets:2, upgrade:"Legend Spike", downgrade:"Blade", tier:2},
+	Stiletto:{group:"weapon", type:"dagger", base_damage_min:19, base_damage_max:36, req_level:25, req_strength:47, req_dexterity:97, durability:24, baseSpeed:-10, max_sockets:2, upgrade:"Legend Spike", downgrade:"Blade", tier:2},
 	Bone_Knife:{group:"weapon", type:"dagger", base_damage_min:23, base_damage_max:49, req_level:43, req_strength:38, req_dexterity:75, durability:26, baseSpeed:-20, max_sockets:1, downgrade:"Poignard", tier:3},
 	Mithril_Point:{group:"weapon", type:"dagger", base_damage_min:37, base_damage_max:53, req_level:52, req_strength:55, req_dexterity:98, durability:55, baseSpeed:0, max_sockets:1, downgrade:"Rondel", tier:3},
 	Fanged_Knife:{group:"weapon", type:"dagger", base_damage_min:15, base_damage_max:57, req_level:62, req_strength:42, req_dexterity:86, durability:36, baseSpeed:-20, max_sockets:3, downgrade:"Cinquedeas", tier:3},
-	Legend_Spike:{group:"weapon", type:"dagger", base_damage_min:31, base_damage_max:47, req_level:66, req_strength:65, req_dexterity:67, durability:47, baseSpeed:-10, max_sockets:2, downgrade:"Stilleto", tier:3},
+	Legend_Spike:{group:"weapon", type:"dagger", base_damage_min:31, base_damage_max:47, req_level:66, req_strength:65, req_dexterity:67, durability:47, baseSpeed:-10, max_sockets:2, downgrade:"Stiletto", tier:3},
 	// thrown
 	Throwing_Knife:{group:"weapon", type:"thrown", base_damage_min:2, base_damage_max:3, throw_min:4, throw_max:9, req_dexterity:21, durability:4, baseSpeed:0, upgrade:"Battle Dart", subtype:"dagger", tier:1},
 	Throwing_Axe:{group:"weapon", type:"thrown", base_damage_min:4, base_damage_max:7, throw_min:8, throw_max:12, req_dexterity:40, durability:6, baseSpeed:10, upgrade:"Francisca", subtype:"axe", tier:1},
@@ -1364,6 +1364,33 @@ magic_attack:{index:[], format:["Fires Magic Arrows"]},
 
 ctc_temp1:{index:[], format:["10% chance to cast level 15 Nova on striking"]},			// TODO: refine equip() & related functions to allow ctc affixes to function as item set bonuses  (M'avina's Caster)
 ctc_temp2:{index:[], format:["25% chance to cast level 5 Static Field when struck"]},	// TODO: refine equip() & related functions to allow ctc affixes to function as shared set bonuses  (Cow King's Leathers)
+
+ar_vs_demons_per_level:1,	// TODO: implement (vanilla affix found on Grief that was removed in PoD)
+oskill_Whirlwind:{index:["oskill_Whirlwind"], format:["+"," to Whirlwind"]},
+lDamage_max_per_level:{index:["lDamage_max_per_level","lDamage_max_per_level"], format:["+"," to Maximum Lightning Damage ("," per level)"], mult:["level",1]},
+
+// TODO: implement these
+skills_lightning_all:{index:["skills_lightning_all"], format:["+"," to Lightning Skills"]},
+skills_magic_all:{index:["skills_magic_all"], format:["+"," to Magic Skills"]},
+owounds_dps:{index:["owounds_dps"], format:["+"," Wounds Bleed Damage per second"]},
+owounds_dps_per_level:{index:["owounds_dps_per_level","owounds_dps_per_level"], format:["+"," Wounds Bleed Damage per second ("," per level)"], mult:["level",1]},
+extra_mainhand_attack:{index:["extra_mainhand_attack"], format:["","% Chance for additional mainhand attack"]},
+mDamage_per_frenzy_charge:{index:["mDamage_per_frenzy_charge"], format:["+"," Magic Damage per Frenzy Charge"]},
+frenzy_duration:{index:["frenzy_duration"], format:["+"," Seconds to Frenzy Duration"]},
+thrown_cstrike:{index:["thrown_cstrike"], format:["+","% Critical Strike"]},
+owounds_duration:{index:["owounds_duration"], format:["Wound Bleed Duration +"," seconds"]},
+counterattack:{index:["counterattack"], format:["","% chance to counterattack"]},
+pulverize:{index:["pulverize"], format:["","% chance to pulverize"]},
+charge_tiger:{index:["charge_tiger"], format:[""," Tiger Charges"]},
+charge_cobra:{index:["charge_cobra"], format:[""," Cobra Charges"]},
+charge_bonus_explosion:{index:[], format:["Attacks cause explosions"]},
+charge_bonus_meteor:{index:[], format:["Attacks summon meteors"]},
+charge_bonus_fork:{index:[], format:["Attacks release forked lightning"]},
+charge_bonus_static:{index:[], format:["Attacks cast static field"]},
+charge_bonus_icicles:{index:[], format:["Attacks release enemy-seeking icicles"]},
+charge_bonus_accuracy:{index:[], format:["Attacks have increased accuracy"]},
+charge_bonus_reduce:{index:[], format:["Attacks reduce enemy defenses"]},
+charge_bonus_leech:{index:[], format:["Attacks regenerate life and mana"]},
 };
 
 var stats_alternate = {

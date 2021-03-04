@@ -22,13 +22,19 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * Snapshot effects by ctrl-clicking the effect's icon
 * Add jewels/runes/gems to items by dragging them from the inventory to an equipment slot that has open sockets
 
+#### Mobile Users:
+If your phone doesn't have a way to emulate ctrl+click or shift+click, you can still use the URL to enter any character info. Toggle *Shareable URL* in the menu to see how it should be formatted.
+
+Example: https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&strength=45&vitality=460
+
 ### Known Issues:
 * Charms can't be moved into a new space below the original space if those spaces overlap
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
 * DoT (Damage over Time) stats are added without considering their time component
 * Dual-Wielding damage may be incorrect (some on-weapon damage affixes affect both weapons)
-* Minion damage may be incorrect (most bonuses from auras/items aren't included)
+* Minion damage may be incorrect (some bonuses from auras/items aren't included)
+* Snapshotted skills may not work correctly when loaded from a file
 
 ### Notes:
 * Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level - it won't be accurate for bosses or monsters at much higher/lower levels

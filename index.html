@@ -15,20 +15,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="./data/all.css">
+<link rel="stylesheet" type="text/css" href="./data/style.css">
 <link rel="shortcut icon" type="image/x-icon" href="./images/portal.ico">
 <script type="text/javascript" src="./data/monsters.js"></script>
 <script type="text/javascript" src="./data/items.js"></script>
 <script type="text/javascript" src="./data/item_metadata.js"></script>
 <script type="text/javascript" src="./data/basic_variables.js"></script>
-<script type="text/javascript" src="./data/skills/amazon.js"></script>
-<script type="text/javascript" src="./data/skills/assassin.js"></script>
-<script type="text/javascript" src="./data/skills/barbarian.js"></script>
-<script type="text/javascript" src="./data/skills/druid.js"></script>
-<script type="text/javascript" src="./data/skills/necromancer.js"></script>
-<script type="text/javascript" src="./data/skills/paladin.js"></script>
-<script type="text/javascript" src="./data/skills/sorceress.js"></script>
-<script type="text/javascript" src="./data/skills/universal_skills.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/amazon.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/assassin.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/barbarian.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/druid.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/necromancer.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/paladin.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/sorceress.js"></script>
+<script type="text/javascript" src="./data/skills/PoD/universal_skills.js"></script>
 <script type="text/javascript" src="./data/skills/PD2/amazon.js"></script>
 <script type="text/javascript" src="./data/skills/PD2/assassin.js"></script>
 <script type="text/javascript" src="./data/skills/PD2/barbarian.js"></script>
@@ -37,15 +37,15 @@
 <script type="text/javascript" src="./data/skills/PD2/paladin.js"></script>
 <script type="text/javascript" src="./data/skills/PD2/sorceress.js"></script>
 <script type="text/javascript" src="./data/skills/PD2/universal_skills.js"></script>
-<script type="text/javascript" src="./data/functions/basic.js"></script>
-<script type="text/javascript" src="./data/functions/dropdown_setup.js"></script>
-<script type="text/javascript" src="./data/functions/dropdown_choices.js"></script>
-<script type="text/javascript" src="./data/functions/stat_and_skill_choices.js"></script>
-<script type="text/javascript" src="./data/functions/inventory.js"></script>
-<script type="text/javascript" src="./data/functions/inventory_drag_and_drop.js"></script>
-<script type="text/javascript" src="./data/functions/effects.js"></script>
-<script type="text/javascript" src="./data/functions/updating.js"></script>
-<script type="text/javascript" src="./data/functions/file_save_and_load.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/amazon.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/assassin.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/barbarian.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/druid.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/necromancer.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/paladin.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/sorceress.js"></script>
+<script type="text/javascript" src="./data/skills/vanilla/universal_skills.js"></script>
+<script type="text/javascript" src="./data/functions.js"></script>
 </head>
 <body class="background" onload="initial_load()">
 
@@ -586,7 +586,8 @@ function initial_load() {
 	params = new URLSearchParams(window.location.search);
 	if (params.has('v') == true) {
 		var v = params.get('v');
-		if (v.toLowerCase() == "pd2" || v == "3") { version = 3 }
+		if (v.toLowerCase() == "pod" || v == "2") { version = 2 }
+		else if (v.toLowerCase() == "pd2" || v == "3") { version = 3 }
 		else { params.set('v', version) }
 	} else {
 		params.set('v', version)
