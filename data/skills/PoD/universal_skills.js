@@ -95,7 +95,7 @@ var character_any = {
 		if (skill.name == "Frigerate") {
 			result.cDamage_min = skill.data.values[0][lvl] * (1+character.cDamage/100);
 			result.cDamage_max = skill.data.values[1][lvl] * (1+character.cDamage/100);
-			result.enemy_defense = skill.data.values[2][lvl]; result.radius = 16;
+			result.enemy_defense = skill.data.values[4][lvl]; result.radius = 16;
 		}
 		if (skill.name == "Shiver Armor") {
 			if (effects[id].info.enabled == 1) { for (effect_id in effects) { if (effect_id != id && (effect_id.split("-")[0] == id || effect_id.split("-")[0] == "Chilling_Armor")) { disableEffect(effect_id) } } }

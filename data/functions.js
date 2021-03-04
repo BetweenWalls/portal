@@ -2118,7 +2118,7 @@ function getCSkillData(name, lvl, group) {
 	}
 	// Sorceress
 	else if (name == "Enflame") {
-		result.fDamage_min = skill.data.values[0][lvl]; result.fDamage_max = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl];
+		result.fDamage_min = skill.data.values[0][lvl]; result.fDamage_max = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[4][lvl];
 		if (character.class_name == "Sorceress") {
 			result.fDamage_min = skill.data.values[0][lvl] * (1 + (0.08*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
 			result.fDamage_max = skill.data.values[1][lvl] * (1 + (0.08*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
@@ -2153,7 +2153,7 @@ function getCTCSkillData(name, lvl, group) {
 	}
 	else if (name == "Blaze") { result.life_regen = 2; result.duration = skill.data.values[0][lvl]; }
 	else if (name == "Enflame") {
-		result.fDamage_min = skill.data.values[0][lvl]; result.fDamage_max = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[2][lvl];
+		result.fDamage_min = skill.data.values[0][lvl]; result.fDamage_max = skill.data.values[1][lvl]; result.ar_bonus = skill.data.values[4][lvl];
 		if (character.class_name == "Sorceress") {
 			result.fDamage_min = skill.data.values[0][lvl] * (1 + (0.08*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
 			result.fDamage_max = skill.data.values[1][lvl] * (1 + (0.08*skills[23].level)) * (1 + Math.min(1,(skills[30].level+skills[30].force_levels))*(~~skills[30].data.values[1][skills[30].level+skills[30].extra_levels])/100);
