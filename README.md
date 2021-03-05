@@ -23,9 +23,9 @@ Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
 * Add jewels/runes/gems to items by dragging them from the inventory to an equipment slot that has open sockets
 
 #### Mobile Users:
-If your phone doesn't have a way to emulate ctrl+click or shift+click, you can still use the URL to enter any character info. Toggle *Shareable URL* in the menu to see how it should be formatted.
+If your phone doesn't have a way to emulate ctrl+click or shift+click, you can still use the URL to enter any character info. Toggle *Shareable URL* in the menu to see how it should be formatted. Example:
 
-Example: https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&strength=45&vitality=460
+https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&strength=45&vitality=460
 
 ### Known Issues:
 * Charms can't be moved into a new space below the original space if those spaces overlap
