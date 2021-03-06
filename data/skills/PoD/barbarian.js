@@ -19,6 +19,8 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		//if (skill.name == "War Cry" && elem == 2) { 		result = Math.floor((1+result/100)*8) }	// TOCHECK: replace 8 with actual radius (show total radius instead of radius bonus?)
 		if (skill.name == "Battle Command" && elem == 0) { 	result = 1+Math.floor(skill.level/10) }
 		
+		if (skill.name == "Pulverize" && elem < 2) { 		result *= (1 + 0.06*skills[8].level) }
+		
 		if (skill.name == "Double Swing" && elem == 0) { 	result += (5*skills[24].level) }
 		if (skill.name == "Frenzy" && elem == 0) { 			result = skills[24].level }
 		if (skill.name == "Frenzy" && elem == 1) { 			result += (10*skills[28].level) }
@@ -59,8 +61,8 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		if (skill.name == "Increased Speed") { result.frw_skillup = skill.data.values[0][lvl]; }
 		if (skill.name == "Natural Resistance") { result.resistance_skillup = skill.data.values[0][lvl]; }
 		if (skill.name == "Counter Attack") { result.counterattack = skill.data.values[0][lvl]; }
-		if (skill.name == "Puncture") { result.owounds = skill.data.values[0][lvl]; result.owounds_duration = skill.data.values[1][lvl]; result.owounds_dps = skill.data.values[2][lvl]; }
-		if (skill.name == "Pulverize") { result.pulverize = skill.data.values[0][lvl]; }
+		if (skill.name == "Puncture") { result.owounds = skill.data.values[0][lvl]; }
+		if (skill.name == "Pulverize") { result.damage_min = skill.data.values[0][lvl]*(1+0.06*skills[8].level); result.damage_max = skill.data.values[1][lvl]*(1+0.06*skills[8].level); result.pulverize = skill.data.values[2][lvl]; }
 		// Debuffs:
 		if (skill.name == "Howl") { result.flee_distance = skill.data.values[0][lvl]; result.duration = skill.data.values[1][lvl]; }
 		if (skill.name == "Taunt") { result.enemy_damage = skill.data.values[0][lvl]; result.enemy_attack = skill.data.values[1][lvl]; }	// duration unlisted
@@ -290,11 +292,11 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		["chance",3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,], 
 ]};
 /*[30] Puncture			*/ var d252 = {values:[
-		["inflict bleeding",3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,], 
-		["bleed duration",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,], 
-		["bleed damage",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,], 
+		["open wounds",4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,], 
 ]};
 /*[31] Pulverize		*/ var d262 = {values:[
+		["damage min",9,13,17,21,25,29,33,37,43,49,55,61,67,73,79,85,94,103,112,121,130,139,150,161,172,183,194,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,], 
+		["damage max",15,20,25,30,35,40,45,50,58,66,74,82,90,97,105,113,126,138,150,161,174,186,200,214,228,242,256,270,288,306,324,342,360,378,396,414,432,450,468,486,504,522,540,558,576,594,612,630,648,666,684,702,720,738,756,774,792,810,828,846,], 
 		["chance",3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,], 
 ]};
 
@@ -328,12 +330,13 @@ var skills_barbarian = [
 {data:d341, key:"341", code:151, name:"Power Throw", i:23, req:[19], reqlvl:18, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:3, bindable:2, damaging:{attack:2,spell:0}, description:"Gathers momentum to unleash a powerful throw<br>that deals damage to the target and nearby enemies<br><br>Deals 120% of Weapon Damage<br><br>Increases Physical Damage for 2.2 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>To Attack Rating: +"," percent<br>Damage: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:152, name:"Bash", i:24, req:[21,20,28], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that converts physical damage to<br>magic and knocks back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +10% Damage per Level<br>Concentrate: +5% Attack Rating per Level", graytext:"", index:[1,"% Physical Damage converted to Magic"], text:["Deals 110% of Weapon Damage<br>","Magic Damage: "," percent<br>Attack Rating: +"," percent<br>Damage: +"," percent<br>Mana Cost: 2",""]},
 {data:d353, key:"353", code:153, name:"Leap Attack", i:25, req:[22,18,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks target enemy<br>in one swift assault<br><br>Deals 175% of Weapon Damage", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +20% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack Rating: +"," percent<br>Mana Cost: 4",""]},
+/*TODO: remove*///{data:d361, key:"361", code:153, name:"None", i:2, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d361, key:"361", code:154, name:"Ethereal Throw", i:26, req:[23,24,19,21,20,28], reqlvl:30, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:2,spell:0}, description:"Throw your weapon with tremendous force,<br>converting it into a burst of energy<br>that explodes upon impact<br><br>Deals 60% of Weapon Damage", syn_title:"<br>Ethereal Throw Receives Bonuses From:<br>", syn_text:"Power Throw: +4% Magic Damage per Level<br>Bash: +4% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:155, name:"Whirlwind", i:27, req:[24,21,20,28], reqlvl:30, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm","claw"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"A whirling dance of death<br>that cuts a path through the<br>legions of your enemies<br><br>Deals 100% of Weapon Damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: "," percent<br>Attack Rating: +"," percent<br>Mana Cost: ",""]},
 
 {data:d312, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapon are equipped<br>attacks two targets if possible,<br>or one target twice<br><br>Deals 100% of Weapon Damage", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Bash: +5% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack Rating: +"," percent<br>Mana Cost: ",""]},
 
 {data:d232, key:"232", code:310, name:"Counter Attack", i:29, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Chance to strike back at an enemy attacker", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to counter attack: "," percent"]},
-{data:d252, key:"252", code:311, name:"Puncture", i:30, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - adds bleed chance, duration and damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["chance to inflict bleeding: "," percent<br>bleed duration: +"," seconds<br>+"," bleed damage per second"]},
-{data:d262, key:"262", code:312, name:"Pulverize", i:31, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Chance to send a shockwave towards enemies, dealing physical damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent"]},
+{data:d252, key:"252", code:311, name:"Puncture", i:30, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Opens a deep wound in the flesh of enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance to Open Wounds"]},
+{data:d262, key:"262", code:312, name:"Pulverize", i:31, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Attacks unleash powerful pulverizing forces", syn_title:"<br>Pulverize Receives Bonuses From:<br>", syn_text:"War Cry: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>"," percent chance to pulverize"]},
 ];
