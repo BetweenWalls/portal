@@ -62,6 +62,7 @@
   color: white;
   width: 100px;
 }
+}
 .green, .green-name {
   text-align: center;
   color: #00f000;
@@ -332,4 +333,15 @@ input[type="file"] {
 /* Show the dropdown menu on hover */
 .nav-dropdown:hover .nav-dropdown-content {
   display: block;
+}
+
+#class_name {
+  left: 67px;
+  top: 0px;
+}
+/* Firefox Fix */
+@-moz-document url-prefix() {
+  #class_name {
+    top: 7px;
+  }
 }
