@@ -52,7 +52,7 @@
 <div id="main">
 
 <div class="navbar">
-  <img src="./images/portal.ico" style="float:left; margin-left:5px; margin-right:5px; margin-top:4px; height:16px;">
+  <img src="./images/portal.ico" class="portal-logo">
   <div class="nav-dropdown">
     <button class="nav-dropbtn">File</button>
     <div class="nav-dropdown-content">
@@ -97,7 +97,7 @@
   </div>
   <div class="nav-dropdown">
     <button class="nav-dropbtn">Character</button>
-    <div class="nav-dropdown-content" style="min-width:260px;">
+    <div class="nav-dropdown-content">
       <div class="nav-dropdown-content-item" id="nav_difficulty"><div class="nav-difficulty">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Difficulty: <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input id="difficulty1" type="radio" name="difficulty" onclick="return changeDifficulty(1);">
         <label for="difficulty">Normal</label>
@@ -124,37 +124,37 @@
   </div>
 -->
   <div class="nav-dropdown">
-    <button class="nav-dropbtn" style="cursor:pointer;" onClick="location.href='https://github.com/BetweenWalls/portal#portal'"><a href="https://github.com/BetweenWalls/portal#portal">Info</a></button>
+    <button class="nav-dropbtn" onClick="location.href='https://github.com/BetweenWalls/portal#portal'"><a href="https://github.com/BetweenWalls/portal#portal">Info</a></button>
   </div>
 </div>
 
-<div style="display:flex; position:relative;width:910px;">
-  <div class ="hover" style="display:none;" id="tooltip_inventory">
-    <a id="item_name" style="display:block;"></a>
-    <a id="item_info" style="display:block;"></a>
-    <a id="item_corruption" style="display:block; color:#cc6666"></a>
-    <a id="item_affixes" style="display:block; color:#8080ff;"></a>
-    <a id="item_set_affixes" style="display:block; color:#00f000;"></a>
-    <a id="item_socketed_affixes" style="display:block; color:#8080ff;"></a>
-    <a id="item_group_affixes" style="display:block; color:#9b8c6d;"></a>
+<div class="inventory_container">
+  <div class="hover" id="tooltip_inventory">
+    <a id="item_name" class="tooltip_item"></a>
+    <a id="item_info" class="tooltip_item"></a>
+    <a id="item_corruption" class="tooltip_item"></a>
+    <a id="item_affixes" class="tooltip_item"></a>
+    <a id="item_set_affixes" class="tooltip_item"></a>
+    <a id="item_socketed_affixes" class="tooltip_item"></a>
+    <a id="item_group_affixes" class="tooltip_item"></a>
   </div>
 </div>
-<div id="full_interface" style="width:910px;" class="no-selection" oncontextmenu="return false">
-<div id="side" style="margin-top:4px; position:relative; float:right; color:white;"></div>
+<div id="full_interface" class="no_selection" oncontextmenu="return false">
+<div id="side"></div>
 
-<div id="interface" style="width:869px;">
-<div style="display: flex; justify-content: flex-end">
-  <div class ="hover" style="display:none; top:100px;" id="tooltip_effect">
-    <a id="effect_name" style="display:block; color:#00f000;"></a>
-    <a id="effect_info" style="display:block;"></a>
-    <a id="effect_affixes" style="display:block; color:#8080ff;"></a>
+<div id="interface">
+<div class="effect_container">
+  <div class="hover" id="tooltip_effect">
+    <a id="effect_name" class="tooltip_item"></a>
+    <a id="effect_info" class="tooltip_item"></a>
+    <a id="effect_affixes" class="tooltip_item"></a>
   </div>
 </div>
 
-<div id="gui" class="no-selection" oncontextmenu="return false" style="position:relative; height:433px;">
+<div id="gui" class="no_selection" oncontextmenu="return false">
 
 <!--		/GUI Stats		-->
-<div id="gui_stats" style="position: relative; width: 175px; height: 433px; float: left;">
+<div id="gui_stats">
 <img usemap="#statmap" src="./images/statbar.png">
 <map id="statmap" name="statmap">
 <area coords="127,107,163,143" id="btn_strength" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
@@ -163,18 +163,18 @@
 <area coords="127,293,163,329" id="btn_energy" onclick="addStat(event,this.id)" oncontextmenu="removeStat(event,this.id)">
 <area coords="14,15,61,52" id="btn_level" onclick="changeLevel(event,1)" oncontextmenu="changeLevel(event,-1)">
 </map>
-<p class="point" style="left: 23px; top: 12px;" id="level" onclick="changeLevel(event,1)" oncontextmenu="changeLevel(event,-1)"></p>
+<p class="point" id="level" onclick="changeLevel(event,1)" oncontextmenu="changeLevel(event,-1)"></p>
 <p class="text" id="class_name"></p>
-<p class="point" style="left: 100px; top: 45px;" id="remainingskills"></p>
-<p class="point" style="left: 100px; top: 338px;" id="remainingstats"></p>
-<p class="point" style="left: 85px; top: 100px;" id="strength" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
-<p class="point" style="left: 85px; top: 162px;" id="dexterity" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
-<p class="point" style="left: 85px; top: 224px;" id="vitality" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
-<p class="point" style="left: 85px; top: 286px;" id="energy" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
+<p class="point" id="remainingskills"></p>
+<p class="point" id="remainingstats"></p>
+<p class="point stat-left" id="strength" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
+<p class="point stat-left" id="dexterity" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
+<p class="point stat-left" id="vitality" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
+<p class="point stat-left" id="energy" onmouseover="hoverStatOn(this.id)" onmouseout="hoverStatOff(this.id)"></p>
 
-<img id="hide_skillpoints" src="./images/statbar_hidden_skills.png" style="position: absolute; display: block; left: 7px; top: 54px;">
-<img id="hide_statpoints" src="./images/statbar_hidden_stats.png" style="position: absolute; display: block; left: 7px; top: 344px;">
-<img id="hide_stats" src="./images/statbar_hidden_buttons.png" style="position: absolute; display: block; left: 120px; top: 98px;">
+<img id="hide_skillpoints" class="hidden_item" src="./images/statbar_hidden_skills.png">
+<img id="hide_statpoints" class="hidden_item" src="./images/statbar_hidden_stats.png">
+<img id="hide_stats" class="hidden_item" src="./images/statbar_hidden_buttons.png">
 
 <!--	class selection 	-->
 <select class="dropdown-character" id="dropdown_class" onChange="reset(this.value)">
@@ -189,7 +189,7 @@
 </div> <!-- /GUI Stats -->
 
 <!--		GUI Skills		-->
-<div id="gui_skills" style="position: relative; width: 694px; height: 433px; float: left;">
+<div id="gui_skills">
 <img usemap="#skillmap" id="skill_tree" src="">
 <map id="skillmap" name="skillmap">
 <!--	skill hover areas	-->
@@ -259,7 +259,7 @@
 <img class="I Ic1 Iy6" id="i361"><img class="I Ic2 Iy6" id="i362"><img class="I Ic3 Iy6" id="i363">
 
 <!--	skill hover text	-->
-<div class="hover" style="display: none;" id="tooltip">
+<div class="hover" id="tooltip">
 	<a id="title" class="green-name"></a><br>
 	<a id="description"></a>
 	<a id="graytext" class="gray"></a>
@@ -273,8 +273,8 @@
 </div> <!-- /GUI Skills -->
 
 <!--	Equipment Menus 	-->
-<div class="dropdown" id="equipment" style="float: right; width:200px; height:20px; margin-right:2px; position: relative; z-index: 6;">
-<div id="equipment_a" style="display:block;">
+<div class="dropdown" id="equipment">
+<div id="equipment_a" class="equipment">
 <select class="dropdown" id="dropdown_helm" onChange="equip('helm', this.value)" onContextMenu="equip('helm', 'helm')"></select>
 <select class="dropdown" id="dropdown_armor" onChange="equip('armor', this.value)" onContextMenu="equip('armor', 'armor')"></select>
 <select class="dropdown" id="dropdown_gloves" onChange="equip('gloves', this.value)" onContextMenu="equip('gloves', 'gloves')"></select>
@@ -288,7 +288,7 @@
 <br><br>
 </div>
 <select class="dropdown" id="dropdown_charms" onChange="addCharm(this.value)"></select>
-<div id="equipment_b" style="display:block;">
+<div id="equipment_b" class="equipment">
 <select class="dropdown" id="dropdown_socketables" onChange="addSocketable(this.value)"></select>
 <br><br>
 <select class="dropdown" id="dropdown_mercenary" onChange="setMercenary(this.value)" onContextMenu="setMercenary('none')"></select>
@@ -296,15 +296,15 @@
 <select class="dropdown" id="dropdown_merc_armor" onChange="equipMerc('armor', this.value)" onContextMenu="equipMerc('armor', 'armor')"></select>
 <select class="dropdown" id="dropdown_merc_weapon" onChange="equipMerc('weapon', this.value)" onContextMenu="equipMerc('weapon', 'weapon')"></select>
 <select class="dropdown" id="dropdown_merc_offhand" onChange="equipMerc('offhand', this.value)" onContextMenu="equipMerc('offhand', 'offhand')"></select>
-<div id="merc_space" style="display:none;"></div>
-<div id="golem" style="display:none;"><br><select class="dropdown" id="dropdown_golem" onChange="setIronGolem(this.value)" onContextMenu="setIronGolem('none')"></select><br></div>
+<div id="merc_space"></div>
+<div id="golem"><br><select class="dropdown" id="dropdown_golem" onChange="setIronGolem(this.value)" onContextMenu="setIronGolem('none')"></select><br></div>
 <br>
 <select class="dropdown" id="dropdown_misc" onChange="addEffect('misc',this.value,this.selectedIndex,'')"></select>
 </div>
 </div> <!-- /Equipment Menus -->
 
 <!--	Corruption Options	-->
-<div class="dropdown-corruption" id="equipment_corruptions" style="float: right; width:20px; margin-right:1px; position: relative; z-index: 6;">
+<div class="dropdown-corruption" id="equipment_corruptions">
 <select class="dropdown" id="corruptions_helm" onChange="corrupt('helm', this.value)" onContextMenu="corrupt('helm', 'none')"></select>
 <select class="dropdown" id="corruptions_armor" onChange="corrupt('armor', this.value)" onContextMenu="corrupt('armor', 'none')"></select>
 <select class="dropdown" id="corruptions_gloves" onChange="corrupt('gloves', this.value)" onContextMenu="corrupt('gloves', 'none')"></select>
@@ -321,19 +321,47 @@
 <div class="inventory">
 <!--	equipment inventory	-->
 <div id="gui_equipment" class="inv-equipment" oncontextmenu="return false">
-<img usemap="#equipmentmap" id="equipment_grid" style="float: right;" src="./images/equipment_inventory.png">
+<img usemap="#equipmentmap" id="equipment_grid" src="./images/equipment_inventory.png">
 <map id="equipmentmap" name="equipmentmap">
 <div style="position: relative;">
-<div id="helm_" class="flex-box" style="position: absolute; width: 58px; height: 58px; left: 63px; top: 1px; z-index: 2;" ondrop="handleSocket(event,'helm',0)" ondragover="allowSocket(event,'helm')" onmouseover="equipmentHover('helm')" onmouseout="equipmentOut()"><img id="helm_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'helm')" onContextMenu="inventoryRightClick(event,'helm')"><div style="position:absolute; z-index:4;" align="center" id="helm"></div></div>
-<div id="armor_" class="flex-box" style="position: absolute; width: 58px; height: 88px; left: 122px; top: 1px; z-index: 2;" ondrop="handleSocket(event,'armor',0)" ondragover="allowSocket(event,'armor')" onmouseover="equipmentHover('armor')" onmouseout="equipmentOut()"><img id="armor_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'armor')" onContextMenu="inventoryRightClick(event,'armor')"><div style="position:absolute; z-index:4;" align="center" id="armor"></div></div>
-<div id="gloves" style="position: absolute; width: 58px; height: 59px; left: 182px; top: 1px; z-index: 2;" onmouseover="equipmentHover('gloves')" onmouseout="equipmentOut()" align="center"><img id="gloves_image" src="" onClick="inventoryLeftClick(event,'gloves')" onContextMenu="inventoryRightClick(event,'gloves')"></div>
-<div id="boots" style="position: absolute; width: 58px; height: 58px; left: 182px; top: 61px; z-index: 2;" onmouseover="equipmentHover('boots')" onmouseout="equipmentOut()" align="center"><img id="boots_image" src="" onClick="inventoryLeftClick(event,'boots')" onContextMenu="inventoryRightClick(event,'boots')"></div>
-<div id="belt" style="position: absolute; width: 58px; height: 29px; left: 122px; top: 90px; z-index: 2;" onmouseover="equipmentHover('belt')" onmouseout="equipmentOut()" align="center"><img id="belt_image" src="" onClick="inventoryLeftClick(event,'belt')" onContextMenu="inventoryRightClick(event,'belt')"></div>
-<div id="amulet" style="position: absolute; width: 29px; height: 29px; left: 77px; top: 60px; z-index: 2;" onmouseover="equipmentHover('amulet')" onmouseout="equipmentOut()" align="center"><img id="amulet_image" src="" onContextMenu="equip('amulet', 'amulet')"></div>
-<div id="ring1" style="position: absolute; width: 28px; height: 29px; left: 63px; top: 90px; z-index: 2;" onmouseover="equipmentHover('ring1')" onmouseout="equipmentOut()" align="center"><img id="ring1_image" src="" onContextMenu="equip('ring1', 'ring1')"></div>
-<div id="ring2" style="position: absolute; width: 28px; height: 29px; left: 93px; top: 90px; z-index: 2;" onmouseover="equipmentHover('ring2')" onmouseout="equipmentOut()" align="center"><img id="ring2_image" src="" onContextMenu="equip('ring2', 'ring2')"></div>
-<div id="weapon_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 1px; top: 1px; z-index: 2;" ondrop="handleSocket(event,'weapon',0)" ondragover="allowSocket(event,'weapon')" onmouseover="equipmentHover('weapon')" onmouseout="equipmentOut()"><img id="weapon_image" style="z-index:3;" src="" onClick="inventoryLeftClick(event,'weapon')" onContextMenu="inventoryRightClick(event,'weapon')"><div style="position:absolute; z-index:4;" align="center" id="weapon"></div></div>
-<div id="offhand_" class="flex-box" style="position: absolute; width: 60px; height: 118px; left: 242px; top: 1px; z-index: 2;" ondrop="handleSocket(event,'offhand',0)" ondragover="allowSocket(event,'offhand')" onmouseover="equipmentHover('offhand')" onmouseout="equipmentOut()"><img id="offhand_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'offhand')" onContextMenu="inventoryRightClick(event,'offhand')"><div style="position:absolute; z-index:4;" align="center" id="offhand"></div></div>
+  <div id="helm_" class="equipped_helmet equipped_item flex-box" ondrop="handleSocket(event,'helm',0)" ondragover="allowSocket(event,'helm')" onmouseover="equipmentHover('helm')" onmouseout="equipmentOut()">
+    <img id="helm_image" class="equipment_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'helm')" onContextMenu="inventoryRightClick(event,'helm')">
+    <div style="position:absolute; z-index:4;" align="center" id="helm">
+    </div>
+  </div>
+  <div id="armor_" class="equipped_armor equipped_item flex-box" ondrop="handleSocket(event,'armor',0)" ondragover="allowSocket(event,'armor')" onmouseover="equipmentHover('armor')" onmouseout="equipmentOut()">
+    <img id="armor_image" class="equipment_image" src="" onClick="inventoryLeftClick(event,'armor')" onContextMenu="inventoryRightClick(event,'armor')">
+    <div class="equipment_absolute" align="center" id="armor">
+    </div>
+  </div>
+  <div id="gloves" class="equipped_item" onmouseover="equipmentHover('gloves')" onmouseout="equipmentOut()" align="center">
+    <img id="gloves_image" src="" onClick="inventoryLeftClick(event,'gloves')" onContextMenu="inventoryRightClick(event,'gloves')">
+  </div>
+  <div id="boots" class="equipped_item" onmouseover="equipmentHover('boots')" onmouseout="equipmentOut()" align="center">
+    <img id="boots_image" src="" onClick="inventoryLeftClick(event,'boots')" onContextMenu="inventoryRightClick(event,'boots')">
+  </div>
+  <div id="belt" class="equipped_item" onmouseover="equipmentHover('belt')" onmouseout="equipmentOut()" align="center">
+    <img id="belt_image" src="" onClick="inventoryLeftClick(event,'belt')" onContextMenu="inventoryRightClick(event,'belt')">
+  </div>
+  <div id="amulet" class="equipped_item" onmouseover="equipmentHover('amulet')" onmouseout="equipmentOut()" align="center">
+    <img id="amulet_image" src="" onContextMenu="equip('amulet', 'amulet')">
+  </div>
+  <div id="ring1" class="equipped_ring equipped_item" onmouseover="equipmentHover('ring1')" onmouseout="equipmentOut()" align="center">
+    <img id="ring1_image" src="" onContextMenu="equip('ring1', 'ring1')">
+  </div>
+  <div id="ring2" class="equipped_ring ring equipped_item" onmouseover="equipmentHover('ring2')" onmouseout="equipmentOut()" align="center">
+    <img id="ring2_image" src="" onContextMenu="equip('ring2', 'ring2')">
+  </div>
+  <div id="weapon_" class="equipped_weapon equipped_item flex-box" ondrop="handleSocket(event,'weapon',0)" ondragover="allowSocket(event,'weapon')" onmouseover="equipmentHover('weapon')" onmouseout="equipmentOut()">
+    <img id="weapon_image" src="" onClick="inventoryLeftClick(event,'weapon')" onContextMenu="inventoryRightClick(event,'weapon')">
+    <div class="equipment_absolute" align="center" id="weapon">
+    </div>
+  </div>
+  <div id="offhand_" class="equipped_offhand equipped_item flex-box" ondrop="handleSocket(event,'offhand',0)" ondragover="allowSocket(event,'offhand')" onmouseover="equipmentHover('offhand')" onmouseout="equipmentOut()">
+    <img id="offhand_image" style="position:absolute; z-index:3;" src="" onClick="inventoryLeftClick(event,'offhand')" onContextMenu="inventoryRightClick(event,'offhand')">
+    <div class="equipment_absolute" align="center" id="offhand">
+    </div>
+  </div>
 </div>
 </map>
 </div> <!-- /equipment inventory -->
@@ -394,48 +422,48 @@
 </div> <!-- /gui -->
 
 <!--		skill details		-->
-<div class="no-selection" id="skill_details" style="display: block; height:235px; width: 330px; position: relative;">
-<div id="ar_spacing" style="display:none;"><br><br><br><br><br><br><br><br></div>
+<div class="no_selection" id="skill_details">
+<div id="ar_spacing"><br><br><br><br><br><br><br><br></div>
 <div class="gray" id="skill_details_active">
-<div id="skill_details_basic" style="margin-bottom: 15px;">
+<div id="skill_details_basic">
 	<div id="mainhand_basic"><a>Basic Attack: </a><a id="basic_attack"></a><br></div>
-	<div id="offhand_basic" style="display:none;"> ­ ­ ­ ­ ­ ­ ­ Offhand: <a id="offhand_basic_damage"></a><br></div>
+	<div id="offhand_basic"> ­ ­ ­ ­ ­ ­ ­ Offhand: <a id="offhand_basic_damage"></a><br></div>
 	<a>Attack Rating: </a><a id="ar"></a>
 </div>
-<div id="skill_details_1">
-	<div id="skillDetail1" style="height: 22px; position: relative; z-index: 3; margin-top: -5px;">
+<div id="skill_details_1" class="skill_detail_wrapper">
+	<div id="skillDetail1" class="skill_detail">
 	<select class="dropdown-skill" id="dropdown_skill1" onChange="checkSkill(this.value, 1)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 1', 1)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 1</option></select><a id="skill1_info">: </a>
 	</div>
-	<div id="offhand_skill1" style="display:none;"><a id="offhand_skill1_damage"></a><br></div>
-	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill1"></a>
+	<div id="offhand_skill1"><a id="offhand_skill1_damage"></a><br></div>
+	<a>AR: </a><a id="ar_skill1"></a>
 </div>
-<div id="skill_details_2">
-	<div id="skillDetail2" style="height: 22px; position: relative; z-index: 3; margin-top: 5px;">
+<div id="skill_details_2" class="skill_detail_wrapper">
+	<div id="skillDetail2" class="skill_detail">
 	<select class="dropdown-skill" id="dropdown_skill2" onChange="checkSkill(this.value, 2)" oncontextmenu="checkSkill(' ­ ­ ­ ­ Skill 2', 2)"><option class="gray-all" disabled selected> ­ ­ ­ ­ Skill 2</option></select><a id="skill2_info">: </a>
 	</div>
-	<div id="offhand_skill2" style="display:none;"><a id="offhand_skill2_damage"></a><br></div>
-	<a style="visibility: hidden; color: gray;">AR: </a><a id="ar_skill2"></a>
+	<div id="offhand_skill2"><a id="offhand_skill2_damage"></a><br></div>
+	<a>AR: </a><a id="ar_skill2"></a>
 </div>
 </div>
-<div class="gray" id="skill_details_inactive" style="display:none;"></div>
+<div class="gray" id="skill_details_inactive"></div>
 </div> <!-- /skill details -->
 
 <!--		stats		-->
 <div class="gray" id="stats">
-<div id="stats_main_columns" style="position:relative; left:3px;">
-<div id="demons_and_undead" style="position:relative; top:-90px;"> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as separate ED/AR) -->
-<div style="position:absolute; left:30px;">
+<div id="stats_main_columns">
+<div id="demons_and_undead"> <!-- TODO: Incorporate into calculated damage & attack rating (instead of displaying as separate ED/AR) -->
+<div class="stat-text-wrapper stat-1">
 	<br><br>
 	<font size="2">Damage vs Demons: </font><font size="2" id="damage_vs_demons"></font><br>
 	<font size="2">Damage vs Undead: </font><font size="2" id="damage_vs_undead"></font><br>
 </div>
-<div style="position:absolute; left:192px;">
+<div class="stat-text-wrapper stat-2">
 	<br><br>
 	<font size="2">AR vs Demons: </font><font size="2" id="ar_vs_demons"></font><br>
 	<font size="2">AR vs Undead: </font><font size="2" id="ar_vs_undead"></font><br>
 </div>
 </div>
-<div style="position:absolute; left:0px;" id="stats_column_1">
+<div class="stat-text-wrapper stat-3" id="stats_column_1">
 	<font size="2">Fire Resist: </font><font size="2" id="fres"></font><br>
 	<font size="2">Cold Resist: </font><font size="2" id="cres"></font><br>
 	<font size="2">Lightning Resist: </font><font size="2" id="lres"></font><br>
@@ -458,7 +486,7 @@
 	<font size="2">+ Lightning Damage: </font><font size="2" id="ldamage"></font><br>
 	<font size="2">+ Poison Damage: </font><font size="2" id="pdamage"></font><br>
 </div>
-<div style="position:absolute; left:170px;" id="stats_column_2">
+<div class="stat-text-wrapper stat-4" id="stats_column_2">
 	<font size="2">Fire Absorb: </font><font size="2" id="fabsorb"></font><br>
 	<font size="2">Cold Absorb: </font><font size="2" id="cabsorb"></font><br>
 	<font size="2">Lightning Absorb: </font><font size="2" id="labsorb"></font><br><br>
@@ -478,7 +506,7 @@
 	<font size="2">Lightning Pierce: </font><font size="2" id="lpierce"></font><br>
 	<font size="2">Poison Pierce: </font><font size="2" id="ppierce"></font><br>
 </div>
-<div style="position:absolute; left:340px;" id="stats_column_3">
+<div class="stat-text-wrapper stat-5" id="stats_column_3">
 	<br>
 	<font size="3">Life: </font><font size="3" id="life"></font><br>
 	<font size="3">Mana: </font><font size="3" id="mana"></font><br>
@@ -500,7 +528,7 @@
 	<font size="2">Enemy Lightning Resist: </font><font size="2" id="enemy_lres"></font><br>
 	<font size="2">Enemy Poison Resist: </font><font size="2" id="enemy_pres"></font><br>
 </div>
-<div style="position:absolute; left:510px;" id="stats_column_4">
+<div class="stat-text-wrapper stat-6" id="stats_column_4">
 	<br>
 	<font>Strength: </font><font id="strength2"></font><br>
 	<font>Dexterity: </font><font id="dexterity2"></font><br>
@@ -523,13 +551,13 @@
 </div>
 </div>
 
-<div style="width:869px;" id="stats_positioning_alignment">
+<div id="stats_positioning_alignment">
 <div><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-<div style="float:right; width:195px;" id="stats_column_5">
-	<div id="mercenary_spacing" style="display:none;"><br><br><br><br><br></div>
-	<div id="mercenary_spacing2" style="display:none;"><br></div>
-	<div id="golem_spacing" style="display:none;"><br><br><br></div>
-	<div style="margin-right:-100px;"><font size="2" id="flamme"></font></div>
+<div id="stats_column_5">
+	<div id="mercenary_spacing"><br><br><br><br><br></div>
+	<div id="mercenary_spacing2"><br></div>
+	<div id="golem_spacing"><br><br><br></div>
+	<div class="flamme"><font size="2" id="flamme"></font></div>
 	<font size="2" id="itd"></font>
 	<font size="2" id="pmh"></font>
 	<font size="2" id="cbf"></font>
@@ -540,14 +568,14 @@
 	<font size="2" id="blind_on_hit"></font>
 	<font size="2" id="flee_on_hit"></font>
 	<font size="2" id="peace"></font>
-	<div style="margin-right:-135px;"><font size="2" id="statlines"></font></div>
+	<div class="statlines"><font size="2" id="statlines"></font></div>
 	<font size="2" id="light_radius"></font>
 	<font size="2" id="heal_stam"></font>
 	<font size="2" id="slower_stam_drain"></font>
 	<font size="2" id="discount"></font>
 	<font size="2" id="glow"></font>
-	<div style="margin-right:-155px;"><font size="2" id="ctc"></font></div>
-	<div style="margin-right:-135px;"><font size="2" id="cskill"></font></div>
+	<div class="ctc"><font size="2" id="ctc"></font></div>
+	<div class="cskill"><font size="2" id="cskill"></font></div>
 	<br>
 </div>
 <div><br><br></div>
@@ -555,7 +583,7 @@
 <textarea style="border:none; background-color:black; resize:none; float:left;" id="inputTextToSave" cols="1" rows="1"></textarea>
 </div>	<!-- /stats -->
 
-<div id="debug_space" style="display:none; height:370px; width:869px; color:gray;"></div>
+<!-- <div id="debug_space" style="display:none; height:370px; width:869px; color:gray;"></div> -->
 
 </div>	<!-- /interface -->
 </div>	<!-- /full_interface -->
