@@ -354,6 +354,15 @@ input[type="file"] {
 #class_name {
   left: 67px;
   top: 12px;
+  font-size: 14px;
+}
+
+/* Firefox Fix */
+
+@-moz-document url-prefix() {
+  #class_name {
+    font-size: 12px;
+  }
 }
 
 /* Tooltip Hovers */
@@ -672,7 +681,7 @@ input[type="file"] {
 .statlines {
   margin-right: -135px;
 }
-.ctc {
+.ctc{
   margin-right: -155px;
 }
 .cskill {
