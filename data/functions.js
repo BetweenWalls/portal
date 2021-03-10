@@ -455,7 +455,7 @@ function round(num) {
 	// TODO: Always round damage/life numbers
 	var temp = num;
 	var decimals = (toString(num) + ".");
-	if (num >= 33) { temp = Math.round(num) }
+	if (num >= 25) { temp = Math.round(num) }
 	else {
 		decimals = decimals.split(".");
 		if (decimals[1].length > 1) { temp = num.toFixed(1) }
@@ -3595,6 +3595,10 @@ function skillHover(skill) {
 	document.getElementById("graytext").innerHTML = skill.graytext
 	document.getElementById("syn_title").innerHTML = skill.syn_title
 	document.getElementById("syn_text").innerHTML = skill.syn_text
+	if (typeof(skill.incomplete) != 'undefined') {
+		if (skill.syn_text != "") { document.getElementById("syn_text").innerHTML += "<br>" }
+		document.getElementById("syn_text").innerHTML += "<br><font color='"+colors.Red+"'>UNVERIFIED SKILL INFO</font>"
+	}
 	var levels = 0;
 	var next_display = "";
 	var current_display = "";
@@ -3609,6 +3613,7 @@ function skillHover(skill) {
 			next_value = character.getSkillData(skill, (skill.level+skill.extra_levels+1), i)
 		}
 		next_value = round(next_value)
+		if (next_value < 0 && next_display.endsWith("+")) { next_display = next_display.substr(0,next_display.length-1) }
 		next_display += next_value
 		
 		current_display += skill.text[i]
@@ -3616,6 +3621,7 @@ function skillHover(skill) {
 		levels = skill.level+skill.extra_levels
 		current_value = character.getSkillData(skill, levels, i)
 		current_value = round(current_value)
+		if (current_value < 0 && current_display.endsWith("+")) { current_display = current_display.substr(0,current_display.length-1) }
 		current_display += current_value
 		
 		if (skill.index[0] == (i+1)) {
@@ -4624,6 +4630,16 @@ function updateURL() {
 
 
 
+
+
+
+
+
+
+
+
+
+
 // Notes for Organization Overhaul:
 //   TODO...
 //   variable names for item classification 
@@ -4659,26 +4675,17 @@ function updateURL() {
 
 
 
+
+
+
+
+
+
 /* TODO: implement changes for Project Diablo II (season 2)
 
-ASSASSIN
-Martial arts Assassin has been heavily reworked to now function the following way
-...Charges no longer deplete from anything besides finishers and now behave differently and function more like stages which are universal across all skills meaning that you can have up to three charges at a time and each charge casts the stage that you are on when you use a skill (each skill has three stages).
-...For example if you used fists of fire into blades of ice and finished with cobra strike you would do the stage 1 fists of fire attack into the stage 2 blades of ice and then you would finish with the stage 3 cobra strike.
-...This play-style allows you to stick to one skill or weave skills to create combo strings creating the martial arts feel. Finishers will now cast all of the charges you have available and every stage at once essentially dumping your charges and rewarding you for mixing skills however, being that your charges reset on the third attack you can only dump two charges at once allowing you to essentially cast three stages at once.
-...For example if you used stage 1 fist of fire followed by stage 2 blades of ice into a finisher you would cast stage 1 fists of fire as well as both stage 1 and 2 of blades of ice.
-
-BARBARIAN
-Whirlwind has been reworked to now have melee splash and to use proc effects (also IAS frames changed?)
-
-SORCERESS
-Frozen orb now has no cooldown and uses lightning faster cast rate frames
-
-ITEMS
+General
 Diablo clone now has an extremely rare chance to drop one of 5 new items (the new rarest items in the game)
 Dol rune now grants 25% enhanced damage instead of 15 life replenish (was 25% chance to fear in vanilla)
-
-MISC
 Crafting has been updated and reworked so that many chase items are possible
 Removed the movement-speed debuff automod from medium and heavy armors
 Crossbows now have 10% Physical Pierce as an automod and all crossbows deal 10% more damage
@@ -4701,11 +4708,11 @@ Increased Bardiche, Voulge, Lochaber Axe, Bill, Ogre Axe, Colossus Voulge range 
 Increase all Two-Handed axe ranges by 1 (excluding Giant Axe/Ancient Axe/Glorius Axe which will stay 3 Range) and increased strength gain to match Mauls for all Two-Handed axes (110 str/ 1.1%)
 Increase the range of Ogre Maul and Thunder Maul by 1
 
-...
-
 Assassin
 Martial arts has been completely reworked and now functions the following way
-Martial arts has been reworked to cast the stage of the skill you are on when you attack with that skill so if a player has two charges they will use the second charge of that skill on attack and on the third attack they will use the third and reset back to 1. This converts the charge system to a ‘’stage’’ system where your attacks are based on the amount of charges you have or the ‘’stage’’ you are on and cycle from stages 1-3 and repeat. Finishers are no longer required however if you use one you will cast every stage of every charge you have generated. Charges are also universal so you can combo from stage 1 fists of fire into stage 2 blades of ice and finish with stage 3 cobra strike then begin a new combo string.
+...Skills cast the stage of the skill you are on when you attack with that skill so if a player has two charges they will use the second charge of that skill on attack and on the third attack they will use the third and reset back to 1.
+...This converts the charge system to a ‘’stage’’ system where your attacks are based on the amount of charges you have or the ‘’stage’’ you are on and cycle from stages 1-3 and repeat.
+...Finishers are no longer required however if you use one you will cast every stage of every charge you have generated. Charges are also universal so you can combo from stage 1 fists of fire into stage 2 blades of ice and finish with stage 3 cobra strike then begin a new combo string.
 Cobra strike has been reworked to cast ''poison teeth'' on stage 1, dual leech on stage 2 and a poison cloud on stage 3 (these attacks carry venom damage and poison damage from gear)
 Dragon tail and dragon talon now properly synergies
 Mind blast synergies reduced from 12% to 10%
@@ -4843,15 +4850,49 @@ Thunderstorm synergies increased from 4% to 5%
 Combustion synergies nerfed from 18% to 12%
 Fireball synergies increased from 14% to 16%
 
+- blizzard mana cost reduced from 23 to 13 
+- blizzard mana cost per level reduced from 1 to .5
+- mindblast 22+ scaling buffed slightly
+- death sentry 22+ scaling reduced slightly
+- death sentries synergies reduced from 6% to 4%
+- wake of fire 28+ scaling reduced slightly
+- chain lightning sentries level 22+ scaling has been increased from 16 per level to 18
+- chain lightning sentries level 28+ scalin g has been increased from 20 per level to 22
+- chain lightning sentries synergies have been increased from 14% to 15%
+- revives enhanced damage per level increased from 2% to 10%
+- you now start with 3 revives at level 1 instead of 1
+- dark pacts curse mastery and iron maiden synergies increased from 16% to 18%
+- dark pacts all curses synergy increased from 10% to 12%
+- dark pacts level 28+ scaling increased by roughly 10%
+- dark pacts explosion range increased from 4 to 5
+- whirlwind damage per level reduced from 6% to 4%
+- whirlwind base damage reduced from 50% to 25%
+- poison creepers early game damage has been reduced and late game scaling improved
+
+- charged bolt synergies increased from 5-6%
+- blizzard synergies increased  from 10-12%
+- lightning fury mana cost reduced by half
+- frozen orb synergies increased from 3-4%
+- meteor synergies reduced from 12% to 9%
+- blade fury has had its flat damage reduced
+- fixed the character screen damage display for tiger strike
+
+- wake of fire 22+ scaling reduced from 24-26 per level to 20-24 per level
+- wake of fire 28+ scaling reduced from 32 to per level to 28-32 per level
+- wake of fire synergies reduced from 10% to 8%
+- mind blast level 16+ scaling slightly increased
+
+- fire golems no longer have 5% fire absorb
+- death sentry level 22+ scaling reduced from 5-7 per level to 4-5 per level
+- death sentry level 28+ scaling reduced from 8-10 per level to 6-7 per level
+- fists of fire scaling at lower levels has been reduced 
+- lightning fury reverted back to 10 bolts
+
+https://www.reddit.com/r/ProjectDiablo2/comments/ly7gad/tentative_beta_patch_notes_season_2_values_may/
+
 */
 
-
-
-/* TODO: fix bug reports:
-
-The duration of Power Throw's increased damage buff is listed as 0.5 seconds instead of 2.2 seconds.
-Snapshotted skills don't apply correctly after loading the save file. The snapshot jumps to the last buff listed.
-...For example, I snapshotted Energy Shield with a Memory staff, and then switched to Spirit weapon and Spirit shield. After saving and loading, Energy Shield wasn't snapshotted and the last buff was instead (in my case, Prayer from my merc). When I removed my merc and repeated the process, Warmth was the last buff listed and snapshotted.
-...I couldn't find a way to remove the snapshot. I tried combinations of left and right clicking with ctrl and shift.
-
-*/
+// TODO: update PoD skills when more info becomes available (Assassin martial arts skills & Barbarian passives)
+// TODO: Snapshotted skills don't apply correctly after loading the save file. The snapshot jumps to the last buff listed.
+// ...For example, I snapshotted Energy Shield with a Memory staff, and then switched to Spirit weapon and Spirit shield. After saving and loading, Energy Shield wasn't snapshotted and the last buff was instead (in my case, Prayer from my merc). When I removed my merc and repeated the process, Warmth was the last buff listed and snapshotted.
+// ...I couldn't find a way to remove the snapshot. I tried combinations of left and right clicking with ctrl and shift.
