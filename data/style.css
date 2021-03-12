@@ -1,5 +1,26 @@
-
-.no-selection {
+.portal-logo {
+  float:left;
+  margin-left:5px;
+  margin-right:5px; 
+  margin-top:4px; 
+  height:16px; 
+}
+#full_interface {
+  width: 910px;
+}
+#side {
+  margin-top: 4px;
+  position: relative;
+  float: right;
+  color: white;
+}
+#interface {
+  width: 869px;
+}
+.hidden {
+  display: none;
+}
+.no_selection {
   -webkit-user-select: none;	/* for safari & chrome browsers */
   -moz-user-select: none;   	/* for mozilla browsers */
   -ms-user-select: none;    	/* for IE10+ */
@@ -146,7 +167,8 @@
 .dropdown-debug {
   color: #ff8080;
 }
-.P {  position: absolute;
+.P {  
+  position: absolute;
   text-align: center;
   text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 2px 2px 3px black, -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black;
   color: white;
@@ -168,7 +190,6 @@
 .Py4 {top: 248px;}
 .Py5 {top: 317px;}
 .Py6 {top: 385px;}
-
 .I {
   position: absolute;
   display: block;
@@ -190,17 +211,15 @@
 .Iy4 {top: 220px;}
 .Iy5 {top: 289px;}
 .Iy6 {top: 357px;}
-
 .cell {
-position:absolute;
+  position:absolute;
 }
-
 .H {
   position: absolute;
   width: 29px;
   height: 29px;
   z-index: 3;
-  }
+}
 .Hx1 {left: 5px;}
 .Hx2 {left: 34px;}
 .Hx3 {left: 63px;}
@@ -215,26 +234,23 @@ position:absolute;
 .Hy2 {top: 32px;}
 .Hy3 {top: 61px;}
 .Hy4 {top: 90px;}
-
 .effect, .effect-container {
   width: 36px;
   height: 36px;
   visibility: visible;
   display: block;
   z-index: 6;
-  }
+}
 .effect {
   position: absolute;
 }
-  
 .hide {
   width: 36px;
   height: 0px;
   visibility: hidden;
   display: block;
   z-index: 1;
-  }
-  
+}
 .flex-box {
   display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;  /* TWEENER - IE 10 */
@@ -244,12 +260,12 @@ position:absolute;
   justify-content: center;
   align-items: center;
 }
-
 input[type="file"] {
     display: none;
 }
 
 /* Navbar container */
+
 .navbar {
   overflow: hidden;
   background-color: #333;
@@ -258,12 +274,14 @@ input[type="file"] {
 }
 
 /* The dropdown container */
+
 .nav-dropdown {
   float: left;
   overflow: hidden;
 }
 
 /* Dropdown button */
+
 .nav-dropbtn, .nav-dropbtn a {
   margin: 0;
   border: none;
@@ -274,11 +292,11 @@ input[type="file"] {
   font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .nav-dropbtn a {
   padding: 0;
 }
-
 /* Highlight navbar options on hover */
 .nav-dropdown:hover, .nav-dropbtn:hover, .nav-dropbtn:hover a, .nav-dropdown-content-item:hover {
   background-color: #222;
@@ -286,6 +304,7 @@ input[type="file"] {
 }
 
 /* Dropdown content (hidden by default) */
+
 .nav-dropdown-content {
   display: none;
   position: absolute;
@@ -295,7 +314,6 @@ input[type="file"] {
   box-shadow: 0px 8px 12px 4px rgba(0,0,0,0.5);
   z-index: 9;
 }
-
 .nav-dropdown-content-item {
   font-size: 13px;
   border-top: 1px solid rgba(150, 150, 150, 0.15);
@@ -311,7 +329,6 @@ input[type="file"] {
 .nav-dropdown-content-item:last-child {
   margin-bottom: 2px;
 }
-
 .nav-text {
   position: relative;
   height: 27px;
@@ -329,6 +346,343 @@ input[type="file"] {
 }
 
 /* Show the dropdown menu on hover */
+
 .nav-dropdown:hover .nav-dropdown-content {
   display: block;
+}
+#class_name {
+  left: 67px;
+  top: 12px;
+  font-size: 14px;
+}
+
+/* Firefox Fix */
+
+@-moz-document url-prefix() {
+  #class_name {
+    font-size: 12px;
+  }
+}
+
+/* Tooltip Hovers */
+
+.inventory_container {
+  display:flex;
+  position:relative;
+  width:910px;
+}
+.tooltip_item {
+  display: block;
+}
+
+/* Inventory */
+
+#tooltip_inventory {
+  display: none;
+}
+#item_corruption {
+  color: #cc6666;
+}
+#item_affixes {
+  color:#8080ff;
+}
+#item_set_affixes {
+  color: #00f000;
+}
+#item_socketed_affixes {
+  color:#8080ff;
+}
+#item_group_affixes {
+  color: #9b8c6d;
+}
+
+/* Effects (Skills) */
+
+.effect_container {
+  display: flex;
+  justify-content: flex-end;
+}
+#tooltip_effect {
+  display: none;
+  top: 100px;
+}
+#effect_name {
+  color: #00f000;
+}
+#effect_affixes {
+  color: #8080ff;
+}
+
+/* Stats */
+#gui {
+  position: relative;
+  height: 433px;
+}
+#gui_stats {
+  position: relative;
+  width: 175px;
+  height: 433px;
+  float: left; 
+}
+#level {
+  left: 23px;
+  top: 12px;
+}
+#remainingskills {
+  left: 100px;
+  top: 45px;
+}
+#remainingstats {
+  left: 100px;
+  top: 338px;
+}
+.stat-left {
+  left: 85px;
+}
+#strength {
+  top: 100px;
+}
+#dexterity {
+  top: 162px;
+}
+#vitality {
+  top: 224px;
+}
+#energy {
+  top: 286px;
+}
+
+/* Skills */
+
+.hidden_item {
+  position: absolute;
+  display: block;
+}
+#hide_skillpoints {
+  left: 7px;
+  top: 54px;
+}
+#hide_statpoints {
+  left: 7px;
+  top: 344px;
+}
+#hide_stats {
+  left: 120px;
+  top: 98px;
+}
+#gui_skills {
+  position: relative;
+  width: 694px;
+  height: 433px;
+  float: left;
+}
+#tooltip {
+  display: none;
+}
+
+/* Equipment */
+
+#equipment {
+  float: right;
+  width: 200px;
+  height: 20px;
+  margin-right: 2px;
+  position: relative;
+  z-index: 6;
+}
+.equipment {
+  display: block;
+}
+#merc_space {
+  display: none;
+}
+#golem {
+  display: none;
+}
+
+/* Corruptions */
+
+#equipment_corruptions {
+  float: right;
+  width: 20px;
+  margin-right: 1px;
+  position: relative;
+  z-index: 6;
+}
+#equipment_grid {
+  float: right;
+}
+.equipped_item {
+  position: absolute;
+  z-index: 2;
+}
+.equipped_helmet {
+  width: 58px;
+  height: 58px;
+  left: 63px;
+  top: 1px;
+}
+.equipped_armor {
+  width: 58px;
+  height: 88px;
+  left: 122px;
+  top: 1px;
+}
+#gloves {
+  width: 59px;
+  left: 182px;
+  top: 1px;
+}
+#boots {
+  width: 58px;
+  height: 58px;
+  left: 182px;
+  top: 61px;
+}
+#belt {
+  width: 58px;
+  height: 29px;
+  left: 122px;
+  top: 90px;
+}
+#amulet {
+  width: 29px;
+  height: 29px;
+  left: 77px;
+  top: 60px;
+}
+.equipped_ring {
+  width: 28px;
+  height: 29px;
+  top: 90px; 
+}
+#ring1 {
+  left: 63px;
+}
+#ring2 {
+  left: 93px;
+}
+.equipped_weapon {
+  width: 60px; 
+  height: 118px;
+  top: 1px;
+  left: 1px;
+}
+.equipped_offhand {
+  width: 60px;
+  height: 118px;
+  top: 1px;
+  left: 242px;
+}
+.equipment_image {
+  position: absolute;
+  z-index: 3;
+}
+#weapon_image {
+  z-index: 3;
+}
+.equipment_absolute {
+  position: absolute;
+  z-index: 4;
+}
+
+/* Skills */
+#skill_details {
+  display: block;
+  height: 235px;
+  width: 330px;
+  position: relative;
+}
+#ar_spacing {
+  display: none;
+}
+#skill_details_basic {
+  margin-bottom: 15px;
+}
+#offhand_basic {
+  display: none;
+}
+.skill_detail {
+  height: 22px;
+  position: relative;
+  z-index: 3;
+}
+#skillDetail1 {
+  margin-top: -5px;
+}
+#skillDetail2 {
+  margin-top: 5px;
+}
+#offhand_skill1 {
+  display: none;
+}
+#offhand_skill2 {
+  display: none;
+}
+.skill_detail_wrapper a {
+  visibility: hidden;
+  color: gray;
+}
+#skill_details_inactive {
+  display: none;
+}
+#stats_main_columns {
+  position: relative;
+  left: 3px;
+}
+#demons_and_undead {
+  position: relative;
+  top: -90px;
+}
+
+/* Lower Stat Text */
+
+.stat-text-wrapper {
+  position: absolute;
+}
+.stat-1 {
+  left: 0px;
+}
+.stat-2 {
+  left: 170px;
+}
+.stat-3 {
+  left: 0px;
+}
+.stat-4 {
+  left: 170px;
+}
+.stat-5 {
+  left: 340px;
+}
+.stat-6 {
+  left: 510px;
+}
+#stats_positioning_alignment {
+  width: 869px;
+}
+#stats_column_5 {
+  float: right;
+  width: 195px;
+}
+#mercenary_spacing {
+  display: none;
+}
+#mercenary_spacing2 {
+  display: none;
+}
+#golem_spacing {
+  display: none;
+}
+.flamme {
+  margin-right: -100px;
+}
+.statlines {
+  margin-right: -135px;
+}
+.ctc{
+  margin-right: -155px;
+}
+.cskill {
+  margin-right: -135px;
 }

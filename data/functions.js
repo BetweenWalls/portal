@@ -300,7 +300,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("side").style.display = "none"
 			document.getElementById("nav_autocast").style.display = "none"
 			document.getElementById("nav_running").style.display = "none"
-			document.getElementById("debug_space").style.display = "block"
+			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
 			settings.autocast = 1
 		} else if (v == 2) {
@@ -315,7 +315,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("side").style.display = "block"
 			document.getElementById("nav_autocast").style.display = "block"
 			document.getElementById("nav_running").style.display = "block"
-			document.getElementById("debug_space").style.display = "none"
+			document.getElementById("version_spacing").style.display = "none"
 			document.getElementById("skill_details_inactive").style.display = "none"
 		} else if (v == 3) {
 			skills_all = {amazon:skills_pd2_amazon, assassin:skills_pd2_assassin, barbarian:skills_pd2_barbarian, druid:skills_pd2_druid, necromancer:skills_pd2_necromancer, paladin:skills_pd2_paladin, sorceress:skills_pd2_sorceress}
@@ -329,7 +329,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("side").style.display = "none"
 			document.getElementById("nav_autocast").style.display = "none"
 			document.getElementById("nav_running").style.display = "none"
-			document.getElementById("debug_space").style.display = "block"
+			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
 			settings.autocast = 1
 		}
