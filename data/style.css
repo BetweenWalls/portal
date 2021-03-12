@@ -353,14 +353,14 @@ input[type="file"] {
 #class_name {
   left: 67px;
   top: 12px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Firefox Fix */
 
 @-moz-document url-prefix() {
   #class_name {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -620,7 +620,6 @@ input[type="file"] {
   display: none;
 }
 .skill_detail_wrapper a {
-  visibility: hidden;
   color: gray;
 }
 #skill_details_inactive {
