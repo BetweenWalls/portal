@@ -313,7 +313,6 @@ input[type="file"] {
   min-width: 100px;
   box-shadow: 0px 8px 12px 4px rgba(0,0,0,0.5);
   z-index: 9;
-  min-width: 260px;
 }
 .nav-dropdown-content-item {
   font-size: 13px;
