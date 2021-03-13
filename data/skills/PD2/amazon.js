@@ -313,30 +313,3 @@ var skills_pd2_amazon = [
 {data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 4 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 1 second<br>Mana Cost: ",""]}
 ];
-
-/*
-	//Javelin and Spear Skills
-	//Power Strike damage tooltip now properly shows in the character screen
-Power Strike increased base scaling by roughly 15%
-	//Power Strike increased radius by 50%
-	//Lightning Bolt increased synergies by 2%
-	//Lightning Fury increased bolts from 10 max to 14
-/Lightning fury mana cost reduced by half
-	//Passive and Magic Skills
-	//Fixed a bug that was causing Valkyries to Dodge / Evade / Avoid at an extremely high rate
-	//Bow and Crossbow Skills
-Magic Arrow damage scaling has been reworked and buffed 
-	//Fire Arrow tooltips now properly display its damage
-Fire Arrow has been rebalanced and buffed (roughly 50% damage gain by level 50)
-	//Fire Arrows Immolation Arrow synergy increased from 22% to 24%
-	//Cold Arrow tooltips now properly display its damage
-Cold Arrow has been rebalanced and buffed (roughly 50% damage gain by level 50)
-	//Cold Arrows Ice Arrow synergy increased from 20% to 22%
-	//Exploding Arrows Immolation Arrow synergy increased from 16% to 18%
-Exploding Arrow damage scaling has been buffed (roughly 30% damage gain by level 50)
-	//Ice Arrows Magic Arrow synergy reduced from 20% to 16%
-	//Ice Arrows Cold Arrow synergy increased from 14% to 16%
-	//Ice Arrows Freezing Arrow synergy increased from 14% to 16%
-	//Strafe damage per level increased from 14% to 16%
-	//Freezing Arrow Level 28+ scaling reduced from 30 per level to 28
-*/

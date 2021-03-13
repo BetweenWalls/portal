@@ -269,28 +269,3 @@ var skills_pd2_barbarian = [
 {data:d362, key:"362", code:155, name:"Whirlwind", i:27, req:[20,19,18], reqlvl:30, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"A whirling dance of death<br>that cuts a path through the<br>legions of your enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Velocity: +"," percent<br>Damage: "," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
 {data:d323, key:"323", code:146, name:"Double Swing", i:28, req:[18], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapon are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +14% Damage per Level", graytext:"", index:[1," percent"], text:["Damage: +","Attack: +"," percent<br>Mana Cost: ",""]},
 ];
-
-/*
-	//Warcries
-	//Howl range AoE scaling reduced by 50%
-	//Howl now lasts 3 seconds at all levels
-	//Battle Cry missile speed increased by 25%
-	//Battle Cry AoE increased by roughly 15%
-	//Grim Ward bonus damage per level increased from 4% to 5%
-	//Grim Ward starting bonus damage increased from 28% to 35%
-	//Grim Ward starting radius increased by 33.3%
-	//Grim Ward can now be used on Skeleton corpses
-	//Battle Command now grants +20% Enhanced Damage instead of +10% at Level 1
-	//Battle Command now grants +3% damage per level instead of +2%
-	//Combat Masteries
-	//Polearm and Spear mastery now starts at +30% Enhanced Damage instead of +25%
-	//Polearm and Spear mastery now gains 6% damage per level instead of 5%
-	//Combat Skills
-	//Bash now gains 12% damage per level instead of 10%
-	//Frenzy synergies increased from 4% to 6%
-	//Double Throw now properly displays its damage in the character screen
-	//Leap Attack synergies increased from 6% to 10%
-	//Whirlwind has been reworked to now have melee splash and to use proc effects but now attacks at 5 frames fixed instead of 4 and now attacks one target per attack instead of two (it is now much stronger for AoE clearing than previous ladders)
-	//Whirlwind Enhanced Damage at Level 1 reduced from +50% to +25%
-	//Whirlwind Enhanced Damage per level reduced from +6% to +4%
-*/

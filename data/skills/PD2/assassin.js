@@ -290,11 +290,11 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 ]};
 
 var skills_pd2_assassin = [
-{data:d112, key:"112", code:251, name:"Tiger Strike", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"<br>Charge-up Skill<br><br>Consecutive hits add damage bonuses<br>to finishing moves<br>Must use a dragon finishing move or<br>normal attack to release charges", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Charge 1 - +"," percent damage<br>Charge 2 - +"," percent damage<br>Charge 3 - +"," percent damage<br>Attack: +"," percent<br>Mana Cost: 1"]},
+{data:d112, key:"112", code:251, name:"Tiger Strike", i:0, req:[], reqlvl:1, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Charge 1 - +"," percent damage<br>Charge 2 - +"," percent damage<br>Charge 3 - +"," percent damage<br>Attack: +"," percent<br>Mana Cost: 1"]},
 {data:d113, key:"113", code:251, name:"Dragon Talon", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"<br>Finishing Move<br><br>Kick your enemies out of your way<br>Adds charged-up bonuses to the kick", syn_title:"<br>Dragon Talon Receives Bonuses From:<br>", syn_text:"Dragon Tail: +10% Damage per Level", graytext:"", index:[0,""], text:[""," Kicks<br>Kick Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 6"]},
 {data:d121, key:"121", code:251, name:"Fists of Fire", i:2, req:[], reqlvl:6, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Fists of Fire Receives Bonuses From:<br>", syn_text:"Phoenix Strike: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - fire damage: ","-","<br>Charge 2 - fire damage radius: 2.6 yards<br>Charge 3 - fire damage: ","-"," per second<br>Attack: +"," percent<br>Mana Cost: 2"]},
-{data:d123, key:"123", code:251, name:"Dragon Claw", i:3, req:[1], reqlvl:6, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"<br>Finishing Move<br><br>Slice and dice your enemies<br>with your dual claw-class weapons<br>Adds charged-up bonuses to both claw attacks", syn_title:"<br>Dragon Claw Receives Bonuses From:<br>", syn_text:"Claw and Dagger Mastery: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 2"]},
-{data:d132, key:"132", code:251, name:"Cobra Strike", i:4, req:[0], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Cobra Strike Receives Bonuses From:<br>", syn_text:"Venom: +12% Poison Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - poison bolt damage: ","-"," over 1 second<br>Charge 2 - +"," percent life and mana stealing<br>Charge 3 - poison cloud damage: ","-"," over 1 second<br>Attack: +"," percent<br>Mana Cost: 2"]},
+{data:d123, key:"123", code:251, name:"Dragon Claw", i:3, req:[1], reqlvl:6, reqWeapon:["claw"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"<br>Finishing Move<br><br>Slice and dice your enemies<br>with your dual claw-class weapons<br>Adds charged-up bonuses to both claw attacks", syn_title:"<br>Dragon Claw Receives Bonuses From:<br>", syn_text:"Claw and Dagger Mastery: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 2"]},
+{data:d132, key:"132", code:251, name:"Cobra Strike", i:4, req:[0], reqlvl:12, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Cobra Strike Receives Bonuses From:<br>", syn_text:"Venom: +12% Poison Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - poison bolt damage: ","-"," over 1 second<br>Charge 2 - +"," percent life and mana stealing<br>Charge 3 - poison cloud damage: ","-"," over 1 second<br>Attack: +"," percent<br>Mana Cost: 2"]},
 {data:d141, key:"141", code:251, name:"Claws of Thunder", i:5, req:[2], reqlvl:18, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Claws of Thunder Receives Bonuses From:<br>", syn_text:"Phoenix Strike: +16% Lightning Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - lightning damage: ","-","<br>Charge 2 - nova damage: ","-","<br>Charge 3 - charged bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
 {data:d143, key:"143", code:251, name:"Dragon Tail", i:6, req:[3,1], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"<br>Finishing Move<br><br>Knock back your enemies with an explosive kick<br>Adds charged-up bonuses to the kick<br><br>Radius: 4 yards", syn_title:"<br>Dragon Tail Receives Bonuses From:<br>", syn_text:"Dragon Talon: +10% Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 10"]},
 {data:d151, key:"151", code:251, name:"Blades of Ice", i:7, req:[5,2], reqlvl:24, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Blades of Ice Receives Bonuses From:<br>", syn_text:"Phoenix Strike: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - cold damage: ","-","<br>Charge 2 - cold damage radius: 4 yards<br>Charge 3 - freeze duration: "," seconds<br>Attack: +"," percent<br>Mana Cost: 3"]},
@@ -326,45 +326,3 @@ var skills_pd2_assassin = [
 
 {data:d162, key:"162", code:251, name:"Phoenix Strike", i:31, req:[7,5,2,4,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Phoenix Strike Receives Bonuses From:<br>", syn_text:"Fists of Fire: +10% Fire Damage per Level<br>Fists of Fire: +6% Average Fire Damage per Second per Level<br>Claws of Thunder: +13% Lightning Damage per Level<br>Blades of Ice: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - meteor damage: ","-","<br>Fire Explosion Damage: ","-"," per second<br>Charge 2 - chain lightning damage: ","-","<br>Charge 3 - chaos ice bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
 ];
-
-/*
-	//Martial Arts
-	//Martial Arts has been completely reworked and now functions the following way:
-	//Martial Arts has been reworked to cast the stage of the skill you are on when you attack with that skill so if a player has two charges they will use the second charge of that skill on attack and on the third attack they will use the third and reset back to 1. This converts the charge system to a "stage" system where your attacks are based on the amount of charges you have or the "stage" you are on and cycle from stages 1-3 and repeat. Finishers are no longer required however if you use one you will cast every stage of every charge you have generated. Charges are also universal so you can combo from stage 1 fists of fire into stage 2 blades of ice and finish with stage 3 cobra strike then begin a new combo string
-Cobra Strike has been reworked to cast 'poison teeth' on stage 1, dual leech on stage 2, and a poison cloud on stage 3 (these attacks carry Venom damage and poison damage from gear)
-	//Dragon Tail and Dragon Talon now properly synergise
-	//Shadow Disciplines
-	//Claw and Dagger Mastery increased from 4% to 8%
-	//Psychic Hammer synergies reduced from 18% to 15%
-	//Mind Blast synergies reduced from 12% to 10%
-	//Mind Blast starting AoE reduced by 1 and max AoE by 1
-Mind Blast Level 22+ scaling buffed slightly
-	//Venom now lasts 5 minutes at all levels
-	//Cloak of shadows now reduces defense by 1% per level instead of 3%
-	//Traps
-	//Traps now gain +% and -% elemental bonuses this includes facets
-	//Blade Sentinel synergies increased from 6% to 10%
-	//Blade Sentinel ¼ weapon damage increased to ¾
-	//Wake of Fires Level 8-16 scaling increased from 5 per level to 6 per level
-	//Wake of Fires Level 16-22 scaling increased from 15 per level to 16 per level
-	//Wake of Fires Level 22-28 scaling reduced from 27 per level to 24 per level
-	//Wake of Fires Level 28+ scaling reduced from 39 per level to 32 per level
-	//Wake of Fire now properly shoots 8 times instead of 5
-	//Wake of Fire damage tooltip now shows in the character screen
-	//Fixed the tooltip on Inferno Sentry
-Death Sentry Level 22+ scaling has been reduced
-	//Death Sentry synergies reduced from 6% to 4%
-	//Blade Fury weapon damage reduced from 100% to ¾
-Blade Fury flat physical damage reduced
-	//Lightning Sentry synergies increased from 10% to 12%
-	//Lightning Sentry now shoots 12 times instead of 10
-	//Chain Lightning Sentry synergies increased from 12% to 15%
-	//Chain Lightning Sentry now gains 1 extra damage per level (roughly an 8% damage increase overall)
-	//Chain Lightning Sentry starting max damage is now 40 instead of 35
-	//Chain lightning Sentry Level 22+ scaling has been increased from 16 to 18
-	//Chain lightning Sentry Level 28+ scaling increased from 20 to 22
-	//Blade Shields increased weapon damage from ¼ to ¾
-	//Blade Shield now lasts 5 minutes at all levels
-	//Fists of Fire damage reduced
-	//Wake of Fire synergies reduced from 8% to 10%
-*/

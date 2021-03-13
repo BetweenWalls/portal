@@ -434,28 +434,3 @@ var skills_pd2_necromancer = [
 
 {data:d313, key:"313", code:301, name:"Curse Mastery", i:32, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Provides benefits to your curses and allows<br>you to apply an additional curse for every 10 base levels", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Maximum Curses: ",""]},
 ];
-
-/*
-	//Summoning Skills
-	//Raise Skeletons Enhanced Damage per level increased from +7% to +10%
-	//Raise Skeletons synergies increased from 8% to 10%
-	//Skeletal Mage synergies increased from 8% to 12%
-	//Blood Warp now recovers the lost health over 3 seconds. Casting Blood Warp again will replace the previous life recovery effect
-Fire Golems scaling has been reworked and weighted more towards its Holy Fire aura and less towards its melee attack
-Fire Golems starting holy fire level has been reduced 
-	//Fire Golems are no longer immune to fire
-	//Revives Level 1 duration increased from 2 minutes to 5 minutes
-	//Revives now have ½ the health of the creature they were revived from
-	//Revives are no longer bugged and gaining much more damage than their tooltip shows
-	//Revive Enhanced Damage per level increased from +2% to +10%
-	//You now start with 3 revives at Level 1 instead of 1
-	//Poison and Bone Skills
-Teeths Level 8+ scaling slightly improved
-	//Bone Spears Bone Armor synergy increased from 5% to 10%
-	//Bone Spirits Bone Armor synergy increased from 5% to 10%
-	//Curses
-	//Dark Pacts all curse synergies increased from 6% to 12%
-	//Dark Pacts Curse Mastery and Iron Maiden synergies increased from 10% to 18%
-Dark Pacts Level 28+ scaling increased by roughly 10%
-	//Dark Pacts explosion range increased from 4 to 5
-*/

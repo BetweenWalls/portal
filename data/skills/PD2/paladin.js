@@ -352,32 +352,3 @@ var skills_pd2_paladin = [
 {data:d332, key:"332", code:302, name:"Holy Light", i:31, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Calls down light from the heavens<br>to heal an ally from afar", syn_title:"<br>Holy Light Receives Bonuses From:<br>", syn_text:"Prayer: +5 Life Healed per Level<br>Holy Nova: +5 Life Healed per Level", graytext:"", index:[0,""], text:["Heals: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:303, name:"Holy Nova", i:32, req:[29,26,31,22,28,27,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of holy energy<br>that damages enemies or heals allies", syn_title:"<br>Holy Nova Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Magic Damage per Level<br>Prayer: +10 Life Healed per Level<br>Holy Light: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","<br>Mana Cost: ",""]},
 ];
-
-/*
-	//Defensive Auras
-	//Prayer no longer costs mana
-	//Resist Fires bonus elemental damage per level reduced from 3% to 1%
-	//Resist Fire maximum resist bonuses reduced from 150 to 100
-	//Resist Fire Level 1 bonuses reduced from 45% to 25%
-	//Resist Colds bonus elemental damage per level reduced from 3% to 1%
-	//Resist Cold maximum resist bonuses reduced from 150 to 100
-	//Resist Cold Level 1 bonuses reduced from 45% to 25%
-	//Resist Lightnings bonus elemental damage per level reduced from 3% to 1%
-	//Resist Lightning maximum resist bonuses reduced from 150 to 100
-	//Resist Lightning Level 1 bonuses reduced from 45% to 25%
-	//Salvation bonus to all elements reduced from 2% per level to 1% every second level
-	//Salvation starting bonus to all elements reduced from 5% to 3%
-	//Salvation maximum all resist reduced from 120 to 75
-	//Salvation Level 1 resist bonus reduced from 25 to 20
-	//Offensive Auras
-	//Sanctuary Aura synergies increased from 6% to 8%
-Sanctuary Aura scaling improved from level 16+
-	//Combat Skills
-	//Holy Bolt synergies reduced from 16% to 12%
-	//Holy Bolt heal synergies reduced from 10% to 6%
-	//Blessed Hammer synergies increased from 10% to 12%
-	//Blessed Hammer now has 33% faster travel speed
-	//Fist of Heavens now hits all creature types
-	//Fist of heavens now has holy light as a 15% magic damage synergy
-Fist of Heavens holy bolt damage scaling has been buffed
-*/

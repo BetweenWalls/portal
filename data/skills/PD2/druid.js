@@ -376,29 +376,3 @@ var skills_pd2_druid = [
 {data:d341, key:"341", code:249, name:"Spirit of Barbs", i:29, req:[23], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon spirit pet that reflects damage<br>taken by you and your party<br>back at your enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Returns "," Damage to Attackers<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:250, name:"Summon Grizzly", i:30, req:[27,23,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a ferocious grizzly bear<br>Can summon an additional grizzly bear at base level 20", syn_title:"<br>Summon Grizzly Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Spirit Wolf: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Werebear: +6% Damage per Level<br>Werewolf: -12% Damage per Level<br>", graytext:"", index:[3," percent"], text:["Mana Cost: 40<br>Life: ","<br>Attack: +"," percent<br>Defense: +","Damage: ","-","<br>Damage: +"," percent"]}
 ];
-
-/*
-	//Elemental Skills
-	//Firestorm synergies increased from 23% to 25%
-	//Molten Boulder synergies increased from 10% to 12%
-	//Fissure synergies increased from 6% to 8%
-	//Twister synergies increased from 15% to 20%
-	//Volcano synergies increased from 8% to 10%
-	//Tornado synergies increased from 11% to 14%
-	//Gust now chills instead of stuns
-	//Shape Shifting Skills
-	//Base health for Lycanthropy increased from 10% to 15% and life per level from Lycanthropy increased from 2% to 3%
-	//Hunger now gains 2% movement speed per level instead of 1%
-	//Hunger now gains 2 seconds per level instead of 1
-	//Hunger can now be used on skeleton corpses
-	//Rabies now has Lycanthropy as an additional synergy at 17%
-	//Rabies Feral Rage synergy reduced from 22% to 17%
-	//Rabies Poison Creeper synergy reduced from 22% to 17%
-	//Shockwave synergies increased from 14% to 16%
-	//Fury Enhanced Damage per level reduced from +20% per level to +15%
-	//Fury now has Feral Rage as a synergy at +10% Enhanced Damage per level
-	//Summoning Skills
-Poison Creeper damage scaling rebalanced and increased
-	//Poison Creeper synergies increased from 8% to 20%
-Oak Sage regen scaling reworked and increased
-*/
