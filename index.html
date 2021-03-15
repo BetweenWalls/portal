@@ -614,7 +614,8 @@ function initial_load() {
 	params = new URLSearchParams(window.location.search);
 	if (params.has('v') == true) {
 		var v = params.get('v');
-		if (v.toLowerCase() == "pod" || v == "2") { version = 2 }
+		if (v.toLowerCase() == "van" || v == "vanilla" || v == "1") { version = 1 }
+		else if (v.toLowerCase() == "pod" || v == "2") { version = 2 }
 		else if (v.toLowerCase() == "pd2" || v == "3") { version = 3 }
 		else { params.set('v', version) }
 	} else {
@@ -628,8 +629,8 @@ function initial_load() {
 	}
 	
 	// begin program
-	if (version == 3) {
-		changeVersion(version, initial_class)	// version = Project D2
+	if (version != 2) {
+		changeVersion(version, initial_class)	// version = Project D2 or vanilla
 	} else {
 		startup(initial_class)	// version = Path of Diablo  (default)
 	}
