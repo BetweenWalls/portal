@@ -98,10 +98,10 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 	// ---------------------------------
 	setSkillAmounts : function(s) {
 		skills[s].extra_levels += character.skills_paladin
-		if (s == 11) { skills[s].extra_levels += character.skills_fire_all }
-		if (s == 15) { skills[s].extra_levels += character.skills_cold_all }
-		if (s == 16 || s == 29) { skills[s].extra_levels += character.skills_lightning_all }
-		if (s == 17 || s == 22 || s == 26 || s == 29 || s == 32) { skills[s].extra_levels += character.skills_magic_all }
+		if (s == 1 || s == 11) { skills[s].extra_levels += character.skills_fire_all }
+		if (s == 3 || s == 15) { skills[s].extra_levels += character.skills_cold_all }
+		if (s == 5 || s == 16 || s == 29) { skills[s].extra_levels += character.skills_lightning_all }
+		if (s == 4 || s == 7 || s == 17 || s == 22 || s == 26 || s == 28 || s == 29 || s == 32) { skills[s].extra_levels += character.skills_magic_all }
 		if (s < 10) {
 			skills[s].extra_levels += character.skills_defensive
 			skills[s].extra_levels += character.skills_tree1

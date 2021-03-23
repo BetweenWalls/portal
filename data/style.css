@@ -292,7 +292,6 @@ input[type="file"] {
   font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
 }
 .nav-dropbtn a {
   padding: 0;

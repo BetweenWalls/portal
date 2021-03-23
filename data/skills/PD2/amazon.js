@@ -96,7 +96,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (s == 20 || s == 24 || s == 29) { skills[s].extra_levels += character.skills_cold_all }
 		if (s == 1 || s == 4 || s == 5 || s == 8 || s == 9) { skills[s].extra_levels += character.skills_lightning_all }
 		if (s == 2 || s == 6) { skills[s].extra_levels += character.skills_poison_all }
-		if (s == 21) { skills[s].extra_levels += character.skills_magic_all }
+		if (s == 10 || s == 12 || s == 17 || s == 18 || s == 21 || s == 25) { skills[s].extra_levels += character.skills_magic_all }
 		if (s < 10) {
 			skills[s].extra_levels += character.skills_javelins
 			skills[s].extra_levels += character.skills_tree1

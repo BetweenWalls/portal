@@ -132,13 +132,14 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		skills[s].extra_levels += character.skills_necromancer
 		if (s == 9 || s == 14) { skills[s].extra_levels += character.skills_fire_all }
 		if (s == 11 || s == 15 || s == 19) { skills[s].extra_levels += character.skills_poison_all }
-		if (s == 12 || s == 16 || s == 18 || s == 22) { skills[s].extra_levels += character.skills_magic_all }
+		if (s == 1 || s == 3 || s == 5 || s == 8 || s == 10 || s == 12 || s == 13 || s == 16 || s == 17 || s == 18 || s == 31) { skills[s].extra_levels += character.skills_magic_all }
 		if (s < 11) {
 			skills[s].extra_levels += character.skills_summoning_necromancer
 			skills[s].extra_levels += character.skills_tree1
 		} else if (s > 19 && s != 31) {
 			skills[s].extra_levels += character.skills_curses
 			skills[s].extra_levels += character.skills_tree3
+			skills[s].extra_levels += character.skills_magic_all
 		} else {
 			skills[s].extra_levels += character.skills_poisonBone
 			skills[s].extra_levels += character.skills_tree2
