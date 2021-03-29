@@ -31,7 +31,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Volcano" && elem > 1 && elem < 4) {			result *= (1+character.fDamage/100) }
 		if (skill.name == "Armageddon" && elem > 2 && elem < 7) {		result *= ((1 + 0.08*skills[4].level + 0.08*skills[1].level + 0.08*skills[7].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Arctic Blast" && elem < 2) {					result *= ((1 + 0.25*skills[10].level + 0.18*skills[8].level + 0.18*skills[6].level + 0.18*skills[5].level) * (1+character.cDamage/100)) }
-		if (skill.name == "Twister" && elem > 2 && elem < 4) {			result *= (1 + 0.20*skills[10].level + 0.20*skills[8].level + 0.20*skills[3].level) }
+		if (skill.name == "Twister" && elem > 1 && elem < 4) {			result *= (1 + 0.20*skills[10].level + 0.20*skills[8].level + 0.20*skills[3].level) }
 		if (skill.name == "Tornado" && elem < 2) {						result *= (1 + 0.14*skills[3].level + 0.14*skills[6].level + 0.14*skills[10].level) }
 		if (skill.name == "Hurricane" && elem > 0 && elem < 3) {		result *= ((1 + 0.08*skills[3].level + 0.08*skills[8].level + 0.08*skills[6].level) * (1+character.cDamage/100)) }
 		
