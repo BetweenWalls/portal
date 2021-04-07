@@ -1,17 +1,20 @@
 # [Portal](https://BetweenWalls.github.io/portal/)
 
-Character Planner for Diablo 2 (Path of Diablo & Project Diablo II)
+Character Planner for Diablo 2 (Vanilla, Path of Diablo, Project Diablo II)
 
 ### [Download](https://github.com/BetweenWalls/portal/archive/master.zip)
 
-### Features:
+### Features (All Versions):
 * all skill info up to level 60 & synergy calculations
-* skill damage calculation, character stats
-* equipment selection & modification (corrupting, socketing, upgrading)
-* mercenary selection
 * charm inventory
-* snapshotting for buffs
 * saving/loading, URL-sharing
+
+### Additional Features (PoD):
+* equipment selection & modification (corrupting, socketing, upgrading)
+* skill damage calculation
+* all character stats
+* mercenary selection
+* snapshotting for buffs
 
 ### Controls:
 * Click on the character's level or class to change them
@@ -34,7 +37,7 @@ https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&s
 * DoT (Damage over Time) stats are added without considering their time component
 * Dual-Wielding damage may be incorrect (some on-weapon damage affixes affect both weapons)
 * Minion damage may be incorrect (some bonuses from auras/items aren't included)
-* Snapshotted skills may not work correctly when loaded from a file
+* Snapshotted skills may not work correctly with saved files or shared URLs
 
 ### Notes:
 * Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level - it won't be accurate for bosses or monsters at much higher/lower levels
@@ -56,7 +59,6 @@ https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&s
 * debuff tracking
 * party tracking (i.e. buffs from party members)
 * pvp info
-* comparison to original D2 skills/stats
 * dynamic item/skill recommendations
 
 ### Feedback:
