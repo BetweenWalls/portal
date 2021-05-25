@@ -290,7 +290,8 @@ var character_barbarian = {class_name:"Barbarian", strength:30, dexterity:20, vi
 		["chance",3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,], 
 ]};
 /*[30] Puncture			*/ var d252 = {values:[
-		["open wounds",4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,], 
+		["open wounds",4,7,9,11,13,14,15,15,16,17,18,18,19,19,19,20,20,20,20,21,21,21,21,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,], 
+		["bleed damage",1,2,3,4,5,7,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,], 
 ]};
 /*[31] Pulverize		*/ var d262 = {values:[
 		["damage min",9,13,17,21,25,29,33,37,43,49,55,61,67,73,79,85,94,103,112,121,130,139,150,161,172,183,194,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,], 
@@ -333,7 +334,7 @@ var skills_barbarian = [
 
 {data:d312, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapon are equipped<br>attacks two targets if possible,<br>or one target twice<br><br>Deals 100% of Weapon Damage", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Bash: +5% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack Rating: +"," percent<br>Mana Cost: ",""]},
 
-{data:d232, key:"232", code:310, name:"Counter Attack", i:29, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Chance to strike back at an enemy attacker", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to counter attack: "," percent"], incomplete:1},
-{data:d252, key:"252", code:311, name:"Puncture", i:30, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Opens a deep wound in the flesh of enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance to Open Wounds"], incomplete:1},
+{data:d232, key:"232", code:310, name:"Counter Attack", i:29, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Hit back your attackers with main hand weapon<br><br>Deals 100% of Weapon Damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to counter attack: "," percent"], incomplete:1},
+{data:d252, key:"252", code:311, name:"Puncture", i:30, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Opens a deep wound in the flesh of enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance to Open Wounds<br>Wounds Bleed Damage: "," per second"], incomplete:1},
 {data:d262, key:"262", code:312, name:"Pulverize", i:31, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Attacks unleash powerful pulverizing forces", syn_title:"<br>Pulverize Receives Bonuses From:<br>", syn_text:"War Cry: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>"," percent chance to pulverize"], incomplete:1},
 ];
