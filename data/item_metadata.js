@@ -1369,6 +1369,8 @@ ar_vs_demons_per_level:1,	// TODO: implement (vanilla affix found on Grief that 
 oskill_Whirlwind:{index:["oskill_Whirlwind"], format:["+"," to Whirlwind"]},
 lDamage_max_per_level:{index:["lDamage_max_per_level","lDamage_max_per_level"], format:["+"," to Maximum Lightning Damage ("," per level)"], mult:["level",1]},
 
+oskill_Heart_of_Wolverine:{index:["oskill_Heart_of_Wolverine"], format:["+"," to Heart of Wolverine"]},
+
 // TODO: implement these
 skills_lightning_all:{index:["skills_lightning_all"], format:["+"," to Lightning Skills"]},
 skills_magic_all:{index:["skills_magic_all"], format:["+"," to Magic Skills"]},
