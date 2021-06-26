@@ -58,6 +58,18 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		var result = {};
 		
 		// unsupported
+		/*
+		if (skill.name == "Inner Sight") { result.enemy_attack = skill.data.values[1][lvl]; result.enemy_defense_flat = skill.data.values[2][lvl]; result.radius = skill.data.values[3][lvl]; result.duration:skill.data.values[0][lvl]; }
+		if (skill.name == "Slow Movement") { slows_enemies:skill.data.values[0][lvl]; result.duration = 5; }
+		if (skill.name == "Critical Strike") { result.cstrike = skill.data.values[0][lvl]; }
+		if (skill.name == "Penetrate") { result.ar_bonus = skill.data.values[1][lvl]; result.target_defense = skill.data.values[0][lvl]; }
+		if (skill.name == "Pierce") { result.pierce = skill.data.values[0][lvl]; }
+		if (skill.name == "Dodge") { result.dodge = skill.data.values[0][lvl]; }
+		if (skill.name == "Evade") { result.evade = skill.data.values[0][lvl]; }
+		// No stat buffs:
+		if (skill.name == "Decoy") { result.duration = skill.data.values[8][lvl]; }
+		if (skill.name == "Valkyrie") { result.amountSummoned = 1+character.extraValkyrie; }
+		*/
 		
 	return result
 	},
@@ -289,7 +301,7 @@ var skills_pd2_amazon = [
 {data:d143, key:"143", code:12, name:"Plague Javelin", i:6, req:[4,2,1,0], reqlvl:18, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your javelin to release<br>expanding clouds of poison upon impact", syn_title:"<br>Plague Javelin Receives Bonuses From:<br>", syn_text:"Poison Javelin: +14% Poison Damage per Level<br>Javelin and Spear Mastery: +7% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
 {data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +8% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
 {data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +14% Lightning Damage per Level<br>Charged Strike: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
-{data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases 14 bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
+{data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases 10 bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 
 {data:d211, key:"211", code:16, name:"Inner Sight", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Illuminates nearby enemies<br>making them easier to hit<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Enemy Attack Rating: ","%<br>Enemy Defense: ","<br>Radius: "," yards<br>Mana Cost: 5"]},
 {data:d213, key:"213", code:17, name:"Critical Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your attacks have a chance to do double damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance",""]},

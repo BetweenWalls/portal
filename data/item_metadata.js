@@ -1371,6 +1371,8 @@ lDamage_max_per_level:{index:["lDamage_max_per_level","lDamage_max_per_level"], 
 
 oskill_Heart_of_Wolverine:{index:["oskill_Heart_of_Wolverine"], format:["+"," to Heart of Wolverine"]},
 
+slow_ranged_attacks:{index:["slow_ranged_attacks"], format:["Ranged Attacks slowed to "," percent"]},
+
 // TODO: implement these
 skills_lightning_all:{index:["skills_lightning_all"], format:["+"," to Lightning Skills"]},
 skills_magic_all:{index:["skills_magic_all"], format:["+"," to Magic Skills"]},
