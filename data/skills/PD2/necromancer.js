@@ -63,8 +63,11 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Dark Pact" && elem > 0 && elem < 3) {			result *= (1 + 0.18*skills[32].level + 0.18*skills[24].level + 0.12*(skills[20].level+skills[21].level+skills[23].level+skills[25].level+skills[26].level+skills[27].level+skills[28].level+skills[29].level+skills[30].level)) }
 		if (skill.name == "Amplify Damage" && elem == 0) {					result = -10 - skill.level*2 - skills[32].level }
 		if (skill.name == "Amplify Damage" && elem == 1) {					result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Iron Maiden" && elem == 0) {						result += 6*skills[32].level }
+		if (skill.name == "Iron Maiden" && elem == 2) {						result += 0.6*Math.floor(skills[32].level/3) }
 		if (skill.name == "Life Tap" && elem == 0) {						result = 8 + skill.level + Math.floor(skills[32].level/2) }
 		if (skill.name == "Life Tap" && elem == 1) {						result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Weaken" && elem == 0) {							result -= Math.floor(skills[32].level/2) }
 		if (skill.name == "Weaken" && elem == 1) {							result += 0.6*Math.floor(skills[32].level/3) }
 		if (skill.name == "Decrepify" && elem == 0) {						result = -10 - skill.level - skills[32].level }
 		if (skill.name == "Decrepify" && elem == 1) {						result = -15 - skill.level - skills[32].level }
