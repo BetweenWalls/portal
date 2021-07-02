@@ -29,7 +29,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		
 		if (skill.name == "Psychic Hammer" && elem > 0 && elem < 3) {	result *= (1 + 0.15*skills[17].level + 0.15*skills[14].level + 0.15*skills[16].level) }
 		if (skill.name == "Mind Blast" && elem == 0) { 					result = 2 - 2*Math.ceil((skill.level-1)/20) }
-		if (skill.name == "Mind Blast" && elem == 1) { 					result = ~~skill.data.values[elem][skill.level] + 2.6-2.6*Math.min(1,skill.level) }
+		if (skill.name == "Mind Blast" && elem == 1) { 					result = ~~skill.data.values[elem][skill.level] + 1.6-1.6*Math.min(1,skill.level) }
 		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= (1 + 0.10*skills[10].level + 0.10*skills[14].level + 0.10*skills[16].level) }
 		if (skill.name == "Venom" && elem < 2) { 						result *= ((1 + 0.06*skills[4].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Burst of Speed" && elem == 0) { 				result = ~~skill.data.values[elem][skill.level] + 22-22*Math.min(1,skill.level) }
@@ -123,7 +123,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Attack +%",25,45,65,85,105,125,145,165,185,205,225,245,265,285,305,325,345,365,385,405,425,445,465,485,505,525,545,565,585,605,625,645,665,685,705,725,745,765,785,805,825,845,865,885,905,925,945,965,985,1005,1025,1045,1065,1085,1105,1125,1145,1165,1185,1205,], 
 ]};
 /*[ 1] Dragon Talon		*/ var d113 = {values:[
-		["Kicks",1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,11,], 
+		["Kicks",1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,], 
 		["Kick Damage +%",25,40,55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,], 
 		["Attack +%",20,55,90,125,160,195,230,265,300,335,370,405,440,475,510,545,580,615,650,685,720,755,790,825,860,895,930,965,1000,1035,1070,1105,1140,1175,1210,1245,1280,1315,1350,1385,1420,1455,1490,1525,1560,1595,1630,1665,1700,1735,1770,1805,1840,1875,1910,1945,1980,2015,2050,2085,], 
 ]};

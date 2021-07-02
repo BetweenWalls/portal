@@ -16,10 +16,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		var result = skill.data.values[elem][lvl];
 		
 		if (skill.name == "War Cry" && elem < 2) { 			result *= (1 + 0.18*skills[0].level + 0.18*skills[5].level + 0.12*skills[2].level + 0.12*skills[3].level + 0.12*skills[6].level + 0.12*skills[9].level) }
-		if (skill.name == "Shout" && elem == 1) { 			result = (300 + 5*skills[6].level + 5*skills[9].level) }
-		if (skill.name == "Battle Orders" && elem == 0) { 	result = (300 + 5*skills[3].level + 5*skills[9].level) }
 		if (skill.name == "Battle Command" && elem == 0) { 	result = 1+Math.floor(skill.level/10) }
-		if (skill.name == "Battle Command" && elem == 2) { 	result = (300 + 5*skills[3].level + 5*skills[6].level) }
 		
 		if (skill.name == "Combat Reflexes" && elem == 0) {	result = 10+10*skill.level }
 		if (skill.name == "Iron Skin" && elem == 0) {		result = Math.floor(skill.level/2) }
@@ -110,7 +107,6 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 ]};
 /*[ 3] Shout			*/ var d121 = {values:[
 		["Defense +%",25,33,41,49,57,65,73,81,89,97,105,113,121,129,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,377,385,393,401,409,417,425,433,441,449,457,465,473,481,489,497,], 
-		["Duration",], 
 ]};
 /*[ 4] Find Item		*/ var d133 = {values:[
 		["% Chance",13,19,24,29,32,35,37,39,41,42,44,45,46,47,47,49,49,50,50,51,51,52,52,53,53,53,54,54,55,55,55,55,56,56,56,56,56,57,57,57,57,57,57,57,58,58,58,58,58,58,58,58,58,59,59,59,59,59,59,60,], 
@@ -121,7 +117,6 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Physical Damage Resistance %",-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-26,-27,-27,-28,-28,-29,-29,-30,-30,-31,-31,-32,-32,-33,-33,-34,-34,-35,-35,-36,-36,-37,-37,-38,-38,-39,-39,-40,-40,-41,-41,-42,-42,-43,-43,-44,-44,-45,], 
 ]};
 /*[ 6] Battle Orders	*/ var d151 = {values:[
-		["Duration",], 
 		["Max Life",50,65,80,95,110,125,140,155,170,185,200,215,230,245,260,275,290,305,320,335,350,365,380,395,410,425,440,455,470,485,500,515,530,545,560,575,590,605,620,635,650,665,680,695,710,725,740,755,770,785,800,815,830,845,860,875,890,905,920,935,], 
 		["Max Mana",25,32,40,47,55,62,70,77,85,92,100,107,115,122,130,137,145,152,160,167,175,172,190,197,205,212,220,227,235,242,250,257,265,272,280,287,295,302,310,317,325,332,340,347,355,362,370,377,385,392,400,407,415,422,430,437,445,452,460,467,], 
 ]};
@@ -139,7 +134,6 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 /*[ 9] Battle Command	*/ var d161 = {values:[
 		["Bonus Skills",], 
 		["Damage +%",20,23,26,29,32,35,38,41,44,47,50,53,56,59,62,65,68,71,74,77,80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125,128,131,134,137,140,143,146,149,152,155,158,161,164,167,170,173,176,179,182,185,188,191,194,197,], 
-		["Duration",], 
 ]};
 
 /*[10] General Mastery	*/ var d211 = {values:[
@@ -240,13 +234,13 @@ var skills_pd2_barbarian = [
 {data:d111, key:"111", code:128, name:"Howl", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Sends nearby monsters<br>scrambling away in fear", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Enemy runs up to "," yards<br>Enemy runs for 3 seconds<br>Mana Cost: 4",""]},
 {data:d113, key:"113", code:129, name:"Find Potion", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>for a chance to find a potion", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 1",""]},
 {data:d142, key:"142", code:130, name:"Taunt", i:2, req:[8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Enrages a monster into relentlessly attacking", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Target's Damage: "," percent<br>Target's Attack: "," percent<br>Mana Cost: 3",""]},
-{data:d121, key:"121", code:131, name:"Shout", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Warns of impending danger and improves the defense<br>rating of you and your party", syn_title:"<br>Shout Receives Bonuses From:<br>", syn_text:"Battle Orders: +5 Seconds per Level<br>Battle Command: +5 Seconds per Level", graytext:"", index:[0,""], text:["Defense: +"," percent<br>Duration: "," seconds<br>Mana Cost: 6",""]},
+{data:d121, key:"121", code:131, name:"Shout", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Warns of impending danger and improves the defense<br>rating of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Defense: +"," percent<br>Duration: 300 seconds<br>Mana Cost: 6",""]},
 {data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""]},
-{data:d162, key:"162", code:133, name:"Battle Cry", i:5, req:[6,3,2,8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Fearsome cry that decreases<br>enemies' defense rating and damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense: "," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 5",""]},
-{data:d151, key:"151", code:134, name:"Battle Orders", i:6, req:[3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Improves the maximum mana, life and<br>stamina of you and your party", syn_title:"<br>Battle Orders Receives Bonuses From:<br>", syn_text:"Shout: +5 Seconds per Level<br>Battle Command: +5 Seconds per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Max Life: "," percent<br>Max Mana: "," percent<br>Mana Cost: 7",""]},
+{data:d162, key:"162", code:133, name:"Battle Cry", i:5, req:[6,3,2,8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Fearsome cry that decreases<br>enemies' defense rating and physical resistance", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense: "," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 5",""]},
+{data:d151, key:"151", code:134, name:"Battle Orders", i:6, req:[3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Improves the maximum mana, life and<br>stamina of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 300 seconds<br>Max Life: "," percent<br>Max Mana: "," percent<br>Mana Cost: 7",""]},
 {data:d153, key:"153", code:135, name:"Grim Ward", i:7, req:[2,8,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to create a frightening totem<br>that increases damage and attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["+"," Attack Rating<br>Damage: +"," percent<br>Duration: 40 seconds<br>Radius: "," yards<br>Mana Cost: 4",""]},
-{data:d122, key:"122", code:136, name:"War Cry", i:8, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Injures and stuns all nearby enemies", syn_title:"<br>War Cry Receives Bonuses From:<br>", syn_text:"Howl: +18% Damage per Level<br>Battle Cry: +18% Damage per Level<br>Taunt: +12% Damage per Level<br>Shout: +12% Damage per Level<br>Battle Command: +12% Damage per Level<br>Battle Orders: +12% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
-{data:d161, key:"161", code:137, name:"Battle Command", i:9, req:[6,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases all current skill levels for you and your party", syn_title:"<br>Battle Command Receives Bonuses From:<br>", syn_text:"Shout: +5 Seconds per Level<br>Battle Orders: +5 Seconds per Level", graytext:"", index:[1,""], text:["Grants an Additional Skill Level every 10 Base Levels<br>Bonus Skills: ","Damage: +"," percent<br>Duration: "," seconds<br>Mana Cost: 11",""]},
+{data:d122, key:"122", code:136, name:"War Cry", i:8, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Injures all nearby enemies", syn_title:"<br>War Cry Receives Bonuses From:<br>", syn_text:"Howl: +18% Damage per Level<br>Battle Cry: +18% Damage per Level<br>Taunt: +12% Damage per Level<br>Shout: +12% Damage per Level<br>Battle Command: +12% Damage per Level<br>Battle Orders: +12% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
+{data:d161, key:"161", code:137, name:"Battle Command", i:9, req:[6,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases all current skill levels for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1,""], text:["Grants an Additional Skill Level every 10 Base Levels<br>Bonus Skills: ","Damage: +"," percent<br>Duration: 300 seconds<br>Mana Cost: 11",""]},
 
 {data:d211, key:"211", code:138, name:"General Mastery", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves sword, axe and mace fighting skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
 {data:d222, key:"222", code:139, name:"Polearm and Spear Mastery", i:11, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves pole arm and spear skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
