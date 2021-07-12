@@ -1011,6 +1011,8 @@ var equipment = {
 	/* paladin		*/	skill_Prayer:1, skill_Resist_Fire:1, skill_Defiance:1, skill_Resist_Cold:1, skill_Cleansing:1, skill_Resist_Lightning:1, skill_Vigor:1, skill_Meditation:1, skill_Redemption:1, skill_Salvation:1, skill_Might:1, skill_Holy_Fire:1, skill_Precision:1, skill_Blessed_Aim:1, skill_Concentration:1, skill_Holy_Freeze:1, skill_Holy_Shock:1, skill_Sanctuary:1, skill_Fanaticism:1, skill_Conviction:1, skill_Sacrifice:1, skill_Smite:1, skill_Holy_Bolt:1, skill_Zeal:1, skill_Charge:1, skill_Vengeance:1, skill_Blessed_Hammer:1, skill_Conversion:1, skill_Holy_Shield:1, skill_Fist_of_the_Heavens:1, skill_Dashing_Strike:1,
 	/* sorceress	*/	skill_Ice_Bolt:1, skill_Frigerate:1, skill_Frost_Nova:1, skill_Ice_Blast:1, skill_Shiver_Armor:1, skill_Glacial_Spike:1, skill_Blizzard:1, skill_Freezing_Pulse:1, skill_Chilling_Armor:1, skill_Frozen_Orb:1, skill_Cold_Mastery:1, skill_Charged_Bolt:1, skill_Static_Field:1, skill_Telekinesis:1, skill_Nova:1, skill_Lightning_Surge:1, skill_Chain_Lightning:1, skill_Teleport:1, skill_Discharge:1, skill_Energy_Shield:1, skill_Lightning_Mastery:1, skill_Thunder_Storm:1, skill_Fire_Bolt:1, skill_Warmth:1, skill_Blaze:1, skill_Immolate:1, skill_Fire_Ball:1, skill_Fire_Wall:1, skill_Enflame:1, skill_Meteor:1, skill_Fire_Mastery:1, skill_Hydra:1	},
 {debug:1, name:"+1 skill", req_level:100, all_skills:1},
+{debug:1, name:"+5 skills", req_level:100, all_skills:5},
+{debug:1, name:"+10 skills", req_level:100, all_skills:10},
 {debug:1, name:"+20 skills", req_level:100, all_skills:20},
 {debug:1, name:"-1% ias", req_level:100, ias:-1},
 {debug:1, name:"+1% ias", req_level:100, ias:1},
