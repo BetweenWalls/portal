@@ -19,7 +19,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Claws of Thunder" && elem < 6) { 			result *= ((1 + 0.16*skills[31].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Blades of Ice" && elem < 2) { 				result *= ((1 + 0.20*skills[31].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem < 2) { 				result *= ((1 + 0.10*skills[2].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Phoenix Strike" && elem > 1 && elem < 4) { 	result *= ((1 + 0.06*skills[2].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Phoenix Strike" && elem > 1 && elem < 4) { 	result *= ((1 + 0.10*skills[2].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem > 3 && elem < 6) { 	result *= ((1 + 0.13*skills[5].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem > 5 && elem < 8) { 	result *= ((1 + 0.10*skills[7].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Dragon Talon" && elem == 1) { 				result += (10*skills[6].level) }
@@ -29,19 +29,19 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		
 		if (skill.name == "Psychic Hammer" && elem > 0 && elem < 3) {	result *= (1 + 0.15*skills[17].level + 0.15*skills[14].level + 0.15*skills[16].level) }
 		if (skill.name == "Mind Blast" && elem == 0) { 					result = 2 - 2*Math.ceil((skill.level-1)/20) }
-		if (skill.name == "Mind Blast" && elem == 1) { 					result = ~~skill.data.values[elem][skill.level] + 1.6-1.6*Math.min(1,skill.level) }
-		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= (1 + 0.10*skills[10].level + 0.10*skills[14].level + 0.10*skills[16].level) }
+		if (skill.name == "Mind Blast" && elem == 1) { 					result = ~~skill.data.values[elem][skill.level] + 2-2*Math.min(1,skill.level) }
+		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= (1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) }
 		if (skill.name == "Venom" && elem < 2) { 						result *= ((1 + 0.06*skills[4].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Burst of Speed" && elem == 0) { 				result = ~~skill.data.values[elem][skill.level] + 22-22*Math.min(1,skill.level) }
 		
 		if (skill.name == "Fire Blast" && elem == 0) { 					result = 1 + Math.floor(skill.level/4) }
-		if (skill.name == "Fire Blast" && elem > 0 && elem < 3) { 		result *= ((1 + 0.09*skills[21].level + 0.09*skills[23].level + 0.09*skills[26].level + 0.09*skills[30].level + 0.09*skills[24].level + 0.09*skills[27].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Fire Blast" && elem > 0 && elem < 3) { 		result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[26].level + 0.12*skills[30].level + 0.12*skills[24].level + 0.12*skills[27].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Wake of Fire" && elem < 2) { 				result *= ((1 + 0.08*skills[20].level + 0.08*skills[27].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Wake of Inferno" && elem < 2) { 				result *= ((1 + 0.10*skills[20].level + 0.10*skills[24].level + 0.10*skills[28].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Wake of Inferno" && elem < 2) { 				result *= ((1 + 0.06*skills[20].level + 0.06*skills[24].level + 0.06*skills[28].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Death Sentry" && elem == 0) {				result = 5 + Math.floor(skill.level/3) }
-		if (skill.name == "Death Sentry" && elem > 0 && elem < 3) { 	result *= (1 + 0.04*skills[20].level + 0.04*skills[27].level + 0.04*skills[23].level) }
-		if (skill.name == "Death Sentry" && elem > 2 && elem < 5) { 	result *= ((1 + 0.04*skills[20].level + 0.04*skills[27].level + 0.04*skills[23].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Shock Web" && elem > 0 && elem < 3) { 		result *= ((1 + 0.10*skills[20].level + 0.10*skills[23].level + 0.10*skills[24].level + 0.10*skills[28].level + 0.10*skills[26].level + 0.10*skills[27].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Death Sentry" && elem > 0 && elem < 3) { 	result *= (1 + 0.06*skills[20].level + 0.06*skills[27].level + 0.06*skills[23].level) }
+		if (skill.name == "Death Sentry" && elem > 2 && elem < 5) { 	result *= ((1 + 0.06*skills[20].level + 0.06*skills[27].level + 0.06*skills[23].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Shock Web" && elem > 0 && elem < 3) { 		result *= ((1 + 0.12*skills[20].level + 0.12*skills[23].level + 0.12*skills[24].level + 0.12*skills[28].level + 0.12*skills[26].level + 0.12*skills[27].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Charged Bolt Sentry" && elem>0 && elem<3) { 	result *= ((1 + 0.07*skills[20].level + 0.07*skills[28].level + 0.07*skills[26].level + 0.04*skills[30].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Lightning Sentry" && elem < 2) { 			result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[28].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Chain Lightning Sentry" && elem < 2) { 		result *= ((1 + 0.15*skills[21].level + 0.15*skills[23].level + 0.15*skills[28].level) * (1+character.lDamage/100)) }
@@ -120,19 +120,19 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Charge 1",100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,1240,1260,1280,], 
 		["Charge 2",200,240,280,320,360,400,440,480,520,560,600,640,680,720,760,800,840,880,920,960,1000,1040,1080,1120,1160,1200,1240,1280,1320,1360,1400,1440,1480,1520,1560,1600,1640,1680,1720,1760,1800,1840,1880,1920,1960,2000,2040,2080,2120,2160,2200,2240,2280,2320,2360,2400,2440,2480,2520,2560,], 
 		["Charge 3",300,360,420,480,540,600,660,720,780,840,900,960,1020,1080,1140,1200,1260,1320,1380,1440,1500,1560,1620,1680,1740,1800,1860,1920,1980,2040,2100,2160,2220,2280,2340,2400,2460,2520,2580,2640,2700,2760,2820,2880,2940,3000,3060,3120,3180,3240,3300,3360,3420,3480,3540,3600,3660,3720,3780,3840,], 
-		["Attack +%",25,45,65,85,105,125,145,165,185,205,225,245,265,285,305,325,345,365,385,405,425,445,465,485,505,525,545,565,585,605,625,645,665,685,705,725,745,765,785,805,825,845,865,885,905,925,945,965,985,1005,1025,1045,1065,1085,1105,1125,1145,1165,1185,1205,], 
+		["Attack +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 ]};
 /*[ 1] Dragon Talon		*/ var d113 = {values:[
-		["Kicks",1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,], 
+		["Kicks",1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,11,], 
 		["Kick Damage +%",25,40,55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,], 
-		["Attack +%",20,55,90,125,160,195,230,265,300,335,370,405,440,475,510,545,580,615,650,685,720,755,790,825,860,895,930,965,1000,1035,1070,1105,1140,1175,1210,1245,1280,1315,1350,1385,1420,1455,1490,1525,1560,1595,1630,1665,1700,1735,1770,1805,1840,1875,1910,1945,1980,2015,2050,2085,], 
+		["Attack +%",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
 ]};
 /*[ 2] Fists of Fire	*/ var d121 = {values:[
 		["fire min",2,4,6,8,10,12,14,16,22,28,34,40,46,52,58,64,82,100,118,136,154,172,202,232,262,292,322,352,394,436,478,520,562,604,646,688,730,772,814,856,898,940,982,1024,1066,1108,1150,1192,1234,1276,1318,1360,1402,1444,1486,1528,1570,1612,1654,1696,], 
 		["fire max",4,7,10,13,16,19,22,25,32,39,46,53,60,67,74,81,102,123,144,165,186,207,240,273,306,339,372,405,450,495,540,585,630,675,720,765,810,855,900,945,990,1035,1080,1125,1170,1215,1260,1305,1350,1395,1440,1485,1530,1575,1620,1665,1710,1755,1800,1845,], 
 		["burning min",3,6,9,12,15,18,21,25,31,37,43,50,56,62,68,75,96,118,140,162,184,206,243,281,318,356,393,431,484,537,590,643,696,750,803,856,909,962,1015,1068,1121,1175,1228,1281,1334,1387,1440,1493,1546,1600,1653,1706,1759,1812,1865,1918,1971,2025,2078,2131,], 
 		["burning max",4,9,14,18,23,28,32,37,45,53,60,68,76,84,92,100,123,146,170,193,217,240,279,318,357,396,435,475,529,584,639,693,748,803,857,912,967,1021,1076,1131,1185,1240,1295,1350,1404,1459,1514,1568,1623,1678,1733,1787,1842,1896,1951,2006,2060,2115,2170,2225,], 
-		["Attack +%",55,73,91,109,127,145,163,181,199,217,235,253,271,289,307,325,343,361,379,397,415,433,451,469,487,505,523,541,559,577,595,613,631,649,667,685,703,721,739,757,775,793,811,829,847,865,883,901,919,937,955,973,991,1009,1027,1045,1063,1081,1099,1117,], 
+		["Attack +%",35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,], 
 ]};
 /*[ 3] Dragon Claw		*/ var d123 = {values:[
 		["Damage +%",50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,], 
@@ -144,16 +144,16 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["leech",40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,], 
 		["poison cloud min",6,15,25,34,43,53,62,71,96,121,146,171,196,221,246,271,309,346,384,421,459,496,571,646,721,796,871,946,1059,1171,1284,1396,1509,1621,1734,1846,1959,2071,2184,2296,2409,2521,2634,2746,2859,2971,3084,3196,3309,3421,3534,3646,3759,3871,3984,4096,4209,4321,4434,4546,], 
 		["poison cloud max",18,28,37,46,56,65,75,84,109,134,159,184,209,234,259,284,321,359,396,434,471,509,584,659,734,809,884,959,1071,1184,1296,1409,1521,1634,1746,1859,1971,2084,2196,2309,2421,2534,2646,2759,2871,2984,3096,3209,3321,3434,3546,3659,3771,3884,3996,4109,4221,4334,4446,4559,], 
-		["Attack +%",145,165,185,205,225,245,265,285,305,325,345,365,385,405,425,445,465,485,505,525,545,565,585,605,625,645,665,685,705,725,745,765,785,805,825,845,865,885,905,925,945,965,985,1005,1025,1045,1065,1085,1105,1125,1145,1165,1185,1205,1225,1245,1265,1285,1305,1325,], 
+		["Attack +%",60,68,76,84,92,100,108,116,124,132,140,148,156,164,172,180,188,196,204,212,220,228,236,244,252,260,268,276,284,292,300,308,316,324,332,340,348,356,364,372,380,388,396,404,412,420,428,436,444,452,460,468,476,484,492,500,508,516,524,532,], 
 ]};
 /*[ 5] Claws of Thunder	*/ var d141 = {values:[
 		["lightning min",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
 		["lightning max",80,100,120,140,160,180,200,220,260,300,340,380,420,460,500,540,600,660,720,780,840,900,980,1060,1140,1220,1300,1380,1480,1580,1680,1780,1880,1980,2080,2180,2280,2380,2480,2580,2680,2780,2880,2980,3080,3180,3280,3380,3480,3580,3680,3780,3880,3980,4080,4180,4280,4380,4480,4580,], 
-		["nova min",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
-		["nova max",30,45,60,75,90,105,120,135,160,185,210,235,260,285,310,335,370,405,440,475,510,545,590,635,680,725,770,815,880,945,1010,1075,1140,1205,1270,1335,1400,1465,1530,1595,1660,1725,1790,1855,1920,1985,2050,2115,2180,2245,2310,2375,2440,2505,2570,2635,2700,2765,2830,2895,], 
-		["bolt min",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
+		["nova min",5,10,15,20,25,30,35,40,60,80,100,120,140,160,180,200,235,270,305,340,375,410,460,510,560,610,660,710,775,840,905,970,1035,1100,1165,1230,1295,1360,1425,1490,1555,1620,1685,1750,1815,1880,1945,2010,2075,2140,2205,2270,2335,2400,2465,2530,2595,2660,2725,2790,], 
+		["nova max",30,40,50,60,70,80,90,100,130,160,190,220,250,280,310,340,390,440,490,540,590,640,710,780,850,920,990,1060,1150,1240,1330,1420,1510,1600,1690,1780,1870,1960,2050,2140,2230,2320,2410,2500,2590,2680,2770,2860,2950,3040,3130,3220,3310,3400,3490,3580,3670,3760,3850,3940,], 
+		["bolt min",10,15,20,25,30,35,40,45,55,65,75,85,95,105,115,125,140,155,170,185,200,215,235,255,275,295,315,335,360,385,410,435,460,485,510,535,560,585,610,635,660,685,710,735,760,785,810,835,860,885,910,935,960,985,1010,1035,1060,1085,1110,1135,], 
 		["bolt max",40,60,80,100,120,140,160,180,220,260,300,340,380,420,460,500,560,620,680,740,800,860,940,1020,1100,1180,1260,1340,1440,1540,1640,1740,1840,1940,2040,2140,2240,2340,2440,2540,2640,2740,2840,2940,3040,3140,3240,3340,3440,3540,3640,3740,3840,3940,4040,4140,4240,4340,4440,4540,], 
-		["Attack +%",180,194,208,222,236,250,264,278,292,306,320,334,348,362,376,390,404,418,432,446,460,474,488,502,516,530,544,558,572,586,600,614,628,642,656,670,684,698,712,726,740,754,768,782,796,810,824,838,852,866,880,894,908,922,936,950,964,978,992,1006,], 
+		["Attack +%",80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200,206,212,218,224,230,236,242,248,254,260,266,272,278,284,290,296,302,308,314,320,326,332,338,344,350,356,362,368,374,380,386,392,398,404,410,416,422,428,434,], 
 ]};
 /*[ 6] Dragon Tail		*/ var d143 = {values:[
 		["Fire Damage +%",50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,], 
@@ -163,7 +163,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["cold min",15,23,31,39,47,55,63,71,81,91,101,111,121,131,141,151,171,191,211,231,251,271,301,331,361,391,421,451,491,531,571,611,651,691,731,771,811,851,891,931,971,1011,1051,1091,1131,1171,1211,1251,1291,1331,1371,1411,1451,1491,1531,1571,1611,1651,1691,1731,], 
 		["cold max",35,43,51,59,67,75,83,91,101,111,121,131,141,151,161,171,193,215,237,259,281,303,335,367,399,431,463,495,537,579,621,663,705,747,789,831,873,915,957,999,1041,1083,1125,1167,1209,1251,1293,1335,1377,1419,1461,1503,1545,1587,1629,1671,1713,1755,1797,1839,], 
 		["Freeze Duration",4,4.4,4.8,5.2,5.6,6,6.4,6.8,7.2,7.6,8,8.4,8.8,9.2,9.6,10,10.4,10.8,11.2,11.6,12,12.4,12.8,13.2,13.6,14,14.4,14.8,15.2,15.6,16,16.4,16.8,17.2,17.6,18,18.4,18.8,19.2,19.6,20,20.4,20.8,21.2,21.6,22,22.4,22.8,23.2,23.6,24,24.4,24.8,25.2,25.6,26,26.4,26.8,27.2,27.6,], 
-		["Attack +%",240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,], 
+		["Attack +%",160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,240,244,248,252,256,260,264,268,272,276,280,284,288,292,296,300,304,308,312,316,320,324,328,332,336,340,344,348,352,356,360,364,368,372,376,380,384,388,392,396,], 
 ]};
 /*[ 8] Dragon Flight	*/ var d153 = {values:[
 		["Kick Damage +%",100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100,1125,1150,1175,1200,1225,1250,1275,1300,1325,1350,1375,1400,1425,1450,1475,1500,1525,1550,1575,], 
@@ -178,7 +178,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["lightning max",40,60,80,100,120,140,160,180,220,260,300,340,380,420,460,500,560,620,680,740,800,860,940,1020,1100,1180,1260,1340,1440,1540,1640,1740,1840,1940,2040,2140,2240,2340,2440,2540,2640,2740,2840,2940,3040,3140,3240,3340,3440,3540,3640,3740,3840,3940,4040,4140,4240,4340,4440,4540,], 
 		["cold min",16,20,24,28,32,36,40,44,52,60,68,76,84,92,100,108,120,132,144,156,168,180,200,220,240,260,280,300,328,356,384,412,440,468,496,524,552,580,608,636,664,692,720,748,776,804,832,860,888,916,944,972,1000,1028,1056,1084,1112,1140,1168,1196,], 
 		["cold max",32,36,40,44,48,52,56,60,68,76,84,92,100,108,116,124,137,150,163,176,189,202,223,244,265,286,307,328,357,386,415,444,473,502,531,560,589,618,647,676,705,734,763,792,821,850,879,908,937,966,995,1024,1053,1082,1111,1140,1169,1198,1227,1256,], 
-		["Attack +%",240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,], 
+		["Attack +%",160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,240,244,248,252,256,260,264,268,272,276,280,284,288,292,296,300,304,308,312,316,320,324,328,332,336,340,344,348,352,356,360,364,368,372,376,380,384,388,392,396,], 
 ]};
 
 /*[ 9]Claw/Dagger Mastery*/ var d212 = {values:[
@@ -219,7 +219,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 ]};
 /*[17] Mind Blast		*/ var d243 = {values:[
 		["Stun Length",], 
-		["Radius (yards)",1.6,2.3,2.3,3,3,3.6,3.6,4.3,4.3,5,5,5,5,5,5,5,5,5,5,5,], 
+		["Radius (yards)",2.6,3.3,3.3,4,4,4.6,4.6,5.3,5.3,6,6,6,6,6,6,6,6,6,6,6,], 
 		["damage min",10,13,16,19,22,25,28,31,38,45,52,59,66,73,80,87,104,121,138,155,172,189,223,257,291,325,359,393,444,495,546,597,648,699,750,801,852,903,954,1005,1056,1107,1158,1209,1260,1311,1362,1413,1464,1515,1566,1617,1668,1719,1770,1821,1872,1923,1974,2025,], 
 		["damage max",20,23,26,29,32,35,38,41,48,55,62,69,76,83,90,97,114,131,148,165,182,199,233,267,301,335,369,403,454,505,556,607,658,709,760,811,862,913,964,1015,1066,1117,1168,1219,1270,1321,1372,1423,1474,1525,1576,1627,1678,1729,1780,1831,1882,1933,1984,2035,], 
 ]};
@@ -259,9 +259,9 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["fire max",4,6,8,10,12,14,16,18,24,30,36,42,48,54,60,66,82,98,114,130,146,162,186,210,234,258,282,306,338,370,402,434,466,498,530,562,594,626,658,690,722,754,786,818,850,882,914,946,978,1010,1042,1074,1106,1138,1170,1202,1234,1266,1298,1330,], 
 ]};
 /*[25] Blade Fury		*/ var d343 = {values:[
-		["Attack +%",120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,1240,1260,1280,1300,], 
-		["damage min",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,29,32,35,38,41,44,47,50,53,56,59,62,66,70,74,78,82,86,90,94,98,102,106,110,114,118,122,126,130,134,138,142,146,150,154,158,162,166,170,174,178,182,186,190,], 
-		["damage max",6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,39,42,45,48,51,54,57,60,63,66,69,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,], 
+		["Attack +%",60,72,84,96,108,120,132,144,156,168,180,192,204,216,228,240,252,264,276,288,300,312,324,336,348,360,372,384,396,408,420,432,444,456,468,480,492,504,516,528,540,552,564,576,588,600,612,624,636,648,660,672,684,696,708,720,732,744,756,768,], 
+		["damage min",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,29,32,35,38,41,44,48,52,56,60,64,68,73,78,83,88,93,98,103,108,113,118,123,128,133,138,143,148,153,158,163,168,173,178,183,188,193,198,203,208,213,218,223,228,], 
+		["damage max",6,8,10,12,14,16,18,20,23,26,29,32,35,38,41,44,48,52,56,60,64,68,73,78,83,88,93,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200,206,212,218,224,230,236,242,248,254,260,266,272,278,284,290,], 
 		["Mana Cost per Blade",1,1.1,1.2,1.3,1.5,1.6,1.7,1.8,2,2.1,2.2,2.3,2.5,2.6,2.7,2.8,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,4,4.1,4.2,4.3,4.5,4.6,4.7,4.8,5,5.1,5.2,5.3,5.5,5.6,5.7,5.8,6,6.1,6.2,6.3,6.5,6.6,6.7,6.8,7,7.1,7.2,7.3,7.5,7.6,7.7,7.8,8,8.1,8.2,8.3,], 
 ]};
 /*[26] Lightning Sentry	*/ var d351 = {values:[
@@ -308,21 +308,102 @@ var skills_pd2_assassin = [
 {data:d233, key:"233", code:265, name:"Cloak of Shadows", i:14, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Cast a shadow to blind nearby enemies<br>lowering their defenses for a period of time<br><br>Range: 20 yards<br>Mana Cost: 13", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 5 seconds<br>Defense Bonus: +"," percent<br>Enemy Defense: "," percent",""]},
 {data:d241, key:"241", code:266, name:"Fade", i:15, req:[11,9], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Raise all resistances and resist curses<br>for a period of time", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Reduces curse duration by "," percent<br>Physical Damage Reduction: "," percent<br>Resist All: "," percent<br>Duration: "," seconds<br>Mana Cost: 10"]},
 {data:d242, key:"242", code:267, name:"Shadow Warrior", i:16, req:[13,14,9,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a shadow of yourself that mimics<br>your skills and fights by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
-{data:d243, key:"243", code:268, name:"Mind Blast", i:17, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Stun a group of enemies<br>using the power of your mind", syn_title:"<br>Mind Blast Receives Bonuses From:<br>", syn_text:"Psychic Hammer: +10% Damage per Level<br>Cloak of Shadows: +10% Damage per Level<br>Shadow Warrior: +10% Damage per Level", graytext:"", index:[2," yards"], text:["Stun Length: "," seconds<br>Radius: ","Damage: ","-","<br>Mana Cost: 9"]},
+{data:d243, key:"243", code:268, name:"Mind Blast", i:17, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Stun a group of enemies<br>using the power of your mind", syn_title:"<br>Mind Blast Receives Bonuses From:<br>", syn_text:"Psychic Hammer: +13% Damage per Level<br>Cloak of Shadows: +13% Damage per Level<br>Shadow Warrior: +13% Damage per Level", graytext:"", index:[2," yards"], text:["Stun Length: "," seconds<br>Radius: ","Damage: ","-","<br>Mana Cost: 9"]},
 {data:d261, key:"261", code:269, name:"Venom", i:18, req:[15,11,9], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison damage to your weapons", syn_title:"<br>Venom Receives Bonuses From:<br>", syn_text:"Cobra Strike: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 0.4 seconds<br>Duration: 300 seconds<br>Mana Cost: 12",""]},
 {data:d262, key:"262", code:270, name:"Shadow Master", i:19, req:[16,13,14,9,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a powerful shadow of yourself<br>to fight by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Attack: +","<br>Resist All: +"," percent<br>Mana Cost: ",""]},
 
-{data:d312, key:"312", code:271, name:"Fire Blast", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a fire bomb<br>to blast your enemies to bits", syn_title:"<br>Fire Blast Receives Bonuses From:<br>", syn_text:"Shock Web: +9% Fire Damage per Level<br>Charged Bolt Sentry: +9% Fire Damage per Level<br>Lightning Sentry: +9% Fire Damage per Level<br>Chain Lightning Sentry: +9% Fire Damage per Level<br>Wake of Fire: +9% Fire Damage per Level<br>Wake of Inferno: +9% Fire Damage per Level", graytext:"", index:[1,""], text:["Gains an Extra Bomb Every 4 Base Levels<br>Bombs: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d321, key:"321", code:272, name:"Shock Web", i:21, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a web of lightning<br>to shock your enemies", syn_title:"<br>Shock Web Receives Bonuses From: <br>", syn_text:"Fire Blast: +10% Lightning Damage per Level<br>Charged Bolt Sentry: +10% Lightning Damage per Level<br>Wake of Fire: +10% Lightning Damage per Level<br>Death Sentry: +10% Lightning Damage per Level<br>Lightning Sentry: +10% Lightning Damage per Level<br>Wake of Inferno: +10% Lightning Damage per Level", graytext:"", index:[0,""], text:["Spikes: ","<br>Duration: 3.6 seconds<br>Average Lightning Damage: ","-"," per second<br>Mana Cost: 6",""]},
+{data:d312, key:"312", code:271, name:"Fire Blast", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a fire bomb<br>to blast your enemies to bits", syn_title:"<br>Fire Blast Receives Bonuses From:<br>", syn_text:"Shock Web: +12% Fire Damage per Level<br>Charged Bolt Sentry: +12% Fire Damage per Level<br>Lightning Sentry: +12% Fire Damage per Level<br>Chain Lightning Sentry: +12% Fire Damage per Level<br>Wake of Fire: +12% Fire Damage per Level<br>Wake of Inferno: +12% Fire Damage per Level", graytext:"", index:[1,""], text:["Gains an Extra Bomb Every 4 Base Levels<br>Bombs: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
+{data:d321, key:"321", code:272, name:"Shock Web", i:21, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a web of lightning<br>to shock your enemies", syn_title:"<br>Shock Web Receives Bonuses From: <br>", syn_text:"Fire Blast: +12% Lightning Damage per Level<br>Charged Bolt Sentry: +12% Lightning Damage per Level<br>Wake of Fire: +12% Lightning Damage per Level<br>Death Sentry: +12% Lightning Damage per Level<br>Lightning Sentry: +12% Lightning Damage per Level<br>Wake of Inferno: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:["Spikes: ","<br>Duration: 3.6 seconds<br>Average Lightning Damage: ","-"," per second<br>Mana Cost: 6",""]},
 {data:d323, key:"323", code:273, name:"Blade Sentinel", i:22, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Set a spinning blade to patrol<br>between you and target point<br><br>Mana Cost: 7", syn_title:"<br>Blade Sentinel Receives Bonuses From:<br>", syn_text:"Blade Fury: +10% Damage per Level<br>Blade Shield: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>+3/4 Weapon Damage"]},
 {data:d331, key:"331", code:274, name:"Charged Bolt Sentry", i:23, req:[21,20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits Charged Bolts<br>at enemies that pass near", syn_title:"<br>Charged Bolt Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +7% Lightning Damage per Level<br>Death Sentry: +7% Lightning Damage per Level<br>Lightning Sentry: +4% Lightning Damage per Level<br>Chain Lightning Sentry: +4% Lightning Damage per Level", graytext:"", index:[1,"<br>Mana Cost: 6"], text:["Bolts Fired: ","Lightning Damage: ","-",""]},
 {data:d332, key:"332", code:275, name:"Wake of Fire", i:24, req:[20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits waves of fire<br><br>Shoots 8 Times", syn_title:"<br>Wake of Fire Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Fire Damage per Level<br>Wake of Inferno: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: 7",""]},
-{data:d343, key:"343", code:276, name:"Blade Fury", i:25, req:[22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Throw spinning blades<br>to slice up your enemies<br><br>Minimum Mana Required to Cast: 3", syn_title:"<br>Blade Fury Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +4% Damage per Level<br>Blade Shield: +4% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+3/4 Weapon Damage<br>Mana Cost: "," per blade",""]},
+{data:d343, key:"343", code:276, name:"Blade Fury", i:25, req:[22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Throw spinning blades<br>to slice up your enemies<br><br>Minimum Mana Required to Cast: 3", syn_title:"<br>Blade Fury Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +4% Damage per Level<br>Blade Shield: +4% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+1/2 Weapon Damage<br>Mana Cost: "," per blade",""]},
 {data:d351, key:"351", code:350, name:"Lightning Sentry", i:26, req:[23,21,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots lightning<br>to scorch passing enemies<br><br>Shoots 12 Times", syn_title:"<br>Lightning Sentry Receives Bonuses From:<br>", syn_text:"Shock Web: +12% Lightning Damage per Level<br>Charged Bolt Sentry: +12% Lightning Damage per Level<br>Death Sentry: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: 20",""]},
-{data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 10 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Wake of Fire: +0.5 Yards per Level<br>Fire Blast: +10% Fire Damage per Level<br>Wake of Fire: +10% Fire Damage per Level<br>Death Sentry: +10% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: 20",""]},
-{data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +4% Damage per Level<br>Wake of Inferno: +4% Damage per Level<br>Charged Bolt Sentry: +4% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 5-10 percent of corpse Life<br>Shoots ","Radius: 12 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: 20"]},
+{data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 5 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Fire Blast: +6% Fire Damage per Level<br>Wake of Fire: +6% Fire Damage per Level<br>Death Sentry: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: 20",""], incomplete:1},
+{data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +6% Damage per Level<br>Wake of Inferno: +6% Damage per Level<br>Charged Bolt Sentry: +6% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 2-5 percent of corpse Life<br>Shoots ","Radius: 10 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: 20"], incomplete:1},
 {data:d353, key:"353", code:280, name:"Blade Shield", i:29, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, damaging:{attack:1,spell:0}, bindable:1, description:"Spinning blades slice enemies<br>who stray too close", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: ","-","<br>+3/4 Weapon Damage<br>Duration: 300 seconds<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:277, name:"Chain Lightning Sentry", i:30, req:[26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots chain lightning<br>to scorch passing enemies<br><br>Shoots 10 Times", syn_title:"<br>Chain Lightning Sentry Receives Bonuses From:<br>", syn_text:"Shock Web: +15% Lightning Damage per Level<br>Charged Bolt Sentry: +15% Lightning Damage per Level<br>Death Sentry: +15% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: 20",""]},
 
-{data:d162, key:"162", code:251, name:"Phoenix Strike", i:31, req:[7,5,2,4,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Phoenix Strike Receives Bonuses From:<br>", syn_text:"Fists of Fire: +10% Fire Damage per Level<br>Fists of Fire: +6% Average Fire Damage per Second per Level<br>Claws of Thunder: +13% Lightning Damage per Level<br>Blades of Ice: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - meteor damage: ","-","<br>Fire Explosion Damage: ","-"," per second<br>Charge 2 - chain lightning damage: ","-","<br>Charge 3 - chaos ice bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
+{data:d162, key:"162", code:251, name:"Phoenix Strike", i:31, req:[7,5,2,4,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Phoenix Strike Receives Bonuses From:<br>", syn_text:"Fists of Fire: +10% Fire Damage per Level<br>Fists of Fire: +10% Average Fire Damage per Second per Level<br>Claws of Thunder: +13% Lightning Damage per Level<br>Blades of Ice: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - meteor damage: ","-","<br>Burning Damage: ","-"," per second<br>Charge 2 - chain lightning damage: ","-","<br>Charge 3 - chaos ice bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
 ];
+
+/*
+Assassin S3 Changes
+
+* Tiger strike attack rating per level reduced from 20% to 10%
+
+* Fists of fire base attack rating bonus reduced from 50% to 35% (was 55%, not 50%?)
+* Fists of fire attack rating per level reduced from 18% to 10%
+
+* Cobra strike base attack rating bonus reduced from 145% to 60%
+* Cobra strike attack rating per level reduced from 20% to 8%
+
+* Dragon talon attack rating per level reduced from 35% to 10%
+
+* Death sentry aoe reduced by roughly 17% (12 to 10)
+Death sentry scaling has been reworked and reduced significantly overall (TODO)
+* Death sentry synergies increased from 4% to 6%
+* Death sentry now deals 2-5% of the corpses life as damage from 5-10% 
+
+* Fire blast synergies increased from 9% to 12%
+
+* Shock web synergies increased from 10% to 12%
+
+* Claws of thunder base attack rating reduced from 180% to 80%
+* Claws of thunder attack rating per level reduced from 14% to 6%
+
+* Claws of thunder nova’s damage scaling has been improved
+* Claws of thunder’s nova base damage has been increased from 1-30 to 5-30
+* Claws of thunder’s nova damage scaling from level 1-8 reworked from 0-20 per level to 5-10 (was 0-15, not 0-20? TODO?)
+* Claws of thunder’s nova damage scaling from level 8-16 increased from 0-40 per level to 20-30 (was 0-25, not 0-40?)
+* Claws of thunder’s nova damage scaling from level 16-22 increased from 0-60 per level to 35-50 (was 0-35, not 0-60?)
+* Claws of thunder’s nova damage scaling from level 22-28 increased from 0-80 per level to 50-70 (was 0-45, not 0-80?)
+* Claws of thunder’s nova damage scaling from level 28+ increased from 0-100 per level to 65-90 (was 0-65, not 0-100?)
+
+* Claws of thunder charged bolt missile travel velocity has been doubled
+* Claws of thunder’s charged bolt damage scaling has been improved
+* Claw of thunder’s charged bolt base damage increased from 1-40 to 10-40
+* Claws of thunder’s charged bolt damage scaling from level 1-8 increased from 0-20 per level to 5-20
+* Claws of thunder’s charged bolt damage scaling from level 8-16 increased from 0-40 per level to 10-40
+* Claws of thunder’s charged bolt damage scaling from level 16-22 increased from 0-60 per level to 15-60
+* Claws of thunder’s charged bolt damage scaling from level 22-28 increased from 0-80 per level to 20-80
+* Claws of thunder’s charged bolt damage scaling from level 28+ increased from 0-100 per level to 25-100
+
+* Blades of ice base attack rating reduced from 240% to 160%
+* Blades of ice attack rating per level reduced from 10% to 4%
+
+* Mind blast starting radius increased from 2 yards to 2.6 yards (was 1.6 yards, not 2 yards?)
+* Mind blast synergies increased from 12% to 13% (was 10%, not 12%?)
+
+* Wake of fire’s 2 range per level removed
+* Wake of fire’s base range increased from 25 to 35
+
+* Phoenix strike meteor fire duration reduced to 1 second (this will prevent visual clutter and the ‘’shenk bug’’ where too many sprites are on screen at once)
+* Phoenix strike meteor fire damage per second synergy increased from 6% to 10%
+* Phoenix strike ice attack freeze reduced to a 0.5 second freeze
+* Phoenix strike’s base attack rating reduced from 240% to 160%
+* Phoenix strike’s attack rating per level reduced from 10% to 4%
+
+* Blade fury base attack rating reduced from 120% to 60% 
+* Blade fury attack rating per level reduced from 20% to 12% per level
+
+* Blade shield can no longer miss
+* Blade shield range has been doubled
+* Blade shield delay between attacks has been reduced
+
+
+Beta Patch 2
+* Inferno sentry shoots 5 times instead of 10
+* Inferno sentry no longer gains scaling range
+* Inferno sentry now has a fixed range of 20
+Inferno sentry scaling has been reduced (TODO)
+* Inferno sentry synergies have been reduced from 10% to 6%
+
+Beta Patch 3
+* Blade Fury now deals 1/2 weapon damage instead of 3/4
+* Blade Furys level 8-16 scaling has been increased from 2-2 to 2-3
+* Blade Furys level 16-22 scaling has been increased from 3-3 to 3-4
+* Blade Furys level 22-28 scaling has been increased from 3-3 to 4-5
+* Blade Furys level 22-28 scaling has been increased from 4-4 to 5-6
+
+*/

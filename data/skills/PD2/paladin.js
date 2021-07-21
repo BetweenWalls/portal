@@ -17,9 +17,10 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 	getSkillData : function(skill, lvl, elem) {
 		var result = skill.data.values[elem][lvl];
 		
-		if (skill.name == "Prayer" && elem == 0) {				result = 1 + Math.floor(skill.level/2) }
-		if (skill.name == "Cleansing" && elem < 2) {			result = Math.floor(skill.level/2) }
-		if (skill.name == "Meditation" && elem == 0) {			result = 1 + Math.floor(skill.level/5) }
+		if (skill.name == "Prayer" && elem == 0) {				result = 1 + skill.level }
+		if (skill.name == "Cleansing" && elem == 0) {			result = Math.floor(skill.level/2) }
+		if (skill.name == "Cleansing" && elem == 1) {			result = skill.level }
+		if (skill.name == "Meditation" && elem == 0) {			result = 1 + Math.floor(skill.level/2) }
 		if (skill.name == "Resist Fire" && elem == 0) {			result = Math.floor(skill.level/2) }
 		if (skill.name == "Resist Cold" && elem == 0) {			result = Math.floor(skill.level/2) }
 		if (skill.name == "Resist Lightning" && elem == 0) {	result = Math.floor(skill.level/2) }
@@ -30,9 +31,10 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Holy Fire" && elem < 4) {			result *= ((1 + 0.20*skills[1].level + 0.20*skills[9].level + 0.20*skills[13].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Holy Freeze" && elem < 4) {			result *= ((1 + 0.12*skills[3].level + 0.12*skills[9].level + 0.12*skills[13].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Holy Shock" && elem < 4) {			result *= ((1 + 0.08*skills[5].level + 0.08*skills[9].level + 0.08*skills[13].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Sanctuary" && elem < 4) {			result *= (1 + 0.08*skills[10].level + 0.08*skills[13].level + 0.08*skills[12].level) }
+		if (skill.name == "Sanctuary" && elem < 4) {			result *= (1 + 0.08*skills[10].level + 0.08*skills[13].level + 0.08*skills[27].level) }
+		if (skill.name == "Thorns" && elem == 1) {				result += (50*skills[2].level + 50*skills[10].level) }
 		
-		if (skill.name == "Joust" && elem == 0) {				result = skill.level*2 }
+		if (skill.name == "Joust" && elem == 0) {				result = 3.5 - 0.1*skill.level }
 		if (skill.name == "Sacrifice" && elem == 2) {			result += (20*skills[8].level + 20*skills[18].level) }
 		if (skill.name == "Zeal" && elem == 1) {				result += (16*skills[20].level) }
 		if (skill.name == "Vengeance" && elem == 1) {			result += (10*skills[1].level + 2*skills[9].level) }
@@ -41,13 +43,13 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Charge" && elem == 0) {				result += (20*skills[6].level + 20*skills[10].level) }
 		if (skill.name == "Holy Shield" && elem == 3) {			result += (15*skills[2].level) }
 		if (skill.name == "Blessed Hammer" && elem < 2) {		result *= (1 + 0.12*skills[13].level + 0.12*skills[6].level) }
-		if (skill.name == "Holy Bolt" && elem < 2) {			result *= (1 + 0.12*skills[31].level + 0.12*skills[29].level + 0.12*skills[32].level) }
-		if (skill.name == "Holy Bolt" && elem>1 && elem<4) {	result *= (1 + 0.06*skills[0].level) }
-		if (skill.name == "Holy Light" && elem < 2) {			result += (5*skills[0].level + 5*skills[32].level) }
+		if (skill.name == "Holy Bolt" && elem < 2) {			result *= (1 + 0.06*skills[31].level + 0.06*skills[29].level + 0.06*skills[32].level) }
+		if (skill.name == "Holy Bolt" && elem>1 && elem<4) {	result *= (1 + 0.05*skills[0].level) }
+		if (skill.name == "Holy Light" && elem < 2) {			result += (10*skills[0].level) }
 		if (skill.name == "Holy Nova" && elem < 2) {			result *= (1 + 0.12*skills[22].level) }
 		if (skill.name == "Holy Nova" && elem == 2) {			result += (10*skills[0].level + 10*skills[31].level) }
-		if (skill.name == "Fist of the Heavens" && elem < 2) {	result *= (1 + 0.15*skills[22].level + 0.15*skills[31].level) }
-		if (skill.name == "Fist of the Heavens" && elem > 1 && elem < 4) {	result *= ((1 + 0.05*skills[22].level + 0.05*skills[31].level + 0.05*skills[32].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Fist of the Heavens" && elem < 2) {	result *= (1 + 0.12*skills[22].level + 0.12*skills[31].level + 0.12*skills[32].level) }
+		if (skill.name == "Fist of the Heavens" && elem > 1 && elem < 4) {	result *= ((1 + 0.12*skills[22].level + 0.12*skills[31].level + 0.12*skills[32].level) * (1+character.lDamage/100)) }
 		
 	return result
 	},
@@ -131,7 +133,7 @@ function disableAuras(skill) {
 /*[ 0] Prayer			*/ var d111 = {values:[
 		["Passive Life Regen",], 
 		["Radius",13.3,15.3,17.3,19.3,21.3,23.3,25.3,27.3,29.3,31.3,33.3,35.3,37.3,39.3,41.3,43.3,45.3,47.3,49.3,51.3,53.3,55.3,57.3,59.3,61.3,63.3,65.3,67.3,69.3,71.3,73.3,75.3,77.3,79.3,81.3,83.3,85.3,87.3,89.3,91.3,93.3,95.3,97.3,99.3,101.3,103.3,105.3,107.3,109.3,111.3,113.3,115.3,117.3,119.3,121.3,123.3,125.3,127.3,129.3,131.3,], 
-		["Life per Hit +X",1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,15,15,15,16,16,16,17,17,17,18,18,18,19,19,19,20,20,20,21,], 
+		["Life per Hit +X",1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,], 
 		["Life Replenish +x",4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,38,42,46,50,54,58,62,66,70,74,78,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,128,130,132,134,136,138,140,142,144,146,], 
 ]};
 /*[ 1] Resist Fire		*/ var d113 = {values:[
@@ -178,6 +180,7 @@ function disableAuras(skill) {
 ]};
 /*[ 8] Redemption		*/ var d162 = {values:[
 		["Chance to redeem soul +%",23,34,42,49,55,59,63,65,69,71,73,47,75,77,79,80,82,83,84,85,86,87,88,89,89,90,91,91,91,91,92,92,93,93,93,94,94,95,95,95,95,96,96,96,97,97,97,97,98,98,98,98,98,99,99,99,99,99,99,100,], 
+		["Life recovered +x",5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,], 
 		["Mana recovered +x",25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,], 
 ]};
 /*[ 9] Salvation		*/ var d163 = {values:[
@@ -203,7 +206,7 @@ function disableAuras(skill) {
 /*[13] Blessed Aim		*/ var d231 = {values:[
 		["Passive Bonus Attack +%",], 
 		["Radius (yards)",13.3,14.6,16,17.3,18.6,20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,], 
-		["Attack +%",75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,635,645,655,665,], 
+		["Attack +%",75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,960,], 
 ]};
 /*[14] Concentration	*/ var d241 = {values:[
 		["Attack Rating+%",25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,101,105,109,113,117,121,125,129,133,137,141,145,149,153,157,161,165,169,173,177,181,185,189,193,197,201,205,209,213,217,221,225,229,233,237,241,245,249,253,257,261,], 
@@ -211,8 +214,8 @@ function disableAuras(skill) {
 		["Damage +%",60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,], 
 ]};
 /*[15] Holy Freeze		*/ var d242 = {values:[
-		["cold attack min",20,25,30,35,40,45,50,55,65,75,85,95,105,115,125,135,150,165,180,195,210,225,250,275,300,325,350,375,410,445,480,515,550,585,620,655,690,725,760,795,830,865,900,935,970,1005,1040,1075,1110,1145,1180,1215,1250,1285,1320,1355,1390,1425,1460,1495,], 
-		["cold attack max",30,35,40,45,50,55,60,65,75,85,95,105,115,125,135,145,160,175,190,205,220,235,260,285,310,335,360,385,420,455,490,525,560,595,630,665,700,735,770,805,840,875,910,945,980,1015,1050,1085,1120,1155,1190,1225,1260,1295,1330,1365,1400,1435,1470,1505,], 
+		["cold attack min",20,25,30,35,40,45,50,55,65,75,85,95,105,115,125,135,150,165,180,195,210,225,245,265,285,305,325,345,370,395,420,445,470,495,520,545,570,595,620,645,670,695,720,745,770,795,820,845,870,895,920,945,970,995,1020,1045,1070,1095,1120,1145,], 
+		["cold attack max",30,35,40,45,50,55,60,65,75,85,95,105,115,125,135,145,160,175,190,205,220,235,255,275,295,315,335,355,380,405,430,455,480,505,530,555,580,605,630,655,680,705,730,755,780,805,830,855,880,905,930,955,980,1005,1030,1055,1080,1105,1130,1155,], 
 		["cold min",2,2,3,3,4,4,5,5,6,7,8,9,10,11,12,13,15,16,18,19,21,22,25,27,30,32,35,37,41,44,48,51,55,58,62,65,69,72,76,79,83,86,90,93,97,100,104,107,111,114,118,121,125,128,132,135,139,142,146,149,], 
 		["cold max",3,3,4,4,5,5,6,6,7,8,9,10,11,12,13,14,16,17,19,20,22,23,26,28,31,33,36,38,42,45,49,52,56,59,63,66,70,73,77,80,84,87,91,94,98,101,105,108,112,115,119,122,126,129,133,136,140,143,147,150,], 
 		["Slowed By %",30,34,37,40,42,44,45,46,48,48,49,50,51,51,52,53,53,53,54,54,54,55,55,55,55,56,56,56,56,56,57,57,57,57,57,57,57,58,58,58,58,58,58,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,60,], 
@@ -244,7 +247,7 @@ function disableAuras(skill) {
 
 /*[20] Sacrifice		*/ var d311 = {values:[
 		["Damage to Self %",8,7,6,5,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,], 
-		["Attack Rating +%",20,48,76,104,132,160,188,216,244,272,300,328,356,384,412,440,468,496,524,552,580,608,636,664,692,720,748,776,804,832,860,888,916,944,972,1000,1028,1056,1084,1112,1140,1168,1196,1224,1252,1280,1308,1336,1364,1392,1420,1448,1476,1504,1532,1560,1588,1616,1644,1672,], 
+		["Attack Rating +%",20,36,52,68,84,100,116,132,148,164,180,196,212,228,244,260,276,292,308,324,340,356,372,388,404,420,436,452,468,484,500,516,532,548,564,580,596,612,628,644,660,676,692,708,724,740,756,772,788,804,820,836,852,868,884,900,916,932,948,964,], 
 		["Damage %",180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,960,975,990,1005,1020,1035,1050,1065,], 
 ]};
 /*[21] Smite			*/ var d313 = {values:[
@@ -252,14 +255,14 @@ function disableAuras(skill) {
 		["Stun (seconds)",0.6,0.8,1,1.2,1.4,1.6,1.8,2,2.2,2.4,2.6,2.8,3,3.2,3.4,3.6,3.8,4,4.2,4.4,4.6,4.8,5,5.2,5.4,5.6,5.8,6,6.2,6.4,6.6,6.8,7,7.2,7.4,7.6,7.8,8,8.2,8.4,8.6,8.8,9,9.2,9.4,9.6,9.8,10,10,10,10,10,10,10,10,10,10,10,10,10,], 
 ]};
 /*[22] Holy Bolt		*/ var d312 = {values:[
-		["magic min",3,4,5,6,7,8,9,10,13,16,19,22,25,28,31,34,43,52,61,70,79,88,100,112,124,136,148,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,], 
-		["magic max",5,7,9,11,13,15,17,19,23,27,31,35,39,43,47,51,61,71,81,91,101,111,124,137,150,163,176,189,205,221,237,253,269,285,301,317,333,349,365,381,397,413,429,445,461,477,493,509,525,541,557,573,589,605,621,637,653,669,685,701,], 
+		["magic min",3,4,5,6,7,8,9,10,13,16,19,22,25,28,31,34,43,52,61,70,79,88,103,118,133,148,163,178,199,220,241,262,283,304,325,346,367,388,409,430,451,472,493,514,535,556,577,598,619,640,661,682,703,724,745,766,787,808,829,850,], 
+		["magic max",5,7,9,11,13,15,17,19,24,29,34,39,44,49,54,59,70,81,92,103,114,125,142,159,176,193,210,227,250,273,296,319,342,365,388,411,434,457,480,503,526,549,572,595,618,641,664,687,710,733,756,779,802,825,848,871,894,917,940,963,], 
 		["healing min",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,], 
-		["healing max",4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,], 
+		["healing max",4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,], 
 		["Mana Cost",2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,], 
 ]};
 /*[23] Zeal				*/ var d321 = {values:[
-		["Attack +%",45,70,95,120,145,170,195,220,245,270,295,320,345,370,395,420,445,470,495,520,545,570,595,620,645,670,695,720,745,770,795,820,845,870,895,920,945,970,995,1020,1045,1070,1095,1120,1145,1170,1195,1220,1245,1270,1295,1320,1345,1370,1395,1420,1445,1470,1495,1520,], 
+		["Attack +%",35,49,63,77,91,105,119,133,147,161,175,189,203,217,231,245,259,273,287,301,315,329,343,357,371,385,399,413,427,441,455,469,483,497,511,525,539,553,567,581,595,609,623,637,651,665,679,693,707,721,735,749,763,777,791,805,819,833,847,861,], 
 		["Damage +%",0,0,0,0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240,256,272,288,304,320,336,352,368,384,400,416,432,448,464,480,496,512,528,544,560,576,592,608,624,640,656,672,688,704,720,736,752,768,784,800,816,832,848,864,880,896,], 
 ]};
 /*[24] Charge			*/ var d333 = {values:[
@@ -271,7 +274,7 @@ function disableAuras(skill) {
 		["Fire Damage +%",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
 		["Cold Damage +%",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
 		["Lightning Damage +%",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
-		["Attack Bonus +%",150,168,186,204,222,240,258,276,294,312,330,348,366,384,402,420,438,456,474,492,510,528,546,564,582,600,618,636,654,672,690,708,726,744,762,780,798,816,834,852,870,888,906,924,942,960,978,996,1014,1032,1050,1068,1086,1104,1122,1140,1158,1176,1194,1212,], 
+		["Attack Bonus +%",120,138,156,174,192,210,228,246,264,282,300,318,336,354,372,390,408,426,444,462,480,498,516,534,552,570,588,606,624,642,660,678,696,714,732,750,768,786,804,822,840,858,876,894,912,930,948,966,984,1002,1020,1038,1056,1074,1092,1110,1128,1146,1164,1182,], 
 		["Mana Cost",4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,], 
 ]};
 /*[26] Blessed Hammer	*/ var d342 = {values:[
@@ -280,13 +283,13 @@ function disableAuras(skill) {
 		["Mana Cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,], 
 ]};
 /*[27] Conversion		*/ var d343 = {values:[
-		["Chance to Convert %",40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,], 
+		["Chance to Convert %",40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,], 
 ]};
 /*[28] Holy Shield		*/ var d353 = {values:[
 		["smite min",3,5,7,9,11,13,15,17,20,23,26,29,32,35,38,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,101,105,109,113,117,121,125,129,133,137,141,145,149,153,157,161,165,169,173,177,181,185,189,193,197,201,205,209,213,217,], 
 		["smite max",6,8,10,12,14,16,18,20,23,26,29,32,35,38,41,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,], 
-		["Duration (seconds)",30,55,80,105,130,155,180,205,230,255,280,305,330,355,380,405,430,455,480,505,530,555,580,605,630,655,680,705,730,755,780,805,830,855,880,905,930,955,980,1005,1030,1055,1080,1105,1130,1155,1180,1205,1230,1255,1280,1305,1330,1355,1380,1405,1430,1455,1480,1505,], 
-		["Defense +%",25,40,55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,], 
+		["Duration (seconds)",120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,], 
+		["Defense +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 		["Successful Blocking +%",14,18,20,23,25,26,27,28,29,30,31,31,32,33,33,34,34,34,34,35,35,35,36,36,36,36,37,37,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,40,], 
 ]};
 /*[29]Fist of the Heavens*/var d352 = {values:[
@@ -297,15 +300,16 @@ function disableAuras(skill) {
 		["mana cost",10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,21,21.2,21.5,21.7,22,22.2,22.5,22.7,23,23.2,23.5,23.7,24,24.2,24.5,24.7,], 
 ]};
 /*[30] Joust			*/ var d351 = {values:[
-		["Faster Run/Walk %",], 
+		["Cooldown (seconds)",], 
+		["Faster Run/Walk %",5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,], 
 		["Damage +%",8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248,256,264,272,280,288,296,304,312,320,328,336,344,352,360,368,376,384,392,400,408,416,424,432,440,448,456,464,472,480,], 
 		["Attack +%",120,136,152,168,184,200,216,232,248,264,280,296,312,328,344,360,376,392,408,424,440,456,472,488,504,520,536,552,568,584,600,616,632,648,664,680,696,712,728,744,760,776,792,808,824,840,856,872,888,904,920,936,952,968,984,1000,1016,1032,1048,1064,], 
 		["Critical Strike +%",10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,128,], 
 		["Mana Cost",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,], 
 ]};
 /*[31] Holy Light		*/ var d332 = {values:[
-		["healing min",30,33,36,39,42,45,48,51,54,57,60,63,66,69,72,75,78,81,84,87,90,93,96,99,102,105,108,111,114,117,120,123,126,129,132,135,138,141,144,147,150,153,156,159,162,165,168,171,174,177,180,183,186,189,192,195,198,201,204,207,], 
-		["healing max",50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,], 
+		["healing min",30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,], 
+		["healing max",50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,], 
 		["Mana cost",8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,], 
 ]};
 /*[32] Holy Nova		*/ var d362 = {values:[
@@ -316,39 +320,122 @@ function disableAuras(skill) {
 ]};
 
 var skills_pd2_paladin = [
-{data:d111, key:"111", code:97, name:"Prayer", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura slowly regenerates<br>the life of you and your party and grants<br>them life from melee attacks", syn_title:"", syn_text:"", graytext:"", index:[1,""], text:["Grants +1 Passive Health Regeneration per 2 Base Levels<br>Health Regeneration: +","Radius: "," yards<br>+"," Life Gained On Hit<br>Heals: +",""]},
+{data:d111, key:"111", code:97, name:"Prayer", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura slowly regenerates<br>the life of you and your party and grants<br>them life from melee attacks", syn_title:"", syn_text:"", graytext:"", index:[1,""], text:["Grants +1 Passive Health Regeneration per Base Level<br>Health Regeneration: +","Radius: "," yards<br>+"," Life Gained On Hit<br>Heals: +",""]},
 {data:d113, key:"113", code:98, name:"Resist Fire", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura decreases fire damage<br>received and increases fire damage dealt<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants 1% Maximum Fire Resistance per 2 Base Levels<br>Maximum Resist Fire: +","Radius: "," yards<br>Fire Damage: +"," percent<br>Resist Fire: +"," percent"]},
 {data:d122, key:"122", code:99, name:"Defiance", i:2, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the defense rating and<br>physical damage reduction of you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants 1% Active Damage Reduction with every 2 Base Levels<br>Active Physical Damage Reduction: +","Radius: "," yards<br>Defense Bonus: +"," percent"]},
 {data:d123, key:"123", code:100, name:"Resist Cold", i:3, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura decreases cold damage<br>received and increases cold damage dealt<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants 1% Maximum Cold Resistance per 2 Base Levels<br>Maximum Resist Cold: +","Radius: "," yards<br>Cold Damage: +"," percent<br>Resist Cold: +"," percent"]},
-{data:d131, key:"131", code:101, name:"Cleansing", i:4, req:[0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reduces the length<br>of time you and your party<br>will remain poisoned or cursed", syn_title:"", syn_text:"", graytext:"", index:[2," percent"], text:["Grants 1% Passive Reduced Duration of Poison and Curses per 2 Base Levels<br>Reduces poison duration by "," percent<br>Reduces curse duration by ","Radius: "," yards<br>Reduces poison duration by "," percent<br>Reduces curse duration by "," percent"]},
+{data:d131, key:"131", code:101, name:"Cleansing", i:4, req:[0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reduces the length<br>of time you and your party<br>will remain poisoned or cursed", syn_title:"", syn_text:"", graytext:"", index:[2," percent"], text:["Grants 1% Passive Reduced Duration of Poison per 2 Base Levels<br>Grants 1% Passive Reduced Duration of Curses per Base Level<br>Reduces poison duration by "," percent<br>Reduces curse duration by ","Radius: "," yards<br>Reduces poison duration by "," percent<br>Reduces curse duration by "," percent"]},
 {data:d133, key:"133", code:102, name:"Resist Lightning", i:5, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura decreases lightning damage<br>received and increases lightning damage dealt<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants 1% Maximum Lightning Resistance per 2 Base Levels<br>Maximum Resist Lightning: +","Radius: "," yards<br>Lightning Damage: +"," percent<br>Resist Lightning: +"," percent"]},
 {data:d142, key:"142", code:103, name:"Vigor", i:6, req:[2,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases stamina recovery rate, maximum stamina<br>and movement speed for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants +1% Passive Faster Run/Walk per Base Level<br>Faster Run/Walk: +","Radius: "," yards<br>Velocity: +"," percent<br>Stamina Bonus: +"," percent<br>Stamina Recovery Rate: +"," percent"]},
-{data:d151, key:"151", code:104, name:"Meditation", i:7, req:[4,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases mana recovery<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," to Mana after each Kill"], text:["Grants +1 Passive Mana After Each Kill per 5 Base Levels<br>+","Radius: "," yards<br>Mana Recovery Rate: +"," percent"]},
-{data:d162, key:"162", code:105, name:"Redemption", i:8, req:[6,2,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura attempts to redeem<br>the souls of slain enemies to give mana", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: 10.6 yards<br>Chance to redeem soul: "," percent<br>Life Recovered: 5 points<br>Mana Recovered: "," points"]},
+{data:d151, key:"151", code:104, name:"Meditation", i:7, req:[4,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases mana recovery<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," to Mana after each Kill"], text:["Grants +1 Passive Mana After Each Kill per 2 Base Levels<br>+","Radius: "," yards<br>Mana Recovery Rate: +"," percent"]},
+{data:d162, key:"162", code:105, name:"Redemption", i:8, req:[6,2,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura attempts to redeem<br>the souls of slain enemies to give mana", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: 10.6 yards<br>Chance to redeem soul: "," percent<br>Life Recovered: "," points<br>Mana Recovered: "," points"]},
 {data:d163, key:"163", code:106, name:"Salvation", i:9, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura decreases fire cold, and lightning damage<br>received and increases fire, cold, and lightning damage dealt<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Elemental Damage: +"," percent<br>Resist All: +"," percent"]},
 
 {data:d211, key:"211", code:107, name:"Might", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage<br>done by you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Damage: +"," percent"]},
 {data:d222, key:"222", code:108, name:"Holy Fire", i:11, req:[10], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with heavenly flames<br>Adds fire damage to your attack", syn_title:"<br>Holy Fire Receives Bonuses From:<br>", syn_text:"Resist Fire: +20% Fire Damage per Level<br>Salvation: +20% Fire Damage per Level<br>Blessed Aim: +20% Fire Damage per Level", graytext:"", index:[0,""], text:["Radius: 6 yards<br>Fire Damage: ","-"," to your attack<br>Fire Damage: ","-",""]},
-{data:d223, key:"223", code:109, name:"Thorns", i:12, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reflects damage done to you<br>back at your attacker", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>"," percent damage returned"]},
+{data:d223, key:"223", code:109, name:"Thorns", i:12, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura deals damage to attackers", syn_title:"<br>Thorns Receives Bonuses From:<br>", syn_text:"Defiance: +X Damage per Level<br>Might: +X Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Attackers take "," damage"], incomplete:1},
 {data:d231, key:"231", code:110, name:"Blessed Aim", i:13, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants +10% Passive Attack Rating per Base Level<br>Attack: +","Radius: "," yards<br>Attack Rating: +"," percent",""]},
 {data:d241, key:"241", code:111, name:"Concentration", i:14, req:[13,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage and decreases the chance<br>that the attack will be interrupted for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Radius: "," yards<br>Chance uninterruptable: 20 percent<br>Damage: +"," percent"]},
 {data:d242, key:"242", code:112, name:"Holy Freeze", i:15, req:[11,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura freezes nearby monsters<br>Adds cold damage to your attack", syn_title:"<br>Holy Freeze Receives Bonuses From:<br>", syn_text:"Resist Cold: +12% Cold Damage per Level<br>Salvation: +12% Cold Damage per Level<br>Blessed Aim: +12% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 8 yards<br>Cold Damage: ","-"," to your attack<br>Cold Damage: ","-","<br>Enemies slowed "," percent"]},
 {data:d252, key:"252", code:113, name:"Holy Shock", i:16, req:[15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura causes pulses of electricity<br>to damage nearby enemies<br>Adds lightning damage to your attack", syn_title:"<br>Holy Shock Receives Bonuses From:<br>", syn_text:"Resist Lightning: +8% Lightning Damage per Level<br>Salvation: +8% Lightning Damage per Level<br>Blessed Aim: +8% Lightning Damage per Level", graytext:"", index:[0,""], text:["Radius: 8 yards<br>Lightning Damage: ","-"," to your attack<br>Lightning Damage: ","-",""]},
-{data:d253, key:"253", code:114, name:"Sanctuary", i:17, req:[12,15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages the nearby<br>enemies with magic<br>Allows damage to be dealt to physical immune undead", syn_title:"<br>Sanctuary Receives Bonuses From:<br>", syn_text:"Might: +8% Magic Damage per Level<br>Blessed Aim: +8% Magic Damage per Level<br>Thorns: +8% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-"," to your attack<br>Radius: 9.3 yards<br>Magic Damage: ","-",""]},
+{data:d253, key:"253", code:114, name:"Sanctuary", i:17, req:[12,15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages the nearby<br>enemies with magic<br>Allows damage to be dealt to physical immune undead", syn_title:"<br>Sanctuary Receives Bonuses From:<br>", syn_text:"Might: +8% Magic Damage per Level<br>Blessed Aim: +8% Magic Damage per Level<br>Conversion: +8% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-"," to your attack<br>Radius: 9.3 yards<br>Magic Damage: ","-",""]},
 {data:d261, key:"261", code:115, name:"Fanaticism", i:18, req:[14,13,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases damage, attack speed,<br>and attack rating for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Party Damage: +"," percent<br>Your Damage: +"," percent<br>Attack Speed: +"," percent<br>Attack: +"," percent"]},
 {data:d263, key:"263", code:116, name:"Conviction", i:19, req:[17,12,15,11,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reduces the defenses<br>and resistances of nearby enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Defense: "," percent<br>Resistances: "," percent"]},
 
 {data:d311, key:"311", code:117, name:"Sacrifice", i:20, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Increased accuracy and damage<br>at the cost of life", syn_title:"<br>Sacrifice Receives Bonuses From:<br>", syn_text:"Redemption: +20% Damage per Level<br>Fanaticism: +20% Damage per Level", graytext:"", index:[1," percent damage to self"], text:["","To Attack Rating: +"," percent<br>Damage: +"," percent",""]},
 {data:d313, key:"313", code:118, name:"Smite", i:21, req:[], reqlvl:1, reqWeapon:[""], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Temporarily stun your enemy<br>by bashing it with your shield", syn_title:"<br>Smite Receives Bonuses From:<br>", syn_text:"Holy Shield", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Stun Length: "," seconds<br>Mana Cost: 2"]},
-{data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of Divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +12% Magic Damage per Level<br>Fist of the Heavens: +12% Magic Damage per Level<br>Holy Nova: +12% Magic Damage per Level<br>Prayer: +6% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
+{data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of Divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +6% Magic Damage per Level<br>Fist of the Heavens: +6% Magic Damage per Level<br>Holy Nova: +6% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +16% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
 {data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +20% Damage per Level<br>Might: +20% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
-{data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fire, lightning, and cold damage are added<br>to each successful attack", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Resist Fire: +10% Fire Damage per Level<br>Resist Cold: +10% Cold Damage per Level<br>Resist Lightning: +10% Lightning Damage per Level<br>Salvation: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Cold Length: "," seconds<br>Fire Damage: +"," percent<br>Cold Damage: +"," percent<br>Lightning Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
+{data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fire, lightning, and cold damage are added<br>to each successful attack", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Resist Fire: +10% Fire Damage per Level<br>Resist Cold: +10% Cold Damage per Level<br>Resist Lightning: +10% Lightning Damage per Level<br>Salvation: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Cold Length: "," seconds<br>Fire Damage: +"," percent<br>Cold Damage: +"," percent<br>Lightning Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""], incomplete:1},
 {data:d342, key:"342", code:123, name:"Blessed Hammer", i:26, req:[31,22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons an ethereal hammer that<br>spirals outwards damaging enemies it hits<br>150 percent Damage to Undead", syn_title:"<br>Blessed Hammer Receives Bonuses From:<br>", syn_text:"Blessed Aim: +12% Magic Damage per Level<br>Vigor: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:124, name:"Conversion", i:27, req:[24,21], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Converts monsters to fight against<br>other foul demons and beasts", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to convert: "," percent<br>Duration: 8 seconds<br>Mana Cost: 4"]},
-{data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35"]},
-{data:d352, key:"352", code:126, name:"Fist of the Heavens", i:29, req:[26,31,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Lightning Strikes your target as holy bolts<br>seek out nearby enemies", syn_title:"<br>Fist of the Heavens Receives Bonuses From:<br>", syn_text:"Holy Bolt: +15% Holy Bolt Damage per Level<br>Holy Light: +15% Holy Bolt Damage per Level<br>Holy Bolt: +5% Lightning Damage per Level<br>Holy Light: +5% Lightning Damage per Level<br>Holy Nova: +5% Lightning Damage per Level", graytext:"", index:[0,""], text:["Holy Bolt Magic Damage: ","-","<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
-{data:d351, key:"351", code:127, name:"Joust", i:30, req:[25,23,20], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Teleport to your enemies and impale them with a deadly<br>strike gaining increased movement speed for 2 seconds", syn_title:"", syn_text:"", graytext:"", index:[1," percent<br>Cooldown: 3 seconds"], text:["Increases Movement Speed by 2% per Base Level<br>Walk/Run Speed: +","Damage: +"," percent<br>Attack Bonus: +"," percent<br>Critical Strike: +"," percent chance<br>Mana Cost: ",""]},
-{data:d332, key:"332", code:302, name:"Holy Light", i:31, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Calls down light from the heavens<br>to heal an ally from afar", syn_title:"<br>Holy Light Receives Bonuses From:<br>", syn_text:"Prayer: +5 Life Healed per Level<br>Holy Nova: +5 Life Healed per Level", graytext:"", index:[0,""], text:["Heals: ","-","<br>Mana Cost: ",""]},
+{data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35"], incomplete:1},
+{data:d352, key:"352", code:126, name:"Fist of the Heavens", i:29, req:[26,31,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Lightning Strikes your target as holy bolts<br>seek out nearby enemies", syn_title:"<br>Fist of the Heavens Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Magic Damage per Level<br>Holy Light: +12% Magic Damage per Level<br>Holy Nova: +12% Magic Damage per Level<br>Holy Bolt: +12% Lightning Damage per Level<br>Holy Light: +12% Lightning Damage per Level<br>Holy Nova: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:["Holy Bolt Magic Damage: ","-","<br>Lightning Damage: ","-","<br>Mana Cost: ",""], incomplete:1},
+{data:d351, key:"351", code:127, name:"Joust", i:30, req:[25,23,20], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Teleport to your enemies and impale them with a deadly<br>strike gaining increased movement speed for 2 seconds", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Cooldown: ","Walk/Run Speed: +"," percent<br>Damage: +"," percent<br>Attack Bonus: +"," percent<br>Critical Strike: +"," percent chance<br>Mana Cost: ",""]},
+{data:d332, key:"332", code:302, name:"Holy Light", i:31, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Calls down light from the heavens<br>to heal an ally from afar", syn_title:"<br>Holy Light Receives Bonuses From:<br>", syn_text:"Prayer: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Heals: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:303, name:"Holy Nova", i:32, req:[29,26,31,22,28,27,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of holy energy<br>that damages enemies or heals allies", syn_title:"<br>Holy Nova Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Magic Damage per Level<br>Prayer: +10 Life Healed per Level<br>Holy Light: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","<br>Mana Cost: ",""]},
 ];
+
+/*
+Paladin S3 Changes
+
+* Redemption aura now grants an additional 2 life return per level
+
+* Sacrifice attack rating per level reduced from 28% to 16%
+
+* Zeal’s attack rating per level reduced from 25% to 14% per level
+* Zeal’s base attack rating reduced from 45% to 35%
+
+* Holy freeze level 22-28 maximum damage scaling reduced from 5 to 4 (double check... was 25, not 5?)
+* Holy freeze level 28+ maximum damage scaling reduced from 7 to 5 (double check... was 35, not 7?)
+* Holy freeze level 22-28 minimum damage scaling reduced by 1 per level
+* Holy freeze level 28+ minimum damage scaling reduced by 1 per level
+
+* Blessed hammer missile speed increased by roughly 35%
+
+* Joust now starts with a +5% movement speed bonus
+* Joust now gains +2% movement speed per soft point instead of 2% per base point
+* Jousts movement speed bonus now caps at 65%
+* Joust now has its cooldown reduced from base points at .1 per level (eventually reaches a 1.5 second cooldown)
+* Joust now has a starting cooldown of 3.5 from 3 seconds
+* Joust now has lock on targeting similar to fist of heavens
+
+* Conversion now gains 2% chance to convert per level from 1%
+
+* Meditation now grants +1 passive mana after each kill every 2 base levels instead of every 5
+
+Thorns has been reworked and now deals a flat amount of damage to attackers instead of a % of their attack returned (TODO)
+Thorns now has might and defiance as synergies (TODO)
+
+* Blessed aim attack rating % per level increased from 10% to 15%
+
+* Cleansing now gives 1% passive curse duration reduction per hard point instead of every 2
+
+* Sanctuary’s thorn’s synergy has been replaced with conversion
+
+* Holy shield level 1 duration increased to 2 minutes from 30 seconds
+* Holy shield duration per level reduced from 25 to 10
+
+Vengeance has been reworked completely (TODO)
+Vengeance will now create an aoe effect on attack that deals flat elemental damage of each type as well as carries any elemental damage from your gear.
+Vengeance now has a +% elemental damage modifier that increased elemental damage from items similar to enhanced damage (only increases elemental damage from items)
+
+Fist of heavens damage scaling has been completely reworked to increase its early game potential and allow it to scale more smoothly into end game (TODO)
+* Fist of heavens lightning synergies have been increased from 5% to 12%
+* Fist of heavens magic synergies have been reduced from 15% to 12%
+* Fist of heavens now has holy nova as a magic damage synergy at 12%
+* Fist of heavens holy bolt range has been reduced by 50%
+* Fist of heavens reverted back to locking on enemies but with a reduced aoe to make it less clunky
+
+* Holy bolt healing per level reduced from 2 to 1
+* Holy bolt’s prayer synergy has been reduced from 6% life healed per level to 5%
+* Holy bolt’s damage synergies have been reduced from 10% to 8% (was 12%, not 10%? overridden)
+* Holy bolt’s level 8-16 scaling changed from 3-4 to 3-5
+* Holy bolt’s level 16-22 scaling changed from 9-10 to 9-11
+* Holy bolt’s level 22-28 scaling changed from 12-13 to 15-17
+* Holy bolt’s level 28+ scaling has been changed from 15-16 to 21-23
+
+* Holy light can now only target allies
+* Holy light now has a lock on targeting mechanic
+* Holy lights heal per level has been increased from 3-5 to 5-10
+* Holy light no longer has holy nova as a 5 health per level heal synergy
+* Holy light’s prayer synergy has been increased from 5 health per level to 10
+
+* Prayer now grants 1 passive life regen per base point instead of 1 every two base points
+* Prayer now grants +1 life per hit to allies every second level instead of every third
+
+
+Beta Patch 1
+* Holy bolt synergies reduced from 8% to 6%
+* Vengeance damage synergies are now applying at the proper value
+
+Beta Patch 2
+* Vengeance starts at 120% increased attack rating instead of 60%, (was 150%, not 60%?)
+* Vengenace now gains 18% attack rating per level from 10% (was already at 10%?)
+Holy shield's increased block base reduced from 10% to 5% (was 14%, not 10%? TODO)
+* Holy shield now gains 10% defense per level instead of 15%
+* Fist of Heavens now deals 1% damage in pvp from 6%
+* Auto Aim skills such as foh now have a roughly 30% increased targeting range
+
+*/

@@ -23,8 +23,8 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Power Strike" && elem > 0 && elem < 5) { 		result *= ((1 + 0.20*skills[4].level + 0.20*skills[8].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Lightning Bolt" && elem < 2) { 					result *= ((1 + 0.14*skills[1].level + 0.14*skills[9].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Charged Strike" && elem > 0 && elem < 3) { 		result *= ((1 + 0.05*skills[1].level + 0.05*skills[8].level + 0.05*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Strike" && elem > 0 && elem < 3) { 	result *= ((1 + 0.14*skills[1].level + 0.14*skills[5].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Fury" && elem < 2) { 					result *= ((1 + 0.02*skills[4].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Lightning Strike" && elem > 0 && elem < 3) { 	result *= ((1 + 0.12*skills[1].level + 0.12*skills[5].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Lightning Fury" && elem > 0 && elem < 3) { 		result *= ((1 + 0.02*skills[4].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }
 		
 		if (skill.name == "Dodge" && elem == 0) { 							result = 4 + skill.level*1 }
 		if (skill.name == "Penetrate" && elem == 0) { 						result = -5 - skill.level*1 }
@@ -32,7 +32,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Valkyrie" && elem == 1) { 						result += (15*skills[17].level) }
 		if (skill.name == "Valkyrie" && elem == 3) { 						result += (40*skills[15].level) }
 		
-		if (skill.name == "Magic Arrow" && elem > 1 && elem < 4) { 			result *= (1 + 0.15*skills[10].level + 0.15*skills[12].level + 0.15*skills[25].level) }
+		if (skill.name == "Magic Arrow" && elem > 1 && elem < 4) { 			result *= (1 + 0.18*skills[10].level + 0.18*skills[12].level + 0.18*skills[25].level) }
 		if (skill.name == "Guided Arrow" && elem == 0) { 					result = Math.floor(skills[21].level/2) }
 		if (skill.name == "Cold Arrow" && elem > 1 && elem < 4) { 			result *= ((1 + 0.22*skills[21].level + 0.22*skills[24].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Ice Arrow" && elem > 0 && elem < 3) { 			result *= ((1 + 0.16*skills[21].level + 0.16*skills[20].level + 0.16*skills[29].level) * (1+character.cDamage/100)) }
@@ -123,7 +123,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 };
 
 /*[ 0] Jab				*/ var d111 = {values:[
-		["attack rating bonus",25,40,55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,], 
+		["attack rating bonus",25,37,49,61,73,85,97,109,121,133,145,157,169,181,193,205,217,229,241,253,265,277,289,301,313,325,337,349,361,373,385,397,409,421,433,445,457,469,481,493,505,517,529,541,553,565,577,589,601,613,625,637,649,661,673,685,697,709,721,733,], 
 		["damage",15,30,45,60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,], 
 		["mana cost",1.5,1.7,2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,], 
 ]};
@@ -162,7 +162,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["mana cost",7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,], 
 ]};
 /*[ 7] Fend				*/ var d141 = {values:[
-		["attack rating bonus",160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,], 
+		["attack rating bonus",80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200,206,212,218,224,230,236,242,248,254,260,266,272,278,284,290,296,302,308,314,320,326,332,338,344,350,356,362,368,374,380,386,392,398,404,410,416,422,428,434,], 
 		["damage",100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,1240,1260,1280,], 
 ]};
 /*[ 8] Lightning Strike	*/ var d162 = {values:[
@@ -172,8 +172,9 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["mana cost",6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,], 
 ]};
 /*[ 9] Lightning Fury	*/ var d163 = {values:[
+		["bolts",10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,], 
 		["lightning min",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
-		["lightning max",40,54,68,82,96,110,124,138,155,172,189,206,223,240,257,274,292,310,328,346,364,382,401,420,439,458,477,496,516,536,556,576,596,616,636,656,676,696,716,736,756,776,796,816,836,856,876,896,916,936,956,976,996,1016,1036,1056,1076,1096,1116,1136,], 
+		["lightning max",40,55,70,85,100,115,130,145,161,177,193,209,225,241,257,273,290,307,324,341,358,375,393,411,429,447,465,483,502,521,540,559,578,597,616,635,654,673,692,711,730,749,768,787,806,825,844,863,882,901,920,939,958,977,996,1015,1034,1053,1072,1091,], 
 		["mana cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,], 
 ]};
 
@@ -233,13 +234,13 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 ]};
 /*[21] Magic Arrow		*/ var d312 = {values:[
 		["arrows",1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,7,], 
-		["attack rating bonus",10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390,410,430,450,470,490,510,530,550,570,590,610,630,650,670,690,710,730,750,770,790,810,830,850,870,890,910,930,950,970,990,1010,1030,1050,1070,1090,1110,1130,1150,1170,1190,], 
+		["attack rating bonus",10,19,28,37,46,55,64,73,82,91,100,109,118,127,136,145,154,163,172,181,190,199,208,217,226,235,244,253,262,271,280,289,298,307,316,325,334,343,352,361,370,379,388,397,406,415,424,433,442,451,460,469,478,487,496,505,514,523,532,541,], 
 		["magic min",1,2,3,4,5,6,7,8,11,13,16,18,21,23,26,28,36,43,51,58,66,73,88,103,118,133,148,163,186,208,231,253,276,298,321,343,366,388,411,433,456,478,501,523,546,568,591,613,636,658,681,703,726,748,771,793,816,838,861,883,], 
 		["magic max",2,4,5,7,8,10,11,13,16,20,23,27,30,34,37,41,49,58,66,75,83,92,109,126,143,160,177,194,219,245,270,296,321,347,372,398,423,449,474,500,525,551,576,602,627,653,678,704,729,755,780,806,831,857,882,908,933,959,984,1010,], 
 		["mana cost",2,2.1,2.2,2.3,2.5,2.6,2.7,2.8,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,4,4.1,4.2,4.3,4.5,4.6,4.7,4.8,5,5.1,5.2,5.3,5.5,5.6,5.7,5.8,6,6.1,6.2,6.3,6.5,6.6,6.7,6.8,7,7.1,7.2,7.3,7.5,7.6,7.7,7.8,8,8.1,8.2,8.3,8.5,8.6,8.7,8.8,9,9.1,9.2,9.3,], 
 ]};
 /*[22] Multiple Shot	*/ var d322 = {values:[
-		["attack rating bonus",50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390,410,430,450,470,490,510,530,550,570,590,610,630,650,670,690,710,730,750,770,790,810,830,850,870,890,910,930,950,970,990,1010,1030,1050,1070,1090,1110,1130,1150,1170,1190,1210,1230,], 
+		["attack rating bonus",8,14,20,26,32,38,44,50,56,62,68,74,80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200,206,212,218,224,230,236,242,248,254,260,266,272,278,284,290,296,302,308,314,320,326,332,338,344,350,356,362,], 
 		["arrows",3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,], 
 		["damage min",1,1,1,1,1,1,1,1,2,3,4,5,6,7,8,9,11,13,15,17,19,21,24,27,30,33,36,39,43,47,51,55,59,63,67,71,75,79,83,87,91,95,99,103,107,111,115,119,123,127,131,135,139,143,147,151,155,159,163,167,], 
 		["damage max",2,2,2,2,2,2,2,2,3,4,5,6,7,8,9,10,12,14,16,18,20,22,25,28,31,34,37,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,], 
@@ -260,7 +261,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 ]};
 /*[25] Guided Arrow		*/ var d342 = {values:[
 		["conversion",], 
-		["damage",0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,63,66,69,72,75,78,81,84,87,90,93,96,99,102,105,108,111,114,117,120,123,126,129,132,135,138,141,144,147,150,153,156,159,162,165,168,171,174,177,], 
+		["damage",0,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,], 
 		["mana cost",8,7.7,7.5,7.2,7,6.7,6.5,6.2,6,5.7,5.5,5.2,5,4.7,4.5,4.2,4,3.7,3.5,3.2,3,2.7,2.5,2.2,2,1.7,1.5,1.2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
 ]};
 /*[26] Exploding Arrow	*/ var d343 = {values:[
@@ -271,9 +272,9 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["mana cost",4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,], 
 ]};
 /*[27] Strafe			*/ var d352 = {values:[
-		["attack rating bonus",140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,], 
+		["attack rating bonus",80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200,206,212,218,224,230,236,242,248,254,260,266,272,278,284,290,296,302,308,314,320,326,332,338,344,350,356,362,368,374,380,386,392,398,404,410,416,422,428,434,], 
 		["targets",3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,], 
-		["damage",100,116,132,148,164,180,196,212,228,244,260,276,292,308,324,340,356,372,388,404,420,436,452,468,484,500,516,532,548,564,580,596,612,628,644,660,676,692,708,724,740,756,772,788,804,820,836,852,868,884,900,916,932,948,964,980,996,1012,1028,1044,], 
+		["damage",100,114,128,142,156,170,184,198,212,226,240,254,268,282,296,310,324,338,352,366,380,394,408,422,436,450,464,478,492,506,520,534,548,562,576,590,604,618,632,646,660,674,688,702,716,730,744,758,772,786,800,814,828,842,856,870,884,898,912,926,], 
 ]};
 /*[28] Immolation Arrow	*/ var d363 = {values:[
 		["attack rating bonus",30,39,48,57,66,75,84,93,102,111,120,129,138,147,156,165,174,183,192,201,210,219,228,237,246,255,264,273,282,291,300,309,318,327,336,345,354,363,372,381,390,399,408,417,426,435,444,453,462,471,480,489,498,507,516,525,534,543,552,561,], 
@@ -300,8 +301,8 @@ var skills_pd2_amazon = [
 {data:d142, key:"142", code:11, name:"Charged Strike", i:5, req:[1,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases charged bolts upon impact", syn_title:"<br>Charged Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +5% Lightning Damage per Level<br>Lightning Strike: +5% Lightning Damage per Level<br>Lightning Fury: +5% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," charged bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d143, key:"143", code:12, name:"Plague Javelin", i:6, req:[4,2,1,0], reqlvl:18, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your javelin to release<br>expanding clouds of poison upon impact", syn_title:"<br>Plague Javelin Receives Bonuses From:<br>", syn_text:"Poison Javelin: +14% Poison Damage per Level<br>Javelin and Spear Mastery: +7% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
 {data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +8% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
-{data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +14% Lightning Damage per Level<br>Charged Strike: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
-{data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases 10 bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
+{data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +12% Lightning Damage per Level<br>Charged Strike: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
+{data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 
 {data:d211, key:"211", code:16, name:"Inner Sight", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Illuminates nearby enemies<br>making them easier to hit<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Enemy Attack Rating: ","%<br>Enemy Defense: ","<br>Radius: "," yards<br>Mana Cost: 5"]},
 {data:d213, key:"213", code:17, name:"Critical Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your attacks have a chance to do double damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance",""]},
@@ -315,13 +316,78 @@ var skills_pd2_amazon = [
 {data:d233, key:"233", code:25, name:"Pierce", i:19, req:[11], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your missiles have a chance to<br>pass through enemies that they hit", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent pierce chance",""]},
 
 {data:d321, key:"321", code:26, name:"Cold Arrow", i:20, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows or bolts<br>by adding cold damage and a slowing effect<br>Cold arrows only do half of their regular damage<br><br>1/4 Weapon Damage", syn_title:"<br>Cold Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +22% Cold Damage per Level<br>Ice Arrow: +22% Cold Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Cold Length: 4 seconds<br>Mana Cost: ",""]},
-{data:d312, key:"312", code:27, name:"Magic Arrow", i:21, req:[], reqlvl:1, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical arrow or bolt<br>that does extra damage<br><br>1/2 Weapon Damage", syn_title:"<br>Magic Arrow Receives Bonuses From:<br>", syn_text:"Inner Sight: +15% Magic Damage per Level<br>Slow Movement: +15% Magic Damage per Level<br>Guided Arrow: +15% Magic Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Magic Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
+{data:d312, key:"312", code:27, name:"Magic Arrow", i:21, req:[], reqlvl:1, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical arrow or bolt<br>that does extra damage<br><br>1/2 Weapon Damage", syn_title:"<br>Magic Arrow Receives Bonuses From:<br>", syn_text:"Inner Sight: +18% Magic Damage per Level<br>Slow Movement: +18% Magic Damage per Level<br>Guided Arrow: +18% Magic Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Magic Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d322, key:"322", code:28, name:"Multiple Shot", i:22, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow<br>or bolt into many", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["To Attack Rating: +","%<br>"," arrows<br>Damage: ","-","<br>Mana Cost: ",""]},
 {data:d323, key:"323", code:29, name:"Fire Arrow", i:23, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows<br>or bolts with fire<br><br>1/2 Weapon Damage", syn_title:"<br>Fire Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +24% Fire Damage per Level<br>Immolation Arrow: +24% Fire Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:30, name:"Ice Arrow", i:24, req:[20,21], reqlvl:12, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrow or bolt<br>to freeze your enemies", syn_title:"<br>Ice Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Cold Damage per Level<br>Cold Arrow: +16% Cold Damage per Level<br>Freezing Arrow: +16% Cold Damage per Level<br>Cold Arrow: +5% Freeze Length per Level<br>Freezing Arrow: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: 3"]},
-{data:d342, key:"342", code:31, name:"Guided Arrow", i:25, req:[22,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances your arrows and bolts<br>to track your target<br>or seek one of its own<br>Always Hits", syn_title:"<br>Guided Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +1% Magic Damage Conversion per 2 Levels", graytext:"", index:[1,"% Physical Damage to Magic Damage"], text:["Converts ","Damage: +"," percent<br>Mana Cost: ",""]},
+{data:d342, key:"342", code:31, name:"Guided Arrow", i:25, req:[22,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances your arrows and bolts<br>to track your target<br>or seek one of its own<br><br>Always Hits<br>1/2 Weapon Damage", syn_title:"<br>Guided Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +1% Magic Damage Conversion per 2 Levels", graytext:"", index:[1,"% Physical Damage to Magic Damage"], text:["Converts ","Damage: +"," percent<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:32, name:"Exploding Arrow", i:26, req:[23,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enchants an arrow or bolt that explodes on<br>contact, damaging all nearby enemies", syn_title:"<br>Exploding Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +18% Fire Damage per Level<br>Immolation Arrow: +18% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:33, name:"Strafe", i:27, req:[25,22,21], reqlvl:24, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow into several<br>that target multiple nearby enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Attacks up to "," targets<br>Damage: +"," percent<br>Mana Cost: 11"]},
-{data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 4 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
-{data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 1 second<br>Mana Cost: ",""]}
+{data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 2 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
+{data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 0.5 seconds<br>Mana Cost: ",""]}
 ];
+
+/*
+Amazon S3 Changes
+
+* Jab attack rating per level reduced from 15% to 12%
+
+* Fend base attack rating reduced from 140% to 80% (was 160%, not 140%?)
+* Fend attack rating per level reduced from 10% to 6%
+
+* Lightning fury now gains an additional bolt every 5 base levels (overridden)
+* Lightning fury level 1-8 scaling increased from 14 per level to 16 per level
+
+* Lightning strike synergy reduced from 14% to 12%
+
+* Magic arrow’s attack rating per level reduced from 20% per level to 9% per level
+
+* Multiple shot now has +8% attack rating at level 1 from +50%
+* Multiple shot now gains +6% attack rating per level from 20%
+
+* Fire arrow now has a 24% immolation synergy from 22% (was already changed?)
+
+* Cold arrow now has a 22% ice arrow synergy from 20% (was already changed?)
+
+* Ice arrow projectile speed increased by 50%
+* Ice arrow range increased by roughly 15%
+
+* Freezing arrow’s freeze duration reduced from 1 second to 0.5
+
+* Increase plague javelin range by roughly 30%
+* Increased plague javelin missile velocity by 25%
+
+* Increased poison javelin missile velocity by 25%
+
+* Valkyrie now gain an additional 5 strength per level
+
+* Strafe projectile speed has been tripled
+* Strafe projectile hitbox size has been doubled
+* Strafe base attack rating reduced from 140% to 80%
+* Strafe attack rating per level reduced from 10% to 6%
+
+* Guided arrow reduced to 1/2 weapon damage from 100%
+* Guided arrow now gains 4% enhanced damage per level from 3%
+
+* Exploding arrow’s 16% immolation arrow synergy increased to 18% (was already changed?)
+
+* Immolation arrow no longer has a cooldown
+* Immolation arrow now explodes on impact and no longer benefits from pierce
+* Immolation arrow’s explosion fire now lasts 2 seconds instead of 4
+* Immolation arrow’s fire trail now lasts 1.5 seconds instead of 3
+
+
+Beta Patch 1
+* Multishot now deals 50% reduced damage each time it pierces (the initial hit will always deal 100%)
+* Lightning Fury is no longer bugged
+
+Beta Patch 2
+* lightning fury starts at it's proper 10 bolts (was never meant to start at 12)
+* Strafe now gains 14% damage per level instead of 16% 
+* Magic arrow synergy increased from 15% to 18%
+
+Beta Patch 3
+* Lightning Fury damage per level reduced by 1
+* Lightning Fury now gains an additional bolt every 10 soft levels instead of every 5 base levels
+
+*/

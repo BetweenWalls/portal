@@ -44,7 +44,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result *= (1 + 0.01*skills[3].level + 0.01*skills[6].level + 0.01*skills[8].level + 0.01*skills[4].level) }
 		if (skill.name == "Golem Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/5) }
 		if (skill.name == "Revive" && elem == 0) {							result = 3 + Math.floor(skill.level/4) }
-		if (skill.name == "Revive" && elem == 1) {							result += (15*skills[15].level) }
+		if (skill.name == "Revive" && elem == 1) {							result += (30*skills[15].level) }
 		
 		if (skill.name == "Poison Dagger" && elem > 0 && elem < 3) {		result *= ((1 + 0.22*skills[15].level + 0.22*skills[19].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Desecrate" && elem < 2) {						result *= ((1 + 0.15*skills[11].level + 0.15*skills[19].level) * (1+character.pDamage/100)) }
@@ -61,22 +61,21 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Curse Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/10) }
 		if (skill.name == "Dark Pact" && elem == 0) {						result = 5 + 0.6*Math.floor(skills[32].level/3) }
 		if (skill.name == "Dark Pact" && elem > 0 && elem < 3) {			result *= (1 + 0.18*skills[32].level + 0.18*skills[24].level + 0.12*(skills[20].level+skills[21].level+skills[23].level+skills[25].level+skills[26].level+skills[27].level+skills[28].level+skills[29].level+skills[30].level)) }
-		if (skill.name == "Amplify Damage" && elem == 0) {					result = -10 - skill.level*2 - skills[32].level }
+		if (skill.name == "Amplify Damage" && elem == 0) {					result = Math.max(-60,result - Math.floor(skills[32].level/2)) }
 		if (skill.name == "Amplify Damage" && elem == 1) {					result += 0.6*Math.floor(skills[32].level/3) }
 		if (skill.name == "Iron Maiden" && elem == 0) {						result += 6*skills[32].level }
 		if (skill.name == "Iron Maiden" && elem == 2) {						result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Life Tap" && elem == 0) {						result = 8 + skill.level + Math.floor(skills[32].level/2) }
+		if (skill.name == "Life Tap" && elem == 0) {						result = 8 + skill.level + skills[32].level }
 		if (skill.name == "Life Tap" && elem == 1) {						result += 0.6*Math.floor(skills[32].level/3) }
 		if (skill.name == "Weaken" && elem == 0) {							result -= Math.floor(skills[32].level/2) }
 		if (skill.name == "Weaken" && elem == 1) {							result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Decrepify" && elem == 0) {						result = -10 - skill.level - skills[32].level }
-		if (skill.name == "Decrepify" && elem == 1) {						result = -15 - skill.level - skills[32].level }
-		if (skill.name == "Decrepify" && elem == 2) {						result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Lower Resist" && elem == 0) {					result = -10 - skill.level*2 - Math.floor(skills[32].level/2) }
+		if (skill.name == "Decrepify" && elem == 0) {						result = Math.max(-65,result - skills[32].level) }
+		if (skill.name == "Decrepify" && elem == 1) {						result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Lower Resist" && elem == 0) {					result = Math.max(-65,result - Math.floor(skills[32].level/2)) }
 		if (skill.name == "Lower Resist" && elem == 1) {					result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Dim Vision" && elem == 0) {						result += -5*skills[32].level }
+		if (skill.name == "Dim Vision" && elem == 0) {						result += -10*skills[32].level }
 		if (skill.name == "Terror" && elem == 0) {							result = -5 - skill.level*2 - skills[32].level }
-		if (skill.name == "Confuse" && elem == 0) {							result = 10 + skill.level*3 + skills[32].level }
+		if (skill.name == "Confuse" && elem == 0) {							result = 10 + skill.level*10 + 5*skills[32].level }
 		if (skill.name == "Attract" && elem == 0) {							result += -5*skills[32].level }
 		
 		// TODO: Tooltip for Revive (# of monsters) ...should say hardpoints?
@@ -222,7 +221,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 			["Life (Nightmare)",446,504,562,620,679,737,795,853,911,970,1028,1086,1144,1202,1261,1319,1377,1435,1493,1552,1610,1668,1726,1784,1843,1901,1959,2017,2075,2134,2192,2250,2308,2366,2425,2483,2541,2599,2657,2716,2774,2832,2890,2948,3007,3065,3123,3181,3239,3298,3356,3414,3472,3530,3589,3647,3705,3763,3821,3880,], 
 			["Life (Hell)",732,828,923,1019,1114,1210,1305,1401,1496,1592,1687,1783,1878,1974,2069,2165,2260,2356,2452,2548,2643,2739,2834,2930,3025,3121,3216,3312,3407,3503,3598,3694,3789,3885,3980,4076,4171,4267,4363,4459,4554,4650,4745,4841,4936,5032,5127,5223,5318,5414,5509,5605,5700,5796,5891,5987,6082,6178,6274,6370,], 
 		], 
-		["Life on Hit",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,], 
+		["Life on Hit",6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,], 
 		["damage min", 
 			["damage min (Normal)",27,47,67,87,108,128,148,168,189,209,229,249,270,290,310,330,351,371,391,411,432,452,472,492,513,533,553,573,594,614,634,654,675,695,715,735,756,776,796,816,837,857,877,897,918,938,958,978,999,1019,1039,1059,1080,1100,1120,1140,1161,1181,1201,1221,], 
 			["damage min (Nightmare)",27,47,67,87,108,128,148,168,189,209,229,249,270,290,310,330,351,371,391,411,432,452,472,492,513,533,553,573,594,614,634,654,675,695,715,735,756,776,796,816,837,857,877,897,918,938,958,978,999,1019,1039,1059,1080,1100,1120,1140,1161,1181,1201,1221,], 
@@ -246,7 +245,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Life", 
 			["Life (Normal)",321,336,351,367,382,397,413,428,443,459,474,489,504,520,535,550,566,581,596,612,627,642,657,673,688,703,719,734,749,765,780,795,811,826,841,856,872,887,902,918,933,948,964,979,994,1010,1025,1040,1055,1071,1086,1101,1117,1132,1147,1163,1178,1193,1209,1224,], 
 			["Life (Nightmare)",624,654,684,714,743,773,803,833,862,892,922,952,981,1011,1041,1071,1100,1130,1160,1190,1219,1249,1279,1309,1338,1368,1398,1428,1457,1487,1517,1547,1576,1606,1636,1666,1695,1725,1755,1785,1814,1844,1874,1904,1933,1963,1993,2023,2052,2082,2112,2142,2171,2201,2231,2261,2290,2320,2350,2380,], 
-			["Life",1029,1078,1127,1176,1225,1274,1323,1372,1421,1470,1519,1568,1617,1666,1715,1764,1813,1862,1911,1960,2009,2058,2107,2156,2205,2254,2303,2352,2401,2450,2499,2548,2597,2646,2695,2744,2793,2842,2891,2940,2989,3038,3087,3136,3185,3234,3283,3332,3381,3430,3479,3528,3577,3626,3675,3724,3773,3822,3871,3920,], 
+			["Life (Hell)",1029,1078,1127,1176,1225,1274,1323,1372,1421,1470,1519,1568,1617,1666,1715,1764,1813,1862,1911,1960,2009,2058,2107,2156,2205,2254,2303,2352,2401,2450,2499,2548,2597,2646,2695,2744,2793,2842,2891,2940,2989,3038,3087,3136,3185,3234,3283,3332,3381,3430,3479,3528,3577,3626,3675,3724,3773,3822,3871,3920,], 
 		], 
 		["Thorns %",150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,960,975,990,1005,1020,1035,], 
 		["Defense Bonus",35,70,105,140,175,210,245,280,315,350,385,420,455,490,525,560,595,630,665,700,735,770,805,840,875,910,945,980,1015,1050,1085,1120,1155,1190,1225,1260,1295,1330,1365,1400,1435,1470,1505,1540,1575,1610,1645,1680,1715,1750,1785,1820,1855,1890,1925,1960,1995,2030,2065,2100,], 
@@ -267,7 +266,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 /*[10] Revive			*/ var d163 = {values:[
 		["# of Monsters",], 
-		["Damage %",15,30,45,60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,], 
+		["Damage %",30,60,90,120,150,180,210,240,270,300,330,360,390,420,450,480,510,540,570,600,630,660,690,720,750,780,810,840,870,900,930,960,990,1020,1050,1080,1110,1140,1170,1200,1230,1260,1290,1320,1350,1380,1410,1440,1470,1500,1530,1560,1590,1620,1650,1680,1710,1740,1770,1800,], 
 		["Duration",300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,840,850,860,870,880,890,], 
 ]};
 
@@ -280,8 +279,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 /*[12] Teeth			*/ var d212 = {values:[
 		["teeth",2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,], 
-		["magic min",2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,20,23,26,29,32,35,42,49,56,63,70,77,88,99,110,121,132,143,154,165,176,187,198,209,220,231,242,253,264,275,286,297,308,319,330,341,352,363,374,385,396,407,418,429,], 
-		["magic max",4,5,6,7,8,9,10,11,13,15,17,19,21,23,25,27,32,37,42,47,52,57,66,75,84,93,102,111,124,137,150,163,176,189,202,215,228,241,254,267,280,293,306,319,332,345,358,371,384,397,410,423,436,449,462,475,488,501,514,527,], 
+		["magic min",2,2,3,3,4,4,5,5,6,7,8,9,10,11,12,13,17,21,25,29,33,37,44,52,59,67,74,82,93,105,116,128,139,151,162,174,185,197,208,220,231,243,254,266,277,289,300,312,323,335,346,358,369,381,392,404,415,427,438,450,], 
+		["magic max",4,5,6,7,8,9,10,11,12,14,15,17,18,20,21,23,28,33,38,43,48,53,62,71,80,89,98,107,120,134,147,161,174,188,201,215,228,242,255,269,282,296,309,323,336,350,363,377,390,404,417,431,444,458,471,485,498,512,525,539,], 
 		["mana cost",3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,], 
 ]};
 /*[13] Bone Armor		*/ var d223 = {values:[
@@ -320,8 +319,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["mana cost",12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,], 
 ]};
 /*[19] Poison Nova		*/ var d261 = {values:[
-		["poison min",50,62,75,87,100,112,125,137,156,175,193,212,231,250,268,287,318,350,381,412,443,475,525,575,625,675,725,775,850,925,1000,1075,1150,1225,1300,1375,1450,1525,1600,1675,1750,1825,1900,1975,2050,2125,2200,2275,2350,2425,2500,2575,2650,2725,2800,2875,2950,3025,3100,3175,], 
-		["poison max",90,103,115,128,140,153,165,178,196,215,234,253,271,290,309,328,359,390,421,453,484,515,565,615,665,715,765,815,890,965,1040,1115,1190,1265,1340,1415,1490,1565,1640,1715,1790,1865,1940,2015,2090,2165,2240,2315,2390,2465,2540,2615,2690,2765,2840,2915,2990,3065,3140,3215,], 
+		["poison min",50,62,75,87,100,112,125,137,158,179,200,221,242,263,284,305,336,368,399,430,461,493,533,573,613,653,693,733,783,833,883,933,983,1033,1083,1133,1183,1233,1283,1333,1383,1433,1483,1533,1583,1633,1683,1733,1783,1833,1883,1933,1983,2033,2083,2133,2183,2233,2283,2333,], 
+		["poison max",90,103,115,128,140,153,165,178,199,220,241,262,283,304,325,346,377,408,439,471,502,533,573,613,653,693,733,773,823,873,923,973,1023,1073,1123,1173,1223,1273,1323,1373,1423,1473,1523,1573,1623,1673,1723,1773,1823,1873,1923,1973,2023,2073,2123,2173,2223,2273,2323,2373,], 
 ]};
 /*[31] Bone Prison		*/ var d253 = {values:[
 		["Life", 
@@ -333,50 +332,50 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 
 /*[20] Amplify Damage	*/ var d312 = {values:[
-		["% Monster Physical Resistance Decreased",], 
+		["% Monster Physical Resistance Decreased",-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,], 
 		["Radius (yards)",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
 		["Duration (seconds)",4,4.2,4.4,4.6,4.8,5,5.2,5.4,5.6,5.8,6,6.2,6.4,6.6,6.8,7,7.2,7.4,7.6,7.8,8,8.2,8.4,8.6,8.8,9,9.2,9.4,9.6,9.8,10,10.2,10.4,10.6,10.8,11,11.2,11.4,11.6,11.8,12,12.2,12.4,12.6,12.8,13,13.2,13.4,13.6,13.8,14,14.2,14.4,14.6,14.8,15,15.2,15.4,15.6,15.8,], 
-		["Mana Cost",2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,], 
+		["Mana Cost",2,2.25,2.5,2.75,3,3.25,3.5,3.75,4,4.25,4.5,4.75,5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,], 
 ]};
 /*[21] Dim Vision		*/ var d323 = {values:[
 		["- Enemy Attack Rating",-50,-65,-80,-95,-110,-125,-140,-155,-170,-185,-200,-215,-230,-245,-260,-275,-290,-305,-320,-335,-350,-365,-380,-395,-410,-425,-440,-455,-470,-485,-500,-515,-530,-545,-560,-575,-590,-605,-620,-635,-650,-665,-680,-695,-710,-725,-740,-755,-770,-785,-800,-815,-830,-845,-860,-875,-890,-905,-920,-935,], 
 		["Radius (yards)",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
 		["Duration (seconds)",3,3.4,4,4.4,5,5.4,6,6.4,7,7.4,8,8.4,9,9.4,10,10.4,11,11.4,12,12.4,13,13.4,14,14.4,15,15.4,16,16.4,17,17.4,18,18.4,19,19.4,20,20.4,21,21.4,22,22.4,23,23.4,24,24.4,25,25.4,26,26.4,27,27.4,28,28.4,29,29.4,30,30.4,31,31.4,32,32.4,], 
-		["Mana Cost",6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,], 
+		["Mana Cost",6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,20,20.25,20.5,20.75,], 
 ]};
 /*[22] Dark Pact		*/ var d321 = {values:[
 		["radius",], 
 		["magic min",3.5,6.5,9,12,14.5,17.5,20,23,26.5,30.5,34,38,41.5,45.5,49,53,57.5,62,66.5,71.5,76,80.5,87,93.5,100,106.5,113,119.5,127,134.5,142,149.5,157,164.5,172,179,186.5,194,201.5,209,216.5,224,231.5,239,246,253.5,261,268.5,276,283.5,291,298.5,306,313,320.5,328,335.5,343,350.5,358,], 
 		["magic max",4.5,8,12,15.5,19.5,23,26.5,30.5,36,41.5,47,53,58.5,64,69.5,75,81.5,88,94.5,101,107.5,114,122.5,131,139.5,147.5,156,164.5,173.5,183,192.5,201.5,211,220,229.5,239,248,257.5,266.5,276,285.5,294.5,304,313,322.5,332,341,350.5,359.5,369,378.5,387.5,397,406,415.5,425,434,443.5,452.5,462,], 
-		["Mana Cost",6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,], 
+		["Mana Cost",4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,], 
 ]};
 /*[23] Weaken			*/ var d342 = {values:[
 		["target damage",-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67,-68,-69,], 
 		["radius",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
 		["duration",10,11.4,12.8,14.2,15.6,17,18.4,19.8,21.2,22.6,24,25.4,26.8,28.2,29.6,31,32.4,33.8,35.2,36.6,38,39.4,40.8,42.2,43.6,45,46.4,47.8,49.2,50.6,52,53.4,54.8,56.2,57.6,59,60.4,61.8,63.2,64.6,66,67.4,68.8,70.2,71.6,73,74.4,75.8,77.2,78.6,80,81.4,82.8,84.2,85.6,87,88.4,89.8,91.2,92.6,], 
-		["mana cost",4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,], 
+		["mana cost",4,4.25,4.5,4.75,5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,], 
 ]};
 /*[24] Iron Maiden		*/ var d331 = {values:[
 		["damage returned",200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100,1125,1150,1175,1200,1225,1250,1275,1300,1325,1350,1375,1400,1425,1450,1475,1500,1525,1550,1575,1600,1625,1650,1675,], 
 		["duration",6,7.2,8.4,9.6,10.8,12,13.2,14.4,15.6,16.8,18,19.2,20.4,21.6,22.8,24,25.2,26.4,27.6,28.8,30,31.2,32.4,33.6,34.8,36,37.2,38.4,39.6,40.8,42,43.2,44.4,45.6,46.8,48,49.2,50.4,51.6,52.8,54,55.2,56.4,57.6,58.8,60,61.2,62.4,63.6,64.8,66,67.2,68.4,69.6,70.8,72,73.2,74.4,75.6,76.8,], 
 		["radius",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
-		["mana cost",5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,], 
+		["mana cost",5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,], 
 ]};
 /*[25] Terror			*/ var d333 = {values:[
 		["speed reduction",], 
-		["mana cost",7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,], 
+		["mana cost",7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,20,20.25,20.5,20.75,21,21.25,21.5,21.75,], 
 ]};
 /*[26] Confuse			*/ var d343 = {values:[
 		["attack speed",], 
 		["radius",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
 		["duration",3.4,4,4.4,5,5.4,6,6.4,7,7.4,8,8.4,9,9.4,10,10.4,11,11.4,12,12.4,13,13.4,14,14.4,15,15.4,16,16.4,17,17.4,18,18.4,19,19.4,20,20.4,21,21.4,22,22.4,23,23.4,24,24.4,25,25.4,26,26.4,27,27.4,28,28.4,29,29.4,30,30.4,31,31.4,32,32.4,33,], 
-		["mana cost",13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,42,], 
+		["mana cost",6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,20,20.25,20.5,20.75,21,21.25,], 
 ]};
 /*[27] Life Tap			*/ var d332 = {values:[
 		["life steal",], 
 		["radius",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
 		["duration",7,8.4,9.8,11.2,12.6,14,15.4,16.8,18.2,19.6,21,22.4,23.8,25.2,26.6,28,29.4,30.8,32.2,33.6,35,36.4,37.8,39.2,40.6,42,43.4,44.8,46.2,47.6,49,50.4,51.8,53.2,54.6,56,57.4,58.8,60.2,61.6,63,64.4,65.8,67.2,68.6,70,71.4,72.8,74.2,75.6,77,78.4,79.8,81.2,82.6,84,85.4,86.8,88.2,89.6,], 
-		["mana cost",4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31,31.5,32,32.5,33,33.5,], 
+		["mana cost",4,4.25,4.5,4.75,5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,], 
 ]};
 /*[28] Attract			*/ var d353 = {values:[
 		["enemy defense",-120,-130,-140,-150,-160,-170,-180,-190,-200,-210,-220,-230,-240,-250,-260,-270,-280,-290,-300,-310,-320,-330,-340,-350,-360,-370,-380,-390,-400,-410,-420,-430,-440,-450,-460,-470,-480,-490,-500,-510,-520,-530,-540,-550,-560,-570,-580,-590,-600,-610,-620,-630,-640,-650,-660,-670,-680,-690,-700,-710,], 
@@ -384,17 +383,16 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["duration",4,5.2,6.4,7.6,8.8,10,11.2,12.4,13.6,14.8,16,17.2,18.4,19.6,20.8,22,23.2,24.4,25.6,26.8,28,29.2,30.4,31.6,32.8,34,35.2,36.4,37.6,38.8,40,41.2,42.4,43.6,44.8,46,47.2,48.4,49.6,50.8,52,53.2,54.4,55.6,56.8,58,59.2,60.4,61.6,62.8,64,65.2,66.4,67.6,68.8,70,71.2,72.4,73.6,74.8,], 
 ]};
 /*[29] Decrepify		*/ var d351 = {values:[
-		["Enemy movement speed slowed by x%",], 
-		["Enemies Attack speed and cast speed slowed by x%",], 
+		["Enemies Movement/Attack/Cast Speed slowed by x%",-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-65,-65,-65,-65,], 
 		["Radius (yards)",4,4,4.6,4.6,4.6,5.3,5.3,5.3,6,6,6,6.6,6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,], 
 		["Duration",4,4.4,4.8,5.2,5.6,6,6.4,6.8,7.2,7.6,8,8.4,8.8,9.2,9.6,10,10.4,10.8,11.2,11.6,12,12.4,12.8,13.2,13.6,14,14.4,14.8,15.2,15.6,16,16.4,16.8,17.2,17.6,18,18.4,18.8,19.2,19.6,20,20.4,20.8,21.2,21.6,22,22.4,22.8,23.2,23.6,24,24.4,24.8,25.2,25.6,26,26.4,26.8,27.2,27.6,], 
-		["Mana Cost",11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,], 
+		["Mana Cost",11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,20,20.25,20.5,20.75,21,21.25,21.5,21.75,22,22.25,22.5,22.75,23,23.25,23.5,23.75,24,24.25,24.5,24.75,25,25,25,25,], 
 ]};
 /*[30] Lower Resist		*/ var d362 = {values:[
-		["Resist All -%",], 
+		["Resist All -%",-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-65,-65,-65,-65,], 
 		["Radius (yards)",6.6,6.6,7.3,7.3,7.3,8,8,8,8.6,8.6,8.6,9.3,9.3,9.3,10,10,10,10.6,10.6,10.6,11.3,11.3,11.3,12,12,12,12.6,12.6,12.6,13.3,13.3,13.3,14,14,14,14.6,14.6,14.6,15.3,15.3,15.3,16,16,16,16.6,16.6,16.6,17.3,17.3,17.3,18,18,18,18.6,18.6,18.6,19.3,19.3,19.3,20,], 
 		["Duration (seconds)",8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,], 
-		["Mana Cost",22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,42,43,43,44,44,45,45,46,46,47,47,48,48,49,49,50,50,51,51,], 
+		["Mana Cost",10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,20,20.25,20.5,20.75,21,21.25,21.5,21.75,22,22.25,22.5,22.75,23,23.25,23.5,23.75,24,24.25,24.5,24.75,], 
 ]};
 /*[32] Curse Mastery	*/ var d313 = {values:[
 		["maximum curses",], 
@@ -408,34 +406,94 @@ var skills_pd2_necromancer = [
 {data:d131, key:"131", code:70, name:"Golem Mastery", i:4, req:[3], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Enhances speed and life of all your golems", syn_title:"", syn_text:"", graytext:"", index:[1,""], text:["Can Summon an Extra Golem Every 5 Base Levels<br>Golems: ","Life: +"," percent<br>Attack Bonus: +","<br>Walk/Run Speed: +"," percent"]},
 {data:d133, key:"133", code:71, name:"Raise Skeletal Mage", i:5, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton mage that<br>fights for you", syn_title:"<br>Raise Skeletal Mage Receives Bonuses From:<br>", syn_text:"Raise Skeleton Warrior: +12% Elemental Damage per Level<br>Skeleton Mastery", graytext:"", index:[1," skeleton magi"], text:["","Poison Damage: ","-"," over 0.5 Seconds<br>Lightning Damage: ","-","<br>Cold Damage: ","-","<br>Fire Damage: ","-","<br>Life: ","<br>Mana Cost: ",""]},
 {data:d142, key:"142", code:72, name:"Blood Golem", i:6, req:[3], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"A golem that steals the life of enemies<br>and shares it with you<br><br>1/4 of life stolen by golem is shared with you", syn_title:"<br>Blood Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +15% Damage per Level<br>Iron Golem: +15% Damage per Level<br>Fire Golem: +15% Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>+"," Life Gained On Hit<br>Damage: ","-","<br>Mana Cost: ",""]},
-{data:d141, key:"141", code:73, name:"Blood Warp", i:7, req:[], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination at the cost<br>of a percentage of max HP<br>HP lost regenerates over 3 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: "," seconds<br>Life Cost: -8% Maximum HP<br>Mana Cost: 10"]},
+{data:d141, key:"141", code:73, name:"Blood Warp", i:7, req:[], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination at the cost<br>of a percentage of max HP<br>HP lost regenerates over 5 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: "," seconds<br>Life Cost: -10% Maximum HP<br>Mana Cost: 10"]},
 {data:d152, key:"152", code:74, name:"Iron Golem", i:8, req:[6,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transforms a metallic item into a golem that gains<br>the properties of the item", syn_title:"<br>Iron Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery<br>Clay Golem: +20 Attack Rating per Level<br>Blood Golem: +25 Life per Level<br>Clay Golem: +5% Damage per Level<br>Blood Golem: +5% Damage per Level<br>Fire Golem: +5% Damage per Level", graytext:"", index:[4,""], text:["Damage: ","-","<br>Attack: ","<br>Defense: ","Life: ","<br>Thorns Damage: "," percent damage returned<br>Defense Bonus: +","<br>Mana Cost: 35"]},
 {data:d162, key:"162", code:75, name:"Fire Golem", i:9, req:[8,6,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem that converts the damage<br>it receives from fire into life", syn_title:"<br>Fire Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery<br>Clay Golem: +20 Attack Rating per Level<br>Blood Golem: +20.5 Life per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +1% Damage per Level<br>Blood Golem: +1% Damage per Level<br>Iron Golem: +1% Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Fire Damage: ","-","<br>Holy Fire: ","-","<br>Mana Cost: ",""], incomplete:1},
-{data:d163, key:"163", code:76, name:"Revive", i:10, req:[5,1], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Returns a monster to life<br>to fight by your side", syn_title:"<br>Revive Receives Bonuses From:<br>", syn_text:"Desecrate: +15% Damage per Level", graytext:"", index:[1,""], text:["Monsters: ","Damage: +"," percent<br>Duration: "," seconds<br>Mana Cost: 45"]},
+{data:d163, key:"163", code:76, name:"Revive", i:10, req:[5,1], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Returns a monster to life<br>to fight by your side", syn_title:"<br>Revive Receives Bonuses From:<br>", syn_text:"Desecrate: +30% Damage per Level", graytext:"", index:[1,""], text:["Monsters: ","Damage: +"," percent<br>Duration: "," seconds<br>Mana Cost: 45"]},
 
 {data:d211, key:"211", code:77, name:"Poison Dagger", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison to your dagger attacks", syn_title:"<br>Poison Dagger Receives Bonuses From:<br>", syn_text:"Desecrate: +22% Poison Damage per Level<br>Poison Nova: +22% Poison Damage per Level", graytext:"", index:[0,""], text:["Pierces ","% Poison Resistance<br>Poison Damage: ","-","<br>over 2 seconds<br>Attack: "," percent<br>Mana Cost: ",""]},
 {data:d212, key:"212", code:78, name:"Teeth", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fires a barrage of summoned barbed teeth", syn_title:"<br>Teeth Receives Bonuses From:<br>", syn_text:"Bone Armor: +25% Magic Damage per Level<br>Bone Spear: +25% Magic Damage per Level<br>Bone Spirit: +25% Magic Damage per Level", graytext:"", index:[0,""], text:[""," Teeth<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d223, key:"223", code:79, name:"Bone Armor", i:13, req:[12], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates an orbiting shield of bone<br>that absorbs melee damage", syn_title:"<br>Bone Armor Receives Bonuses From:<br>", syn_text:"Bone Wall: +15 Damage Absorbed per Level<br>Bone Prison: +15 Damage Absorbed per Level", graytext:"", index:[0,""], text:["Absorbs "," damage<br>Mana Cost: ",""]},
-{data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 3-5 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +7% Damage per Level<br>Desecrate: +7% Damage per Level<br>Revive: +7% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
+{data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +7% Damage per Level<br>Desecrate: +7% Damage per Level<br>Revive: +7% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d231, key:"231", code:81, name:"Desecrate", i:15, req:[14,11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons 5 corpses and releases a deadly cloud of poison", syn_title:"<br>Desecrate Receives Bonuses From:<br>", syn_text:"Poison Dagger: +16% Poison Damage per Level<br>Poison Nova: +16% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
 {data:d242, key:"242", code:82, name:"Bone Spear", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a deadly spike of bone to impale your enemies<br><br>Fires an additional bone spear at levels 15 and 25", syn_title:"<br>Bone Spear Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spirit: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Bone Spears: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d233, key:"233", code:83, name:"Bone Wall", i:17, req:[13,12], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates an impassable barrier<br>of bone and debris", syn_title:"<br>Bone Wall Receives Bonuses From:<br>", syn_text:"Bone Armor: +10% Life per Level<br>Bone Prison: +10% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: 17",""]},
 {data:d262, key:"262", code:84, name:"Bone Spirit", i:18, req:[16,12], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Releases a spirit of the restless undead that<br>tracks its target or finds one of its own", syn_title:"<br>Bone Spirit Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spear: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d261, key:"261", code:85, name:"Poison Nova", i:19, req:[15,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Emits an expanding ring of concentrated poison", syn_title:"<br>Poison Nova Receives Bonuses From:<br>", syn_text:"Poison Dagger: +15% Poison Damage per Level<br>Desecrate: +15% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 2 seconds<br>Mana Cost: 20",""]},
 
-{data:d312, key:"312", code:86, name:"Amplify Damage", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies, increasing<br>the non-magic damage they receive", syn_title:"<br>Amplify Damage Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Physical Resistance per Level<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[1," percent"], text:["Reduced Physical Damage Resistance Increased by 2% per Base Level<br>Physical Damage Resistance: ","Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
-{data:d323, key:"323", code:87, name:"Dim Vision", i:21, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters,<br>reducing their vision radius and attack rating", syn_title:"<br>Dim Vision Receives Bonuses From:<br>", syn_text:"Curse Mastery: +5 Reduced Attack Rating per Level", graytext:"", index:[0,""], text:[""," Attack Rating<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d312, key:"312", code:86, name:"Amplify Damage", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies, increasing<br>the non-magic damage they receive", syn_title:"<br>Amplify Damage Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Physical Resistance per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Physical Damage Resistance: ","<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d323, key:"323", code:87, name:"Dim Vision", i:21, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters,<br>reducing their vision radius and attack rating", syn_title:"<br>Dim Vision Receives Bonuses From:<br>", syn_text:"Curse Mastery: +10 Reduced Attack Rating per Level", graytext:"", index:[0,""], text:[""," Attack Rating<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:88, name:"Dark Pact", i:22, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Consumes the curses on enemies within an area<br>sealing a dark pact and dealing damage around<br>the enemy for each curse devoured", syn_title:"<br>Dark Pact Receives Bonuses From:<br>", syn_text:"Curse Mastery: +18% Magic Damage per Level<br>Curse Mastery: +0.6 Radius per Three Levels<br>Iron Maiden: +18% Magic Damage per Level<br>All Curses: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Magic Damage per Curse: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:89, name:"Weaken", i:23, req:[27,20], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies,<br>reducing the amount of damage they inflict", syn_title:"<br>Weaken Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Damage per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Target's Damage: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:90, name:"Iron Maiden", i:24, req:[22,20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies, causing them<br>to damage themselves when damaging others", syn_title:"<br>Iron Maiden Receives Bonuses From:<br>", syn_text:"Curse Mastery: +6% Increased Damage Returned to Enemies per Level<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:[""," percent damage returned<br>Duration: "," seconds<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d333, key:"333", code:91, name:"Terror", i:25, req:[21], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters,<br>causing them to flee in terror", syn_title:"<br>Terror Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Movement Speed per Level", graytext:"", index:[1," percent<br>Duration: 3 seconds<br>Radius: 6.6 yards"], text:["Reduces Movement Speed by 2% per Base Level<br>Movement Speed: ","Mana Cost: ",""]},
-{data:d343, key:"343", code:92, name:"Confuse", i:26, req:[25,21], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a monster to force it to attack random targets", syn_title:"<br>Confuse Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Increased Attack Speed per Level", graytext:"", index:[1," percent"], text:["Increases Monster Attack Speed by 3% per Base Level<br>Attack Speed: +","Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d343, key:"343", code:92, name:"Confuse", i:26, req:[25,21], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a monster to force it to attack random targets", syn_title:"<br>Confuse Receives Bonuses From:<br>", syn_text:"Curse Mastery: +5% Increased Attack Speed per Level", graytext:"", index:[1," percent"], text:["Increases Monster Attack Speed by 10% per Base Level<br>Attack Speed: +","Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d332, key:"332", code:93, name:"Life Tap", i:27, req:[20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters so that<br>damaging them gives the attacker life", syn_title:"<br>Life Tap Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Increased Life Steal per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[1," percent"], text:["Percent Life Steal Increases by 1% per Base Level<br>Life Steal: +","Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
-{data:d353, key:"353", code:94, name:"Attract", i:28, req:[26,25,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a monster to become the<br>target of all nearby monsters<br>This curse may not be overridden by another curse", syn_title:"<br>Attract Receives Bonuses From:<br>", syn_text:"Curse Mastery: +5 Reduced Enemy Defense per Level", graytext:"", index:[0,""], text:["Enemy Defense: ","<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: 17"]},
-{data:d351, key:"351", code:95, name:"Decrepify", i:29, req:[23,27,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies to slow their<br>movement speed, attack rate, and cast rate", syn_title:"<br>Decrepify Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Attack and Cast Rate per Level<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[2," percent"], text:["Reduced Movement Speed, Attack Rate, and Cast Rate<br>Increased by 1% per Base Level<br>Movement Speed: "," percent<br>Attack and Cast Rate: ","Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
-{data:d362, key:"362", code:96, name:"Lower Resist", i:30, req:[23,27,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses an enemy to take more damage from all magical attacks<br>Lowers resistances of monsters<br>Lowers maximum resistances of hostile players", syn_title:"<br>Lower Resist Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Lowered Resistances per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[1," percent"], text:["Lowers Resistances by 2% per Base Level<br>Resist All: ","Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d353, key:"353", code:94, name:"Attract", i:28, req:[26,25,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a monster to become the<br>target of all nearby monsters<br>This curse may not be overridden by another curse", syn_title:"<br>Attract Receives Bonuses From:<br>", syn_text:"Curse Mastery: +5 Reduced Enemy Defense per Level", graytext:"", index:[0,""], text:["Enemy Defense: ","<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: 10"]},
+{data:d351, key:"351", code:95, name:"Decrepify", i:29, req:[23,27,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies to slow their<br>movement speed, attack rate, and cast rate", syn_title:"<br>Decrepify Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Attack and Cast Rate per Level<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Movement Speed, Attack and Cast Rate: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d362, key:"362", code:96, name:"Lower Resist", i:30, req:[23,27,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses an enemy to take more damage from all magical attacks<br>Lowers resistances of monsters<br>Lowers maximum resistances of hostile players", syn_title:"<br>Lower Resist Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Lowered Resistances per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Resist All: ","<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 
 {data:d253, key:"253", code:300, name:"Bone Prison", i:31, req:[17,16,13,12], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a barrier of fossilized bone around your target", syn_title:"<br>Bone Prison Receives Bonuses From:<br>", syn_text:"Bone Armor: +8% Life per Level<br>Bone Wall: +8% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: ",""]},
 
 {data:d313, key:"313", code:301, name:"Curse Mastery", i:32, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Provides benefits to your curses and allows<br>you to apply an additional curse for every 10 base levels", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Maximum Curses: ",""]},
 ];
+
+/*
+Necromancer S3 Changes
+
+* Blood warp health changed to recover over 5 seconds instead of 3
+* Blood warp now drains 10% of the necromancers health instead of 8%
+
+* Poison nova’s level 22-28 scaling reduced from 16 per level to 14 (overridden)
+* Poison nova’s level 28+ scaling reduced from 22 per level to 18 (overridden)
+
+* Blood golem’s now grant +6 life per hit to the necromancer at level 1 instead of 5
+* Blood golems now gain +2 life per hit each level from +1
+
+* Corpse explosion increased to 5-10% corpse life from 3-5%
+
+* All curses mana costs have been reduced by 0.25 per level
+
+* Dark pact mana cost at level 1 reduced from 6 to 4
+
+* Life tap life steal per base point increased from 1% to 2% per level
+
+* Teeth level 1 damage reduced from 4-8 to 3-6 (double check... why are they all double?)
+* Teeth level 1-8 scaling reduced from 2-2 to 1-2
+* Teeth level 8-16 scaling reduced from 2-4 to 2-3
+* Teeth level 16-22 scaling increased from 6-10 to 8 - 10
+* Teeth level 22-28 scaling increased from 14-18 to 15-18
+* Teeth level 28+ scaling increased from 22-26 to 23-27
+
+* Decrepify slow changed to soft points instead of base points and caps at -65%
+* Decrepify attack and cast speed now starts at -10% instead of -15%
+
+* Confused now increases monsters attack speed by 10% per base point instead of 3%
+* Confuse curse mastery synergy now grant 5% per level from 1%
+* Confuse level 1 mana cost reduced from 13 to 6.5
+
+* Attract level 1 mana cost reduced from 17 to 10
+
+* Dim vision curse mastery synergy increased from -5 to -10 attack rating
+
+* Lower resist now gains 1% per soft point instead of 2% per base point
+* Lower resist now caps at 65% 
+* Lower resist level 1 mana cost reduced from 22 to 10
+
+* Amplify damage now gains 1% per soft point instead of 2% per base point
+* Amplify damage now caps at 60% 
+* Amplify damage’s curse mastery bonus now grants 1% phys reduction every two levels instead of every level
+
+
+Beta Patch 1
+* Poison nova level 8-16 scaling increased from 6-6 to 7-7
+* Poison nova level 22-28 scaling reduced from 14-14 to 13-13 (overridden)
+* Poison nova level 28+ scaling reduced from 18-18 to 16-16 (overridden)
+* Revives now gain 30% enhanced damage per level from 15% 
+* Revives now gain 30% enhanced damage from their Desecrate synergies instead of 15%
+
+Beta Patch 2
+* Poison nova's 22-28 scaling reduced from 13-13 to 12-12
+* Poison novas 28+ scaling reduced from 16-16 to 14-14
+
+*/
