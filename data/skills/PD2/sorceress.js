@@ -25,7 +25,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Frost Nova" && elem < 2) {					result *= ((1 + 0.09*sk[0].level + 0.09*sk[4].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Glacial Spike" && elem < 2) {				result *= ((1 + 0.05*sk[3].level + 0.05*sk[7].level + 0.05*sk[6].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Glacial Spike" && elem == 2) {				result = 2 * (1 + 0.05*sk[6].level) }
-		if (skill.name == "Blizzard" && elem < 2) {						result *= ((1 + 0.12*sk[0].level + 0.12*sk[5].level) * (1+c.cDamage/100)) }
+		if (skill.name == "Blizzard" && elem < 2) {						result *= ((1 + 0.11*sk[0].level + 0.11*sk[5].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Ice Barrage" && elem < 2) {					result *= ((1 + 0.08*sk[0].level + 0.08*sk[5].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Ice Barrage" && elem == 2) {					result = 3 + Math.min(2,Math.floor(skill.level/3)) }
 		if (skill.name == "Frozen Orb" && elem < 2) {					result *= ((1 + 0.04*sk[0].level + 0.04*sk[3].level) * (1+c.cDamage/100)) }
@@ -312,7 +312,7 @@ var skills_pd2_sorceress = [
 {data:d122, key:"122", code:39, name:"Ice Blast", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical sphere of ice that<br>damages and freezes your enemy", syn_title:"<br>Ice Blast Receives Bonuses From:<br>", syn_text:"Ice Bolt: +6% Cold Damage per Level<br>Glacial Spike: +6% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for 2 seconds<br>Mana Cost: ",""]},
 {data:d133, key:"133", code:40, name:"Shiver Armor", i:4, req:[1,3,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases your defense rating<br>Freezes and damages enemies that hit you", syn_title:"<br>Shiver Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense Bonus: "," percent<br>Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: 11"]},
 {data:d142, key:"142", code:41, name:"Glacial Spike", i:5, req:[3,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical ice comet<br>that freezes or kills nearby enemies<br><br>Radius: 3.3 yards", syn_title:"<br>Glacial Spike Receives Bonuses From:<br>", syn_text:"Ice Blast: +5% Cold Damage per Level<br>Ice Barrage: +5% Cold Damage per Level<br>Blizzard: +5% Cold Damage per Level<br>Blizzard: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
-{data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +12% Cold Damage per Level<br>Glacial Spike: +12% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
+{data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +11% Cold Damage per Level<br>Glacial Spike: +11% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
 {data:d152, key:"152", code:43, name:"Ice Barrage", i:7, req:[5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a barrage of magical ice lances<br>that damage and slow nearby enemies<br><br>Radius: 2.6 yards", syn_title:"<br>Ice Barrage Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Glacial Spike: +8% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>"," Ice Lances<br>Mana Cost: ",""]},
 {data:d153, key:"153", code:44, name:"Chilling Armor", i:8, req:[4,1,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases defense and discharges a blizzard spike<br>in retaliation against ranged attackers<br>Damages melee attackers if you are hit", syn_title:"<br>Chilling Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Defense Bonus: "," percent<br>Duration: "," seconds<br>Cold Damage: ","-","<br>Mana Cost: 17",""]},
 {data:d161, key:"161", code:45, name:"Frozen Orb", i:9, req:[6,2,5,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical globe that sprays a torrent of ice bolts<br>to lay waste to your enemies", syn_title:"<br>Frozen Orb Receives Bonuses From:<br>", syn_text:"Ice Bolt: +4% Cold Damage per Level<br>Ice Blast: +4% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
@@ -347,14 +347,24 @@ var skills_pd2_sorceress = [
 /*
 Sorceress S3 Changes
 
+Beta Patch 1
+Meteor now gains +2 physical damage per level
+
+*/
+
+/*
+Sorceress S3 Changes - Final Patch Notes
+
+
 * Meteor explosion aoe increased by 33%
 Meteor’s damage scaling has been completely reworked to deal more physical damage and less fire (the skill will now deal less total damage but more hybrid damage)
+* Meteor synergies increased from 6% to 10%		// was 9%, not 6%
 
 * Lesser hydra 16% synergy reduced to 12%
-* Lesser hydra level 1-8 minimum damager level reduced from 7 to 6 (double check... these values are double)
+* Lesser hydra level 1-8 minimum damager level reduced from 7 to 6		// values are doubled
 * Lesser hydra level 16-22 scaling reduced from 28-32 per level to 24-26 per level
 * Lesser hydra level 22-28 scaling reduced from 36-40 per level to 32-34 per level
-* Lesser hydra level 28+ scaling reduced from 36-44 per level to 32-42 per level  (was 18-20, not 18-22? if values are doubled)
+* Lesser hydra level 28+ scaling reduced from 36-44 per level to 32-42 per level 		// was 18-20, not 18-22 if values are doubled
 * Lesser hydra duration reduced from 10 seconds to 6 seconds
 
 * Hydra’s duration reduced from 10 seconds to 6 seconds
@@ -362,7 +372,7 @@ Meteor’s damage scaling has been completely reworked to deal more physical dam
 * Fire enchant is now an aoe skill similar to battle orders
 * Fire enchant now grants allies 50% of the damage instead of 100%
 * Fire enchants synergies increased from 15% to 16%
-* Fire enchants level 1-8 scaling increased from 3-5 to 5-7 (double check... these values are double)
+* Fire enchants level 1-8 scaling increased from 3-5 to 5-7		// values are doubled
 * Fire enchants level 8-16 scaling increased from 7-9 to 11-13
 * Fire enchants level 16-22 scaling increased from 13-15 to 18-20
 * Fire enchants level 22-28 scaling increased from 21-23 to 26-28
@@ -372,14 +382,14 @@ Meteor’s damage scaling has been completely reworked to deal more physical dam
 * Cold enchant is now an aoe skill similar to battle orders
 * Cold enchant now grants allies 50% of the damage instead of 100%
 * Cold enchants synergies reduced from 25% to 20%
-* Cold enchants level 8-16 scaling increased from 6-8 to 9-11 (double check... these values are double)
+* Cold enchants level 8-16 scaling increased from 6-8 to 9-11		// values are doubled
 * Cold enchants level 16-22 scaling increased from 11-13 to 18-20
 * Cold enchants level 22-28 scaling increased from 15-17 to 30-32
 * Cold enchants level 28 scaling increased from 19-21 to 42-44
 * Cold enchant no longer gains mastery bonuses twice
 
 * Frozen orb’s scaling change from 
-* Frozen orb’s level 1-8 scaling reduced from 11-12 per level to 3-5 (double check... these values are double)
+* Frozen orb’s level 1-8 scaling reduced from 11-12 per level to 3-5		// values are doubled
 * Frozen orb’s level 8-16 scaling reduced from 13-14 per level to 9-11 
 * Frozen orb’s level 16-22 scaling increased from 15-16 per level to 15-17 
 * Frozen orb’s level 22-28 scaling increased from 17-18 per level to 21-23 
@@ -387,7 +397,7 @@ Meteor’s damage scaling has been completely reworked to deal more physical dam
 
 * Thunderstorm aoe has been increased by 300%
 * Thunderstorm’s lightning synergy changed to charged bolt
-* Thunderstorm synergies have been reduced from 5% to 4% (overridden)
+* Thunderstorm synergies increased from 4% to 6%		// was 5%, not 4%
 * Thunderstorm no longer flashes your screen
 
 * Lightning 1-8 scaling increased from +8 max damage per level to +12
@@ -400,10 +410,12 @@ Meteor’s damage scaling has been completely reworked to deal more physical dam
 * Blizzard’s level 8-16 scaling increased from 6-8 per level to 8-10 
 * Blizzard’s level 16-22 scaling increased from 9-11 per level to 10-12 
 * Blizzard’s level 28+ scaling reduced from 15-17 per level to 14-16
+* Blizzard synergies reduced from 12% to 11%
+* Blizzard’s projectile hitbox has been increased by 50%
 
 * Shiver armor no longer has chilling armor as a synergy
 * Shiver armor’s cold enchant synergy has been increased from 10% to 20%
-* Shiver armor’s base damage increased from 12-16 to 16-20 (double check... these values are double)
+* Shiver armor’s base damage increased from 12-16 to 16-20		// values are doubled
 * Shiver armor’s level 8-16 scaling increased from 7-8 per level to 8-9
 * Shiver armor’s level 16-22 scaling increased from 9-10 per level to 11-12
 * Shiver armor’s level 22-28 scaling increased from 11-12 per level to 14-15
@@ -411,61 +423,21 @@ Meteor’s damage scaling has been completely reworked to deal more physical dam
 
 * Chilling armor no longer has shiver armor as a synergy
 * Chilling armor’s cold enchant synergy has been increased from 10% to 20%
-* Chilling armor’s base damage increased from 8-12 to 10-14 (double check... these values are double)
+* Chilling armor’s base damage increased from 8-12 to 10-14		// values are doubled
 * Chilling armor’s level 8-16 scaling increased from 5-6 per level to 6-7
 * Chilling armor’s level 16-22 scaling increased from 7-8 per level to 9-10
 * Chilling armor’s level 22-28 scaling increased from 9-10 per level to 12-13
 * Chilling armor’s level 28+ scaling increased from 11-12 per level to 15-16
 
+* Frost Nova's level 16+ max damage per level reduced by 5 (this is to offset the damage gain from the new pierce changes)		// assumed this value was doubled
+* Frost Nova's 13% synergies reduced to 9%
 
-Beta Patch 1
-* Meteor synergies increased from 6% to 10% (was 9%, not 6%?)
-Meteor now gains +2 physical damage per level (TODO)
-* Frost nova synergies reduced from 13% to 10% (overridden)
 * Novas level 22-28 scaling reduced from 10-19 to 10-13
 * Novas level 28+ scaling reduced from 10-19 to 12-15
-* Thunderstorm synergies increased from 4% to 6%
 
-Beta Patch 2
 * Fire mastery now caps at 30% pierce instead of 40%
 * Cold mastery now caps at 45% pierce instead of 65%
 * Cold mastery now gains 1% pierce per level instead of 2%
 
-Beta Patch 3
-* Frost Nova's level 16+ max damage per level reduced by 5 (double check... assumed this value was doubled)
-* Frost Nova's 10% synergies reduced to 9%
 
-* Blizzards projectiles hit box size has been increased by 50%
-
-*/
-
-/*
-1 -> 2 sockets
-9dg 7dg		Poignard	Bone Knife
-9di 7di		Rondel		Mithril Point
-
-2 -> 3 sockets
-9ha 7ha		Hatchet		Tomahawk
-9cl 7cl		Cudgel		Truncheon
-9ma 7ma		Flanged Mace	Reinforced Mace
-9sc 7sc		Rune Scepter	Mighty Scepter
-8ss		Jo Staff
-9ss 7ss		Gladius		Falcata
-9sm 7sm		Cutlass		Ataghan
-9sb 7sb		Shamshir	Elegant Blade
-9fc 7fc		Tulwar		Hydra Edge
-9wb		Wrist Spike
-9xf 7xf		Fascia		War Fist
-9cs 7cs		Hand Scythe	Battle Cestus
-
-4 -> 5 sockets
-9la		Military Axe
-
-3 -> 4 sockets
-9b7 7o7		Lochaber Axe	Ogre Axe
-8sb 6sb		Edge Bow	Spider Bow
-8lx 6lx		Arbalest	Pellet Bow
-
-5 -> 6 sockets
-6lb				Shadow Bow
 */

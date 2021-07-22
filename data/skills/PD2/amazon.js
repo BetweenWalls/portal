@@ -330,24 +330,37 @@ var skills_pd2_amazon = [
 /*
 Amazon S3 Changes
 
+* Lightning fury level 1-8 scaling increased from 14 per level to 16 per level
+
+Beta Patch 2
+* lightning fury starts at it's proper 10 bolts (was never meant to start at 12)
+
+*/
+
+/*
+Amazon S3 Changes - Final Patch Notes
+
+
 * Jab attack rating per level reduced from 15% to 12%
 
-* Fend base attack rating reduced from 140% to 80% (was 160%, not 140%?)
+* Fend base attack rating reduced from 140% to 80%		// was 160%, not 140%?
 * Fend attack rating per level reduced from 10% to 6%
 
-* Lightning fury now gains an additional bolt every 5 base levels (overridden)
-* Lightning fury level 1-8 scaling increased from 14 per level to 16 per level
+* Lightning Fury’s level 8+ damage per level reduced by 1
+* Lightning Fury now gains an additional bolt every 10 soft levels
 
 * Lightning strike synergy reduced from 14% to 12%
 
 * Magic arrow’s attack rating per level reduced from 20% per level to 9% per level
+* Magic arrow synergy increased from 15% to 18%
 
 * Multiple shot now has +8% attack rating at level 1 from +50%
 * Multiple shot now gains +6% attack rating per level from 20%
+* Multiple shot now deals 50% reduced damage each time it pierces (the initial hit will always deal 100%)
 
-* Fire arrow now has a 24% immolation synergy from 22% (was already changed?)
+* Fire arrow now has a 24% immolation synergy from 22%		// was already changed?
 
-* Cold arrow now has a 22% ice arrow synergy from 20% (was already changed?)
+* Cold arrow now has a 22% ice arrow synergy from 20%		// was already changed?
 
 * Ice arrow projectile speed increased by 50%
 * Ice arrow range increased by roughly 15%
@@ -365,29 +378,17 @@ Amazon S3 Changes
 * Strafe projectile hitbox size has been doubled
 * Strafe base attack rating reduced from 140% to 80%
 * Strafe attack rating per level reduced from 10% to 6%
+* Strafe now gains 14% damage per level instead of 16%
 
 * Guided arrow reduced to 1/2 weapon damage from 100%
 * Guided arrow now gains 4% enhanced damage per level from 3%
 
-* Exploding arrow’s 16% immolation arrow synergy increased to 18% (was already changed?)
+* Exploding arrow’s 16% immolation arrow synergy increased to 18%		// was already changed?
 
 * Immolation arrow no longer has a cooldown
 * Immolation arrow now explodes on impact and no longer benefits from pierce
 * Immolation arrow’s explosion fire now lasts 2 seconds instead of 4
 * Immolation arrow’s fire trail now lasts 1.5 seconds instead of 3
 
-
-Beta Patch 1
-* Multishot now deals 50% reduced damage each time it pierces (the initial hit will always deal 100%)
-* Lightning Fury is no longer bugged
-
-Beta Patch 2
-* lightning fury starts at it's proper 10 bolts (was never meant to start at 12)
-* Strafe now gains 14% damage per level instead of 16% 
-* Magic arrow synergy increased from 15% to 18%
-
-Beta Patch 3
-* Lightning Fury damage per level reduced by 1
-* Lightning Fury now gains an additional bolt every 10 soft levels instead of every 5 base levels
 
 */

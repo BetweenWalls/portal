@@ -328,11 +328,13 @@ var skills_pd2_assassin = [
 ];
 
 /*
-Assassin S3 Changes
+Assassin S3 Changes - Final Patch Notes
+
 
 * Tiger strike attack rating per level reduced from 20% to 10%
+* Tiger strike now attacks with both weapons
 
-* Fists of fire base attack rating bonus reduced from 50% to 35% (was 55%, not 50%?)
+* Fists of fire base attack rating bonus reduced from 50% to 35%		// was 55%, not 50%?
 * Fists of fire attack rating per level reduced from 18% to 10%
 
 * Cobra strike base attack rating bonus reduced from 145% to 60%
@@ -340,10 +342,18 @@ Assassin S3 Changes
 
 * Dragon talon attack rating per level reduced from 35% to 10%
 
-* Death sentry aoe reduced by roughly 17% (12 to 10)
-Death sentry scaling has been reworked and reduced significantly overall (TODO)
+* Dragon flight range has been increased by 50%
+
+* Death sentry aoe reduced by roughly 17%		// 12 to 10
+Death sentry scaling has been reworked and reduced significantly overall
 * Death sentry synergies increased from 4% to 6%
 * Death sentry now deals 2-5% of the corpses life as damage from 5-10% 
+
+* Inferno sentry shoots 5 times instead of 10
+* Inferno sentry no longer gains scaling range
+* Inferno sentry now has a fixed range of 20
+Inferno sentry scaling has been reduced
+* Inferno sentry synergies have been reduced from 10% to 6%
 
 * Fire blast synergies increased from 9% to 12%
 
@@ -354,11 +364,11 @@ Death sentry scaling has been reworked and reduced significantly overall (TODO)
 
 * Claws of thunder nova’s damage scaling has been improved
 * Claws of thunder’s nova base damage has been increased from 1-30 to 5-30
-* Claws of thunder’s nova damage scaling from level 1-8 reworked from 0-20 per level to 5-10 (was 0-15, not 0-20? TODO?)
-* Claws of thunder’s nova damage scaling from level 8-16 increased from 0-40 per level to 20-30 (was 0-25, not 0-40?)
-* Claws of thunder’s nova damage scaling from level 16-22 increased from 0-60 per level to 35-50 (was 0-35, not 0-60?)
-* Claws of thunder’s nova damage scaling from level 22-28 increased from 0-80 per level to 50-70 (was 0-45, not 0-80?)
-* Claws of thunder’s nova damage scaling from level 28+ increased from 0-100 per level to 65-90 (was 0-65, not 0-100?)
+* Claws of thunder’s nova damage scaling from level 1-8 reworked from 0-20 per level to 5-10		// was 0-15, not 0-20?
+* Claws of thunder’s nova damage scaling from level 8-16 increased from 0-40 per level to 20-30		// was 0-25, not 0-40?
+* Claws of thunder’s nova damage scaling from level 16-22 increased from 0-60 per level to 35-50		// was 0-35, not 0-60?
+* Claws of thunder’s nova damage scaling from level 22-28 increased from 0-80 per level to 50-70		// was 0-45, not 0-80?
+* Claws of thunder’s nova damage scaling from level 28+ increased from 0-100 per level to 65-90		// was 0-65, not 0-100?
 
 * Claws of thunder charged bolt missile travel velocity has been doubled
 * Claws of thunder’s charged bolt damage scaling has been improved
@@ -372,8 +382,8 @@ Death sentry scaling has been reworked and reduced significantly overall (TODO)
 * Blades of ice base attack rating reduced from 240% to 160%
 * Blades of ice attack rating per level reduced from 10% to 4%
 
-* Mind blast starting radius increased from 2 yards to 2.6 yards (was 1.6 yards, not 2 yards?)
-* Mind blast synergies increased from 12% to 13% (was 10%, not 12%?)
+* Mind blast starting radius increased from 2 yards to 2.6 yards		// was 1.6 yards, not 2 yards?
+* Mind blast synergies increased from 12% to 13%		// was 10%, not 12%?
 
 * Wake of fire’s 2 range per level removed
 * Wake of fire’s base range increased from 25 to 35
@@ -386,24 +396,15 @@ Death sentry scaling has been reworked and reduced significantly overall (TODO)
 
 * Blade fury base attack rating reduced from 120% to 60% 
 * Blade fury attack rating per level reduced from 20% to 12% per level
-
-* Blade shield can no longer miss
-* Blade shield range has been doubled
-* Blade shield delay between attacks has been reduced
-
-
-Beta Patch 2
-* Inferno sentry shoots 5 times instead of 10
-* Inferno sentry no longer gains scaling range
-* Inferno sentry now has a fixed range of 20
-Inferno sentry scaling has been reduced (TODO)
-* Inferno sentry synergies have been reduced from 10% to 6%
-
-Beta Patch 3
 * Blade Fury now deals 1/2 weapon damage instead of 3/4
 * Blade Furys level 8-16 scaling has been increased from 2-2 to 2-3
 * Blade Furys level 16-22 scaling has been increased from 3-3 to 3-4
 * Blade Furys level 22-28 scaling has been increased from 3-3 to 4-5
 * Blade Furys level 22-28 scaling has been increased from 4-4 to 5-6
+
+* Blade shield can no longer miss
+* Blade shield range has been doubled
+* Blade shield delay between attacks has been reduced
+
 
 */

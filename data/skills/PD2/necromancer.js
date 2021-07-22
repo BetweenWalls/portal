@@ -439,13 +439,15 @@ var skills_pd2_necromancer = [
 ];
 
 /*
-Necromancer S3 Changes
+Necromancer S3 Changes - Final Patch Notes
+
 
 * Blood warp health changed to recover over 5 seconds instead of 3
 * Blood warp now drains 10% of the necromancers health instead of 8%
 
-* Poison nova’s level 22-28 scaling reduced from 16 per level to 14 (overridden)
-* Poison nova’s level 28+ scaling reduced from 22 per level to 18 (overridden)
+* Poison nova level 8-16 scaling increased from 6-6 to 7-7
+* Poison nova's 22-28 scaling reduced from 14-14 to 12-12		// was 16-16, not 14-14
+* Poison novas 28+ scaling reduced from 18-18 to 14-14		// was 22-22, not 18-18
 
 * Blood golem’s now grant +6 life per hit to the necromancer at level 1 instead of 5
 * Blood golems now gain +2 life per hit each level from +1
@@ -458,7 +460,7 @@ Necromancer S3 Changes
 
 * Life tap life steal per base point increased from 1% to 2% per level
 
-* Teeth level 1 damage reduced from 4-8 to 3-6 (double check... why are they all double?)
+* Teeth level 1 damage reduced from 4-8 to 3-6		// double values
 * Teeth level 1-8 scaling reduced from 2-2 to 1-2
 * Teeth level 8-16 scaling reduced from 2-4 to 2-3
 * Teeth level 16-22 scaling increased from 6-10 to 8 - 10
@@ -484,16 +486,8 @@ Necromancer S3 Changes
 * Amplify damage now caps at 60% 
 * Amplify damage’s curse mastery bonus now grants 1% phys reduction every two levels instead of every level
 
-
-Beta Patch 1
-* Poison nova level 8-16 scaling increased from 6-6 to 7-7
-* Poison nova level 22-28 scaling reduced from 14-14 to 13-13 (overridden)
-* Poison nova level 28+ scaling reduced from 18-18 to 16-16 (overridden)
 * Revives now gain 30% enhanced damage per level from 15% 
 * Revives now gain 30% enhanced damage from their Desecrate synergies instead of 15%
 
-Beta Patch 2
-* Poison nova's 22-28 scaling reduced from 13-13 to 12-12
-* Poison novas 28+ scaling reduced from 16-16 to 14-14
 
 */

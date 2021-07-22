@@ -32,7 +32,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		if (skill.name == "Concentrate" && elem == 0) { 	result = 30 + skill.level*2 + 1*skills[24].level }
 		if (skill.name == "Concentrate" && elem == 3) { 	result += (6*skills[24].level + 6*skills[9].level) }
 		if (skill.name == "Double Throw" && elem == 0) { 	result += (5*skills[28].level) }
-		if (skill.name == "Leap Attack" && elem == 0) { 	result += (8*skills[22].level + 8*skills[24].level) }
+		if (skill.name == "Leap Attack" && elem == 0) { 	result += (6*skills[22].level + 6*skills[24].level) }
 		if (skill.name == "Berserk" && elem == 1) { 		result += (8*skills[2].level + 8*skills[14].level) }
 		
 	return result
@@ -212,7 +212,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Mana Cost",2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,], 
 ]};
 /*[25] Leap Attack		*/ var d351 = {values:[
-		["Damage %",10,18,26,34,42,50,58,66,74,82,90,98,106,114,122,130,138,146,154,162,170,178,186,194,202,210,218,226,234,242,250,258,266,274,282,290,298,306,314,322,330,338,346,354,362,370,378,386,394,402,410,418,426,434,442,450,458,466,474,482,], 
+		["Damage %",10,22,34,46,58,70,82,94,106,118,130,142,154,166,178,190,202,214,226,238,250,262,274,286,298,310,322,334,346,358,370,382,394,406,418,430,442,454,466,478,490,502,514,526,538,550,562,574,586,598,610,622,634,646,658,670,682,694,706,718,], 
 		["Mana Cost",7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,21,21.2,21.5,21.7,], 
 ]};
 /*[26]*/
@@ -256,7 +256,7 @@ var skills_pd2_barbarian = [
 {data:d331, key:"331", code:150, name:"Leap", i:22, req:[21,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Leaps away from danger<br>or into the fray", syn_title:"", syn_text:"", graytext:"", index:[1," yards"], text:["Knockback Radius: ","Leap Distance: "," yards<br>Mana Cost: 20"]},
 {data:d333, key:"333", code:151, name:"Double Throw", i:23, req:[28,18], reqlvl:18, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:2,spell:0}, description:"Allows you to throw two different<br>throwing weapons at the same time<br>Weapons bounce to nearby enemies", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Double Swing: +5% Damage per Level", graytext:"", index:[0,""], text:["First Hit Bonus Damage: +10 percent<br>Damage: +"," percent<br>"," bounces<br>To Attack Rating: +"," percent<br>Mana Cost: ",""]},
 {data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +10% Damage per Level<br>Berserk: +10% Damage per Level<br>Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
-{data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +8% Damage per Level<br>Bash: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
+{data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +6% Damage per Level<br>Bash: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
 /*TODO: remove*/{data:d362, key:"362", code:154, name:"None", i:26, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d362, key:"362", code:155, name:"Whirlwind", i:27, req:[20,19,28], reqlvl:30, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"A whirling dance of death<br>that cuts a path through the<br>legions of your enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Velocity: +"," percent<br>Damage: "," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
 {data:d323, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapon are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
@@ -264,6 +264,21 @@ var skills_pd2_barbarian = [
 
 /*
 Barbarian S3 Changes
+
+Beta Patch 2
+* Leap attack reduced from 10% damage per level to 8%
+
+Beta Patch 3
+* Leap attack now leeches at 1/3rd instead of 1/2
+
+Open Beta Patch 1
+* Leap attack now shows its proper synergies
+
+*/
+
+/*
+Barbarian S3 Changes - Final Patch Notes
+
 
 * Berserk now uses frenzy animation and requires two weapons
 * Berserk now applies its physical pierce modifier to its splash damage
@@ -288,19 +303,21 @@ Barbarian S3 Changes
 * Leap attack aoe increased by roughly 16%
 * Leap attack now starts at maximum leap speed
 * Leap attack no longer gains leap speed per level
-* Leap attack now leeches at ½ efficiency instead of ¼ 
+* Leap attack synergies reduced from 10% to 6%
+* Leap attack damage per level increased from 10% to 12%
 
 * Leap now starts at maximum leap speed
 * Leap no longer gains leap speed per level
 * Leap mana cost increased from 8 to 20
 
-* Double throw damage per level reduced from 12% to 8%
-* Double throw synergy reduced from 8% to 6%
+* Double throw damage per level reduced from 12% to 6%
+* Double throw synergy reduced from 8% to 5%
+* Double throw’s starting damage bonus reduced from 55% to 45%
 * Double throw attack rating per level reduced from 15% to 10%
 * Double throw’s base attack rating reduced from 175% to 35%
 
 * Whirlwinds base attack rating reduced from 240% to 80%
-* Whirlwinds attack rating per level reduced from 5% to 4%
+* Whirlwinds attack rating per level increased from 5% to 6%
 
 * Spear and polearm mastery 16% attack rating per level reduced to 10%
 
@@ -311,33 +328,13 @@ Barbarian S3 Changes
 * Combat reflexes gains 20 life per base point instead of 10
 
 * Grim ward can now be cast at range instead of melee
-* Grim ward level 1 aura range increased from 16 to 25 (10.6 yards to 16.6 yards?)
+* Grim ward level 1 aura range increased from 16 to 25		// 10.6 yards to 16.6 yards?
 * Grim ward aura range per level has been doubled
 
 * Battle cry aoe travel speed increased by 25% (this also results in a slightly larger aoe)
 * Battle cry -defense % per level reduced from 2% to 1%
 
-* Howl now lasts 3 seconds at all levels (was already changed?)
+* Howl now lasts 3 seconds at all levels		// was already changed?
 
-* Taunt is now an aoe shout skill instead of single target (overridden)
-
-
-Beta Patch 1
-* Taunt has been temporarily disabled while we work to fix a bug
-
-Beta Patch 2
-* Leap attack reduced from 10% damage per level to 8%
-
-Beta Patch 3
-* Double throw base damage bonus reduced from 55% to 45%
-* Double throw damage per level reduced from 8% to 6%
-* Double throw synergies reduced from 6% to 5%
-
-* Leap attack synergies reduced from 10% to 8%
-* Leap attack now leeches at 1/3rd instead of 1/2
-
-* Berserk now properly swings with two attacks
-
-* Reverted taunt to original LoD (we don't have time to troubleshoot our new taunt and will have to bring it back in season 4)
 
 */

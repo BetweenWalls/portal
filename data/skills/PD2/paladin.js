@@ -37,9 +37,9 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Joust" && elem == 0) {				result = 3.5 - 0.1*skill.level }
 		if (skill.name == "Sacrifice" && elem == 2) {			result += (20*skills[8].level + 20*skills[18].level) }
 		if (skill.name == "Zeal" && elem == 1) {				result += (16*skills[20].level) }
-		if (skill.name == "Vengeance" && elem == 1) {			result += (10*skills[1].level + 2*skills[9].level) }
-		if (skill.name == "Vengeance" && elem == 2) {			result += (10*skills[3].level + 2*skills[9].level) }
-		if (skill.name == "Vengeance" && elem == 3) {			result += (10*skills[5].level + 2*skills[9].level) }
+		if (skill.name == "Vengeance" && elem == 1) {			result += (1*skills[11].level + 3*skills[19].level) }
+		if (skill.name == "Vengeance" && elem == 2) {			result += (1*skills[15].level + 3*skills[19].level) }
+		if (skill.name == "Vengeance" && elem == 3) {			result += (1*skills[16].level + 3*skills[19].level) }
 		if (skill.name == "Charge" && elem == 0) {				result += (20*skills[6].level + 20*skills[10].level) }
 		if (skill.name == "Holy Shield" && elem == 3) {			result += (15*skills[2].level) }
 		if (skill.name == "Blessed Hammer" && elem < 2) {		result *= (1 + 0.12*skills[13].level + 0.12*skills[6].level) }
@@ -347,7 +347,7 @@ var skills_pd2_paladin = [
 {data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of Divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +6% Magic Damage per Level<br>Fist of the Heavens: +6% Magic Damage per Level<br>Holy Nova: +6% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +16% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
 {data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +20% Damage per Level<br>Might: +20% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
-{data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fire, lightning, and cold damage are added<br>to each successful attack", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Resist Fire: +10% Fire Damage per Level<br>Resist Cold: +10% Cold Damage per Level<br>Resist Lightning: +10% Lightning Damage per Level<br>Salvation: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Cold Length: "," seconds<br>Fire Damage: +"," percent<br>Cold Damage: +"," percent<br>Lightning Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""], incomplete:1},
+{data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fire, lightning, and cold damage are added<br>to each successful attack", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Holy Fire: +1% Fire Damage per Level<br>Holy Freeze: +1% Cold Damage per Level<br>Holy Shock: +1% Lightning Damage per Level<br>Conviction: +3% Elemental Damage per Level", graytext:"", index:[0,""], text:["Cold Length: "," seconds<br>Fire Damage: +"," percent<br>Cold Damage: +"," percent<br>Lightning Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""], incomplete:1},
 {data:d342, key:"342", code:123, name:"Blessed Hammer", i:26, req:[31,22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons an ethereal hammer that<br>spirals outwards damaging enemies it hits<br>150 percent Damage to Undead", syn_title:"<br>Blessed Hammer Receives Bonuses From:<br>", syn_text:"Blessed Aim: +12% Magic Damage per Level<br>Vigor: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:124, name:"Conversion", i:27, req:[24,21], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Converts monsters to fight against<br>other foul demons and beasts", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to convert: "," percent<br>Duration: 8 seconds<br>Mana Cost: 4"]},
 {data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35"], incomplete:1},
@@ -360,15 +360,31 @@ var skills_pd2_paladin = [
 /*
 Paladin S3 Changes
 
+Beta Patch 2
+* Auto Aim skills such as foh now have a roughly 30% increased targeting range
+
+Open Beta Patch 1
+* Vengeance aoe size has been increased by 40%
+Vengeance enhanced elemental damage per level increased from 2% to 3%
+
+*/
+
+/*
+Paladin S3 Changes - Final Patch Notes
+
+
 * Redemption aura now grants an additional 2 life return per level
 
 * Sacrifice attack rating per level reduced from 28% to 16%
 
+Holy shield's increased block base reduced from 10% to 5%		// was 14%, not 10%?
+* Holy shield now gains 10% defense per level instead of 15%
+
 * Zeal’s attack rating per level reduced from 25% to 14% per level
 * Zeal’s base attack rating reduced from 45% to 35%
 
-* Holy freeze level 22-28 maximum damage scaling reduced from 5 to 4 (double check... was 25, not 5?)
-* Holy freeze level 28+ maximum damage scaling reduced from 7 to 5 (double check... was 35, not 7?)
+* Holy freeze level 22-28 maximum damage scaling reduced from 5 to 4		// values x5 (was 25, not 5)
+* Holy freeze level 28+ maximum damage scaling reduced from 7 to 5
 * Holy freeze level 22-28 minimum damage scaling reduced by 1 per level
 * Holy freeze level 28+ minimum damage scaling reduced by 1 per level
 
@@ -385,8 +401,8 @@ Paladin S3 Changes
 
 * Meditation now grants +1 passive mana after each kill every 2 base levels instead of every 5
 
-Thorns has been reworked and now deals a flat amount of damage to attackers instead of a % of their attack returned (TODO)
-Thorns now has might and defiance as synergies (TODO)
+Thorns has been reworked and now deals a flat amount of damage to attackers instead of a % of their attack returned
+Thorns now has might and defiance as synergies
 
 * Blessed aim attack rating % per level increased from 10% to 15%
 
@@ -397,20 +413,25 @@ Thorns now has might and defiance as synergies (TODO)
 * Holy shield level 1 duration increased to 2 minutes from 30 seconds
 * Holy shield duration per level reduced from 25 to 10
 
-Vengeance has been reworked completely (TODO)
+Vengeance has been reworked completely
 Vengeance will now create an aoe effect on attack that deals flat elemental damage of each type as well as carries any elemental damage from your gear.
 Vengeance now has a +% elemental damage modifier that increased elemental damage from items similar to enhanced damage (only increases elemental damage from items)
+* Vengeance starts at 120% increased attack rating instead of 60%,		// was 150%, not 60%
+* Vengeance now gains 18% attack rating per level from 10%
+* Vengeance synergies changed from Resist Fire, Resist Cold, Resist Lightning and Salvation to Holy Fire, Holy Freeze, Holy Shock and Conviction
 
-Fist of heavens damage scaling has been completely reworked to increase its early game potential and allow it to scale more smoothly into end game (TODO)
+Fist of heavens damage scaling has been completely reworked to increase its early game potential and allow it to scale more smoothly into end game 
 * Fist of heavens lightning synergies have been increased from 5% to 12%
 * Fist of heavens magic synergies have been reduced from 15% to 12%
 * Fist of heavens now has holy nova as a magic damage synergy at 12%
 * Fist of heavens holy bolt range has been reduced by 50%
 * Fist of heavens reverted back to locking on enemies but with a reduced aoe to make it less clunky
+* Fist of Heavens now deals 1% damage in pvp from 6%
 
 * Holy bolt healing per level reduced from 2 to 1
+* Holy bolt synergies reduced from 8% to 6%		// was 12%, not 8%
 * Holy bolt’s prayer synergy has been reduced from 6% life healed per level to 5%
-* Holy bolt’s damage synergies have been reduced from 10% to 8% (was 12%, not 10%? overridden)
+* Holy bolt’s damage synergies have been reduced from 10% to 8%		// typo, wrong values (shown above)
 * Holy bolt’s level 8-16 scaling changed from 3-4 to 3-5
 * Holy bolt’s level 16-22 scaling changed from 9-10 to 9-11
 * Holy bolt’s level 22-28 scaling changed from 12-13 to 15-17
@@ -425,17 +446,5 @@ Fist of heavens damage scaling has been completely reworked to increase its earl
 * Prayer now grants 1 passive life regen per base point instead of 1 every two base points
 * Prayer now grants +1 life per hit to allies every second level instead of every third
 
-
-Beta Patch 1
-* Holy bolt synergies reduced from 8% to 6%
-* Vengeance damage synergies are now applying at the proper value
-
-Beta Patch 2
-* Vengeance starts at 120% increased attack rating instead of 60%, (was 150%, not 60%?)
-* Vengenace now gains 18% attack rating per level from 10% (was already at 10%?)
-Holy shield's increased block base reduced from 10% to 5% (was 14%, not 10%? TODO)
-* Holy shield now gains 10% defense per level instead of 15%
-* Fist of Heavens now deals 1% damage in pvp from 6%
-* Auto Aim skills such as foh now have a roughly 30% increased targeting range
 
 */

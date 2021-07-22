@@ -31,7 +31,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Volcano" && elem > 1 && elem < 4) {			result *= (1+character.fDamage/100) }
 		if (skill.name == "Armageddon" && elem > 2 && elem < 7) {		result *= ((1 + 0.08*skills[4].level + 0.08*skills[1].level + 0.08*skills[7].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Arctic Blast" && elem < 2) {					result *= ((1 + 0.25*skills[10].level + 0.18*skills[8].level + 0.18*skills[6].level + 0.18*skills[5].level) * (1+character.cDamage/100)) }
-		if (skill.name == "Twister" && elem > 1 && elem < 4) {			result *= (1 + 0.24*skills[10].level + 0.24*skills[8].level + 0.24*skills[3].level) }
+		if (skill.name == "Twister" && elem > 1 && elem < 4) {			result *= (1 + 0.22*skills[10].level + 0.22*skills[8].level + 0.22*skills[3].level) }
 		if (skill.name == "Tornado" && elem < 2) {						result *= (1 + 0.14*skills[3].level + 0.14*skills[6].level + 0.14*skills[10].level) }
 		if (skill.name == "Hurricane" && elem > 0 && elem < 3) {		result *= ((1 + 0.08*skills[3].level + 0.08*skills[8].level + 0.08*skills[6].level) * (1+character.cDamage/100)) }
 		
@@ -364,7 +364,7 @@ var skills_pd2_druid = [
 {data:d113, key:"113", code:223, name:"Arctic Blast", i:3, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Blast a continous jet of ice<br>to burn your enemies with frost<br><br>Minimum Mana Required to Cast: 4", syn_title:"<br>Arctic Blast Receives Bonuses From:<br>", syn_text:"Hurricane: +25% Cold Damage per Level<br>Tornado: +18% Cold Damage per Level<br>Twister: +18% Cold Damage per Level<br>Cyclone Armor: +18% Cold Damage per Level", graytext:"", index:[0,""], text:["Average Cold Damage: ","-"," per second<br>Cold Length: "," seconds<br>Range: "," yards<br>Mana Cost: "," per second",""]},
 {data:d131, key:"131", code:224, name:"Fissure", i:4, req:[1,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Open volcanic vents below your enemies,<br>burning them to a crisp<br><br>Mana Cost: 10", syn_title:"<br>Fissure Receives Bonuses From:<br>", syn_text:"Firestorm: +8% Fire Damage per Level<br>Molten Boulder: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Duration: 2.2 seconds",""]},
 {data:d123, key:"123", code:225, name:"Cyclone Armor", i:5, req:[3], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Shield yourself from damage caused by<br>fire, cold, and lightning", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Absorbs "," damage<br>Mana Cost: ",""]},
-{data:d132, key:"132", code:226, name:"Twister", i:6, req:[5,3], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Release several small whirlwinds that<br>cut a path through your enemies", syn_title:"<br>Twister Receives Bonuses From:<br>", syn_text:"Hurricane: +24% Damage per Level<br>Tornado: +24% Damage per Level<br>Arctic Blast: +24% Damage per Level", graytext:"", index:[1,""], text:["Mana Cost: ","Twisters: ","<br>Damage: ","-",""]},
+{data:d132, key:"132", code:226, name:"Twister", i:6, req:[5,3], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Release several small whirlwinds that<br>cut a path through your enemies", syn_title:"<br>Twister Receives Bonuses From:<br>", syn_text:"Hurricane: +22% Damage per Level<br>Tornado: +22% Damage per Level<br>Arctic Blast: +22% Damage per Level", graytext:"", index:[1,""], text:["Mana Cost: ","Twisters: ","<br>Damage: ","-",""]},
 {data:d151, key:"151", code:227, name:"Volcano", i:7, req:[4,1,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon forth a volcano to rain death<br>and destruction over your enemies<br><br>Mana Cost: 12", syn_title:"<br>Volcano Receives Bonuses From:<br>", syn_text:"Molten Boulder: +10% Damage per Level<br>Fissure: +10% Damage per Level<br>Armageddon: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-",""]},
 {data:d152, key:"152", code:228, name:"Tornado", i:8, req:[6,5,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Create a funnel of wind and debris<br>to blast your enemies<br><br>Mana Cost: 10", syn_title:"<br>Tornado Receives Bonuses From:<br>", syn_text:"Arctic Blast: +14% Damage per Level<br>Twister: +14% Damage per Level<br>Hurricane: +14% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-",""]},
 {data:d161, key:"161", code:229, name:"Armageddon", i:9, req:[7,4,1,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Create a meteor shower to rain fiery<br>destruction on nearby enemies", syn_title:"<br>Armageddon Receives Bonuses From:<br>", syn_text:"Fissure: +8% Fire Damage per Level<br>Molten Boulder: +8% Fire Damage per Level<br>Volcano: +8% Fire Damage per Level", graytext:"", index:[1," seconds<br>Radius: 6 yards<br>Mana Cost: 35"], text:["Duration: ","Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second"]},
@@ -396,20 +396,38 @@ var skills_pd2_druid = [
 /*
 Druid S3 Changes
 
-* Twister synergies increased from 20% to 24%
-* Twisters level 1-16 scaling increased by +1-2 per level
-* Twisters level 16-22 scaling increased from +17-19 per level to +19-21 per level (double check... doubled values)
+Beta Patch 1
+* Fireclaw synergies increased from 12% to 16%		// was 22%, not 12%?
+
+Beta Patch 2
+* Fireclaw's firestorm range has been increased by 25%
+
+*/
+
+/*
+Druid S3 Changes - Final Patch Notes
+
+
+* Twister synergies increased from 20% to 22%
+* Twisters level 1-16 scaling increased by +1-2 per level		// CHECK: did I implement these at half values?
+* Twisters level 16-22 scaling increased from +17-19 per level to +19-21 per level		// values are doubled
 * Twisters level 22-28 scaling increased from 28-32 per level to 35-37 per level
 * Twisters level 28+ scaling increased from 42-48 per level to 55-57 per level
 
 * Oak sage increased from 10 life per level to 20 life per level
 
-Fireclaw has been reworked to now cast a fast moving firestorm on attack (TODO)
+Fireclaw has been reworked to now cast a fast moving firestorm on attack
+* Fireclaws fissure synergy has been replaced with Lycanthropy
+* Fireclaw's volcano synergy has been replace with Armageddon
 
 * Lycanthropy life bonus per level reduced from 3% to 2%
 
 * Feral rage now gains 8% attack rating per level from 15%
 * Feral rage base attack rating reduced from 25% from 45%
+* Feral Rage 5% damage per level increased to 8%
+* Feral Rage now caps at 10% life steal
+
+* Werewolf 5% damage per level increased to 8%
 
 * Maul now gains 10% attack rating per level from 20%
 * Maul base attack rating reduced from 50% to 25%
@@ -422,16 +440,22 @@ Fireclaw has been reworked to now cast a fast moving firestorm on attack (TODO)
 
 * Poison creeper now gains +100% life per level from +25%
 * Poison creeper now reduces enemies poison resist by -5% at level 1 and gains 1% per soft point (can remove immunities)
-* Poison creeper level 1-8 scaling reduced from 4-4 per level to 1-1 (double check... these values are 3.125x smaller?)
+* Poison creeper level 1-8 scaling reduced from 4-4 per level to 1-1		// values are 3.125 smaller
 * Poison creeper level 1-16 scaling reduced from 10-10 per level to 2-2
 * Poison creeper level 16-22 scaling reduced from 18-18 to 8-8
 * Poison creeper level 22-28 scaling reduced from 28-28 to 16-16
 * Poison creeper level 28+ scaling reduced from 38-38 to 32-32
-* Poison creeper synergies increased from 20% to 24% (overridden)
+* Poison creeper synergies increased from 20% to 22%
+* You may now summon an additional poison creeper every 10 base levels
+* Poison creeper will now display how many you have in the icon
+* Poison creeper now gains an additional 50% base health per difficulty
+* Poison creeper now longer counts towards the carrion vine and solar creeper vine limit
 
 * Carrion vine now gains +52% life per level from +25%
+* Carrion vine now gains an additional 50% base health per difficulty
 
 * Solar creeper now gains +30% life per level from +20%
+* Solar creeper now gains an additional 50% base health per difficulty
 
 * Increase armageddon skill radius by 80%
 * Doubled armageddon meteor explosion radius
@@ -440,29 +464,8 @@ Fireclaw has been reworked to now cast a fast moving firestorm on attack (TODO)
 
 * Shockwave synergies increased from 16%-18
 
+* Hunger base move speed increased from 10% to 20%
+* Hunger move speed per level changed from 2% per base point to 1% per soft point
 
-Beta Patch 1
-* Fireclaw synergies increased from 12% to 16% (was 22%, not 12%?)
-* Feral Rage now caps at 10% Life Steal
-
-Beta Patch 2
-* Poison creeper synergy reduced from 24% to 22%
-* You may now summon an additional poison creeper every 10 levels
-* Poison creepers no longer count towards the 1 vine limit with carrion and solar 
-* Fireclaw's firestorm range has been increased by 25%
-* Fireclaws fissure synergy has been replaced with Lycanthropy
-* Fireclaw's volcano synergy has been replace with Armageddon
-
-Beta Patch 3
-* Poison creeper will now display how many you have in the icon
-* Poison creeper now gains an additional 50% base health per difficulty
-* Carrion vine now gains an additional 50% base health per difficulty
-* Solar creeper now gains an additional 50% base health per difficulty
-
-* Feral Rage 5% damage per level increased to 8%
-* Werewolf 5% damage per level increased to 8%
-
-* Hunger base movespeed increased from 10% to 20%
-* Hunger movespeed per level changed from 2% per base point to 1% per soft point
 
 */
