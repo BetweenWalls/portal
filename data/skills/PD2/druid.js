@@ -43,7 +43,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Fury" && elem == 1) {						result += (10*skills[14].level) }
 		
 		if (skill.name == "Poison Creeper" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
-		if (skill.name == "Poison Creeper" && elem > 1 && elem < 4) {	result *= (1 + 0.22*skills[25].level + 0.22*skills[28].level + 0.22*skills[16].level) }
+		if (skill.name == "Poison Creeper" && elem > 1 && elem < 4) {	result *= ((1 + 0.22*skills[25].level + 0.22*skills[28].level + 0.22*skills[16].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Carrion Vine" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Carrion Vine" && elem == 1) {				result += (2*skills[26].level + 2*skills[28].level) }
 		if (skill.name == "Carrion Vine" && elem == 2) {				result += (4*skills[26].level + 4*skills[28].level) }
@@ -55,6 +55,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Oak Sage" && elem == 0) {					result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Oak Sage" && elem == 1) {					result += (12*skills[25].level + 12*skills[28].level) }
 		if (skill.name == "Raven" && elem < 4) {						result *= (1 + 0.12*skills[24].level + 0.12*skills[27].level + 0.12*skills[30].level) }
+		if (skill.name == "Raven" && elem < 2) {						result *= (1+character.cDamage/100) }
 		if (skill.name == "Summon Spirit Wolf" && elem == 0) {			result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Summon Spirit Wolf" && elem>0 && elem<3) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[27].level + 0.06*skills[30].level + 0.06*skills[11].level - 0.09*skills[13].level)) + ((~~skills[30].data.values[5][skills[30].level+(skills[30].extra_levels*Math.min(1,skills[30].level))])/100)) }
 		if (skill.name == "Summon Dire Wolf" && elem == 0) {			result = 25 + 25*(skills[24].level+(skills[24].extra_levels*Math.min(1,skills[24].level))) }

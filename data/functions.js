@@ -1341,10 +1341,12 @@ function loadItems(group, dropdown, className) {
 						else { addon = "<option disabled selected>" + "­ ­ ­ ­ " + item.name + "</option>" }
 					} else {
 						if (game_version == 2) {	// PoD item loading
-							if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
+							if (typeof(item.pd2) != 'undefined') { addon = "" }
+							else if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
 							else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
 							else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
 						} else {
+							if (game_version == 3) { if (typeof(item.pd2) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" } }
 							if (typeof(item.only) != 'undefined' || (typeof(item.debug) != 'undefined' && typeof(item.all_skills) != 'undefined')) {
 								if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
 								else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }

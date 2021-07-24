@@ -41,7 +41,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Fire Golem" && elem == 1) {						result = 200 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
 		if (skill.name == "Fire Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100 + 0.05*skills[6].level)) }
 		//if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result += 10*(0.10*(skills[3].level+(skills[3].extra_levels*Math.min(1,skills[3].level))) + 0.10*(skills[6].level+(skills[6].extra_levels*Math.min(1,skills[6].level))) + 0.10*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) + 0.10*(skills[4].level+(skills[4].extra_levels*Math.min(1,skills[4].level)))) }		// TODO: How is this meant to be calculated?
-		if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result *= (1 + 0.01*skills[3].level + 0.01*skills[6].level + 0.01*skills[8].level + 0.01*skills[4].level) }
+		if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result *= ((1 + 0.01*skills[3].level + 0.01*skills[6].level + 0.01*skills[8].level + 0.01*skills[4].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Golem Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/5) }
 		if (skill.name == "Revive" && elem == 0) {							result = 3 + Math.floor(skill.level/4) }
 		if (skill.name == "Revive" && elem == 1) {							result += (30*skills[15].level) }
