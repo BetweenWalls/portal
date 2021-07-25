@@ -39,7 +39,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Hunger" && elem == 0) {						result = 20 + 2 - 2*Math.ceil(skill.level/20) + skill.level*2 }
 		if (skill.name == "Shock Wave" && elem < 2) {					result *= (1 + 0.18*skills[13].level + 0.18*skills[6].level + 0.18*skills[8].level) }
 		if (skill.name == "Rabies" && elem > 0 && elem < 3) {			result *= ((1 + 0.17*skills[22].level + 0.17*skills[14].level + 0.17*skills[12].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Fire Claws" && elem < 2) {					result *= ((1 + 0.22*skills[0].level + 0.22*skills[1].level + 0.22*skills[4].level + 0.22*skills[7].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Fire Claws" && elem < 2) {					result *= ((1 + 0.22*skills[12].level + 0.22*skills[0].level + 0.22*skills[1].level + 0.22*skills[9].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Fury" && elem == 1) {						result += (10*skills[14].level) }
 		
 		if (skill.name == "Poison Creeper" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
