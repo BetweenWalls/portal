@@ -174,7 +174,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 /*[ 9] Lightning Fury	*/ var d163 = {values:[
 		["bolts",10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,15,16,], 
 		["lightning min",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
-		["lightning max",40,55,70,85,100,115,130,145,161,177,193,209,225,241,257,273,290,307,324,341,358,375,393,411,429,447,465,483,502,521,540,559,578,597,616,635,654,673,692,711,730,749,768,787,806,825,844,863,882,901,920,939,958,977,996,1015,1034,1053,1072,1091,], 
+		["lightning max",40,54,68,82,96,110,124,138,153,168,183,198,213,228,243,258,274,290,306,322,338,354,371,388,405,422,439,456,474,492,510,528,546,564,582,600,618,636,654,672,690,708,726,744,762,780,798,816,834,852,870,888,906,924,942,960,978,996,1014,1032,], 
 		["mana cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,], 
 ]};
 
@@ -326,16 +326,6 @@ var skills_pd2_amazon = [
 {data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 2 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 0.5 seconds<br>Mana Cost: ",""]}
 ];
-
-/*
-Amazon S3 Changes
-
-* Lightning fury level 1-8 scaling increased from 14 per level to 16 per level
-
-Beta Patch 2
-* lightning fury starts at it's proper 10 bolts (was never meant to start at 12)
-
-*/
 
 /*
 Amazon S3 Changes - Final Patch Notes

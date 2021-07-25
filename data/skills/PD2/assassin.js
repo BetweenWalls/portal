@@ -269,14 +269,14 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["lightning max",20,30,40,50,60,70,80,90,106,122,138,154,170,186,202,218,242,266,290,314,338,362,396,430,464,498,532,566,610,654,698,742,786,830,874,918,962,1006,1050,1094,1138,1182,1226,1270,1314,1358,1402,1446,1490,1534,1578,1622,1666,1710,1754,1798,1842,1886,1930,1974,], 
 ]};
 /*[27] Wake of Inferno	*/ var d352 = {values:[
-		["fire min",20,38,56,73,91,109,127,144,166,188,210,232,254,276,297,319,346,373,401,428,455,482,525,567,610,653,695,738,796,855,913,971,1030,1088,1146,1205,1263,1321,1380,1438,1496,1555,1613,1671,1730,1788,1846,1905,1963,2021,2080,2138,2196,2255,2313,2371,2430,2488,2546,2605,], 
-		["fire max",52,71,91,111,131,151,170,190,214,238,262,286,310,334,358,382,411,440,469,498,528,557,602,646,691,736,781,826,891,957,1022,1088,1154,1219,1285,1351,1416,1482,1547,1613,1679,1744,1810,1876,1941,2007,2072,2138,2204,2269,2335,2401,2466,2532,2597,2663,2729,2794,2860,2926,], 
+		["fire min",20,37,54,70,87,104,121,137,157,177,196,216,236,256,276,295,318,341,364,387,410,433,459,485,511,537,563,589,618,647,677,706,735,764,793,822,852,881,910,939,968,997,1027,1056,1085,1114,1143,1172,1202,1231,1260,1289,1318,1347,1377,1406,1435,1464,1493,1522,], 
+		["fire max",52,70,89,108,127,146,164,183,205,227,248,270,292,314,336,358,383,408,433,458,483,508,536,564,592,620,648,677,708,739,770,802,833,864,895,927,958,989,1020,1052,1083,1114,1145,1177,1208,1239,1270,1302,1333,1364,1395,1427,1458,1489,1520,1552,1583,1614,1645,1677,], 
 ]};
 /*[28] Death Sentry		*/ var d362 = {values:[
 		["Shoots # Times",], 
-		["Damage min",7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,26,28,30,32,34,38,42,46,50,54,58,64,70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,], 
-		["Damage max",10,11,12,13,14,15,16,17,19,21,23,25,27,29,31,33,36,39,42,45,48,51,57,63,69,75,81,87,96,105,114,123,132,141,150,159,168,177,186,195,204,213,222,231,240,249,258,267,276,285,294,303,312,321,330,339,348,357,366,375,], 
-		["Fire Damage min",7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,26,28,30,32,34,38,42,46,50,54,58,64,70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,], 
+		["Damage min",8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,27,29,31,33,35,39,43,47,51,55,59,65,71,77,83,89,95,101,107,113,119,125,131,137,143,149,155,161,167,173,179,185,191,197,203,209,215,221,227,233,239,245,251,], 
+		["Damage max",10,11,12,13,14,15,16,17,19,21,23,25,27,29,31,33,36,39,42,45,48,51,56,61,66,71,76,81,88,95,102,109,116,123,130,137,144,151,158,165,172,179,186,193,200,207,214,221,228,235,242,249,256,263,270,277,284,291,298,305,], 
+		["Fire Damage min",8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,27,29,31,33,35,39,43,47,51,55,59,65,71,77,83,89,95,101,107,113,119,125,131,137,143,149,155,161,167,173,179,185,191,197,203,209,215,221,227,233,239,245,251,], 
 		["Fire Damage max",10,11,12,13,14,15,16,17,19,21,23,25,27,29,31,33,36,39,42,45,48,51,56,61,66,71,76,81,88,95,102,109,116,123,130,137,144,151,158,165,172,179,186,193,200,207,214,221,228,235,242,249,256,263,270,277,284,291,298,305,], 
 ]};
 /*[29] Blade Shield		*/ var d353 = {values:[
@@ -319,8 +319,8 @@ var skills_pd2_assassin = [
 {data:d332, key:"332", code:275, name:"Wake of Fire", i:24, req:[20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits waves of fire<br><br>Shoots 8 Times", syn_title:"<br>Wake of Fire Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Fire Damage per Level<br>Wake of Inferno: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: 7",""]},
 {data:d343, key:"343", code:276, name:"Blade Fury", i:25, req:[22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Throw spinning blades<br>to slice up your enemies<br><br>Minimum Mana Required to Cast: 3", syn_title:"<br>Blade Fury Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +4% Damage per Level<br>Blade Shield: +4% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+1/2 Weapon Damage<br>Mana Cost: "," per blade",""]},
 {data:d351, key:"351", code:350, name:"Lightning Sentry", i:26, req:[23,21,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots lightning<br>to scorch passing enemies<br><br>Shoots 12 Times", syn_title:"<br>Lightning Sentry Receives Bonuses From:<br>", syn_text:"Shock Web: +12% Lightning Damage per Level<br>Charged Bolt Sentry: +12% Lightning Damage per Level<br>Death Sentry: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: 20",""]},
-{data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 5 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Fire Blast: +6% Fire Damage per Level<br>Wake of Fire: +6% Fire Damage per Level<br>Death Sentry: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: 20",""], incomplete:1},
-{data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +6% Damage per Level<br>Wake of Inferno: +6% Damage per Level<br>Charged Bolt Sentry: +6% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 2-5 percent of corpse Life<br>Shoots ","Radius: 10 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: 20"], incomplete:1},
+{data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 5 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Fire Blast: +6% Fire Damage per Level<br>Wake of Fire: +6% Fire Damage per Level<br>Death Sentry: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: 20",""]},
+{data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +6% Damage per Level<br>Wake of Inferno: +6% Damage per Level<br>Charged Bolt Sentry: +6% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 2-5 percent of corpse Life<br>Shoots ","Radius: 10 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: 20"]},
 {data:d353, key:"353", code:280, name:"Blade Shield", i:29, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, damaging:{attack:1,spell:0}, bindable:1, description:"Spinning blades slice enemies<br>who stray too close", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: ","-","<br>+3/4 Weapon Damage<br>Duration: 300 seconds<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:277, name:"Chain Lightning Sentry", i:30, req:[26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots chain lightning<br>to scorch passing enemies<br><br>Shoots 10 Times", syn_title:"<br>Chain Lightning Sentry Receives Bonuses From:<br>", syn_text:"Shock Web: +15% Lightning Damage per Level<br>Charged Bolt Sentry: +15% Lightning Damage per Level<br>Death Sentry: +15% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: 20",""]},
 
@@ -345,14 +345,14 @@ Assassin S3 Changes - Final Patch Notes
 * Dragon flight range has been increased by 50%
 
 * Death sentry aoe reduced by roughly 17%		// 12 to 10
-Death sentry scaling has been reworked and reduced significantly overall
+* Death sentry scaling has been reworked and reduced significantly overall
 * Death sentry synergies increased from 4% to 6%
 * Death sentry now deals 2-5% of the corpses life as damage from 5-10% 
 
 * Inferno sentry shoots 5 times instead of 10
 * Inferno sentry no longer gains scaling range
 * Inferno sentry now has a fixed range of 20
-Inferno sentry scaling has been reduced
+* Inferno sentry scaling has been reduced
 * Inferno sentry synergies have been reduced from 10% to 6%
 
 * Fire blast synergies increased from 9% to 12%

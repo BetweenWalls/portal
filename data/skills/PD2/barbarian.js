@@ -263,20 +263,6 @@ var skills_pd2_barbarian = [
 ];
 
 /*
-Barbarian S3 Changes
-
-Beta Patch 2
-* Leap attack reduced from 10% damage per level to 8%
-
-Beta Patch 3
-* Leap attack now leeches at 1/3rd instead of 1/2
-
-Open Beta Patch 1
-* Leap attack now shows its proper synergies
-
-*/
-
-/*
 Barbarian S3 Changes - Final Patch Notes
 
 

@@ -277,12 +277,12 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		["mana cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
 ]};
 /*[29] Meteor			*/ var d351 = {values:[
-		["damage min",20,24,28,32,36,40,44,48,58,68,78,88,98,108,118,128,143,158,173,188,203,218,235,252,269,286,303,320,339,358,377,396,415,434,453,472,491,510,529,548,567,586,605,624,643,662,681,700,719,738,757,776,795,814,833,852,871,890,909,928,], 
-		["damage max",25,31,37,43,49,55,61,67,77,87,97,107,117,127,137,147,162,177,192,207,222,237,254,271,288,305,322,339,358,377,396,415,434,453,472,491,510,529,548,567,586,605,624,643,662,681,700,719,738,757,776,795,814,833,852,871,890,909,928,947,], 
-		["fire min",60,68,76,84,92,100,108,116,129,142,155,168,181,194,207,220,237,254,271,288,305,322,342,362,382,402,422,442,466,490,514,538,562,586,610,634,658,682,706,730,754,778,802,826,850,874,898,922,946,970,994,1018,1042,1066,1090,1114,1138,1162,1186,1210,], 
-		["fire max",75,84,93,102,111,120,129,138,153,168,183,198,213,228,243,258,281,304,327,350,373,396,421,446,471,496,521,546,573,600,627,654,681,708,735,762,789,816,843,870,897,924,951,978,1005,1032,1059,1086,1113,1140,1167,1194,1221,1248,1275,1302,1329,1356,1383,1410,], 
-		["burning min",35,44,53,63,72,82,91,100,112,124,135,147,159,171,182,194,208,222,236,250,264,278,292,307,321,335,349,363,377,391,405,419,433,447,461,475,489,503,517,532,546,560,574,588,602,616,630,644,658,672,686,700,714,728,742,757,771,785,799,813,], 
-		["burning max",58,67,77,86,96,105,114,124,135,147,159,171,182,194,206,217,232,246,260,274,288,302,316,330,344,358,372,386,400,414,428,442,457,471,485,499,513,527,541,555,569,583,597,611,625,639,653,667,682,696,710,724,738,752,766,780,794,808,822,836,], 
+		["damage min",20,27,34,41,48,55,62,69,79,89,99,109,119,129,139,149,162,175,188,201,214,227,242,257,272,287,302,317,334,351,368,385,402,419,436,453,470,487,504,521,538,555,572,589,606,623,640,657,674,691,708,725,742,759,776,793,810,827,844,861,], 
+		["damage max",25,34,43,52,61,70,79,88,100,112,124,136,148,160,172,184,199,214,229,244,259,274,292,310,328,346,364,382,403,424,445,466,487,508,529,550,571,592,613,634,655,676,697,718,739,760,781,802,823,844,865,886,907,928,949,970,991,1012,1033,1054,], 
+		["fire min",20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,85,90,95,100,105,110,116,122,128,134,140,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,265,272,279,286,293,300,307,314,321,328,335,342,349,356,363,370,], 
+		["fire max",25,31,37,43,49,55,61,67,73,79,85,91,97,103,109,115,122,129,136,143,150,157,165,173,181,189,197,205,214,223,232,241,250,259,268,277,286,295,304,313,322,331,340,349,358,367,376,385,394,403,412,421,430,439,448,457,466,475,484,493,], 
+		["burning min",17,19,22,24,26,29,31,33,37,41,44,48,51,55,58,62,66,71,76,80,85,90,96,101,107,113,119,125,132,139,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,266,273,280,287,294,301,308,315,322,329,336,343,350,], 
+		["burning max",29,31,33,36,38,41,43,45,49,52,56,59,63,66,70,73,78,83,87,92,96,101,107,113,119,125,131,137,144,151,158,165,172,179,186,193,200,207,214,221,228,235,242,249,256,263,270,277,284,291,298,305,312,319,326,333,340,347,354,361,], 
 		["mana cost",17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,42,43,43,44,44,45,45,46,46,], 
 ]};
 /*[30] Fire Mastery		*/ var d362 = {values:[
@@ -337,7 +337,7 @@ var skills_pd2_sorceress = [
 {data:d332, key:"332", code:62, name:"Fire Ball", i:26, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an explosive sphere of fiery death<br>to engulf your enemies", syn_title:"<br>Fire Ball Receives Bonuses From:<br>", syn_text:"Fire Bolt: +16% Fire Damage per Level<br>Combustion: +16% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:63, name:"Fire Wall", i:27, req:[25,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a wall of flame that<br>blocks or burns your enemies", syn_title:"<br>Fire Wall Receives Bonuses From:<br>", syn_text:"Warmth: +4% Fire Damage per Level<br>Inferno: +1% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Duration: 3.6 seconds<br>Average Fire Damage: ","-"," per second<br>"," yards<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:64, name:"Enchant Fire", i:28, req:[23,26,22,32], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Grants bonus fire damage to yourself and nearby allies<br>1/3 effectiveness for ranged weapons<br>1/2 effectiveness for allies", syn_title:"<br>Enchant Fire Receives Bonuses From:<br>", syn_text:"Warmth: +16% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: ","<br>Fire Damage: ","-","<br>Attack Bonus: +"," percent<br>Mana Cost: ",""]},
-{data:d351, key:"351", code:65, name:"Meteor", i:29, req:[26,27,22,25,24], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a meteor from the heavens<br>to crush and incinerate your enemies", syn_title:"<br>Meteor Receives Bonuses From:<br>", syn_text:"Fire Ball: +10% Damage per Level<br>Fire Wall: +10% Damage per Level<br>Inferno: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""], incomplete:1},
+{data:d351, key:"351", code:65, name:"Meteor", i:29, req:[26,27,22,25,24], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a meteor from the heavens<br>to crush and incinerate your enemies", syn_title:"<br>Meteor Receives Bonuses From:<br>", syn_text:"Fire Ball: +10% Damage per Level<br>Fire Wall: +10% Damage per Level<br>Inferno: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:66, name:"Fire Mastery", i:30, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your fire spells", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Fire Damage: +"," percent<br>Fire Pierce: +"," percent",""]},
 {data:d363, key:"363", code:67, name:"Hydra", i:31, req:[28,23,26,22,32], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame that casts<br>fireball to reduce your enemies to ashes", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +6% Fire Damage per Level<br>Lesser Hydra: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 6 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d333, key:"333", code:305, name:"Lesser Hydra", i:32, req:[23], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame that casts<br>firebolt to reduce your enemies to ashes", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Hydra: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 6 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
@@ -345,19 +345,11 @@ var skills_pd2_sorceress = [
 ];
 
 /*
-Sorceress S3 Changes
-
-Beta Patch 1
-Meteor now gains +2 physical damage per level
-
-*/
-
-/*
 Sorceress S3 Changes - Final Patch Notes
 
 
 * Meteor explosion aoe increased by 33%
-Meteor’s damage scaling has been completely reworked to deal more physical damage and less fire (the skill will now deal less total damage but more hybrid damage)
+* Meteor’s damage scaling has been completely reworked to deal more physical damage and less fire (the skill will now deal less total damage but more hybrid damage)
 * Meteor synergies increased from 6% to 10%		// was 9%, not 6%
 
 * Lesser hydra 16% synergy reduced to 12%
@@ -387,6 +379,8 @@ Meteor’s damage scaling has been completely reworked to deal more physical dam
 * Cold enchants level 22-28 scaling increased from 15-17 to 30-32
 * Cold enchants level 28 scaling increased from 19-21 to 42-44
 * Cold enchant no longer gains mastery bonuses twice
+
+* Glacial spike now has Ice Bolt as a damage synergy instead of Blizzard
 
 * Frozen orb’s scaling change from 
 * Frozen orb’s level 1-8 scaling reduced from 11-12 per level to 3-5		// values are doubled

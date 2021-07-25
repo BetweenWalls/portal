@@ -231,9 +231,9 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["poison max",46,62,78,93,109,125,140,156,187,218,250,281,312,343,375,406,468,531,593,656,718,781,875,968,1062,1156,1250,1343,1468,1593,1718,1843,1968,2093,2218,2343,2468,2593,2718,2843,2968,3093,3218,3343,3468,3593,3718,3843,3968,4093,4218,4343,4468,4593,4718,4843,4968,5093,5218,5343,], 
 ]};
 /*[17] Fire Claws		*/ var d252 = {values:[
-		["fire min",15,23,31,39,47,55,63,71,83,95,107,119,131,143,155,167,187,207,227,247,267,287,311,335,359,383,407,431,461,491,521,551,581,611,641,671,701,731,761,791,821,851,881,911,941,971,1001,1031,1061,1091,1121,1151,1181,1211,1241,1271,1301,1331,1361,1391,], 
-		["fire max",20,28,36,44,52,60,68,76,88,100,112,124,136,148,160,172,194,216,238,260,282,304,330,356,382,408,434,460,494,528,562,596,630,664,698,732,766,800,834,868,902,936,970,1004,1038,1072,1106,1140,1174,1208,1242,1276,1310,1344,1378,1412,1446,1480,1514,1548,], 
-		["Attack +%",100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,940,955,970,985,], 
+		["burning min",11,12,14,15,16,17,18,19,22,24,26,29,31,33,36,38,42,45,49,52,56,59,64,69,73,78,83,87,93,99,105,111,117,123,128,134,140,146,152,158,164,169,175,181,187,193,199,205,210,216,222,228,234,240,246,251,257,263,269,275,], 
+		["burning max",17,19,22,24,26,29,31,33,37,41,44,48,51,55,58,62,66,71,76,80,85,90,96,101,107,113,119,125,132,139,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,266,273,280,287,294,301,308,315,322,329,336,343,350,], 
+		["Attack +%",60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,], 
 ]};
 /*[18] Hunger			*/ var d232 = {values:[
 		["Duration",], 
@@ -377,7 +377,7 @@ var skills_pd2_druid = [
 {data:d221, key:"221", code:234, name:"Feral Rage", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werewolf form,<br>go into a frenzied rage to steal<br>increasing amounts of life from your enemies<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 20 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Walk/Run Speed: +","-"," percent<br>Life Steal: +","-"," percent<br>Damage: +"," percent<br>Attack: +"," percent"]},
 {data:d223, key:"223", code:235, name:"Maul", i:15, req:[13], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werebear form,<br>maul your enemies<br>for increasing extra damage<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 20 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Stun Length: "," seconds<br>Damage: +","-"," percent<br>Attack: +"," percent"]},
 {data:d241, key:"241", code:236, name:"Rabies", i:16, req:[14,11], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf form,<br>bite your enemies<br>to inflict them with disease<br>that spreads to other monsters<br><br>Mana Cost: 10", syn_title:"<br>Rabies Receives Bonuses From:<br>", syn_text:"Poison Creeper: +17% Poison Damage per Level<br>Feral Rage: +17% Poison Damage per Level<br>Lycanthropy: +17% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 5 seconds",""]},
-{data:d252, key:"252", code:237, name:"Fire Claws", i:17, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf or werebear<br>form, maul your enemies<br>with a fiery claw attack", syn_title:"<br>Fire Claws Receives Bonuses From:<br>", syn_text:"Firestorm: +16% Fire Damage per Level<br>Molten Boulder: +16% Fire Damage per Level<br>Armageddon: +16% Fire Damage per Level<br>Lycanthropy: +16% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"], incomplete:1},
+{data:d252, key:"252", code:237, name:"Fire Claws", i:17, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf or werebear<br>form, maul your enemies<br>with a fiery claw attack", syn_title:"<br>Fire Claws Receives Bonuses From:<br>", syn_text:"Lycanthropy: +16% Fire Damage per Level<br>Firestorm: +16% Fire Damage per Level<br>Molten Boulder: +16% Fire Damage per Level<br>Armageddon: +16% Fire Damage per Level", graytext:"", index:[0,""], text:["Average Fire Damage: ","-"," per second<br>Attack: +"," percent<br>Mana Cost: 4"]},
 {data:d232, key:"232", code:238, name:"Hunger", i:18, req:[15,13], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"While in werebear form, consume a corpse to temporarily<br>gain movement speed, critical strike and life steal", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Gains +2 Second Duration per Base Level<br>Duration: ","+","% Movement Speed<br>"," percent chance of Critical Strike<br>Life Steal: "," percent<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:239, name:"Shock Wave", i:19, req:[15,13], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werebear form,<br>stomp to create a shock wave<br>that stuns nearby enemies", syn_title:"<br>Shock Wave Receives Bonuses From:<br>", syn_text:"Werebear: +18% Damage per Level<br>Twister: +18% Damage per Level<br>Tornado: +18% Damage per Level", graytext:"", index:[0,""], text:["Stun Length: 0.2 seconds<br>Damage: ","-","<br>Mana Cost: 7"]},
 {data:d261, key:"261", code:240, name:"Fury", i:20, req:[16,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf form, attack<br>either multiple adjacent targets<br>or one target multiple times", syn_title:"<br>Fury Receives Bonuses From:<br>", syn_text:"Feral Rage: +10% Damage per Level", graytext:"", index:[0,""], text:["3 hits<br>Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 4"]},
@@ -395,17 +395,6 @@ var skills_pd2_druid = [
 ];
 
 /*
-Druid S3 Changes
-
-Beta Patch 1
-* Fireclaw synergies increased from 12% to 16%		// was 22%, not 12%?
-
-Beta Patch 2
-* Fireclaw's firestorm range has been increased by 25%
-
-*/
-
-/*
 Druid S3 Changes - Final Patch Notes
 
 
@@ -417,9 +406,11 @@ Druid S3 Changes - Final Patch Notes
 
 * Oak sage increased from 10 life per level to 20 life per level
 
-Fireclaw has been reworked to now cast a fast moving firestorm on attack
+* Fireclaw has been reworked to now cast a fast moving firestorm on attack
 * Fireclaws fissure synergy has been replaced with Lycanthropy
 * Fireclaw's volcano synergy has been replace with Armageddon
+* Fireclaw synergies decreased from 22% to 16%
+* Fireclaw attack power per level changed
 
 * Lycanthropy life bonus per level reduced from 3% to 2%
 

@@ -32,14 +32,12 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Holy Freeze" && elem < 4) {			result *= ((1 + 0.12*skills[3].level + 0.12*skills[9].level + 0.12*skills[13].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Holy Shock" && elem < 4) {			result *= ((1 + 0.08*skills[5].level + 0.08*skills[9].level + 0.08*skills[13].level) * (1+character.lDamage/100)) }
 		if (skill.name == "Sanctuary" && elem < 4) {			result *= (1 + 0.08*skills[10].level + 0.08*skills[13].level + 0.08*skills[27].level) }
-		if (skill.name == "Thorns" && elem == 1) {				result += (50*skills[2].level + 50*skills[10].level) }
+		if (skill.name == "Thorns" && elem == 1) {				result *= (1 + 0.18*skills[10].level + 0.18*skills[2].level) }
 		
 		if (skill.name == "Joust" && elem == 0) {				result = 3.5 - 0.1*skill.level }
 		if (skill.name == "Sacrifice" && elem == 2) {			result += (20*skills[8].level + 20*skills[18].level) }
 		if (skill.name == "Zeal" && elem == 1) {				result += (16*skills[20].level) }
-		if (skill.name == "Vengeance" && elem == 1) {			result += (1*skills[11].level + 3*skills[19].level) }
-		if (skill.name == "Vengeance" && elem == 2) {			result += (1*skills[15].level + 3*skills[19].level) }
-		if (skill.name == "Vengeance" && elem == 3) {			result += (1*skills[16].level + 3*skills[19].level) }
+		if (skill.name == "Vengeance" && elem == 1) {			result += (2*skills[11].level + 2*skills[15].level + 2*skills[16].level + 2*skills[19].level) }
 		if (skill.name == "Charge" && elem == 0) {				result += (20*skills[6].level + 20*skills[10].level) }
 		if (skill.name == "Holy Shield" && elem == 3) {			result += (15*skills[2].level) }
 		if (skill.name == "Blessed Hammer" && elem < 2) {		result *= (1 + 0.12*skills[13].level + 0.12*skills[6].level) }
@@ -201,7 +199,7 @@ function disableAuras(skill) {
 ]};
 /*[12] Thorns			*/ var d223 = {values:[
 		["Radius (yards)",13.3,14.6,16,17.3,18.6,20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,], 
-		["Damage Return +%",250,300,350,400,450,500,550,600,650,700,750,800,850,900,950,1000,1050,1100,1150,1200,1250,1300,1350,1400,1450,1500,1550,1600,1650,1700,1750,1800,1850,1900,1950,2000,2050,2100,2150,2200,2250,2300,2350,2400,2450,2500,2550,2600,2650,2700,2750,2800,2850,2900,2950,3000,3050,3100,3150,3200,], 
+		["Damage Return +%",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,34,42,50,58,66,74,90,106,122,138,154,170,194,218,242,266,290,314,338,362,386,410,434,458,482,506,530,554,578,602,626,650,674,698,722,746,770,794,818,842,866,890,914,938,], 
 ]};
 /*[13] Blessed Aim		*/ var d231 = {values:[
 		["Passive Bonus Attack +%",], 
@@ -270,11 +268,14 @@ function disableAuras(skill) {
 		["Attack Mod +%",75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,960,], 
 ]};
 /*[25] Vengeance		*/ var d341 = {values:[
-		["Cold Length",1.2,1.8,2.4,3,3.6,4.2,4.8,5.4,6,6.6,7.2,7.8,8.4,9,9.6,10.2,10.8,11.4,12,12.6,13.2,13.8,14.4,15,15.6,16.2,16.8,17.4,18,18.6,19.2,19.8,20.4,21,21.6,22.2,22.8,23.4,24,24.6,25.2,25.8,26.4,27,27.6,28.2,28.8,29.4,30,30.6,31.2,31.8,32.4,33,33.6,34.2,34.8,35.4,36,36.6,], 
-		["Fire Damage +%",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
-		["Cold Damage +%",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
-		["Lightning Damage +%",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
 		["Attack Bonus +%",120,138,156,174,192,210,228,246,264,282,300,318,336,354,372,390,408,426,444,462,480,498,516,534,552,570,588,606,624,642,660,678,696,714,732,750,768,786,804,822,840,858,876,894,912,930,948,966,984,1002,1020,1038,1056,1074,1092,1110,1128,1146,1164,1182,], 
+		["elemental damage",5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59,62,65,68,71,74,77,80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125,128,131,134,137,140,143,146,149,152,155,158,161,164,167,170,173,176,179,182,], 
+		["fire min",12,16,20,24,28,32,36,40,46,52,58,64,70,76,82,88,98,108,118,128,138,148,160,172,184,196,208,220,234,248,262,276,290,304,318,332,346,360,374,388,402,416,430,444,458,472,486,500,514,528,542,556,570,584,598,612,626,640,654,668,], 
+		["fire max",16,22,28,34,40,46,52,58,66,74,82,90,98,106,114,122,134,146,158,170,182,194,208,222,236,250,264,278,294,310,326,342,358,374,390,406,422,438,454,470,486,502,518,534,550,566,582,598,614,630,646,662,678,694,710,726,742,758,774,790,], 
+		["cold min",12,16,20,24,28,32,36,40,46,52,58,64,70,76,82,88,98,108,118,128,138,148,160,172,184,196,208,220,234,248,262,276,290,304,318,332,346,360,374,388,402,416,430,444,458,472,486,500,514,528,542,556,570,584,598,612,626,640,654,668,], 
+		["cold max",16,22,28,34,40,46,52,58,66,74,82,90,98,106,114,122,134,146,158,170,182,194,208,222,236,250,264,278,294,310,326,342,358,374,390,406,422,438,454,470,486,502,518,534,550,566,582,598,614,630,646,662,678,694,710,726,742,758,774,790,], 
+		["lightning min",12,16,20,24,28,32,36,40,46,52,58,64,70,76,82,88,98,108,118,128,138,148,160,172,184,196,208,220,234,248,262,276,290,304,318,332,346,360,374,388,402,416,430,444,458,472,486,500,514,528,542,556,570,584,598,612,626,640,654,668,], 
+		["lightning max",16,22,28,34,40,46,52,58,66,74,82,90,98,106,114,122,134,146,158,170,182,194,208,222,236,250,264,278,294,310,326,342,358,374,390,406,422,438,454,470,486,502,518,534,550,566,582,598,614,630,646,662,678,694,710,726,742,758,774,790,], 
 		["Mana Cost",4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,], 
 ]};
 /*[26] Blessed Hammer	*/ var d342 = {values:[
@@ -290,13 +291,13 @@ function disableAuras(skill) {
 		["smite max",6,8,10,12,14,16,18,20,23,26,29,32,35,38,41,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,], 
 		["Duration (seconds)",120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,], 
 		["Defense +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
-		["Successful Blocking +%",14,18,20,23,25,26,27,28,29,30,31,31,32,33,33,34,34,34,34,35,35,35,36,36,36,36,37,37,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,40,], 
+		["Successful Blocking +%",10,14,17,20,22,24,25,26,27,28,29,30,31,31,32,33,33,33,34,34,34,35,35,35,35,36,36,36,36,36,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,40,], 
 ]};
 /*[29]Fist of the Heavens*/var d352 = {values:[
-		["magic min",13,15,17,19,21,23,25,27,30,33,36,39,42,45,48,51,58,65,72,79,86,93,105,117,129,141,153,165,182,199,216,233,250,267,284,301,318,335,352,369,386,403,420,437,454,471,488,505,522,539,556,573,590,607,624,641,658,675,692,709,], 
-		["magic max",16,19,22,25,28,31,34,37,41,45,49,53,57,61,65,69,77,85,93,101,109,117,131,145,159,173,187,201,219,237,255,273,291,309,327,345,363,381,399,417,435,453,471,489,507,525,543,561,579,597,615,633,651,669,687,705,723,741,759,777,], 
-		["lightning min",100,105,110,115,120,125,130,135,145,155,165,175,185,195,205,215,235,255,275,295,315,335,367,399,431,463,495,527,573,619,665,711,757,803,849,895,941,987,1033,1079,1125,1171,1217,1263,1309,1355,1401,1447,1493,1539,1585,1631,1677,1723,1769,1815,1861,1907,1953,1999,], 
-		["lightning max",150,155,160,165,170,175,180,185,195,205,215,225,235,245,255,265,285,305,325,345,365,385,417,449,481,513,545,577,623,669,715,761,807,853,899,945,991,1037,1083,1129,1175,1221,1267,1313,1359,1405,1451,1497,1543,1589,1635,1681,1727,1773,1819,1865,1911,1957,2003,2049,], 
+		["magic min",10,12,14,16,18,20,22,24,28,32,36,40,44,48,52,56,65,74,83,92,101,110,124,138,152,166,180,194,213,232,251,270,289,308,327,346,365,384,403,422,441,460,479,498,517,536,555,574,593,612,631,650,669,688,707,726,745,764,783,802,], 
+		["magic max",12,15,18,21,24,27,30,33,38,43,48,53,58,63,68,73,83,93,103,113,123,133,148,163,178,193,208,223,243,263,283,303,323,343,363,383,403,423,443,463,483,503,523,543,563,583,603,623,643,663,683,703,723,743,763,783,803,823,843,863,], 
+		["lightning min",100,102,104,106,108,110,112,114,119,124,129,134,139,144,149,154,162,170,178,186,194,202,213,224,235,246,257,268,282,296,310,324,338,352,366,380,394,408,422,436,450,464,478,492,506,520,534,548,562,576,590,604,618,632,646,660,674,688,702,716,], 
+		["lightning max",150,155,160,165,170,175,180,185,196,207,218,229,240,251,262,273,290,307,324,341,358,375,398,421,444,467,490,513,542,571,600,629,658,687,716,745,774,803,832,861,890,919,948,977,1006,1035,1064,1093,1122,1151,1180,1209,1238,1267,1296,1325,1354,1383,1412,1441,], 
 		["mana cost",10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,21,21.2,21.5,21.7,22,22.2,22.5,22.7,23,23.2,23.5,23.7,24,24.2,24.5,24.7,], 
 ]};
 /*[30] Joust			*/ var d351 = {values:[
@@ -333,7 +334,7 @@ var skills_pd2_paladin = [
 
 {data:d211, key:"211", code:107, name:"Might", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage<br>done by you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Damage: +"," percent"]},
 {data:d222, key:"222", code:108, name:"Holy Fire", i:11, req:[10], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with heavenly flames<br>Adds fire damage to your attack", syn_title:"<br>Holy Fire Receives Bonuses From:<br>", syn_text:"Resist Fire: +20% Fire Damage per Level<br>Salvation: +20% Fire Damage per Level<br>Blessed Aim: +20% Fire Damage per Level", graytext:"", index:[0,""], text:["Radius: 6 yards<br>Fire Damage: ","-"," to your attack<br>Fire Damage: ","-",""]},
-{data:d223, key:"223", code:109, name:"Thorns", i:12, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura deals damage to attackers", syn_title:"<br>Thorns Receives Bonuses From:<br>", syn_text:"Defiance: +X Damage per Level<br>Might: +X Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Attackers take "," damage"], incomplete:1},
+{data:d223, key:"223", code:109, name:"Thorns", i:12, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura deals damage to attackers", syn_title:"<br>Thorns Receives Bonuses From:<br>", syn_text:"Might: +18% Damage per Level<br>Defiance: +18% Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Attackers take "," damage"]},
 {data:d231, key:"231", code:110, name:"Blessed Aim", i:13, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants +10% Passive Attack Rating per Base Level<br>Attack: +","Radius: "," yards<br>Attack Rating: +"," percent",""]},
 {data:d241, key:"241", code:111, name:"Concentration", i:14, req:[13,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage and decreases the chance<br>that the attack will be interrupted for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Radius: "," yards<br>Chance uninterruptable: 20 percent<br>Damage: +"," percent"]},
 {data:d242, key:"242", code:112, name:"Holy Freeze", i:15, req:[11,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura freezes nearby monsters<br>Adds cold damage to your attack", syn_title:"<br>Holy Freeze Receives Bonuses From:<br>", syn_text:"Resist Cold: +12% Cold Damage per Level<br>Salvation: +12% Cold Damage per Level<br>Blessed Aim: +12% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 8 yards<br>Cold Damage: ","-"," to your attack<br>Cold Damage: ","-","<br>Enemies slowed "," percent"]},
@@ -347,27 +348,15 @@ var skills_pd2_paladin = [
 {data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of Divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +6% Magic Damage per Level<br>Fist of the Heavens: +6% Magic Damage per Level<br>Holy Nova: +6% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +16% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
 {data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +20% Damage per Level<br>Might: +20% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
-{data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fire, lightning, and cold damage are added<br>to each successful attack", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Holy Fire: +1% Fire Damage per Level<br>Holy Freeze: +1% Cold Damage per Level<br>Holy Shock: +1% Lightning Damage per Level<br>Conviction: +3% Elemental Damage per Level", graytext:"", index:[0,""], text:["Cold Length: "," seconds<br>Fire Damage: +"," percent<br>Cold Damage: +"," percent<br>Lightning Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""], incomplete:1},
+{data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Deals fire, lightning, and cold damage in an area<br>This effect also carries and increases elemental<br>damage from items", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Holy Fire: +2% Elemental Damage per Level<br>Holy Freeze: +2% Elemental Damage per Level<br>Holy Shock: +2% Elemental Damage per Level<br>Conviction: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Elemental Damage: +"," percent<br>Added Fire Damage: ","-","<br>Added Cold Damage: ","-","<br>Added Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:123, name:"Blessed Hammer", i:26, req:[31,22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons an ethereal hammer that<br>spirals outwards damaging enemies it hits<br>150 percent Damage to Undead", syn_title:"<br>Blessed Hammer Receives Bonuses From:<br>", syn_text:"Blessed Aim: +12% Magic Damage per Level<br>Vigor: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:124, name:"Conversion", i:27, req:[24,21], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Converts monsters to fight against<br>other foul demons and beasts", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to convert: "," percent<br>Duration: 8 seconds<br>Mana Cost: 4"]},
-{data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35"], incomplete:1},
-{data:d352, key:"352", code:126, name:"Fist of the Heavens", i:29, req:[26,31,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Lightning Strikes your target as holy bolts<br>seek out nearby enemies", syn_title:"<br>Fist of the Heavens Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Magic Damage per Level<br>Holy Light: +12% Magic Damage per Level<br>Holy Nova: +12% Magic Damage per Level<br>Holy Bolt: +12% Lightning Damage per Level<br>Holy Light: +12% Lightning Damage per Level<br>Holy Nova: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:["Holy Bolt Magic Damage: ","-","<br>Lightning Damage: ","-","<br>Mana Cost: ",""], incomplete:1},
+{data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35"]},
+{data:d352, key:"352", code:126, name:"Fist of the Heavens", i:29, req:[26,31,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Lightning Strikes your target as holy bolts<br>seek out nearby enemies", syn_title:"<br>Fist of the Heavens Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Damage per Level<br>Holy Light: +12% Damage per Level<br>Holy Nova: +12% Damage per Level", graytext:"", index:[0,""], text:["Holy Bolt Magic Damage: ","-","<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d351, key:"351", code:127, name:"Joust", i:30, req:[25,23,20], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Teleport to your enemies and impale them with a deadly<br>strike gaining increased movement speed for 2 seconds", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Cooldown: ","Walk/Run Speed: +"," percent<br>Damage: +"," percent<br>Attack Bonus: +"," percent<br>Critical Strike: +"," percent chance<br>Mana Cost: ",""]},
 {data:d332, key:"332", code:302, name:"Holy Light", i:31, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Calls down light from the heavens<br>to heal an ally from afar", syn_title:"<br>Holy Light Receives Bonuses From:<br>", syn_text:"Prayer: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Heals: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:303, name:"Holy Nova", i:32, req:[29,26,31,22,28,27,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of holy energy<br>that damages enemies or heals allies", syn_title:"<br>Holy Nova Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Magic Damage per Level<br>Prayer: +10 Life Healed per Level<br>Holy Light: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","<br>Mana Cost: ",""]},
 ];
-
-/*
-Paladin S3 Changes
-
-Beta Patch 2
-* Auto Aim skills such as foh now have a roughly 30% increased targeting range
-
-Open Beta Patch 1
-* Vengeance aoe size has been increased by 40%
-Vengeance enhanced elemental damage per level increased from 2% to 3%
-
-*/
 
 /*
 Paladin S3 Changes - Final Patch Notes
@@ -377,7 +366,7 @@ Paladin S3 Changes - Final Patch Notes
 
 * Sacrifice attack rating per level reduced from 28% to 16%
 
-Holy shield's increased block base reduced from 10% to 5%		// was 14%, not 10%?
+* Holy shield's increased block base reduced from 10% to 5%		// was 14%, not 10%?
 * Holy shield now gains 10% defense per level instead of 15%
 
 * Zeal’s attack rating per level reduced from 25% to 14% per level
@@ -389,6 +378,7 @@ Holy shield's increased block base reduced from 10% to 5%		// was 14%, not 10%?
 * Holy freeze level 28+ minimum damage scaling reduced by 1 per level
 
 * Blessed hammer missile speed increased by roughly 35%
+* Blessed Hammer missile hitbox size has been doubled
 
 * Joust now starts with a +5% movement speed bonus
 * Joust now gains +2% movement speed per soft point instead of 2% per base point
@@ -401,8 +391,8 @@ Holy shield's increased block base reduced from 10% to 5%		// was 14%, not 10%?
 
 * Meditation now grants +1 passive mana after each kill every 2 base levels instead of every 5
 
-Thorns has been reworked and now deals a flat amount of damage to attackers instead of a % of their attack returned
-Thorns now has might and defiance as synergies
+* Thorns has been reworked and now deals a flat amount of damage to attackers instead of a % of their attack returned
+* Thorns now has might and defiance as synergies
 
 * Blessed aim attack rating % per level increased from 10% to 15%
 
@@ -413,14 +403,14 @@ Thorns now has might and defiance as synergies
 * Holy shield level 1 duration increased to 2 minutes from 30 seconds
 * Holy shield duration per level reduced from 25 to 10
 
-Vengeance has been reworked completely
-Vengeance will now create an aoe effect on attack that deals flat elemental damage of each type as well as carries any elemental damage from your gear.
-Vengeance now has a +% elemental damage modifier that increased elemental damage from items similar to enhanced damage (only increases elemental damage from items)
+* Vengeance has been reworked completely
+* Vengeance will now create an aoe effect on attack that deals flat elemental damage of each type as well as carries any elemental damage from your gear.
+* Vengeance now has a +% elemental damage modifier that increased elemental damage from items similar to enhanced damage (only increases elemental damage from items)
 * Vengeance starts at 120% increased attack rating instead of 60%,		// was 150%, not 60%
 * Vengeance now gains 18% attack rating per level from 10%
 * Vengeance synergies changed from Resist Fire, Resist Cold, Resist Lightning and Salvation to Holy Fire, Holy Freeze, Holy Shock and Conviction
 
-Fist of heavens damage scaling has been completely reworked to increase its early game potential and allow it to scale more smoothly into end game 
+* Fist of heavens damage scaling has been completely reworked to increase its early game potential and allow it to scale more smoothly into end game 
 * Fist of heavens lightning synergies have been increased from 5% to 12%
 * Fist of heavens magic synergies have been reduced from 15% to 12%
 * Fist of heavens now has holy nova as a magic damage synergy at 12%
