@@ -354,6 +354,7 @@ Amazon S3 Changes - Final Patch Notes
 
 * Ice arrow projectile speed increased by 50%
 * Ice arrow range increased by roughly 15%
+* Ice arrow synergies changed back to S1 values (20%/14%/14% instead of 16%/16%/16%)		// undocumented [not implemented]
 
 * Freezing arrow’s freeze duration reduced from 1 second to 0.5
 

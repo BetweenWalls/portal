@@ -18,7 +18,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		if (skill.name == "War Cry" && elem < 2) { 			result *= (1 + 0.18*skills[0].level + 0.18*skills[5].level + 0.12*skills[2].level + 0.12*skills[3].level + 0.12*skills[6].level + 0.12*skills[9].level) }
 		if (skill.name == "Battle Command" && elem == 0) { 	result = 1+Math.floor(skill.level/10) }
 		
-		if (skill.name == "Combat Reflexes" && elem == 0) {	result = 10+20*skill.level }
+		if (skill.name == "Combat Reflexes" && elem == 0) {	result = 20+20*skill.level }
 		if (skill.name == "Iron Skin" && elem == 0) {		result = Math.floor(skill.level/2) }
 		
 		if (skill.name == "Bash" && elem == 0) { 			result += (10*skills[19].level) }

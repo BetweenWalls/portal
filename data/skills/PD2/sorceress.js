@@ -17,7 +17,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		var c = character;
 		var result = skill.data.values[elem][lvl];
 		
-		if (skill.name == "Cold Enchant" && elem > 0 && elem < 3) {		result *= ((1 + 0.20*sk[8].level) * (1+c.cDamage/100)) }
+		if (skill.name == "Cold Enchant" && elem > 0 && elem < 3) {		result *= ((1 + 0.22*sk[8].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Shiver Armor" && elem > 1 && elem < 4) {		result *= ((1 + 0.20*sk[1].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Chilling Armor" && elem > 1 && elem < 4) {	result *= ((1 + 0.20*sk[1].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Ice Bolt" && elem < 2) {						result *= ((1 + 0.20*sk[3].level + 0.20*sk[5].level) * (1+c.cDamage/100)) }
@@ -32,12 +32,12 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		
 		if (skill.name == "Static Field" && elem == 0) {				result = 5 + 0.2*sk[20].level }
 		if (skill.name == "Telekinesis" && elem < 2) {					result *= ((1 + 0.14*sk[11].level + 0.14*sk[14].level) * (1+c.lDamage/100)) }
-		if (skill.name == "Teleport" && elem == 0) {					result = -50 + sk[20].level*1 }
+		if (skill.name == "Teleport" && elem == 0) {					result = -50 + skill.level + 1-Math.min(1,skill.level) }
 		if (skill.name == "Charged Bolt" && elem < 2) {					result *= ((1 + 0.06*sk[13].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Lightning" && elem < 2) {					result *= ((1 + 0.08*sk[11].level + 0.08*sk[16].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Nova" && elem < 2) {							result *= ((1 + 0.03*sk[11].level + 0.03*sk[13].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Chain Lightning" && elem > 0 && elem < 3) {	result *= ((1 + 0.07*sk[11].level + 0.07*sk[15].level) * (1+c.lDamage/100)) }
-		if (skill.name == "Thunder Storm" && elem == 0) {				result = 2 - 0.1*Math.ceil(skill.level/2) }
+		if (skill.name == "Thunder Storm" && elem == 0) {				result = 2 - 0.1*Math.ceil(skill.level/2) - 0.1+0.1*Math.min(1,skill.level) }
 		if (skill.name == "Thunder Storm" && elem > 1 && elem < 4) {	result *= ((1 + 0.06*sk[11].level + 0.06*sk[14].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Energy Shield" && elem == 2) {				result = 200 - 6.5*sk[13].level }
 		
@@ -52,7 +52,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Meteor" && elem > 1 && elem < 6) {			result *= ((1 + 0.10*sk[26].level + 0.10*sk[27].level + 0.10*sk[25].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Lesser Hydra" && elem < 2) {					result *= ((1 + 0.16*sk[22].level + 0.16*sk[31].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Hydra" && elem < 2) {						result *= ((1 + 0.06*sk[22].level + 0.06*sk[32].level) * (1+c.fDamage/100)) }
-		if (skill.name == "Enchant Fire" && elem > 0 && elem < 3) {		result *= ((1 + 0.16*sk[23].level) * (1+c.fDamage/100)) }
+		if (skill.name == "Enchant Fire" && elem > 0 && elem < 3) {		result *= ((1 + 0.18*sk[23].level) * (1+c.fDamage/100)) }
 		
 		// Note: Undocumented +5% synergy for Glacial Spike (Ice Blast)
 		
@@ -224,7 +224,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 /*[18]*/
 /*[19] Energy Shield	*/ var d263 = {values:[
 		["Duration (seconds)",144,204,264,324,384,444,504,564,624,684,744,804,864,924,984,1044,1104,1164,1224,1284,1344,1404,1464,1524,1584,1644,1704,1764,1824,1884,1944,2004,2064,2124,2184,2244,2304,2364,2424,2484,2544,2604,2664,2724,2784,2844,2904,2964,3024,3084,3144,3204,3264,3324,3384,3444,3504,3564,3624,3684,], 
-		["Absorbs % Damage",10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,], 
+		["Absorbs % Damage",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,], 
 		["% damage taken as mana",], 
 ]};
 /*[20] Lightning Mastery*/ var d262 = {values:[
@@ -311,8 +311,8 @@ var skills_pd2_sorceress = [
 {data:d121, key:"121", code:38, name:"Frost Nova", i:2, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of ice that damages<br>and slows all nearby enemies", syn_title:"<br>Frost Nova Receives Bonuses From:<br>", syn_text:"Ice Bolt: +9% Cold Damage per Level<br>Shiver Armor: +9% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
 {data:d122, key:"122", code:39, name:"Ice Blast", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical sphere of ice that<br>damages and freezes your enemy", syn_title:"<br>Ice Blast Receives Bonuses From:<br>", syn_text:"Ice Bolt: +6% Cold Damage per Level<br>Glacial Spike: +6% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for 2 seconds<br>Mana Cost: ",""]},
 {data:d133, key:"133", code:40, name:"Shiver Armor", i:4, req:[1,3,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases your defense rating<br>Freezes and damages enemies that hit you", syn_title:"<br>Shiver Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense Bonus: "," percent<br>Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: 11"]},
-{data:d142, key:"142", code:41, name:"Glacial Spike", i:5, req:[3,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical ice comet<br>that freezes or kills nearby enemies<br><br>Radius: 3.3 yards", syn_title:"<br>Glacial Spike Receives Bonuses From:<br>", syn_text:"Ice Blast: +5% Cold Damage per Level<br>Ice Barrage: +5% Cold Damage per Level<br>Ice Bolt: +5% Cold Damage per Level<br>Blizzard: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
-{data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +11% Cold Damage per Level<br>Glacial Spike: +11% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
+{data:d142, key:"142", code:41, name:"Glacial Spike", i:5, req:[3,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical ice comet<br>that freezes or kills nearby enemies<br><br>Radius: 3.3 yards", syn_title:"<br>Glacial Spike Receives Bonuses From:<br>", syn_text:"Ice Bolt: +5% Cold Damage per Level<br>Ice Blast: +5% Cold Damage per Level<br>Ice Barrage: +5% Cold Damage per Level<br>Blizzard: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
+{data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +10% Cold Damage per Level<br>Glacial Spike: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
 {data:d152, key:"152", code:43, name:"Ice Barrage", i:7, req:[5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a barrage of magical ice lances<br>that damage and slow nearby enemies<br><br>Radius: 2.6 yards", syn_title:"<br>Ice Barrage Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Glacial Spike: +8% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>"," Ice Lances<br>Mana Cost: ",""]},
 {data:d153, key:"153", code:44, name:"Chilling Armor", i:8, req:[4,1,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases defense and discharges a blizzard spike<br>in retaliation against ranged attackers<br>Damages melee attackers if you are hit", syn_title:"<br>Chilling Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Defense Bonus: "," percent<br>Duration: "," seconds<br>Cold Damage: ","-","<br>Mana Cost: 17",""]},
 {data:d161, key:"161", code:45, name:"Frozen Orb", i:9, req:[6,2,5,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical globe that sprays a torrent of ice bolts<br>to lay waste to your enemies", syn_title:"<br>Frozen Orb Receives Bonuses From:<br>", syn_text:"Ice Bolt: +4% Cold Damage per Level<br>Ice Blast: +4% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
@@ -363,7 +363,7 @@ Sorceress S3 Changes - Final Patch Notes
 
 * Fire enchant is now an aoe skill similar to battle orders
 * Fire enchant now grants allies 50% of the damage instead of 100%
-* Fire enchants synergies increased from 15% to 16%
+* Fire enchants synergies increased from 15% to 18%		// documented as 16% but is actually 18%
 * Fire enchants level 1-8 scaling increased from 3-5 to 5-7		// values are doubled
 * Fire enchants level 8-16 scaling increased from 7-9 to 11-13
 * Fire enchants level 16-22 scaling increased from 13-15 to 18-20
@@ -373,7 +373,7 @@ Sorceress S3 Changes - Final Patch Notes
 
 * Cold enchant is now an aoe skill similar to battle orders
 * Cold enchant now grants allies 50% of the damage instead of 100%
-* Cold enchants synergies reduced from 25% to 20%
+* Cold enchants synergies reduced from 25% to 22%		// documented as 20% but is actually 22%
 * Cold enchants level 8-16 scaling increased from 6-8 to 9-11		// values are doubled
 * Cold enchants level 16-22 scaling increased from 11-13 to 18-20
 * Cold enchants level 22-28 scaling increased from 15-17 to 30-32
@@ -404,7 +404,7 @@ Sorceress S3 Changes - Final Patch Notes
 * Blizzard’s level 8-16 scaling increased from 6-8 per level to 8-10 
 * Blizzard’s level 16-22 scaling increased from 9-11 per level to 10-12 
 * Blizzard’s level 28+ scaling reduced from 15-17 per level to 14-16
-* Blizzard synergies reduced from 12% to 11%
+* Blizzard synergies reduced from 12% to 10%		// documented as 11% but is actually 10%
 * Blizzard’s projectile hitbox has been increased by 50%
 
 * Shiver armor no longer has chilling armor as a synergy
@@ -432,6 +432,8 @@ Sorceress S3 Changes - Final Patch Notes
 * Fire mastery now caps at 30% pierce instead of 40%
 * Cold mastery now caps at 45% pierce instead of 65%
 * Cold mastery now gains 1% pierce per level instead of 2%
+
+* Energy Shield absorbs 5% more at all levels		// undocumented
 
 
 */
