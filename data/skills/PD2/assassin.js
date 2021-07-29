@@ -226,6 +226,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 /*[18] Venom			*/ var d261 = {values:[
 		["poison min",60,75,90,105,120,135,150,165,185,205,225,245,265,285,305,325,350,375,400,425,450,475,507,540,572,605,637,670,712,755,797,840,882,925,967,1010,1052,1095,1137,1180,1222,1265,1307,1350,1392,1435,1477,1520,1562,1605,1647,1690,1732,1775,1817,1860,1902,1945,1987,2030,], 
 		["poison max",80,95,110,125,140,155,170,185,205,225,245,265,285,305,325,345,370,395,420,445,470,495,527,560,592,625,657,690,732,775,817,860,902,945,987,1030,1072,1115,1157,1200,1242,1285,1327,1370,1412,1455,1497,1540,1582,1625,1667,1710,1752,1795,1837,1880,1922,1965,2007,2050,], 
+		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,], 
 ]};
 /*[19] Shadow Master	*/ var d262 = {values:[
 		["Life",376,432,488,545,601,658,714,770,827,883,940,996,1052,1109,1165,1222,1278,1334,1391,1447,1504,1560,1616,1673,1729,1786,1842,1898,1955,2011,2068,2124,2180,2237,2293,2350,2406,2462,2519,2575,2632,2688,2744,2801,2857,2914,2970,3026,3083,3139,3196,3252,3308,3365,3421,3478,3534,3590,3647,3703,], 
@@ -309,7 +310,7 @@ var skills_pd2_assassin = [
 {data:d241, key:"241", code:266, name:"Fade", i:15, req:[11,9], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Raise all resistances and resist curses<br>for a period of time", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Reduces curse duration by "," percent<br>Physical Damage Reduction: "," percent<br>Resist All: "," percent<br>Duration: "," seconds<br>Mana Cost: 10"]},
 {data:d242, key:"242", code:267, name:"Shadow Warrior", i:16, req:[13,14,9,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a shadow of yourself that mimics<br>your skills and fights by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:268, name:"Mind Blast", i:17, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Stun a group of enemies<br>using the power of your mind", syn_title:"<br>Mind Blast Receives Bonuses From:<br>", syn_text:"Psychic Hammer: +13% Damage per Level<br>Cloak of Shadows: +13% Damage per Level<br>Shadow Warrior: +13% Damage per Level", graytext:"", index:[2," yards"], text:["Stun Length: "," seconds<br>Radius: ","Damage: ","-","<br>Mana Cost: 9"]},
-{data:d261, key:"261", code:269, name:"Venom", i:18, req:[15,11,9], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison damage to your weapons", syn_title:"<br>Venom Receives Bonuses From:<br>", syn_text:"Cobra Strike: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 0.4 seconds<br>Duration: 300 seconds<br>Mana Cost: 12",""]},
+{data:d261, key:"261", code:269, name:"Venom", i:18, req:[15,11,9], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison damage to your weapons", syn_title:"<br>Venom Receives Bonuses From:<br>", syn_text:"Cobra Strike: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 0.4 seconds<br>Duration: "," seconds<br>Mana Cost: 12",""]},
 {data:d262, key:"262", code:270, name:"Shadow Master", i:19, req:[16,13,14,9,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a powerful shadow of yourself<br>to fight by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Attack: +","<br>Resist All: +"," percent<br>Mana Cost: ",""]},
 
 {data:d312, key:"312", code:271, name:"Fire Blast", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a fire bomb<br>to blast your enemies to bits", syn_title:"<br>Fire Blast Receives Bonuses From:<br>", syn_text:"Shock Web: +12% Fire Damage per Level<br>Charged Bolt Sentry: +12% Fire Damage per Level<br>Lightning Sentry: +12% Fire Damage per Level<br>Chain Lightning Sentry: +12% Fire Damage per Level<br>Wake of Fire: +12% Fire Damage per Level<br>Wake of Inferno: +12% Fire Damage per Level", graytext:"", index:[1,""], text:["Gains an Extra Bomb Every 4 Base Levels<br>Bombs: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
@@ -406,5 +407,8 @@ Assassin S3 Changes - Final Patch Notes
 * Blade shield range has been doubled
 * Blade shield delay between attacks has been reduced
 
+* Venom now gains 5 seconds duration per level
+
+* phoenix strikes freeze duration has been increased from .5 seconds to 1 second (this is before cold duration reductions)
 
 */
