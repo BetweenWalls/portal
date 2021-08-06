@@ -39,7 +39,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Chain Lightning" && elem > 0 && elem < 3) {	result *= ((1 + 0.07*sk[11].level + 0.07*sk[15].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Thunder Storm" && elem == 0) {				result = 2 - 0.1*Math.ceil(skill.level/2) - 0.1+0.1*Math.min(1,skill.level) }
 		if (skill.name == "Thunder Storm" && elem > 1 && elem < 4) {	result *= ((1 + 0.06*sk[11].level + 0.06*sk[14].level) * (1+c.lDamage/100)) }
-		if (skill.name == "Energy Shield" && elem == 2) {				result = 200 - 6.5*sk[13].level }
+		//if (skill.name == "Energy Shield" && elem == 2) {				result = 200 - 6.5*sk[13].level }
 		
 		if (skill.name == "Fire Bolt" && elem < 2) {					result *= ((1 + 0.20*sk[26].level + 0.20*sk[33].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Fire Ball" && elem == 0) {					result = 2.64 + 0.66*Math.floor(skill.level/5) }
@@ -224,8 +224,8 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 /*[18]*/
 /*[19] Energy Shield	*/ var d263 = {values:[
 		["Duration (seconds)",144,204,264,324,384,444,504,564,624,684,744,804,864,924,984,1044,1104,1164,1224,1284,1344,1404,1464,1524,1584,1644,1704,1764,1824,1884,1944,2004,2064,2124,2184,2244,2304,2364,2424,2484,2544,2604,2664,2724,2784,2844,2904,2964,3024,3084,3144,3204,3264,3324,3384,3444,3504,3564,3624,3684,], 
-		["Absorbs % Damage",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,], 
-		["% damage taken as mana",], 
+		["Absorbs % Damage",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,], 
+		//["% damage taken as mana",], 
 ]};
 /*[20] Lightning Mastery*/ var d262 = {values:[
 		["Lightning Damage +%",50,62,74,86,98,110,122,134,146,158,170,182,194,206,218,230,242,254,266,278,290,302,314,326,338,350,362,374,386,398,410,422,434,446,458,470,482,494,506,518,530,542,554,566,578,590,602,614,626,638,650,662,674,686,698,710,722,734,746,758,], 
@@ -326,7 +326,7 @@ var skills_pd2_sorceress = [
 {data:d252, key:"252", code:52, name:"Chain Lightning", i:16, req:[15,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a bolt of lightning that<br>arcs through several targets", syn_title:"<br>Chain Lightning Receives Bonuses From:<br>", syn_text:"Charged Bolt: +7% Lightning Damage per Level<br>Lightning: +7% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:53, name:"Teleport", i:17, req:[13], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly move to a destination within your line of sight<br>and reduces the spell damage you deal for 1 second", syn_title:"", syn_text:"", graytext:"", index:[1,"% Damage"], text:["","Mana Cost: ",""]},
 /*TODO: remove*/{data:d263, key:"263", code:54, name:"None", i:18, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
-{data:d263, key:"263", code:55, name:"Energy Shield", i:19, req:[16,17,13,15,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>","% of absorbed damage dealt to mana<br>Mana Cost: 5",""]},
+{data:d263, key:"263", code:55, name:"Energy Shield", i:19, req:[16,17,13,15,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>Mana Cost: 5",""]},
 {data:d262, key:"262", code:56, name:"Lightning Mastery", i:20, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your lightning spells", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Lightning Damage: +"," percent",""]},
 {data:d251, key:"251", code:57, name:"Thunder Storm", i:21, req:[15,14,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summons a deadly thunderstorm that strikes<br>your enemies with bolts of lightning", syn_title:"<br>Thunder Storm Receives Bonuses From:<br>", syn_text:"Charged Bolt: +6% Lightning Damage per Level<br>Nova: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:["Delay: "," seconds<br>Duration: "," seconds<br>Lightning Damage: ","-","<br>Mana Cost: 19"]},
 
@@ -433,7 +433,7 @@ Sorceress S3 Changes - Final Patch Notes
 * Cold mastery now caps at 45% pierce instead of 65%
 * Cold mastery now gains 1% pierce per level instead of 2%
 
-* Energy Shield absorbs 5% more at all levels		// undocumented
+* Energy Shield absorbs 5% more at level 1		// undocumented
 
 
 */
