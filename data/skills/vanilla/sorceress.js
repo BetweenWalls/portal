@@ -41,6 +41,7 @@ var character_sorceress_vanilla = {class_name:"Sorceress", strength:10, dexterit
 		if (skill.name == "Lightning" && elem < 2) {					result *= ((1 + 0.08*sk[10].level + 0.08*sk[13].level + 0.08*sk[15].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Chain Lightning" && elem > 0 && elem < 3) {	result *= ((1 + 0.04*sk[10].level + 0.04*sk[13].level + 0.04*sk[14].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Thunder Storm" && elem > 0 && elem < 3) {	result *= (1+c.lDamage/100) }
+		if (skill.name == "Energy Shield" && elem == 2) {				result = 200 - 6.25*sk[12].level }
 		
 		if (skill.name == "Fire Bolt" && elem < 2) {					result *= ((1 + 0.16*sk[24].level + 0.16*sk[27].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Fire Ball" && elem == 0) {					result = 2.64 + 0.66*Math.floor(skill.level/5) }
@@ -208,6 +209,7 @@ var character_sorceress_vanilla = {class_name:"Sorceress", strength:10, dexterit
 /*[17] Energy Shield	*/ var d253 = {values:[
 		["Duration (seconds)",144,204,264,324,384,444,504,564,624,684,744,804,864,924,984,1044,1104,1164,1224,1284,1344,1404,1464,1524,1584,1644,1704,1764,1824,1884,1944,2004,2064,2124,2184,2244,2304,2364,2424,2484,2544,2604,2664,2724,2784,2844,2904,2964,3024,3084,3144,3204,3264,3324,3384,3444,3504,3564,3624,3684,], 
 		["Absorbs % Damage",20,25,30,35,40,45,50,55,57,59,61,63,65,67,69,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,], 
+		["% damage taken as mana",], 
 ]};
 /*[18] Lightning Mastery*/ var d262 = {values:[
 		["Lightning Damage +%",50,62,74,86,98,110,122,134,146,158,170,182,194,206,218,230,242,254,266,278,290,302,314,326,338,350,362,374,386,398,410,422,434,446,458,470,482,494,506,518,530,542,554,566,578,590,602,614,626,638,650,662,674,686,698,710,722,734,746,758,], 
@@ -295,7 +297,7 @@ var skills_sorceress_vanilla = [
 {data:d232, key:"232", code:51, name:"Lightning", i:14, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a powerful lightning bolt<br>to lay waste to your enemies", syn_title:"<br>Lightning Receives Bonuses From:<br>", syn_text:"Charged Bolt: +8% Lightning Damage per Level<br>Nova: +8% Lightning Damage per Level<br>Chain Lightning: +8% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d242, key:"242", code:52, name:"Chain Lightning", i:15, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a bolt of lightning that<br>arcs through several targets", syn_title:"<br>Chain Lightning Receives Bonuses From:<br>", syn_text:"Charged Bolt: +4% Lightning Damage per Level<br>Nova: +4% Lightning Damage per Level<br>Lightning: +4% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:53, name:"Teleport", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly move to a destination within your line of sight", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Mana Cost: ",""]},
-{data:d253, key:"253", code:54, name:"Energy Shield", i:17, req:[16,12,15,14,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>Mana Cost: 5",""]},
+{data:d253, key:"253", code:54, name:"Energy Shield", i:17, req:[16,12,15,14,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>","% Redirected to Mana<br>Mana Cost: 5",""]},
 {data:d262, key:"262", code:55, name:"Lightning Mastery", i:18, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your lightning spells", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Lightning Damage: +"," percent"]},
 {data:d251, key:"251", code:56, name:"Thunder Storm", i:19, req:[13,11,15,14,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summons a deadly thunderstorm that strikes<br>your enemies with bolts of lightning", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Lightning Damage: ","-","<br>Mana Cost: 19"]},
 
