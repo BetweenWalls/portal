@@ -29,10 +29,10 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		
 		if (skill.name == "Psychic Hammer" && elem > 0 && elem < 3) {	result *= (1 + 0.15*skills[17].level + 0.15*skills[14].level + 0.15*skills[16].level) }
 		if (skill.name == "Mind Blast" && elem == 0) { 					result = 2 - 2*Math.ceil((skill.level-1)/20) }
-		if (skill.name == "Mind Blast" && elem == 1) { 					result = ~~skill.data.values[elem][skill.level] + 2-2*Math.min(1,skill.level) }
+		if (skill.name == "Mind Blast" && elem == 1) { 					result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= (1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) }
 		if (skill.name == "Venom" && elem < 2) { 						result *= ((1 + 0.06*skills[4].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Burst of Speed" && elem == 0) { 				result = ~~skill.data.values[elem][skill.level] + 22-22*Math.min(1,skill.level) }
+		if (skill.name == "Burst of Speed" && elem == 0) { 				result = skill.data.values[elem][Math.max(1,skill.level)] }
 		
 		if (skill.name == "Fire Blast" && elem == 0) { 					result = 1 + Math.floor(skill.level/4) }
 		if (skill.name == "Fire Blast" && elem > 0 && elem < 3) { 		result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[26].level + 0.12*skills[30].level + 0.12*skills[24].level + 0.12*skills[27].level) * (1+character.fDamage/100)) }

@@ -28,7 +28,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		if (skill.name == "Stun" && elem == 1) { 			result += (5*skills[19].level) }
 		if (skill.name == "Stun" && elem == 2) { 			result *= (1 + 0.05*skills[8].level) }
 		if (skill.name == "Double Swing" && elem == 0) { 	result += (8*skills[18].level) }
-		if (skill.name == "Leap" && elem == 0) { 			result = 5 - 5*Math.ceil(skill.level/20) + ~~skill.data.values[elem][skill.level] }
+		if (skill.name == "Leap" && elem == 0) { 			result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Concentrate" && elem == 0) { 	result = 30 + skill.level*2 + 1*skills[24].level }
 		if (skill.name == "Concentrate" && elem == 3) { 	result += (6*skills[24].level + 6*skills[9].level) }
 		if (skill.name == "Double Throw" && elem == 0) { 	result += (5*skills[28].level) }
