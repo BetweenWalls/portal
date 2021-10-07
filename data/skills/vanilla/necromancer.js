@@ -40,14 +40,14 @@ var character_necromancer_vanilla = {class_name:"Necromancer", strength:15, dext
 		if (skill.name == "Fire Golem" && elem == 1) {						result = (31+89*character.difficulty + 20*(skills[3].level+(skills[3].extra_levels*Math.min(1,skills[3].level)))) * (1 + ~~(skills[4].data.values[1][skills[4].level+(skills[4].extra_levels*Math.min(1,skills[4].level))])/100) }
 		if (skill.name == "Fire Golem" && elem == 2) {						result = 200 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
 		
-		if (skill.name == "Poison Dagger" && elem > 0 && elem < 3) {		result *= ((1 + 0.22*skills[15].level + 0.22*skills[19].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Poison Dagger" && elem > 0 && elem < 3) {		result *= ((1 + 0.20*skills[15].level + 0.20*skills[19].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Poison Explosion" && elem < 2) {					result *= ((1 + 0.15*skills[11].level + 0.15*skills[19].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Poison Nova" && elem < 2) {						result *= ((1 + 0.16*skills[11].level + 0.16*skills[15].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Poison Nova" && elem < 2) {						result *= ((1 + 0.10*skills[11].level + 0.10*skills[15].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Corpse Explosion" && elem > 0 && elem < 3) {		result *= (1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) }
 		if (skill.name == "Corpse Explosion" && elem > 2 && elem < 5) {		result *= ((1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= (1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) }
-		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= (1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.05*skills[13].level) }
-		if (skill.name == "Bone Spirit" && elem < 2) {						result *= (1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.05*skills[13].level) }
+		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= (1 + 0.15*skills[16].level + 0.15*skills[17].level + 0.15*skills[18].level + 0.15*skills[20].level) }
+		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= (1 + 0.07*skills[12].level + 0.07*skills[17].level + 0.07*skills[18].level + 0.07*skills[20].level) }
+		if (skill.name == "Bone Spirit" && elem < 2) {						result *= (1 + 0.06*skills[12].level + 0.06*skills[16].level + 0.07*skills[17].level + 0.06*skills[20].level) }
 		if (skill.name == "Bone Armor" && elem == 0) {						result += (15*skills[17].level + 15*skills[20].level) }
 		if (skill.name == "Bone Wall" && elem == 0) {						result = skill.data.values[elem][1][character.difficulty] * (1 + 0.10*skills[13].level + 0.10*skills[20].level + skill.data.values[elem][2][lvl]/100) }
 		if (skill.name == "Bone Prison" && elem == 0) {						result = skill.data.values[elem][1][character.difficulty] * (1 + 0.08*skills[13].level + 0.08*skills[17].level + skill.data.values[elem][2][lvl]/100) }
