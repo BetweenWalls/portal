@@ -301,6 +301,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
+			//document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner'>https://d2.maxroll.gg/d2planner</a>" // planning to direct people to maxroll.gg once they finish their PD2 planner
 			settings.autocast = 1
 		} else if (v == 2) {
 			skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
@@ -330,6 +331,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
+			//document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/pd2planner'>https://d2.maxroll.gg/pd2planner</a>"	// planning to direct people to maxroll.gg once they finish their PD2 planner
 			settings.autocast = 1
 		}
 		
@@ -3665,6 +3667,14 @@ function skillHover(skill) {
 	var tty = [0,82,150,218,286,354,422][skill.key[1]];
 	var style = "display: block; top: "+tty+"px; left: "+ttx+"px;"
 	document.getElementById("tooltip").style = style
+	
+	// moves the tooltip up if it's cutoff below the viewable screen area
+	var rect = document.getElementById("tooltip").getBoundingClientRect();
+	if (rect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+		var diff = Math.max(rect.bottom - window.innerHeight, rect.bottom - document.documentElement.clientHeight);
+		style = "display: block; top: "+(Math.max(0,tty-diff))+"px; left: "+ttx+"px;"
+		document.getElementById("tooltip").style = style
+	}
 }
 
 // skillOut - Hides skill tooltip

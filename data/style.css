@@ -477,6 +477,7 @@ input[type="file"] {
 }
 #tooltip {
   display: none;
+  pointer-events: none;
 }
 
 /* Equipment */
