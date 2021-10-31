@@ -34,11 +34,10 @@ https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&s
 * Charms can't be moved into a new space below the original space if those spaces overlap
 * Shift + Right Click in Firefox doesn't work (and still opens the default menu)
 * Socketed gems/runes/jewels sometimes aren't aligned like they should be
+* Snapshotted skills may not load correctly with saved files or shared URLs
 * DoT (Damage over Time) stats are added without considering their time component
 * Dual-Wielding damage may be incorrect (some on-weapon damage affixes affect both weapons)
 * Minion damage may be incorrect (some bonuses from auras/items aren't included)
-* Snapshotted skills may not work correctly with saved files or shared URLs
-* Some damage-over-time skill data in the vanilla version is incorrect (for example, Firestorm shows the fire bitrate instead of the real damage)
 
 ### Notes:
 * Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level - it won't be accurate for bosses or monsters at much higher/lower levels
