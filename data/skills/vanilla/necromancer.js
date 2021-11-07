@@ -50,15 +50,13 @@ var character_necromancer_vanilla = {class_name:"Necromancer", strength:15, dext
 		if (skill.name == "Bone Wall" && elem == 0) {						result = skill.data.values[elem][1][character.difficulty] * (1 + 0.10*skills[13].level + 0.10*skills[20].level + skill.data.values[elem][2][lvl]/100) }
 		if (skill.name == "Bone Prison" && elem == 0) {						result = skill.data.values[elem][1][character.difficulty] * (1 + 0.08*skills[13].level + 0.08*skills[17].level + skill.data.values[elem][2][lvl]/100) }
 		
-		if (skill.name == "Dim Vision" && elem == 1) {						result *= (1/character.difficulty) }	// TODO: 1/2 for nightmare, 1/4 for hell
-		if (skill.name == "Terror" && elem == 1) {							result *= (1/character.difficulty) }	// TODO: 1/2 for nightmare, 1/4 for hell
-		if (skill.name == "Confuse" && elem == 1) {							result *= (1/character.difficulty) }	// TODO: 1/2 for nightmare, 1/4 for hell
-		if (skill.name == "Attract" && elem == 0) {							result *= (1/character.difficulty) }	// TODO: 1/2 for nightmare, 1/4 for hell
+		if (skill.name == "Dim Vision" && elem == 1) {						result *= (1/Math.floor(character.difficulty*1.5-0.5)) }	// Note: hacky way to multiply by 1/2 for nightmare and 1/4 for hell (difficulty is an integer from 1 to 3)
+		if (skill.name == "Terror" && elem == 0) {							result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
+		if (skill.name == "Confuse" && elem == 1) {							result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
+		if (skill.name == "Attract" && elem == 0) {							result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
 		
 		// Note: Raise Skeleton skill description incorrectly calculates total Life by applying + Life from Skeleton Mastery after +% Life from Raise Skeleton.
 		// Note: Raise Skeletal Mage skill description does not apply +% Life from Raise Skeletal Mage at all.
-		
-		// TODO: ...are any summon synergies base levels only?
 		
 	return result
 	},
