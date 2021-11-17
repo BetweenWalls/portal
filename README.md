@@ -64,7 +64,7 @@ https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&s
 ### Feedback:
 Please report errors and incorrect information. Other feedback is welcome too.
 
-Send feedback to [BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit, or @BetweenWalls#2390 on discord.
+Send feedback to [BetweenWalls](https://www.reddit.com/message/compose/?to=BetweenWalls) on reddit or @BetweenWalls#2390 on discord, or open an issue here.
 
 Portal is open-source, so improvements can be contributed by anyone through github. Here are the basic steps:
 * Create a duplicate version of this repository (fork)
