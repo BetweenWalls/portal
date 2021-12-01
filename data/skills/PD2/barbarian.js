@@ -22,18 +22,18 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		if (skill.name == "Iron Skin" && elem == 0) {		result = Math.floor(skill.level/2) }
 		
 		if (skill.name == "Bash" && elem == 0) { 			result += (10*skills[19].level) }
-		if (skill.name == "Bash" && elem == 1) { 			result += (10*skills[21].level + 10*skills[20].level) }
-		if (skill.name == "Frenzy" && elem == 1) { 			result += (6*skills[28].level + 6*skills[21].level) }
+		if (skill.name == "Bash" && elem == 1) { 			result += (12*skills[21].level + 12*skills[20].level) }
+		if (skill.name == "Frenzy" && elem == 1) { 			result += (12*skills[28].level + 12*skills[21].level) }
 		if (skill.name == "Stun" && elem == 0) { 			result = 8*skills[24].level }
 		if (skill.name == "Stun" && elem == 1) { 			result += (5*skills[19].level) }
 		if (skill.name == "Stun" && elem == 2) { 			result *= (1 + 0.05*skills[8].level) }
 		if (skill.name == "Double Swing" && elem == 0) { 	result += (8*skills[18].level) }
 		if (skill.name == "Leap" && elem == 0) { 			result = skill.data.values[elem][Math.max(1,skill.level)] }
-		if (skill.name == "Concentrate" && elem == 0) { 	result = 30 + skill.level*2 + 1*skills[24].level }
-		if (skill.name == "Concentrate" && elem == 3) { 	result += (6*skills[24].level + 6*skills[9].level) }
+		if (skill.name == "Concentrate" && elem == 0) { 	result = 30 + skill.level*2 + 2*skills[24].level }
+		if (skill.name == "Concentrate" && elem == 3) { 	result += (8*skills[24].level + 12*skills[9].level) }
 		if (skill.name == "Double Throw" && elem == 0) { 	result += (5*skills[28].level) }
-		if (skill.name == "Leap Attack" && elem == 0) { 	result += (6*skills[22].level + 6*skills[24].level) }
-		if (skill.name == "Berserk" && elem == 1) { 		result += (8*skills[2].level + 8*skills[14].level) }
+		if (skill.name == "Leap Attack" && elem == 0) { 	result += (8*skills[22].level + 8*skills[24].level) }
+		if (skill.name == "Berserk" && elem == 1) { 		result += (10*skills[2].level + 10*skills[14].level) }
 		
 	return result
 	},
@@ -121,12 +121,12 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 ]};
 /*[ 7] Grim Ward		*/ var d153 = {values:[
 		["Attack Rating",130,150,170,190,210,230,250,270,290,310,330,350,370,390,410,430,450,470,490,510,530,550,570,590,610,630,650,670,690,710,730,750,770,790,810,830,850,870,890,910,930,950,970,990,1010,1030,1050,1070,1090,1110,1130,1150,1170,1190,1210,1230,1250,1270,1290,1310,], 
-		["Damage +%",35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,], 
-		["Radius (yards)",16.6,18,19.3,20.6,22,23.3,24.6,26,27.3,28.6,30,31.3,32.6,34,35.3,36.6,38,39.3,40.6,42,43.3,44.6,46,47.3,48.6,50,51.3,52.6,54,55.3,56.6,58,59.3,60.6,62,63.3,64.6,66,67.3,68.6,70,71.3,72.6,74,75.3,76.6,78,79.3,80.6,82,83.3,84.6,86,87.3,88.6,90,91.3,92.6,94,95.3,], 
+		["Damage +%",40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248,256,264,272,280,288,296,304,312,320,328,336,344,352,360,368,376,384,392,400,408,416,424,432,440,448,456,464,472,480,488,496,504,512,], 
+		["Radius (yards)",10.6,11.3,12,12.6,13.3,14,14.6,15.3,16,16.6,17.3,18,18.6,19.3,20,20.6,21.3,22,22.6,23.3,24,24.6,25.3,26,26.6,27.3,28,28.6,29.3,30,30.6,31.3,32,32.6,33.3,34,34.6,35.3,36,36.6,37.3,38,38.6,39.3,40,40.6,41.3,42,42.6,43.3,44,44.6,45.3,46,46.6,47.3,48,48.6,49.3,50,], 
 ]};
 /*[ 8] War Cry			*/ var d122 = {values:[
-		["Damage min",2,3,4,5,6,7,8,9,11,13,15,17,19,21,23,25,33,41,49,57,65,73,89,105,121,137,153,169,193,217,241,265,289,313,337,361,385,409,433,457,481,505,529,553,577,601,625,649,673,697,721,745,769,793,817,841,865,889,913,937,], 
-		["Damage max",4,5,6,7,8,9,10,11,13,15,17,19,21,23,25,27,35,43,51,59,67,75,91,107,123,139,155,171,195,219,243,267,291,315,339,363,387,411,435,459,483,507,531,555,579,603,627,651,675,699,723,747,771,795,819,843,867,891,915,939,], 
+		["Damage (min)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,43,53,63,73,83,93,110,127,144,161,178,195,219,243,267,291,315,339,363,387,411,435,459,483,507,531,555,579,603,627,651,675,699,723,747,771,795,819,843,867,891,915,939,963,], 
+		["Damage (max)",4,5,6,7,8,9,10,11,14,17,20,23,26,29,32,35,45,55,65,75,85,95,112,129,146,163,180,197,221,245,269,293,317,341,365,389,413,437,461,485,509,533,557,581,605,629,653,677,701,725,749,773,797,821,845,869,893,917,941,965,], 
 		["Radius (yards)",4.6,4.6,4.6,4.6,4.6,4.6,5.3,5.3,5.3,5.3,5.3,5.3,5.3,6,6,6,6,6,6,6,6.6,6.6,6.6,6.6,6.6,6.6,6.6,7.3,7.3,7.3,7.3,7.3,7.3,7.3,8,8,8,8,8,8,8,8.6,8.6,8.6,8.6,8.6,8.6,8.6,9.3,9.3,9.3,9.3,9.3,9.3,9.3,10,10,10,10,10,], 
 		["Mana Cost",2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,], 
 ]};
@@ -136,19 +136,19 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 ]};
 
 /*[10] General Mastery	*/ var d211 = {values:[
-		["Damage +%",28,33,38,43,48,53,58,63,68,73,78,83,88,93,98,103,108,113,118,123,128,133,138,143,148,153,158,163,168,173,178,183,188,193,198,203,208,213,218,223,228,233,238,243,248,253,258,263,268,273,278,283,288,293,298,303,308,313,318,323,], 
+		["Damage +%",30,38,46,54,62,70,78,86,94,102,110,118,126,134,142,150,158,166,174,182,190,198,206,214,222,230,238,246,254,262,270,278,286,294,302,310,318,326,334,342,350,358,366,374,382,390,398,406,414,422,430,438,446,454,462,470,478,486,494,502,], 
 		["Attack +%",28,38,48,58,68,78,88,98,108,118,128,138,148,158,168,178,188,198,208,218,228,238,248,258,268,278,288,298,308,318,328,338,348,358,368,378,388,398,408,418,428,438,448,458,468,478,488,498,508,518,528,538,548,558,568,578,588,598,608,618,], 
 		["Chance of Critical Strike %",5,9,12,15,17,19,20,21,23,23,24,25,26,26,27,28,28,28,29,29,29,30,30,30,30,31,31,31,31,31,32,32,33,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,35,], 
 ]};
 /*[11]Pole/Spear Mastery*/ var d222 = {values:[
-		["Damage +%",30,36,42,48,54,60,66,72,78,84,90,96,102,108,114,120,126,132,138,144,150,156,162,168,174,180,186,192,198,204,210,216,222,228,234,240,246,252,258,264,270,276,282,288,294,300,306,312,318,324,330,336,342,348,354,360,366,372,378,384,], 
+		["Damage +%",30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,], 
 		["Attack +%",30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,], 
 		["Chance of Critical Strike %",5,9,12,15,17,19,20,21,23,23,24,25,26,26,27,28,28,28,29,29,29,30,30,30,30,31,31,31,31,31,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,35,], 
 ]};
 /*[12]*/
 /*[13] Throwing Mastery	*/ var d213 = {values:[
 		["Pierce %",15,17,19,21,23,25,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,], 
-		["Damage +%",28,33,38,43,48,53,58,63,68,73,78,83,88,93,98,103,108,113,118,123,128,133,138,143,148,153,158,163,168,173,178,183,188,193,198,203,208,213,218,223,228,233,238,243,248,253,258,263,268,273,278,283,288,293,298,303,308,313,318,323,], 
+		["Damage +%",30,34,38,42,46,50,54,58,62,66,70,74,78,82,86,90,94,98,102,106,110,114,118,122,126,130,134,138,142,146,150,154,158,162,166,170,174,178,182,186,190,194,198,202,206,210,214,218,222,226,230,234,238,242,246,250,254,258,262,266,], 
 		["Attack +%",30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,], 
 		["Chance of Critical Strike %",5,9,12,15,17,19,20,21,23,23,24,25,26,26,27,28,28,28,29,29,29,30,30,30,30,31,31,31,31,31,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,34,], 
 ]};
@@ -169,26 +169,26 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 ]};
 
 /*[18] Frenzy			*/ var d312 = {values:[
-		["Duration (seconds)",9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,], 
-		["Damage %",15,25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,], 
+		["Damage %",14,30,46,62,78,94,110,126,142,158,174,190,206,222,238,254,270,286,302,318,334,350,366,382,398,414,430,446,462,478,494,510,526,542,558,574,590,606,622,638,654,670,686,702,718,734,750,766,782,798,814,830,846,862,878,894,910,926,942,958,], 
 		["Attack %",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
-		["Attack Speed % min",7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,], 
-		["Attack Speed % max",7,13,18,22,25,27,29,31,33,34,35,36,37,38,39,40,40,41,41,42,42,43,43,44,44,44,45,45,45,45,46,46,46,46,46,47,47,47,47,47,47,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,50,], 
-		["Walk/Run Speed % min",27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,], 
-		["Walk/Run Speed % max",32,34,36,38,40,42,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,], 
-		["Mana Cost",3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,16,16,16,16,17,17,17,17,], 
+		["Attack Speed % (min)",7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,], 
+		["Attack Speed % (max)",7,13,18,22,25,27,29,31,33,34,35,36,37,38,39,40,40,41,41,42,42,43,43,44,44,44,45,45,45,45,46,46,46,46,46,47,47,47,47,47,47,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,50,], 
+		["Walk/Run Speed % (min)",27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,], 
+		["Walk/Run Speed % (max)",32,34,36,38,40,42,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,], 
+		["Melee Splash Radius +% (min)",6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,], 
+		["Melee Splash Radius +% (max)",6,12,16,19,22,24,26,27,29,30,31,32,33,34,35,36,36,36,37,37,38,38,39,39,39,40,40,40,40,40,41,41,41,41,41,42,42,42,42,42,42,43,43,43,43,43,43,44,44,44,44,44,44,45,45,45,45,45,45,46,], 
 ]};
 /*[19] Concentrate		*/ var d332 = {values:[
 		["Magic Damage %",], 
 		["Defense Bonus %",20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,240,244,248,252,256,], 
 		["Attack %",40,52,64,76,88,100,112,124,136,148,160,172,184,196,208,220,232,244,256,268,280,292,304,316,328,340,352,364,376,388,400,412,424,436,448,460,472,484,496,508,520,532,544,556,568,580,592,604,616,628,640,652,664,676,688,700,712,724,736,748,], 
-		["Damage %",70,76,82,88,94,100,106,112,118,124,130,136,142,148,154,160,166,172,178,184,190,196,202,208,214,220,226,232,238,244,250,256,262,268,274,280,286,292,298,304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394,400,406,412,418,424,], 
+		["Damage %",70,84,98,112,126,140,154,168,182,196,210,224,238,252,266,280,294,308,322,336,350,364,378,392,406,420,434,448,462,476,490,504,518,532,546,560,574,588,602,616,630,644,658,672,686,700,714,728,742,756,770,784,798,812,826,840,854,868,882,896,], 
 ]};
 /*[20] Berserk			*/ var d352 = {values:[
 		["Attack %",60,68,76,84,92,100,108,116,124,132,140,148,156,164,172,180,188,196,204,212,220,228,236,244,252,260,268,276,284,292,300,308,316,324,332,340,348,356,364,372,380,388,396,404,412,420,428,436,444,452,460,468,476,484,492,500,508,516,524,532,], 
-		["Damage %",150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,], 
+		["Damage %",150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,960,975,990,1005,1020,1035,], 
 		["Physical Pierce %",5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,], 
-		["Physical Damage Resistance %",-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,-30,], 
+		["Physical Damage Resistance %",-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,], 
 ]};
 /*[21] Stun				*/ var d321 = {values:[
 		["Damage",], 
@@ -201,29 +201,29 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 ]};
 /*[23] Double Throw		*/ var d333 = {values:[
 		["Damage %",45,51,57,63,69,75,81,87,93,99,105,111,117,123,129,135,141,147,153,159,165,171,177,183,189,195,201,207,213,219,225,231,237,243,249,255,261,267,273,279,285,291,297,303,309,315,321,327,333,339,345,351,357,363,369,375,381,387,393,399,], 
-		["Bounces",3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,], 
+		["Bounces",3,3,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,], 
 		["Attack %",35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,], 
 		["Mana Cost",3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,], 
 ]};
 /*[24] Bash				*/ var d311 = {values:[
-		["Attack %",35,55,75,95,115,135,155,175,195,215,235,255,275,295,315,335,355,375,395,415,435,455,475,495,515,535,555,575,595,615,635,655,675,695,715,735,755,775,795,815,835,855,875,895,915,935,955,975,995,1015,1035,1055,1075,1095,1115,1135,1155,1175,1195,1215,], 
-		["Damage %",50,62,74,86,98,110,122,134,146,158,170,182,194,206,218,230,242,254,266,278,290,302,314,326,338,350,362,374,386,398,410,422,434,446,458,470,482,494,506,518,530,542,554,566,578,590,602,614,626,638,650,662,674,686,698,710,722,734,746,758,], 
+		["Attack %",27,39,51,63,75,87,99,111,123,135,147,159,171,183,195,207,219,231,243,255,267,279,291,303,315,327,339,351,363,375,387,399,411,423,435,447,459,471,483,495,507,519,531,543,555,567,579,591,603,615,627,639,651,663,675,687,699,711,723,735,], 
+		["Damage %",50,68,86,104,122,140,158,176,194,212,230,248,266,284,302,320,338,356,374,392,410,428,446,464,482,500,518,536,554,572,590,608,626,644,662,680,698,716,734,752,770,788,806,824,842,860,878,896,914,932,950,968,986,1004,1022,1040,1058,1076,1094,1112,], 
 		["Damage",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,], 
 		["Mana Cost",2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,], 
 ]};
 /*[25] Leap Attack		*/ var d351 = {values:[
-		["Damage %",10,22,34,46,58,70,82,94,106,118,130,142,154,166,178,190,202,214,226,238,250,262,274,286,298,310,322,334,346,358,370,382,394,406,418,430,442,454,466,478,490,502,514,526,538,550,562,574,586,598,610,622,634,646,658,670,682,694,706,718,], 
+		["Damage %",30,42,54,66,78,90,102,114,126,138,150,162,174,186,198,210,222,234,246,258,270,282,294,306,318,330,342,354,366,378,390,402,414,426,438,450,462,474,486,498,510,522,534,546,558,570,582,594,606,618,630,642,654,666,678,690,702,714,726,738,], 
 		["Mana Cost",7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,21,21.2,21.5,21.7,], 
 ]};
 /*[26]*/
 /*[27] Whirlwind		*/ var d362 = {values:[
 		["Velocity %",0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,], 
-		["Damage %",25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,101,105,109,113,117,121,125,129,133,137,141,145,149,153,157,161,165,169,173,177,181,185,189,193,197,201,205,209,213,217,221,225,229,233,237,241,245,249,253,257,261,], 
-		["Attack %",80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,240,244,248,252,256,260,264,268,272,276,280,284,288,292,296,300,304,308,312,316,], 
+		["Damage %",35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,], 
+		["Attack %",90,96,102,108,114,120,126,132,138,144,150,156,162,168,174,180,186,192,198,204,210,216,222,228,234,240,246,252,258,264,270,276,282,288,294,300,306,312,318,324,330,336,342,348,354,360,366,372,378,384,390,396,402,408,414,420,426,432,438,444,], 
 		["Mana Cost",12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,], 
 ]};
 /*[28] Double Swing		*/ var d323 = {values:[
-		["Damage",0,14,28,42,56,70,84,98,112,126,140,154,168,182,196,210,224,238,252,266,280,294,308,322,336,350,364,378,392,406,420,434,448,462,476,490,504,518,532,546,560,574,588,602,616,630,644,658,672,686,700,714,728,742,756,770,784,798,812,826,], 
+		["Damage",20,38,56,74,92,110,128,146,164,182,200,218,236,254,272,290,308,326,344,362,380,398,416,434,452,470,488,506,524,542,560,578,596,614,632,650,668,686,704,722,740,758,776,794,812,830,848,866,884,902,920,938,956,974,992,1010,1028,1046,1064,1082,], 
 		["Attack %",20,32,44,56,68,80,92,104,116,128,140,152,164,176,188,200,212,224,236,248,260,272,284,296,308,320,332,344,356,368,380,392,404,416,428,440,452,464,476,488,500,512,524,536,548,560,572,584,596,608,620,632,644,656,668,680,692,704,716,728,], 
 		["Mana Cost",1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,], 
 ]};
@@ -231,7 +231,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 var skills_pd2_barbarian = [
 {data:d111, key:"111", code:128, name:"Howl", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Sends nearby monsters<br>scrambling away in fear", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Enemy runs up to "," yards<br>Enemy runs for 3 seconds<br>Mana Cost: 4",""]},
 {data:d113, key:"113", code:129, name:"Find Potion", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>for a chance to find a potion", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 1",""]},
-{data:d142, key:"142", code:130, name:"Taunt", i:2, req:[8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Enrages a monster into relentlessly attacking", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Target's Damage: "," percent<br>Target's Attack: "," percent<br>Mana Cost: 3",""]},
+{data:d142, key:"142", code:130, name:"Taunt", i:2, req:[8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Enrages nearby monsters into relentlessly attacking", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Target's Damage: "," percent<br>Target's Attack: "," percent<br>Mana Cost: 3",""]},
 {data:d121, key:"121", code:131, name:"Shout", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Warns of impending danger and improves the defense<br>rating of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Defense: +"," percent<br>Duration: 300 seconds<br>Mana Cost: 6",""]},
 {data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""]},
 {data:d162, key:"162", code:133, name:"Battle Cry", i:5, req:[6,3,2,8,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Fearsome cry that decreases<br>enemies' defense rating and physical damage resistance", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense: "," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 5",""]},
@@ -249,78 +249,103 @@ var skills_pd2_barbarian = [
 {data:d251, key:"251", code:144, name:"Increased Speed", i:16, req:[14], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases walk and run speed", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Walk/Run Speed: +"," percent",""]},
 {data:d263, key:"263", code:145, name:"Natural Resistance", i:17, req:[15], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases natural resistances<br>to elemental and poison damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Resistances: +"," percent",""]},
 
-{data:d312, key:"323", code:146, name:"Frenzy", i:18, req:[28], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:1,spell:0}, description:"Allows you to swing two weapons at once<br>East successful attack increases your overall speed<br>Requires you to equip two weapons", syn_title:"<br>Frenzy Receives Bonuses From:<br>", syn_text:"Double Swing: +6% Damage per Level<br>Stun: +6% Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Damage: +"," percent<br>Attack: +"," percent<br>Attack Speed: +","-"," percent<br>Walk/Run Speed: +","-"," percent<br>Mana Cost: ",""]},
-{data:d332, key:"332", code:147, name:"Concentrate", i:19, req:[28], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Attack that is not interruptible and<br>improves attack and defense rating and<br>converts physical damage to magic damage", syn_title:"<br>Concentrate Receives Bonuses From:<br>", syn_text:"Bash: +6% Damage per Level<br>Battle Command: +6% Damage per Level<br>Bash: +1% Magic Damage per Level", graytext:"", index:[1," percent"], text:["Converts 2% of Physical Damage to Magic Damage per Base Level<br>Magic Damage: +","Defense Bonus: +"," percent<br>Attack: +"," percent<br>Damage: +"," percent<br>Mana Cost: 2",""]},
-{data:d352, key:"352", code:148, name:"Berserk", i:20, req:[19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:1}, description:"A powerful but reckless attack that<br>increases damage and attack rating but decreases<br>defense rating and physical damage resistance<br>Requires you to equip two weapons<br><br>Duration: 0.5 seconds", syn_title:"<br>Berserk Receives Bonuses From:<br>", syn_text:"Taunt: +8% Damage per Level<br>Combat Reflexes: +8% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Physical Pierce: +"," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 4"]},
-{data:d321, key:"321", code:149, name:"Stun", i:21, req:[24], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Stuns your target for a short time<br>and increases your attack rating", syn_title:"<br>Stun Receives Bonuses From:<br>", syn_text:"Bash: +8% Damage per Level<br>Concentrate: +5% Attack Rating per Level<br>War Cry +5% Duration per Level", graytext:"", index:[1," percent"], text:["Damage: +","Attack: +"," percent<br>Duration: "," seconds<br>Mana Cost: 2",""]},
+{data:d312, key:"323", code:146, name:"Frenzy", i:18, req:[28], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:1,spell:0}, description:"Allows you to swing two weapons at once<br>Each successful attack increases your overall speed<br>Requires you to equip two weapons<br><br>Mana Cost: 1", syn_title:"<br>Frenzy Receives Bonuses From:<br>", syn_text:"Double Swing: +10% Damage per Level<br>Stun: +10% Damage per Level", graytext:"", index:[0,""], text:["Duration: 15 seconds<br>Damage: +"," percent<br>Attack: +"," percent<br>Attack Speed: +","-"," percent<br>Walk/Run Speed: +","-"," percent<br>Increased Melee Splash Radius: ","-"," percent",""]},
+{data:d332, key:"332", code:147, name:"Concentrate", i:19, req:[28], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Attack that is not interruptible and<br>improves attack and defense rating and<br>converts physical damage to magic damage", syn_title:"<br>Concentrate Receives Bonuses From:<br>", syn_text:"Bash: +2% Magic Damage per Level<br>Bash: +8% Damage per Level<br>Battle Command: +12% Damage per Level", graytext:"", index:[1," percent"], text:["Converts 2% of Physical Damage to Magic Damage per Base Level<br>Magic Damage: +","Defense Bonus: +"," percent<br>Attack: +"," percent<br>Damage: +"," percent<br>Mana Cost: 2",""]},
+{data:d352, key:"352", code:148, name:"Berserk", i:20, req:[19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:1}, description:"A powerful but reckless attack that<br>increases damage and attack rating but decreases<br>defense rating and physical damage resistance<br>Requires you to equip two weapons<br><br>Duration: 0.5 seconds", syn_title:"<br>Berserk Receives Bonuses From:<br>", syn_text:"Taunt: +10% Damage per Level<br>Combat Reflexes: +10% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Physical Pierce: +"," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 4"]},
+{data:d321, key:"321", code:149, name:"Stun", i:21, req:[24], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Stuns enemies in an area for a<br>short time dealing bonus damage<br>and increases your attack rating", syn_title:"<br>Stun Receives Bonuses From:<br>", syn_text:"Bash: +8% Damage per Level<br>Concentrate: +5% Attack Rating per Level<br>War Cry +5% Duration per Level", graytext:"", index:[1," percent"], text:["Damage: +","Attack: +"," percent<br>Duration: "," seconds<br>Mana Cost: 2",""]},
 {data:d331, key:"331", code:150, name:"Leap", i:22, req:[21,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Leaps away from danger<br>or into the fray", syn_title:"", syn_text:"", graytext:"", index:[1," yards"], text:["Knockback Radius: ","Leap Distance: "," yards<br>Mana Cost: 20"]},
-{data:d333, key:"333", code:151, name:"Double Throw", i:23, req:[28,18], reqlvl:12, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:2,spell:0}, description:"Allows you to throw two different<br>throwing weapons at the same time<br>Weapons bounce to nearby enemies", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Double Swing: +5% Damage per Level", graytext:"", index:[0,""], text:["First Hit Bonus Damage: +10 percent<br>Damage: +"," percent<br>"," bounces<br>To Attack Rating: +"," percent<br>Mana Cost: ",""]},
-{data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +10% Damage per Level<br>Berserk: +10% Damage per Level<br>Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
-{data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +6% Damage per Level<br>Bash: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
+{data:d333, key:"333", code:151, name:"Double Throw", i:23, req:[28,18], reqlvl:12, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:2,spell:0}, description:"Allows you to throw two different<br>throwing weapons at the same time<br>Weapons bounce to nearby enemies", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Double Swing: +5% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>"," bounces<br>To Attack Rating: +"," percent<br>Mana Cost: ",""]},
+{data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +12% Damage per Level<br>Berserk: +12% Damage per Level<br>Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
+{data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +8% Damage per Level<br>Bash: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
 /*TODO: remove*/{data:d362, key:"362", code:154, name:"None", i:26, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d362, key:"362", code:155, name:"Whirlwind", i:27, req:[20,19,28], reqlvl:30, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"A whirling dance of death<br>that cuts a path through the<br>legions of your enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Velocity: +"," percent<br>Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
-{data:d323, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapons are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
+{data:d323, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapons are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +12% Damage per Level<br>Stun: +12% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
 ];
 
 /*
-Barbarian S3 Changes - Final Patch Notes
 
+	* Leap Attack now uses durability
+	* Leap Attack now rolls its damage on each monster instead of each leap
+	* Leap Attack synergies increased from 6% to 8%
+	* Leap Attack base enhanced damage bonus increased from 10% to 30%
 
-* Berserk now uses frenzy animation and requires two weapons
-* Berserk now applies its physical pierce modifier to its splash damage
-* Berserk’s attack rating per level reduced from 12% to 8%
-* Berserk’s starting attack rating reduced from 240% to 60%
+	* General Mastery increased from 5 to 8% per level
+	* General Mastery 28% damage base increased to 30%
 
-* Double swing now gains 14% enhanced damage per level
-* Double swing is now a level 1 skill (it has swapped places with where frenzy previously was)
-* Double swing’s frenzy synergy has been reduced from 14% per level to 8% per level
-* Double swing now cost 1 mana at level 1 instead of 4
-* Double swing mana cost now increases by 0.25 per level from .5
-* Double swings base attack rating reduced from 75% to 20% 
-* Double swings attack rating per level reduced from 20% to 12%
+	* Polearm and Spear Mastery increased to 10% per level from 6%
 
-* Frenzy is now a level 6 skill and has swapped places with double swing on the skill tree
-* Frenzy mana cost now increases by 0.25 per level
-* Frenzy’s attack rating per level reduced from 18% to 10%
+	* Throwing Mastery 28% damage base increased to 30%
+	* Throwing Mastery damage per level reduced from 5% to 4%
 
-* Concentrate’s base attack rating reduced from 180% to 40%
-* Concentrate’s attack rating per level increased from 10% to 12%
+	* Double Throw reduced from 8 maximum bounces to 5
+	* Double Throw initial hit bonus removed
+	* Double Throw bounce range reduced by 25%
+	* Double Throw damage per level reduced from 6% to 5%
 
-* Leap attack aoe increased by roughly 16%
-* Leap attack now starts at maximum leap speed
-* Leap attack no longer gains leap speed per level
-* Leap attack synergies reduced from 10% to 6%
-* Leap attack damage per level increased from 10% to 12%
+	* Concentrate damage per level increased from 6% per level to 8%
+	* Concentrate's battle command damage per level synergy increased from 6% per level to 8%
+	* Concentrate's bash magic damage synergy increased from 1% per level to 2% per level (edited for clarification)
 
-* Leap now starts at maximum leap speed
-* Leap no longer gains leap speed per level
-* Leap mana cost increased from 8 to 20
+	* Bash 12% damage per level increased to 14% per level
+	* Bash synergies increased from 10 to 12%
 
-* Double throw damage per level reduced from 12% to 6%
-* Double throw synergy reduced from 8% to 5%
-* Double throw’s starting damage bonus reduced from 55% to 45%
-* Double throw attack rating per level reduced from 15% to 10%
-* Double throw’s base attack rating reduced from 175% to 35%
+	* Stun has been reworked and now stuns in an area of effect
 
-* Whirlwinds base attack rating reduced from 240% to 80%
-* Whirlwinds attack rating per level increased from 5% to 6%
+	* Frenzy increased from 10% damage per level to 12%
+	* Frenzy synergies increased from 6% per level to 8% per level
+	* Frenzy move speed tooltip now shows the proper values
+	* Frenzy now gains increased splash radius per charge
 
-* Spear and polearm mastery 16% attack rating per level reduced to 10%
+	* Berserk increased from 10% per level to 12%
+	* Berserk synergy increased from 8% to 10%
+	* Berserk is now uninterruptible
 
-* General mastery 16% attack rating per level reduced to 10%
+	* War Cry damage scaling changed from 1/2/8/16/24 to 1/3/10/17/24
 
-* Throwing mastery 16% attack rating per level reduced to 10%
+	* Grim Ward increased from 5% damage per level to 8%
+	* Grim Ward base enhanced damage bonus increased from 30% to 40% (edit: was 35%, not 30%)
 
-* Combat reflexes gains 20 life per base point instead of 10
+	* Taunt is now an aoe skill
 
-* Grim ward can now be cast at range instead of melee
-* Grim ward level 1 aura range increased from 16 to 25		// 10.6 yards to 16.6 yards?
-* Grim ward aura range per level has been doubled
+	* When dual wielding Whirlwind now swings with both weapons each attack
+	* Whirlwind enhanced damage per level increased from 4% per level to 6%
 
-* Battle cry aoe travel speed increased by 25% (this also results in a slightly larger aoe)
-* Battle cry -defense % per level reduced from 2% to 1%
+	...Frenzy mana cost is now static at 1
+	...Whirlwind base Damage/Attack bonuses increased by 10% each (wasn't mentioned)
+	...Whirlwind Attack bonus per level increased from 4% per level to 8% (wasn't mentioned)
 
-* Howl now lasts 3 seconds at all levels		// was already changed?
+... note: Concentrate/Berserk descriptions could be updated since extra damage/attack can be assumed for nearly any attack
 
+	- whirlwind’s damage per level reduced from 6% to 5%
+	- whirlwind has been reverted to its season 3 base damage values (reduced from 35% to 25%)
+	- whirlwind’s attack rating bonus is being brought back to its original 6% per level from season 3
+	- fixed leap applying on strike effects
+
+	...Grim Ward radius starts at 10.6 yards and gains +0.66 per level instead of +1.33 per level
+
+	* Frenzy level 1 damage ''decreased'' from 25% to 24% (edited from "23% to 30%")
+	* Frenzy damage per level increased from 12% to 16%
+	* Frenzy synergy damage bonus increased from 8% to 10%
+	* Frenzy duration reduced from 10 seconds + 1 second per level (caps at 28 seconds) to 15 seconds at all levels
+
+	* Double swing frenzy synergies increased from 8% to 12%
+	* Double swing now has stun as a 12% synergy
+	* Double swing damage per level increased from 14% to 18%
+
+	* Berserk damage per level increased from 12% to 15%
+	* Berserks -phys debuff (on the barbarian) has been reduced to cap at a maximum of 20% from 30% (this is a buff)
+
+	* Concentrate bash synergy increased from 6% to 8%
+	* Concentrate battle command synergy increased from 8% to 12%
+	* Concentrate now gains 14% damage per level from 8%
+
+	* Bash now gains 18% damage per level from 14%
+
+	* Whirlwind base damage bonus increased from 25% to 35%
+
+	* Double throw enhanced damage per level increased from 5% to 6%
+
+	...Double Swing damage starts at 20% now instead of 0% (wasn't mentioned)
+	...Bash attack rating is now 27% + 12% per level instead of 35% + 20% (wasn't mentioned)
 
 */
