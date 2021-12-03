@@ -130,8 +130,9 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 ]};
 /*[ 1] Cold Enchant		*/ var d113 = {values:[
 		["Duration (seconds)",144,168,192,216,240,264,288,312,336,360,384,408,432,456,480,504,528,552,576,600,624,648,672,696,720,744,768,792,816,840,864,888,912,936,960,984,1008,1032,1056,1080,1104,1128,1152,1176,1200,1224,1248,1272,1296,1320,1344,1368,1392,1416,1440,1464,1488,1512,1536,1560,], 
-		["Cold Damage (min)",3,4,6,7,9,10,12,13,17,22,26,31,35,40,44,49,58,67,76,85,94,103,118,133,148,163,178,193,214,235,256,277,298,319,340,361,382,403,424,445,466,487,508,529,550,571,592,613,634,655,676,697,718,739,760,781,802,823,844,865,], 
-		["Cold Damage (max)",4,6,9,11,14,16,19,21,26,32,37,43,48,54,59,65,75,85,95,105,115,125,141,157,173,189,205,221,243,265,287,309,331,353,375,397,419,441,463,485,507,529,551,573,595,617,639,661,683,705,727,749,771,793,815,837,859,881,903,925,], 
+		["Cold Damage (min)",3,4,6,7,9,10,12,13,17,22,26,31,35,40,44,49,58,67,76,85,94,103,120,138,155,173,190,208,234,260,286,312,338,364,390,416,442,468,494,520,546,572,598,624,650,676,702,728,754,780,806,832,858,884,910,936,962,988,1014,1040,], 
+		["Cold Damage (max)",4,6,9,11,14,16,19,21,26,32,37,43,48,54,59,65,75,85,95,105,115,125,143,162,180,199,217,236,263,290,317,344,371,398,425,452,479,506,533,560,587,614,641,668,695,722,749,776,803,830,857,884,911,938,965,992,1019,1046,1073,1100,], 
+		["Attack Rating",20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
 ]};
 /*[ 2] Frost Nova		*/ var d121 = {values:[
@@ -273,9 +274,9 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 ]};
 /*[28] Enchant Fire		*/ var d343 = {values:[
 		["Duration (seconds)",144,168,192,216,240,264,288,312,336,360,384,408,432,456,480,504,528,552,576,600,624,648,672,696,720,744,768,792,816,840,864,888,912,936,960,984,1008,1032,1056,1080,1104,1128,1152,1176,1200,1224,1248,1272,1296,1320,1344,1368,1392,1416,1440,1464,1488,1512,1536,1560,], 
-		["Fire Damage (min)",8,10,13,15,18,20,23,25,31,36,42,47,53,58,64,69,78,87,96,105,114,123,136,149,162,175,188,201,219,236,254,271,289,306,324,341,359,376,394,411,429,446,464,481,499,516,534,551,569,586,604,621,639,656,674,691,709,726,744,761,], 
-		["Fire Damage (max)",10,13,17,20,24,27,31,34,41,47,54,60,67,73,80,86,96,106,116,126,136,146,160,174,188,202,216,230,249,267,286,304,323,341,360,378,397,415,434,452,471,489,508,526,545,563,582,600,619,637,656,674,693,711,730,748,767,785,804,822,], 
-		["attack rating",20,29,38,47,56,65,74,83,92,101,110,119,128,137,146,155,164,173,182,191,200,209,218,227,236,245,254,263,272,281,290,299,308,317,326,335,344,353,362,371,380,389,398,407,416,425,434,443,452,461,470,479,488,497,506,515,524,533,542,551,], 
+		["Fire Damage (min)",12,14,17,19,22,24,27,29,35,40,46,51,57,62,68,73,82,91,100,109,118,127,142,157,172,187,202,217,238,259,280,301,322,343,364,385,406,427,448,469,490,511,532,553,574,595,616,637,658,679,700,721,742,763,784,805,826,847,868,889,], 
+		["Fire Damage (max)",17,20,24,27,31,34,38,41,48,54,61,67,74,80,87,93,103,113,123,133,143,153,169,185,201,217,233,249,271,293,315,337,359,381,403,425,447,469,491,513,535,557,579,601,623,645,667,689,711,733,755,777,799,821,843,865,887,909,931,953,], 
+		["attack rating",20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
 ]};
 /*[29] Meteor			*/ var d351 = {values:[
@@ -309,7 +310,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 
 var skills_pd2_sorceress = [
 {data:d112, key:"112", code:36, name:"Ice Bolt", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical bolt of ice<br>that damages and slows your enemies", syn_title:"<br>Ice Bolt Receives Bonuses From:<br>", syn_text:"Ice Blast: +20% Cold Damage per Level<br>Glacial Spike: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
-{data:d113, key:"113", code:37, name:"Cold Enchant", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Enchants the weapons of you and your party with cold damage<br>Ranged weapons receive one-third of the damage<br>Half efficiency for allies", syn_title:"<br>Cold Enchant Receives Bonuses From:<br>", syn_text:"Chilling Armor: +22% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Cold Damage: ","-","<br>Mana Cost: ",""]},
+{data:d113, key:"113", code:37, name:"Cold Enchant", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Enchants the weapons of you and your party with cold damage<br>Ranged weapons receive one-third of the damage<br>Half efficiency for allies", syn_title:"<br>Cold Enchant Receives Bonuses From:<br>", syn_text:"Chilling Armor: +22% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Cold Damage: ","-","<br>Attack Bonus: ","<br>Mana Cost: ",""]},
 {data:d121, key:"121", code:38, name:"Frost Nova", i:2, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of ice that damages<br>and slows all nearby enemies", syn_title:"<br>Frost Nova Receives Bonuses From:<br>", syn_text:"Ice Bolt: +9% Cold Damage per Level<br>Shiver Armor: +9% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
 {data:d122, key:"122", code:39, name:"Ice Blast", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical sphere of ice that<br>damages and freezes your enemy", syn_title:"<br>Ice Blast Receives Bonuses From:<br>", syn_text:"Ice Bolt: +6% Cold Damage per Level<br>Glacial Spike: +6% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for 2 seconds<br>Mana Cost: ",""]},
 {data:d133, key:"133", code:40, name:"Shiver Armor", i:4, req:[1,3,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases your defense rating<br>Freezes and damages enemy melee attackers", syn_title:"<br>Shiver Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense Bonus: "," percent<br>Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: 11"]},
@@ -377,5 +378,16 @@ var skills_pd2_sorceress = [
 	* Firewall inferno synergy increased from 1% to 4%
 
 	* Blaze scaling has been completely rebalanced
+
+- Blaze was dealing a bugged amount of damage due to an improper damage calculation and has now been fixed
+
+	- Enchant fire level 1 damage increased from 16-20 to 25-35
+	- Enchant fire 9% bonus attack rating per level reduced to 5%
+	- Enchant level 22-28 scaling changed from 25-27 to 30-32
+	- Enchant level 28+ scaling changed from 35-38 to 42-44
+
+	- Cold Enchant cold now grants 20% attack rating at level 1 and 5% per level
+	- Cold enchant level 22-28 scaling increased from 30-32 to 35-37
+	- Cold enchants level 28+ scaling increased from 42-44 to 52-54
 
 */
