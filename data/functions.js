@@ -301,7 +301,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
-			//document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner'>https://d2.maxroll.gg/d2planner</a>" // planning to direct people to maxroll.gg once they finish their PD2 planner
+			document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner'>d2.maxroll.gg/d2planner</a>"
 			settings.autocast = 1
 		} else if (v == 2) {
 			skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
@@ -331,7 +331,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
-			//document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/pd2planner'>https://d2.maxroll.gg/pd2planner</a>"	// planning to direct people to maxroll.gg once they finish their PD2 planner
+			document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner-pd2/'>d2.maxroll.gg/d2planner-pd2</a>"
 			settings.autocast = 1
 		}
 		
