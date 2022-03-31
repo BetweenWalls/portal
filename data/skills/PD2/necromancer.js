@@ -16,76 +16,76 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		
 		var skeleton_life = ~~skills[0].data.values[1][skills[0].level+skills[0].extra_levels];
 		var skeleton_damage = ~~skills[0].data.values[2][skills[0].level+skills[0].extra_levels];
-		var mage_damage = ~~skills[0].data.values[3][skills[0].level+skills[0].extra_levels];
+		//var mage_damage = ~~skills[0].data.values[3][skills[0].level+skills[0].extra_levels];
 		var golem_life = ~~skills[4].data.values[1][skills[4].level+(skills[4].extra_levels*Math.min(1,skills[4].level))];
 		var golem_attack = ~~skills[4].data.values[2][skills[4].level+(skills[4].extra_levels*Math.min(1,skills[4].level))];
 		
-		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {			result *= (1 + skeleton_damage/100 + skill.data.values[2][lvl]/100 + 0.08*skills[0].level) }
-		if (skill.name == "Raise Skeleton Warrior" && elem == 5) {			result = skill.data.values[elem][character.difficulty][lvl] + skeleton_life }
-		if (skill.name == "Raise Skeleton Archer" && elem == 0) {			result = 1 + Math.min(1,Math.floor(skill.level/2)) + Math.floor(skill.level/3) }
-		if (skill.name == "Raise Skeleton Archer" && elem > 0 && elem < 3){	result *= (1 + skeleton_damage/100 + 0.08*skills[0].level) }
-		if (skill.name == "Raise Skeleton Archer" && elem == 3) {			result = skill.data.values[elem][character.difficulty][lvl] + skeleton_life }
-		if (skill.name == "Raise Skeletal Mage" && elem == 0) {				result = 1 + Math.min(1,Math.floor(skill.level/2)) + Math.floor(skill.level/3) }
-		if (skill.name == "Raise Skeletal Mage" && elem > 0 && elem < 9) {	result *= (1 + mage_damage/100) }
-		if (skill.name == "Raise Skeletal Mage" && elem == 9) {				result = skill.data.values[elem][character.difficulty] + skeleton_life }
-		if (skill.name == "Clay Golem" && elem == 0) {						result += golem_attack }
-		if (skill.name == "Clay Golem" && elem == 1) {						result = 100 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
-		if (skill.name == "Clay Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+25 per level) from Blood Golem, but is incorrect
-		if (skill.name == "Clay Golem" && elem > 2 && elem < 5) {			result = skill.data.values[elem][character.difficulty][lvl] + (skill.data.values[elem][character.difficulty][1] * (0.40*skills[6].level + 0.40*skills[8].level + 0.40*skills[9].level + 0.40*skills[4].level)) }
-		if (skill.name == "Blood Golem" && elem == 0) {						result = 60 + 20*skills[3].level + golem_attack }
-		if (skill.name == "Blood Golem" && elem == 1) {						result = 120 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
-		if (skill.name == "Blood Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) }
-		if (skill.name == "Blood Golem" && elem > 3 && elem < 6) {			result = skill.data.values[elem][character.difficulty][lvl] + (skill.data.values[elem][character.difficulty][1] * (0.20*skills[3].level + 0.20*skills[8].level + 0.20*skills[9].level + 0.20*skills[4].level)) }
-		if (skill.name == "Iron Golem" && elem == 2) {						result = 80 + 20*skills[3].level + golem_attack }
-		if (skill.name == "Iron Golem" && elem == 4) {						result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+25 per level) from Blood Golem, but is incorrect
-		if (skill.name == "Iron Golem" && elem < 2) {						result = skill.data.values[elem][character.difficulty] + (skill.data.values[elem][character.difficulty] * (0.20*skills[3].level + 0.20*skills[6].level + 0.20*skills[9].level + 0.20*skills[4].level)) }
-		if (skill.name == "Fire Golem" && elem == 0) {						result = 120 + 20*skills[3].level + golem_attack }
-		if (skill.name == "Fire Golem" && elem == 1) {						result = 200 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
-		if (skill.name == "Fire Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+20.5 per level) from Blood Golem, but is incorrect
-		//if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result += 10*(0.10*(skills[3].level+(skills[3].extra_levels*Math.min(1,skills[3].level))) + 0.10*(skills[6].level+(skills[6].extra_levels*Math.min(1,skills[6].level))) + 0.10*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) + 0.10*(skills[4].level+(skills[4].extra_levels*Math.min(1,skills[4].level)))) }		// TODO: How is this meant to be calculated?
-		//if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result *= ((1 + 0.01*skills[3].level + 0.01*skills[6].level + 0.01*skills[8].level + 0.01*skills[4].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {			result = (skill.data.values[elem][lvl] - skill.data.values[elem+2][lvl]) * (1 + 0.20*skills[3].level + 0.20*skills[6].level + 0.20*skills[8].level + 0.20*skills[4].level) + skill.data.values[elem+2][lvl] * (1+character.fDamage/100) }
-		if (skill.name == "Golem Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/5) }
-		if (skill.name == "Revive" && elem == 0) {							result = skill.level }
-		if (skill.name == "Revive" && elem == 1) {							result = 3 + Math.floor(skill.level/4) }
-		if (skill.name == "Revive" && elem == 2) {							result += (10*skills[15].level) }
-		if (skill.name == "Revive" && elem == 3) {							result += (20*skills[15].level) }
+		if (skill.name == "Raise Skeleton Warrior" && elem < 2) {		result = (result + skeleton_damage) * (1 + skill.data.values[2][lvl]/100 + 0.08*skills[0].level) }
+		if (skill.name == "Raise Skeleton Warrior" && elem == 5) {		result = skill.data.values[elem][character.difficulty][lvl] + skeleton_life }
+		if (skill.name == "Raise Skeleton Archer" && elem == 0) {		result = 1 + Math.min(1,Math.floor(skill.level/2)) + Math.floor(skill.level/3) }
+		if (skill.name == "Raise Skeleton Archer" && elem > 0 && elem < 3){	result *= (1 + 0.08*skills[0].level) }
+		if (skill.name == "Raise Skeleton Archer" && elem == 3) {		result = skill.data.values[elem][character.difficulty][lvl] + skeleton_life }
+		if (skill.name == "Raise Skeletal Mage" && elem == 0) {			result = 1 + Math.min(1,Math.floor(skill.level/2)) + Math.floor(skill.level/3) }
+		if (skill.name == "Raise Skeletal Mage" && elem > 0 && elem < 9) {	result *= (1 + 0.10*skills[0].level) }
+		if (skill.name == "Raise Skeletal Mage" && elem == 9) {			result = skill.data.values[elem][character.difficulty] + skeleton_life }
+		if (skill.name == "Clay Golem" && elem == 0) {				result += golem_attack }
+		if (skill.name == "Clay Golem" && elem == 1) {				result = 100 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
+		if (skill.name == "Clay Golem" && elem == 2) {				result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+25 per level) from Blood Golem, but is incorrect
+		if (skill.name == "Clay Golem" && elem > 2 && elem < 5) {		result = skill.data.values[elem][character.difficulty][lvl] + (skill.data.values[elem][character.difficulty][1] * (0.40*skills[6].level + 0.40*skills[8].level + 0.40*skills[9].level + 0.40*skills[4].level)) }
+		if (skill.name == "Blood Golem" && elem == 0) {				result = 60 + 20*skills[3].level + golem_attack }
+		if (skill.name == "Blood Golem" && elem == 1) {				result = 120 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
+		if (skill.name == "Blood Golem" && elem == 2) {				result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) }
+		if (skill.name == "Blood Golem" && elem > 3 && elem < 6) {		result = skill.data.values[elem][character.difficulty][lvl] + (skill.data.values[elem][character.difficulty][1] * (0.20*skills[3].level + 0.20*skills[8].level + 0.20*skills[9].level + 0.20*skills[4].level)) }
+		if (skill.name == "Iron Golem" && elem == 2) {				result = 80 + 20*skills[3].level + golem_attack }
+		if (skill.name == "Iron Golem" && elem == 4) {				result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+25 per level) from Blood Golem, but is incorrect
+		if (skill.name == "Iron Golem" && elem < 2) {				result = skill.data.values[elem][character.difficulty] + (skill.data.values[elem][character.difficulty] * (0.20*skills[3].level + 0.20*skills[6].level + 0.20*skills[9].level + 0.20*skills[4].level)) }
+		if (skill.name == "Fire Golem" && elem == 0) {				result = 120 + 20*skills[3].level + golem_attack }
+		if (skill.name == "Fire Golem" && elem == 1) {				result = 200 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
+		if (skill.name == "Fire Golem" && elem == 2) {				result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+20.5 per level) from Blood Golem, but is incorrect
+		//if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {		result += 10*(0.10*(skills[3].level+(skills[3].extra_levels*Math.min(1,skills[3].level))) + 0.10*(skills[6].level+(skills[6].extra_levels*Math.min(1,skills[6].level))) + 0.10*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) + 0.10*(skills[4].level+(skills[4].extra_levels*Math.min(1,skills[4].level)))) }		// TODO: How is this meant to be calculated?
+		//if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {		result *= ((1 + 0.01*skills[3].level + 0.01*skills[6].level + 0.01*skills[8].level + 0.01*skills[4].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Fire Golem" && elem > 2 && elem < 5) {		result = (skill.data.values[elem][lvl] - skill.data.values[elem+2][lvl]) * (1 + 0.20*skills[3].level + 0.20*skills[6].level + 0.20*skills[8].level + 0.20*skills[4].level) + skill.data.values[elem+2][lvl] * (1+character.fDamage/100) }
+		if (skill.name == "Golem Mastery" && elem == 0) {			result = 1 + Math.floor(skill.level/5) }
+		if (skill.name == "Revive" && elem == 0) {				result = skill.level }
+		if (skill.name == "Revive" && elem == 1) {				result = 3 + Math.floor(skill.level/4) }
+		if (skill.name == "Revive" && elem == 2) {				result += (10*skills[15].level) }
+		if (skill.name == "Revive" && elem == 3) {				result += (20*skills[15].level) }
 		
 		if (skill.name == "Poison Strike" && elem > 0 && elem < 3) {		result *= ((1 + 0.24*skills[15].level + 0.24*skills[19].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Desecrate" && elem < 2) {						result *= ((1 + 0.20*skills[11].level + 0.20*skills[19].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Poison Nova" && elem < 2) {						result *= ((1 + 0.16*skills[11].level + 0.16*skills[15].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Corpse Explosion" &&  elem < 2) {				result *= (1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) }
+		if (skill.name == "Desecrate" && elem < 2) {				result *= ((1 + 0.20*skills[11].level + 0.20*skills[19].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Poison Nova" && elem < 2) {				result *= ((1 + 0.16*skills[11].level + 0.16*skills[15].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Corpse Explosion" &&  elem < 2) {			result *= (1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) }
 		if (skill.name == "Corpse Explosion" && elem > 1 && elem < 4) {		result *= ((1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= (1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) }
-		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= (1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.10*skills[13].level) }
-		if (skill.name == "Bone Spirit" && elem < 2) {						result *= (1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.10*skills[13].level) }
-		if (skill.name == "Bone Armor" && elem == 0) {						result += (15*skills[17].level + 15*skills[31].level) }
-		if (skill.name == "Bone Wall" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.10*skills[13].level + 0.10*skills[31].level) }
-		if (skill.name == "Bone Prison" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.08*skills[13].level + 0.08*skills[17].level) }
+		if (skill.name == "Teeth" && elem > 0 && elem < 3) {			result *= (1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) }
+		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {		result *= (1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.10*skills[13].level) }
+		if (skill.name == "Bone Spirit" && elem < 2) {				result *= (1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.10*skills[13].level) }
+		if (skill.name == "Bone Armor" && elem == 0) {				result += (15*skills[17].level + 15*skills[31].level) }
+		if (skill.name == "Bone Wall" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.10*skills[13].level + 0.10*skills[31].level) }
+		if (skill.name == "Bone Prison" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.08*skills[13].level + 0.08*skills[17].level) }
 		
-		if (skill.name == "Curse Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/10) }
-		if (skill.name == "Dark Pact" && elem == 0) {						result = 5 + 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Dark Pact" && elem > 0 && elem < 3) {			result *= (1 + 0.18*skills[32].level + 0.18*skills[24].level + 0.12*(skills[20].level+skills[21].level+skills[23].level+skills[25].level+skills[26].level+skills[27].level+skills[28].level+skills[29].level+skills[30].level)) }
-		if (skill.name == "Amplify Damage" && elem == 0) {					result = Math.max(-60,result - Math.floor(skills[32].level/2)) }
-		if (skill.name == "Amplify Damage" && elem == 1) {					result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Iron Maiden" && elem == 0) {						result += 6*skills[32].level }
-		if (skill.name == "Iron Maiden" && elem == 2) {						result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Life Tap" && elem == 0) {						result = 8 + 2*skill.level + Math.floor(skills[32].level/2) + 2-2*Math.min(1,skill.level) }
-		if (skill.name == "Life Tap" && elem == 1) {						result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Weaken" && elem == 0) {							result -= Math.floor(skills[32].level/2) }
-		if (skill.name == "Weaken" && elem == 1) {							result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Decrepify" && elem == 0) {						result = -10 - skill.level - 1+1*Math.min(1,skill.level) }
-		if (skill.name == "Decrepify" && elem == 1) {						result = Math.max(-65,result - skills[32].level) }
-		if (skill.name == "Decrepify" && elem == 2) {						result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Lower Resist" && elem == 0) {					result = Math.max(-65,result - Math.floor(skills[32].level/2)) }
-		if (skill.name == "Lower Resist" && elem == 1) {					result += 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Dim Vision" && elem == 0) {						result += -10*skills[32].level }
-		if (skill.name == "Dim Vision" && elem == 2) {						result *= (1/Math.floor(character.difficulty*1.5-0.5)) }	// Note: hacky way to multiply by 1/2 for nightmare and 1/4 for hell (difficulty is an integer from 1 to 3)
-		if (skill.name == "Terror" && elem == 0) {							result = -5 - skill.level*2 - skills[32].level + 2-2*Math.min(1,skill.level) }
-		if (skill.name == "Confuse" && elem == 0) {							result = 10 + skill.level*10 + 5*skills[32].level + 10-10*Math.min(1,skill.level) }
-		if (skill.name == "Confuse" && elem == 2) {							result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
-		if (skill.name == "Attract" && elem == 0) {							result += -5*skills[32].level }
-		if (skill.name == "Attract" && elem == 2) {							result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
+		if (skill.name == "Curse Mastery" && elem == 0) {			result = 1 + Math.floor(skill.level/10) }
+		if (skill.name == "Dark Pact" && elem == 0) {				result = 5 + 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Dark Pact" && elem > 0 && elem < 3) {		result *= (1 + 0.18*skills[32].level + 0.18*skills[24].level + 0.12*(skills[20].level+skills[21].level+skills[23].level+skills[25].level+skills[26].level+skills[27].level+skills[28].level+skills[29].level+skills[30].level)) }
+		if (skill.name == "Amplify Damage" && elem == 0) {			result = Math.max(-60,result - Math.floor(skills[32].level/2)) }
+		if (skill.name == "Amplify Damage" && elem == 1) {			result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Iron Maiden" && elem == 0) {				result += 6*skills[32].level }
+		if (skill.name == "Iron Maiden" && elem == 2) {				result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Life Tap" && elem == 0) {				result = 8 + 2*skill.level + Math.floor(skills[32].level/2) + 2-2*Math.min(1,skill.level) }
+		if (skill.name == "Life Tap" && elem == 1) {				result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Weaken" && elem == 0) {				result -= Math.floor(skills[32].level/2) }
+		if (skill.name == "Weaken" && elem == 1) {				result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Decrepify" && elem == 0) {				result = -10 - skill.level - 1+1*Math.min(1,skill.level) }
+		if (skill.name == "Decrepify" && elem == 1) {				result = Math.max(-65,result - skills[32].level) }
+		if (skill.name == "Decrepify" && elem == 2) {				result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Lower Resist" && elem == 0) {			result = Math.max(-65,result - Math.floor(skills[32].level/2)) }
+		if (skill.name == "Lower Resist" && elem == 1) {			result += 0.6*Math.floor(skills[32].level/3) }
+		if (skill.name == "Dim Vision" && elem == 0) {				result += -10*skills[32].level }
+		if (skill.name == "Dim Vision" && elem == 2) {				result *= (1/Math.floor(character.difficulty*1.5-0.5)) }	// Note: hacky way to multiply by 1/2 for nightmare and 1/4 for hell (difficulty is an integer from 1 to 3)
+		if (skill.name == "Terror" && elem == 0) {				result = -5 - skill.level*2 - skills[32].level + 2-2*Math.min(1,skill.level) }
+		if (skill.name == "Confuse" && elem == 0) {				result = 10 + skill.level*10 + 5*skills[32].level + 10-10*Math.min(1,skill.level) }
+		if (skill.name == "Confuse" && elem == 2) {				result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
+		if (skill.name == "Attract" && elem == 0) {				result += -5*skills[32].level }
+		if (skill.name == "Attract" && elem == 2) {				result *= (1/Math.floor(character.difficulty*1.5-0.5)) }
 		
 		// Note: Raise Skeleton Warrior shows the damage for the current level + 1 in-game
 		// Note: Fire Golem damage synergies don't apply to Holy Fire damage, or Fire Damage (only applies to the base damage)
@@ -157,8 +157,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 /*[ 0] Skeleton Mastery	*/ var d111 = {values:[
 		["Velocity +%",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,], 
 		["Life",15,30,45,60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,], 
-		["Damage +%",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,], 
-		["Elemental Damage +%",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,], 
+		["Warrior Damage +",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,], 
+		//["Elemental Damage +%",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,], 
 ]};
 /*[ 1] Skeleton Warrior	*/ var d113 = {values:[
 		["base damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,27,30,33,36,39,42,46,50,54,58,62,66,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211,216,221,226,], 
@@ -418,12 +418,12 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 
 var skills_pd2_necromancer = [
-{data:d111, key:"111", code:66, name:"Skeleton Mastery", i:0, req:[1], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Increases life, damage, and<br>velocity of raised skeletons", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Warriors, Archers, Magi Velocity: +"," percent<br>Warriors, Archers, Magi Life: +","<br>Warriors, Archers Damage: +"," percent<br>Magi Elemental Damage: +"," percent",""]},
+{data:d111, key:"111", code:66, name:"Skeleton Mastery", i:0, req:[1], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Increases life, damage, and<br>velocity of raised skeletons", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Warriors, Archers, Magi Velocity: +"," percent<br>Warriors, Archers, Magi Life: +","<br>Warriors Damage: +",""]},
 {data:d113, key:"113", code:67, name:"Raise Skeleton Warrior", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton warrior that<br>fights for you", syn_title:"<br>Raise Skeleton Warrior Receives Bonuses From:<br>", syn_text:"Skeleton Mastery: +8% Damage per Level", graytext:"", index:[2,""], text:["Damage: ","-","Damage: +"," percent<br>Attack: ","<br>Defense: ","<br>Life: ","<br>"," skeletons total<br>Mana Cost: ",""]},
 {data:d153, key:"153", code:68, name:"Raise Skeleton Archer", i:2, req:[1,5], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton archer that<br>fights for you", syn_title:"<br>Raise Skeleton Archer Receives Bonuses From:<br>", syn_text:"Skeleton Mastery: +8% Damage per Level", graytext:"", index:[1," Skeleton Archers"], text:["","Damage: ","-","<br>Life: ","<br>Attack: ","<br>Defense: ","<br>Mana Cost: ",""]},
 {data:d122, key:"122", code:69, name:"Clay Golem", i:3, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem from the earth<br>to fight by your side", syn_title:"<br>Clay Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +40% Base Damage per Level<br>Iron Golem: +35 Defense per Level<br>Blood Golem: +40% Base Damage per Level<br>Iron Golem: +40% Base Damage per Level<br>Fire Golem: +40% Base Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Damage: ","-","<br>Attack Bonus: +","<br>Slows Enemies: "," percent<br>Mana Cost: ",""]},
 {data:d131, key:"131", code:70, name:"Golem Mastery", i:4, req:[3], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Enhances speed and life of all your golems", syn_title:"", syn_text:"", graytext:"", index:[1,""], text:["Can Summon an Extra Golem Every 5 Base Levels<br>Golems: ","Life: +"," percent<br>Attack Bonus: +","<br>Walk/Run Speed: +"," percent"]},
-{data:d133, key:"133", code:71, name:"Raise Skeletal Mage", i:5, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton mage that<br>fights for you", syn_title:"<br>Raise Skeletal Mage Receives Bonuses From:<br>", syn_text:"Skeleton Mastery", graytext:"", index:[1," Skeleton Magi"], text:["","Poison Damage: ","-"," over 0.5 Seconds<br>Lightning Damage: ","-","<br>Cold Damage: ","-","<br>Fire Damage: ","-","<br>Life: ","<br>Mana Cost: ",""]},
+{data:d133, key:"133", code:71, name:"Raise Skeletal Mage", i:5, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton mage that<br>fights for you", syn_title:"<br>Raise Skeletal Mage Receives Bonuses From:<br>", syn_text:"Skeleton Mastery: +10% Damage per Level", graytext:"", index:[1," Skeleton Magi"], text:["","Poison Damage: ","-"," over 0.5 Seconds<br>Lightning Damage: ","-","<br>Cold Damage: ","-","<br>Fire Damage: ","-","<br>Life: ","<br>Mana Cost: ",""]},
 {data:d142, key:"142", code:72, name:"Blood Golem", i:6, req:[3], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a golem that shares<br>with you the life it steals<br>Enemies damaged by the blood golem<br>will be inflicted with open wounds", syn_title:"<br>Blood Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +20% Base Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +20% Base Damage per Level<br>Iron Golem: +20% Base Damage per Level<br>Fire Golem: +20% Base Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>+"," Life Gained On Hit<br>Damage: ","-","<br>Mana Cost: ",""]},
 {data:d141, key:"141", code:73, name:"Blood Warp", i:7, req:[], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination at the cost<br>of a percentage of your current health<br>Health lost regenerates over 5 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: "," seconds<br>Costs 12% of Your Current Health<br>Minimum Life Cost: ","<br>Mana Cost: 10"]},
 {data:d152, key:"152", code:74, name:"Iron Golem", i:8, req:[6,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transforms a metallic item into a golem that gains<br>the properties of the item", syn_title:"<br>Iron Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +20% Base Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Clay Golem: +20% Base Damage per Level<br>Blood Golem: +20% Base Damage per Level<br>Fire Golem: +20% Base Damage per Level", graytext:"", index:[4,""], text:["Damage: ","-","<br>Attack: ","<br>Defense: ","Life: ","<br>Thorns Damage: "," percent damage returned<br>Defense Bonus: +","<br>Mana Cost: 35"]},
