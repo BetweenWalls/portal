@@ -331,7 +331,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
 			document.getElementById("skill_details_inactive").style.display = "block"
-			document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner-pd2/'>d2.maxroll.gg/d2planner-pd2</a>"
+			document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner-pd2/'>d2.maxroll.gg/d2planner-pd2</a><br><div style='font-size:0.9em;'>&nbsp;&nbsp;• No longer supported or updated<br>&nbsp;&nbsp;• Some features don't work (save/load)<br>&nbsp;&nbsp;• Some items/affixes cause a crash (belts, skillmods)<br>&nbsp;&nbsp;• Some info may be inaccurate<br>Info about the maxroll planner will be removed prior to the next major PD2 update</div>"
 			settings.autocast = 1
 		}
 		
