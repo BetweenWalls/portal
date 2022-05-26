@@ -19,11 +19,13 @@ var character_assassin_vanilla = {class_name:"Assassin", strength:20, dexterity:
 		var result = skill.data.values[elem][lvl];
 		
 		if (skill.name == "Fists of Fire" && elem < 4) { 				result *= ((1 + 0.12*skills[31].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Claws of Thunder" && elem < 6) { 			result *= ((1 + 0.08*skills[31].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Claws of Thunder" && (elem == 0 || elem == 2 || elem == 4)) { result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Claws of Thunder" && (elem == 1 || elem == 3 || elem == 5)) { result *= ((1 + 0.08*skills[31].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Blades of Ice" && elem < 2) { 				result *= ((1 + 0.08*skills[31].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem < 2) { 				result *= ((1 + 0.08*skills[2].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem > 1 && elem < 4) { 	result *= ((1 + 0.06*skills[2].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Phoenix Strike" && elem > 3 && elem < 6) { 	result *= ((1 + 0.13*skills[5].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Phoenix Strike" && elem == 4) { 				result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Phoenix Strike" && elem == 5) { 				result *= ((1 + 0.13*skills[5].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Phoenix Strike" && elem > 5 && elem < 8) { 	result *= ((1 + 0.10*skills[7].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Dragon Claw" && elem == 0) { 				result += (4*skills[9].level) }
 		
@@ -31,13 +33,17 @@ var character_assassin_vanilla = {class_name:"Assassin", strength:20, dexterity:
 		if (skill.name == "Wake of Fire" && elem < 2) { 				result *= ((1 + 0.08*skills[20].level + 0.08*skills[27].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Wake of Inferno" && elem < 2) { 				result *= ((1 + 0.10*skills[20].level + 0.07*skills[24].level + 0.10*skills[28].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Shock Web" && elem == 0) {					result = 4 + Math.floor((skills[20].level+skills[20].extra_levels)/3) }
-		if (skill.name == "Shock Web" && elem > 0 && elem < 3) { 		result *= ((1 + 0.11*skills[23].level + 0.11*skills[26].level + 0.11*skills[28].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Shock Web" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Shock Web" && elem == 2) { 					result *= ((1 + 0.11*skills[23].level + 0.11*skills[26].level + 0.11*skills[28].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Charged Bolt Sentry" && elem == 0) {			result = 5 + Math.floor((skills[26].level+skills[26].extra_levels)/4) }
 		if (skill.name == "Charged Bolt Sentry" && elem == 1) {			result = 5 + Math.floor((skills[21].level+skills[21].extra_levels)/3) }
-		if (skill.name == "Charged Bolt Sentry" && elem>1 && elem<4) { 	result *= ((1 + 0.06*skills[20].level + 0.06*skills[26].level + 0.07*skills[28].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Sentry" && elem < 2) { 			result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[28].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Charged Bolt Sentry" && elem == 2) { 		result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Charged Bolt Sentry" && elem == 3) { 		result *= ((1 + 0.06*skills[20].level + 0.06*skills[26].level + 0.07*skills[28].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Sentry" && elem == 0) { 			result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Sentry" && elem == 1) { 			result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[28].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Death Sentry" && elem == 0) {				result = 5 + Math.floor(skills[20].level/3) }
-		if (skill.name == "Death Sentry" && elem > 1 && elem < 4) { 	result *= ((1 + 0.12*skills[26].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Death Sentry" && elem == 2) { 				result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Death Sentry" && elem == 3) { 				result *= ((1 + 0.12*skills[26].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		
 	return result
 	},

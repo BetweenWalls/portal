@@ -27,7 +27,8 @@ var character_paladin_vanilla = {class_name:"Paladin", strength:25, dexterity:20
 		
 		if (skill.name == "Holy Fire" && elem > 0 && elem < 5) {	result *= ((1 + 0.18*skills[1].level + 0.06*skills[9].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Holy Freeze" && elem > 0 && elem < 5) {	result *= ((1 + 0.15*skills[3].level + 0.07*skills[9].level) * (1+character.cDamage/100)) }
-		if (skill.name == "Holy Shock" && elem > 0 && elem < 5) {	result *= ((1 + 0.12*skills[5].level + 0.04*skills[9].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Holy Shock" && (elem == 1 || elem == 3)) {	result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Holy Shock" && (elem == 2 || elem == 4)) {	result *= ((1 + 0.12*skills[5].level + 0.04*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Sanctuary" && elem > 1 && elem < 4) {	result *= (1 + 0.07*skills[4].level) }
 		
 		if (skill.name == "Sacrifice" && elem == 1) {				result += (15*skills[8].level + 5*skills[18].level) }

@@ -38,8 +38,10 @@ var character_sorceress_vanilla = {class_name:"Sorceress", strength:10, dexterit
 		if (skill.name == "Charged Bolt" && elem < 2) {					result *= ((1 + 0.06*sk[14].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Telekinesis" && elem < 2) {					result *= (1+c.lDamage/100) }
 		if (skill.name == "Nova" && elem < 2) {							result *= (1+c.lDamage/100) }
-		if (skill.name == "Lightning" && elem < 2) {					result *= ((1 + 0.08*sk[10].level + 0.08*sk[13].level + 0.08*sk[15].level) * (1+c.lDamage/100)) }
-		if (skill.name == "Chain Lightning" && elem > 0 && elem < 3) {	result *= ((1 + 0.04*sk[10].level + 0.04*sk[13].level + 0.04*sk[14].level) * (1+c.lDamage/100)) }
+		if (skill.name == "Lightning" && elem == 0) {					result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning" && elem == 1) {					result *= ((1 + 0.08*sk[10].level + 0.08*sk[13].level + 0.08*sk[15].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Chain Lightning" && elem == 1) {				result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Chain Lightning" && elem == 2) {				result *= ((1 + 0.04*sk[10].level + 0.04*sk[13].level + 0.04*sk[14].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Thunder Storm" && elem > 0 && elem < 3) {	result *= (1+c.lDamage/100) }
 		if (skill.name == "Energy Shield" && elem == 2) {				result = 200 - 6.25*sk[12].level }
 		

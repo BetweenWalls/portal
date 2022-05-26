@@ -16,16 +16,17 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		var result = skill.data.values[elem][lvl];
 		
 		if (skill.name == "Fists of Fire" && elem < 4) { 				result *= ((1 + 0.18*skills[31].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Claws of Thunder" && elem < 6) { 			result *= ((1 + 0.16*skills[31].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Claws of Thunder" && elem == 0) { 			result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Claws of Thunder" && elem > 0 && elem < 6) { result *= ((1 + 0.16*skills[31].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage for first charge (synergies don't apply)
 		if (skill.name == "Blades of Ice" && elem < 2) { 				result *= ((1 + 0.20*skills[31].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem < 2) { 				result *= ((1 + 0.10*skills[2].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Phoenix Strike" && elem > 1 && elem < 4) { 	result *= ((1 + 0.10*skills[2].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Phoenix Strike" && elem > 3 && elem < 6) { 	result *= ((1 + 0.14*skills[5].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Phoenix Strike" && elem > 3 && elem < 6) { 	result *= ((1 + 0.14*skills[5].level) * (1+character.lDamage/100)) }	// synergies DO apply to minimum lightning damage
 		if (skill.name == "Phoenix Strike" && elem > 5 && elem < 8) { 	result *= ((1 + 0.14*skills[7].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Dragon Talon" && elem == 1) { 				result += (10*skills[6].level + 10*skills[8].level) }
 		if (skill.name == "Dragon Claw" && elem == 0) { 				result += (8*skills[9].level + 8*skills[13].level) }
 		if (skill.name == "Dragon Tail" && elem == 0) { 				result += (10*skills[1].level + 10*skills[8].level) }
-		if (skill.name == "Cobra Strike" && (elem < 2 || elem == 3 || elem == 4)) { 	result *= ((1 + 0.12*skills[18].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Cobra Strike" && (elem < 2 || elem == 3 || elem == 4)) { result *= ((1 + 0.12*skills[18].level) * (1+character.pDamage/100)) }
 		
 		if (skill.name == "Psychic Hammer" && elem > 0 && elem < 3) {	result *= (1 + 0.15*skills[17].level + 0.15*skills[14].level + 0.15*skills[16].level) }
 		if (skill.name == "Mind Blast" && elem == 0) { 					result = 2 - 2*Math.ceil((skill.level-1)/20) }
@@ -41,10 +42,14 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Death Sentry" && elem == 0) {				result = 5 + Math.floor(skill.level/3) }
 		if (skill.name == "Death Sentry" && elem > 0 && elem < 3) { 	result *= (1 + 0.06*skills[23].level + 0.06*skills[27].level) }
 		if (skill.name == "Death Sentry" && elem > 2 && elem < 5) { 	result *= ((1 + 0.06*skills[23].level + 0.06*skills[27].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Shock Web" && elem > 0 && elem < 3) { 		result *= ((1 + 0.12*skills[23].level + 0.12*skills[24].level + 0.12*skills[30].level + 0.12*skills[28].level + 0.12*skills[26].level + 0.12*skills[27].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Charged Bolt Sentry" && elem>0 && elem<3) { 	result *= ((1 + 0.06*skills[21].level + 0.06*skills[26].level + 0.06*skills[30].level + 0.06*skills[28].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Sentry" && elem < 2) { 			result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[30].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Chain Lightning Sentry" && elem < 2) { 		result *= ((1 + 0.14*skills[21].level + 0.14*skills[23].level + 0.14*skills[26].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Shock Web" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Shock Web" && elem == 2) { 					result *= ((1 + 0.12*skills[23].level + 0.12*skills[24].level + 0.12*skills[30].level + 0.12*skills[28].level + 0.12*skills[26].level + 0.12*skills[27].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Charged Bolt Sentry" && elem == 1) { 		result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Charged Bolt Sentry" && elem == 2) { 		result *= ((1 + 0.06*skills[21].level + 0.06*skills[26].level + 0.06*skills[30].level + 0.06*skills[28].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Sentry" && elem == 0) { 			result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Sentry" && elem == 1) { 			result *= ((1 + 0.12*skills[21].level + 0.12*skills[23].level + 0.12*skills[30].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Chain Lightning Sentry" && elem == 0) { 		result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Chain Lightning Sentry" && elem == 1) { 		result *= ((1 + 0.14*skills[21].level + 0.14*skills[23].level + 0.14*skills[26].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Blade Sentinel" && elem < 2) { 				result *= (1 + 0.12*skills[25].level + 0.12*skills[29].level) }
 		if (skill.name == "Blade Fury" && elem > 0 && elem < 3) { 		result *= (1 + 0.08*skills[22].level + 0.08*skills[29].level) }
 		if (skill.name == "Blade Shield" && elem < 2) { 				result *= (1 + 0.08*skills[22].level + 0.08*skills[25].level) }
@@ -328,93 +333,3 @@ var skills_pd2_assassin = [
 
 {data:d162, key:"162", code:251, name:"Phoenix Strike", i:31, req:[7,5,2,4,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add elemental bonuses based on the amount<br>of charges you have available and deplete on the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Phoenix Strike Receives Bonuses From:<br>", syn_text:"Fists of Fire: +10% Fire Damage per Level<br>Fists of Fire: +10% Average Fire Damage per Second per Level<br>Claws of Thunder: +14% Lightning Damage per Level<br>Blades of Ice: +14% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - meteor damage: ","-","<br>Burning Damage: ","-"," per second<br>Charge 2 - chain lightning damage: ","-","<br>Charge 3 - chaos ice bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
 ];
-
-/*
-
-	* Blade Sentinel synergies increased from 10% to 12%
-	* Blade Sentinel level 22-28 base damage increased from 5-5 to 6-6
-	* Blade Sentinel level 28+ base damage increased from 6-6 to 8-8
-	* Blade Sentinel now benefits from pierce at half efficiency similar to other traps
-
-	* Blade Shield now has blade fury and blade sentinel as synergies at 8% each
-	* Blade Shield now deals 1/2 weapon damage instead of 3/4 (edit: was "now deals ¼ weapon damage from ½")
-	* Blade Shield damage scaling increased from 5-5 / 6-6 / 7-7 / 7-7 / 7-7 to 5-5 / 7-7 / 10-10 / 13-13 / 16-16
-
-	* Death Sentry flat damage scaling changed from 1-1 / 1-2 / 2-3 / 4-5 / 6-7 to 1-2 / 3-4 / 5-6 / 7-8 / 9-10
-	* Death Sentry synergies reduced from 6% to 4%
-
-	* Chain Lightning Sentry synergies increased from 15% to 16% (edited from "13% to 14%")
-
-	* Lightning Sentry synergies increased from 12% to 14%
-
-	* Charged Bolt Sentry's lightning sentry and chain lightning sentry synergy increased from 4% to 6%
-	* Charged Bolt Sentry's death and fire sentry synergies reduced from 7% to 6%
-
-	* Weapon Block maximum block chance reduced from 65% to 50%
-	* Weapon Block minimum block chance reduced from 26% to 20% (edited, was "from 20% to 15%")
-	* Weapon Block now works while moving
-
-	* Claw and Dagger Mastery enhanced damage per level increased from 8% to 10%
-
-	* Tiger Strike enhanced damage bonus increased from 20% damage per level to 25%
-	* Tiger Strike level 1 base enhanced damage bonus reduced from 100% to 50%
-	* Tiger Strike charge duration increased from 15 seconds to 1 minute
-	* Tiger Strike now grants 20% increased splash radius on charge 2 and 40% on charge 3 (Splash increases by 1 breakpoint every 20%)
-
-	* Dragon Claw 5% damage per level increased to 15%
-	* Dragon Claw 6% synergy increased to 8%
-	* Dragon Claw now has weapon block as a synergy
-
-	* Dragon Talon 15% damage per level increased to 20%
-	* Dragon Talon now has dragon flight as an additional synergy
-	* Dragon Talon synergies increased from 8% to 10%
-
-	* Kick Skills now benefits from the following
-	** Min and max damage from off weapon sources
-	** Damage to demons and undead
-	** Sources of critical or deadly strike
-	** Off weapon enhanced damage
-	** Flat damage
-
-	* Dragon Tail 10% damage per level increased to 15%
-	* Dragon Tail now has dragon flight as an additional synergy
-	* Dragon Tail synergies increased from 8% to 10%
-	* Dragon Tail attack speed reduction reduced from -40 to -20
-	* ~~Dragon Tail radius increased from 4 yards to 6 yards~~
-
-	* Phoenix Strike meteor ground fire damage now lasts 2.2 seconds from 1.2
-	* Phoenix Strike's blades of ice synergy increased from 10% to 14%
-	* Phoenix Strike claw of thunder synergy increased from 13% to 14%
-
-	...Death Sentry starts at 16-20 flat damage instead of 8-10
-
-	- blade shield now properly shows ¼ weapon damage
-	- weapon block now scales from 15% to 50% from 20% to 50% (edit: 14% instead of 15%)
-	- dragon tail radius reduced from 6 yards back to its original 4 yards
-	- fade now starts at 5% curse duration reduction from 17%
-	- fade now caps at 20% curse duration reduction from 60%
-
-	* Chain lightning sentry death sentry synergy replaced with lightning sentry
-
-	* Lightning sentry death sentry synergy replaced with chain lightning sentry
-
-	* Charged bolt fire blast synergy replaced with shockweb
-
-	* Death sentry no longer has fireblast as a synergy
-	* Death sentry synergy damage bonus increased from 4% to 6%
-	* Death sentry now deals 3-5% of a corpses life from 2-5%
-
-	* Shockweb no longer has fire blast as a synergy
-	* Shockweb now has chain lightning sentry as a synergy
-
-	* Blade fury damage synergy increased from 4% to 8%
-	
-	* Chain lightning sentry starting damage increased from 1-40 to 1-50
-	* Chain lightning sentry max damage per level increased from 6 / 10 / 14 / 18 / 22 to 8 / 12 / 16 / 20 / 24
-	* Chain lightning synergies reduced from 16% to 14%
-
-	* Lightning sentry synergy reverted back to 12% from 14%
-	* Lightning sentry base damage changed from 1-20 to 1-30
-	* Lightning sentry max damage scaling changed from 10 / 16 / 24 / 34 / 44 to 15 / 20 / 25 / 30 / 35
-
-*/

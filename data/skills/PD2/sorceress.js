@@ -31,12 +31,15 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Frozen Orb" && elem < 2) {					result *= ((1 + 0.04*sk[0].level + 0.04*sk[3].level) * (1+c.cDamage/100)) }
 		
 		if (skill.name == "Static Field" && elem == 0) {				result = 5 + 0.2*sk[20].level }
-		if (skill.name == "Telekinesis" && elem < 2) {					result *= ((1 + 0.14*sk[11].level + 0.14*sk[14].level) * (1+c.lDamage/100)) }
+		if (skill.name == "Telekinesis" && elem == 0) {					result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Telekinesis" && elem == 1) {					result *= ((1 + 0.14*sk[11].level + 0.14*sk[14].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Teleport" && elem == 0) {					result = -50 + 2*skill.level + 2-2*Math.min(1,skill.level) }
 		if (skill.name == "Charged Bolt" && elem < 2) {					result *= ((1 + 0.06*sk[13].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }
-		if (skill.name == "Lightning" && elem < 2) {					result *= ((1 + 0.06*sk[11].level + 0.06*sk[16].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Nova" && elem < 2) {							result *= ((1 + 0.03*sk[11].level + 0.03*sk[13].level) * (1+c.lDamage/100)) }
-		if (skill.name == "Chain Lightning" && elem > 0 && elem < 3) {	result *= ((1 + 0.06*sk[11].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }
+		if (skill.name == "Lightning" && elem == 0) {					result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning" && elem == 1) {					result *= ((1 + 0.06*sk[11].level + 0.06*sk[16].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Chain Lightning" && elem == 1) {				result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Chain Lightning" && elem == 2) {				result *= ((1 + 0.06*sk[11].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Thunder Storm" && elem == 0) {				result = 2 - 0.1*Math.ceil(skill.level/2) - 0.1+0.1*Math.min(1,skill.level) }
 		if (skill.name == "Thunder Storm" && elem > 1 && elem < 4) {	result *= ((1 + 0.06*sk[11].level + 0.06*sk[14].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Energy Shield" && elem == 2) {				result = 225 - 6.25*sk[13].level }
@@ -247,10 +250,10 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		["attack rating",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
 ]};
 /*[24] Blaze			*/ var d321 = {values:[
-		["Fire Damage (min)",2,6,10,13,17,21,25,29,34,39,44,49,54,59,64,69,77,84,92,100,107,115,125,135,145,156,166,176,189,201,214,227,239,252,265,277,290,303,315,328,341,353,366,379,391,404,417,429,442,455,467,480,493,505,518,531,543,556,569,581,], 
-		["Fire Damage (max)",3,8,13,19,24,29,34,39,45,52,58,64,71,77,83,90,98,107,116,125,134,143,154,166,177,189,200,211,225,239,253,267,281,295,309,323,337,351,365,379,393,407,421,435,449,463,477,491,505,519,533,547,561,575,589,603,617,631,645,659,], 
-		["Burning Damage (min)",4,12,20,28,36,43,51,59,70,80,90,101,111,122,132,142,158,174,189,205,220,236,257,278,299,319,340,361,387,413,439,465,491,517,543,569,595,621,647,673,699,725,751,777,803,829,855,881,907,933,959,985,1011,1037,1063,1089,1115,1141,1167,1193,], 
-		["Burning Damage (max)",7,18,28,38,49,59,70,80,93,106,119,132,145,158,171,184,202,220,239,257,275,293,317,340,364,387,411,434,462,491,520,548,577,606,634,663,691,720,749,777,806,834,863,892,920,949,977,1006,1035,1063,1092,1120,1149,1178,1206,1235,1263,1292,1321,1349,], 
+		["Fire Damage (min)",0,1,1,2,2,3,4,4,5,5,6,7,7,8,8,9,12,15,18,21,24,27,32,36,41,46,50,55,60,65,69,74,79,84,88,93,98,103,107,112,117,122,126,131,136,141,145,150,155,160,164,169,174,179,183,188,193,198,202,207,], 
+		["Fire Damage (max)",1,1,2,2,3,4,4,5,6,7,8,10,11,12,13,14,18,21,25,29,32,36,41,46,52,57,62,68,73,78,84,89,94,100,105,110,116,121,126,132,137,142,148,153,158,164,169,174,180,185,190,196,201,206,212,217,222,228,233,238,], 
+		["Burning Damage (min)",1,2,3,4,5,7,8,9,10,11,12,14,15,16,17,18,24,30,36,42,48,53,63,72,82,91,100,110,119,128,138,147,157,166,175,185,194,203,213,222,232,241,250,260,269,278,288,297,307,316,325,335,344,353,363,372,382,391,400,410,], 
+		["Burning Damage (max)",2,3,4,5,7,8,9,10,12,15,17,19,22,24,26,29,36,43,50,57,64,71,82,92,103,113,124,134,145,155,166,176,187,198,208,219,229,240,250,261,271,282,292,303,313,324,334,345,355,366,376,387,397,408,418,429,439,450,460,471,], 
 		["velocity",33,35,37,38,40,41,41,42,43,43,44,44,45,45,45,46,47,47,47,47,47,47,47,47,47,47,48,48,48,48,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,50,], 
 		["Mana Cost",11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,40,40.5,], 
 ]};
@@ -346,48 +349,3 @@ var skills_pd2_sorceress = [
 {data:d333, key:"333", code:305, name:"Lesser Hydra", i:32, req:[23], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame<br>that spits fire bolts at your enemies", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Hydra: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 6 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:306, name:"Combustion", i:33, req:[26,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of fire balls to engulf your enemies", syn_title:"<br>Combustion Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Fire Ball: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 ];
-
-/*
-
-	* Nova damage scaling changed from 5-7 / 7-9 / 8-11 / 10-13 / 12-15 to 6-8 / 8-10 / 9-12 / 10-13 / 11-14
-
-	* Lightning faster cast rate breakpoints changed from lightning to regular frames
-	* Lightning synergy reduced from 8% to 6%
-	* Lightning max damage scaling changed from 12 / 15 / 20 / 24 / 28 per level to 12 / 15 / 18 / 21 / 24
-
-	* Chain Lightning synergy reduced from 7% to 6%
-	* Chain Lightning max damage scaling changed from 13 / 14 / 15 / 16 / 17 to 13 / 16 / 19 / 22 / 25
-
-	* Teleport reduces debuff reduction by 2% per base level from 1%
-
-	* Charged Bolt can now reach 28 bolts maximum from 24
-
-	* Frozen Orb range has been increased by roughly 20%
-
-	* Reduced start up delay on Hydras
-
-	* Blaze has been reworked to do an initial explosion on cast as well as provide a movement speed bonus. The fire trail has also had its hitbox size increased and scales better than previously
-
-	...Blaze: synergy from Fire Wall changed from 1% to 4%
-
-	- lightning has had its level 1 mana cost reduced from 8 to 4
-	- lightning mana cost now increases by .25 per level instead of .5
-
-	* Firewall cooldown increased from .5 seconds to 1.5
-	* Firewall scaling reduced from 9 / 14 / 21 / 21 / 21 to 7 / 9 / 11 / 13 / 15 (note: these are bitrate values?)
-	* Firewall inferno synergy increased from 1% to 4%
-
-	* Blaze scaling has been completely rebalanced
-
-- Blaze was dealing a bugged amount of damage due to an improper damage calculation and has now been fixed
-
-	- Enchant fire level 1 damage increased from 16-20 to 25-35
-	- Enchant fire 9% bonus attack rating per level reduced to 5%
-	- Enchant level 22-28 scaling changed from 25-27 to 30-32
-	- Enchant level 28+ scaling changed from 35-38 to 42-44
-
-	- Cold Enchant cold now grants 20% attack rating at level 1 and 5% per level
-	- Cold enchant level 22-28 scaling increased from 30-32 to 35-37
-	- Cold enchants level 28+ scaling increased from 42-44 to 52-54
-
-*/

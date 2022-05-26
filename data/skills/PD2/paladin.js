@@ -29,7 +29,8 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Blessed Aim" && elem == 0) {			result = skill.level*10 }
 		if (skill.name == "Holy Fire" && elem < 4) {			result *= ((1 + 0.20*skills[1].level + 0.20*skills[9].level + 0.20*skills[13].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Holy Freeze" && elem < 4) {			result *= ((1 + 0.12*skills[3].level + 0.12*skills[9].level + 0.12*skills[13].level) * (1+character.cDamage/100)) }
-		if (skill.name == "Holy Shock" && elem < 4) {			result *= ((1 + 0.08*skills[5].level + 0.08*skills[9].level + 0.08*skills[13].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Holy Shock" && (elem == 0 || elem == 2)) {	result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Holy Shock" && (elem == 1 || elem == 3)) {	result *= ((1 + 0.08*skills[5].level + 0.08*skills[9].level + 0.08*skills[13].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Sanctuary" && elem < 4) {			result *= (1 + 0.08*skills[10].level + 0.08*skills[13].level + 0.08*skills[27].level) }
 		if (skill.name == "Thorns" && elem == 1) {				result *= (1 + 0.18*skills[10].level + 0.18*skills[2].level) }
 		if (skill.name == "Concentration" && elem == 3) {		result = skill.data.values[2][lvl]/2 }
@@ -360,52 +361,3 @@ var skills_pd2_paladin = [
 {data:d332, key:"332", code:302, name:"Holy Light", i:31, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Calls down light from the heavens<br>to heal an ally from afar", syn_title:"<br>Holy Light Receives Bonuses From:<br>", syn_text:"Prayer: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Heals: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:303, name:"Holy Nova", i:32, req:[29,26,31,22,28,27,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of holy energy<br>that damages enemies or heals allies", syn_title:"<br>Holy Nova Receives Bonuses From:<br>", syn_text:"Holy Bolt: +12% Magic Damage per Level<br>Prayer: +10 Life Healed per Level<br>Holy Light: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","<br>Mana Cost: ",""]},
 ];
-
-/*
-
-	* Zeal damage per level increased from 16% to 20%
-	* Zeal synergies increased from 16% to 20%
-
-	* Charge damage increased from 25% per level to 30%
-	* Charge synergies increased from 20% to 25%
-
-	* Sacrifice damage increased to 15% to 25%
-	* ~~Sacrifice synergies increased from 20% to 25%~~
-
-	* Holy Bolt heal per level reduced from 1 per level to 1 every 2 levels
-	* Holy Bolt synergies increased from 6% to 8%
-
-	* Holy Nova base heal increased from 80 to 100
-	* Holy Nova heal per level increased from 10 to 20
-
-	* Blessed Aim attack rating increased from 15-20%
-	* Blessed Aim level 1 attack rating bonus increased from 75% to 80%
-
-	* Concentration aura attack rating bonus increased from 4% to 5%
-	* Concentration aura damage has been increased from 10% per level to 12%
-
-	* Smite enhanced damage per level reduced from 30% to 20%
-	* Smite level 1 enhanced damage increased from 15% to 20%
-
-	* Added smite and defiance as Holy Shield smite damage synergies at 4% each (edited from 5%)
-	* Holy shield level 22-28 damage scaling changed from 4-4 per level to 5-5
-	* Holy shield level 28+ damage scaling changed from 4-4 per level to 6-6
-
-	* Might aura scaling increased from 10/12/14/16/18% to 15/25/35/45/55%
-	* Note: A5 mercs and monsters will have their might aura strength reduced to match previous values
-
-	* Fanaticism personal damage increased from 17% per level to 20%
-	* Fanaticism party damage increased from 8.5% per level to 10%
-
-	* Redemption aura no longer works on desecrate corpses (note: added later)
-
-	- holy shields level 28+ damage scaling reduced from +6 to +5
-	- holy shield is now properly gaining synergy damage from smite instead of itself
-	- sacrifice synergies reduced from 25% to 20% (this was due to sacrifice doing too much damage to the player and not actually needing the extra damage so even though it is a damage reduction it results in an overall buff)
-	- might aura scaling changed from 15/25/35/45/55% to 25% per level
-	- might aura now grants party members 1/3rd of the bonus
-	- fanaticism damage reduced from 20% per level to 18%
-
-	* Holy shield damage scaling reduced from 2/3/4/5/5 to 1/2/3/4/5
-
-*/

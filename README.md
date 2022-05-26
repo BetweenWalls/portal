@@ -43,7 +43,7 @@ https://betweenwalls.github.io/portal/?v=PoD&class=sorceress&level=99&quests=1&s
 * Chance to Hit (displayed after Attack Rating) is an approximation for typical enemies at the character's level - it won't be accurate for bosses or monsters at much higher/lower levels
 * Effective Magic Find (displayed after Magic Find) shows how much is applied to uniques
 
-### Future Goals:
+### Future Ideas:
 * mercenary stats
 * total calculated damage for minions
 * IAS breakpoint info (frames per attack) for skills which don't use normal breakpoints

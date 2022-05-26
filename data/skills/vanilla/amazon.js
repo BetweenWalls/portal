@@ -21,11 +21,16 @@ var character_amazon_vanilla = {class_name:"Amazon", strength:20, dexterity:25, 
 		
 		if (skill.name == "Poison Javelin" && elem < 2) { 					result *= ((1 + 0.12*skills[6].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Plague Javelin" && elem > 0 && elem < 3) { 		result *= ((1 + 0.10*skills[2].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Power Strike" && elem > 0 && elem < 3) { 		result *= ((1 + 0.10*skills[4].level + 0.10*skills[5].level + 0.10*skills[8].level + 0.10*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Bolt" && elem < 2) { 					result *= ((1 + 0.03*skills[1].level + 0.03*skills[5].level + 0.03*skills[8].level + 0.03*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Charged Strike" && elem > 0 && elem < 3) { 		result *= ((1 + 0.10*skills[1].level + 0.10*skills[4].level + 0.10*skills[8].level + 0.10*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Strike" && elem > 0 && elem < 3) { 	result *= ((1 + 0.08*skills[1].level + 0.08*skills[4].level + 0.08*skills[5].level + 0.08*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Fury" && elem > 0 && elem < 3) { 		result *= ((1 + 0.01*skills[1].level + 0.01*skills[4].level + 0.01*skills[5].level + 0.01*skills[8].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Power Strike" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Power Strike" && elem == 2) { 					result *= ((1 + 0.10*skills[4].level + 0.10*skills[5].level + 0.10*skills[8].level + 0.10*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Bolt" && elem == 0) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Bolt" && elem == 1) { 					result *= ((1 + 0.03*skills[1].level + 0.03*skills[5].level + 0.03*skills[8].level + 0.03*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Charged Strike" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Charged Strike" && elem == 2) {	 				result *= ((1 + 0.10*skills[1].level + 0.10*skills[4].level + 0.10*skills[8].level + 0.10*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Strike" && elem == 1) { 				result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Strike" && elem == 2) { 				result *= ((1 + 0.08*skills[1].level + 0.08*skills[4].level + 0.08*skills[5].level + 0.08*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Fury" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Fury" && elem == 2) { 					result *= ((1 + 0.01*skills[1].level + 0.01*skills[4].level + 0.01*skills[5].level + 0.01*skills[8].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		
 		if (skill.name == "Valkyrie" && elem == 0) { 						result *= (1 + 0.20*skills[17].level) }
 		if (skill.name == "Valkyrie" && elem == 1) { 						result += (200+50*character.difficulty + 40*skills[15].level) }

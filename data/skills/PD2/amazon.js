@@ -20,12 +20,17 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Fend" && elem == 1) { 							result += (12*skills[0].level) }
 		if (skill.name == "Poison Javelin" && elem < 2) { 					result *= ((1 + 0.24*skills[3].level + 0.24*skills[6].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Plague Javelin" && elem > 0 && elem < 3) { 		result *= ((1 + 0.06*skills[3].level + 0.12*skills[2].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Power Strike" && elem > 0 && elem < 5) { 		result *= ((1 + 0.20*skills[4].level + 0.20*skills[8].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Bolt" && elem < 2) { 					result *= ((1 + 0.14*skills[1].level + 0.14*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Charged Strike" && elem > 0 && elem < 3) { 		result *= ((1 + 0.05*skills[1].level + 0.05*skills[8].level + 0.05*skills[9].level) * (1+character.lDamage/100)) }
-		if (skill.name == "Lightning Strike" && elem > 0 && elem < 3) { 	result *= ((1 + 0.12*skills[1].level + 0.12*skills[5].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Power Strike" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Power Strike" && elem > 1 && elem < 5) { 		result *= ((1 + 0.20*skills[4].level + 0.20*skills[8].level) * (1+character.lDamage/100)) }	// excludes non-nova minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Bolt" && elem == 0) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Bolt" && elem == 1) { 					result *= ((1 + 0.14*skills[1].level + 0.14*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Charged Strike" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Charged Strike" && elem == 2) { 					result *= ((1 + 0.05*skills[1].level + 0.05*skills[8].level + 0.05*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Strike" && elem == 1) { 				result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Strike" && elem == 2) { 				result *= ((1 + 0.12*skills[1].level + 0.12*skills[5].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Lightning Fury" && elem == 0) { 					result = 10 + Math.floor(skill.level/5) }
-		if (skill.name == "Lightning Fury" && elem > 0 && elem < 3) { 		result *= ((1 + 0.02*skills[4].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }
+		if (skill.name == "Lightning Fury" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
+		if (skill.name == "Lightning Fury" && elem == 2) { 					result *= ((1 + 0.02*skills[4].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		
 		if (skill.name == "Dodge" && elem == 0) { 							result = 4 + skill.level*1 }
 		if (skill.name == "Penetrate" && elem == 0) { 						result = -5 - skill.level*1 }
@@ -331,57 +336,3 @@ var skills_pd2_amazon = [
 {data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 2 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 0.5 seconds<br>Mana Cost: ",""]}
 ];
-
-/*
-
-	* Jab's fend synergy increased from 8% to 12%
-	* Jab damage increased from 15% per level to 18%
-	* Jab base damage increased from 15% to 20%
-
-	* Fend synergies increased from 8% to 12%
-
-	* Fire Arrow minimum damage scaling increased from 2/6/16/32/48 to 2/6/16/36/56
-	* Fire Arrow maximum damage scaling increased from 3/7/17/34 to 3/10/20/40/60
-
-* Immolation Arrow fire damage over time synergy increased from 16% to 18% (edit: not changed in beta)
-	* Immolation Arrow fire damage over time scaling increased from 5-5 per level to 4-5 / 9-10 / 14-15 / 19-20 / 24-25
-	* Immolation Arrow level 1 damage increased from 8-10 to 9-11 (edited - was "from 7-9 to 8-10")
-
-	* Poison Javelin missile hitbox size increased by 100%
-
-	* Plague Javelin missile hitbox size increased by 100%
-
-	* Power Strike nova aoe increased by 14%
-
-	* Lightning Fury now gains an additional bolt every 5 base levels instead of every 10 soft levels
-	* Lightning Fury now gains 1 less damage per level from 14/15/16/17/18 to 13/14/15/16/17
-	* Lightning Fury now starts with 60 damage at level 1 instead of 40
-
-	* Valkyries now have vanilla life regeneration
-	* Valkyrie AI has been drastically improved and they no longer use normal attack
-
-	* Critical Strike now caps at 75% instead of 80%
-
-	* Decoy has been reworked to become a “strafe trap” it now casts strafe dealing flat physical damage and functions similar to a trap (this damage scales from +skills not weapon damage however decoys can benefit from auras)
-
-	- lightning fury’s scaling reduced from 13/14/15/16/17 per level to 12/13/14/15/15
-	- valkyries now gain 20 strength per level from 15
-	- valkyrie now gains 20% enhanced damage from decoy synergy instead of 15%
-	- decoy has received a balance update - please test it out and let us know how it feels
-	- decoys no longer die when you teleport
-	- poison javelin synergy reduced from 25% to 24%
-	- plague javelin synergies reduced from 14% to 12%
-	- valks will now teleport to the player at max leash range
-
-	* Dodge now starts at 6% chance to dodge from 10%
-
-	* Evade now starts at 6% chance to evade from 10%
-
-	* Magic arrow now gains 1 additional arrow every 5 base points instead of every 10 soft points
-
-	* Decoy synergies increased from 6% to 8%
-	* Decoy missile range increased by 20%
-
-	* Lightning Fury scaling reduced from 12 / 13 /14 / 15 / 15 per level to 8 / 9 / 10 / 11 / 12
-
-*/
