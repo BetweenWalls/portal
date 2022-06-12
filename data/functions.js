@@ -300,8 +300,8 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_autocast").style.display = "none"
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
-			document.getElementById("skill_details_inactive").style.display = "block"
-			document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner'>d2.maxroll.gg/d2planner</a>"
+			//document.getElementById("skill_details_inactive").style.display = "block"
+			//document.getElementById("skill_details_inactive").innerHTML = "<br>Additional features aren't implemented for this version"
 			settings.autocast = 1
 		} else if (v == 2) {
 			skills_all = {amazon:skills_amazon, assassin:skills_assassin, barbarian:skills_barbarian, druid:skills_druid, necromancer:skills_necromancer, paladin:skills_paladin, sorceress:skills_sorceress}
@@ -316,7 +316,7 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_autocast").style.display = "block"
 			document.getElementById("nav_running").style.display = "block"
 			document.getElementById("version_spacing").style.display = "none"
-			document.getElementById("skill_details_inactive").style.display = "none"
+			//document.getElementById("skill_details_inactive").style.display = "none"
 		} else if (v == 3) {
 			skills_all = {amazon:skills_pd2_amazon, assassin:skills_pd2_assassin, barbarian:skills_pd2_barbarian, druid:skills_pd2_druid, necromancer:skills_pd2_necromancer, paladin:skills_pd2_paladin, sorceress:skills_pd2_sorceress}
 			character_all = {amazon:character_pd2_amazon, assassin:character_pd2_assassin, barbarian:character_pd2_barbarian, druid:character_pd2_druid, necromancer:character_pd2_necromancer, paladin:character_pd2_paladin, sorceress:character_pd2_sorceress, any:character_pd2_any}
@@ -330,8 +330,8 @@ function changeVersion(v, char_class) {
 			document.getElementById("nav_autocast").style.display = "none"
 			document.getElementById("nav_running").style.display = "none"
 			document.getElementById("version_spacing").style.display = "block"
-			document.getElementById("skill_details_inactive").style.display = "block"
-			document.getElementById("skill_details_inactive").innerHTML = "<br>Full Planner: <a href='https://d2.maxroll.gg/d2planner-pd2/'>d2.maxroll.gg/d2planner-pd2</a><br><div style='font-size:0.9em;'>&nbsp;&nbsp;• No longer supported or updated<br>&nbsp;&nbsp;• Some features don't work (save/load)<br>&nbsp;&nbsp;• Some items/affixes cause a crash (belts, skillmods)<br>&nbsp;&nbsp;• Some info may be inaccurate<br>Info about the maxroll planner will be removed prior to the next major PD2 update</div>"
+			//document.getElementById("skill_details_inactive").style.display = "block"
+			//document.getElementById("skill_details_inactive").innerHTML = "<br>Additional features aren't implemented for this version"
 			settings.autocast = 1
 		}
 		
