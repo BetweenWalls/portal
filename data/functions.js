@@ -3600,7 +3600,7 @@ function skillHover(skill) {
 	document.getElementById("syn_text").innerHTML = skill.syn_text
 	if (typeof(skill.incomplete) != 'undefined') {
 		if (skill.syn_text != "") { document.getElementById("syn_text").innerHTML += "<br>" }
-		document.getElementById("syn_text").innerHTML += "<br><font color='"+colors.Red+"'>UNVERIFIED SKILL INFO</font>"
+		document.getElementById("syn_text").innerHTML += "<br><font color='"+colors.Red+"'>SKILL DATA IS OUTDATED OR UNVERIFIED</font>"
 	}
 	var levels = 0;
 	var next_display = "";

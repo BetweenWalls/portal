@@ -29,11 +29,12 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Fissure" && elem < 2) {						result *= ((1 + 0.10*skills[0].level + 0.10*skills[1].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Volcano" && elem < 4) {						result *= (1 + 0.10*skills[1].level + 0.10*skills[4].level + 0.10*skills[9].level) }
 		if (skill.name == "Volcano" && elem > 1 && elem < 4) {			result *= (1+character.fDamage/100) }
-		if (skill.name == "Armageddon" && elem > 2 && elem < 7) {		result *= ((1 + 0.08*skills[4].level + 0.08*skills[1].level + 0.08*skills[7].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Arctic Blast" && elem < 2) {					result *= ((1 + 0.25*skills[10].level + 0.20*skills[8].level + 0.20*skills[6].level + 0.20*skills[5].level) * (1+character.cDamage/100)) }
+		if (skill.name == "Armageddon" && elem > 2 && elem < 7) {		result *= ((1 + 0.12*skills[1].level + 0.12*skills[7].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Arctic Blast" && elem < 2) {					result *= ((1 + 0.24*skills[10].level + 0.24*skills[8].level + 0.24*skills[6].level + 0.24*skills[5].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Twister" && elem > 1 && elem < 4) {			result *= (1 + 0.22*skills[10].level + 0.22*skills[8].level + 0.22*skills[3].level) }
 		if (skill.name == "Tornado" && elem > 0 && elem < 3) {			result *= (1 + 0.14*skills[3].level + 0.14*skills[6].level + 0.14*skills[10].level) }
-		if (skill.name == "Hurricane" && elem > 0 && elem < 3) {		result *= ((1 + 0.08*skills[3].level + 0.08*skills[8].level + 0.08*skills[6].level) * (1+character.cDamage/100)) }
+		if (skill.name == "Hurricane" && elem > 0 && elem < 3) {		result *= ((1 + 0.12*skills[3].level + 0.12*skills[8].level) * (1+character.cDamage/100)) }
+		if (skill.name == "Cyclone Armor" && elem == 0) {				result += (3*character.energy) }
 		
 		if (skill.name == "Maul" && elem == 0) {						result = 1.2 - 0.2*Math.min(5,Math.max(0,skill.level-1)) }
 		if (skill.name == "Hunger" && elem == 0) {						result = 3 + Math.floor(skill.level/4) }
@@ -59,13 +60,13 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Raven" && elem < 4) {						result *= (1 + 0.12*skills[24].level + 0.12*skills[27].level + 0.12*skills[30].level) }
 		if (skill.name == "Raven" && elem < 2) {						result *= (1+character.cDamage/100) }
 		if (skill.name == "Summon Spirit Wolf" && elem == 0) {			result = skill.data.values[elem][character.difficulty][lvl] }
-		if (skill.name == "Summon Spirit Wolf" && elem>0 && elem<3) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[27].level + 0.06*skills[30].level + 0.06*skills[11].level - 0.09*skills[13].level)) + ((~~skills[30].data.values[5][skills[30].level+(skills[30].extra_levels*Math.min(1,skills[30].level))])/100)) }
+		if (skill.name == "Summon Spirit Wolf" && elem>0 && elem<3) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[27].level + 0.06*skills[30].level + 0.06*skills[11].level)) + ((~~skills[30].data.values[5][skills[30].level+(skills[30].extra_levels*Math.min(1,skills[30].level))])/100)) }
 		if (skill.name == "Summon Dire Wolf" && elem == 0) {			result = 25 + 25*(skills[24].level+(skills[24].extra_levels*Math.min(1,skills[24].level))) }
 		if (skill.name == "Summon Dire Wolf" && elem == 2) {			result = skill.data.values[elem][character.difficulty][lvl] }
-		if (skill.name == "Summon Dire Wolf" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.04*skills[21].level + 0.04*skills[24].level + 0.04*skills[30].level + 0.04*skills[11].level - 0.06*skills[13].level)) + ((~~skills[30].data.values[5][skills[30].level+(skills[30].extra_levels*Math.min(1,skills[30].level))])/100)) }
+		if (skill.name == "Summon Dire Wolf" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.04*skills[21].level + 0.04*skills[24].level + 0.04*skills[30].level + 0.04*skills[11].level)) + ((~~skills[30].data.values[5][skills[30].level+(skills[30].extra_levels*Math.min(1,skills[30].level))])/100)) }
 		if (skill.name == "Summon Grizzly" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Summon Grizzly" && elem == 1) {				result = 25 + 25*(skills[24].level+(skills[24].extra_levels*Math.min(1,skills[24].level))) }
-		if (skill.name == "Summon Grizzly" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[24].level + 0.06*skills[27].level + 0.06*skills[13].level - 0.12*skills[11].level)) + skill.data.values[5][lvl]/100) }
+		if (skill.name == "Summon Grizzly" && elem > 2 && elem < 5) {	result *= (1 + Math.max(0, (0.06*skills[21].level + 0.06*skills[24].level + 0.06*skills[27].level + 0.06*skills[13].level)) + skill.data.values[5][lvl]/100) }
 		
 		// Note: Attack Bonus synergy (from Spirit Wolf) is soft
 		// Note: Damage Bonus on Grizzly tooltip is an undocumented soft synergy for Spirit/Dire Wolf
@@ -138,8 +139,8 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 };
 
 /*[ 0] Firestorm		*/ var d111 = {values:[
-		["Burning Damage (min)",3,4,5,7,8,9,10,11,12,14,15,16,17,18,19,21,23,25,28,30,32,35,39,44,49,53,58,63,70,77,84,91,98,105,112,119,126,133,140,147,154,161,168,175,182,189,196,203,210,217,225,232,239,246,253,260,267,274,281,288,], 
-		["Burning Damage (max)",7,9,11,14,16,18,21,23,25,28,30,32,35,37,39,42,45,49,52,56,59,63,69,75,80,86,92,98,107,117,126,135,145,154,164,173,182,192,201,210,220,229,239,248,257,267,276,285,295,304,314,323,332,342,351,360,370,379,389,398,], 
+		["Burning Damage (min)",2,3,4,5,7,8,9,10,11,13,14,15,16,17,18,20,22,24,27,29,31,34,38,43,48,52,57,62,69,76,83,90,97,104,111,118,125,132,139,146,153,160,167,174,181,188,195,202,209,216,224,231,238,245,252,259,266,273,280,287,], 
+		["Burning Damage (max)",4,7,9,11,14,16,18,21,23,26,28,30,33,35,37,40,43,47,50,54,57,61,67,73,78,84,90,96,105,115,124,133,143,152,162,171,180,190,199,208,218,227,237,246,255,265,274,283,293,302,312,321,330,340,349,358,368,377,387,396,], 
 ]};
 /*[ 1] Molten Boulder	*/ var d121 = {values:[
 		["Damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,29,34,39,44,49,54,63,72,81,90,99,108,121,134,147,160,173,186,199,212,225,238,251,264,277,290,303,316,329,342,355,368,381,394,407,420,433,446,459,472,485,498,511,524,], 
@@ -154,8 +155,8 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["Cooldown (Seconds)",6.3,6.1,5.9,5.7,5.5,5.3,5.1,4.9,4.7,4.5,4.3,4.1,3.9,3.7,3.5,3.3,3.1,2.9,2.7,2.5,2.3,2.1,1.9,1.7,1.5,1.3,1.1,0.9,0.7,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,], 
 ]};
 /*[ 3] Arctic Blast		*/ var d113 = {values:[
-		["Cold Damage (min)",6,11,16,21,26,31,36,41,48,55,62,69,76,83,91,98,110,123,136,149,162,175,201,226,252,278,304,330,369,408,447,486,525,564,603,642,681,720,759,798,837,876,916,955,994,1033,1072,1111,1150,1189,1228,1267,1306,1345,1384,1423,1462,1501,1540,1579,], 
-		["Cold Damage (max)",11,16,21,26,32,37,42,47,54,62,69,76,84,91,99,106,119,133,146,159,173,186,216,245,275,305,334,364,407,450,493,536,579,622,665,708,751,794,837,880,923,966,1008,1051,1094,1137,1180,1223,1266,1309,1352,1395,1438,1481,1524,1567,1610,1653,1696,1739,], 
+		["Cold Damage (min)",6,12,17,23,29,35,41,47,58,70,82,94,105,117,129,141,164,187,211,234,258,281,322,363,404,445,486,527,592,656,721,785,850,914,979,1043,1108,1172,1237,1301,1366,1430,1495,1559,1624,1688,1753,1817,1882,1946,2011,2075,2140,2204,2269,2333,2398,2462,2527,2591,], 
+		["Cold Damage (max)",11,17,23,29,35,41,46,52,64,76,87,99,111,123,134,146,169,193,216,240,263,287,328,369,410,451,492,533,597,662,726,791,855,920,984,1049,1113,1178,1242,1307,1371,1436,1500,1565,1629,1694,1758,1823,1887,1952,2016,2081,2145,2210,2274,2339,2403,2468,2532,2597,], 
 		["Cold Length (Seconds)",4,4.6,5.2,5.8,6.4,7,7.6,8.2,8.8,9.4,10,10.6,11.2,11.8,12.4,13,13.6,14.2,14.8,15.4,16,16.6,17.2,17.8,18.4,19,19.6,20.2,20.8,21.4,22,22.6,23.2,23.8,24.4,25,25.6,26.2,26.8,27.4,28,28.6,29.2,29.8,30.4,31,31.6,32.2,32.8,33.4,34,34.6,35.2,35.8,36.4,37,37.6,38.2,38.8,39.4,], 
 		["Range (Yards)",3.3,3.3,3.3,3.3,4,4,4,4,4.6,4.6,4.6,4.6,5.3,5.3,5.3,5.3,6,6,6,6,6.6,6.6,6.6,6.6,7.3,7.3,7.3,7.3,8,8,8,8,8.6,8.6,8.6,8.6,9.3,9.3,9.3,9.3,10,10,10,10,10.6,10.6,10.6,10.6,11.3,11.3,11.3,11.3,12,12,12,12,12.6,12.6,12.6,12.6,], 
 		["Mana Cost",1,1,2,2,3,3,3,4,4,5,5,5,6,6,7,7,7,8,8,8,9,9,10,10,10,11,11,12,12,12,13,13,14,14,14,15,15,16,16,16,17,17,18,18,18,19,19,20,20,20,21,21,22,22,22,23,23,24,24,24,], 
@@ -165,7 +166,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["Fire Damage (max)",25,31,37,43,49,55,61,67,79,91,103,115,127,139,151,163,181,199,217,235,253,271,295,319,343,367,391,415,445,475,505,535,565,595,625,655,685,715,745,775,805,835,865,895,925,955,985,1015,1045,1075,1105,1135,1165,1195,1225,1255,1285,1315,1345,1375,], 
 ]};
 /*[ 5] Cyclone Armor	*/ var d123 = {values:[
-		["Damage Absorbed",65,85,105,125,145,165,185,205,225,245,265,285,305,325,345,365,385,405,425,445,465,485,505,525,545,565,585,605,625,645,665,685,705,725,745,765,785,805,825,845,865,885,905,925,945,965,985,1005,1025,1045,1065,1085,1105,1125,1145,1165,1185,1205,1225,1245,], 
+		["Damage Absorbed",35,51,67,83,99,115,131,147,164,181,198,215,232,249,266,283,301,319,337,355,373,391,410,429,448,467,486,505,525,545,565,585,605,625,645,665,685,705,725,745,765,785,805,825,845,865,885,905,925,945,965,985,1005,1025,1045,1065,1085,1105,1125,1145,], 
 		["Mana Cost",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,], 
 ]};
 /*[ 6] Twister			*/ var d132 = {values:[
@@ -203,16 +204,17 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 /*[11] Werewolf			*/ var d211 = {values:[
 		["Magic and Physical damage Reduction",1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,15,15,15,16,16,16,17,17,17,18,18,18,19,19,19,20,20,20,21,], 
 		["Magic and Physical damage Reduction",1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,15,15,15,16,16,16,17,17,17,18,18,18,19,19,19,20,20,20,21,], 
-		["Damage +%",30,42,54,66,78,90,102,114,126,138,150,162,174,186,198,210,222,234,246,258,270,282,294,306,318,330,342,354,366,378,390,402,414,426,438,450,462,474,486,498,510,522,534,546,558,570,582,594,606,618,630,642,654,666,678,690,702,714,726,738,], 
+		["Damage +%",30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,], 
 		["Attack Speed +%",20,28,35,40,45,48,51,53,56,57,59,61,62,63,64,66,66,67,68,68,69,70,70,71,71,72,73,73,73,73,74,74,75,75,75,75,75,76,76,76,76,77,77,77,77,77,77,77,78,78,78,78,78,79,79,79,79,79,79,80,], 
 ]};
 /*[12] Lycanthropy		*/ var d212 = {values:[
-		["Max Life +%",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125,127,129,131,133,], 
+		["Max Life +%",15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,], 
 		["Attack Rating %",50,62,74,86,98,110,122,134,146,158,170,182,194,206,218,230,242,254,266,278,290,302,314,326,338,350,362,374,386,398,410,422,434,446,458,470,482,494,506,518,530,542,554,566,578,590,602,614,626,638,650,662,674,686,698,710,722,734,746,758,], 
 ]};
 /*[13] Werebear			*/ var d213 = {values:[
-		["Damage +%",55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,940,], 
+		["Damage +%",55,67,79,91,103,115,127,139,151,163,175,187,199,211,223,235,247,259,271,283,295,307,319,331,343,355,367,379,391,403,415,427,439,451,463,475,487,499,511,523,535,547,559,571,583,595,607,619,631,643,655,667,679,691,703,715,727,739,751,763,], 
 		["Defense +%",75,83,91,99,107,115,123,131,139,147,155,163,171,179,187,195,203,211,219,227,235,243,251,259,267,275,283,291,299,307,315,323,331,339,347,355,363,371,379,387,395,403,411,419,427,435,443,451,459,467,475,483,491,499,507,515,523,531,539,547,], 
+		["Chance to be Uninterruptible when Struck",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,], 
 ]};
 /*[14] Feral Rage		*/ var d221 = {values:[
 		["speed (min)",20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,], 
@@ -229,7 +231,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["Attack +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 ]};
 /*[16] Rabies			*/ var d241 = {values:[
-		["attack",65,71,77,83,89,95,101,107,113,119,125,131,137,143,149,155,161,167,173,179,185,191,197,203,209,215,221,227,233,239,245,251,257,263,269,275,281,287,293,299,305,311,317,323,329,335,341,347,353,359,365,371,377,383,389,395,401,407,413,419,], 
+		["attack",65,80,95,110,125,140,155,170,185,200,215,230,245,260,275,290,305,320,335,350,365,380,395,410,425,440,455,470,485,500,515,530,545,560,575,590,605,620,635,650,665,680,695,710,725,740,755,770,785,800,815,830,845,860,875,890,905,920,935,950,], 
 		["Poison Damage (min)",15,31,46,62,78,93,109,125,156,187,218,250,281,312,343,375,437,500,562,625,687,750,843,937,1031,1125,1218,1312,1437,1562,1687,1812,1937,2062,2187,2312,2437,2562,2687,2812,2937,3062,3187,3312,3437,3562,3687,3812,3937,4062,4187,4312,4437,4562,4687,4812,4937,5062,5187,5312,], 
 		["Poison Damage (max)",46,62,78,93,109,125,140,156,187,218,250,281,312,343,375,406,468,531,593,656,718,781,875,968,1062,1156,1250,1343,1468,1593,1718,1843,1968,2093,2218,2343,2468,2593,2718,2843,2968,3093,3218,3343,3468,3593,3718,3843,3968,4093,4218,4343,4468,4593,4718,4843,4968,5093,5218,5343,], 
 ]};
@@ -253,7 +255,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 ]};
 /*[20] Fury				*/ var d261 = {values:[
 		["Attack +%",235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,635,645,655,665,675,685,695,705,715,725,735,745,755,765,775,785,795,805,815,825,], 
-		["Damage +%",100,118,136,154,172,190,208,226,244,262,280,298,316,334,352,370,388,406,424,442,460,478,496,514,532,550,568,586,604,622,640,658,676,694,712,730,748,766,784,802,820,838,856,874,892,910,928,946,964,982,1000,1018,1036,1054,1072,1090,1108,1126,1144,1162,], 
+		["Damage +%",100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,940,955,970,985,], 
 ]};
 
 /*[21] Raven			*/ var d312 = {values:[
@@ -313,7 +315,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 			["Life (Hell)",1240,1240,1252,1252,1264,1277,1277,1289,1302,1302,1314,1326,1326,1339,1351,1351,1364,1376,1376,1388,1401,1401,1413,1426,1426,1438,1450,1450,1463,1475,1475,1488,1500,1500,1512,1525,1525,1537,1550,1550,1562,1574,1574,1587,1599,1599,1612,1624,1624,1636,1649,1649,1661,1661,1674,1686,1686,1698,1711,1711,], 
 		], 
 		["Heals",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,], 
-		["Life granted",65,85,105,125,145,165,185,205,225,245,265,285,305,325,345,365,385,405,425,445,465,485,505,525,545,565,585,605,625,645,665,685,705,725,745,765,785,805,825,845,865,885,905,925,945,965,985,1005,1025,1045,1065,1085,1105,1125,1145,1165,1185,1205,1225,1245,], 
+		["Life granted",50,62,74,86,98,110,122,134,147,160,173,186,199,212,225,238,252,266,280,294,308,322,337,352,367,382,397,412,428,444,460,476,492,508,524,540,556,572,588,604,620,636,652,668,684,700,716,732,748,764,780,796,812,828,844,860,876,892,908,924,], 
 		["Radius X Yards",20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,93.3,94.6,96,97.3,98.6,], 
 		["Mana Cost",15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,], 
 ]};
@@ -346,7 +348,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 			["Life (Nightmare)",413,474,536,598,660,722,784,846,908,970,1032,1094,1156,1218,1280,1342,1404,1466,1528,1590,1652,1713,1775,1837,1899,1961,2023,2085,2147,2209,2271,2333,2395,2457,2519,2581,2643,2705,2767,2829,2891,2952,3014,3076,3138,3200,3262,3324,3386,3448,3510,3572,3634,3696,3758,3820,3882,3944,4006,4068,], 
 			["Life (Hell)",1026,1179,1333,1487,1641,1795,1949,2103,2257,2411,2565,2718,2872,3026,3180,3334,3488,3642,3796,3950,4104,4257,4411,4565,4719,4873,5027,5181,5335,5489,5643,5796,5950,6104,6258,6412,6566,6720,6874,7028,7182,7335,7489,7643,7797,7951,8105,8259,8413,8567,8721,8874,9028,9182,9336,9490,9644,9798,9952,10106,], 
 		], 
-		["Damage Returned",15,23,31,39,47,55,63,71,87,103,119,135,151,167,183,199,227,255,283,311,339,367,411,455,499,543,587,631,695,759,823,887,951,1015,1079,1143,1207,1271,1335,1399,1463,1527,1591,1655,1719,1783,1847,1911,1975,2039,2103,2167,2231,2295,2359,2423,2487,2551,2615,2679,], 
+		["Damage Returned",15,23,31,39,47,55,63,71,87,103,119,135,151,167,183,199,231,263,295,327,359,391,439,487,535,583,631,679,743,807,871,935,999,1063,1127,1191,1255,1319,1383,1447,1511,1575,1639,1703,1767,1831,1895,1959,2023,2087,2151,2215,2279,2343,2407,2471,2535,2599,2663,2727,], 
 		["Radius X Yards",20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,93.3,94.6,96,97.3,98.6,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
 ]};
@@ -367,19 +369,19 @@ var skills_pd2_druid = [
 {data:d111, key:"111", code:220, name:"Firestorm", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Unleash fiery chaos to burn your enemies<br>Fire speed and range increase per level<br><br>Mana Cost: 4", syn_title:"<br>Firestorm Receives Bonuses From:<br>", syn_text:"Molten Boulder: +25% Fire Damage per Level<br>Fissure: +25% Fire Damage per Level", graytext:"", index:[0,""], text:["Average Fire Damage: ","-"," per second"]},
 {data:d121, key:"121", code:221, name:"Molten Boulder", i:1, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Launch a boulder of flaming hot magma<br>that knocks back your enemies<br>Boulder speed increases per level", syn_title:"<br>Molten Boulder Receives Bonuses From:<br>", syn_text:"Fissure: +12% Damage per Level<br>Volcano: +12% Damage per Level<br>Armageddon: +12% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d143, key:"143", code:222, name:"Gust", i:2, req:[5,3], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination chilling<br>enemies upon arrival for 0.5 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: "," seconds<br>Mana Cost: 20"]},
-{data:d113, key:"113", code:223, name:"Arctic Blast", i:3, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Blast a continous jet of ice<br>to burn your enemies with frost<br><br>Minimum Mana Required to Cast: 4", syn_title:"<br>Arctic Blast Receives Bonuses From:<br>", syn_text:"Hurricane: +25% Cold Damage per Level<br>Tornado: +20% Cold Damage per Level<br>Twister: +20% Cold Damage per Level<br>Cyclone Armor: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Average Cold Damage: ","-"," per second<br>Cold Length: "," seconds<br>Range: "," yards<br>Mana Cost: "," per second",""]},
+{data:d113, key:"113", code:223, name:"Arctic Blast", i:3, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Blast a continous jet of ice<br>to burn your enemies with frost<br><br>Minimum Mana Required to Cast: 4", syn_title:"<br>Arctic Blast Receives Bonuses From:<br>", syn_text:"Hurricane: +24% Cold Damage per Level<br>Tornado: +24% Cold Damage per Level<br>Twister: +24% Cold Damage per Level<br>Cyclone Armor: +24% Cold Damage per Level", graytext:"", index:[0,""], text:["Average Cold Damage: ","-"," per second<br>Cold Length: "," seconds<br>Range: "," yards<br>Mana Cost: "," per second",""]},
 {data:d131, key:"131", code:224, name:"Fissure", i:4, req:[1,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Open volcanic vents below your enemies,<br>burning them to a crisp<br><br>Mana Cost: 10", syn_title:"<br>Fissure Receives Bonuses From:<br>", syn_text:"Firestorm: +10% Fire Damage per Level<br>Molten Boulder: +10% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Duration: 2.2 seconds",""]},
 {data:d123, key:"123", code:225, name:"Cyclone Armor", i:5, req:[3], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Shield yourself from damage caused by<br>fire, cold, and lightning", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Absorbs "," damage<br>Mana Cost: ",""]},
 {data:d132, key:"132", code:226, name:"Twister", i:6, req:[5,3], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Release several small whirlwinds that<br>cut a path through your enemies", syn_title:"<br>Twister Receives Bonuses From:<br>", syn_text:"Hurricane: +22% Damage per Level<br>Tornado: +22% Damage per Level<br>Arctic Blast: +22% Damage per Level", graytext:"", index:[1,""], text:["Mana Cost: ","Twisters: ","<br>Damage: ","-",""]},
 {data:d151, key:"151", code:227, name:"Volcano", i:7, req:[4,1,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon forth a volcano to rain death<br>and destruction over your enemies<br><br>Mana Cost: 12", syn_title:"<br>Volcano Receives Bonuses From:<br>", syn_text:"Molten Boulder: +10% Damage per Level<br>Fissure: +10% Damage per Level<br>Armageddon: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-",""]},
 {data:d152, key:"152", code:228, name:"Tornado", i:8, req:[6,5,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Create a funnel of wind and debris<br>to blast your enemies", syn_title:"<br>Tornado Receives Bonuses From:<br>", syn_text:"Arctic Blast: +14% Damage per Level<br>Twister: +14% Damage per Level<br>Hurricane: +14% Damage per Level", graytext:"", index:[1,""], text:["Mana Cost: ","Damage: ","-",""]},
-{data:d161, key:"161", code:229, name:"Armageddon", i:9, req:[7,4,1,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Create a meteor shower to rain fiery<br>destruction on nearby enemies", syn_title:"<br>Armageddon Receives Bonuses From:<br>", syn_text:"Fissure: +8% Fire Damage per Level<br>Molten Boulder: +8% Fire Damage per Level<br>Volcano: +8% Fire Damage per Level", graytext:"", index:[1," seconds<br>Radius: 6 yards<br>Mana Cost: 35"], text:["Duration: ","Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second"]},
-{data:d162, key:"162", code:230, name:"Hurricane", i:10, req:[8,6,5,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Create a massive storm of wind and<br>debris to pound your enemies to bits", syn_title:"<br>Hurricane Receives Bonuses From:<br>", syn_text:"Arctic Blast: +8% Damage per Level<br>Tornado: +8% Damage per Level<br>Twister: +8% Damage per Level", graytext:"", index:[1," seconds<br>Radius: 6 yards<br>Mana Cost: 30"], text:["Duration: ","Cold Damage: ","-",""]},
+{data:d161, key:"161", code:229, name:"Armageddon", i:9, req:[7,4,1,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Create a meteor shower to rain fiery<br>destruction on nearby enemies", syn_title:"<br>Armageddon Receives Bonuses From:<br>", syn_text:"Molten Boulder: +12% Fire Damage per Level<br>Volcano: +12% Fire Damage per Level", graytext:"", index:[1," seconds<br>Radius: 6 yards<br>Mana Cost: 35"], text:["Duration: ","Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second"]},
+{data:d162, key:"162", code:230, name:"Hurricane", i:10, req:[8,6,5,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Create a massive storm of wind and<br>debris to pound your enemies to bits", syn_title:"<br>Hurricane Receives Bonuses From:<br>", syn_text:"Arctic Blast: +12% Damage per Level<br>Tornado: +12% Damage per Level", graytext:"", index:[1," seconds<br>Radius: 6 yards<br>Mana Cost: 30"], text:["Duration: ","Cold Damage: ","-",""]},
 
 {data:d211, key:"211", code:231, name:"Werewolf", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transform into a werewolf<br><br>Mana Cost: 15", syn_title:"<br>Werewolf Receives Bonuses From:<br>", syn_text:"Lycanthropy", graytext:"", index:[0,""], text:["Magic Damage Reduction: +","<br>Physical Damage Reduction: +","<br>Damage: +"," percent<br>Attack Speed: +"," percent",""]},
 {data:d212, key:"212", code:232, name:"Lycanthropy", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Improves life and attack rating<br>when in werewolf or werebear form", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Max Life: +"," percent<br>To Attack Rating: +"," percent"]},
-{data:d213, key:"213", code:233, name:"Werebear", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transform into a werebear<br><br>Mana Cost: 15", syn_title:"<br>Werebear Receives Bonuses From:<br>", syn_text:"Lycanthropy", graytext:"", index:[0,""], text:["Increased Melee Splash Radius: +20 percent<br>Damage: +"," percent<br>Defense: +"," percent"]},
-{data:d221, key:"221", code:234, name:"Feral Rage", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werewolf form,<br>go into a frenzied rage to steal<br>increasing amounts of life from your enemies<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 30 seconds", syn_title:"<br>Feral Rage Receives Bonuses From:<br>", syn_text:"Fury: +10% Damage per Level", graytext:"", index:[0,""], text:["Walk/Run Speed: +","-"," percent<br>Life Steal: +","-"," percent<br>Damage: +"," percent<br>Attack: +"," percent"]},
+{data:d213, key:"213", code:233, name:"Werebear", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transform into a werebear<br><br>Mana Cost: 15", syn_title:"<br>Werebear Receives Bonuses From:<br>", syn_text:"Lycanthropy", graytext:"", index:[0,""], text:["Increased Melee Splash Radius: +20 percent<br>Damage: +"," percent<br>Defense: +"," percent<br>Chance to be Uninterruptable when Struck: "," percent"]},
+{data:d221, key:"221", code:234, name:"Feral Rage", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werewolf form,<br>go into a frenzied rage to steal<br>increasing amounts of life from your enemies<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 30 seconds<br>Adds up to +20% Melee Splash Radius", syn_title:"<br>Feral Rage Receives Bonuses From:<br>", syn_text:"Fury: +10% Damage per Level", graytext:"", index:[0,""], text:["Walk/Run Speed: +","-"," percent<br>Life Steal: +","-"," percent<br>Damage: +"," percent<br>Attack: +"," percent"]},
 {data:d223, key:"223", code:235, name:"Maul", i:15, req:[13], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werebear form,<br>maul your enemies<br>for increasing extra damage<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 20 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Stun Length: "," seconds<br>Damage: +","-"," percent<br>Attack: +"," percent"]},
 {data:d241, key:"241", code:236, name:"Rabies", i:16, req:[14,11], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf form,<br>bite your enemies<br>to inflict them with disease<br>that spreads to other monsters<br><br>Mana Cost: 10", syn_title:"<br>Rabies Receives Bonuses From:<br>", syn_text:"Poison Creeper: +17% Poison Damage per Level<br>Feral Rage: +17% Poison Damage per Level<br>Lycanthropy: +17% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 5 seconds",""]},
 {data:d252, key:"252", code:237, name:"Fire Claws", i:17, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf or werebear<br>form, maul your enemies<br>with a fiery claw attack", syn_title:"<br>Fire Claws Receives Bonuses From:<br>", syn_text:"Lycanthropy: +16% Fire Damage per Level<br>Firestorm: +16% Fire Damage per Level<br>Molten Boulder: +16% Fire Damage per Level<br>Armageddon: +16% Fire Damage per Level", graytext:"", index:[0,""], text:["Average Fire Damage: ","-"," per second<br>Attack: +"," percent<br>Mana Cost: ",""]},
@@ -390,11 +392,124 @@ var skills_pd2_druid = [
 {data:d312, key:"312", code:241, name:"Raven", i:21, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon ravens to peck out<br>the eyes of your enemies<br><br>Summon an Additional Raven per Cast every 10 Base Levels", syn_title:"<br>Raven Receives Bonuses From:<br>", syn_text:"Summon Spirit Wolf: +12% Damage per Level<br>Summon Dire Wolf: +12% Damage per Level<br>Summon Grizzly: +12% Damage per Level<br>", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Damage: ","-","<br>5 hits<br>Ravens: ","<br>Mana Cost: ",""]},
 {data:d313, key:"313", code:242, name:"Poison Creeper", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that spreads disease to all it<br>contacts and reduces their poison resistance", syn_title:"<br>Poison Creeper Receives Bonuses From:<br>", syn_text:"Carrion Vine: +22% Poison Damage per Level<br>Solar Creeper: +22% Poison Damage per Level<br>Rabies: +22% Poison Damage per Level", graytext:"", index:[0,""], text:["Life: ","<br>Enemy Poison Resists: "," percent<br>Poison Damage: ","-","<br>over 4 seconds<br>Mana Cost: 8"]},
 {data:d321, key:"321", code:243, name:"Heart of Wolverine", i:23, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that adds<br>to the damage and attack rating<br>of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Attack: +"," percent<br>Radius: "," yards<br>Mana Cost: ",""]},
-{data:d332, key:"332", code:244, name:"Summon Spirit Wolf", i:24, req:[23,21], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf with teleporting ability<br>to fight by your side", syn_title:"<br>Summon Spirit Wolf Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Summon Grizzly: +6% Damage per Level<br>Werewolf: +6% Damage per Level<br>Werebear: -9% Damage per Level<br>", graytext:"", index:[1,""], text:["Mana Cost: 15<br>Life: ","Damage: ","-","<br>Wolves: ","<br>Attack: +"," percent<br>Defense: +"," percent"]},
+{data:d332, key:"332", code:244, name:"Summon Spirit Wolf", i:24, req:[23,21], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf with teleporting ability<br>to fight by your side", syn_title:"<br>Summon Spirit Wolf Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Summon Grizzly: +6% Damage per Level<br>Werewolf: +6% Damage per Level<br>", graytext:"", index:[1,""], text:["Mana Cost: 15<br>Life: ","Damage: ","-","<br>Wolves: ","<br>Attack: +"," percent<br>Defense: +"," percent"]},
 {data:d333, key:"333", code:245, name:"Carrion Vine", i:25, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that eats corpses<br>and replenishes life for you and your party", syn_title:"<br>Carrion Vine Receives Bonuses From:<br>", syn_text:"Oak Sage: +2-4 Life Healed per Level<br>Solar Creeper: +2-4 Life Healed per Level", graytext:"", index:[0,""], text:["Life: ","<br>Heals: ","-","<br>Mana Cost: 10"]},
 {data:d361, key:"361", code:246, name:"Oak Sage", i:26, req:[29,23], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that increases life and<br>grants health regeneration for you and your party", syn_title:"<br>Oak Sage Receives Bonuses From:<br>", syn_text:"Carrion Vine: +12 Life Healed per Level<br>Solar Creeper: +12 Life Healed per Level", graytext:"", index:[0,""], text:["Life: ","<br>Heals: +","<br>Max Life: "," life<br>Radius: "," yards<br>Mana Cost: ",""]},
-{data:d352, key:"352", code:247, name:"Summon Dire Wolf", i:27, req:[23,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf that becomes enraged,<br>eating corpses to increase damage<br>it does to enemies", syn_title:"<br>Summon Dire Wolf Receives Bonuses From:<br>", syn_text:"Raven: +4% Damage per Level<br>Summon Spirit Wolf: +4% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Grizzly: +4% Damage per Level<br>Werewolf: +4% Damage per Level<br>Werebear: -6% Damage per Level<br>", graytext:"", index:[2," percent"], text:["Mana Cost: 20<br>Attack: +"," percent<br>Defense: +","Life: ","<br>Damage: ","-","<br>Wolves: ","<br>Life: +"," percent"]},
+{data:d352, key:"352", code:247, name:"Summon Dire Wolf", i:27, req:[23,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf that becomes enraged,<br>eating corpses to increase damage<br>it does to enemies", syn_title:"<br>Summon Dire Wolf Receives Bonuses From:<br>", syn_text:"Raven: +4% Damage per Level<br>Summon Spirit Wolf: +4% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Grizzly: +4% Damage per Level<br>Werewolf: +4% Damage per Level<br>", graytext:"", index:[2," percent"], text:["Mana Cost: 20<br>Attack: +"," percent<br>Defense: +","Life: ","<br>Damage: ","-","<br>Wolves: ","<br>Life: +"," percent"]},
 {data:d353, key:"353", code:248, name:"Solar Creeper", i:28, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that eats corpses<br>and recovers mana for you and your party", syn_title:"<br>Solar Creeper Receives Bonuses From:<br>", syn_text:"Oak Sage: +1-3 Mana Recovered per Level<br>Carrion Vine: +1-3 Mana Recovered per Level", graytext:"", index:[0,""], text:["Life: ","<br>Mana Recovered: ","-","<br>Mana Cost: ",""]},
 {data:d341, key:"341", code:249, name:"Spirit of Barbs", i:29, req:[23], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that returns damage<br>to enemies who attack you or your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Returns "," Damage to Attackers<br>Radius: "," yards<br>Mana Cost: ",""]},
-{data:d362, key:"362", code:250, name:"Summon Grizzly", i:30, req:[27,23,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a ferocious grizzly bear<br>Can summon an additional grizzly bear at base level 20", syn_title:"<br>Summon Grizzly Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Spirit Wolf: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Werebear: +6% Damage per Level<br>Werewolf: -12% Damage per Level<br>", graytext:"", index:[3," percent"], text:["Mana Cost: 40<br>Life: ","<br>Attack: +"," percent<br>Defense: +","Damage: ","-","<br>Damage: +"," percent"]}
+{data:d362, key:"362", code:250, name:"Summon Grizzly", i:30, req:[27,23,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a ferocious grizzly bear<br>Can summon an additional grizzly bear at base level 20", syn_title:"<br>Summon Grizzly Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Spirit Wolf: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Werebear: +6% Damage per Level<br>", graytext:"", index:[3," percent"], text:["Mana Cost: 40<br>Life: ","<br>Attack: +"," percent<br>Defense: +","Damage: ","-","<br>Damage: +"," percent"]}
 ];
+
+/* Season 5 Changelog Notes - Druid
+
+  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
+  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
+  # means the change is pending and the correct data is in Skill_Data_PD2.exc
+
+  Closed Beta:
+  
+	~Dire wolves now have melee splash
+	~Dire wolves base run speed increased by 10%
+	Dire wolves werebear -6% damage synergy removed
+
+	~Spirit wolves now have melee splash
+	~Spirit wolves base run speed increased by 10%
+	Spirit wolf werebear -9% damage synergy removed
+
+	Grizzly werewolf -12% damage synergy removed
+
+	Feral rage now grants 2% increased melee splash radius per charge up to 20%		// intermediate values not included since they do nothing til +20%
+
+	Werebear form now grants 10% + 1% per level chance to be uninterruptible when struck
+
+	~Heart of the wolverine can no longer be targeted by monsters or take damage
+
+	~Oak sage can no longer be targeted by monsters or take damage
+
+	~Spirit of barbs can no longer be targeted by monsters or take damage
+	Spirit of barbs level 16-22 damage per level increased from 28 to 32
+	Spirit of barbs level 22-28 damage per level increased from 44 to 48
+
+	~Firestorm starting projectile amount increased from 2 to 3			// projectiles/range/velocity not shown?
+	#Firestorm base damage reduced from 3-6 to 2-4
+	~Firestorm missile velocity increased by 50%
+	~Firestorm no longer gains 10% missile velocity per level
+	~Firestorm range reduced by 20%
+	~Firestorm range now increased by .5% per level 
+	~These changes result in firestorm traveling further late game
+
+	~Fireclaw firestorm range increased by 35%
+
+	Cyclone armor now gains 2 absorb per energy 
+	Cyclone armor base absorb reduced from 65 to 35 (this is offset by druids 20 energy base which results in a total of 75)
+	Cyclone armor absorb per level reduced from 20 to 15
+
+	~Shockwave range increased by 13%
+	~Shockwave missile speed increased by 16%
+
+	~Poison creeper ai delay reduced by 20%
+	~Poison creeper now attacks poison immune monsters (this allows it to apply its negative poison resist debuff)
+	~Poison creeper can no longer be targeted by monsters or take damage
+
+	~Solar creeper ai delay reduced by 20%
+	~Solar creeper will now consume corpses even if the player is at full life
+	~Solar creeper can now be summoned at the same time as carrion vine
+	~Solar creeper can no longer be targeted by monsters or take damage
+
+	~Carrion vine ai delay reduced by 20%
+	~Carrion vine will now consume corpses even if the player is at full mana
+	~Carrion vine can now be summoned at the same time solar creeper
+	~Carrion vine can no longer be targeted by monsters or take damage
+
+	Arctic blast hurricane synergy reduced from 25% to 24%
+	Arctic blast cyclone armor synergy increased from 20% to 24%
+	Arctic blast twister synergy increased from 20% to 24%
+	Arctic blast tornado synergy increased from 20% to 24%
+	Arctic blast level 1-8 scaling increased by 15%
+	Arctic blast level 8-16 scaling increased by 66%
+	Arctic blast level 16-22 scaling increased by 82%
+	Arctic blast level 22-28 scaling increased by 54%
+	Arctic blast level 28+ scaling increased by 55%
+
+	Hurricane twister synergy removed
+	Hurricane arctic blast synergy increased from 8% to 12%
+	Hurricane tornado synergy increased from 8% to 12%
+
+	Armageddon fissure synergy removed
+	Armageddon molten boulder synergy increased from 8% to 12%
+	Armageddon volcano synergy increased from 8% to 12%
+
+	Rabies attack rating per level increased from 6% to 15%
+
+	Oak sage level 1 health bonus reduced from 65 to 50
+	Oak sage health per level reduced from 20 to 10
+
+
+	~ Summon dire wolf will now display its proper defense values
+	~ Summon spirit wolf will now display its proper defense values
+	~ Oak sage is now properly applying its life values
+	Fury enhanced damage per level reduced from 18% to 15%
+	Werewolf enhanced damage per level reduced from 12% to 10%
+	Werebear enhanced damage per level reduced from 15% to 12%
+
+	Lycanthropy +2% life per level reduced to +1%
+	Oak sage aura life per level increased from +10 to +12
+	~ Oak sage, heart of the wolverine and spirit of barbs are no longer targetable 
+	~ Oak sage no longer provides life replenish in pvp arenas
+
+
+	Oak sage level 1-8 scaling reduced from 20 to 12
+	Oak sage level 8-16 scaling reduced from 20 to 13
+	Oak sage level 16-22 scaling reduced from 20 to 14
+	Oak sage level 22-28 scaling reduced from 20 to 15
+	Oak sage level 28+ scaling reduced from 20 to 16
+
+	Cyclone armor now gains 3 absorb per energy
+	Cyclone armor base absorb reduced from 65 to 35 (this is offset by druids 20 energy base which results in a total of 95)
+	Cyclone armor absorb level 1-8 scaling reduced from 20 to 16
+	Cyclone armor absorb level 8-16 scaling reduced from 20 to 17
+	Cyclone armor absorb level 16-22 scaling reduced from 20 to 18
+	Cyclone armor absorb level 22-28 scaling reduced from 20 to 19
+	Cyclone armor absorb level 28+ scaling reduced from 20 to 20
+*/

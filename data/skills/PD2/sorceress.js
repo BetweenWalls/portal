@@ -23,17 +23,17 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Ice Bolt" && elem < 2) {						result *= ((1 + 0.20*sk[3].level + 0.20*sk[5].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Ice Blast" && elem < 2) {					result *= ((1 + 0.06*sk[0].level + 0.06*sk[5].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Frost Nova" && elem < 2) {					result *= ((1 + 0.09*sk[0].level + 0.09*sk[4].level) * (1+c.cDamage/100)) }
-		if (skill.name == "Glacial Spike" && elem < 2) {				result *= ((1 + 0.05*sk[3].level + 0.05*sk[7].level + 0.05*sk[0].level) * (1+c.cDamage/100)) }
+		if (skill.name == "Glacial Spike" && elem < 2) {				result *= ((1 + 0.08*sk[3].level + 0.08*sk[0].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Glacial Spike" && elem == 2) {				result = 2 * (1 + 0.05*sk[6].level) }
-		if (skill.name == "Blizzard" && elem < 2) {						result *= ((1 + 0.10*sk[0].level + 0.10*sk[5].level) * (1+c.cDamage/100)) }
+		if (skill.name == "Blizzard" && elem < 2) {						result *= ((1 + 0.10*sk[0].level + 0.10*sk[3].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Ice Barrage" && elem < 2) {					result *= ((1 + 0.08*sk[0].level + 0.08*sk[5].level) * (1+c.cDamage/100)) }
 		if (skill.name == "Ice Barrage" && elem == 2) {					result = 3 + Math.min(2,Math.floor(skill.level/3)) }
-		if (skill.name == "Frozen Orb" && elem < 2) {					result *= ((1 + 0.04*sk[0].level + 0.04*sk[3].level) * (1+c.cDamage/100)) }
+		if (skill.name == "Frozen Orb" && elem < 2) {					result *= ((1 + 0.04*sk[0].level + 0.04*sk[2].level) * (1+c.cDamage/100)) }
 		
 		if (skill.name == "Static Field" && elem == 0) {				result = 5 + 0.2*sk[20].level }
 		if (skill.name == "Telekinesis" && elem == 0) {					result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Telekinesis" && elem == 1) {					result *= ((1 + 0.14*sk[11].level + 0.14*sk[14].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
-		if (skill.name == "Teleport" && elem == 0) {					result = -50 + 2*skill.level + 2-2*Math.min(1,skill.level) }
+		if (skill.name == "Teleport" && elem == 0) {					result = -65 + 2*skill.level + 2-2*Math.min(1,skill.level) }
 		if (skill.name == "Charged Bolt" && elem < 2) {					result *= ((1 + 0.06*sk[13].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Nova" && elem < 2) {							result *= ((1 + 0.03*sk[11].level + 0.03*sk[13].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Lightning" && elem == 0) {					result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
@@ -44,15 +44,15 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Thunder Storm" && elem > 1 && elem < 4) {	result *= ((1 + 0.06*sk[11].level + 0.06*sk[14].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Energy Shield" && elem == 2) {				result = 225 - 6.25*sk[13].level }
 		
-		if (skill.name == "Fire Bolt" && elem < 2) {					result *= ((1 + 0.20*sk[26].level + 0.20*sk[33].level) * (1+c.fDamage/100)) }
+		if (skill.name == "Fire Bolt" && elem < 2) {					result *= ((1 + 0.18*sk[26].level + 0.18*sk[33].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Fire Ball" && elem == 0) {					result = 2.64 + 0.66*Math.floor(skill.level/5) }
-		if (skill.name == "Fire Ball" && elem > 0 && elem < 3) {		result *= ((1 + 0.16*sk[22].level + 0.16*sk[33].level) * (1+c.fDamage/100)) }
+		if (skill.name == "Fire Ball" && elem > 0 && elem < 3) {		result *= ((1 + 0.15*sk[22].level + 0.15*sk[33].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Combustion" && elem < 2) {					result *= ((1 + 0.12*sk[22].level + 0.12*sk[26].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Inferno" && elem < 2) {						result *= ((1 + 0.20*sk[27].level + 0.20*sk[24].level) * (1+c.fDamage/100)) }
-		if (skill.name == "Blaze" && elem < 4) {						result *= ((1 + 0.03*sk[23].level + 0.03*sk[27].level) * (1+c.fDamage/100)) }
-		if (skill.name == "Fire Wall" && elem < 2) {					result *= ((1 + 0.04*sk[23].level + 0.04*sk[25].level) * (1+c.fDamage/100)) }
-		if (skill.name == "Meteor" && elem < 2) {						result *= (1 + 0.10*sk[26].level + 0.10*sk[27].level + 0.10*sk[25].level) }
-		if (skill.name == "Meteor" && elem > 1 && elem < 6) {			result *= ((1 + 0.10*sk[26].level + 0.10*sk[27].level + 0.10*sk[25].level) * (1+c.fDamage/100)) }
+		if (skill.name == "Blaze" && elem < 4) {						result *= ((1 + 0.06*sk[27].level) * (1+c.fDamage/100)) }
+		if (skill.name == "Fire Wall" && elem < 2) {					result *= ((1 + 0.04*sk[24].level) * (1+c.fDamage/100)) }
+		if (skill.name == "Meteor" && elem < 2) {						result *= (1 + 0.06*sk[26].level + 0.06*sk[24].level + 0.06*sk[25].level) }
+		if (skill.name == "Meteor" && elem > 1 && elem < 6) {			result *= ((1 + 0.10*sk[26].level + 0.10*sk[24].level + 0.10*sk[25].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Lesser Hydra" && elem < 2) {					result *= ((1 + 0.16*sk[22].level + 0.16*sk[31].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Hydra" && elem < 2) {						result *= ((1 + 0.06*sk[22].level + 0.06*sk[32].level) * (1+c.fDamage/100)) }
 		if (skill.name == "Enchant Fire" && elem > 0 && elem < 3) {		result *= ((1 + 0.18*sk[23].level) * (1+c.fDamage/100)) }
@@ -132,10 +132,10 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		["Mana Cost",2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,], 
 ]};
 /*[ 1] Cold Enchant		*/ var d113 = {values:[
-		["Duration (seconds)",144,168,192,216,240,264,288,312,336,360,384,408,432,456,480,504,528,552,576,600,624,648,672,696,720,744,768,792,816,840,864,888,912,936,960,984,1008,1032,1056,1080,1104,1128,1152,1176,1200,1224,1248,1272,1296,1320,1344,1368,1392,1416,1440,1464,1488,1512,1536,1560,], 
-		["Cold Damage (min)",3,4,6,7,9,10,12,13,17,22,26,31,35,40,44,49,58,67,76,85,94,103,120,138,155,173,190,208,234,260,286,312,338,364,390,416,442,468,494,520,546,572,598,624,650,676,702,728,754,780,806,832,858,884,910,936,962,988,1014,1040,], 
-		["Cold Damage (max)",4,6,9,11,14,16,19,21,26,32,37,43,48,54,59,65,75,85,95,105,115,125,143,162,180,199,217,236,263,290,317,344,371,398,425,452,479,506,533,560,587,614,641,668,695,722,749,776,803,830,857,884,911,938,965,992,1019,1046,1073,1100,], 
-		["Attack Rating",20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,], 
+		["Duration (seconds)",300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,], 
+		["Cold Damage (min)",3,4,6,7,9,10,12,13,17,22,26,31,35,40,44,49,58,67,76,85,94,103,121,139,157,175,193,211,238,265,292,319,346,373,400,427,454,481,508,535,562,589,616,643,670,697,724,751,778,805,832,859,886,913,940,967,994,1021,1048,1075,], 
+		["Cold Damage (max)",4,6,9,11,14,16,19,21,26,32,37,43,48,54,59,65,75,85,95,105,115,125,144,163,182,201,220,239,267,295,323,351,379,407,435,463,491,519,547,575,603,631,659,687,715,743,771,799,827,855,883,911,939,967,995,1023,1051,1079,1107,1135,], 
+		["Attack Rating",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
 ]};
 /*[ 2] Frost Nova		*/ var d121 = {values:[
@@ -147,6 +147,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 /*[ 3] Ice Blast		*/ var d122 = {values:[
 		["Cold Damage (min)",5,11,17,23,29,35,41,47,59,71,83,95,107,119,131,143,164,185,206,227,248,269,297,325,353,381,409,439,472,507,542,577,612,647,682,717,752,787,822,857,892,927,962,997,1032,1067,1102,1137,1172,1207,1242,1277,1312,1347,1382,1417,1452,1487,1522,1557,], 
 		["Cold Damage (max)",8,15,22,29,36,43,50,57,71,85,99,113,127,141,155,169,190,212,233,255,276,298,326,355,383,412,440,469,504,540,575,611,646,682,717,753,788,824,859,895,930,966,1001,1037,1072,1108,1143,1179,1214,1250,1285,1321,1356,1392,1427,1463,1498,1534,1569,1605,], 
+		["Freeze Duration",2,2,2.1,2.2,2.3,2.4,2.4,2.5,2.6,2.7,2.8,2.8,2.9,3,3.1,3.2,3.2,3.3,3.4,3.5,3.6,3.6,3.7,3.8,3.9,4,4,4.1,4.2,4.3,4.4,4.4,4.5,4.6,4.7,4.8,4.8,4.9,5,5.1,5.2,5.2,5.3,5.4,5.5,5.6,5.6,5.7,5.8,5.9,6,6,6.1,6.2,6.3,6.4,6.4,6.5,6.6,6.7,], 
 		["Mana Cost",6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,], 
 ]};
 /*[ 4] Shiver Armor		*/ var d133 = {values:[
@@ -163,13 +164,13 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		["Mana Cost",30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,42,43,43,44,44,45,45,46,46,47,47,48,48,49,49,50,50,51,51,52,52,53,53,54,54,55,55,56,56,57,57,58,58,59,59,], 
 ]};
 /*[ 6] Blizzard			*/ var d151 = {values:[
-		["Cold Damage (min)",15,21,27,33,39,45,51,57,65,73,81,89,97,105,113,121,131,141,151,161,171,181,193,205,217,229,241,253,267,281,295,309,323,337,351,365,379,393,407,421,435,449,463,477,491,505,519,533,547,561,575,589,603,617,631,645,659,673,687,701,], 
-		["Cold Damage (max)",25,33,41,49,57,65,73,81,91,101,111,121,131,141,151,161,173,185,197,209,221,233,247,261,275,289,303,317,333,349,365,381,397,413,429,445,461,477,493,509,525,541,557,573,589,605,621,637,653,669,685,701,717,733,749,765,781,797,813,829,], 
+		["Cold Damage (min)",15,20,25,30,35,40,45,50,56,62,68,74,80,86,92,98,106,114,122,130,138,146,157,168,179,190,201,212,227,242,257,272,287,302,317,332,347,362,377,392,407,422,437,452,467,482,497,512,527,542,557,572,587,602,617,632,647,662,677,692,], 
+		["Cold Damage (max)",25,32,39,46,53,60,67,74,82,90,98,106,114,122,130,138,148,158,168,178,188,198,211,224,237,250,263,276,293,310,327,344,361,378,395,412,429,446,463,480,497,514,531,548,565,582,599,616,633,650,667,684,701,718,735,752,769,786,803,820,], 
 		["Mana Cost",13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,40,40.5,41,41.5,42,42.5,], 
 ]};
 /*[ 7] Ice Barrage		*/ var d152 = {values:[
-		["Cold Damage (min)",16,18,20,22,24,26,28,30,33,37,40,44,47,51,54,58,65,72,79,86,93,100,107,115,122,130,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,377,385,393,401,], 
-		["Cold Damage (max)",23,25,28,30,33,35,38,40,44,48,52,56,60,64,68,72,80,87,95,102,110,117,125,133,141,149,157,165,174,182,191,199,208,216,225,233,242,250,259,267,276,284,293,301,310,318,327,335,344,352,361,369,378,386,395,403,412,420,429,437,], 
+		["Cold Damage (min)",16,18,21,23,26,28,31,33,37,42,46,51,55,60,64,69,76,82,89,95,102,108,116,125,133,142,150,159,170,180,191,201,212,222,233,243,254,264,275,285,296,306,317,327,338,348,359,369,380,390,401,411,422,432,443,453,464,474,485,495,], 
+		["Cold Damage (max)",23,26,29,32,35,38,41,44,49,54,59,64,69,74,79,84,91,98,105,112,119,126,135,144,153,162,171,180,191,202,213,224,235,246,257,268,279,290,301,312,323,334,345,356,367,378,389,400,411,422,433,444,455,466,477,488,499,510,521,532,], 
 		["Ice Lances",], 
 		["Mana Cost",8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,21,21.2,21.5,21.7,22,22.2,22.5,22.7,], 
 ]};
@@ -242,14 +243,16 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 ]};
 
 /*[22] Fire Bolt		*/ var d312 = {values:[
-		["Fire Damage (min)",3,5,8,10,13,15,18,20,25,30,35,40,45,50,55,60,70,80,90,100,110,120,140,160,180,200,220,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,], 
-		["Fire Damage (max)",6,9,12,15,18,21,24,27,34,42,49,57,64,72,79,87,105,124,142,161,179,198,225,253,280,308,335,363,381,400,418,437,455,474,492,511,529,548,566,585,603,622,640,659,677,696,714,733,751,770,788,807,825,844,862,881,899,918,936,955,], 
+		["Fire Damage (min)",3,5,7,9,11,13,15,17,25,33,41,49,57,65,73,81,96,111,126,141,156,171,194,217,240,263,286,309,332,355,378,401,424,447,470,493,516,539,562,585,608,631,654,677,700,723,746,769,792,815,838,861,884,907,930,953,976,999,1022,1045,], 
+		["Fire Damage (max)",6,9,12,15,18,21,24,27,36,45,54,63,72,81,90,99,115,131,147,163,179,195,219,243,267,291,315,339,363,387,411,435,459,483,507,531,555,579,603,627,651,675,699,723,747,771,795,819,843,867,891,915,939,963,987,1011,1035,1059,1083,1107,], 
+		["Mana Cost",2.5,2.75,3,3.25,3.5,3.75,4,4.25,4.5,4.75,5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,], 
 ]};
 /*[23] Warmth			*/ var d313 = {values:[
 		["mana recovery",30,42,54,66,78,90,102,114,126,138,150,162,174,186,198,210,222,234,246,258,270,282,294,306,318,330,342,354,366,378,390,402,414,426,438,450,462,474,486,498,510,522,534,546,558,570,582,594,606,618,630,642,654,666,678,690,702,714,726,738,], 
 		["attack rating",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
 ]};
 /*[24] Blaze			*/ var d321 = {values:[
+		["Duration (seconds)",3,3.2,3.4,3.6,3.8,4,4.2,4.4,4.6,4.8,5,5.2,5.4,5.6,5.8,6,6.2,6.4,6.6,6.8,7,7.2,7.4,7.6,7.8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,], 
 		["Fire Damage (min)",0,1,1,2,2,3,4,4,5,5,6,7,7,8,8,9,12,15,18,21,24,27,32,36,41,46,50,55,60,65,69,74,79,84,88,93,98,103,107,112,117,122,126,131,136,141,145,150,155,160,164,169,174,179,183,188,193,198,202,207,], 
 		["Fire Damage (max)",1,1,2,2,3,4,4,5,6,7,8,10,11,12,13,14,18,21,25,29,32,36,41,46,52,57,62,68,73,78,84,89,94,100,105,110,116,121,126,132,137,142,148,153,158,164,169,174,180,185,190,196,201,206,212,217,222,228,233,238,], 
 		["Burning Damage (min)",1,2,3,4,5,7,8,9,10,11,12,14,15,16,17,18,24,30,36,42,48,53,63,72,82,91,100,110,119,128,138,147,157,166,175,185,194,203,213,222,232,241,250,260,269,278,288,297,307,316,325,335,344,353,363,372,382,391,400,410,], 
@@ -265,49 +268,49 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 ]};
 /*[26] Fire Ball		*/ var d332 = {values:[
 		["Radius (yards)",], 
-		["Fire Damage (min)",6,12,19,25,32,38,45,51,63,74,86,97,109,120,132,143,157,171,185,199,213,227,244,260,277,293,310,326,343,359,376,392,409,425,442,458,475,491,508,524,541,557,574,590,607,623,640,656,673,689,706,722,739,755,772,788,805,821,838,854,], 
-		["Fire Damage (max)",14,21,29,36,44,51,59,66,79,91,104,116,129,141,154,166,181,196,211,226,241,256,274,291,309,326,344,361,379,396,414,431,449,466,484,501,519,536,554,571,589,606,624,641,659,676,694,711,729,746,764,781,799,816,834,851,869,886,904,921,], 
-		["Mana Cost",5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,], 
+		["Fire Damage (min)",6,12,19,25,32,38,45,51,63,74,86,97,109,120,132,143,157,171,185,199,213,227,244,260,277,293,310,326,345,364,383,402,421,440,459,478,497,516,535,554,573,592,611,630,649,668,687,706,725,744,763,782,801,820,839,858,877,896,915,934,], 
+		["Fire Damage (max)",14,21,29,36,44,51,59,66,79,91,104,116,129,141,154,166,181,196,211,226,241,256,274,291,309,326,344,361,381,401,421,441,461,481,501,521,541,561,581,601,621,641,661,681,701,721,741,761,781,801,821,841,861,881,901,921,941,961,981,1001,], 
+		["Mana Cost",5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,], 
 ]};
 /*[27] Fire Wall		*/ var d331 = {values:[
-		["Fire Damage (min)",70,103,135,168,201,234,267,300,342,384,426,468,510,553,595,637,689,740,792,844,896,948,1010,1072,1134,1196,1258,1320,1392,1464,1536,1608,1680,1752,1824,1896,1968,2040,2112,2184,2256,2328,2400,2472,2544,2616,2688,2760,2832,2904,2976,3048,3120,3192,3264,3336,3408,3480,3552,3624,], 
-		["Fire Damage (max)",93,126,159,192,225,257,290,323,365,407,449,492,534,576,618,660,712,764,815,867,919,971,1033,1095,1157,1219,1281,1343,1415,1487,1559,1631,1703,1775,1847,1919,1991,2063,2135,2207,2279,2351,2423,2495,2567,2639,2711,2783,2855,2927,2999,3071,3143,3215,3287,3359,3431,3503,3575,3647,], 
+		["Fire Damage (min)",186,255.75,325.5,395.25,465,534.75,604.5,674.25,748.65,823.05,897.45,971.85,1046.25,1120.65,1195.05,1269.45,1348.5,1427.55,1506.6,1585.65,1664.7,1743.75,1827.45,1911.15,1994.85,2078.55,2162.25,2245.95,2334.3,2422.65,2511,2599.35,2687.7,2776.05,2864.4,2952.75,3041.1,3129.45,3217.8,3306.15,3394.5,3482.85,3571.2,3659.55,3747.9,3836.25,3924.6,4012.95,4101.3,4189.65,4278,4366.35,4454.7,4543.05,4631.4,4719.75,4808.1,4896.45,4984.8,5073.15,], 
+		["Fire Damage (max)",302,371.75,441.5,511.25,581,650.75,720.5,790.25,864.65,939.05,1013.45,1087.85,1162.25,1236.65,1311.05,1385.45,1464.5,1543.55,1622.6,1701.65,1780.7,1859.75,1943.45,2027.15,2110.85,2194.55,2278.25,2361.95,2450.3,2538.65,2627,2715.35,2803.7,2892.05,2980.4,3068.75,3157.1,3245.45,3333.8,3422.15,3510.5,3598.85,3687.2,3775.55,3863.9,3952.25,4040.6,4128.95,4217.3,4305.65,4394,4482.35,4570.7,4659.05,4747.4,4835.75,4924.1,5012.45,5100.8,5189.15,], 
 		["wall length",4,6,7,8,10,11,12,14,15,16,18,19,20,22,23,24,26,27,28,30,31,32,34,35,36,38,39,40,42,43,44,46,47,48,50,51,52,54,55,56,58,59,60,62,63,64,66,67,68,70,71,72,74,75,76,78,79,80,82,83,], 
 		["Mana Cost",22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,], 
 ]};
 /*[28] Enchant Fire		*/ var d343 = {values:[
-		["Duration (seconds)",144,168,192,216,240,264,288,312,336,360,384,408,432,456,480,504,528,552,576,600,624,648,672,696,720,744,768,792,816,840,864,888,912,936,960,984,1008,1032,1056,1080,1104,1128,1152,1176,1200,1224,1248,1272,1296,1320,1344,1368,1392,1416,1440,1464,1488,1512,1536,1560,], 
-		["Fire Damage (min)",12,14,17,19,22,24,27,29,35,40,46,51,57,62,68,73,82,91,100,109,118,127,142,157,172,187,202,217,238,259,280,301,322,343,364,385,406,427,448,469,490,511,532,553,574,595,616,637,658,679,700,721,742,763,784,805,826,847,868,889,], 
-		["Fire Damage (max)",17,20,24,27,31,34,38,41,48,54,61,67,74,80,87,93,103,113,123,133,143,153,169,185,201,217,233,249,271,293,315,337,359,381,403,425,447,469,491,513,535,557,579,601,623,645,667,689,711,733,755,777,799,821,843,865,887,909,931,953,], 
+		["Duration (seconds)",300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,], 
+		["Fire Damage (min)",12,14,17,19,22,24,27,29,35,40,46,51,57,62,68,73,82,91,100,109,118,127,143,159,175,191,207,223,246,269,292,315,338,361,384,407,430,453,476,499,522,545,568,591,614,637,660,683,706,729,752,775,798,821,844,867,890,913,936,959,], 
+		["Fire Damage (max)",17,20,24,27,31,34,38,41,48,54,61,67,74,80,87,93,103,113,123,133,143,153,170,187,204,221,238,255,279,303,327,351,375,399,423,447,471,495,519,543,567,591,615,639,663,687,711,735,759,783,807,831,855,879,903,927,951,975,999,1023,], 
 		["attack rating",20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
 ]};
 /*[29] Meteor			*/ var d351 = {values:[
-		["Damage (min)",20,27,34,41,48,55,62,69,79,89,99,109,119,129,139,149,162,175,188,201,214,227,242,257,272,287,302,317,334,351,368,385,402,419,436,453,470,487,504,521,538,555,572,589,606,623,640,657,674,691,708,725,742,759,776,793,810,827,844,861,], 
-		["Damage (max)",25,34,43,52,61,70,79,88,100,112,124,136,148,160,172,184,199,214,229,244,259,274,292,310,328,346,364,382,403,424,445,466,487,508,529,550,571,592,613,634,655,676,697,718,739,760,781,802,823,844,865,886,907,928,949,970,991,1012,1033,1054,], 
-		["Fire Damage (min)",20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,85,90,95,100,105,110,116,122,128,134,140,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,265,272,279,286,293,300,307,314,321,328,335,342,349,356,363,370,], 
-		["Fire Damage (max)",25,31,37,43,49,55,61,67,73,79,85,91,97,103,109,115,122,129,136,143,150,157,165,173,181,189,197,205,214,223,232,241,250,259,268,277,286,295,304,313,322,331,340,349,358,367,376,385,394,403,412,421,430,439,448,457,466,475,484,493,], 
+		["Damage (min)",25,32,39,46,53,60,67,74,84,94,104,114,124,134,144,154,167,180,193,206,219,232,247,262,277,292,307,322,339,356,373,390,407,424,441,458,475,492,509,526,543,560,577,594,611,628,645,662,679,696,713,730,747,764,781,798,815,832,849,866,], 
+		["Damage (max)",30,39,48,57,66,75,84,93,105,117,129,141,153,165,177,189,204,219,234,249,264,279,297,315,333,351,369,387,408,429,450,471,492,513,534,555,576,597,618,639,660,681,702,723,744,765,786,807,828,849,870,891,912,933,954,975,996,1017,1038,1059,], 
+		["Fire Damage (min)",25,32,39,46,53,60,67,74,84,94,104,114,124,134,144,154,167,180,193,206,219,232,247,262,277,292,307,322,339,356,373,390,407,424,441,458,475,492,509,526,543,560,577,594,611,628,645,662,679,696,713,730,747,764,781,798,815,832,849,866,], 
+		["Fire Damage (max)",30,39,48,57,66,75,84,93,105,117,129,141,153,165,177,189,204,219,234,249,264,279,297,315,333,351,369,387,408,429,450,471,492,513,534,555,576,597,618,639,660,681,702,723,744,765,786,807,828,849,870,891,912,933,954,975,996,1017,1038,1059,], 
 		["Burning Damage (min)",17,19,22,24,26,29,31,33,37,41,44,48,51,55,58,62,66,71,76,80,85,90,96,101,107,113,119,125,132,139,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,266,273,280,287,294,301,308,315,322,329,336,343,350,], 
 		["Burning Damage (max)",29,31,33,36,38,41,43,45,49,52,56,59,63,66,70,73,78,83,87,92,96,101,107,113,119,125,131,137,144,151,158,165,172,179,186,193,200,207,214,221,228,235,242,249,256,263,270,277,284,291,298,305,312,319,326,333,340,347,354,361,], 
-		["Mana Cost",17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,42,43,43,44,44,45,45,46,46,], 
+		["Mana Cost",10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,], 
 ]};
 /*[30] Fire Mastery		*/ var d362 = {values:[
 		["Fire Damage Increase %",20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,240,244,248,252,256,], 
 		["- Enemy Fire Resistance %",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,], 
 ]};
 /*[31] Hydra			*/ var d363 = {values:[
-		["Fire Damage (min)",42,50,58,66,74,82,90,98,109,121,132,144,155,167,178,190,205,221,236,252,267,283,302,321,340,359,378,397,419,441,463,485,507,529,551,573,595,617,639,661,683,705,727,749,771,793,815,837,859,881,903,925,947,969,991,1013,1035,1057,1079,1101,], 
-		["Fire Damage (max)",58,68,78,88,98,108,118,128,141,153,166,178,191,203,216,228,246,263,281,298,316,333,354,374,395,415,436,456,480,503,527,550,574,597,621,644,668,691,715,738,762,785,809,832,856,879,903,926,950,973,997,1020,1044,1067,1091,1114,1138,1161,1185,1208,], 
+		["Fire Damage (min)",42,50,58,66,74,82,90,98,109.5,121,132.5,144,155.5,167,178.5,190,205.5,221,236.5,252,267.5,283,302,321,340,359,378,397,419,441,463,485,507,529,551,573,595,617,639,661,683,705,727,749,771,793,815,837,859,881,903,925,947,969,991,1013,1035,1057,1079,1101,], 
+		["Fire Damage (max)",58,68,78,88,98,108,118,128,140.5,153,165.5,178,190.5,203,215.5,228,245.5,263,280.5,298,315.5,333,353.5,374,394.5,415,435.5,456,479.5,503,526.5,550,573.5,597,620.5,644,667.5,691,714.5,738,761.5,785,808.5,832,855.5,879,902.5,926,949.5,973,996.5,1020,1043.5,1067,1090.5,1114,1137.5,1161,1184.5,1208,], 
 		["Mana Cost",20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,42,42,43,43,44,44,45,45,46,46,47,47,48,48,49,49,], 
 ]};
 /*[32] Lesser Hydra		*/ var d333 = {values:[
-		["Fire Damage (min)",3,6,9,12,15,18,21,24,31,38,45,52,59,66,73,80,92,104,116,128,140,152,168,184,200,216,232,248,264,280,296,312,328,344,360,376,392,408,424,440,456,472,488,504,520,536,552,568,584,600,616,632,648,664,680,696,712,728,744,760,], 
-		["Fire Damage (max)",6,10,14,18,22,26,30,34,42,50,58,66,74,82,90,98,111,124,137,150,163,176,193,210,227,244,261,278,299,320,341,362,383,404,425,446,467,488,509,530,551,572,593,614,635,656,677,698,719,740,761,782,803,824,845,866,887,908,929,950,], 
+		["Fire Damage (min)",3,6,9,12,15,18,21,24,31,38,45,52,59,66,73,80,92,104,116,128,140,152,169,186,203,220,237,254,271,288,305,322,339,356,373,390,407,424,441,458,475,492,509,526,543,560,577,594,611,628,645,662,679,696,713,730,747,764,781,798,], 
+		["Fire Damage (max)",6,10,14,18,22,26,30,34,42,50,58,66,74,82,90,98,111,124,137,150,163,176,194,212,230,248,266,284,302,320,338,356,374,392,410,428,446,464,482,500,518,536,554,572,590,608,626,644,662,680,698,716,734,752,770,788,806,824,842,860,], 
 		["Mana Cost",10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,], 
 ]};
 /*[33] Combustion		*/ var d352 = {values:[
-		["Fire Damage (min)",12,18,25,31,38,44,51,57,69,80,92,103,115,126,138,149,163,177,191,205,219,233,250,266,283,299,316,332,349,365,382,398,415,431,448,464,481,497,514,530,547,563,580,596,613,629,646,662,679,695,712,728,745,761,778,794,811,827,844,860,], 
-		["Fire Damage (max)",28,35,43,50,58,65,73,80,93,105,118,130,143,155,168,180,195,210,225,240,255,270,288,305,323,340,358,375,393,410,428,445,463,480,498,515,533,550,568,585,603,620,638,655,673,690,708,725,743,760,778,795,813,830,848,865,883,900,918,935,], 
+		["Fire Damage (min)",12,18,24,30,36,42,48,54,62,70,78,86,94,102,110,118,128,138,148,158,168,178,190,202,214,226,238,250,264,278,292,306,320,334,348,362,376,390,404,418,432,446,460,474,488,502,516,530,544,558,572,586,600,614,628,642,656,670,684,698,], 
+		["Fire Damage (max)",24,31,38,45,52,59,66,73,82,91,100,109,118,127,136,145,156,167,178,189,200,211,224,237,250,263,276,289,304,319,334,349,364,379,394,409,424,439,454,469,484,499,514,529,544,559,574,589,604,619,634,649,664,679,694,709,724,739,754,769,], 
 		["Mana Cost",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,], 
 ]};
 
@@ -315,13 +318,13 @@ var skills_pd2_sorceress = [
 {data:d112, key:"112", code:36, name:"Ice Bolt", i:0, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical bolt of ice<br>that damages and slows your enemies", syn_title:"<br>Ice Bolt Receives Bonuses From:<br>", syn_text:"Ice Blast: +20% Cold Damage per Level<br>Glacial Spike: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
 {data:d113, key:"113", code:37, name:"Cold Enchant", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Enchants the weapons of you and your party with cold damage<br>Ranged weapons receive one-third of the damage<br>Half efficiency for allies", syn_title:"<br>Cold Enchant Receives Bonuses From:<br>", syn_text:"Chilling Armor: +22% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Cold Damage: ","-","<br>Attack Bonus: ","<br>Mana Cost: ",""]},
 {data:d121, key:"121", code:38, name:"Frost Nova", i:2, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of ice that damages<br>and slows all nearby enemies", syn_title:"<br>Frost Nova Receives Bonuses From:<br>", syn_text:"Ice Bolt: +9% Cold Damage per Level<br>Shiver Armor: +9% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
-{data:d122, key:"122", code:39, name:"Ice Blast", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical sphere of ice that<br>damages and freezes your enemy", syn_title:"<br>Ice Blast Receives Bonuses From:<br>", syn_text:"Ice Bolt: +6% Cold Damage per Level<br>Glacial Spike: +6% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for 2 seconds<br>Mana Cost: ",""]},
+{data:d122, key:"122", code:39, name:"Ice Blast", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical sphere of ice that<br>damages and freezes your enemy", syn_title:"<br>Ice Blast Receives Bonuses From:<br>", syn_text:"Ice Bolt: +6% Cold Damage per Level<br>Glacial Spike: +6% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
 {data:d133, key:"133", code:40, name:"Shiver Armor", i:4, req:[1,3,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases your defense rating<br>Freezes and damages enemy melee attackers", syn_title:"<br>Shiver Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense Bonus: "," percent<br>Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: 11"]},
-{data:d142, key:"142", code:41, name:"Glacial Spike", i:5, req:[3,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical ice comet<br>that freezes or kills nearby enemies<br><br>Radius: 3.3 yards", syn_title:"<br>Glacial Spike Receives Bonuses From:<br>", syn_text:"Ice Bolt: +5% Cold Damage per Level<br>Ice Blast: +5% Cold Damage per Level<br>Ice Barrage: +5% Cold Damage per Level<br>Blizzard: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
-{data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +10% Cold Damage per Level<br>Glacial Spike: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
+{data:d142, key:"142", code:41, name:"Glacial Spike", i:5, req:[3,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical ice comet<br>that freezes or kills nearby enemies<br><br>Radius: 3.3 yards", syn_title:"<br>Glacial Spike Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Ice Blast: +8% Cold Damage per Level<br>Blizzard: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
+{data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +10% Cold Damage per Level<br>Ice Blast: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
 {data:d152, key:"152", code:43, name:"Ice Barrage", i:7, req:[5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a barrage of magical ice lances<br>that damage and slow nearby enemies<br><br>Radius: 2.6 yards", syn_title:"<br>Ice Barrage Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Glacial Spike: +8% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>"," Ice Lances<br>Mana Cost: ",""]},
 {data:d153, key:"153", code:44, name:"Chilling Armor", i:8, req:[4,1,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases defense and discharges a blizzard spike<br>in retaliation against ranged attackers<br>Damages melee attackers if you are hit", syn_title:"<br>Chilling Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Defense Bonus: "," percent<br>Duration: "," seconds<br>Cold Damage: ","-","<br>Mana Cost: 17",""]},
-{data:d161, key:"161", code:45, name:"Frozen Orb", i:9, req:[6,2,5,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical globe that sprays a torrent of ice bolts<br>to lay waste to your enemies", syn_title:"<br>Frozen Orb Receives Bonuses From:<br>", syn_text:"Ice Bolt: +4% Cold Damage per Level<br>Ice Blast: +4% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
+{data:d161, key:"161", code:45, name:"Frozen Orb", i:9, req:[6,2,5,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical globe that sprays a torrent of ice bolts<br>to lay waste to your enemies", syn_title:"<br>Frozen Orb Receives Bonuses From:<br>", syn_text:"Ice Bolt: +4% Cold Damage per Level<br>Frost Nova: +4% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
 {data:d162, key:"162", code:46, name:"Cold Mastery", i:10, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your cold spells<br>and pierces enemies' resistances to cold", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cold Damage: +"," percent<br>Cold Pierce: +"," percent"]},
 
 {data:d212, key:"212", code:47, name:"Charged Bolt", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates multiple, randomly directed<br>bolts of electrical energy", syn_title:"<br>Charged Bolt Receives Bonuses From:<br>", syn_text:"Telekinesis: +6% Lightning Damage per Level<br>Lightning: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>"," bolts<br>Mana Cost: ",""]},
@@ -332,20 +335,148 @@ var skills_pd2_sorceress = [
 {data:d252, key:"252", code:52, name:"Chain Lightning", i:16, req:[15,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a bolt of lightning that<br>arcs through several targets", syn_title:"<br>Chain Lightning Receives Bonuses From:<br>", syn_text:"Charged Bolt: +6% Lightning Damage per Level<br>Lightning: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:53, name:"Teleport", i:17, req:[13], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination and<br>reduces the spell damage you deal for 1 second", syn_title:"", syn_text:"", graytext:"", index:[1,"% Damage"], text:["","Mana Cost: ",""]},
 /*TODO: remove*/{data:d263, key:"263", code:54, name:"None", i:18, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
-{data:d263, key:"263", code:55, name:"Energy Shield", i:19, req:[16,17,13,15,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>","% Redirected to Mana<br>Mana Cost: 5",""]},
+{data:d263, key:"263", code:55, name:"Energy Shield", i:19, req:[16,17,13,15,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>","% Redirected to Mana<br>Mana Cost: 5",""]},
 {data:d262, key:"262", code:56, name:"Lightning Mastery", i:20, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your lightning spells", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Lightning Damage: +"," percent",""]},
 {data:d251, key:"251", code:57, name:"Thunder Storm", i:21, req:[15,14,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summons a deadly thunderstorm that strikes<br>your enemies with bolts of lightning", syn_title:"<br>Thunder Storm Receives Bonuses From:<br>", syn_text:"Charged Bolt: +6% Lightning Damage per Level<br>Nova: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:["Delay: "," seconds<br>Duration: "," seconds<br>Lightning Damage: ","-","<br>Mana Cost: 19"]},
 
-{data:d312, key:"312", code:58, name:"Fire Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical flaming missile<br><br>Mana Cost: 2.5", syn_title:"<br>Fire Bolt Receives Bonuses From:<br>", syn_text:"Fire Ball: +20% Fire Damage per Level<br>Combustion: +20% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-",""]},
+{data:d312, key:"312", code:58, name:"Fire Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical flaming missile", syn_title:"<br>Fire Bolt Receives Bonuses From:<br>", syn_text:"Fire Ball: +18% Fire Damage per Level<br>Combustion: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d313, key:"313", code:59, name:"Warmth", i:23, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases the rate at which you recover mana<br>and grants passive attack rating", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent<br>+"," Attack Rating"]},
-{data:d321, key:"321", code:60, name:"Blaze", i:24, req:[25], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a wall of fire<br>in your wake to scorch your enemies", syn_title:"<br>Blaze Receives Bonuses From:<br>", syn_text:"Warmth: +3% Fire Damage per Level<br>Fire Wall: +3% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 3 seconds<br>Fire Explosion Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Velocity: +"," percent<br>Mana Cost: ",""]},
+{data:d321, key:"321", code:60, name:"Blaze", i:24, req:[25], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a wall of fire<br>in your wake to scorch your enemies", syn_title:"<br>Blaze Receives Bonuses From:<br>", syn_text:"Fire Wall: +4% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Fire Explosion Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Velocity: +"," percent<br>Mana Cost: ",""]},
 {data:d311, key:"311", code:61, name:"Inferno", i:25, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a continuous jet of flame<br>to scorch your enemies<br><br>Minimum Mana Required to Cast: 4", syn_title:"<br>Inferno Receives Bonuses From:<br>", syn_text:"Fire Wall: +20% Fire Damage per Level<br>Blaze: +20% Fire Damage per Level", graytext:"", index:[0,""], text:["Average Fire Damage: ","-"," per second<br>Range: "," yards<br>Mana Cost: "," per second"]},
-{data:d332, key:"332", code:62, name:"Fire Ball", i:26, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an explosive sphere of fiery death<br>to engulf your enemies", syn_title:"<br>Fire Ball Receives Bonuses From:<br>", syn_text:"Fire Bolt: +16% Fire Damage per Level<br>Combustion: +16% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d331, key:"331", code:63, name:"Fire Wall", i:27, req:[25,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a wall of flame that<br>blocks or burns your enemies", syn_title:"<br>Fire Wall Receives Bonuses From:<br>", syn_text:"Warmth: +4% Fire Damage per Level<br>Inferno: +4% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Duration: 3 seconds<br>Average Fire Damage: ","-"," per second<br>"," yards<br>Mana Cost: ",""]},
+{data:d332, key:"332", code:62, name:"Fire Ball", i:26, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an explosive sphere of fiery death<br>to engulf your enemies", syn_title:"<br>Fire Ball Receives Bonuses From:<br>", syn_text:"Fire Bolt: +15% Fire Damage per Level<br>Combustion: +15% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
+{data:d331, key:"331", code:63, name:"Fire Wall", i:27, req:[25,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a wall of flame that<br>blocks or burns your enemies", syn_title:"<br>Fire Wall Receives Bonuses From:<br>", syn_text:"Blaze: +4% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Duration: 3 seconds<br>Average Fire Damage: ","-"," per second<br>"," yards<br>Mana Cost: ",""],incomplete:1},
 {data:d343, key:"343", code:64, name:"Enchant Fire", i:28, req:[23,26,22,32], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Enchants the weapons of you and your party with fire damage<br>and grants bonus attack rating<br>Ranged weapons receive one-third of the damage<br>Half efficiency for allies", syn_title:"<br>Enchant Fire Receives Bonuses From:<br>", syn_text:"Warmth: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: ","<br>Fire Damage: ","-","<br>Attack Bonus: +"," percent<br>Mana Cost: ",""]},
-{data:d351, key:"351", code:65, name:"Meteor", i:29, req:[26,27,22,25,24], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a meteor from the heavens<br>to crush and incinerate your enemies", syn_title:"<br>Meteor Receives Bonuses From:<br>", syn_text:"Fire Ball: +10% Damage per Level<br>Fire Wall: +10% Damage per Level<br>Inferno: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
+{data:d351, key:"351", code:65, name:"Meteor", i:29, req:[26,27,22,25,24], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a meteor from the heavens<br>to crush and incinerate your enemies", syn_title:"<br>Meteor Receives Bonuses From:<br>", syn_text:"Fire Ball: +6% Damage per Level<br>Blaze: +6% Damage per Level<br>Inferno: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:66, name:"Fire Mastery", i:30, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your fire spells<br>and pierces enemies' resistances to fire", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Fire Damage: +"," percent<br>Fire Pierce: +"," percent",""]},
-{data:d363, key:"363", code:67, name:"Hydra", i:31, req:[28,23,26,22,32], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame that spits<br>fire balls to reduce your enemies to ashes", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +6% Fire Damage per Level<br>Lesser Hydra: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 6 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d333, key:"333", code:305, name:"Lesser Hydra", i:32, req:[23], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame<br>that spits fire bolts at your enemies", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Hydra: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 6 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
+{data:d363, key:"363", code:67, name:"Hydra", i:31, req:[28,23,26,22,32], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame that spits<br>fire balls to reduce your enemies to ashes", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +6% Fire Damage per Level<br>Lesser Hydra: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 5 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
+{data:d333, key:"333", code:305, name:"Lesser Hydra", i:32, req:[23], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a multi-headed beast of flame<br>that spits fire bolts at your enemies", syn_title:"<br>Hydra Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Hydra: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: 5 seconds<br>Hydra Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:306, name:"Combustion", i:33, req:[26,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of fire balls to engulf your enemies", syn_title:"<br>Combustion Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Fire Ball: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 ];
+
+/* Season 5 Changelog Notes - Sorceress
+
+  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
+  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
+  # means the change is pending and the correct data is in Skill_Data_PD2.exc
+
+  Closed Beta:
+  
+	Firewall warmth synergy replaced with blaze
+
+	Meteor firewall synergy replaced with blaze
+
+	Firebolt mana cost now increases by .25 per level
+	Firebolt synergies reduced from 20% to 18%
+	Firebolt level 1-8 scaling reduced from 5-6 to 4-6 (was 2.5-3?)
+	Firebolt level 8-16 scaling increased from 13-15 to 16-18 (was 5-7.5?)
+	Firebolt level 16-22 scaling increased from 20-37 to 30-32 (was 10-18.5?)
+	Firebolt level 22-28 scaling increased from 40-55 to 46-48  (was 20-27.5?)
+	Firebolt level 28+ scaling increased from 30-37 to 46-48  (was 15-18.5?)
+
+	Fireball mana cost per level reduced from .5 to .25
+	Fireball synergies reduced from 16% to 15%
+	Fireballs level 28+ scaling increased from 33-35 to 38-40 (was 16.5-17.5?)
+
+	Combustion level 1 damage reduced from 24-56 to 24-48 (doubled?)
+	Combustion level 1-8 scaling reduced from 13-15 to 12-14 per level (doubled?)
+	Combustion level 8-16 scaling reduced from 23-25 to 16-18 per level (doubled?)
+	Combustion level 16-22 scaling reduced from 26-28 to 20-22 per level (doubled?)
+	Combustion level 22-28 scaling reduced from 28-30 to 24-26 per level (doubled?)
+	Combustion level 28+ scaling reduced from 33-35 to 28-30 per level (doubled?)
+
+	Ice barrage synergies increased from 8% to 9%
+	~ Ice barrage missile speed increased by 22%
+	~ Ice barrage range increased by roughly 10%
+	Ice barrage level 1-8 scaling increased from 4-5 to 5-6 (doubled?)
+	Ice barrage level 8-16 scaling increased from 7-8 to 9-10 (doubled?)
+	Ice barrage level 16-22 scaling reduced from 14-15 to 13-14 (doubled?)
+	Ice barrage level 22-28 scaling increased from 15-16 to 17-18 (doubled?)
+	Ice barrage level 28+ scaling increased from 16-17 to 21-22  (doubled?)
+
+	Ice bolt synergies increased from 20% to 22%
+
+	Iceblast freeze duration now scales with levels
+
+	Glacial spike damage synergies increased from 5% to 8%
+	Glacial spike ice barrage synergy removed
+
+	Energy shield now properly requires level 30
+
+	Blizzard glacial spike synergy has been replaced with ice blast
+
+	Frozen orbs ice blast synergy has been replaced with frost nova
+
+	Teleport now once again uses its original cast frames (no longer uses lightning cast frames)
+	Teleport damage reduction debuff now starts at -65% from -50%
+
+	Lesser hydra duration reduced from 6 seconds to 5 seconds
+	Lesser hydra level 22-28 scaling increased from 32-34 to 34-36  (doubled?)
+	Lesser hydra level 28+ scaling reduced from 40-42 to 34-36  (doubled?)
+
+	Hydra duration reduced from 6 seconds to 5 seconds
+	Hydra level 8-16 scaling reduced from 23-25 to 22-26  (doubled?)
+	Hydra level 16-22 scaling reduced from 31-35 to 28-32  (doubled?)
+	Hydra level 22-28 scaling reduced from 38-41 to 34-38  (doubled?)
+	Hydra level 28+ scaling reduced from 44-47 to 40-44  (doubled?)
+
+	Blaze now gains .2 seconds per level
+	Blaze duration cap increased from 3 seconds to 8
+	Blaze warmth synergy removed
+	Blaze firewall synergy increased from 3% to 6%
+
+	Cold enchant attack rating bonus per level increased from 5% to 10%
+	Cold enchants level 22-28 scaling increased from 35-37 to 36-38 (doubled?)
+	Cold enchants level 28+ scaling increased from  52-54 to 54-56 (doubled?)
+	Cold enchant duration now lasts 5 minutes at all levels		// can be simplified...
+
+	Fire enchants level 22-28 scaling increased from 30-32 to 32-34 (doubled?)
+	Fire enchants level 28+ scaling increased from 42-44 to 46-48 (doubled?)
+	Fire enchant duration now lasts 5 minutes at all levels		// can be simplified...
+
+	Blizzard level 1-8 scaling reduced from 6-8 to 5-7 per level
+	Blizzard level 8-16 scaling reduced from 8-10 to 6-8 per level
+	Blizzard level 16-22 scaling reduced from 10-12 to 8-10 per level
+	Blizzard level 22-28 scaling reduced from 12-14 to 11-13 per level
+	Blizzard level 28+ scaling increased from 14-16 to 15-17 per level
+
+	~ Traps and hydras no longer benefit from elemental pierce
+
+	Ice bolt synergy reduced from 22% to 20%
+	Inferno sentry base damage increased from 40-100 to 60-100		// values seem very close to x2 but not quite in some cases - check in s5 singleplayer
+	Inferno sentry level 1-8 scaling increased from 32-36 to 34-40  
+	Inferno sentry level 8-16 scaling increased from 38-42 to 68-80
+	Inferno sentry level 16-22 scaling increased from 44-48 to 102-120
+	Inferno sentry level 22-28 scaling increased from 50-54 to 136-160 
+	Inferno sentry level 28+ scaling increased from 56-60 to 170-200
+	Firewall base damage increased from 15-20 to 20-25		// values are... 1/4.65?
+	Firwall level 1-8 scaling increased from 7-7 to 9-9
+	Firewall level 8-16 scaling increased from 9-9 to 10-10
+	Firewall level 22-28 scaling reduced from 13-13 to 12-12 
+	Firwall level 28+ scaling reduced from 15-15 to 13-13
+	Hydra level 8-16 scaling increased from 22-26 to 23-25	// doubled...
+	Hydra level 16-22 scaling increased from 28-32 to 31-35
+	Hydra level 22-28 scaling increased from 34-38 to 38-41
+	Hydra level 28+ scaling increased from 40-44 to 44-47 
+
+
+	Meteor synergies reduced from 10% to 6%
+	~ Meteor fire duration reduced from 50 frames to 40
+	Meteor level 1 physical and fire base damage increasd from 20-25 to 25-30 (50-60 total)
+	Meteor fire damage level 1-8 scaling increased from 4-6 to 7-9
+	Meteor fire damage level 8-16 scaling increased from 4-6 to 10-12
+	Meteor fire damage level 16-22 scaling increased from 5-7 to 13-15
+	Meteor fire damage level 22-28 scaling increased from 6-8 to 15-18
+	Meteor fire damage level 28+ scaling increased from 7-9 to 17-21
+	Firewall inferno synergy removed
+	Firewall base damage increased from 20-25 to 40-65
+	Firewall level 1-8 scaling increased from 10-10 to 15-15
+	Firewall level 8-16 scaling increased from 11-11 to 16-16
+	Firewall level 16-22 scaling increased from 12-12 to 17-17
+	Firewall level 22-28 scaling increased from 13-13 to 18-18
+	Firewall level 28+ scaling increased from 14-14 to 19-19
+
+	~ Meteor impact explosion radius increased by 25%
+	Meteor level 1 mana cost reduced from 17 to 10
+	Ice barrage synergies reduced from 9% to 8%
+
+*/

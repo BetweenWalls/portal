@@ -34,24 +34,25 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		
 		if (skill.name == "Dodge" && elem == 0) { 							result = 4 + skill.level*1 }
 		if (skill.name == "Penetrate" && elem == 0) { 						result = -5 - skill.level*1 }
-		if (skill.name == "Decoy" && elem < 2) { 							result *= (1 + 0.08*skills[18].level + 0.08*skills[27].level) }
+		if (skill.name == "Decoy" && elem < 2) { 							result *= (1 + 0.10*skills[18].level + 0.10*skills[27].level) }
 		if (skill.name == "Valkyrie" && elem == 0) { 						result = skill.data.values[elem][character.difficulty][lvl] }
-		if (skill.name == "Valkyrie" && elem == 1) { 						result += (20*skills[17].level) }
+		if (skill.name == "Valkyrie" && elem == 1) { 						result += (25*skills[17].level) }
 		if (skill.name == "Valkyrie" && elem == 3) { 						result += (40*skills[15].level) }
 		
 		if (skill.name == "Magic Arrow" && elem == 0) { 					result = 1 + Math.floor(skill.level/5) }
 		if (skill.name == "Magic Arrow" && elem > 1 && elem < 4) { 			result *= (1 + 0.18*skills[10].level + 0.18*skills[12].level + 0.18*skills[25].level) }
 		if (skill.name == "Guided Arrow" && elem == 0) { 					result = Math.floor(skills[21].level/2) }
 		if (skill.name == "Cold Arrow" && elem > 1 && elem < 4) { 			result *= ((1 + 0.22*skills[21].level + 0.22*skills[24].level) * (1+character.cDamage/100)) }
-		if (skill.name == "Ice Arrow" && elem > 0 && elem < 3) { 			result *= ((1 + 0.16*skills[21].level + 0.16*skills[20].level + 0.16*skills[29].level) * (1+character.cDamage/100)) }
+		if (skill.name == "Ice Arrow" && elem > 0 && elem < 3) { 			result *= ((1 + 0.16*skills[21].level + 0.10*skills[20].level + 0.10*skills[29].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Ice Arrow" && elem == 3) { 						result = 1 * (1 + 0.05*skills[20].level + 0.05*skills[29].level) }
 		if (skill.name == "Freezing Arrow" && elem == 0) { 					result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Freezing Arrow" && elem > 1 && elem < 4) { 		result *= ((1 + 0.06*skills[20].level + 0.06*skills[24].level) * (1+character.cDamage/100)) }
-		if (skill.name == "Fire Arrow" && elem > 1 && elem < 4) { 			result *= ((1 + 0.24*skills[21].level + 0.24*skills[28].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Fire Arrow" && elem > 1 && elem < 4) { 			result *= ((1 + 0.26*skills[21].level + 0.26*skills[28].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Exploding Arrow" && elem == 0) { 				result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Exploding Arrow" && elem > 1 && elem < 4) { 		result *= ((1 + 0.18*skills[21].level + 0.18*skills[28].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Immolation Arrow" && elem > 2 && elem < 5) { 	result *= ((1 + 0.16*skills[21].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Immolation Arrow" && elem > 0 && elem < 3) { 	result *= ((1 + 0.08*skills[23].level + 0.08*skills[26].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Strafe" && elem == 2) { 							result *= (1 + 0.18*skills[15].level) }
 		
 	return result
 	},
@@ -132,7 +133,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 
 /*[ 0] Jab				*/ var d111 = {values:[
 		["attack rating bonus",25,37,49,61,73,85,97,109,121,133,145,157,169,181,193,205,217,229,241,253,265,277,289,301,313,325,337,349,361,373,385,397,409,421,433,445,457,469,481,493,505,517,529,541,553,565,577,589,601,613,625,637,649,661,673,685,697,709,721,733,], 
-		["damage",20,38,56,74,92,110,128,146,164,182,200,218,236,254,272,290,308,326,344,362,380,398,416,434,452,470,488,506,524,542,560,578,596,614,632,650,668,686,704,722,740,758,776,794,812,830,848,866,884,902,920,938,956,974,992,1010,1028,1046,1064,1082,], 
+		["damage",20,34,48,62,76,90,104,118,132,146,160,174,188,202,216,230,244,258,272,286,300,314,328,342,356,370,384,398,412,426,440,454,468,482,496,510,524,538,552,566,580,594,608,622,636,650,664,678,692,706,720,734,748,762,776,790,804,818,832,846,], 
 		["Mana Cost",1.5,1.7,2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,], 
 ]};
 /*[ 1] Power Strike		*/ var d122 = {values:[
@@ -158,7 +159,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["Mana Cost",4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,], 
 ]};
 /*[ 5] Charged Strike	*/ var d142 = {values:[
-		["bolts",2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,14,], 
+		["bolts",3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,14,14,14,14,14,15,], 
 		["Lightning Damage (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,], 
 		["Lightning Damage (max)",40,52,64,76,88,100,112,124,140,156,172,188,204,220,236,252,272,292,312,332,352,372,396,420,444,468,492,516,544,572,600,628,656,684,712,740,768,796,824,852,880,908,936,964,992,1020,1048,1076,1104,1132,1160,1188,1216,1244,1272,1300,1328,1356,1384,1412,], 
 		["Mana Cost",4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,], 
@@ -188,16 +189,18 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 
 /*[10] Inner Sight		*/ var d211 = {values:[
 		["Duration (seconds)",8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,200,204,208,212,216,220,224,228,232,236,240,244,], 
-		["enemy attack",-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,], 
+		["enemy attack",-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,], 
 		["enemy defense",-40,-65,-90,-115,-140,-165,-190,-215,-260,-305,-350,-395,-440,-485,-530,-575,-635,-695,-755,-815,-875,-935,-1015,-1095,-1175,-1255,-1335,-1415,-1515,-1615,-1715,-1815,-1915,-2015,-2115,-2215,-2315,-2415,-2515,-2615,-2715,-2815,-2915,-3015,-3115,-3215,-3315,-3415,-3515,-3615,-3715,-3815,-3915,-4015,-4115,-4215,-4315,-4415,-4515,-4615,], 
-		["Radius (yards)",6.6,7.3,8,8.6,9.3,10,10.6,11.3,12,12.6,13.3,14,14.6,15.3,16,16.6,17.3,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,], 
+		["Radius (yards)",6.6,7.3,8,8.6,9.3,10,10.6,11.3,12,12.6,13.3,14,14.6,15.3,16,16.6,17.3,18,18.6,19.3,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,], 
 ]};
 /*[11] Critical Strike	*/ var d213 = {values:[
 		["crit",15,23,30,35,40,43,46,48,51,52,54,56,57,58,59,61,61,62,63,63,64,65,65,66,66,67,68,68,68,68,69,69,70,70,70,70,70,71,71,71,71,72,72,72,72,72,72,72,73,73,73,73,73,74,74,74,74,74,74,75,], 
 ]};
 /*[12] Slow Movement	*/ var d231 = {values:[
-		["slow movement",-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,], 
-		["slow ranged attacks to",75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,25,25,25,25,25,25,25,25,25,], 
+		["slow movement",-20,-22,-24,-26,-28,-30,-32,-34,-36,-38,-40,-42,-44,-46,-48,-50,-52,-54,-56,-58,-60,-62,-64,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,-65,], 
+		["Duration",10,10.2,10.4,10.6,10.8,11,11.2,11.4,11.6,11.8,12,12.2,12.4,12.6,12.8,13,13.2,13.4,13.6,13.8,14,14.2,14.4,14.6,14.8,15,15.2,15.4,15.6,15.8,16,16.2,16.4,16.6,16.8,17,17.2,17.4,17.6,17.8,18,18.2,18.4,18.6,18.8,19,19.2,19.4,19.6,19.8,20,20.2,20.4,20.6,20.8,21,21.2,21.4,21.6,21.8,], 
+		["slow ranged attacks to",75,73,71,69,67,65,63,61,59,57,55,53,51,49,47,45,43,41,39,37,35,33,31,29,27,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,], 
+		["Radius",12,12.6,13.2,13.8,14.4,15,15.6,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,], 
 ]};
 /*[13] Dodge			*/ var d242 = {values:[
 		["fhr",], 
@@ -210,14 +213,14 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 ]};
 /*[16] Evade			*/ var d222 = {values:[
 		["dodge chance",6,11,15,18,20,22,24,25,26,27,28,29,30,31,31,32,32,32,33,33,34,34,34,35,35,36,36,36,36,36,36,36,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,40,], 
-		["speed",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,], 
+		["speed",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,], 
 ]};
 /*[17] Decoy			*/ var d241 = {values:[
 		["Damage (min)",35,39,43,47,51,55,59,63,69,75,81,87,93,99,105,111,120,129,138,147,156,165,177,189,201,213,225,237,252,267,282,297,312,327,342,357,372,387,402,417,432,447,462,477,492,507,522,537,552,567,582,597,612,627,642,657,672,687,702,717,], 
 		["Damage (max)",50,56,62,68,74,80,86,92,100,108,116,124,132,140,148,156,167,178,189,200,211,222,236,250,264,278,292,306,323,340,357,374,391,408,425,442,459,476,493,510,527,544,561,578,595,612,629,646,663,680,697,714,731,748,765,782,799,816,833,850,], 
 		["Life",300,345,390,435,480,525,570,615,660,705,750,795,840,885,930,975,1020,1065,1110,1155,1200,1245,1290,1335,1380,1425,1470,1515,1560,1605,1650,1695,1740,1785,1830,1875,1920,1965,2010,2055,2100,2145,2190,2235,2280,2325,2370,2415,2460,2505,2550,2595,2640,2685,2730,2775,2820,2865,2910,2955,], 
 		["Attack Rating",250,300,350,400,450,500,550,600,650,700,750,800,850,900,950,1000,1050,1100,1150,1200,1250,1300,1350,1400,1450,1500,1550,1600,1650,1700,1750,1800,1850,1900,1950,2000,2050,2100,2150,2200,2250,2300,2350,2400,2450,2500,2550,2600,2650,2700,2750,2800,2850,2900,2950,3000,3050,3100,3150,3200,], 
-		["Mana Cost",10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,], 
+		["Mana Cost",5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31,31.5,32,32.5,33,33.5,34,34.5,], 
 ]};
 /*[18] Valkyrie			*/ var d261 = {values:[
 		["Life", 
@@ -226,7 +229,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 			["Life (Hell)",940,1005,1071,1137,1203,1269,1334,1400,1466,1532,1598,1663,1729,1795,1861,1927,1992,2058,2124,2190,2256,2321,2387,2453,2519,2585,2650,2716,2782,2848,2914,2979,3045,3111,3177,3243,3308,3374,3440,3506,3572,3637,3703,3769,3835,3901,3966,4032,4098,4164,4230,4295,4361,4427,4493,4559,4624,4690,4756,4822,], 
 		], 
 		["damage",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
-		["powerstrike",1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,], 
+		["powerstrike",5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,], 
 		["attack rating bonus",40,80,120,160,200,240,280,320,360,400,440,480,520,560,600,640,680,720,760,800,840,880,920,960,1000,1040,1080,1120,1160,1200,1240,1280,1320,1360,1400,1440,1480,1520,1560,1600,1640,1680,1720,1760,1800,1840,1880,1920,1960,2000,2040,2080,2120,2160,2200,2240,2280,2320,2360,2400,], 
 		["defense bonus",0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,], 
 		["Mana Cost",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,], 
@@ -259,8 +262,8 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 /*[23] Fire Arrow		*/ var d323 = {values:[
 		["arrows",2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14,14,14,15,15,15,16,16,16,17,17,17,18,18,18,19,19,19,20,20,20,21,21,21,22,], 
 		["attack rating bonus",10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,], 
-		["Fire Damage (min)",3,4,5,6,7,8,9,10,13,16,19,22,25,28,31,34,42,50,58,66,74,82,100,118,136,154,172,190,218,246,274,302,330,358,386,414,442,470,498,526,554,582,610,638,666,694,722,750,778,806,834,862,890,918,946,974,1002,1030,1058,1086,], 
-		["Fire Damage (max)",4,5,7,8,10,11,13,14,19,24,29,34,39,44,49,54,64,74,84,94,104,114,134,154,174,194,214,234,264,294,324,354,384,414,444,474,504,534,564,594,624,654,684,714,744,774,804,834,864,894,924,954,984,1014,1044,1074,1104,1134,1164,1194,], 
+		["Fire Damage (min)",3,4,5,6,7,8,9,10,14,17,21,24,28,31,35,38,48,58,68,78,88,98,116,133,151,168,186,203,228,253,278,303,328,353,378,403,428,453,478,503,528,553,578,603,628,653,678,703,728,753,778,803,828,853,878,903,928,953,978,1003,], 
+		["Fire Damage (max)",4,5,7,8,10,11,13,14,20,26,32,38,44,50,56,62,74,86,98,110,122,134,154,173,193,212,232,251,278,305,332,359,386,413,440,467,494,521,548,575,602,629,656,683,710,737,764,791,818,845,872,899,926,953,980,1007,1034,1061,1088,1115,], 
 		["Mana Cost",1.5,1.6,1.7,1.8,2,2.1,2.2,2.3,2.5,2.6,2.7,2.8,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,4,4.1,4.2,4.3,4.5,4.6,4.7,4.8,5,5.1,5.2,5.3,5.5,5.6,5.7,5.8,6,6.1,6.2,6.3,6.5,6.6,6.7,6.8,7,7.1,7.2,7.3,7.5,7.6,7.7,7.8,8,8.1,8.2,8.3,8.5,8.6,8.7,8.8,], 
 ]};
 /*[24] Ice Arrow		*/ var d331 = {values:[
@@ -284,7 +287,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 /*[27] Strafe			*/ var d352 = {values:[
 		["attack rating bonus",80,86,92,98,104,110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200,206,212,218,224,230,236,242,248,254,260,266,272,278,284,290,296,302,308,314,320,326,332,338,344,350,356,362,368,374,380,386,392,398,404,410,416,422,428,434,], 
 		["targets",3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,], 
-		["damage",100,114,128,142,156,170,184,198,212,226,240,254,268,282,296,310,324,338,352,366,380,394,408,422,436,450,464,478,492,506,520,534,548,562,576,590,604,618,632,646,660,674,688,702,716,730,744,758,772,786,800,814,828,842,856,870,884,898,912,926,], 
+		["damage",100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,940,955,970,985,], 
 ]};
 /*[28] Immolation Arrow	*/ var d363 = {values:[
 		["attack rating bonus",30,39,48,57,66,75,84,93,102,111,120,129,138,147,156,165,174,183,192,201,210,219,228,237,246,255,264,273,282,291,300,309,318,327,336,345,354,363,372,381,390,399,408,417,426,435,444,453,462,471,480,489,498,507,516,525,534,543,552,561,], 
@@ -316,23 +319,86 @@ var skills_pd2_amazon = [
 
 {data:d211, key:"211", code:16, name:"Inner Sight", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Illuminates nearby enemies<br>making them easier to hit<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Enemy Attack Rating: ","%<br>Enemy Defense: ","<br>Radius: "," yards<br>Mana Cost: 5"]},
 {data:d213, key:"213", code:17, name:"Critical Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your attacks have a chance to do 50% more damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance",""]},
-{data:d231, key:"231", code:18, name:"Slow Movement", i:12, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Illuminates nearby enemies and slows<br>their ranged attacks and movement", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Slows Movement by: ","%<br>Duration: 5 seconds<br>Ranged Attacks slowed to "," percent<br>Radius: 12 yards<br>Mana Cost: 5"]},
+{data:d231, key:"231", code:18, name:"Slow Movement", i:12, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Illuminates nearby enemies and slows<br>their ranged attacks and movement", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Slows Movement by: ","%<br>Duration: "," seconds<br>Ranged Attacks slowed to "," percent<br>Radius: "," yards<br>Mana Cost: 5"]},
 {data:d242, key:"242", code:19, name:"Dodge", i:13, req:[16,12,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - You have a chance to dodge<br>a melee or ranged attack when attacking<br>or standing still", syn_title:"", syn_text:"", graytext:"", index:[1,"% Faster Hit Recovery"], text:["Grants bonus hit recovery per base level<br>",""," percent chance",""]},
 /*TODO: remove*/{data:d253, key:"253", code:20, name:"None", i:14, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d253, key:"253", code:21, name:"Penetrate", i:15, req:[19,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases your attack rating and lowers target defense", syn_title:"", syn_text:"", graytext:"", index:[1,"% to Target Defense"], text:["Reduces Target Defense by 1% per Base Level<br>","To Attack Rating: +"," percent",""]},
-{data:d222, key:"222", code:22, name:"Evade", i:16, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - You have a chance to dodge<br>a melee or ranged attack when walking or running<br>Also grants passive movement speed", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>+","% Movement Speed"]},
-{data:d241, key:"241", code:23, name:"Decoy", i:17, req:[12,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a duplicate of yourself that<br>fires arrows at nearby enemies<br><br>Can summon an additional decoy<br>at base levels 10 and 20", syn_title:"<br>Decoy Receives Bonuses From:<br>", syn_text:"Strafe: +8% Damage per Level<br>Valkyrie: +8% Damage per Level<br>Critical Strike<br>Pierce<br>Penetrate", graytext:"", index:[0,""], text:["Damage: ","-","<br>Life: ","<br>Attack: ","<br>Duration: 15 seconds<br>Mana Cost: ",""]},
-{data:d261, key:"261", code:24, name:"Valkyrie", i:18, req:[17,12,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons a powerful Valkyrie ally<br><br>Can summon an additional Valkyrie<br>at levels 20 and 30", syn_title:"<br>Valkyrie Receives Bonuses From:<br>", syn_text:"Decoy: +20% Physical Damage per Level<br>Pierce: +1% Lightning Pierce per Level<br>Penetrate: +40 Attack Rating per Level<br>Power Strike: +20% added Lightning Damage and +10% Nova Lightning Damage<br>Critical Strike", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Powerstrike Level: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
+{data:d222, key:"222", code:22, name:"Evade", i:16, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - You have a chance to dodge<br>a melee or ranged attack when walking or running<br>Also grants passive movement speed", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>+","% Movement Speed"],incomplete:1},
+{data:d241, key:"241", code:23, name:"Decoy", i:17, req:[12,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a duplicate of yourself that<br>fires arrows at nearby enemies<br><br>Can summon an additional decoy<br>at base levels 10 and 20", syn_title:"<br>Decoy Receives Bonuses From:<br>", syn_text:"Strafe: +10% Damage per Level<br>Valkyrie: +10% Damage per Level<br>Critical Strike<br>Pierce<br>Penetrate", graytext:"", index:[0,""], text:["Damage: ","-","<br>Life: ","<br>Attack: ","<br>Duration: 30 seconds<br>Mana Cost: ",""]},
+{data:d261, key:"261", code:24, name:"Valkyrie", i:18, req:[17,12,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons a powerful Valkyrie ally<br><br>Can summon an additional Valkyrie<br>at levels 20 and 30", syn_title:"<br>Valkyrie Receives Bonuses From:<br>", syn_text:"Decoy: +25% Physical Damage per Level<br>Pierce: +2% Lightning Pierce per Level<br>Penetrate: +40 Attack Rating per Level<br>Power Strike: +20% Lightning Damage<br>Critical Strike", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Powerstrike Level: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
 {data:d233, key:"233", code:25, name:"Pierce", i:19, req:[11], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your missiles have a chance to<br>pass through enemies that they hit", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent pierce chance",""]},
 
 {data:d321, key:"321", code:26, name:"Cold Arrow", i:20, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows or bolts<br>by adding cold damage and a slowing effect<br>Cold arrows only do half of their regular damage<br><br>1/4 Weapon Damage", syn_title:"<br>Cold Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +22% Cold Damage per Level<br>Ice Arrow: +22% Cold Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Cold Length: 4 seconds<br>Mana Cost: ",""]},
 {data:d312, key:"312", code:27, name:"Magic Arrow", i:21, req:[], reqlvl:1, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical arrow or bolt<br>that does extra damage<br><br>Gains an additional arrow every 5 base levels<br>1/2 Weapon Damage", syn_title:"<br>Magic Arrow Receives Bonuses From:<br>", syn_text:"Inner Sight: +18% Magic Damage per Level<br>Slow Movement: +18% Magic Damage per Level<br>Guided Arrow: +18% Magic Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Magic Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d322, key:"322", code:28, name:"Multiple Shot", i:22, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow<br>or bolt into many", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["To Attack Rating: +","%<br>"," arrows<br>Damage: ","-","<br>Mana Cost: ",""]},
-{data:d323, key:"323", code:29, name:"Fire Arrow", i:23, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows<br>or bolts with fire<br><br>1/2 Weapon Damage", syn_title:"<br>Fire Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +24% Fire Damage per Level<br>Immolation Arrow: +24% Fire Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d331, key:"331", code:30, name:"Ice Arrow", i:24, req:[20,21], reqlvl:12, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrow or bolt<br>to freeze your enemies", syn_title:"<br>Ice Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Cold Damage per Level<br>Cold Arrow: +16% Cold Damage per Level<br>Freezing Arrow: +16% Cold Damage per Level<br>Cold Arrow: +5% Freeze Length per Level<br>Freezing Arrow: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: 3"]},
+{data:d323, key:"323", code:29, name:"Fire Arrow", i:23, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows<br>or bolts with fire<br><br>1/2 Weapon Damage", syn_title:"<br>Fire Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +26% Fire Damage per Level<br>Immolation Arrow: +26% Fire Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
+{data:d331, key:"331", code:30, name:"Ice Arrow", i:24, req:[20,21], reqlvl:12, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrow or bolt<br>to freeze your enemies", syn_title:"<br>Ice Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Cold Damage per Level<br>Cold Arrow: +10% Cold Damage per Level<br>Freezing Arrow: +10% Cold Damage per Level<br>Cold Arrow: +5% Freeze Length per Level<br>Freezing Arrow: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: 3"]},
 {data:d342, key:"342", code:31, name:"Guided Arrow", i:25, req:[22,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances your arrows and bolts<br>to track your target<br>or seek one of its own<br><br>Always Hits<br>1/2 Weapon Damage", syn_title:"<br>Guided Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +1% Magic Damage Conversion per 2 Levels", graytext:"", index:[1,"% Physical Damage to Magic Damage"], text:["Converts ","Damage: +"," percent<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:32, name:"Exploding Arrow", i:26, req:[23,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enchants an arrow or bolt that explodes on<br>contact, damaging all nearby enemies", syn_title:"<br>Exploding Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +18% Fire Damage per Level<br>Immolation Arrow: +18% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d352, key:"352", code:33, name:"Strafe", i:27, req:[25,22,21], reqlvl:24, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow into several<br>that target multiple nearby enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Attacks up to "," targets<br>Damage: +"," percent<br>Mana Cost: 11"]},
+{data:d352, key:"352", code:33, name:"Strafe", i:27, req:[25,22,21], reqlvl:24, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow into several<br>that target multiple nearby enemies", syn_title:"", syn_text:"<br>Strafe Receives Bonuses From:<br>", graytext:"Penetrate: +10% Damage per Level", index:[0,""], text:["To Attack Rating: +"," percent<br>Attacks up to "," targets<br>Damage: +"," percent<br>Mana Cost: 11"]},
 {data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 2 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 0.5 seconds<br>Mana Cost: ",""]}
 ];
+
+/* Season 5 Changelog Notes - Amazon
+  
+  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
+  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
+  # means the change is pending and the correct data is in Skill_Data_PD2.exc
+
+  Closed Beta:
+  
+	~ Reduced multishot penalty from 50% per pierce (ex. 100%>50%>25%>12.5%>etc) to 20% flat reduction per pierce capping at 20% minimum (ex 100%>80%>60%>40%>20%>20%>etc)
+	~ Multiple shot range increased by 8%
+
+	Strafe damage per level increased from 14% to 15%
+	~ Strafe missile speed reduced by 25% (to help prevent some missile desync)
+	~ Strafe missile range increased by 33% (this results in roughly the same total range due to the missile speed loss)
+	Strafe now has penetrate as a synergy at 10% damage per level
+
+	Charged strike now fires 3 bolts at level 1 instead of 2 bolts
+
+	Evade movement speed bonus changed from a diminishing return scaling capping at 45% to gaining an additional 2% per level capping at 65%	// check
+	Evade level 1 movement speed bonus increased from 10% to 15%
+
+	Slow movement movement speed reduction per level increased from 1% to 2%
+	Slow movement missile speed reduction level 1-16 scaling increased from 1% per level to 2%
+	Slow movement radius cap increased from 12 yards to 16
+	Slow movement radius now increases by .6 per level
+	Slow movement base duration increased from 5 seconds to 10 seconds
+	Slow movement now gains .2 seconds duration per level
+
+	Inner sight radius cap increased from 18 yards to 20
+	Inner sight level 1 -1% to enemy attack rating increased to -10%
+
+	~ Decoy missile range increased by 10%
+	~ Decoy ai delay reduced by 20% (will now attempt actions more often)
+	Decoy duration increased from 15 seconds to 30 seconds
+	Decoy synergies increased from 8% to 10%
+	Decoy level 1 mana cost reduced from 10 to 5
+
+	~ Valkyrie run speed increased by 10%
+	Valkyrie base power strike level increased from 1 to 5
+	~ Valkyrie dexterity per level increased from 12 to 20
+	~ Valkyrie strength per level increased from 20 to 25
+	Valkyrie decoy synergy increased from 20 damage per level to 25
+	Valkyrie power strike nova synergy increased from 10% to 20%
+	Valkyrie pierce synergy increased from -1% enemy lightning resist per level to -2% per level
+
+	Fire arrow level 8-16 scaling increased from 6-10 to 7-12 (double tooltip values)
+	Fire arrow level 16-22 scaling increased from 16-20 to 20-24 (double tooltip values)
+	Fire arrow level 22-28 scaling reduced from 36-40 to 35-39 (double tooltip values)
+	Fire arrow level 28+ scaling reduced from 56-60 to 50-54  (double tooltip values)
+	Fire arrow synergies increased from 24% to 26%
+
+	~ Ice arrow is now affected by pierce
+	~ Ice arrow velocity reduced by 12.5%
+	Ice arrow magic arrow synergy reduced from 20% to 16%
+	Ice arrow cold arrow synergy reduced from 14% to 10%
+	Ice arrow freezing arrow synergy reduced from 14% to 10%
+
+	Jab damage per level reduced from 18% to 14%
+
+
+	~ Dodge and evade now have a 4 frame cooldown after mitigating an attack
+*/
