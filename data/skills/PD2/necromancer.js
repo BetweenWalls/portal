@@ -59,7 +59,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= (1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) }
 		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= (1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.10*skills[13].level) }
 		if (skill.name == "Bone Spirit" && elem < 2) {						result *= (1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.10*skills[13].level) }
-		if (skill.name == "Bone Armor" && elem == 0) {						result += (15*skills[17].level + 15*skills[31].level + character.energy) }
+		if (skill.name == "Bone Armor" && elem == 0) {						result += (15*skills[17].level + 15*skills[31].level + 3*character.energy) }
 		if (skill.name == "Bone Wall" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.10*skills[13].level + 0.10*skills[31].level) }
 		if (skill.name == "Bone Prison" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.08*skills[13].level + 0.08*skills[17].level) }
 		
@@ -535,4 +535,6 @@ Fire golem scaling has been rebalanced
 Fire golem scaling has been completely reworked and they now have their own version of holy fire aura
 	~ Fire golems no longer benefit from elemental pierce (they still benefit from +% elemental damage)
 	~ Revives will now receive 1/10 effect from enchant from ¼
+	
+	Bone Armor went from 2 per energy to 3
 */
