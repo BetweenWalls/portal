@@ -273,10 +273,10 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 			["Life (Nightmare)",295,334,372,411,449,488,526,565,603,642,681,719,758,796,835,873,912,950,989,1027,1066,1105,1143,1182,1220,1259,1297,1336,1374,1413,1452,1490,1529,1567,1606,1644,1683,1721,1760,1798,1837,1875,1914,1953,1991,2030,2068,2107,2145,2184,2222,2261,2299,2338,2377,2415,2454,2492,2531,2569,], 
 			["Life (Hell)",468,529,590,651,712,773,834,895,956,1017,1078,1139,1200,1261,1322,1383,1444,1505,1566,1628,1689,1750,1811,1872,1933,1994,2055,2116,2177,2238,2299,2360,2421,2482,2543,2604,2665,2726,2787,2849,2910,2971,3032,3093,3154,3215,3276,3337,3398,3459,3520,3581,3642,3703,3764,3825,3886,3947,4008,4070,], 
 		], 
-		["Fire Damage (min)",20,30,40,50,60,70,80,90,101,112,123,134,145,156,167,178,190,202,214,226,238,250,263,276,289,302,315,328,342,356,370,384,398,412,426,440,454,468,482,496,510,524,538,552,566,580,594,608,622,636,650,664,678,692,706,720,734,748,762,776,], 
-		["Fire Damage (max)",25,37,49,61,73,85,97,109,122,135,148,161,174,187,200,213,227,241,255,269,283,297,312,327,342,357,372,387,403,419,435,451,467,483,499,515,531,547,563,579,595,611,627,643,659,675,691,707,723,739,755,771,787,803,819,835,851,867,883,899,], 
-		["holy fire (min)",25,35,45,55,65,75,85,95,115,135,155,175,195,215,235,255,285,315,345,375,405,435,475,515,555,595,635,675,725,775,825,875,925,975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1725,1775,1825,1875,1925,1975,2025,2075,2125,2175,2225,2275,], 
-		["holy fire (max)",35,47,59,71,83,95,107,119,141,163,185,207,229,251,273,295,327,359,391,423,455,487,529,571,613,655,697,739,791,843,895,947,999,1051,1103,1155,1207,1259,1311,1363,1415,1467,1519,1571,1623,1675,1727,1779,1831,1883,1935,1987,2039,2091,2143,2195,2247,2299,2351,2403,], 
+		["Fire Damage (min)",20,30,40,50,60,70,80,90,102,114,126,138,150,162,174,186,199,212,225,238,251,264,278,292,306,320,334,348,363,378,393,408,423,438,453,468,483,498,513,528,543,558,573,588,603,618,633,648,663,678,693,708,723,738,753,768,783,798,813,828,], 
+		["Fire Damage (max)",25,37,49,61,73,85,97,109,123,137,151,165,179,193,207,221,236,251,266,281,296,311,327,343,359,375,391,407,424,441,458,475,492,509,526,543,560,577,594,611,628,645,662,679,696,713,730,747,764,781,798,815,832,849,866,883,900,917,934,951,], 
+		["holy fire (min)",30,46,62,78,94,110,126,142,164,186,208,230,252,274,296,318,343,368,393,418,443,468,496,524,552,580,608,636,667,698,729,760,791,822,853,884,915,946,977,1008,1039,1070,1101,1132,1163,1194,1225,1256,1287,1318,1349,1380,1411,1442,1473,1504,1535,1566,1597,1628,], 
+		["holy fire (max)",35,53,71,89,107,125,143,161,185,209,233,257,281,305,329,353,380,407,434,461,488,515,545,575,605,635,665,695,728,761,794,827,860,893,926,959,992,1025,1058,1091,1124,1157,1190,1223,1256,1289,1322,1355,1388,1421,1454,1487,1520,1553,1586,1619,1652,1685,1718,1751,], 
 		["Mana Cost",10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,], 
 ]};
 /*[10] Revive			*/ var d163 = {values:[
@@ -301,7 +301,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Mana Cost",3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,], 
 ]};
 /*[13] Bone Armor		*/ var d223 = {values:[
-		["absorbs",20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,], 
+		["absorbs",0,10,20,30,40,50,60,70,81,92,103,114,125,136,147,158,170,182,194,206,218,230,243,256,269,282,295,308,322,336,350,364,378,392,406,420,434,448,462,476,490,504,518,532,546,560,574,588,602,616,630,644,658,672,686,700,714,728,742,756,], 
 		["Mana Cost",11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,], 
 ]};
 /*[14] Corpse Explosion	*/ var d221 = {values:[
@@ -313,8 +313,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Mana Cost",5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,], 
 ]};
 /*[15] Desecrate		*/ var d231 = {values:[
-		["Poison Damage (min)",14,18,23,28,32,37,42,46,60,75,89,103,117,131,145,159,215,271,328,384,440,496,595,693,792,890,989,1088,1186,1284,1383,1481,1580,1678,1777,1875,1974,2072,2171,2269,2368,2466,2565,2663,2762,2860,2959,3057,3156,3254,3353,3451,3550,3648,3747,3845,3944,4042,4141,4239,], 
-		["Poison Damage (max)",18,23,28,32,37,42,46,51,65,79,93,107,121,135,150,164,220,276,332,389,445,501,600,698,796,895,993,1092,1192,1289,1388,1486,1584,1683,1781,1880,1978,2077,2175,2274,2372,2471,2569,2668,2766,2865,2963,3062,3160,3259,3357,3456,3554,3653,3751,3850,3948,4047,4145,4244,], 
+		["Poison Damage (min)",14,20,26,32,38,44,50,56,72,89,105,122,138,155,171,188,244,300,357,413,469,525,624,722,821,919,1018,1117,1215,1313,1412,1510,1609,1707,1806,1904,2003,2101,2200,2298,2397,2495,2594,2692,2791,2889,2988,3086,3185,3283,3382,3480,3579,3677,3776,3874,3973,4071,4170,4268,], 
+		["Poison Damage (max)",18,24,30,36,42,48,54,60,76,93,109,126,142,159,175,192,248,304,360,417,473,529,628,726,824,923,1021,1120,1220,1317,1416,1514,1612,1711,1809,1908,2006,2105,2203,2302,2400,2499,2597,2696,2794,2893,2991,3090,3188,3287,3385,3484,3582,3681,3779,3878,3976,4075,4173,4272,], 
 		["Mana Cost",12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,], 
 ]};
 /*[16] Bone Spear		*/ var d242 = {values:[
@@ -336,8 +336,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Mana Cost",12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,], 
 ]};
 /*[19] Poison Nova		*/ var d261 = {values:[
-		["Poison Damage (min)",50,68,87,106,125,143,162,181,206,231,256,281,306,331,356,381,409,437,465,494,522,550,581,612,644,675,706,737,768,800,831,862,893,924,956,987,1018,1049,1080,1112,1143,1174,1205,1236,1268,1299,1330,1361,1392,1424,1455,1486,1517,1548,1580,1611,1642,1673,1704,1736,], 
-		["Poison Damage (max)",90,109,128,146,165,184,203,221,246,271,296,321,346,371,396,421,450,478,506,534,562,590,621,653,684,715,747,778,809,840,872,903,934,965,997,1028,1059,1090,1122,1153,1184,1215,1247,1278,1309,1340,1372,1403,1434,1465,1497,1528,1559,1590,1622,1653,1684,1715,1747,1778,], 
+		["Poison Damage (min)",50,71,92,113,134,155,176,197,222,247,272,297,322,347,372,397,425,453,481,510,538,566,597,628,660,691,722,753,784,816,847,878,909,940,972,1003,1034,1065,1096,1128,1159,1190,1221,1252,1284,1315,1346,1377,1408,1440,1471,1502,1533,1564,1596,1627,1658,1689,1720,1752,], 
+		["Poison Damage (max)",90,111,132,153,174,195,216,237,262,287,312,337,362,387,412,437,466,494,522,550,578,606,637,669,700,731,763,794,825,856,888,919,950,981,1013,1044,1075,1106,1138,1169,1200,1231,1263,1294,1325,1356,1388,1419,1450,1481,1513,1544,1575,1606,1638,1669,1700,1731,1763,1794,], 
 ]};
 /*[31] Bone Prison		*/ var d253 = {values:[
 		["Life", 
@@ -362,8 +362,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 /*[22] Dark Pact		*/ var d321 = {values:[
 		["Radius (yards)",], 
-		["Magic Damage (min)",3,5,7,9,11,13,15,17,20,23,26,29,32,35,38,41,46,51,56,61,66,71,78,85,92,99,106,113,121,129,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,], 
-		["Magic Damage (max)",4,7,10,13,16,19,22,25,30,35,40,45,50,55,60,65,72,79,86,93,100,107,116,125,134,143,152,161,171,181,191,201,211,221,231,241,251,261,271,281,291,301,311,321,331,341,351,361,371,381,391,401,411,421,431,441,451,461,471,481,], 
+		["Magic Damage (min)",3,5,7,9,11,13,15,17,20,23,26,29,32,35,38,41,45,49,53,57,61,65,71,77,83,89,95,101,110,119,128,137,146,155,164,173,182,191,200,209,218,227,236,245,254,263,272,281,290,299,308,317,326,335,344,353,362,371,380,389,], 
+		["Magic Damage (max)",4,7,10,13,16,19,22,25,30,35,40,45,50,55,60,65,71,77,83,89,95,101,109,117,125,133,141,149,160,171,182,193,204,215,226,237,248,259,270,281,292,303,314,325,336,347,358,369,380,391,402,413,424,435,446,457,468,479,490,501,], 
 		["Mana Cost",4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,], 
 ]};
 /*[23] Weaken			*/ var d342 = {values:[
@@ -434,7 +434,7 @@ var skills_pd2_necromancer = [
 {data:d212, key:"212", code:78, name:"Teeth", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fires a barrage of summoned barbed teeth", syn_title:"<br>Teeth Receives Bonuses From:<br>", syn_text:"Bone Armor: +25% Magic Damage per Level<br>Bone Spear: +25% Magic Damage per Level<br>Bone Spirit: +25% Magic Damage per Level", graytext:"", index:[0,""], text:[""," Teeth<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d223, key:"223", code:79, name:"Bone Armor", i:13, req:[12], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates an orbiting shield of bone<br>that absorbs melee damage", syn_title:"<br>Bone Armor Receives Bonuses From:<br>", syn_text:"Bone Wall: +15 Damage Absorbed per Level<br>Bone Prison: +15 Damage Absorbed per Level", graytext:"", index:[0,""], text:["Absorbs "," damage<br>Mana Cost: ",""]},
 {data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +8% Damage per Level<br>Desecrate: +8% Damage per Level<br>Revive: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
-{data:d231, key:"231", code:81, name:"Desecrate", i:15, req:[14,11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons 5 corpses and releases a deadly cloud of poison", syn_title:"<br>Desecrate Receives Bonuses From:<br>", syn_text:"Poison Strike: +20% Poison Damage per Level<br>Poison Nova: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
+{data:d231, key:"231", code:81, name:"Desecrate", i:15, req:[14,11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons 5 corpses and releases a deadly cloud of poison", syn_title:"<br>Desecrate Receives Bonuses From:<br>", syn_text:"Poison Strike: +20% Poison Damage per Level<br>Poison Nova: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""],incomplete:1},
 {data:d242, key:"242", code:82, name:"Bone Spear", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons deadly spikes of bone to impale your enemies<br><br>Fires an additional bone spear at levels 15 and 25", syn_title:"<br>Bone Spear Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spirit: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Bone Spears: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d233, key:"233", code:83, name:"Bone Wall", i:17, req:[13,12], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates an impassable barrier<br>of bone and debris", syn_title:"<br>Bone Wall Receives Bonuses From:<br>", syn_text:"Bone Armor: +10% Life per Level<br>Bone Prison: +10% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: 17",""]},
 {data:d262, key:"262", code:84, name:"Bone Spirit", i:18, req:[16,12], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Releases a spirit of the restless undead that<br>tracks its target or finds one of its own", syn_title:"<br>Bone Spirit Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spear: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
@@ -513,7 +513,7 @@ var skills_pd2_necromancer = [
 	Weaken now reduces the targets defense by 10% + 2% per level (caps at -60% target defense)
 
 	Corpse explosion synergies increased from 7% to 8%
-Fire golem scaling has been rebalanced 
+	Fire golem scaling has been rebalanced 
 	~ Fire golem no longer benefit from -% to enemy fire resistance
 	Bloodwarp minimum life cost will now cap at level 30 when the cooldown can no longer be reduced
 
@@ -532,9 +532,27 @@ Fire golem scaling has been rebalanced
 	Dark pact level 1-8 scaling reduced from 3-4 to 2-3
 	Dark pact level 8-16 scaling reduced from 4-6 to 3-5
 
-Fire golem scaling has been completely reworked and they now have their own version of holy fire aura
+	Fire golem scaling has been completely reworked and they now have their own version of holy fire aura
 	~ Fire golems no longer benefit from elemental pierce (they still benefit from +% elemental damage)
 	~ Revives will now receive 1/10 effect from enchant from ¼
 	
 	Bone Armor went from 2 per energy to 3
+
+	Bone armor level 1 value reduced from 95 to 75
+
+	Bone armor level 8-16 scaling increased from 10 to 11
+	Bone armor level 16-22 scaling increased from 10 to 12
+	Bone armor level 22-28 scaling increased from 10 to 13
+	Bone armor level 28+ scaling increased from 10 to 14
+
+	Dark pact level 16-22 scaling reduced from 5-7 to 4-6
+	Dark pact level 22-28 scaling reduced from 7-9 to 6-8
+	Dark pact level 28+ scaling increased from 8-10 to 9-11
+
+	Poison nova level 1-8 scaling increased from 6-6 to 7-7
+
+	Desecrate level 1-8 scaling increased from 3-3 to 4-4
+	Desecrate level 8-16 scaling increased from 12-12 to 14-14
+	~Desecrate poison cloud hitbox increased by 50%
+
 */
