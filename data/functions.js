@@ -1611,7 +1611,12 @@ function setEffectData(origin, name, num, other) {
 	var lvl = effects[id].info.index
 	if (origin == "aura") { data = getAuraData(name,num,other) }
 	else if (origin == "skill") { data = character.getBuffData(skills[num]); lvl = skills[num].level + skills[num].extra_levels; }
-	else if (origin == "oskill") { var skill = skills_all[oskills_info["oskill_"+id].native_class][num]; data = character_any.getBuffData(skill); lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level); }
+	else if (origin == "oskill") {
+		var skill = skills_all[oskills_info["oskill_"+id].native_class][num]; data = character_any.getBuffData(skill); lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
+		if (id == "Frigerate" || id == "Shiver_Armor" || id == "Cold_Mastery") { lvl += character.skills_cold_all }
+		if (id == "Fire_Mastery" || id == "Flame_Dash" || id == "Fire_Ball" || id == "Fire_Wall" || id == "Meteor" || id == "Hydra") { lvl += character.skills_fire_all }
+		if (id == "Desecrate") { lvl += character.skills_poison_all }
+	}
 	else if (origin == "misc") { data = getMiscData(name,num); }
 	else if (origin == "cskill") { data = getCSkillData(name,num,other) }
 	else if (origin == "ctcskill") { data = getCTCSkillData(name,num,other) }

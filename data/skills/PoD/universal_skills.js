@@ -73,7 +73,9 @@ var character_any = {
 	// ---------------------------------
 	getBuffData : function(skill) {
 		var id = skill.name.split(' ').join('_');
-		var lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
+		var lvl = character["oskill_"+skill.name.split(" ").join("_")] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);	// TODO: restrict level calculations to setEffectData()?
+		if (id == "Frigerate" || id == "Shiver_Armor" || id == "Cold_Mastery") { lvl += character.skills_cold_all }
+		if (id == "Fire_Mastery") { lvl += character.skills_fire_all }
 		var result = {};
 		var lycan_lvl = ~~character["oskill_Lycanthropy"] + character.all_skills + Math.ceil(character.all_skills_per_level*character.level);
 		var lycan_damage = ~~(skills_all["druid"][12].data.values[0][lycan_lvl]);
