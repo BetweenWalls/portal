@@ -27,9 +27,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		if (skill.name == "Bash" && elem == 0) { 			result += (10*skills[19].level) }
 		if (skill.name == "Bash" && elem == 1) { 			result += (12*skills[21].level + 12*skills[19].level) }
 		if (skill.name == "Frenzy" && elem == 0) { 			result += (14*skills[28].level + 14*skills[21].level) }
-		if (skill.name == "Stun" && elem == 0) { 			result = 8*skills[24].level }
-		if (skill.name == "Stun" && elem == 1) { 			result += (5*skills[19].level) }
-		if (skill.name == "Stun" && elem == 2) { 			result *= (1 + 0.05*skills[8].level) }
+		if (skill.name == "Stun" && elem == 2) { 			result += (10*skills[19].level) }
 		if (skill.name == "Double Swing" && elem == 0) { 	result += (16*skills[18].level + 16*skills[21].level) }
 		if (skill.name == "Leap" && elem == 0) { 			result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Concentrate" && elem == 0) { 	result = 30 + skill.level*2 + 2*skills[24].level }
@@ -112,7 +110,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Defense +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 ]};
 /*[ 4] Find Item		*/ var d133 = {values:[
-		["% Chance",7,13,18,22,25,27,29,31,33,34,35,36,37,38,39,40,40,41,41,42,42,43,43,44,44,44,45,45,45,45,46,46,46,46,46,47,47,47,47,47,47,48,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,50,], 
+		["% Chance",7,13,18,22,25,27,29,31,33,34,35,36,37,38,39,40,40,41,41,42,42,43,43,44,44,44,45,45,45,45,46,46,46,46,46,47,47,47,47,47,47,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,50,], 
 ]};
 /*[ 5] Battle Cry		*/ var d162 = {values:[
 		["Duration (seconds)",5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,], 
@@ -170,7 +168,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Walk/Run Speed +%",13,18,22,25,28,30,32,33,35,36,37,38,39,40,40,41,41,42,42,43,43,43,44,44,44,45,45,45,46,46,46,46,46,46,46,47,47,47,47,47,47,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,50,], 
 ]};
 /*[17]Natural Resistance*/ var d263 = {values:[
-		["Resistances +%",11,20,27,33,37,41,44,46,49,51,53,54,56,57,58,60,60,61,62,63,63,64,65,66,66,66,66,67,67,67,67,68,68,68,68,69,69,69,69,70,70,70,70,71,71,71,71,72,72,72,72,73,73,73,73,74,74,74,74,75,], 
+		["Resistances +%",11,20,27,33,37,41,44,46,49,51,53,54,56,57,58,60,60,61,62,63,63,64,65,66,66,66,67,67,68,68,69,69,69,69,69,70,70,71,71,71,71,72,72,72,72,72,72,72,73,73,73,73,73,74,74,74,74,74,74,75,], 
 ]};
 
 /*[18] Frenzy			*/ var d312 = {values:[
@@ -196,7 +194,8 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Physical Damage Resistance %",-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,], 
 ]};
 /*[21] Stun				*/ var d321 = {values:[
-		["Damage",], 
+		["Damage (Min)",2,3,4,5,6,7,8,9,11,13,15,17,19,21,23,25,28,31,34,37,40,43,47,51,55,59,63,67,72,77,82,87,92,97,102,107,112,117,122,127,132,137,142,147,152,157,162,167,172,177,182,187,192,197,202,207,212,217,222,227,], 
+		["Damage (Max)",4,6,8,10,12,14,16,18,21,24,27,30,33,36,39,42,46,50,54,58,62,66,71,76,81,86,91,96,102,108,114,120,126,132,138,144,150,156,162,168,174,180,186,192,198,204,210,216,222,228,234,240,246,252,258,264,270,276,282,288,], 
 		["Attack %",55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,940,], 
 		["Duration (seconds)",1,1.1,1.3,1.4,1.6,1.8,1.9,2.1,2.2,2.4,2.6,2.7,2.9,3,3.2,3.4,3.4,3.5,3.6,3.7,3.8,3.9,4,4,4.1,4.2,4.3,4.4,4.4,4.5,4.6,4.7,4.8,4.8,4.9,5,5.1,5.2,5.2,5.3,5.4,5.5,5.6,5.6,5.7,5.8,5.9,6,6,6.1,6.2,6.3,6.4,6.4,6.5,6.6,6.7,6.8,6.8,6.9,], 
 ]};
@@ -239,7 +238,7 @@ var skills_pd2_barbarian = [
 {data:d113, key:"113", code:129, name:"Find Potion", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>for a chance to find a potion", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 1",""]},
 {data:d142, key:"142", code:130, name:"Taunt", i:2, req:[8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Enrages nearby monsters into relentlessly attacking", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Duration Increases with Base Levels<br>Duration: ","Target's Damage: "," percent<br>Target's Attack: "," percent<br>Mana Cost: 3",""]},
 {data:d121, key:"121", code:131, name:"Shout", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Warns of impending danger and improves the defense<br>rating of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Defense: +"," percent<br>Duration: 300 seconds<br>Mana Cost: 6",""]},
-{data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Find Potion: +1% Chance per Level", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""],incomplete:1},
+{data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Find Potion: +1% Chance per Level", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""]},
 {data:d162, key:"162", code:133, name:"Battle Cry", i:5, req:[6,3,2,8,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Fearsome cry that decreases<br>enemies' defense rating and physical damage resistance", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense: "," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 5",""]},
 {data:d151, key:"151", code:134, name:"Battle Orders", i:6, req:[3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Improves the maximum mana and life<br>of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 300 seconds<br>Max Life: +","<br>Max Mana: +","<br>Mana Cost: 7",""]},
 {data:d153, key:"153", code:135, name:"Grim Ward", i:7, req:[2,8,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to create a frightening totem<br>that increases damage and attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["+"," Attack Rating<br>Damage: +"," percent<br>Duration: 40 seconds<br>Radius: "," yards<br>Mana Cost: 4",""]},
@@ -253,13 +252,13 @@ var skills_pd2_barbarian = [
 {data:d231, key:"231", code:142, name:"Combat Reflexes", i:14, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases stamina, hit recovery, and life", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Hit Recovery Rate by 2% per Base Level<br>Faster Hit Recovery: +","Max Life: +"," life<br>Stamina Bonus: +"," percent",""]},
 {data:d243, key:"243", code:143, name:"Iron Skin", i:15, req:[], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves defense rating", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Physical Damage Reduction<br>by 1% Every 2 Base Levels<br>Physical Damage Reduction: ","+"," percent",""]},
 {data:d251, key:"251", code:144, name:"Increased Speed", i:16, req:[14], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases walk and run speed", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Attack Speed by 2% per Base Level<br>Attack Speed: +","Walk/Run Speed: +"," percent",""]},
-{data:d263, key:"263", code:145, name:"Natural Resistance", i:17, req:[15], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases natural resistances<br>to elemental and poison damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Resistances: +"," percent",""],incomplete:1},
+{data:d263, key:"263", code:145, name:"Natural Resistance", i:17, req:[15], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases natural resistances<br>to elemental and poison damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Resistances: +"," percent",""]},
 
 {data:d312, key:"323", code:146, name:"Frenzy", i:18, req:[28], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:1,spell:0}, description:"Allows you to swing two weapons at once<br>Each successful attack increases your overall speed<br>Requires you to equip two weapons<br><br>Mana Cost: 1", syn_title:"<br>Frenzy Receives Bonuses From:<br>", syn_text:"Double Swing: +14% Damage per Level<br>Stun: +14% Damage per Level", graytext:"", index:[0,""], text:["Duration: 15 seconds<br>Damage: +"," percent<br>Attack: +"," percent<br>Attack Speed: +","-"," percent<br>Walk/Run Speed: +","-"," percent<br>Increased Melee Splash Radius: ","-"," percent",""]},
 {data:d332, key:"332", code:147, name:"Concentrate", i:19, req:[28], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Attack that is not interruptible and<br>improves attack and defense rating and<br>converts physical damage to magic damage", syn_title:"<br>Concentrate Receives Bonuses From:<br>", syn_text:"Bash: +2% Magic Damage per Level<br>Bash: +12% Damage per Level<br>Battle Command: +12% Damage per Level", graytext:"", index:[1," percent"], text:["Converts 2% of Physical Damage to Magic Damage per Base Level<br>Magic Damage: +","Defense Bonus: +"," percent<br>Attack: +"," percent<br>Damage: +"," percent<br>Mana Cost: 2",""]},
 {data:d352, key:"352", code:148, name:"Berserk", i:20, req:[19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:1}, description:"A powerful but reckless attack that<br>increases damage and attack rating but decreases<br>defense rating and physical damage resistance<br>Requires you to equip two weapons<br><br>Duration: 0.5 seconds", syn_title:"<br>Berserk Receives Bonuses From:<br>", syn_text:"Taunt: +10% Damage per Level<br>Combat Reflexes: +10% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Physical Pierce: +"," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 4"]},
-{data:d321, key:"321", code:149, name:"Stun", i:21, req:[24], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Stuns enemies in an area for a<br>short time dealing bonus damage<br>and increases your attack rating<br><br>Deals 1/4 Weapon Damage", syn_title:"<br>Stun Receives Bonuses From:<br>", syn_text:"Bash: +8% Damage per Level<br>Concentrate: +5% Attack Rating per Level<br>War Cry +5% Duration per Level", graytext:"", index:[1," percent"], text:["Damage: +","Attack: +"," percent<br>Duration: "," seconds<br>Mana Cost: 2",""]},
-{data:d331, key:"331", code:150, name:"Leap", i:22, req:[21,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Leaps away from danger<br>or into the fray", syn_title:"", syn_text:"", graytext:"", index:[1," yards"], text:["Knockback Radius: ","Leap Distance: "," yards<br>Mana Cost: ",""],incomplete:1},
+{data:d321, key:"321", code:149, name:"Stun", i:21, req:[24], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Stuns enemies in an area for a<br>short time dealing bonus damage<br>and increases your attack rating<br><br>Deals 1/4 Weapon Damage", syn_title:"<br>Stun Receives Bonuses From:<br>", syn_text:"Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Attack: +"," percent<br>Duration: "," seconds<br>Mana Cost: 2",""]},
+{data:d331, key:"331", code:150, name:"Leap", i:22, req:[21,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Leaps away from danger<br>or into the fray", syn_title:"", syn_text:"", graytext:"", index:[1," yards"], text:["Knockback Radius: ","Leap Distance: "," yards<br>Mana Cost: ",""]},
 {data:d333, key:"333", code:151, name:"Double Throw", i:23, req:[28,18], reqlvl:12, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:2,spell:0}, description:"Allows you to throw two different<br>throwing weapons at the same time<br>Weapons bounce to nearby enemies", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Double Swing: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>"," bounces<br>To Attack Rating: +"," percent<br>Mana Cost: ",""]},
 {data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +12% Damage per Level<br>Concentrate: +12% Damage per Level<br>Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
 {data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +8% Damage per Level<br>Bash: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
@@ -268,74 +267,6 @@ var skills_pd2_barbarian = [
 {data:d323, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapons are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +16% Damage per Level<br>Stun: +16% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
 ];
 
-/* Season 5 Changelog Notes - Barbarian
+/* Changelog Notes - Barbarian
 
-  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
-  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
-  # means the change is pending and the correct data is in Skill_Data_PD2.exc
-
-  Closed Beta:
-  
-	General mastery now applies to daggers
-
-	Battle cry duration reduced from 12 seconds + 0.4 seconds per level to 5 seconds at all levels
-	Battle cry now caps at -30% to enemy defense from -65%
-
-	Combat reflexes life per level reduced from 20 to 15
-	Combat reflexes life per level now scales from soft points instead of hard points
-
-	Bash berserk synergy has been replaced with concentrate
-
-	Taunt duration now increases by .25 seconds every base level			// changes between level 0 and level 1
-
-	Increased speed now gives 2% increased attack speed per base level
-
-	Berserk now caps at 30% physical pierce
-	Berserk physical pierce per level reduced from 2% to 1%
-
-	Double swing synergies increased from 12% to 16%
-	Double swing damage increased from 18% to 20%
-
-	Stun level 1-16 duration scaling increased by 100%
-	Stun now deals ¼ weapon damage from 100%
-	**Stun Duration no longer capped at 3 seconds**
-
-	Shouts defense per level increased from 8% to 10%
-
-	Find item now has find potion as a synergy at 1% per level
-	Find items 5-60% find item diminishing returns scaling reduced to 0-50%	...high levels may not be accurate, test in s5 sp
-
-	Natural resistance 0-80% all resistance diminishing return scaling reduced to 0-75%
-
-	Concentrates damage per level increased from 14% to 16%
-	Concentrates bash synergy increased from 8% to 12%
-
-	Double throw damage per level increased from 6% to 8%
-	Double throw synergy damage per level increased from 5% to 6%
-
-	Frenzy synergies increased from 10% to 14%
-	Frenzy damage per level increased from 16% to 18%
-	Frenzy level 1 damage bonus increased from 14% to 20%
-
-	~ Whirlwind no longer attempts to do a normal attack when out of mana
-	~ Whirlwind no longer attacks in place during a namelock and will now whirlwind back and forth through the monster
-	Whirlwind damage per level reduced from 5% to 4%
-	Whirlwind base enhanced damage bonus reduced from 35% to 30%
-	~ Whirlwind now attacks 20% slower when dual wielding (6 frames during dual wielding compared to 5 when using a two handed weapon)
-
-	Leap level 1 mana cost reduced from 20 to 5
-	Leap mana cost per level reduced from **1** to .5 *(mana cost didn't scale before?)*
-	Leap range increased from a diminishing return scaling of 10-30 to 20-40	...test in s5 sp
-	~ leap travel speed increased by 33%
-
-
-	Combat reflexes life per level reduced from 15 to 10
-	Combat reflexes no longer provides 4% faster hit recovery at level 1
-	Combat reflexes +1% faster hit recovery per level has been changed to +2% faster hit recovery per base point
-	Battle cry is now properly capping at -30% target defense
-	~ Stun is no longer usable in wolf form
-
-
-	Double Swing level 1 damage changed from 18 to 20%
-	
 */

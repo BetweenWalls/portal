@@ -50,7 +50,7 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 		if (skill.name == "Rabies" && elem > 0 && elem < 3) {					 result *= ((1 + (0.20*skills[22].level + 0.20*skills[27].level)) * (1+character.pDamage/100)) }
 
 		if (skill.name == "Raven" && elem < 3 && elem > 0) { 			result *= (1 + (0.20*skills[5].level + 0.20*skills[6].level + character.summon_damage/100)) }
-		if (skill.name == "Raven" && elem < 5 && elem > 2) { 			result *= (1 + 0.21*skills[3].level + 0.01*((character.energy + character.all_attributes)*(1+character.max_energy/100)) + character.summon_damage/100) }
+		if (skill.name == "Raven" && elem < 5 && elem > 2) { 			result *= ((1 + 0.21*skills[3].level + 0.01*((character.energy + character.all_attributes)*(1+character.max_energy/100)) + character.summon_damage/100) * (1+character.cDamage/100)) }
 		if (skill.name == "Summon Spirit Wolf" && elem == 0) { 			result = Math.min(7, skill.level) }
 		if (skill.name == "Summon Spirit Wolf" && elem == 1) { if (skills[27].level > 0) { result = ((1 + (skills[27].data.values[6][skills[27].level+skills[27].extra_levels] / 100)) * skill.data.values[elem][character.difficulty]) } else { result = skill.data.values[elem][character.difficulty] } }
 		if (skill.name == "Summon Spirit Wolf" && elem < 4 && elem > 1) { if (skills[30].level > 0) { result *= (1 + (skills[30].data.values[5][skills[30].level+skills[30].extra_levels] / 100) + character.summon_damage/100) } else { result *=  (1+character.summon_damage/100) } }
@@ -189,7 +189,7 @@ var character_druid = {class_name:"Druid", strength:15, dexterity:20, vitality:2
 	setSkillAmounts : function(s) {
 		skills[s].extra_levels += character.skills_druid
 		if (s == 0 || s == 1 || s == 2 || s == 4 || s == 7 || s == 9 || s == 17) { skills[s].extra_levels += character.skills_fire_all }
-		if (s == 3 || s == 10) { skills[s].extra_levels += character.skills_cold_all }
+		if (s == 3 || s == 10 || s == 21) { skills[s].extra_levels += character.skills_cold_all }
 		if (s == 16 || s == 22) { skills[s].extra_levels += character.skills_poison_all }
 		if (s < 11) {
 			skills[s].extra_levels += character.skills_elemental

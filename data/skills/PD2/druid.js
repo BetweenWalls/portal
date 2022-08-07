@@ -38,7 +38,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		
 		if (skill.name == "Maul" && elem == 0) {						result = 1.2 - 0.2*Math.min(5,Math.max(0,skill.level-1)) }
 		if (skill.name == "Hunger" && elem == 0) {						result = 3 + Math.floor(skill.level/4) }
-		if (skill.name == "Feral Rage" && elem == 4) {					result += (10*skills[20].level) }
+		if (skill.name == "Feral Rage" && elem == 4) {					result += (8*skills[20].level) }
 		if (skill.name == "Shock Wave" && elem == 0) {					result = 4 + Math.floor(lvl/5) }
 		if (skill.name == "Shock Wave" && elem > 0 && elem < 3) {		result *= (1 + 0.18*skills[13].level + 0.18*skills[6].level + 0.18*skills[8].level) }
 		if (skill.name == "Rabies" && elem > 0 && elem < 3) {			result *= ((1 + 0.17*skills[22].level + 0.17*skills[14].level + 0.17*skills[12].level) * (1+character.pDamage/100)) }
@@ -56,7 +56,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Heart of Wolverine" && elem == 0) {			result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Spirit of Barbs" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Oak Sage" && elem == 0) {					result = skill.data.values[elem][character.difficulty][lvl] }
-		if (skill.name == "Oak Sage" && elem == 1) {					result += (12*skills[25].level + 12*skills[28].level) }
+		if (skill.name == "Oak Sage" && elem == 1) {					result = 12 + (12*skills[25].level + 12*skills[28].level) }
 		if (skill.name == "Raven" && elem < 4) {						result *= (1 + 0.12*skills[24].level + 0.12*skills[27].level + 0.12*skills[30].level) }
 		if (skill.name == "Raven" && elem < 2) {						result *= (1+character.cDamage/100) }
 		if (skill.name == "Summon Spirit Wolf" && elem == 0) {			result = skill.data.values[elem][character.difficulty][lvl] }
@@ -314,7 +314,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 			["Life (Nightmare)",420,420,424,424,428,432,432,436,441,441,445,449,449,453,458,458,462,466,466,470,474,474,478,482,482,486,491,491,495,499,499,503,508,508,512,516,516,520,525,525,529,533,533,537,542,542,546,550,550,554,559,559,563,567,567,571,571,575,579,579,], 
 			["Life (Hell)",1240,1240,1252,1252,1264,1277,1277,1289,1302,1302,1314,1326,1326,1339,1351,1351,1364,1376,1376,1388,1401,1401,1413,1426,1426,1438,1450,1450,1463,1475,1475,1488,1500,1500,1512,1525,1525,1537,1550,1550,1562,1574,1574,1587,1599,1599,1612,1624,1624,1636,1649,1649,1661,1661,1674,1686,1686,1698,1711,1711,], 
 		], 
-		["Heals",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,], 
+		["Heals",], 
 		["Life granted",50,62,74,86,98,110,122,134,148,162,176,190,204,218,232,246,262,278,294,310,326,342,360,378,396,414,432,450,470,490,510,530,550,570,590,610,630,650,670,690,710,730,750,770,790,810,830,850,870,890,910,930,950,970,990,1010,1030,1050,1070,1090,], 
 		["Radius X Yards",20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,93.3,94.6,96,97.3,98.6,], 
 		["Mana Cost",15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,], 
@@ -371,7 +371,7 @@ var skills_pd2_druid = [
 {data:d143, key:"143", code:222, name:"Gust", i:2, req:[5,3], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination chilling<br>enemies upon arrival for 0.5 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: "," seconds<br>Mana Cost: 20"]},
 {data:d113, key:"113", code:223, name:"Arctic Blast", i:3, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Blast a continous jet of ice<br>to burn your enemies with frost<br><br>Minimum Mana Required to Cast: 4", syn_title:"<br>Arctic Blast Receives Bonuses From:<br>", syn_text:"Hurricane: +24% Cold Damage per Level<br>Tornado: +24% Cold Damage per Level<br>Twister: +24% Cold Damage per Level<br>Cyclone Armor: +24% Cold Damage per Level", graytext:"", index:[0,""], text:["Average Cold Damage: ","-"," per second<br>Cold Length: "," seconds<br>Range: "," yards<br>Mana Cost: "," per second",""]},
 {data:d131, key:"131", code:224, name:"Fissure", i:4, req:[1,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Open volcanic vents below your enemies,<br>burning them to a crisp<br><br>Mana Cost: 10", syn_title:"<br>Fissure Receives Bonuses From:<br>", syn_text:"Firestorm: +10% Fire Damage per Level<br>Molten Boulder: +10% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Duration: 2.2 seconds",""]},
-{data:d123, key:"123", code:225, name:"Cyclone Armor", i:5, req:[3], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Shield yourself from damage caused by<br>fire, cold, and lightning", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Absorbs "," damage<br>Mana Cost: ",""]},
+{data:d123, key:"123", code:225, name:"Cyclone Armor", i:5, req:[3], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Shield yourself from damage caused by<br>fire, cold, and lightning", syn_title:"Cyclone Armor Receives Bonuses From:", syn_text:"Gains +3 Additional Absorb per Energy", graytext:"", index:[0,""], text:["Absorbs "," damage<br>Mana Cost: ",""]},
 {data:d132, key:"132", code:226, name:"Twister", i:6, req:[5,3], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Release several small whirlwinds that<br>cut a path through your enemies", syn_title:"<br>Twister Receives Bonuses From:<br>", syn_text:"Hurricane: +22% Damage per Level<br>Tornado: +22% Damage per Level<br>Arctic Blast: +22% Damage per Level", graytext:"", index:[1,""], text:["Mana Cost: ","Twisters: ","<br>Damage: ","-",""]},
 {data:d151, key:"151", code:227, name:"Volcano", i:7, req:[4,1,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon forth a volcano to rain death<br>and destruction over your enemies<br><br>Mana Cost: 12", syn_title:"<br>Volcano Receives Bonuses From:<br>", syn_text:"Molten Boulder: +10% Damage per Level<br>Fissure: +10% Damage per Level<br>Armageddon: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-",""]},
 {data:d152, key:"152", code:228, name:"Tornado", i:8, req:[6,5,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Create a funnel of wind and debris<br>to blast your enemies", syn_title:"<br>Tornado Receives Bonuses From:<br>", syn_text:"Arctic Blast: +14% Damage per Level<br>Twister: +14% Damage per Level<br>Hurricane: +14% Damage per Level", graytext:"", index:[1,""], text:["Mana Cost: ","Damage: ","-",""]},
@@ -394,136 +394,13 @@ var skills_pd2_druid = [
 {data:d321, key:"321", code:243, name:"Heart of Wolverine", i:23, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that adds<br>to the damage and attack rating<br>of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Attack: +"," percent<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d332, key:"332", code:244, name:"Summon Spirit Wolf", i:24, req:[23,21], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf with teleporting ability<br>to fight by your side", syn_title:"<br>Summon Spirit Wolf Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Summon Grizzly: +6% Damage per Level<br>Werewolf: +6% Damage per Level<br>", graytext:"", index:[1,""], text:["Mana Cost: 15<br>Life: ","Damage: ","-","<br>Wolves: ","<br>Attack: +"," percent<br>Defense: +"," percent"]},
 {data:d333, key:"333", code:245, name:"Carrion Vine", i:25, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that eats corpses<br>and replenishes life for you and your party", syn_title:"<br>Carrion Vine Receives Bonuses From:<br>", syn_text:"Oak Sage: +2-4 Life Healed per Level<br>Solar Creeper: +2-4 Life Healed per Level", graytext:"", index:[0,""], text:["Life: ","<br>Heals: ","-","<br>Mana Cost: 10"]},
-{data:d361, key:"361", code:246, name:"Oak Sage", i:26, req:[29,23], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that increases life and<br>grants health regeneration for you and your party", syn_title:"<br>Oak Sage Receives Bonuses From:<br>", syn_text:"Carrion Vine: +12 Life Healed per Level<br>Solar Creeper: +12 Life Healed per Level", graytext:"", index:[0,""], text:["Life: ","<br>Heals: +","<br>Max Life: "," life<br>Radius: "," yards<br>Mana Cost: ",""]},
+{data:d361, key:"361", code:246, name:"Oak Sage", i:26, req:[29,23], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that increases life and<br>grants health regeneration for you and your party", syn_title:"<br>Oak Sage Receives Bonuses From:<br>", syn_text:"Carrion Vine: +12 Health Regeneration per Level<br>Solar Creeper: +12 Health Regeneration per Level", graytext:"", index:[0,""], text:["Life: ","<br>Heals: +","<br>Max Life: "," life<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:247, name:"Summon Dire Wolf", i:27, req:[23,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf that becomes enraged,<br>eating corpses to increase damage<br>it does to enemies", syn_title:"<br>Summon Dire Wolf Receives Bonuses From:<br>", syn_text:"Raven: +4% Damage per Level<br>Summon Spirit Wolf: +4% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Grizzly: +4% Damage per Level<br>Werewolf: +4% Damage per Level<br>", graytext:"", index:[2," percent"], text:["Mana Cost: 20<br>Attack: +"," percent<br>Defense: +","Life: ","<br>Damage: ","-","<br>Wolves: ","<br>Life: +"," percent"]},
 {data:d353, key:"353", code:248, name:"Solar Creeper", i:28, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that eats corpses<br>and recovers mana for you and your party", syn_title:"<br>Solar Creeper Receives Bonuses From:<br>", syn_text:"Oak Sage: +1-3 Mana Recovered per Level<br>Carrion Vine: +1-3 Mana Recovered per Level", graytext:"", index:[0,""], text:["Life: ","<br>Mana Recovered: ","-","<br>Mana Cost: ",""]},
 {data:d341, key:"341", code:249, name:"Spirit of Barbs", i:29, req:[23], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that returns damage<br>to enemies who attack you or your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Returns "," Damage to Attackers<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:250, name:"Summon Grizzly", i:30, req:[27,23,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a ferocious grizzly bear<br>Can summon an additional grizzly bear at base level 20", syn_title:"<br>Summon Grizzly Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Spirit Wolf: +25% Attack Rating per Level<br>Summon Spirit Wolf: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Werebear: +6% Damage per Level<br>", graytext:"", index:[3," percent"], text:["Mana Cost: 40<br>Life: ","<br>Attack: +"," percent<br>Defense: +","Damage: ","-","<br>Damage: +"," percent"]}
 ];
 
-/* Season 5 Changelog Notes - Druid
-
-  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
-  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
-  # means the change is pending and the correct data is in Skill_Data_PD2.exc
-
-  Closed Beta:
-  
-	~Dire wolves now have melee splash
-	~Dire wolves base run speed increased by 10%
-	Dire wolves werebear -6% damage synergy removed
-
-	~Spirit wolves now have melee splash
-	~Spirit wolves base run speed increased by 10%
-	Spirit wolf werebear -9% damage synergy removed
-
-	Grizzly werewolf -12% damage synergy removed
-
-	Feral rage now grants 2% increased melee splash radius per charge up to 20%		// intermediate values not included since they do nothing til +20%
-
-	Werebear form now grants 10% + 1% per level chance to be uninterruptible when struck
-
-	~Heart of the wolverine can no longer be targeted by monsters or take damage
-
-	~Oak sage can no longer be targeted by monsters or take damage
-
-	~Spirit of barbs can no longer be targeted by monsters or take damage
-	Spirit of barbs level 16-22 damage per level increased from 28 to 32
-	Spirit of barbs level 22-28 damage per level increased from 44 to 48
-
-	~Firestorm starting projectile amount increased from 2 to 3			// projectiles/range/velocity not shown?
-	#Firestorm base damage reduced from 3-6 to 2-4
-	~Firestorm missile velocity increased by 50%
-	~Firestorm no longer gains 10% missile velocity per level
-	~Firestorm range reduced by 20%
-	~Firestorm range now increased by .5% per level 
-	~These changes result in firestorm traveling further late game
-
-	~Fireclaw firestorm range increased by 35%
-
-	Cyclone armor now gains 2 absorb per energy 
-	Cyclone armor base absorb reduced from 65 to 35 (this is offset by druids 20 energy base which results in a total of 75)
-	Cyclone armor absorb per level reduced from 20 to 15
-
-	~Shockwave range increased by 13%
-	~Shockwave missile speed increased by 16%
-
-	~Poison creeper ai delay reduced by 20%
-	~Poison creeper now attacks poison immune monsters (this allows it to apply its negative poison resist debuff)
-	~Poison creeper can no longer be targeted by monsters or take damage
-
-	~Solar creeper ai delay reduced by 20%
-	~Solar creeper will now consume corpses even if the player is at full life
-	~Solar creeper can now be summoned at the same time as carrion vine
-	~Solar creeper can no longer be targeted by monsters or take damage
-
-	~Carrion vine ai delay reduced by 20%
-	~Carrion vine will now consume corpses even if the player is at full mana
-	~Carrion vine can now be summoned at the same time solar creeper
-	~Carrion vine can no longer be targeted by monsters or take damage
-
-	Arctic blast hurricane synergy reduced from 25% to 24%
-	Arctic blast cyclone armor synergy increased from 20% to 24%
-	Arctic blast twister synergy increased from 20% to 24%
-	Arctic blast tornado synergy increased from 20% to 24%
-	Arctic blast level 1-8 scaling increased by 15%
-	Arctic blast level 8-16 scaling increased by 66%
-	Arctic blast level 16-22 scaling increased by 82%
-	Arctic blast level 22-28 scaling increased by 54%
-	Arctic blast level 28+ scaling increased by 55%
-
-	Hurricane twister synergy removed
-	Hurricane arctic blast synergy increased from 8% to 12%
-	Hurricane tornado synergy increased from 8% to 12%
-
-	Armageddon fissure synergy removed
-	Armageddon molten boulder synergy increased from 8% to 12%
-	Armageddon volcano synergy increased from 8% to 12%
-
-	Rabies attack rating per level increased from 6% to 15%
-
-	Oak sage level 1 health bonus reduced from 65 to 50
-	Oak sage health per level reduced from 20 to 10
-
-
-	~ Summon dire wolf will now display its proper defense values
-	~ Summon spirit wolf will now display its proper defense values
-	~ Oak sage is now properly applying its life values
-	Fury enhanced damage per level reduced from 18% to 15%
-	Werewolf enhanced damage per level reduced from 12% to 10%
-	Werebear enhanced damage per level reduced from 15% to 12%
-
-	Lycanthropy +2% life per level reduced to +1%
-	Oak sage aura life per level increased from +10 to +12
-	~ Oak sage, heart of the wolverine and spirit of barbs are no longer targetable 
-	~ Oak sage no longer provides life replenish in pvp arenas
-
-
-	Oak sage level 1-8 scaling reduced from 20 to 12
-	Oak sage level 8-16 scaling reduced from 20 to 13
-	Oak sage level 16-22 scaling reduced from 20 to 14
-	Oak sage level 22-28 scaling reduced from 20 to 15
-	Oak sage level 28+ scaling reduced from 20 to 16
-
-	Cyclone armor now gains 3 absorb per energy
-	Cyclone armor base absorb reduced from 65 to 35 (this is offset by druids 20 energy base which results in a total of 95)
-	Cyclone armor absorb level 1-8 scaling reduced from 20 to 16
-	Cyclone armor absorb level 8-16 scaling reduced from 20 to 17
-	Cyclone armor absorb level 16-22 scaling reduced from 20 to 18
-	Cyclone armor absorb level 22-28 scaling reduced from 20 to 19
-	Cyclone armor absorb level 28+ scaling reduced from 20 to 20
-	
-	Lycanthropy nerf reverted
-
-	Cyclone armor level 1 value reduced from 95 to 75
-
-	Oak sage level 8-16 scaling increased from 13 to 14
-	Oak sage level 16-22 scaling increased from 14 to 16
-	Oak sage level 22-28 scaling increased from 15 to 18
-	Oak sage level 28+ scaling increased from 16 to 20
-
-	Fissure level 16-22 scaling reduced from 16-18 to 12-14
-	Fissure level 22-28 scaling reduced from 20-24 to 20-22
-	Fissure level 28+ scaling increased from 24-30 to 32-34
+/* Changelog Notes - Druid
 
 */

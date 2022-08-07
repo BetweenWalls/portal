@@ -273,8 +273,8 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		["Mana Cost",5,5.25,5.5,5.75,6,6.25,6.5,6.75,7,7.25,7.5,7.75,8,8.25,8.5,8.75,9,9.25,9.5,9.75,10,10.25,10.5,10.75,11,11.25,11.5,11.75,12,12.25,12.5,12.75,13,13.25,13.5,13.75,14,14.25,14.5,14.75,15,15.25,15.5,15.75,16,16.25,16.5,16.75,17,17.25,17.5,17.75,18,18.25,18.5,18.75,19,19.25,19.5,19.75,], 
 ]};
 /*[27] Fire Wall		*/ var d331 = {values:[
-		["Fire Damage (min)",186,255.75,325.5,395.25,465,534.75,604.5,674.25,748.65,823.05,897.45,971.85,1046.25,1120.65,1195.05,1269.45,1348.5,1427.55,1506.6,1585.65,1664.7,1743.75,1827.45,1911.15,1994.85,2078.55,2162.25,2245.95,2334.3,2422.65,2511,2599.35,2687.7,2776.05,2864.4,2952.75,3041.1,3129.45,3217.8,3306.15,3394.5,3482.85,3571.2,3659.55,3747.9,3836.25,3924.6,4012.95,4101.3,4189.65,4278,4366.35,4454.7,4543.05,4631.4,4719.75,4808.1,4896.45,4984.8,5073.15,], 
-		["Fire Damage (max)",302,371.75,441.5,511.25,581,650.75,720.5,790.25,864.65,939.05,1013.45,1087.85,1162.25,1236.65,1311.05,1385.45,1464.5,1543.55,1622.6,1701.65,1780.7,1859.75,1943.45,2027.15,2110.85,2194.55,2278.25,2361.95,2450.3,2538.65,2627,2715.35,2803.7,2892.05,2980.4,3068.75,3157.1,3245.45,3333.8,3422.15,3510.5,3598.85,3687.2,3775.55,3863.9,3952.25,4040.6,4128.95,4217.3,4305.65,4394,4482.35,4570.7,4659.05,4747.4,4835.75,4924.1,5012.45,5100.8,5189.15,], 
+		["Fire Damage (min)",187,257,328,398,468,539,609,679,754,829,904,979,1054,1129,1204,1279,1359,1439,1518,1598,1678,1757,1842,1926,2010,2095,2179,2264,2353,2442,2531,2620,2709,2798,2887,2976,3065,3154,3243,3332,3421,3510,3600,3689,3778,3867,3956,4045,4134,4223,4312,4401,4490,4579,4668,4757,4846,4935,5025,5114,], 
+		["Fire Damage (max)",304,375,445,515,585,656,726,796,871,946,1021,1096,1171,1246,1321,1396,1476,1556,1635,1715,1795,1875,1959,2043,2128,2212,2296,2381,2470,2559,2648,2737,2826,2915,3004,3093,3182,3271,3360,3450,3539,3628,3717,3806,3895,3984,4073,4162,4251,4340,4429,4518,4607,4696,4785,4875,4964,5053,5142,5231,], 
 		["wall length",4,6,7,8,10,11,12,14,15,16,18,19,20,22,23,24,26,27,28,30,31,32,34,35,36,38,39,40,42,43,44,46,47,48,50,51,52,54,55,56,58,59,60,62,63,64,66,67,68,70,71,72,74,75,76,78,79,80,82,83,], 
 		["Mana Cost",22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,], 
 ]};
@@ -341,10 +341,10 @@ var skills_pd2_sorceress = [
 
 {data:d312, key:"312", code:58, name:"Fire Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical flaming missile", syn_title:"<br>Fire Bolt Receives Bonuses From:<br>", syn_text:"Fire Ball: +18% Fire Damage per Level<br>Combustion: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d313, key:"313", code:59, name:"Warmth", i:23, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases the rate at which you recover mana<br>and grants passive attack rating", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent<br>+"," Attack Rating"]},
-{data:d321, key:"321", code:60, name:"Blaze", i:24, req:[25], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a wall of fire<br>in your wake to scorch your enemies", syn_title:"<br>Blaze Receives Bonuses From:<br>", syn_text:"Fire Wall: +4% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Fire Explosion Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Velocity: +"," percent<br>Mana Cost: ",""]},
+{data:d321, key:"321", code:60, name:"Blaze", i:24, req:[25], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a wall of fire<br>in your wake to scorch your enemies", syn_title:"<br>Blaze Receives Bonuses From:<br>", syn_text:"Fire Wall: +6% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Fire Explosion Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Velocity: +"," percent<br>Mana Cost: ",""]},
 {data:d311, key:"311", code:61, name:"Inferno", i:25, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a continuous jet of flame<br>to scorch your enemies<br><br>Minimum Mana Required to Cast: 4", syn_title:"<br>Inferno Receives Bonuses From:<br>", syn_text:"Fire Wall: +20% Fire Damage per Level<br>Blaze: +20% Fire Damage per Level", graytext:"", index:[0,""], text:["Average Fire Damage: ","-"," per second<br>Range: "," yards<br>Mana Cost: "," per second"]},
 {data:d332, key:"332", code:62, name:"Fire Ball", i:26, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an explosive sphere of fiery death<br>to engulf your enemies", syn_title:"<br>Fire Ball Receives Bonuses From:<br>", syn_text:"Fire Bolt: +15% Fire Damage per Level<br>Combustion: +15% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d331, key:"331", code:63, name:"Fire Wall", i:27, req:[25,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a wall of flame that<br>blocks or burns your enemies", syn_title:"<br>Fire Wall Receives Bonuses From:<br>", syn_text:"Blaze: +4% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Duration: 3 seconds<br>Average Fire Damage: ","-"," per second<br>"," yards<br>Mana Cost: ",""],incomplete:1},
+{data:d331, key:"331", code:63, name:"Fire Wall", i:27, req:[25,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a wall of flame that<br>blocks or burns your enemies", syn_title:"<br>Fire Wall Receives Bonuses From:<br>", syn_text:"Blaze: +4% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Duration: 3 seconds<br>Average Fire Damage: ","-"," per second<br>"," yards<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:64, name:"Enchant Fire", i:28, req:[23,26,22,32], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Enchants the weapons of you and your party with fire damage<br>and grants bonus attack rating<br>Ranged weapons receive one-third of the damage<br>Half efficiency for allies", syn_title:"<br>Enchant Fire Receives Bonuses From:<br>", syn_text:"Warmth: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Duration: ","<br>Fire Damage: ","-","<br>Attack Bonus: +"," percent<br>Mana Cost: ",""]},
 {data:d351, key:"351", code:65, name:"Meteor", i:29, req:[26,27,22,25,24], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons a meteor from the heavens<br>to crush and incinerate your enemies", syn_title:"<br>Meteor Receives Bonuses From:<br>", syn_text:"Fire Ball: +6% Damage per Level<br>Blaze: +6% Damage per Level<br>Inferno: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:66, name:"Fire Mastery", i:30, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your fire spells<br>and pierces enemies' resistances to fire", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Fire Damage: +"," percent<br>Fire Pierce: +"," percent",""]},
@@ -353,130 +353,6 @@ var skills_pd2_sorceress = [
 {data:d352, key:"352", code:306, name:"Combustion", i:33, req:[26,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of fire balls to engulf your enemies", syn_title:"<br>Combustion Receives Bonuses From:<br>", syn_text:"Fire Bolt: +12% Fire Damage per Level<br>Fire Ball: +12% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 ];
 
-/* Season 5 Changelog Notes - Sorceress
-
-  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
-  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
-  # means the change is pending and the correct data is in Skill_Data_PD2.exc
-
-  Closed Beta:
-  
-	Firewall warmth synergy replaced with blaze
-
-	Meteor firewall synergy replaced with blaze
-
-	Firebolt mana cost now increases by .25 per level
-	Firebolt synergies reduced from 20% to 18%
-	Firebolt level 1-8 scaling reduced from 5-6 to 4-6 (was 2.5-3?)
-	Firebolt level 8-16 scaling increased from 13-15 to 16-18 (was 5-7.5?)
-	Firebolt level 16-22 scaling increased from 20-37 to 30-32 (was 10-18.5?)
-	Firebolt level 22-28 scaling increased from 40-55 to 46-48  (was 20-27.5?)
-	Firebolt level 28+ scaling increased from 30-37 to 46-48  (was 15-18.5?)
-
-	Fireball mana cost per level reduced from .5 to .25
-	Fireball synergies reduced from 16% to 15%
-	Fireballs level 28+ scaling increased from 33-35 to 38-40 (was 16.5-17.5?)
-
-	Combustion level 1 damage reduced from 24-56 to 24-48 (doubled?)
-	Combustion level 1-8 scaling reduced from 13-15 to 12-14 per level (doubled?)
-	Combustion level 8-16 scaling reduced from 23-25 to 16-18 per level (doubled?)
-	Combustion level 16-22 scaling reduced from 26-28 to 20-22 per level (doubled?)
-	Combustion level 22-28 scaling reduced from 28-30 to 24-26 per level (doubled?)
-	Combustion level 28+ scaling reduced from 33-35 to 28-30 per level (doubled?)
-
-	Ice barrage synergies increased from 8% to 9%
-	~ Ice barrage missile speed increased by 22%
-	~ Ice barrage range increased by roughly 10%
-	Ice barrage level 1-8 scaling increased from 4-5 to 5-6 (doubled?)
-	Ice barrage level 8-16 scaling increased from 7-8 to 9-10 (doubled?)
-	Ice barrage level 16-22 scaling reduced from 14-15 to 13-14 (doubled?)
-	Ice barrage level 22-28 scaling increased from 15-16 to 17-18 (doubled?)
-	Ice barrage level 28+ scaling increased from 16-17 to 21-22  (doubled?)
-
-	Ice bolt synergies increased from 20% to 22%
-
-	Iceblast freeze duration now scales with levels
-
-	Glacial spike damage synergies increased from 5% to 8%
-	Glacial spike ice barrage synergy removed
-
-	Energy shield now properly requires level 30
-
-	Blizzard glacial spike synergy has been replaced with ice blast
-
-	Frozen orbs ice blast synergy has been replaced with frost nova
-
-	Teleport now once again uses its original cast frames (no longer uses lightning cast frames)
-	Teleport damage reduction debuff now starts at -65% from -50%
-
-	Lesser hydra duration reduced from 6 seconds to 5 seconds
-	Lesser hydra level 22-28 scaling increased from 32-34 to 34-36  (doubled?)
-	Lesser hydra level 28+ scaling reduced from 40-42 to 34-36  (doubled?)
-
-	Hydra duration reduced from 6 seconds to 5 seconds
-	Hydra level 8-16 scaling reduced from 23-25 to 22-26  (doubled?)
-	Hydra level 16-22 scaling reduced from 31-35 to 28-32  (doubled?)
-	Hydra level 22-28 scaling reduced from 38-41 to 34-38  (doubled?)
-	Hydra level 28+ scaling reduced from 44-47 to 40-44  (doubled?)
-
-	Blaze now gains .2 seconds per level
-	Blaze duration cap increased from 3 seconds to 8
-	Blaze warmth synergy removed
-	Blaze firewall synergy increased from 3% to 6%
-
-	Cold enchant attack rating bonus per level increased from 5% to 10%
-	Cold enchants level 22-28 scaling increased from 35-37 to 36-38 (doubled?)
-	Cold enchants level 28+ scaling increased from  52-54 to 54-56 (doubled?)
-	Cold enchant duration now lasts 5 minutes at all levels		// can be simplified...
-
-	Fire enchants level 22-28 scaling increased from 30-32 to 32-34 (doubled?)
-	Fire enchants level 28+ scaling increased from 42-44 to 46-48 (doubled?)
-	Fire enchant duration now lasts 5 minutes at all levels		// can be simplified...
-
-	Blizzard level 1-8 scaling reduced from 6-8 to 5-7 per level
-	Blizzard level 8-16 scaling reduced from 8-10 to 6-8 per level
-	Blizzard level 16-22 scaling reduced from 10-12 to 8-10 per level
-	Blizzard level 22-28 scaling reduced from 12-14 to 11-13 per level
-	Blizzard level 28+ scaling increased from 14-16 to 15-17 per level
-
-	~ Traps and hydras no longer benefit from elemental pierce
-
-	Ice bolt synergy reduced from 22% to 20%
-	Inferno sentry base damage increased from 40-100 to 60-100		// values seem very close to x2 but not quite in some cases - check in s5 singleplayer
-	Inferno sentry level 1-8 scaling increased from 32-36 to 34-40  
-	Inferno sentry level 8-16 scaling increased from 38-42 to 68-80
-	Inferno sentry level 16-22 scaling increased from 44-48 to 102-120
-	Inferno sentry level 22-28 scaling increased from 50-54 to 136-160 
-	Inferno sentry level 28+ scaling increased from 56-60 to 170-200
-	Firewall base damage increased from 15-20 to 20-25		// values are... 1/4.65?
-	Firwall level 1-8 scaling increased from 7-7 to 9-9
-	Firewall level 8-16 scaling increased from 9-9 to 10-10
-	Firewall level 22-28 scaling reduced from 13-13 to 12-12 
-	Firwall level 28+ scaling reduced from 15-15 to 13-13
-	Hydra level 8-16 scaling increased from 22-26 to 23-25	// doubled...
-	Hydra level 16-22 scaling increased from 28-32 to 31-35
-	Hydra level 22-28 scaling increased from 34-38 to 38-41
-	Hydra level 28+ scaling increased from 40-44 to 44-47 
-
-
-	Meteor synergies reduced from 10% to 6%
-	~ Meteor fire duration reduced from 50 frames to 40
-	Meteor level 1 physical and fire base damage increasd from 20-25 to 25-30 (50-60 total)
-	Meteor fire damage level 1-8 scaling increased from 4-6 to 7-9
-	Meteor fire damage level 8-16 scaling increased from 4-6 to 10-12
-	Meteor fire damage level 16-22 scaling increased from 5-7 to 13-15
-	Meteor fire damage level 22-28 scaling increased from 6-8 to 15-18
-	Meteor fire damage level 28+ scaling increased from 7-9 to 17-21
-	Firewall inferno synergy removed
-	Firewall base damage increased from 20-25 to 40-65
-	Firewall level 1-8 scaling increased from 10-10 to 15-15
-	Firewall level 8-16 scaling increased from 11-11 to 16-16
-	Firewall level 16-22 scaling increased from 12-12 to 17-17
-	Firewall level 22-28 scaling increased from 13-13 to 18-18
-	Firewall level 28+ scaling increased from 14-14 to 19-19
-
-	~ Meteor impact explosion radius increased by 25%
-	Meteor level 1 mana cost reduced from 17 to 10
-	Ice barrage synergies reduced from 9% to 8%
+/* Changelog Notes - Sorceress
 
 */

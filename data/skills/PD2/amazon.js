@@ -30,7 +30,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Lightning Strike" && elem == 2) { 				result *= ((1 + 0.12*skills[1].level + 0.12*skills[5].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Lightning Fury" && elem == 0) { 					result = 10 + Math.floor(skill.level/5) }
 		if (skill.name == "Lightning Fury" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
-		if (skill.name == "Lightning Fury" && elem == 2) { 					result *= ((1 + 0.02*skills[4].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Lightning Fury" && elem == 2) { 					result *= ((1 + 0.02*skills[1].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		
 		if (skill.name == "Dodge" && elem == 0) { 							result = 4 + skill.level*1 }
 		if (skill.name == "Penetrate" && elem == 0) { 						result = -5 - skill.level*1 }
@@ -323,9 +323,9 @@ var skills_pd2_amazon = [
 {data:d242, key:"242", code:19, name:"Dodge", i:13, req:[16,12,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - You have a chance to dodge<br>a melee or ranged attack when attacking<br>or standing still", syn_title:"", syn_text:"", graytext:"", index:[1,"% Faster Hit Recovery"], text:["Grants bonus hit recovery per base level<br>",""," percent chance",""]},
 /*TODO: remove*/{data:d253, key:"253", code:20, name:"None", i:14, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d253, key:"253", code:21, name:"Penetrate", i:15, req:[19,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases your attack rating and lowers target defense", syn_title:"", syn_text:"", graytext:"", index:[1,"% to Target Defense"], text:["Reduces Target Defense by 1% per Base Level<br>","To Attack Rating: +"," percent",""]},
-{data:d222, key:"222", code:22, name:"Evade", i:16, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - You have a chance to dodge<br>a melee or ranged attack when walking or running<br>Also grants passive movement speed", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>+","% Movement Speed"],incomplete:1},
+{data:d222, key:"222", code:22, name:"Evade", i:16, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - You have a chance to dodge<br>a melee or ranged attack when walking or running<br>Also grants passive movement speed", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>+","% Movement Speed"]},
 {data:d241, key:"241", code:23, name:"Decoy", i:17, req:[12,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a duplicate of yourself that<br>fires arrows at nearby enemies<br><br>Can summon an additional decoy<br>at base levels 10 and 20", syn_title:"<br>Decoy Receives Bonuses From:<br>", syn_text:"Strafe: +10% Damage per Level<br>Valkyrie: +10% Damage per Level<br>Critical Strike<br>Pierce<br>Penetrate", graytext:"", index:[0,""], text:["Damage: ","-","<br>Life: ","<br>Attack: ","<br>Duration: 30 seconds<br>Mana Cost: ",""]},
-{data:d261, key:"261", code:24, name:"Valkyrie", i:18, req:[17,12,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons a powerful Valkyrie ally<br><br>Can summon an additional Valkyrie<br>at levels 20 and 30", syn_title:"<br>Valkyrie Receives Bonuses From:<br>", syn_text:"Decoy: +25% Physical Damage per Level<br>Pierce: +2% Lightning Pierce per Level<br>Penetrate: +40 Attack Rating per Level<br>Power Strike: +20% Lightning Damage<br>Critical Strike", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Powerstrike Level: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
+{data:d261, key:"261", code:24, name:"Valkyrie", i:18, req:[17,12,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons a powerful Valkyrie ally<br><br>Can summon an additional Valkyrie<br>at levels 20 and 30", syn_title:"<br>Valkyrie Receives Bonuses From:<br>", syn_text:"Decoy: +25% Physical Damage per Level<br>Pierce: +2% Lightning Pierce per Level<br>Penetrate: +40 Attack Rating per Level<br>Power Strike: +20% Lightning Damage per Level<br>Critical Strike", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Powerstrike Level: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
 {data:d233, key:"233", code:25, name:"Pierce", i:19, req:[11], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your missiles have a chance to<br>pass through enemies that they hit", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent pierce chance",""]},
 
 {data:d321, key:"321", code:26, name:"Cold Arrow", i:20, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows or bolts<br>by adding cold damage and a slowing effect<br>Cold arrows only do half of their regular damage<br><br>1/4 Weapon Damage", syn_title:"<br>Cold Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +22% Cold Damage per Level<br>Ice Arrow: +22% Cold Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Cold Length: 4 seconds<br>Mana Cost: ",""]},
@@ -333,76 +333,13 @@ var skills_pd2_amazon = [
 {data:d322, key:"322", code:28, name:"Multiple Shot", i:22, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow<br>or bolt into many", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["To Attack Rating: +","%<br>"," arrows<br>Damage: ","-","<br>Mana Cost: ",""]},
 {data:d323, key:"323", code:29, name:"Fire Arrow", i:23, req:[21], reqlvl:6, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrows<br>or bolts with fire<br><br>1/2 Weapon Damage", syn_title:"<br>Fire Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +26% Fire Damage per Level<br>Immolation Arrow: +26% Fire Damage per Level", graytext:"", index:[0,""], text:["Converts 50% Physical Damage to Elemental Damage<br>"," arrows<br>To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:30, name:"Ice Arrow", i:24, req:[20,21], reqlvl:12, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your arrow or bolt<br>to freeze your enemies", syn_title:"<br>Ice Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Cold Damage per Level<br>Cold Arrow: +10% Cold Damage per Level<br>Freezing Arrow: +10% Cold Damage per Level<br>Cold Arrow: +5% Freeze Length per Level<br>Freezing Arrow: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: 3"]},
-{data:d342, key:"342", code:31, name:"Guided Arrow", i:25, req:[22,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances your arrows and bolts<br>to track your target<br>or seek one of its own<br><br>Always Hits<br>1/2 Weapon Damage", syn_title:"<br>Guided Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +1% Magic Damage Conversion per 2 Levels", graytext:"", index:[1,"% Physical Damage to Magic Damage"], text:["Converts ","Damage: +"," percent<br>Mana Cost: ",""]},
+{data:d342, key:"342", code:31, name:"Guided Arrow", i:25, req:[22,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances your arrows and bolts<br>to track your target<br>or seek one of its own<br><br>Always Hits<br>1/2 Weapon Damage", syn_title:"<br>Guided Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +0.5% Magic Damage Conversion per Level", graytext:"", index:[1,"% Physical Damage to Magic Damage"], text:["Converts ","Damage: +"," percent<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:32, name:"Exploding Arrow", i:26, req:[23,21], reqlvl:18, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enchants an arrow or bolt that explodes on<br>contact, damaging all nearby enemies", syn_title:"<br>Exploding Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +18% Fire Damage per Level<br>Immolation Arrow: +18% Fire Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","To Attack Rating: +"," percent<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d352, key:"352", code:33, name:"Strafe", i:27, req:[25,22,21], reqlvl:24, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow into several<br>that target multiple nearby enemies", syn_title:"", syn_text:"<br>Strafe Receives Bonuses From:<br>", graytext:"Penetrate: +10% Damage per Level", index:[0,""], text:["To Attack Rating: +"," percent<br>Attacks up to "," targets<br>Damage: +"," percent<br>Mana Cost: 11"]},
+{data:d352, key:"352", code:33, name:"Strafe", i:27, req:[25,22,21], reqlvl:24, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically splits one arrow into several<br>that target multiple nearby enemies", syn_title:"<br>Strafe Receives Bonuses From:<br>", syn_text:"Penetrate: +10% Damage per Level", graytext:"", index:[0,""], text:["To Attack Rating: +"," percent<br>Attacks up to "," targets<br>Damage: +"," percent<br>Mana Cost: 11"]},
 {data:d363, key:"363", code:34, name:"Immolation Arrow", i:28, req:[26,23,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Enhances arrows or bolts to<br>cause severe fire damage and<br>creates a pyre upon impact", syn_title:"<br>Immolation Arrow Receives Bonuses From:<br>", syn_text:"Magic Arrow: +16% Average Fire Damage per Second per Level<br>Exploding Arrow: +8% Fire Damage per Level<br>Fire Arrow: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Fire Explosion Damage: ","-","<br>Fire Duration: 2 seconds<br>Average Fire Damage: ","-"," per second<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:35, name:"Freezing Arrow", i:29, req:[24,20,21], reqlvl:30, reqWeapon:["bow","crossbow"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances an arrow or bolt<br>to freeze entire groups of monsters", syn_title:"<br>Freezing Arrow Receives Bonuses From:<br>", syn_text:"Cold Arrow: +6% Cold Damage per Level<br>Ice Arrow: +6% Cold Damage per Level", graytext:"", index:[1," yards"], text:["Radius: ","Attack: +"," percent<br>Cold Damage: ","-","<br>Freezes for 0.5 seconds<br>Mana Cost: ",""]}
 ];
 
-/* Season 5 Changelog Notes - Amazon
+/* Changelog Notes - Amazon
   
-  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
-  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
-  # means the change is pending and the correct data is in Skill_Data_PD2.exc
-
-  Closed Beta:
-  
-	~ Reduced multishot penalty from 50% per pierce (ex. 100%>50%>25%>12.5%>etc) to 20% flat reduction per pierce capping at 20% minimum (ex 100%>80%>60%>40%>20%>20%>etc)
-	~ Multiple shot range increased by 8%
-
-	Strafe damage per level increased from 14% to 15%
-	~ Strafe missile speed reduced by 25% (to help prevent some missile desync)
-	~ Strafe missile range increased by 33% (this results in roughly the same total range due to the missile speed loss)
-	Strafe now has penetrate as a synergy at 10% damage per level
-
-	Charged strike now fires 3 bolts at level 1 instead of 2 bolts
-
-	Evade movement speed bonus changed from a diminishing return scaling capping at 45% to gaining an additional 2% per level capping at 65%	// check
-	Evade level 1 movement speed bonus increased from 10% to 15%
-
-	Slow movement movement speed reduction per level increased from 1% to 2%
-	Slow movement missile speed reduction level 1-16 scaling increased from 1% per level to 2%
-	Slow movement radius cap increased from 12 yards to 16
-	Slow movement radius now increases by .6 per level
-	Slow movement base duration increased from 5 seconds to 10 seconds
-	Slow movement now gains .2 seconds duration per level
-
-	Inner sight radius cap increased from 18 yards to 20
-	Inner sight level 1 -1% to enemy attack rating increased to -10%
-
-	~ Decoy missile range increased by 10%
-	~ Decoy ai delay reduced by 20% (will now attempt actions more often)
-	Decoy duration increased from 15 seconds to 30 seconds
-	Decoy synergies increased from 8% to 10%
-	Decoy level 1 mana cost reduced from 10 to 5
-
-	~ Valkyrie run speed increased by 10%
-	Valkyrie base power strike level increased from 1 to 5
-	~ Valkyrie dexterity per level increased from 12 to 20
-	~ Valkyrie strength per level increased from 20 to 25
-	Valkyrie decoy synergy increased from 20 damage per level to 25
-	Valkyrie power strike nova synergy increased from 10% to 20%
-	Valkyrie pierce synergy increased from -1% enemy lightning resist per level to -2% per level
-
-	Fire arrow level 8-16 scaling increased from 6-10 to 7-12 (double tooltip values)
-	Fire arrow level 16-22 scaling increased from 16-20 to 20-24 (double tooltip values)
-	Fire arrow level 22-28 scaling reduced from 36-40 to 35-39 (double tooltip values)
-	Fire arrow level 28+ scaling reduced from 56-60 to 50-54  (double tooltip values)
-	Fire arrow synergies increased from 24% to 26%
-
-	~ Ice arrow is now affected by pierce
-	~ Ice arrow velocity reduced by 12.5%
-	Ice arrow magic arrow synergy reduced from 20% to 16%
-	Ice arrow cold arrow synergy reduced from 14% to 10%
-	Ice arrow freezing arrow synergy reduced from 14% to 10%
-
-	Jab damage per level reduced from 18% to 14%
-
-
-	~ Dodge and evade now have a 4 frame cooldown after mitigating an attack
-	
-	
-	Lightning bolt now deals full weapon damage up from 3/4
-
 */

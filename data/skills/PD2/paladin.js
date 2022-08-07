@@ -295,7 +295,7 @@ function disableAuras(skill) {
 /*[28] Holy Shield		*/ var d353 = {values:[
 		["smite (min)",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,29,32,35,38,41,44,48,52,56,60,64,68,73,78,83,88,93,98,103,108,113,118,123,128,133,138,143,148,153,158,163,168,173,178,183,188,193,198,203,208,213,218,223,228,], 
 		["smite (max)",6,7,8,9,10,11,12,13,15,17,19,21,23,25,27,29,32,35,38,41,44,47,51,55,59,63,67,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211,216,221,226,231,], 
-		["Duration (seconds)",120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,], 
+		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,], 
 		["Defense +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 		["Successful Blocking +%",10,14,17,20,22,24,25,26,27,28,29,30,31,31,32,33,33,33,34,34,34,35,35,35,35,36,36,36,36,36,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,40,], 
 ]};
@@ -364,49 +364,6 @@ var skills_pd2_paladin = [
 {data:d362, key:"362", code:303, name:"Holy Nova", i:32, req:[29,26,31,22,28,27,24,21], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of holy energy<br>that damages enemies or heals allies", syn_title:"<br>Holy Nova Receives Bonuses From:<br>", syn_text:"Holy Bolt: +15% Magic Damage per Level<br>Fist of the Heavens: +15% Magic Damage per Level<br>Prayer: +10 Life Healed per Level<br>Holy Light: +10 Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","<br>Mana Cost: ",""]},
 ];
 
-/* Season 5 Changelog Notes - Paladin
+/* Changelog Notes - Paladin
 
-  addressed changes are tabbed over, changes that still need to be addressed do not have a preceding tab
-  ~ means the change probably isn't reflected on the skill tooltip (purposefully ignored)
-  # means the change is pending and the correct data is in Skill_Data_PD2.exc
-
-  Closed Beta:
-  
-	Fist of heavens synergies reduced from 12% to 9%
-	~ Fist of heavens no longer attempts to do a normal attack when out of mana
-
-	Holy bolt synergies increased from 8% to 9%
-	Holy bolt level 8-16 scaling increased from 3-5 to 5-7
-	Holy bolt level 16-22 scaling increased from 9-11 to 12-14
-	Holy bolt level 22-28 scaling increased from 15-17 to 19-21
-	Holy bolt level 28+ scaling increased from 21-23 to 26-28
-
-	~ Holy light no longer has a cooldown at any level
-	Holy light light level 1 mana cost increased from 8 to 10
-	Holy light prayer synergy reduced from 10 per level to 5-10 
-
-	Prayer level 8-16 life per level increased from 2 to 3
-	Prayer level 22-28 life per level increased from 4 to 5
-	Prayer level 28+ life per level increased from 2 to 5
-	Prayer now costs 1 mana every 2 seconds
-	Prayer mana cost now increases by .5 per level
-
-	~ Auras can now be put on left click (if you have two auras active it will only provide bonuses from the aura on your right click)
-
-	~ Holy shield no longer attempts to do a normal attack when out of mana
-
-	~ Charge no longer attempts to do a normal attack when out of mana
-
-	Holy nova prayer magic damage synergy removed
-	Holy nova fist of the heavens magic damage synergy increased from 8% to 15%
-	Holy nova holy bolt magic damage synergy increased from 12% to 15%
-
-	~ Vengeance has been reworked to now chains its aoe explosion onto nearby enemies 
-
-	~ Holy bolt now fires 1 projectile in pvp arenas
-	~ Charge now has a 4 frame cooldown in pvp arenas 
-	~ Vengeance no longer carries enchant damage (still applies to the regular attack portion)
-
-	Fist of heavens synergy increased from 9% to 10%
-	
 */
