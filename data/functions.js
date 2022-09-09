@@ -119,10 +119,8 @@ function setIconSources(className) {
 	for (let s = 0, len = skills.length; s < len; s++) {
 		var iconId = "i"+skills[s].key;
 		var iconName = skills[s].name;
-		if (game_version == 3) {
-			if (iconName == "Lightning Mastery") { iconName = "Lightning_Mastery" }
-			if (iconName == "Golem Mastery") { iconName = "Golem_Mastery" }
-		}
+		if (game_version == 2 && iconName == "Lightning Mastery") { iconName = "Lightning_Mastery" }
+		else if (game_version == 3 && iconName == "Golem Mastery") { iconName = "Golem_Mastery" }
 		document.getElementById(iconId).src = prefix+iconName+".png"
 	}
 }
