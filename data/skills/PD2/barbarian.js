@@ -17,23 +17,24 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 
 		if (skill.name == "War Cry" && elem < 2) { 			result *= (1 + 0.15*skills[0].level + 0.15*skills[5].level + 0.12*skills[2].level + 0.12*skills[3].level + 0.12*skills[6].level + 0.12*skills[9].level) }
 		if (skill.name == "Battle Command" && elem == 0) { 	result = 1+Math.floor(skill.level/10) }
-		if (skill.name == "Find Item" && elem == 0) { 		result += (1*skills[1].level) }
+//temp	if (skill.name == "Find Item" && elem == 0) { 		result += (1*skills[1].level) }
 		if (skill.name == "Taunt" && elem == 0) {			result = 2 + Math.floor(0.25*skill.level) }
 
 		if (skill.name == "Iron Skin" && elem == 0) {		result = Math.floor(skill.level/2) }
 		if (skill.name == "Increased Speed" && elem == 0) {	result = Math.floor(2*skill.level) }
 		if (skill.name == "Combat Reflexes" && elem == 0) {	result = Math.floor(2*skill.level) }
+		if (skill.name == "Deep Wounds" && elem == 1) { 	result *= (1 + 0.04*skills[7].level) }
 
-		if (skill.name == "Bash" && elem == 0) { 			result += (10*skills[19].level) }
-		if (skill.name == "Bash" && elem == 1) { 			result += (12*skills[21].level + 12*skills[19].level) }
-		if (skill.name == "Frenzy" && elem == 0) { 			result += (14*skills[28].level + 14*skills[21].level) }
+		if (skill.name == "Bash" && elem == 0) { 			result += (15*skills[19].level) }
+		if (skill.name == "Bash" && elem == 1) { 			result += (15*skills[21].level + 15*skills[19].level) }
+		if (skill.name == "Frenzy" && elem == 0) { 			result += (15*skills[28].level + 15*skills[21].level) }
 		if (skill.name == "Stun" && elem == 2) { 			result += (10*skills[19].level) }
-		if (skill.name == "Double Swing" && elem == 0) { 	result += (16*skills[18].level + 16*skills[21].level) }
+		if (skill.name == "Double Swing" && elem == 0) { 	result += (18*skills[18].level + 18*skills[21].level) }
 		if (skill.name == "Leap" && elem == 0) { 			result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Concentrate" && elem == 0) { 	result = 30 + skill.level*2  }
-		if (skill.name == "Concentrate" && elem == 3) { 	result += (15*skills[24].level + 15*skills[9].level) }
+		if (skill.name == "Concentrate" && elem == 3) { 	result += (18*skills[24].level + 18*skills[9].level) }
 		if (skill.name == "Double Throw" && elem == 0) { 	result += (6*skills[28].level + 6*skills[18].level) }
-		if (skill.name == "Leap Attack" && elem == 0) { 	result += (10*skills[22].level + 10*skills[24].level) }
+		if (skill.name == "Leap Attack" && elem == 0) { 	result += (8*skills[22].level + 8*skills[24].level) }
 		if (skill.name == "Berserk" && elem == 1) { 		result += (10*skills[2].level + 10*skills[14].level) }
 
 	return result
@@ -146,7 +147,10 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Attack +%",30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,],
 		["Chance of Critical Strike %",5,9,12,15,17,19,20,21,23,23,24,25,26,26,27,28,28,28,29,29,29,30,30,30,30,31,31,31,31,31,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,35,],
 ]};
-/*[12]*/
+/*[12] Deep Wounds	*/ var d262 = {values:[
+		["Chance of Open Wounds +%",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+		["Open Wounds Damage per Second",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+]};
 /*[13] Throwing Mastery	*/ var d213 = {values:[
 		["Pierce %",15,17,19,21,23,25,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,],
 		["Damage +%",30,34,38,42,46,50,54,58,62,66,70,74,78,82,86,90,94,98,102,106,110,114,118,122,126,130,134,138,142,146,150,154,158,162,166,170,174,178,182,186,190,194,198,202,206,210,214,218,222,226,230,234,238,242,246,250,254,258,262,266,],
@@ -211,7 +215,7 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 ]};
 /*[24] Bash				*/ var d311 = {values:[
 		["Attack %",27,39,51,63,75,87,99,111,123,135,147,159,171,183,195,207,219,231,243,255,267,279,291,303,315,327,339,351,363,375,387,399,411,423,435,447,459,471,483,495,507,519,531,543,555,567,579,591,603,615,627,639,651,663,675,687,699,711,723,735,],
-		["Damage %",50,68,86,104,122,140,158,176,194,212,230,248,266,284,302,320,338,356,374,392,410,428,446,464,482,500,518,536,554,572,590,608,626,644,662,680,698,716,734,752,770,788,806,824,842,860,878,896,914,932,950,968,986,1004,1022,1040,1058,1076,1094,1112,],
+		["Damage %",50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100,1125,1150,1175,1200,1225,1250,1275,1300,1325,1350,1375,1400,1425,1450,1475,1500,1525,],
 		["Damage",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,],
 		["Mana Cost",2,2.2,2.5,2.7,3,3.2,3.5,3.7,4,4.2,4.5,4.7,5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,],
 ]};
@@ -237,7 +241,7 @@ var skills_pd2_barbarian = [
 {data:d113, key:"113", code:129, name:"Find Potion", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>for a chance to find a potion", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 1",""]},
 {data:d142, key:"142", code:130, name:"Taunt", i:2, req:[8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Enrages nearby monsters into relentlessly attacking", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Duration Increases with Base Levels<br>Duration: ","Target's Damage: "," percent<br>Target's Attack: "," percent<br>Mana Cost: 3",""]},
 {data:d121, key:"121", code:131, name:"Shout", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Warns of impending danger and improves the defense<br>rating of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Defense: +"," percent<br>Duration: 300 seconds<br>Mana Cost: 6",""]},
-{data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Find Potion: +1% Chance per Level", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""]},
+{data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""], incomplete:"NOT UPDATED FOR S7"},
 {data:d162, key:"162", code:133, name:"Battle Cry", i:5, req:[6,3,2,8,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Fearsome cry that decreases<br>enemies' defense rating and physical damage resistance", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 8 seconds<br>Defense: "," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 5",""]},
 {data:d151, key:"151", code:134, name:"Battle Orders", i:6, req:[3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Improves the maximum mana and life<br>of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 300 seconds<br>Max Life: +","<br>Max Mana: +","<br>Mana Cost: 7",""]},
 {data:d153, key:"153", code:135, name:"Grim Ward", i:7, req:[2,8,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to create a frightening totem<br>that increases damage and attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["+"," Attack Rating<br>Damage: +"," percent<br>Duration: 40 seconds<br>Radius: "," yards<br>Mana Cost: 4",""]},
@@ -246,26 +250,53 @@ var skills_pd2_barbarian = [
 
 {data:d211, key:"211", code:138, name:"General Mastery", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves sword, axe, dagger, and blunt weapon fighting skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
 {data:d222, key:"222", code:139, name:"Polearm and Spear Mastery", i:11, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves polearm and spear skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
-/*TODO: remove*/{data:d213, key:"213", code:263, name:"None", i:12, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
+{data:d262, key:"262", code:368, name:"Deep Wounds", i:12, req:[16,15,14], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Increases open wounds damage", syn_title:"<br>Deep Wounds Receives Bonuses From:<br>", syn_text:"Grim Ward: +4% Damage per Level", graytext:"", index:[0,""], text:[""," percent chance of open wounds<br>Open Wounds Damage: "," per second",""], incomplete:"NOT UPDATED FOR S7"},
 {data:d213, key:"213", code:141, name:"Throwing Mastery", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves thrown weapon skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Pierce: +"," percent<br>Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
 {data:d231, key:"231", code:142, name:"Combat Reflexes", i:14, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases stamina, hit recovery, and life", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Hit Recovery Rate by 2% per Base Level<br>Faster Hit Recovery: +","Max Life: +"," life<br>Stamina Bonus: +"," percent",""]},
 {data:d243, key:"243", code:143, name:"Iron Skin", i:15, req:[], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves defense rating", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Physical Damage Reduction<br>by 1% Every 2 Base Levels<br>Physical Damage Reduction: ","+"," percent",""]},
 {data:d251, key:"251", code:144, name:"Increased Speed", i:16, req:[14], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases walk and run speed", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Attack Speed by 2% per Base Level<br>Attack Speed: +","Walk/Run Speed: +"," percent",""]},
 {data:d263, key:"263", code:145, name:"Natural Resistance", i:17, req:[15], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases natural resistances<br>to elemental and poison damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Resistances: +"," percent",""]},
 
-{data:d312, key:"323", code:146, name:"Frenzy", i:18, req:[28], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:1,spell:0}, description:"Allows you to swing two weapons at once<br>Each successful attack increases your overall speed<br>Requires you to equip two weapons<br><br>Mana Cost: 1", syn_title:"<br>Frenzy Receives Bonuses From:<br>", syn_text:"Double Swing: +14% Damage per Level<br>Stun: +14% Damage per Level", graytext:"", index:[0,""], text:["Duration: 15 seconds<br>Damage: +"," percent<br>Attack: +"," percent<br>Attack Speed: +","-"," percent<br>Walk/Run Speed: +","-"," percent<br>Increased Melee Splash Radius: ","-"," percent",""]},
-{data:d332, key:"332", code:147, name:"Concentrate", i:19, req:[28], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Attack that is not interruptible and<br>improves attack and defense rating and<br>converts physical damage to magic damage", syn_title:"<br>Concentrate Receives Bonuses From:<br>", syn_text:"Bash: +15% Damage per Level<br>Battle Command: +15% Damage per Level", graytext:"", index:[1," percent"], text:["Converts 2% of Physical Damage to Magic Damage per Base Level<br>Magic Damage: +","Defense Bonus: +"," percent<br>Attack: +"," percent<br>Damage: +"," percent<br>Mana Cost: 2",""]},
+{data:d312, key:"323", code:146, name:"Frenzy", i:18, req:[28], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:1,spell:0}, description:"Allows you to swing two weapons at once<br>Each successful attack increases your overall speed<br>Requires you to equip two weapons<br><br>Mana Cost: 1", syn_title:"<br>Frenzy Receives Bonuses From:<br>", syn_text:"Double Swing: +15% Damage per Level<br>Stun: +15% Damage per Level", graytext:"", index:[0,""], text:["Duration: 15 seconds<br>Damage: +"," percent<br>Attack: +"," percent<br>Attack Speed: +","-"," percent<br>Walk/Run Speed: +","-"," percent<br>Increased Melee Splash Radius: ","-"," percent",""]},
+{data:d332, key:"332", code:147, name:"Concentrate", i:19, req:[28], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Attack that is not interruptible and<br>improves attack and defense rating and<br>converts physical damage to magic damage", syn_title:"<br>Concentrate Receives Bonuses From:<br>", syn_text:"Bash: +18% Damage per Level<br>Battle Command: +18% Damage per Level", graytext:"", index:[1," percent"], text:["Converts 2% of Physical Damage to Magic Damage per Base Level<br>Magic Damage: +","Defense Bonus: +"," percent<br>Attack: +"," percent<br>Damage: +"," percent<br>Mana Cost: 2",""]},
 {data:d352, key:"352", code:148, name:"Berserk", i:20, req:[19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:1}, description:"A powerful but reckless attack that<br>increases damage and attack rating but decreases<br>defense rating and physical damage resistance<br>Requires you to equip two weapons<br><br>Duration: 0.5 seconds", syn_title:"<br>Berserk Receives Bonuses From:<br>", syn_text:"Taunt: +10% Damage per Level<br>Combat Reflexes: +10% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Physical Pierce: +"," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 4"]},
 {data:d321, key:"321", code:149, name:"Stun", i:21, req:[24], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Stuns enemies in an area for a<br>short time dealing bonus damage<br>and increases your attack rating<br><br>Deals 1/4 Weapon Damage", syn_title:"<br>Stun Receives Bonuses From:<br>", syn_text:"Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Attack: +"," percent<br>Duration: "," seconds<br>Mana Cost: 2",""]},
 {data:d331, key:"331", code:150, name:"Leap", i:22, req:[21,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Leaps away from danger<br>or into the fray", syn_title:"", syn_text:"", graytext:"", index:[1," yards"], text:["Knockback Radius: ","Leap Distance: "," yards<br>Mana Cost: ",""]},
 {data:d333, key:"333", code:151, name:"Double Throw", i:23, req:[28,18], reqlvl:12, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:2,spell:0}, description:"Allows you to throw two different<br>throwing weapons at the same time<br>Weapons bounce to nearby enemies", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Double Swing: +6% Damage per Level<br>Frenzy: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>"," bounces<br>To Attack Rating: +"," percent<br>Mana Cost: ",""]},
-{data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +12% Damage per Level<br>Concentrate: +12% Damage per Level<br>Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
-{data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +10% Damage per Level<br>Bash: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
+{data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +15% Damage per Level<br>Concentrate: +15% Damage per Level<br>Concentrate: +15% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
+{data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +8% Damage per Level<br>Bash: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
 /*TODO: remove*/{data:d362, key:"362", code:154, name:"None", i:26, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d362, key:"362", code:155, name:"Whirlwind", i:27, req:[20,19,28], reqlvl:30, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"A whirling dance of death<br>that cuts a path through the<br>legions of your enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Velocity: +"," percent<br>Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
-{data:d323, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapons are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +16% Damage per Level<br>Stun: +16% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
+{data:d323, key:"312", code:146, name:"Double Swing", i:28, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"When two weapons are equipped<br>attacks two targets if possible,<br>or one target twice", syn_title:"<br>Double Swing Receives Bonuses From:<br>", syn_text:"Frenzy: +18% Damage per Level<br>Stun: +18% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
 ];
 
 /* Changelog Notes - Barbarian
+
+Deep Wounds
+Added a new passive: Deep Wounds - % chance of open wounds and additional open wounds dps		...check tooltip wording and update values
+
+		Dual Swing 
+		synergies increased from 16% to 18% 
+
+		Frenzy 
+		Synergies increased from 14% to 15%
+
+		Concentrate 
+		Synergies increased from 15% to 18%
+
+		Bash 
+		Damage per level increased from 18% to 25%
+		Stun synergy increased from 12% to 15%						...also includes Concentrate synergy? (all synergies should be 15%?)
+		Concentrate synergy increased from 10% to 15%
+
+		Leap attack 
+		Synergies reduced from 10% to 8%
+		Leap attack no longer uses durability
+		Leap attack aoe increased
+
+Find item 
+		Find potion synergy removed
+		% chance for high quality reduced from 30% to 15%
+Scaling reduced from a diminishing return scaling from 0-50 to 0-40							...update values
 
 */

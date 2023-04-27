@@ -3606,10 +3606,14 @@ function skillHover(skill) {
 	document.getElementById("graytext").innerHTML = skill.graytext
 	document.getElementById("syn_title").innerHTML = skill.syn_title
 	document.getElementById("syn_text").innerHTML = skill.syn_text
-	if (typeof(skill.incomplete) != 'undefined') {
+	if (typeof(skill.incomplete) != 'undefined') { if (skill.incomplete != "") {
 		if (skill.syn_text != "") { document.getElementById("syn_text").innerHTML += "<br>" }
-		document.getElementById("syn_text").innerHTML += "<br><font color='"+colors.Red+"'>SKILL DATA IS OUTDATED OR UNVERIFIED</font>"
-	}
+		if (skill.incomplete == 1) {
+			document.getElementById("syn_text").innerHTML += "<br><font color='"+colors.Red+"'>SKILL DATA IS OUTDATED OR UNVERIFIED</font>"
+		} else {
+			document.getElementById("syn_text").innerHTML += "<br><font color='"+colors.Red+"'>"+skill.incomplete+"</font>"
+		}
+	} }
 	var levels = 0;
 	var next_display = "";
 	var current_display = "";

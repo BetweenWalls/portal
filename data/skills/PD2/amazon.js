@@ -17,7 +17,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		var result = skill.data.values[elem][lvl];
 
 		if (skill.name == "Jab" && elem == 1) { 							result += (12*skills[7].level) }
-		if (skill.name == "Fend" && elem == 1) { 							result += (12*skills[0].level) }
+		if (skill.name == "Fend" && elem == 1) { 							result += (15*skills[0].level) }
 		if (skill.name == "Poison Javelin" && elem < 2) { 					result *= ((1 + 0.24*skills[3].level + 0.24*skills[6].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Plague Javelin" && elem > 0 && elem < 3) { 		result *= ((1 + 0.06*skills[3].level + 0.12*skills[2].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Power Strike" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
@@ -27,8 +27,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Charged Strike" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Charged Strike" && elem == 2) { 					result *= ((1 + 0.05*skills[1].level + 0.05*skills[8].level + 0.05*skills[9].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Lightning Strike" && elem == 1) { 				result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
-		if (skill.name == "Lightning Strike" && elem == 2) { 				result *= ((1 + 0.12*skills[1].level + 0.12*skills[5].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
-		if (skill.name == "Lightning Fury" && elem == 0) { 					result = 10 + Math.floor(skill.level/5) }
+		if (skill.name == "Lightning Strike" && elem == 2) { 				result *= ((1 + 0.10*skills[1].level + 0.10*skills[5].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Lightning Fury" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Lightning Fury" && elem == 2) { 					result *= ((1 + 0.02*skills[1].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 
@@ -40,7 +39,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Valkyrie" && elem == 3) { 						result += (40*skills[15].level) }
 
 		if (skill.name == "Magic Arrow" && elem == 0) { 					result = 1 + Math.floor(skill.level/5) }
-		if (skill.name == "Magic Arrow" && elem > 1 && elem < 4) { 			result *= (1 + 0.18*skills[10].level + 0.18*skills[12].level + 0.18*skills[25].level) }
+		if (skill.name == "Magic Arrow" && elem > 1 && elem < 4) { 			result *= (1 + 0.18*skills[10].level + 0.18*skills[12].level + 0.18*skills[25].level) }		// TODO: does the skill include the magic damage multiplier, or would that only show up for character sheet calculations?
 		if (skill.name == "Guided Arrow" && elem == 0) { 					result = Math.floor(skills[21].level/2) }
 		if (skill.name == "Cold Arrow" && elem > 1 && elem < 4) { 			result *= ((1 + 0.22*skills[21].level + 0.22*skills[24].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Ice Arrow" && elem > 0 && elem < 3) { 			result *= ((1 + 0.16*skills[21].level + 0.10*skills[20].level + 0.10*skills[29].level) * (1+character.cDamage/100)) }
@@ -139,7 +138,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 /*[ 1] Power Strike		*/ var d122 = {values:[
 		["attack rating bonus",20,32,44,56,68,80,92,104,116,128,140,152,164,176,188,200,212,224,236,248,260,272,284,296,308,320,332,344,356,368,380,392,404,416,428,440,452,464,476,488,500,512,524,536,548,560,572,584,596,608,620,632,644,656,668,680,692,704,716,728,],
 		["Lightning Damage (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,],
-		["Lightning Damage (max)",1,4,7,10,13,16,19,22,27,32,37,42,47,52,57,62,75,88,101,114,127,140,162,184,206,228,250,272,303,334,365,396,427,458,489,520,551,582,613,644,675,706,737,768,799,830,861,892,923,954,985,1016,1047,1078,1109,1140,1171,1202,1233,1264,],
+		["Lightning Damage (max)",1,4,7,10,13,16,19,22,27,32,37,42,47,52,57,62,75,88,101,114,127,140,162,184,206,228,250,272,304,336,368,400,432,464,496,528,560,592,624,656,688,720,752,784,816,848,880,912,944,976,1008,1040,1072,1104,1136,1168,1200,1232,1264,1296,],
 		["nova (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,],
 		["nova (max)",3,7,11,15,19,23,27,31,39,47,55,63,71,79,87,95,123,151,179,207,235,263,308,353,398,443,488,533,595,657,719,781,843,905,967,1029,1091,1153,1215,1277,1339,1401,1463,1525,1587,1649,1711,1773,1835,1897,1959,2021,2083,2145,2207,2269,2331,2393,2455,2517,],
 		["Mana Cost",2,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.6,3.8,4,4.2,4.4,4.6,4.8,5,5.1,5.3,5.5,5.7,5.9,6.1,6.3,6.5,6.6,6.8,7,7.2,7.4,7.6,7.8,8,8.1,8.3,8.5,8.7,8.9,9.1,9.3,9.5,9.6,9.8,10,10.2,10.4,10.6,10.8,11,11.1,11.3,11.5,11.7,11.9,12.1,12.3,12.5,12.6,12.8,13,],
@@ -175,13 +174,13 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["damage",100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,1240,1260,1280,],
 ]};
 /*[ 8] Lightning Strike	*/ var d162 = {values:[
-		["hits",4,5,6,7,8,9,10,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,],
+		["hits",4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,],
 		["Lightning Damage (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,],
 		["Lightning Damage (max)",25,35,45,55,65,75,85,95,115,135,155,175,195,215,235,255,290,325,360,395,430,465,520,575,630,685,740,795,870,945,1020,1095,1170,1245,1320,1395,1470,1545,1620,1695,1770,1845,1920,1995,2070,2145,2220,2295,2370,2445,2520,2595,2670,2745,2820,2895,2970,3045,3120,3195,],
 		["Mana Cost",6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,20.2,20.5,20.7,],
 ]};
 /*[ 9] Lightning Fury	*/ var d163 = {values:[
-		["bolts",],
+		["bolts",10,10,10,10,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,14,14,14,14,14,15,15,15,15,15,16,16,16,16,16,17,17,17,17,17,18,18,18,18,18,19,19,19,19,19,20,20,20,20,20,21,21,21,21,21,22,],
 		["Lightning Damage (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,],
 		["Lightning Damage (max)",65,73,81,89,97,105,113,121,130,139,148,157,166,175,184,193,203,213,223,233,243,253,264,275,286,297,308,319,331,343,355,367,379,391,403,415,427,439,451,463,475,487,499,511,523,535,547,559,571,583,595,607,619,631,643,655,667,679,691,703,],
 		["Mana Cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,],
@@ -313,9 +312,9 @@ var skills_pd2_amazon = [
 {data:d133, key:"133", code:10, name:"Lightning Bolt", i:4, req:[1,2,0], reqlvl:12, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically converts your javelin into a bolt of lightning<br><br>Converts 100% Physical Damage to Elemental Damage", syn_title:"<br>Lightning Bolt Receives Bonuses From:<br>", syn_text:"Power Strike: +14% Lightning Damage per Level<br>Lightning Fury: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d142, key:"142", code:11, name:"Charged Strike", i:5, req:[1,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases charged bolts upon impact", syn_title:"<br>Charged Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +5% Lightning Damage per Level<br>Lightning Strike: +5% Lightning Damage per Level<br>Lightning Fury: +5% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," charged bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d143, key:"143", code:12, name:"Plague Javelin", i:6, req:[4,2,1,0], reqlvl:18, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your javelin to release<br>expanding clouds of poison upon impact", syn_title:"<br>Plague Javelin Receives Bonuses From:<br>", syn_text:"Poison Javelin: +12% Poison Damage per Level<br>Javelin and Spear Mastery: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
-{data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +12% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
-{data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +12% Lightning Damage per Level<br>Charged Strike: +12% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
-{data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact<br><br>Releases an additional bolt every 5 base levels", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
+{data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets<br><br>Attacks 3 times<br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
+{data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +10% Lightning Damage per Level<br>Charged Strike: +10% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
+{data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact<br><br>Releases an additional bolt every 5 levels", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 
 {data:d211, key:"211", code:16, name:"Inner Sight", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Illuminates nearby enemies<br>making them easier to hit<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Enemy Attack Rating: ","%<br>Enemy Defense: ","<br>Radius: "," yards<br>Mana Cost: 5"]},
 {data:d213, key:"213", code:17, name:"Critical Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Your attacks have a chance to do 50% more damage", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance",""]},
@@ -341,5 +340,23 @@ var skills_pd2_amazon = [
 ];
 
 /* Changelog Notes - Amazon
+
+		Fend 
+		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third		...check tooltip wording
+		Fend synergies increased from 12% -> 15%
+
+		Lightning fury 
+		Changed from gaining a bolt every 5 base levels to every 5 soft						...is it 10 + 1 per 5 levels? or does it start lower?
+
+		Power strike 
+		Level 28+ scaling increased from 0-31 to 0-32
+
+		Lightning strike
+		chain distance reduced from 20 -> 16
+		max number of hits reduced from 12 -> 10
+		synergies reduced from 12% -> 10%
+
+		Evade
+		The passive movement speed bonus now works properly
 
 */

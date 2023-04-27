@@ -63,21 +63,21 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Revive" && elem == 2) {							result += (10*skills[15].level) }
 		if (skill.name == "Revive" && elem == 3) {							result += (20*skills[15].level) }
 
-		if (skill.name == "Poison Strike" && elem > 0 && elem < 3) {		result *= ((1 + 0.22*skills[15].level + 0.22*skills[19].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Poison Strike" && elem > 0 && elem < 3) {		result *= ((1 + 0.22*skills[15].level + 0.22*skills[13].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Desecrate" && elem < 2) {						result *= ((1 + 0.20*skills[11].level + 0.20*skills[19].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Poison Nova" && elem < 2) {						result *= ((1 + 0.10*skills[11].level + 0.10*skills[15].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Corpse Explosion" &&  elem < 2) {				result *= (1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) }
-		if (skill.name == "Corpse Explosion" && elem > 1 && elem < 4) {		result *= ((1 + 0.07*skills[20].level + 0.07*skills[15].level + 0.07*skills[10].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= (1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) }
-		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= (1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.10*skills[13].level) }
-		if (skill.name == "Bone Spirit" && elem < 2) {						result *= (1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.10*skills[13].level) }
+		if (skill.name == "Corpse Explosion" &&  elem < 2) {				result *= (1 + 0.08*skills[20].level + 0.08*skills[15].level + 0.08*skills[10].level) }
+		if (skill.name == "Corpse Explosion" && elem > 1 && elem < 4) {		result *= ((1 + 0.08*skills[20].level + 0.08*skills[15].level + 0.08*skills[10].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= ((1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) * (1+character.mDamage/100)) }
+		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= ((1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.10*skills[13].level) * (1+character.mDamage/100)) }
+		if (skill.name == "Bone Spirit" && elem < 2) {						result *= ((1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.10*skills[13].level) * (1+character.mDamage/100)) }
 		if (skill.name == "Bone Armor" && elem == 0) {						result += (15*skills[17].level + 15*skills[31].level + 3*character.energy) }
 		if (skill.name == "Bone Wall" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.10*skills[13].level + 0.10*skills[31].level) }
 		if (skill.name == "Bone Prison" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.08*skills[13].level + 0.08*skills[17].level) }
 
 		if (skill.name == "Curse Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/10) }
 		if (skill.name == "Dark Pact" && elem == 0) {						result = 4 + 0.6*Math.floor(skills[32].level/3) }
-		if (skill.name == "Dark Pact" && elem > 0 && elem < 3) {			result *= (1 + 0.18*skills[32].level + 0.18*skills[24].level + 0.12*(skills[20].level+skills[21].level+skills[23].level+skills[25].level+skills[26].level+skills[27].level+skills[28].level+skills[29].level+skills[30].level)) }
+		if (skill.name == "Dark Pact" && elem > 0 && elem < 3) {			result *= ((1 + 0.15*skills[32].level + 0.15*skills[24].level + 0.10*(skills[20].level+skills[21].level+skills[23].level+skills[25].level+skills[26].level+skills[27].level+skills[28].level+skills[29].level+skills[30].level)) * (1+character.mDamage/100)) }
 		if (skill.name == "Amplify Damage" && elem == 0) {					result = Math.max(-60,result - Math.floor(skills[32].level/2)) }
 		if (skill.name == "Amplify Damage" && elem == 1) {					result = 6 + this.curse_radius(skill, true)}
 		if (skill.name == "Iron Maiden" && elem == 0) {						result += 6*skills[32].level }
@@ -320,10 +320,10 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Mana Cost",11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,],
 ]};
 /*[14] Corpse Explosion	*/ var d221 = {values:[
-		["Damage (min)",2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,22,27,32,37,42,47,57,67,77,87,97,107,122,137,152,167,182,197,212,227,242,257,272,287,302,317,332,347,362,377,392,407,422,437,452,467,482,497,512,527,542,557,572,587,],
-		["Damage (max)",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,30,40,50,60,70,80,94,108,122,136,150,164,182,200,218,236,254,272,290,308,326,344,362,380,398,416,434,452,470,488,506,524,542,560,578,596,614,632,650,668,686,704,722,740,],
-		["Fire Damage (min)",2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,22,27,32,37,42,47,57,67,77,87,97,107,122,137,152,167,182,197,212,227,242,257,272,287,302,317,332,347,362,377,392,407,422,437,452,467,482,497,512,527,542,557,572,587,],
-		["Fire Damage (max)",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,30,40,50,60,70,80,94,108,122,136,150,164,182,200,218,236,254,272,290,308,326,344,362,380,398,416,434,452,470,488,506,524,542,560,578,596,614,632,650,668,686,704,722,740,],
+		["Damage (min)",2,3,4,5,6,7,8,9,11,13,15,17,19,21,23,25,33,41,49,57,65,73,85,97,109,121,133,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,],
+		["Damage (max)",5,6,7,8,9,10,11,12,16,20,24,28,32,36,40,44,54,64,74,84,94,104,118,132,146,160,174,188,206,224,242,260,278,296,314,332,350,368,386,404,422,440,458,476,494,512,530,548,566,584,602,620,638,656,674,692,710,728,746,764,],
+		["Fire Damage (min)",2,3,4,5,6,7,8,9,11,13,15,17,19,21,23,25,33,41,49,57,65,73,85,97,109,121,133,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,],
+		["Fire Damage (max)",5,6,7,8,9,10,11,12,16,20,24,28,32,36,40,44,54,64,74,84,94,104,118,132,146,160,174,188,206,224,242,260,278,296,314,332,350,368,386,404,422,440,458,476,494,512,530,548,566,584,602,620,638,656,674,692,710,728,746,764,],
 		["Radius (yards)",5,5,5.6,5.6,6.3,6.3,7,7,7.6,7.6,8.3,8.3,9,9,9.6,9.6,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,],
 		["Mana Cost",5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,],
 ]};
@@ -380,7 +380,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Radius (yards)",],
 		["Magic Damage (min)",3,5,7,9,11,13,15,17,20,23,26,29,32,35,38,41,45,49,53,57,61,65,71,77,83,89,95,101,107,113,119,125,131,137,143,149,155,161,167,173,179,185,191,197,203,209,215,221,227,233,239,245,251,257,263,269,275,281,287,293],
 		["Magic Damage (max)",4,7,10,13,16,19,22,25,30,35,40,45,50,55,60,57,63,69,75,81,87,93,101,109,117,125,133,141,149,157,165,173,181,189,197,205,213,221,229,237,245,253,261,269,277,285,293,301,309,317,325,333,341,349,357,365,373,381,389,397],
-		["Mana Cost",4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,],
+		["Mana Cost",4,4.1,4.2,4.4,4.5,4.6,4.7,4.9,5,5.1,5.2,5.4,5.5,5.6,5.7,5.9,6,6.1,6.2,6.4,6.5,6.6,6.7,6.9,7,7.1,7.2,7.4,7.5,7.6,7.7,7.9,8,8.1,8.2,8.4,8.5,8.6,8.7,8.9,9,9.1,9.2,9.4,9.5,9.6,9.7,9.9,10,10.1,10.2,10.4,10.5,10.6,10.7,10.9,11,11.1,11.2,11.4,],
 ]};
 /*[23] Weaken			*/ var d342 = {values:[
 		["target damage",-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67,-68,-69,],
@@ -446,10 +446,10 @@ var skills_pd2_necromancer = [
 {data:d162, key:"162", code:75, name:"Fire Golem", i:9, req:[8,6,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem that bathes<br>nearby enemies in living flames", syn_title:"<br>Fire Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +4% Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +4% Damage per Level<br>Blood Golem: +4% Damage per Level<br>Iron Golem: +4% Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Fire Damage: ","-","<br>Holy Fire: ","-","<br>Mana Cost: ",""]},
 {data:d163, key:"163", code:76, name:"Revive", i:10, req:[5,2,1], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Returns a monster to life<br>to fight by your side", syn_title:"<br>Revive Receives Bonuses From:<br>", syn_text:"Desecrate: +20% Damage per Level<br>Desecrate: +10% Elemental Damage per Level", graytext:"", index:[2,""], text:["Monster Skill Levels: +","<br>Monsters: ","Elemental Damage: +"," percent<br>Damage: +"," percent<br>Duration: "," seconds<br>Mana Cost: 45"]},
 
-{data:d211, key:"211", code:77, name:"Poison Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison to your dagger or scythe attacks", syn_title:"<br>Poison Strike Receives Bonuses From:<br>", syn_text:"Desecrate: +22% Poison Damage per Level<br>Poison Nova: +22% Poison Damage per Level", graytext:"", index:[0,""], text:["Pierces ","% Poison Resistance<br>Poison Damage: ","-","<br>over 2 seconds<br>Attack: +"," percent<br>Mana Cost: ",""]},
+{data:d211, key:"211", code:77, name:"Poison Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison to your dagger or scythe attacks", syn_title:"<br>Poison Strike Receives Bonuses From:<br>", syn_text:"Desecrate: +22% Poison Damage per Level<br>Bone Armor: +22% Poison Damage per Level", graytext:"", index:[0,""], text:["Pierces ","% Poison Resistance<br>Poison Damage: ","-","<br>over 2 seconds<br>Attack: +"," percent<br>Mana Cost: ",""]},
 {data:d212, key:"212", code:78, name:"Teeth", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fires a barrage of summoned barbed teeth", syn_title:"<br>Teeth Receives Bonuses From:<br>", syn_text:"Bone Armor: +25% Magic Damage per Level<br>Bone Spear: +25% Magic Damage per Level<br>Bone Spirit: +25% Magic Damage per Level", graytext:"", index:[0,""], text:[""," Teeth<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d223, key:"223", code:79, name:"Bone Armor", i:13, req:[12], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates an orbiting shield of bone<br>that absorbs melee damage", syn_title:"<br>Bone Armor Receives Bonuses From:<br>", syn_text:"Gains +3 Additional Absorb per Energy<br>Bone Wall: +15 Damage Absorbed per Level<br>Bone Prison: +15 Damage Absorbed per Level", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Absorbs "," damage<br>Mana Cost: ",""]},
-{data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +7% Damage per Level<br>Desecrate: +7% Damage per Level<br>Revive: +7% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
+{data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +8% Damage per Level<br>Desecrate: +8% Damage per Level<br>Revive: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d231, key:"231", code:81, name:"Desecrate", i:15, req:[14,11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons 5 corpses and releases a deadly cloud of poison", syn_title:"<br>Desecrate Receives Bonuses From:<br>", syn_text:"Poison Strike: +20% Poison Damage per Level<br>Poison Nova: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
 {data:d242, key:"242", code:82, name:"Bone Spear", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons deadly spikes of bone to impale your enemies<br><br>Fires an additional bone spear at levels 15 and 25", syn_title:"<br>Bone Spear Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spirit: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Bone Spears: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d233, key:"233", code:83, name:"Bone Wall", i:17, req:[13,12], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates an impassable barrier<br>of bone and debris", syn_title:"<br>Bone Wall Receives Bonuses From:<br>", syn_text:"Bone Armor: +10% Life per Level<br>Bone Prison: +10% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: 17",""]},
@@ -458,7 +458,7 @@ var skills_pd2_necromancer = [
 
 {data:d312, key:"312", code:86, name:"Amplify Damage", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies, increasing<br>the physical damage they receive", syn_title:"<br>Amplify Damage Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Physical Resistance per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Physical Damage Resistance: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d323, key:"323", code:87, name:"Dim Vision", i:21, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters,<br>reducing their vision radius and attack rating", syn_title:"<br>Dim Vision Receives Bonuses From:<br>", syn_text:"Curse Mastery: +10 Reduced Attack Rating per Level", graytext:"", index:[0,""], text:[""," Attack Rating<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
-{data:d321, key:"321", code:88, name:"Dark Pact", i:22, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Consumes the curses on enemies within an area,<br>sealing a dark pact and dealing damage<br>for each curse devoured", syn_title:"<br>Dark Pact Receives Bonuses From:<br>", syn_text:"Curse Mastery: +0.6 Radius per Three Levels<br>Curse Mastery: +18% Magic Damage per Level<br>Iron Maiden: +18% Magic Damage per Level<br>All Other Curses: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Explosion radius Bonus per curse: +33 percent<br>damage bonus per curse: +10 percent<br>Magic Damage per Curse: ","-","<br>Mana Cost: ",""]},
+{data:d321, key:"321", code:88, name:"Dark Pact", i:22, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Consumes the curses on enemies within an area,<br>sealing a dark pact and dealing damage<br>for each curse devoured", syn_title:"<br>Dark Pact Receives Bonuses From:<br>", syn_text:"Curse Mastery: +0.6 Radius per Three Levels<br>Curse Mastery: +15% Magic Damage per Level<br>Iron Maiden: +15% Magic Damage per Level<br>All Other Curses: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Explosion radius Bonus per curse: +33 percent<br>damage bonus per curse: +10 percent<br>Magic Damage per Curse: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:89, name:"Weaken", i:23, req:[27,20], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies,<br>reducing the amount of damage they inflict", syn_title:"<br>Weaken Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Damage per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Target's Damage: "," percent<br>Target's Defense: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:90, name:"Iron Maiden", i:24, req:[22,20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies, causing them<br>to damage themselves when damaging others", syn_title:"<br>Iron Maiden Receives Bonuses From:<br>", syn_text:"Curse Mastery: +6% Increased Damage Returned to Enemies per Level<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:[""," percent damage returned<br>Duration: "," seconds<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d333, key:"333", code:91, name:"Terror", i:25, req:[21], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters,<br>causing them to flee in terror", syn_title:"<br>Terror Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Movement Speed per Level", graytext:"", index:[1," percent<br>Duration: 3 seconds<br>Radius: 6 yards"], text:["Reduces Movement Speed by 2% per Base Level<br>Movement Speed: ","Mana Cost: ",""]},
@@ -474,5 +474,25 @@ var skills_pd2_necromancer = [
 ];
 
 /* Changelog Notes - Necromancer
+
+		Poison Strike
+		Poison nova synergy replaced with bone armor
+		Now has next hit delay
+
+		Corpse Explosion
+		Synergies increased from 7% to 8%
+		Level 8-16 scaling increased from 1-1 to 2-4
+		Level 16-22 scaling increased from 5-10 to 8-10
+		Level 22-28 scaling increased from 10-14 to 12-14
+
+		Dark pact
+		curse mastery and iron maiden synergy reduced from 18% to 15%
+		all curses synergy reduced from 12% to 10%
+		mana cost increase per level reduced from .25 to .125										...supposed to be 0.25 or 0.125? (was 0.5)
+		Fixed a bug that applied increased magic damage% from items to Dark Pact twice
+		
+		Curse mastery changed to apply a "curse cap" on the monster
+		- This means that a curse cast from a unit with increased max curses will allow other units to apply curses up to that limit
+		- For example, a necromancer player with 2 max curses casts a curse on a monster, if their mercenary casts a curse on the same monster it will stack up to the necromancer's max curse limit
 
 */
