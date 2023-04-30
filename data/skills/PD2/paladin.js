@@ -27,7 +27,6 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 
 		if (skill.name == "Might" && elem == 1) {				result = skill.data.values[2][lvl]/2 }
 		if (skill.name == "Blessed Aim" && elem == 0) {			result = skill.level*10 }
-		if (skill.name == "Blessed Aim" && elem == 1) {			result = 5 + Math.floor(skill.level/2) }
 		if (skill.name == "Holy Fire" && elem < 4) {			result *= ((1 + 0.18*skills[1].level + 0.18*skills[9].level + 0.18*skills[13].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Holy Freeze" && elem < 4) {			result *= ((1 + 0.12*skills[3].level + 0.12*skills[9].level + 0.12*skills[13].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Holy Shock" && (elem == 0 || elem == 2)) {	result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
@@ -213,15 +212,16 @@ function disableAuras(skill) {
 ]};
 /*[13] Blessed Aim		*/ var d231 = {values:[
 		["Passive Bonus Attack +%",],
-		["Deadly Strike +%",],
 		["Radius (yards)",13.3,14.6,16,17.3,18.6,20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,],
 		["Attack +%",60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,],
+		["Deadly Strike +%",5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35],
+		
 ]};
 /*[14] Concentration	*/ var d241 = {values:[
 		["Radius (yards)",13.3,15.3,17.3,19.3,21.3,23.3,25.3,27.3,29.3,31.3,33.3,35.3,37.3,39.3,41.3,43.3,45.3,47.3,49.3,51.3,53.3,55.3,57.3,59.3,61.3,63.3,65.3,67.3,69.3,71.3,73.3,75.3,77.3,79.3,81.3,83.3,85.3,87.3,89.3,91.3,93.3,95.3,97.3,99.3,101.3,103.3,105.3,107.3,109.3,111.3,113.3,115.3,117.3,119.3,121.3,123.3,125.3,127.3,129.3,131.3,],
 		["Party Damage +%",],
 		["Your Damage +%",60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,],
-		["Attack Rating+%",25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,],
+		["Attack Rating+%",50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,],
 		["Blessed Hammer Damage +%",],
 ]};
 /*[15] Holy Freeze		*/ var d242 = {values:[
@@ -350,7 +350,7 @@ var skills_pd2_paladin = [
 {data:d211, key:"211", code:107, name:"Might", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage<br>done by you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Party Damage: +"," percent<br>Your Damage: +"," percent"]},
 {data:d222, key:"222", code:108, name:"Holy Fire", i:11, req:[10], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with heavenly flames<br>and adds fire damage to your attacks", syn_title:"<br>Holy Fire Receives Bonuses From:<br>", syn_text:"Resist Fire: +18% Fire Damage per Level<br>Salvation: +18% Fire Damage per Level<br>Blessed Aim: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Fire Damage: ","-"," to your attack<br>Fire Damage: ","-",""]},
 {data:d223, key:"223", code:109, name:"Thorns", i:12, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura returns damage to enemies<br>who attack you or your party", syn_title:"<br>Thorns Receives Bonuses From:<br>", syn_text:"Might: +20% Damage per Level<br>Defiance: +20% Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Attackers take "," damage"]},
-{data:d231, key:"231", code:110, name:"Blessed Aim", i:13, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[2," percent"], text:["Grants +10% Passive Attack Rating per Base Level<br>Attack +"," percent<br><br>Grants +1% Additional Deadly Strike per 2 Base Levels<br>Deadly Strike: +","Radius: "," yards<br>Attack Rating: +"," percent",""]},
+{data:d231, key:"231", code:110, name:"Blessed Aim", i:13, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants +10% Passive Attack Rating per Base Level<br>Attack +","Radius: "," yards<br>Attack Rating: +"," percent<br>Deadly Strike: +"," percent"]},
 {data:d241, key:"241", code:111, name:"Concentration", i:14, req:[13,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage and decreases the chance<br>that attacks will be interrupted for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Chance uninterruptable: 20 percent<br>Party Damage: +"," percent<br>Your Damage: +"," percent<br>Attack: +"," percent<br>Blessed Hammer Skill Damage: +"," percent",""]},
 {data:d242, key:"242", code:112, name:"Holy Freeze", i:15, req:[11,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura freezes nearby enemies<br>and adds cold damage to your attacks", syn_title:"<br>Holy Freeze Receives Bonuses From:<br>", syn_text:"Resist Cold: +12% Cold Damage per Level<br>Salvation: +12% Cold Damage per Level<br>Blessed Aim: +12% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 8 yards<br>Cold Damage: ","-"," to your attack<br>Cold Damage: ","-","<br>Enemies slowed "," percent"]},
 {data:d252, key:"252", code:113, name:"Holy Shock", i:16, req:[15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with pulses of electricity<br>and adds lightning damage to your attacks", syn_title:"<br>Holy Shock Receives Bonuses From:<br>", syn_text:"Resist Lightning: +8% Lightning Damage per Level<br>Salvation: +8% Lightning Damage per Level<br>Blessed Aim: +8% Lightning Damage per Level", graytext:"", index:[0,""], text:["Radius: 9.3 yards<br>Lightning Damage: ","-"," to your attack<br>Lightning Damage: ","-",""]},
@@ -358,11 +358,11 @@ var skills_pd2_paladin = [
 {data:d261, key:"261", code:115, name:"Fanaticism", i:18, req:[14,13,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases damage, attack speed,<br>and attack rating for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Party Damage: +"," percent<br>Your Damage: +"," percent<br>Attack Speed: +"," percent<br>Attack: +"," percent"]},
 {data:d263, key:"263", code:116, name:"Conviction", i:19, req:[17,12,15,11,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reduces the defenses<br>and resistances of nearby enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Defense: "," percent<br>Resistances: "," percent"]},
 
-{data:d311, key:"311", code:117, name:"Sacrifice", i:20, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Increased accuracy and damage<br>at the cost of life<br><br>Slain enemies deal magical & physical damage to nearby foes", syn_title:"<br>Sacrifice Receives Bonuses From:<br>", syn_text:"Redemption: +20% Damage per Level<br>Fanaticism: +20% Damage per Level", graytext:"", index:[1," percent damage to self (can be reduced with PDR)"], text:["","To Attack Rating: +"," percent<br>Damage: +"," percent",""]},
+{data:d311, key:"311", code:117, name:"Sacrifice", i:20, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"A deadly attack at the cost of life<br>Slain monsters explode dealing<br>overkill damage plus 5 percent of corpse life<br>as half physical and half magical", syn_title:"<br>Sacrifice Receives Bonuses From:<br>", syn_text:"Redemption: +20% Damage per Level<br>Fanaticism: +20% Damage per Level", graytext:"", index:[1," percent damage to self"], text:["","To Attack Rating: +"," percent<br>Damage: +"," percent",""]},
 {data:d313, key:"313", code:118, name:"Smite", i:21, req:[], reqlvl:1, reqWeapon:[""], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Temporarily stun your enemy<br>by bashing it with your shield", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Stun Length: "," seconds<br>Mana Cost: 2"]},
 {data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +9% Magic Damage per Level<br>Fist of the Heavens: +9% Magic Damage per Level<br>Holy Nova: +9% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
-{data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack<br><br>Attacks 3 times<br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +20% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
-{data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy<br><br>Gains up to +60% increased melee splash radius based on the distance traveled", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +25% Damage per Level<br>Might: +25% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
+{data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +20% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
+{data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy<br><br>Gains up to 60% increased melee splash radius<br>based on the distance traveled", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +25% Damage per Level<br>Might: +25% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
 {data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Deals fire, lightning, and cold damage in an area<br>This effect also carries and increases elemental<br>damage from items", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Holy Fire: +2% Elemental Damage per Level<br>Holy Freeze: +2% Elemental Damage per Level<br>Holy Shock: +2% Elemental Damage per Level<br>Conviction: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Chance to Chain "," percent<br>Attack: +"," percent<br>Elemental Damage: +"," percent<br>Added Fire Damage: ","-","<br>Added Cold Damage: ","-","<br>Added Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:123, name:"Blessed Hammer", i:26, req:[31,22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons an ethereal hammer that<br>spirals outwards damaging enemies it hits", syn_title:"<br>Blessed Hammer Receives Bonuses From:<br>", syn_text:"Blessed Aim: +12% Magic Damage per Level<br>Vigor: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:124, name:"Conversion", i:27, req:[24,21], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Converts monsters to fight against<br>other foul demons and beasts", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to convert: "," percent<br>Duration: 8 seconds<br>Mana Cost: 4"]},
@@ -381,7 +381,7 @@ var skills_pd2_paladin = [
 		Blessed Aim
 		Attack rating base reduced from +80% to +60%
 		Attack rating per level reduced from +20% to +15%
-		Now provides +5% deadly strike base																...check tooltip wording
+		Now provides +5% deadly strike base
 		Now gains +1% deadly strike every 2 levels
 
 		Might
@@ -392,24 +392,22 @@ var skills_pd2_paladin = [
 		Attack rating base increased from +25% to +50%
 		Attack rating per level increased from +5% to +10%
 		Enhanced damage bonus per level increased from +12% to +15%
-		Now has a ½ penalty for its enhanced damage bonus to allies											...check tooltip order
+		Now has a ½ penalty for its enhanced damage bonus to allies
 
 		Fanaticism 
 		Enhanced damage per level reduced from +18% to +15%
 
 		Charge 
-		Now gains up to +60% increased melee splash radius based on the distance traveled					...check tooltip wording
+		Now gains up to +60% increased melee splash radius based on the distance traveled
 		Will always charge in melee range instead of doing a normal attack
 		“Charge bug” has now been fixed
 
 		Zeal
-		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third						...check tooltip wording
+		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third
 
 		Sacrifice
-		now causes the killed monster’s corpse to explode dealing 5% of the monsters health plus overkill damage as half physical, half magical		...cleanup tooltip to be more informative/descriptive/brief
-		Damage to self is now reduced by physical damage reductionl											...should this be on the tooltip?
-		~~explosion radius reduced from 14 -> 10~~
-		~~explosion increased overkill damage from 100% -> 150%~~
+		now causes the killed monster’s corpse to explode dealing 5% of the monsters health plus overkill damage as half physical, half magical
+		Damage to self is now reduced by physical damage reduction
 		
 		Fist of the Heavens
 		synergies increased from 10% -> 11%

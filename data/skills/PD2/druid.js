@@ -43,7 +43,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		if (skill.name == "Shock Wave" && elem > 0 && elem < 3) {		result *= (1 + 0.18*skills[13].level + 0.18*skills[6].level + 0.18*skills[8].level) }
 		if (skill.name == "Rabies" && elem > 0 && elem < 3) {			result *= ((1 + 0.12*skills[22].level + 0.12*skills[14].level + 0.12*skills[12].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Fire Claws" && elem == 0) {					result = 4 + Math.floor(skill.level/5) }
-		if (skill.name == "Fire Claws" && elem > 0 && elem < 3) {		result *= ((1 + 0.38*skills[1].level + 0.38*skills[9].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Fire Claws" && elem > 0 && elem < 3) {		result *= ((1 + 0.24*skills[1].level + 0.24*skills[9].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Fury" && elem == 1) {						result += (8*skills[14].level) }
 
 		if (skill.name == "Poison Creeper" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
@@ -240,8 +240,8 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 ]};
 /*[17] Fire Claws		*/ var d252 = {values:[
 		["Fire Missiles",],
-		["Burning Damage (min)",11,12,14,15,16,17,18,19,22,24,26,29,31,33,36,38,42,45,49,52,56,59,64,69,73,78,83,87,93,99,105,111,117,123,128,134,140,146,152,158,164,169,175,181,187,193,199,205,210,216,222,228,234,240,246,251,257,263,269,275,],
-		["Burning Damage (max)",17,19,22,24,26,29,31,33,37,41,44,48,51,55,58,62,66,71,76,80,85,90,96,101,107,113,119,125,132,139,146,153,160,167,174,181,188,195,202,209,216,223,230,237,244,251,258,266,273,280,287,294,301,308,315,322,329,336,343,350,],
+		["Burning Damage (min)",9,11,14,16,18,21,23,25,29,32,36,39,43,46,50,53,59,65,71,77,83,89,97,105,113,121,130,138,148,159,169,180,191,201,212,222,233,243,254,264,275,285,296,307,317,328,338,349,359,370,380,391,401,412,422,433,443,454,464,475,],
+		["Burning Damage (max)",15,18,22,25,29,32,36,39,44,49,53,58,63,67,72,77,84,91,98,105,112,119,128,138,147,157,166,175,187,199,210,222,234,246,257,269,281,293,304,316,328,340,351,363,375,387,398,410,422,434,445,457,469,481,492,504,516,528,539,551,],
 		["Attack +%",60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,],
 		["Mana Cost",2,2.1,2.2,2.4,2.5,2.6,2.7,2.9,3,3.1,3.2,3.4,3.5,3.6,3.7,3.9,4,4.1,4.2,4.4,4.5,4.6,4.7,4.9,5,5.1,5.2,5.4,5.5,5.6,5.7,5.9,6,6.1,6.2,6.4,6.5,6.6,6.7,6.9,7,7.1,7.2,7.4,7.5,7.6,7.7,7.9,8,8.1,8.2,8.4,8.5,8.6,8.7,8.9,9,9.1,9.2,9.4,],
 ]};
@@ -277,8 +277,8 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 			["Life (Hell)",100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400,3500,3600,3700,3800,3900,4000,4100,4200,4300,4400,4500,4600,4700,4800,4900,5000,5100,5200,5300,5400,5500,5600,5700,5800,5900,6000,],
 		],
 		["enemy poison resists",-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-50,-50,-50,-50,-50,-50,-50,-50,-50,-50,-50,-50,-50,-50,],
-		["Poison Damage (min)",37,40,43,46,49,52,55,58,64,70,76,82,88,94,100,106,131,156,181,206,231,256,306,356,406,456,506,556,656,756,856,956,1056,1156,1256,1356,1456,1556,1656,1756,1856,1956,2056,2156,2256,2356,2456,2556,2656,2756,2856,2956,3056,3156,3256,3356,3456,3556,3656,3756,],
-		["Poison Damage (max)",50,53,56,59,62,65,68,71,77,83,89,95,101,107,113,119,144,169,194,219,244,269,319,369,419,469,519,569,669,769,869,969,1069,1169,1269,1369,1469,1569,1669,1769,1869,1969,2069,2169,2269,2369,2469,2569,2669,2769,2869,2969,3069,3169,3269,3369,3469,3569,3669,3769,],
+		["Poison Damage (min)",3,6,9,12,15,18,21,25,31,37,43,50,56,62,68,75,100,125,150,175,200,225,275,325,375,425,475,525,625,725,825,925,1025,1125,1225,1325,1425,1525,1625,1725,1825,1925,2025,2125,2225,2325,2425,2525,2625,2725,2825,2925,3025,3125,3225,3325,3425,3525,3625,3725,],
+		["Poison Damage (max)",6,9,12,15,18,21,25,28,34,40,46,53,59,65,71,78,103,128,153,178,203,228,278,328,378,428,478,528,628,728,828,928,1028,1128,1228,1328,1428,1528,1628,1728,1828,1928,2028,2128,2228,2328,2428,2528,2628,2728,2828,2928,3028,3128,3228,3328,3428,3528,3628,3728,],
 ]};
 /*[23]Heart of Wolverine*/ var d321 = {values:[
 		["Life",
@@ -388,13 +388,13 @@ var skills_pd2_druid = [
 {data:d221, key:"221", code:234, name:"Feral Rage", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werewolf form,<br>go into a frenzied rage to steal<br>increasing amounts of life from your enemies<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 30 seconds", syn_title:"<br>Feral Rage Receives Bonuses From:<br>", syn_text:"Fury: +10% Damage per Level", graytext:"", index:[0,""], text:["Walk/Run Speed: +","-"," percent<br>Life Steal: +","-"," percent<br>Damage: +"," percent<br>Attack: +"," percent"]},
 {data:d223, key:"223", code:235, name:"Maul", i:15, req:[13], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werebear form,<br>maul your enemies<br>for increasing extra damage<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 20 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Stun Length: "," seconds<br>Damage: +","-"," percent<br>Attack: +"," percent"]},
 {data:d241, key:"241", code:236, name:"Rabies", i:16, req:[14,11], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf form,<br>bite your enemies<br>to inflict them with disease<br>that spreads to other monsters<br><br>Mana Cost: 10", syn_title:"<br>Rabies Receives Bonuses From:<br>", syn_text:"Poison Creeper: +12% Poison Damage per Level<br>Feral Rage: +12% Poison Damage per Level<br>Lycanthropy: +12% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 5 seconds",""]},
-{data:d252, key:"252", code:237, name:"Fire Claws", i:17, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf or werebear<br>form, maul your enemies<br>with a fiery claw attack", syn_title:"<br>Fire Claws Receives Bonuses From:<br>", syn_text:"Molten Boulder: +38% Fire Damage per Level<br>Armageddon: +38% Fire Damage per Level", graytext:"", index:[1,""], text:["One additional fire missile per base level<br>Fire Missiles: ","Average Fire Damage: ","-"," per second<br>Attack: +"," percent<br>Mana Cost: ",""], incomplete:"NOT UPDATED FOR S7"},
+{data:d252, key:"252", code:237, name:"Fire Claws", i:17, req:[], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf or werebear<br>form, maul your enemies<br>with a fiery claw attack", syn_title:"<br>Fire Claws Receives Bonuses From:<br>", syn_text:"Molten Boulder: +24% Fire Damage per Level<br>Armageddon: +24% Fire Damage per Level", graytext:"", index:[1,""], text:["One additional fire missile per base level<br>Fire Missiles: ","Average Fire Damage: ","-"," per second<br>Attack: +"," percent<br>Mana Cost: ",""]},
 {data:d232, key:"232", code:238, name:"Hunger", i:18, req:[15,13], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"While in werebear form, consume a corpse to temporarily<br>gain movement speed, critical strike and life steal", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Gains +1% Life Steal every 4 Base Levels<br>Life Steal: ","Duration: "," seconds<br>+","% Movement Speed<br>"," percent chance of Critical Strike<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:239, name:"Shock Wave", i:19, req:[15,13], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werebear form,<br>stomp to create a shock wave<br>that stuns nearby enemies<br><br>Gains an additional Shock Wave every 5 Levels", syn_title:"<br>Shock Wave Receives Bonuses From:<br>", syn_text:"Werebear: +18% Damage per Level<br>Twister: +18% Damage per Level<br>Tornado: +18% Damage per Level", graytext:"", index:[0,""], text:["Stun Length: 0.2 seconds<br>"," Shock Waves<br>Damage: ","-","<br>Mana Cost: 7"]},
-{data:d261, key:"261", code:240, name:"Fury", i:20, req:[16,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf form, attack<br>either multiple adjacent targets<br>or one target multiple times<br><br>Attacks 3 times<br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Fury Receives Bonuses From:<br>", syn_text:"Feral Rage: +8% Damage per Level", graytext:"", index:[0,""], text:["3 hits<br>Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 4"]},
+{data:d261, key:"261", code:240, name:"Fury", i:20, req:[16,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"When in werewolf form, attack<br>either multiple adjacent targets<br>or one target multiple times<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Fury Receives Bonuses From:<br>", syn_text:"Feral Rage: +8% Damage per Level", graytext:"", index:[0,""], text:["3 hits<br>Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 4"]},
 
 {data:d312, key:"312", code:241, name:"Raven", i:21, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon ravens to peck out<br>the eyes of your enemies<br><br>Summon an Additional Raven per Cast every 10 Base Levels", syn_title:"<br>Raven Receives Bonuses From:<br>", syn_text:"Summon Spirit Wolf: +12% Damage per Level<br>Summon Dire Wolf: +12% Damage per Level<br>Summon Grizzly: +12% Damage per Level<br>", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Damage: ","-","<br>5 hits<br>Ravens: ","<br>Mana Cost: ",""]},
-{data:d313, key:"313", code:242, name:"Poison Creeper", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that spreads disease to all it<br>contacts and reduces their poison resistance", syn_title:"<br>Poison Creeper Receives Bonuses From:<br>", syn_text:"Carrion Vine: +30% Poison Damage per Level<br>Solar Creeper: +30% Poison Damage per Level<br>Rabies: +30% Poison Damage per Level", graytext:"", index:[0,""], text:["Life: ","<br>Enemy Poison Resists: "," percent<br>Poison Damage: ","-","<br>over 4 seconds<br>Mana Cost: 8"]},
+{data:d313, key:"313", code:242, name:"Poison Creeper", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that spreads disease to all it<br>contacts and reduces their poison resistance<br><br>You may summon an additional<br>Poison Creeper every 10 Base Levels", syn_title:"<br>Poison Creeper Receives Bonuses From:<br>", syn_text:"Carrion Vine: +30% Poison Damage per Level<br>Solar Creeper: +30% Poison Damage per Level<br>Rabies: +30% Poison Damage per Level", graytext:"", index:[0,""], text:["Life: ","<br>Enemy Poison Resists: "," percent<br>Poison Damage: ","-","<br>over 4 seconds<br>Mana Cost: 8"]},
 {data:d321, key:"321", code:243, name:"Heart of Wolverine", i:23, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a spirit pet that adds<br>to the damage and attack rating<br>of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Life: ","<br>Damage: +"," percent<br>Attack: +"," percent<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d332, key:"332", code:244, name:"Summon Spirit Wolf", i:24, req:[23,21], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a wolf with teleporting ability<br>to fight by your side", syn_title:"<br>Summon Spirit Wolf Receives Bonuses From:<br>", syn_text:"Raven: +6% Damage per Level<br>Summon Dire Wolf: +6% Damage per Level<br>Summon Grizzly: +6% Damage per Level<br>Werewolf: +6% Damage per Level<br>", graytext:"", index:[1,""], text:["Mana Cost: 15<br>Life: ","Damage: ","-","<br>Wolves: ","<br>Attack: +"," percent<br>Defense: +"," percent"]},
 {data:d333, key:"333", code:245, name:"Carrion Vine", i:25, req:[22], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summon a vine that eats corpses<br>and replenishes life for you and your party", syn_title:"<br>Carrion Vine Receives Bonuses From:<br>", syn_text:"Oak Sage: +2-4 Life Healed per Level<br>Solar Creeper: +2-4 Life Healed per Level", graytext:"", index:[0,""], text:["Life: ","<br>Heals: ","-","<br>Mana Cost: 10"]},
@@ -408,7 +408,7 @@ var skills_pd2_druid = [
 /* Changelog Notes - Druid
 
 		Spirit of barbs
-		Now has a 5% synergy with Carrion Vine											...check tooltip wording
+		Now has a 5% synergy with Carrion Vine
 
 		Arctic blast 
 		Hurricane synergy increased from 14% to 16%
@@ -422,7 +422,7 @@ var skills_pd2_druid = [
 		Level 28+ scaling increased from 28-29 to 28-30
 
 		Fury
-		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third				...check tooltip wording
+		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third
 
 		Feral Rage
 		No longer provides increased melee splash radius
@@ -433,12 +433,11 @@ var skills_pd2_druid = [
 		Rabies
 		synergies reduced from 17% -> 12%
 
-Fireclaw
-		~~Synergies increased from 17 to 19% (old)~~
+		Fireclaw
 		Removed Lycanthropy and Firestorm synergies
-		Redistributed synergy values into Molten Boulder and Armageddon																...check synergy values (added them as 38% each)
-Increased the base damage scaling on fire claws from 1/2/3/4/5 - 2/3/4/5/6 *to* 2/3/5/7/9 - 3/4/6/8/10								...values don't match (fractions? may need to check in-game)
-		Added scaling fire missile creation (was flat 6 fire missiles, now it is 4 + 1 per 4 base levels (8 total at level 20))		...check tooltip wording and values
+		Redistributed synergy values into Molten Boulder and Armageddon (24% each)
+		Increased the base damage scaling on fire claws from 1/2/3/4/5 - 2/3/4/5/6 *to* 2/3/5/7/9 - 3/4/6/8/10
+		Added scaling fire missile creation (was flat 6 fire missiles, now it is 4 + 1 per 4 base levels (8 total at level 20))
 		Increased the range of fire claw fire missiles
 		Added basic attack damage to fire claw tooltip
 

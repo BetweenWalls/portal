@@ -312,7 +312,7 @@ var skills_pd2_amazon = [
 {data:d133, key:"133", code:10, name:"Lightning Bolt", i:4, req:[1,2,0], reqlvl:12, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically converts your javelin into a bolt of lightning<br><br>Converts 100% Physical Damage to Elemental Damage", syn_title:"<br>Lightning Bolt Receives Bonuses From:<br>", syn_text:"Power Strike: +14% Lightning Damage per Level<br>Lightning Fury: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d142, key:"142", code:11, name:"Charged Strike", i:5, req:[1,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases charged bolts upon impact", syn_title:"<br>Charged Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +5% Lightning Damage per Level<br>Lightning Strike: +5% Lightning Damage per Level<br>Lightning Fury: +5% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," charged bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d143, key:"143", code:12, name:"Plague Javelin", i:6, req:[4,2,1,0], reqlvl:18, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your javelin to release<br>expanding clouds of poison upon impact", syn_title:"<br>Plague Javelin Receives Bonuses From:<br>", syn_text:"Poison Javelin: +12% Poison Damage per Level<br>Javelin and Spear Mastery: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
-{data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets<br><br>Attacks 3 times<br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
+{data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
 {data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +10% Lightning Damage per Level<br>Charged Strike: +10% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact<br><br>Releases an additional bolt every 5 levels", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 
@@ -342,11 +342,11 @@ var skills_pd2_amazon = [
 /* Changelog Notes - Amazon
 
 		Fend 
-		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third		...check tooltip wording
+		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third
 		Fend synergies increased from 12% -> 15%
 
 		Lightning fury 
-		Changed from gaining a bolt every 5 base levels to every 5 soft						...is it 10 + 1 per 5 levels? or does it start lower?
+		Changed from gaining a bolt every 5 base levels to every 5 soft
 
 		Power strike 
 		Level 28+ scaling increased from 0-31 to 0-32

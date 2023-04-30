@@ -23,9 +23,9 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		if (skill.name == "Iron Skin" && elem == 0) {		result = Math.floor(skill.level/2) }
 		if (skill.name == "Increased Speed" && elem == 0) {	result = Math.floor(2*skill.level) }
 		if (skill.name == "Combat Reflexes" && elem == 0) {	result = Math.floor(2*skill.level) }
-		if (skill.name == "Deep Wounds" && elem == 1) { 	result *= (1 + 0.04*skills[7].level) }
+		if (skill.name == "Deep Wounds" && elem == 0) { 	result *= (1 + 0.04*skills[7].level) }
 
-		if (skill.name == "Bash" && elem == 0) { 			result += (15*skills[19].level) }
+		if (skill.name == "Bash" && elem == 0) { 			result += (10*skills[19].level) }
 		if (skill.name == "Bash" && elem == 1) { 			result += (15*skills[21].level + 15*skills[19].level) }
 		if (skill.name == "Frenzy" && elem == 0) { 			result += (15*skills[28].level + 15*skills[21].level) }
 		if (skill.name == "Stun" && elem == 2) { 			result += (10*skills[19].level) }
@@ -148,8 +148,8 @@ var character_pd2_barbarian = {class_name:"Barbarian", strength:30, dexterity:20
 		["Chance of Critical Strike %",5,9,12,15,17,19,20,21,23,23,24,25,26,26,27,28,28,28,29,29,29,30,30,30,30,31,31,31,31,31,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,35,],
 ]};
 /*[12] Deep Wounds	*/ var d262 = {values:[
-		["Chance of Open Wounds +%",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-		["Open Wounds Damage per Second",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+		["Open Wounds Damage per Second",80,100,120,140,160,180,200,220,248,276,304,332,360,388,416,444,480,516,552,588,624,660,704,748,792,836,880,924,976,1028,1080,1132,1184,1236,1288,1340,1392,1444,1496,1548,1600,1652,1704,1756,1808,1860,1912,1964,2016,2068,2120,2172,2224,2276,2328,2380,2432,2484,2536,2588,],
+		["Chance of Open Wounds +%",5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,],
 ]};
 /*[13] Throwing Mastery	*/ var d213 = {values:[
 		["Pierce %",15,17,19,21,23,25,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,],
@@ -241,7 +241,7 @@ var skills_pd2_barbarian = [
 {data:d113, key:"113", code:129, name:"Find Potion", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>for a chance to find a potion", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 1",""]},
 {data:d142, key:"142", code:130, name:"Taunt", i:2, req:[8,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Enrages nearby monsters into relentlessly attacking", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Duration Increases with Base Levels<br>Duration: ","Target's Damage: "," percent<br>Target's Attack: "," percent<br>Mana Cost: 3",""]},
 {data:d121, key:"121", code:131, name:"Shout", i:3, req:[0], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Warns of impending danger and improves the defense<br>rating of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Defense: +"," percent<br>Duration: 300 seconds<br>Mana Cost: 6",""]},
-{data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""], incomplete:"NOT UPDATED FOR S7"},
+{data:d133, key:"133", code:132, name:"Find Item", i:4, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to find hidden treasures", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent chance<br>Mana Cost: 7",""]},
 {data:d162, key:"162", code:133, name:"Battle Cry", i:5, req:[6,3,2,8,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Fearsome cry that decreases<br>enemies' defense rating and physical damage resistance", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 8 seconds<br>Defense: "," percent<br>Physical Damage Resistance: "," percent<br>Mana Cost: 5",""]},
 {data:d151, key:"151", code:134, name:"Battle Orders", i:6, req:[3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Improves the maximum mana and life<br>of you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 300 seconds<br>Max Life: +","<br>Max Mana: +","<br>Mana Cost: 7",""]},
 {data:d153, key:"153", code:135, name:"Grim Ward", i:7, req:[2,8,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Use on the corpse of a slain monster<br>to create a frightening totem<br>that increases damage and attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["+"," Attack Rating<br>Damage: +"," percent<br>Duration: 40 seconds<br>Radius: "," yards<br>Mana Cost: 4",""]},
@@ -250,7 +250,7 @@ var skills_pd2_barbarian = [
 
 {data:d211, key:"211", code:138, name:"General Mastery", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves sword, axe, dagger, and blunt weapon fighting skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
 {data:d222, key:"222", code:139, name:"Polearm and Spear Mastery", i:11, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves polearm and spear skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
-{data:d262, key:"262", code:368, name:"Deep Wounds", i:12, req:[16,15,14], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Increases open wounds damage", syn_title:"<br>Deep Wounds Receives Bonuses From:<br>", syn_text:"Grim Ward: +4% Damage per Level", graytext:"", index:[0,""], text:[""," percent chance of open wounds<br>Open Wounds Damage: "," per second",""], incomplete:"NOT UPDATED FOR S7"},
+{data:d262, key:"262", code:368, name:"Deep Wounds", i:12, req:[16,15,14], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Increases open wounds damage", syn_title:"<br>Deep Wounds Receives Bonuses From:<br>", syn_text:"Grim Ward: +4% Damage per Level", graytext:"", index:[0,""], text:["Open Wounds Damage: "," per second<br>+"," percent chance of open wounds",""]},
 {data:d213, key:"213", code:141, name:"Throwing Mastery", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves thrown weapon skill", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Pierce: +"," percent<br>Damage: +"," percent<br>Attack: +"," percent<br>"," percent chance of Critical Strike",""]},
 {data:d231, key:"231", code:142, name:"Combat Reflexes", i:14, req:[], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases stamina, hit recovery, and life", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Hit Recovery Rate by 2% per Base Level<br>Faster Hit Recovery: +","Max Life: +"," life<br>Stamina Bonus: +"," percent",""]},
 {data:d243, key:"243", code:143, name:"Iron Skin", i:15, req:[], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Improves defense rating", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Physical Damage Reduction<br>by 1% Every 2 Base Levels<br>Physical Damage Reduction: ","+"," percent",""]},
@@ -263,7 +263,7 @@ var skills_pd2_barbarian = [
 {data:d321, key:"321", code:149, name:"Stun", i:21, req:[24], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Stuns enemies in an area for a<br>short time dealing bonus damage<br>and increases your attack rating<br><br>Deals 1/4 Weapon Damage", syn_title:"<br>Stun Receives Bonuses From:<br>", syn_text:"Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Attack: +"," percent<br>Duration: "," seconds<br>Mana Cost: 2",""]},
 {data:d331, key:"331", code:150, name:"Leap", i:22, req:[21,24], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Leaps away from danger<br>or into the fray", syn_title:"", syn_text:"", graytext:"", index:[1," yards"], text:["Knockback Radius: ","Leap Distance: "," yards<br>Mana Cost: ",""]},
 {data:d333, key:"333", code:151, name:"Double Throw", i:23, req:[28,18], reqlvl:12, reqWeapon:["thrown","javelin"], level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, damaging:{attack:2,spell:0}, description:"Allows you to throw two different<br>throwing weapons at the same time<br>Weapons bounce to nearby enemies", syn_title:"<br>Double Throw Receives Bonuses From:<br>", syn_text:"Double Swing: +6% Damage per Level<br>Frenzy: +6% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>"," bounces<br>To Attack Rating: +"," percent<br>Mana Cost: ",""]},
-{data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +15% Damage per Level<br>Concentrate: +15% Damage per Level<br>Concentrate: +15% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
+{data:d311, key:"311", code:152, name:"Bash", i:24, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Powerful blow that has a chance to knock back enemies", syn_title:"<br>Bash Receives Bonuses From:<br>", syn_text:"Stun: +15% Damage per Level<br>Concentrate: +15% Damage per Level<br>Concentrate: +10% Attack Rating per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: +"," percent<br>Damage: +","<br>Mana Cost: ",""]},
 {data:d351, key:"351", code:153, name:"Leap Attack", i:25, req:[22,21,24,19,28], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:1,spell:0}, description:"Leaps to and attacks enemies<br>in a radius upon landing", syn_title:"<br>Leap Attack Receives Bonuses From:<br>", syn_text:"Leap: +8% Damage per Level<br>Bash: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Mana Cost: ",""]},
 /*TODO: remove*/{data:d362, key:"362", code:154, name:"None", i:26, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d362, key:"362", code:155, name:"Whirlwind", i:27, req:[20,19,28], reqlvl:30, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"A whirling dance of death<br>that cuts a path through the<br>legions of your enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Velocity: +"," percent<br>Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: ",""]},
@@ -272,8 +272,8 @@ var skills_pd2_barbarian = [
 
 /* Changelog Notes - Barbarian
 
-Deep Wounds
-Added a new passive: Deep Wounds - % chance of open wounds and additional open wounds dps		...check tooltip wording and update values
+		Deep Wounds
+		Added a new passive: Deep Wounds - % chance of open wounds and additional open wounds dps
 
 		Dual Swing 
 		synergies increased from 16% to 18% 
@@ -286,7 +286,7 @@ Added a new passive: Deep Wounds - % chance of open wounds and additional open w
 
 		Bash 
 		Damage per level increased from 18% to 25%
-		Stun synergy increased from 12% to 15%						...also includes Concentrate synergy? (all synergies should be 15%?)
+		Stun synergy increased from 12% to 15%
 		Concentrate synergy increased from 10% to 15%
 
 		Leap attack 
@@ -294,9 +294,9 @@ Added a new passive: Deep Wounds - % chance of open wounds and additional open w
 		Leap attack no longer uses durability
 		Leap attack aoe increased
 
-Find item 
+		Find item 
 		Find potion synergy removed
 		% chance for high quality reduced from 30% to 15%
-Scaling reduced from a diminishing return scaling from 0-50 to 0-40							...update values
+		Scaling reduced from a diminishing return scaling from 0-50 to 0-40
 
 */

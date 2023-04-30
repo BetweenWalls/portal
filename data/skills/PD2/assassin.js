@@ -34,7 +34,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Mind Blast" && elem == 1) { 					result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= ((1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) * (1+character.mDamage/100)) }
 		if (skill.name == "Mind Blast" && elem > 3 && elem < 6) { 		result *= (1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) }
-		if (skill.name == "Venom" && elem < 2) { 						result *= (1 + 0.08*skills[4].level) }		// poison damage is only applied on attack, not cast (no longer "double dips")
+		if (skill.name == "Venom" && elem < 2) { 						result *= ((1 + 0.08*skills[4].level) * (1+character.pDamage/100)) }		// poison damage is only applied on attack, not cast (no longer "double dips") but the skill tooltip still includes it
 		if (skill.name == "Burst of Speed" && elem == 0) { 				result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Shadow Warrior" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
 		if (skill.name == "Shadow Master" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
@@ -154,8 +154,8 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Attack +%",40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,],
 ]};
 /*[ 4] Cobra Strike		*/ var d132 = {values:[
-		["Poison Damage (min)",3,9,15,21,28,34,40,46,65,84,103,121,140,159,178,196,228,259,290,321,353,384,444,504,564,624,684,744,834,924,1014,1104,1194,1284,1374,1464,1554,1644,1734,1824,1914,2004,2094,2184,2274,2364,2454,2544,2634,2724,2814,2904,2994,3084,3174,3264,3354,3444,3534,3624,],
-		["Poison Damage (max)",12,18,25,31,37,43,50,56,75,93,112,131,150,168,187,206,237,268,300,331,362,393,453,513,573,633,693,753,843,933,1023,1113,1203,1293,1383,1473,1563,1653,1743,1833,1923,2013,2103,2193,2283,2373,2463,2553,2643,2733,2823,2913,3003,3093,3183,3273,3363,3453,3543,3633,],
+		["Poison Damage (min)",3,9,15,21,28,34,40,46,65,84,103,121,140,159,178,196,228,259,290,321,353,384,446,509,571,634,696,759,853,946,1040,1134,1228,1321,1415,1509,1603,1696,1790,1884,1978,2071,2165,2259,2353,2446,2540,2634,2728,2821,2915,3009,3103,3196,3290,3384,3478,3571,3665,3759,],
+		["Poison Damage (max)",12,18,25,31,37,43,50,56,75,93,112,131,150,168,187,206,237,268,300,331,362,393,456,518,581,643,706,768,862,956,1050,1143,1237,1331,1425,1518,1612,1706,1800,1893,1987,2081,2175,2268,2362,2456,2550,2643,2737,2831,2925,3018,3112,3206,3300,3393,3487,3581,3675,3768,],
 		["leech",40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,],
 		["poison cloud (min)",6,15,25,34,43,53,62,71,96,121,146,171,196,221,246,271,309,346,384,421,459,496,571,646,721,796,871,946,1059,1171,1284,1396,1509,1621,1734,1846,1959,2071,2184,2296,2409,2521,2634,2746,2859,2971,3084,3196,3309,3421,3534,3646,3759,3871,3984,4096,4209,4321,4434,4546,],
 		["poison cloud (max)",18,28,37,46,56,65,75,84,109,134,159,184,209,234,259,284,321,359,396,434,471,509,584,659,734,809,884,959,1071,1184,1296,1409,1521,1634,1746,1859,1971,2084,2196,2309,2421,2534,2646,2759,2871,2984,3096,3209,3321,3434,3546,3659,3771,3884,3996,4109,4221,4334,4446,4559,],
@@ -343,7 +343,7 @@ var skills_pd2_assassin = [
 {data:d233, key:"233", code:265, name:"Cloak of Shadows", i:14, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Cast a shadow to blind nearby enemies<br>lowering their defenses for a period of time<br><br>Range: 20 yards<br>Mana Cost: 13", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 5 seconds<br>Defense Bonus: +"," percent<br>Enemy Defense: "," percent",""]},
 {data:d241, key:"241", code:266, name:"Fade", i:15, req:[11,9], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Raise all resistances and resist curses<br>for a period of time", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Reduces curse duration by "," percent<br>Physical Damage Reduction: "," percent<br>Resist All: "," percent<br>Duration: "," seconds<br>Mana Cost: 10"]},
 {data:d242, key:"242", code:267, name:"Shadow Warrior", i:16, req:[13,14,9,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a shadow of yourself that mimics<br>your skills and fights by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Life: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
-{data:d243, key:"243", code:268, name:"Mind Blast", i:17, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Stun a group of enemies<br>using the power of your mind", syn_title:"<br>Mind Blast Receives Bonuses From:<br>", syn_text:"Psychic Hammer: +13% Damage per Level<br>Cloak of Shadows: +13% Damage per Level<br>Shadow Warrior: +13% Damage per Level", graytext:"", index:[2," yards"], text:["Stun Length: "," seconds<br>Radius: ","Magic Damage: ","-","<br>Damage: ","-","<br>Mana Cost: 9"], incomplete:"NOT UPDATED FOR S7"},
+{data:d243, key:"243", code:268, name:"Mind Blast", i:17, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Stun a group of enemies<br>using the power of your mind", syn_title:"<br>Mind Blast Receives Bonuses From:<br>", syn_text:"Psychic Hammer: +13% Damage per Level<br>Cloak of Shadows: +13% Damage per Level<br>Shadow Warrior: +13% Damage per Level", graytext:"", index:[2," yards"], text:["Stun Length: "," seconds<br>Radius: ","Magic Damage: ","-","<br>Damage: ","-","<br>Mana Cost: 9"]},
 {data:d261, key:"261", code:269, name:"Venom", i:18, req:[15,11,9], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison damage to your weapons", syn_title:"<br>Venom Receives Bonuses From:<br>", syn_text:"Cobra Strike: +8% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 1.6 seconds<br>Duration: "," seconds<br>Mana Cost: 12",""]},
 {data:d262, key:"262", code:270, name:"Shadow Master", i:19, req:[16,13,14,9,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a powerful shadow of yourself<br>to fight by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Life: ","<br>Attack: +","<br>Resist All: +"," percent<br>Mana Cost: ",""]},
 
@@ -364,8 +364,8 @@ var skills_pd2_assassin = [
 
 /* Changelog Notes - Assassin
 
-Mind Blast
-Now deals partial magic damage																...check tooltip order, update magic/phys damage values
+		Mind Blast
+		Now deals partial magic damage
 
 		Tiger strike 
 		Animation reverted back to only using it’s main hand
@@ -383,7 +383,7 @@ Now deals partial magic damage																...check tooltip order, update mag
 
 		Dragon Claw
 		Synergies increased from 8 to 15%
-		Damage per level increased from 15% to 25%																...still starts at 50%?
+		Damage per level increased from 15% to 25%
 
 		Blade Sentinel
 		Synergies increased from 9 to 10%
@@ -404,13 +404,13 @@ Now deals partial magic damage																...check tooltip order, update mag
 
 		Venom
 		no longer double dips on increase poison damage% (the poison damage% will be applied on _hit_ and not on casting venom)
-		no longer has scaling duration from poison damage%																		...still 5 minutes + 5 seconds per level?
+		no longer has scaling duration from poison damage%
 		now lasts 1.6 seconds at all levels (Total damage is the same from previous patch)
 
 		Cobra Strike
 		now has next hit delay
-		Poison Bolt level 22-28 scaling increased from 18-18 to 20-20							...1/3 of the actual values?
-		Poison Bolt level 28+ scaling increased from 26-26 to 30-30								...1/3 of the actual values?
+		Poison Bolt level 22-28 scaling increased from 18-18 to 20-20
+		Poison Bolt level 28+ scaling increased from 26-26 to 30-30
 		Synergies increased from 12% to 14%
 
 */
