@@ -27,7 +27,7 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 
 		if (skill.name == "Might" && elem == 1) {				result = skill.data.values[2][lvl]/2 }
 		if (skill.name == "Blessed Aim" && elem == 0) {			result = skill.level }
-		if (skill.name == "Holy Fire" && elem < 4) {			result *= ((1 + 0.18*skills[1].level + 0.18*skills[9].level + 0.18*skills[13].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Holy Fire" && elem>0 && elem<5) {	result *= ((1 + 0.18*skills[1].level + 0.18*skills[9].level + 0.18*skills[13].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Holy Freeze" && elem < 4) {			result *= ((1 + 0.12*skills[3].level + 0.12*skills[9].level + 0.12*skills[13].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Holy Shock" && (elem == 0 || elem == 2)) {	result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Holy Shock" && (elem == 1 || elem == 3)) {	result *= ((1 + 0.08*skills[5].level + 0.08*skills[9].level + 0.08*skills[13].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
