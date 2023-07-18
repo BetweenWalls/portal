@@ -3809,6 +3809,7 @@ function getWeaponDamage(str, dex, group, thrown) {
 	var phys_min = (base_min * (1+e_damage/100) + c.damage_min + c.level*c.min_damage_per_level - phys_min_other);
 	var phys_max = (base_max * (1+(e_damage+(c.level*c.e_max_damage_per_level))/100) + c.damage_max + c.level*c.max_damage_per_level - phys_max_other);
 	var phys_mult = (1+statBonus+(c.damage_bonus+weapon_skillup)/100);
+	if (phys_max < phys_min) { phys_max = phys_min + 1 };
 	var values = [phys_min, phys_max, phys_mult];
 	
 	return values
@@ -3846,6 +3847,11 @@ function getNonPhysWeaponDamage(group) {
 		m_min = c.mDamage_min - ~~(equipped[other].mDamage_min);
 		m_max = c.mDamage_max - ~~(equipped[other].mDamage_max);
 	}
+	if (f_max < f_min) { f_max = f_min + 1 };
+	if (c_max < c_min) { c_max = c_min + 1 };
+	if (l_max < l_min) { l_max = l_min + 1 };
+	if (p_max < p_min) { p_max = p_min + 1 };
+	if (m_max < m_min) { m_max = m_min + 1 };
 	var values = {fMin:f_min,fMax:f_max,cMin:c_min,cMax:c_max,lMin:l_min,lMax:l_max,pMin:p_min,pMax:p_max,mMin:m_min,mMax:m_max};
 	return values
 }

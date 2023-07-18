@@ -99,7 +99,7 @@ var mercenaries = [
 {i:4, name:"Desert Guard ­ ­ ­ ­ (Prayer)", aura:"Prayer"},
 {i:5, name:"Iron Wolf ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ (Meditation)", aura:"Meditation"},
 {i:6, name:"Iron Wolf ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ (Cleansing)", aura:"Cleansing"},
-{i:7, name:"Iron Wolf ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ (Thorns)", aura:"Thorns"},
+{i:7, name:"Iron Wolf ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ (Precision)", aura:"Precision"},
 {i:8, name:"Barbarian ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ (Might)", aura:"Might"},
 ];
 
