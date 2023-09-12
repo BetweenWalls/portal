@@ -55,9 +55,10 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Lightning Sentry" && elem == 1) { 			result *= ((1 + 0.16*skills[20].level + 0.16*skills[23].level + 0.16*skills[30].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Chain Lightning Sentry" && elem == 0) { 		result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Chain Lightning Sentry" && elem == 1) { 		result *= ((1 + 0.15*skills[20].level + 0.15*skills[23].level + 0.15*skills[26].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
-		if (skill.name == "Blade Sentinel" && elem < 2) { 				result *= (1 + 0.12*skills[25].level + 0.12*skills[29].level) }
+		if (skill.name == "Blade Sentinel" && elem > 0 && elem < 3) { 	result *= (1 + 0.12*skills[25].level + 0.12*skills[29].level) }
 		if (skill.name == "Blade Fury" && elem > 0 && elem < 3) { 		result *= (1 + 0.10*skills[22].level + 0.10*skills[29].level) }
-		if (skill.name == "Blade Shield" && elem < 2) { 				result *= (1 + 0.10*skills[22].level + 0.10*skills[25].level) }
+		if (skill.name == "Blade Shield" && elem == 0) { 				result = Math.floor(10*skill.data.values[elem][Math.max(1,skill.level)])/10 }
+		if (skill.name == "Blade Shield" && elem > 0 && elem < 3) { 	result *= (1 + 0.10*skills[22].level + 0.10*skills[25].level) }
 
 	return result
 	},
@@ -271,6 +272,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Lightning Damage (max)",7,14,20,26,32,39,45,51,67,83,98,114,129,145,160,176,201,226,251,276,301,326,360,395,429,464,498,532,576,620,664,707,751,795,839,882,926,970,1014,1057,1101,1145,1189,1232,1276,1320,1364,1407,1451,1495,1539,1582,1626,1670,1714,1757,1801,1845,1889,1932,],
 ]};
 /*[22] Blade Sentinel	*/ var d323 = {values:[
+		["Attack Rating",40,55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,],
 		["Damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,28,32,36,40,44,48,54,60,66,72,78,84,92,100,108,116,124,132,140,148,156,164,172,180,188,196,204,212,220,228,236,244,252,260,268,276,284,292,300,308,316,324,332,340,],
 		["Damage (max)",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,30,34,38,42,46,50,56,62,68,74,80,86,94,102,110,118,126,134,142,150,158,166,174,182,190,198,206,214,222,230,238,246,254,262,270,278,286,294,302,310,318,326,334,342,],
 		["Mana Cost",4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31,31.5,32,32.5,33,33.5,],
@@ -311,6 +313,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Mana Cost",8,8,8.5,8.5,9,9,9.5,9.5,10,10,10.5,10.5,11,11,11.5,11.5,12,12,12.5,12.5,13,13,13.5,13.5,14,14,14.5,14.5,15,15,15.5,15.5,16,16,16.5,16.5,17,17,17.5,17.5,18,18,18.5,18.5,19,19,19.5,19.5,20,20,20.5,20.5,21,21,21.5,21.5,22,22,22.5,22.5,],
 ]};
 /*[29] Blade Shield		*/ var d353 = {values:[
+		["Frames",0.8,0.76,0.76,0.72,0.72,0.68,0.68,0.64,0.64,0.6,0.6,0.56,0.56,0.52,0.52,0.48,0.48,0.44,0.44,0.4,], 
 		["Damage (min)",1,6,11,16,21,26,31,36,43,50,57,64,71,78,85,92,102,112,122,132,142,152,165,178,191,204,217,230,246,262,278,294,310,326,342,358,374,390,406,422,438,454,470,486,502,518,534,550,566,582,598,614,630,646,662,678,694,710,726,742,],
 		["Damage (max)",30,35,40,45,50,55,60,65,72,79,86,93,100,107,114,121,131,141,151,161,171,181,194,207,220,233,246,259,275,291,307,323,339,355,371,387,403,419,435,451,467,483,499,515,531,547,563,579,595,611,627,643,659,675,691,707,723,739,755,771,],
 		["Duration",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
@@ -347,14 +350,14 @@ var skills_pd2_assassin = [
 
 {data:d312, key:"312", code:271, name:"Fire Blast", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a fire bomb<br>to blast your enemies to bits", syn_title:"<br>Fire Blast Receives Bonuses From:<br>", syn_text:"Shock Web: +14% Fire Damage per Level<br>Charged Bolt Sentry: +14% Fire Damage per Level<br>Lightning Sentry: +14% Fire Damage per Level<br>Chain Lightning Sentry: +14% Fire Damage per Level<br>Wake of Fire: +14% Fire Damage per Level<br>Wake of Inferno: +14% Fire Damage per Level", graytext:"", index:[1,""], text:["Gains an Extra Bomb Every 4 Base Levels<br>Bombs: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:272, name:"Shock Web", i:21, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a web of lightning<br>to shock your enemies", syn_title:"<br>Shock Web Receives Bonuses From: <br>", syn_text:"Charged Bolt Sentry: +14% Lightning Damage per Level<br>Wake of Fire: +14% Lightning Damage per Level<br>Chain Lightning Sentry: +14% Lightning Damage per Level<br>Death Sentry: +14% Lightning Damage per Level<br>Lightning Sentry: +14% Lightning Damage per Level<br>Wake of Inferno: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:["Spikes: ","<br>Duration: 3.6 seconds<br>Average Lightning Damage: ","-"," per second<br>Mana Cost: 6",""]},
-{data:d323, key:"323", code:273, name:"Blade Sentinel", i:22, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Set a spinning blade to patrol<br>between you and target point", syn_title:"<br>Blade Sentinel Receives Bonuses From:<br>", syn_text:"Blade Fury: +12% Damage per Level<br>Blade Shield: +12% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>+3/4 Weapon Damage<br>Mana Cost: ",""]},
+{data:d323, key:"323", code:273, name:"Blade Sentinel", i:22, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Set a spinning blade to patrol<br>between you and target point", syn_title:"<br>Blade Sentinel Receives Bonuses From:<br>", syn_text:"Blade Fury: +12% Damage per Level<br>Blade Shield: +12% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+3/4 Weapon Damage<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:274, name:"Charged Bolt Sentry", i:23, req:[21,20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits Charged Bolts<br>at enemies that pass near", syn_title:"<br>Charged Bolt Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Lightning Damage per Level<br>Lightning Sentry: +8% Lightning Damage per Level<br>Chain Lightning Sentry: +8% Lightning Damage per Level", graytext:"", index:[1,""], text:["Releases an Additional Bolt Every 4 Base Levels<br>Bolts Fired: ","Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d332, key:"332", code:275, name:"Wake of Fire", i:24, req:[20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits waves of fire<br><br>Shoots 5 Times", syn_title:"<br>Wake of Fire Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Fire Damage per Level<br>Wake of Inferno: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d343, key:"343", code:276, name:"Blade Fury", i:25, req:[22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Throw spinning blades<br>to slice up your enemies<br><br>Minimum Mana Required to Cast: 3", syn_title:"<br>Blade Fury Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +10% Damage per Level<br>Blade Shield: +10% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+1/2 Weapon Damage<br>Mana Cost: "," per blade",""]},
 {data:d351, key:"351", code:350, name:"Lightning Sentry", i:26, req:[23,21,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots lightning<br>to scorch passing enemies<br><br>Shoots 5 Times", syn_title:"<br>Lightning Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +16% Lightning Damage per Level<br>Charged Bolt Sentry: +16% Lightning Damage per Level<br>Chain Lightning Sentry: +16% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 5 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Fire Blast: +6.5% Fire Damage per Level<br>Wake of Fire: +6.5% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Damage per Level<br>Wake of Inferno: +8% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 3-5 percent of corpse Life<br>Shoots ","Radius: 10 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d353, key:"353", code:280, name:"Blade Shield", i:29, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, damaging:{attack:1,spell:0}, bindable:1, description:"Spinning blades slice enemies<br>who stray too close", syn_title:"<br>Blade Shield Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +10% Damage per Level<br>Blade Fury: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>+1/4 Weapon Damage<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d353, key:"353", code:280, name:"Blade Shield", i:29, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, damaging:{attack:1,spell:0}, bindable:1, description:"Spinning blades slice enemies<br>who stray too close", syn_title:"<br>Blade Shield Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +10% Damage per Level<br>Blade Fury: +10% Damage per Level", graytext:"", index:[1," seconds"], text:["Increases attack rate by 1 frame every 2 base levels<br>Deals damage every ","Damage: ","-","<br>+1/4 Weapon Damage<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:277, name:"Chain Lightning Sentry", i:30, req:[26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots chain lightning<br>to scorch passing enemies<br><br>Shoots 5 Times", syn_title:"<br>Chain Lightning Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +15% Lightning Damage per Level<br>Charged Bolt Sentry: +15% Lightning Damage per Level<br>Lightning Sentry: +15% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 
 {data:d162, key:"162", code:251, name:"Phoenix Strike", i:31, req:[7,5,2,4,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add elemental bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Phoenix Strike Receives Bonuses From:<br>", syn_text:"Fists of Fire: +16% Fire Damage per Level<br>Fists of Fire: +10% Average Fire Damage per Second per Level<br>Claws of Thunder: +14% Lightning Damage per Level<br>Blades of Ice: +14% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - meteor damage: ","-","<br>Burning Damage: ","-"," per second<br>Charge 2 - chain lightning damage: ","-","<br>Charge 3 - chaos ice bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
@@ -371,6 +374,9 @@ var skills_pd2_assassin = [
 
 	Blade Sentinel
 	Synergies increased from 10% to 12%
+	...
+	Added an AoE burst to blade sentinel that triggers when the sentinel changes direction (cannot happen more than once per 12 frames)
+	Blade sentinel now has scaling AR bonus with soft points
 
 	Blade Fury
 	Synergies increased from 7% to 10%
@@ -387,6 +393,8 @@ var skills_pd2_assassin = [
 	Now uses on striking instead of on attack
 	No longer uses durability
 	Radius is no longer capped by weapon range
+	...
+	Changed the frame delay on blade shield to scale with hard points. It now starts at 20 frame delay base level 1 and scales to 10 frame delay at level 20 (from 12 frames flat at all levels before)
 
 	Venom
 	Now deals it’s damage over 1 second instead of 2
@@ -399,5 +407,8 @@ var skills_pd2_assassin = [
 	Reworked kick damage dex/str scaling:
 	- Removed strength from base feet damage calc, changed from dex/6 - dex/5 to dex/3 - dex/2
 	- Lowered strength attribute bonus on boots from 120 -> 80
+	...
+	Fixed the dragon talon character sheet to use the new kick formula changes
+	Increased boot damage ED% strength scaling from 80% to 100%
 
 */
