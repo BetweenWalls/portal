@@ -1153,6 +1153,7 @@ skill_Whirlwind:{index:["skill_Whirlwind"], format:["+"," to Whirlwind (Barbaria
 skill_One_Handed_Weapon_Mastery:{index:["skill_One_Handed_Weapon_Mastery"], format:["+"," to One Handed Weapon Mastery (Barbarian only)"]},
 skill_Two_Handed_Weapon_Mastery:{index:["skill_Two_Handed_Weapon_Mastery"], format:["+"," to Two Handed Weapon Mastery (Barbarian only)"]},
 skill_Deep_Wounds:{index:["skill_Deep_Wounds"], format:["+"," to Deep Wounds (Barbarian only)"]},
+skill_Holy_Sword:{index:["skill_Holy_Sword"], format:["+"," to Holy Sword (Paladin only)"]},
 
 skill_Firestorm:{index:["skill_Firestorm"], format:["+"," to Firestorm (Druid only)"]},
 skill_Molten_Boulder:{index:["skill_Molten_Boulder"], format:["+"," to Molten Boulder (Druid only)"]},
