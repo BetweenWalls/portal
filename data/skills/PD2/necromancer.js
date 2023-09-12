@@ -63,14 +63,14 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Revive" && elem == 2) {							result += (10*skills[15].level) }
 		if (skill.name == "Revive" && elem == 3) {							result += (20*skills[15].level) }
 
-		if (skill.name == "Poison Strike" && elem > 0 && elem < 3) {		result *= ((1 + 0.22*skills[15].level + 0.22*skills[13].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Poison Strike" && elem > 0 && elem < 3) {		result *= ((1 + 0.25*skills[15].level + 0.25*skills[13].level) * (1+character.pDamage/100)) }
 		if (skill.name == "Desecrate" && elem < 2) {						result *= ((1 + 0.20*skills[11].level + 0.20*skills[19].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Poison Nova" && elem < 2) {						result *= ((1 + 0.10*skills[11].level + 0.10*skills[15].level) * (1+character.pDamage/100)) }
-		if (skill.name == "Corpse Explosion" &&  elem < 2) {				result *= (1 + 0.08*skills[20].level + 0.08*skills[15].level + 0.08*skills[10].level) }
-		if (skill.name == "Corpse Explosion" && elem > 1 && elem < 4) {		result *= ((1 + 0.08*skills[20].level + 0.08*skills[15].level + 0.08*skills[10].level) * (1+character.fDamage/100)) }
-		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= ((1 + 0.25*skills[13].level + 0.25*skills[16].level + 0.25*skills[18].level) * (1+character.mDamage/100)) }
-		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= ((1 + 0.10*skills[12].level + 0.10*skills[18].level + 0.10*skills[13].level) * (1+character.mDamage/100)) }
-		if (skill.name == "Bone Spirit" && elem < 2) {						result *= ((1 + 0.10*skills[12].level + 0.10*skills[16].level + 0.10*skills[13].level) * (1+character.mDamage/100)) }
+		if (skill.name == "Poison Nova" && elem < 2) {						result *= ((1 + 0.12*skills[11].level + 0.12*skills[15].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Corpse Explosion" &&  elem < 2) {				result *= (1 + 0.10*skills[20].level + 0.10*skills[15].level + 0.10*skills[10].level) }
+		if (skill.name == "Corpse Explosion" && elem > 1 && elem < 4) {		result *= ((1 + 0.10*skills[20].level + 0.10*skills[15].level + 0.10*skills[10].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Teeth" && elem > 0 && elem < 3) {				result *= ((1 + 0.24*skills[13].level + 0.24*skills[16].level + 0.24*skills[18].level) * (1+character.mDamage/100)) }
+		if (skill.name == "Bone Spear" && elem > 0 && elem < 3) {			result *= ((1 + 0.14*skills[12].level + 0.14*skills[18].level + 0.14*skills[13].level) * (1+character.mDamage/100)) }
+		if (skill.name == "Bone Spirit" && elem < 2) {						result *= ((1 + 0.14*skills[12].level + 0.14*skills[16].level + 0.14*skills[13].level) * (1+character.mDamage/100)) }
 		if (skill.name == "Bone Armor" && elem == 0) {						result += (15*skills[17].level + 15*skills[31].level + 3*character.energy) }
 		if (skill.name == "Bone Wall" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.10*skills[13].level + 0.10*skills[31].level) }
 		if (skill.name == "Bone Prison" && elem == 0) {						result = skill.data.values[elem][character.difficulty][lvl] * (1 + 0.08*skills[13].level + 0.08*skills[17].level) }
@@ -301,7 +301,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 
 /*[11] Poison Strike	*/ var d211 = {values:[
-		["% Poison Pierce",-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,],
+		["% Poison Pierce",-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,-40,],
 		["Poison Damage (min)",3,6,9,12,15,18,21,25,37,50,62,75,87,100,112,125,162,200,237,275,312,350,412,475,537,600,662,725,812,900,987,1075,1162,1250,1337,1425,1512,1600,1687,1775,1862,1950,2037,2125,2212,2300,2387,2475,2562,2650,2737,2825,2912,3000,3087,3175,3262,3350,3437,3525,],
 		["Poison Damage (max)",6,9,12,15,18,21,25,28,40,53,65,78,90,103,115,128,165,203,240,278,315,353,415,478,540,603,665,728,815,903,990,1078,1165,1253,1340,1428,1515,1603,1690,1778,1865,1953,2040,2128,2215,2303,2390,2478,2565,2653,2740,2828,2915,3003,3090,3178,3265,3353,3440,3528,],
 		["Attack Rating Bonus %",50,80,110,140,170,200,230,260,290,320,350,380,410,440,470,500,530,560,590,620,650,680,710,740,770,800,830,860,890,920,950,980,1010,1040,1070,1100,1130,1160,1190,1220,1250,1280,1310,1340,1370,1400,1430,1460,1490,1520,1550,1580,1610,1640,1670,1700,1730,1760,1790,1820,],
@@ -309,8 +309,8 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 ]};
 /*[12] Teeth			*/ var d212 = {values:[
 		["teeth",2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,],
-		["Magic Damage (min)",1,2,2,3,3,4,4,5,6,7,8,9,10,11,12,13,17,21,25,29,33,37,44,52,59,67,74,82,93,105,116,128,139,151,162,174,185,197,208,220,231,243,254,266,277,289,300,312,323,335,346,358,369,381,392,404,415,427,438,450,],
-		["Magic Damage (max)",3,4,5,6,7,8,9,10,11,13,14,16,17,19,20,22,27,32,37,42,47,52,61,70,79,88,97,106,119,133,146,160,173,187,200,214,227,241,254,268,281,295,308,322,335,349,362,376,389,403,416,430,443,457,470,484,497,511,524,538,],
+		["Magic Damage (min)",1,2,2,3,3,4,4,5,6,7,8,9,10,11,12,13,17,21,25,29,33,37,44,52,59,67,74,82,93,104,115,126,137,148,159,170,181,192,203,214,225,236,247,258,269,280,291,302,313,324,335,346,357,368,379,390,401,412,423,434,],
+		["Magic Damage (max)",3,4,5,6,7,8,9,10,11,13,14,16,17,19,20,22,27,32,37,42,47,52,60,69,77,86,94,103,115,128,140,153,165,178,190,203,215,228,240,253,265,278,290,303,315,328,340,353,365,378,390,403,415,428,440,453,465,478,490,503,],
 		["Mana Cost",3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,],
 ]};
 /*[13] Bone Armor		*/ var d223 = {values:[
@@ -318,17 +318,16 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		["Mana Cost",11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,],
 ]};
 /*[14] Corpse Explosion	*/ var d221 = {values:[
-		["Damage (min)",2,3,4,5,6,7,8,9,11,13,15,17,19,21,23,25,33,41,49,57,65,73,85,97,109,121,133,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,],
-		["Damage (max)",5,6,7,8,9,10,11,12,16,20,24,28,32,36,40,44,54,64,74,84,94,104,118,132,146,160,174,188,206,224,242,260,278,296,314,332,350,368,386,404,422,440,458,476,494,512,530,548,566,584,602,620,638,656,674,692,710,728,746,764,],
-		["Fire Damage (min)",2,3,4,5,6,7,8,9,11,13,15,17,19,21,23,25,33,41,49,57,65,73,85,97,109,121,133,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,],
-		["Fire Damage (max)",5,6,7,8,9,10,11,12,16,20,24,28,32,36,40,44,54,64,74,84,94,104,118,132,146,160,174,188,206,224,242,260,278,296,314,332,350,368,386,404,422,440,458,476,494,512,530,548,566,584,602,620,638,656,674,692,710,728,746,764,],
-		["Radius (yards)",5,5,5.6,5.6,6.3,6.3,7,7,7.6,7.6,8.3,8.3,9,9,9.6,9.6,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,],
+		["Damage (min)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,39,45,51,57,63,69,81,93,105,117,129,141,156,171,186,201,216,231,246,261,276,291,306,321,336,351,366,381,396,411,426,441,456,471,486,501,516,531,546,561,576,591,606,621,],
+		["Damage (max)",5,7,9,11,13,15,17,19,24,29,34,39,44,49,54,59,69,79,89,99,109,119,133,147,161,175,189,203,221,239,257,275,293,311,329,347,365,383,401,419,437,455,473,491,509,527,545,563,581,599,617,635,653,671,689,707,725,743,761,779,],
+		["Fire Damage (min)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,39,45,51,57,63,69,81,93,105,117,129,141,156,171,186,201,216,231,246,261,276,291,306,321,336,351,366,381,396,411,426,441,456,471,486,501,516,531,546,561,576,591,606,621,],
+		["Fire Damage (max)",5,7,9,11,13,15,17,19,24,29,34,39,44,49,54,59,69,79,89,99,109,119,133,147,161,175,189,203,221,239,257,275,293,311,329,347,365,383,401,419,437,455,473,491,509,527,545,563,581,599,617,635,653,671,689,707,725,743,761,779,],
+		["Radius (yards)",5,5,5.6,5.6,6.3,6.3,7,7,7.6,7.6,8.3,8.3,9,9,9.6,9.6,10.3,10.3,11,11,11.6,11.6,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,],
 		["Mana Cost",5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,20,],
 ]};
 /*[15] Desecrate		*/ var d231 = {values:[
-
-		["Poison Damage (min)",14,18,23,28,32,37,42,46,65,84,103,121,140,159,178,196,262,328,393,459,525,590,689,787,885,984,1082,1181,1279,1378,1476,1575,1673,1771,1870,1968,2067,2165,2264,2362,2460,2559,2657,2756,2854,2953,3051,3150,3248,3346,3445,3543,3642,3740,3839,3937,4035,4134,4232,4331,],
-		["Poison Damage (max)",18,23,28,32,37,42,46,51,70,89,107,126,145,164,182,201,267,332,398,464,529,595,693,792,890,989,1087,1185,1284,1382,1481,1579,1678,1776,1875,1973,2071,2170,2268,2367,2465,2564,2662,2760,2859,2957,3056,3154,3253,3351,3450,3548,3646,3745,3843,3942,4040,4139,4237,4335,],
+		["Poison Damage (min)",14,18,23,28,32,37,42,46,65,84,103,121,140,159,178,196,262,328,393,459,525,590,679,768,857,946,1035,1125,1237,1350,1462,1575,1687,1800,1912,2025,2137,2250,2362,2475,2587,2700,2812,2925,3037,3150,3262,3375,3487,3600,3712,3825,3937,4050,4162,4275,4387,4500,4612,4725,],
+		["Poison Damage (max)",18,23,28,32,37,42,46,51,70,89,107,126,145,164,182,201,267,332,398,464,529,595,684,773,862,951,1040,1129,1242,1354,1467,1579,1692,1804,1917,2029,2142,2254,2367,2479,2592,2704,2817,2929,3042,3154,3267,3379,3492,3604,3717,3829,3942,4054,4167,4279,4392,4504,4617,4729,],
 		["Mana Cost",12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,40,40,41,41,],
 ]};
 /*[16] Bone Spear		*/ var d242 = {values:[
@@ -443,15 +442,15 @@ var skills_pd2_necromancer = [
 {data:d162, key:"162", code:75, name:"Fire Golem", i:9, req:[8,6,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem that bathes<br>nearby enemies in living flames", syn_title:"<br>Fire Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +4% Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +4% Damage per Level<br>Blood Golem: +4% Damage per Level<br>Iron Golem: +4% Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Fire Damage: ","-","<br>Holy Fire: ","-","<br>Mana Cost: ",""]},
 {data:d163, key:"163", code:76, name:"Revive", i:10, req:[5,2,1], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Returns a monster to life<br>to fight by your side", syn_title:"<br>Revive Receives Bonuses From:<br>", syn_text:"Desecrate: +20% Damage per Level<br>Desecrate: +10% Elemental Damage per Level", graytext:"", index:[2,""], text:["Monster Skill Levels: +","<br>Monsters: ","Elemental Damage: +"," percent<br>Damage: +"," percent<br>Duration: "," seconds<br>Mana Cost: 45"]},
 
-{data:d211, key:"211", code:77, name:"Poison Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison to your dagger or scythe attacks", syn_title:"<br>Poison Strike Receives Bonuses From:<br>", syn_text:"Desecrate: +22% Poison Damage per Level<br>Bone Armor: +22% Poison Damage per Level", graytext:"", index:[0,""], text:["Pierces ","% Poison Resistance<br>Poison Damage: ","-","<br>over 2 seconds<br>Attack: +"," percent<br>Mana Cost: ",""]},
-{data:d212, key:"212", code:78, name:"Teeth", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fires a barrage of summoned barbed teeth", syn_title:"<br>Teeth Receives Bonuses From:<br>", syn_text:"Bone Armor: +25% Magic Damage per Level<br>Bone Spear: +25% Magic Damage per Level<br>Bone Spirit: +25% Magic Damage per Level", graytext:"", index:[0,""], text:[""," Teeth<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
+{data:d211, key:"211", code:77, name:"Poison Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison to your dagger or scythe attacks", syn_title:"<br>Poison Strike Receives Bonuses From:<br>", syn_text:"Desecrate: +25% Poison Damage per Level<br>Bone Armor: +25% Poison Damage per Level", graytext:"", index:[0,""], text:["Pierces ","% Poison Resistance<br>Poison Damage: ","-","<br>over 2 seconds<br>Attack: +"," percent<br>Mana Cost: ",""]},
+{data:d212, key:"212", code:78, name:"Teeth", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Fires a barrage of summoned barbed teeth", syn_title:"<br>Teeth Receives Bonuses From:<br>", syn_text:"Bone Armor: +24% Magic Damage per Level<br>Bone Spear: +24% Magic Damage per Level<br>Bone Spirit: +24% Magic Damage per Level", graytext:"", index:[0,""], text:[""," Teeth<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d223, key:"223", code:79, name:"Bone Armor", i:13, req:[12], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates an orbiting shield of bone<br>that absorbs melee damage", syn_title:"<br>Bone Armor Receives Bonuses From:<br>", syn_text:"Gains +3 Additional Absorb per Energy<br>Bone Wall: +15 Damage Absorbed per Level<br>Bone Prison: +15 Damage Absorbed per Level", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Absorbs "," damage<br>Mana Cost: ",""]},
-{data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +8% Damage per Level<br>Desecrate: +8% Damage per Level<br>Revive: +8% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
+{data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +10% Damage per Level<br>Desecrate: +10% Damage per Level<br>Revive: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d231, key:"231", code:81, name:"Desecrate", i:15, req:[14,11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons 5 corpses and releases a deadly cloud of poison", syn_title:"<br>Desecrate Receives Bonuses From:<br>", syn_text:"Poison Strike: +20% Poison Damage per Level<br>Poison Nova: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
-{data:d242, key:"242", code:82, name:"Bone Spear", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons deadly spikes of bone to impale your enemies<br><br>Fires an additional bone spear at levels 15 and 25", syn_title:"<br>Bone Spear Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spirit: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Bone Spears: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
+{data:d242, key:"242", code:82, name:"Bone Spear", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons deadly spikes of bone to impale your enemies<br><br>Fires an additional bone spear at levels 15 and 25", syn_title:"<br>Bone Spear Receives Bonuses From:<br>", syn_text:"Teeth: +14% Magic Damage per Level<br>Bone Spirit: +14% Magic Damage per Level<br>Bone Armor: +14% Magic Damage per Level", graytext:"", index:[0,""], text:["Bone Spears: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d233, key:"233", code:83, name:"Bone Wall", i:17, req:[13,12], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates an impassable barrier<br>of bone and debris", syn_title:"<br>Bone Wall Receives Bonuses From:<br>", syn_text:"Bone Armor: +10% Life per Level<br>Bone Prison: +10% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: 17",""]},
-{data:d262, key:"262", code:84, name:"Bone Spirit", i:18, req:[16,12], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Releases a spirit of the restless undead that<br>tracks its target or finds one of its own", syn_title:"<br>Bone Spirit Receives Bonuses From:<br>", syn_text:"Teeth: +10% Magic Damage per Level<br>Bone Spear: +10% Magic Damage per Level<br>Bone Armor: +10% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
-{data:d261, key:"261", code:85, name:"Poison Nova", i:19, req:[15,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Emits an expanding ring of concentrated poison", syn_title:"<br>Poison Nova Receives Bonuses From:<br>", syn_text:"Poison Strike: +10% Poison Damage per Level<br>Desecrate: +10% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 2 seconds<br>Mana Cost: 20",""]},
+{data:d262, key:"262", code:84, name:"Bone Spirit", i:18, req:[16,12], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Releases a spirit of the restless undead that<br>tracks its target or finds one of its own", syn_title:"<br>Bone Spirit Receives Bonuses From:<br>", syn_text:"Teeth: +14% Magic Damage per Level<br>Bone Spear: +14% Magic Damage per Level<br>Bone Armor: +14% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
+{data:d261, key:"261", code:85, name:"Poison Nova", i:19, req:[15,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Emits an expanding ring of concentrated poison", syn_title:"<br>Poison Nova Receives Bonuses From:<br>", syn_text:"Poison Strike: +12% Poison Damage per Level<br>Desecrate: +12% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 2 seconds<br>Mana Cost: 20",""]},
 
 {data:d312, key:"312", code:86, name:"Amplify Damage", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies, increasing<br>the physical damage they receive", syn_title:"<br>Amplify Damage Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Physical Resistance per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Physical Damage Resistance: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d323, key:"323", code:87, name:"Dim Vision", i:21, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of monsters,<br>reducing their vision radius and attack rating", syn_title:"<br>Dim Vision Receives Bonuses From:<br>", syn_text:"Curse Mastery: +10 Reduced Attack Rating per Level", graytext:"", index:[0,""], text:[""," Attack Rating<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
@@ -472,24 +471,33 @@ var skills_pd2_necromancer = [
 
 /* Changelog Notes - Necromancer
 
-		Poison Strike
-		Poison nova synergy replaced with bone armor
-		Now has next hit delay
+	Teeth
+	Level 22-28 scaling reduced from 15-18 to 15-17
+	Level 28+ scaling reduced from 23-27 to 22-25
+	Synergies reduced from 25% to 24%
 
-		Corpse Explosion
-		Synergies increased from 7% to 8%
-		Level 8-16 scaling increased from 1-1 to 2-4
-		Level 16-22 scaling increased from 5-10 to 8-10
-		Level 22-28 scaling increased from 10-14 to 12-14
+	Bone spear
+	Synergies increased from 10% to 14%
 
-		Dark pact
-		curse mastery and iron maiden synergy reduced from 18% to 15%
-		all curses synergy reduced from 12% to 10%
-		mana cost increase per level reduced from .25 to .125
-		Fixed a bug that applied increased magic damage% from items to Dark Pact twice
-		
-		Curse mastery changed to apply a "curse cap" on the monster
-		- This means that a curse cast from a unit with increased max curses will allow other units to apply curses up to that limit
-		- For example, a necromancer player with 2 max curses casts a curse on a monster, if their mercenary casts a curse on the same monster it will stack up to the necromancer's max curse limit
+	Bone spirit
+	Synergies increased from 10% to 14%
+
+	Poison Strike
+	Synergies increased from 22% to 25%
+	Base poison pierce increase from -2% to -5%
+
+	Poison Nova
+	Synergies increased from 10% to 12%
+
+	Desecrate
+	Level 22-28 scaling reduced from 21-21 to 19-19			...internal values which are 4.67x smaller than displayed values? verified in-game
+	Level 28+ scaling increased from 21-21 to 24-24
+	Corpses now decay after 16 seconds to prevent “shenk bug”
+
+	Corpse Explosion
+	Level 8-16 scaling increased from 2-4 to 3-5			...also level 1-8 changed? from 1-1 to 1-2?
+	Level 16-22 scaling increased from 5-10 to 6-10			...portal incorrectly had 8-10 instead of 5-10
+	Synergies increased from 8% to 10%
+	Radius increased from 10 yards to 12 yards			...assumed same scaling
 
 */

@@ -26,7 +26,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Dragon Talon" && elem == 1) { 				result += (10*skills[6].level + 10*skills[8].level) }
 		if (skill.name == "Dragon Claw" && elem == 0) { 				result += (14*skills[9].level + 14*skills[13].level) }
 		if (skill.name == "Dragon Tail" && elem == 0) { 				result += (8*skills[1].level + 8*skills[8].level) }
-		if (skill.name == "Cobra Strike" && (elem < 2 || elem == 3 || elem == 4)) { result *= ((1 + 0.14*skills[18].level) * (1+character.pDamage/100)) }
+		if (skill.name == "Cobra Strike" && (elem < 2 || elem == 3 || elem == 4)) { result *= ((1 + 0.20*skills[18].level) * (1+character.pDamage/100)) }
 
 		if (skill.name == "Weapon Block" && elem == 0) {				result = skill.level }
 		if (skill.name == "Psychic Hammer" && elem > 0 && elem < 3) {	result *= ((1 + 0.15*skills[17].level + 0.15*skills[14].level + 0.15*skills[16].level) * (1+character.mDamage/100)) }
@@ -55,8 +55,8 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Lightning Sentry" && elem == 1) { 			result *= ((1 + 0.16*skills[20].level + 0.16*skills[23].level + 0.16*skills[30].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Chain Lightning Sentry" && elem == 0) { 		result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Chain Lightning Sentry" && elem == 1) { 		result *= ((1 + 0.15*skills[20].level + 0.15*skills[23].level + 0.15*skills[26].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
-		if (skill.name == "Blade Sentinel" && elem < 2) { 				result *= (1 + 0.10*skills[25].level + 0.10*skills[29].level) }
-		if (skill.name == "Blade Fury" && elem > 0 && elem < 3) { 		result *= (1 + 0.07*skills[22].level + 0.07*skills[29].level) }
+		if (skill.name == "Blade Sentinel" && elem < 2) { 				result *= (1 + 0.12*skills[25].level + 0.12*skills[29].level) }
+		if (skill.name == "Blade Fury" && elem > 0 && elem < 3) { 		result *= (1 + 0.10*skills[22].level + 0.10*skills[29].level) }
 		if (skill.name == "Blade Shield" && elem < 2) { 				result *= (1 + 0.10*skills[22].level + 0.10*skills[25].level) }
 
 	return result
@@ -213,7 +213,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 /*[12]*/
 /*[13] Weapon Block		*/ var d232 = {values:[
 		["% Faster Block Rate",],
-		["% Chance",14,20,25,29,33,35,37,39,41,42,44,45,46,47,48,49,49,50,50,51,51,52,52,53,53,54,54,54,55,55,55,55,56,56,56,56,56,57,57,57,57,57,57,57,58,58,58,58,58,58,58,58,58,59,59,59,59,59,59,60,],
+		["% Chance",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,],
 ]};
 /*[14] Cloak of Shadows	*/ var d233 = {values:[
 		["Defense Bonus +%",5,6,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,30,32,33,35,36,38,39,41,42,44,45,47,48,50,51,53,54,56,57,59,60,62,63,65,66,68,69,71,72,74,75,77,78,80,81,83,84,86,87,89,90,92,93,],
@@ -244,8 +244,8 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Damage (max)",15,17,19,21,23,25,27,29,34,39,44,49,54,59,64,69,81,93,105,117,129,141,165,189,213,237,261,285,321,357,393,429,465,501,537,573,609,645,681,717,753,789,825,861,897,933,969,1005,1041,1077,1113,1149,1185,1221,1257,1293,1329,1365,1401,1437,],
 ]};
 /*[18] Venom			*/ var d261 = {values:[
-		["Poison Damage (min)",60,75,90,105,120,135,150,165,185,205,225,245,265,285,305,325,350,375,400,425,450,475,507,540,572,605,637,670,712,755,797,840,882,925,967,1010,1052,1095,1137,1180,1222,1265,1307,1350,1392,1435,1477,1520,1562,1605,1647,1690,1732,1775,1817,1860,1902,1945,1987,2030,],
-		["Poison Damage (max)",80,95,110,125,140,155,170,185,205,225,245,265,285,305,325,345,370,395,420,445,470,495,527,560,592,625,657,690,732,775,817,860,902,945,987,1030,1072,1115,1157,1200,1242,1285,1327,1370,1412,1455,1497,1540,1582,1625,1667,1710,1752,1795,1837,1880,1922,1965,2007,2050,],
+		["Poison Damage (min)",75,93,112,131,150,168,187,206,231,256,281,306,331,356,381,406,437,468,500,531,562,593,637,681,725,768,812,856,912,968,1024,1080,1136,1192,1248,1304,1360,1416,1472,1528,1584,1640,1696,1752,1808,1864,1920,1976,2032,2088,2144,2200,2256,2312,2368,2424,2480,2536,2592,2648,],
+		["Poison Damage (max)",100,118,137,156,175,193,212,231,256,281,306,331,356,381,406,431,462,493,525,556,587,618,662,706,750,793,837,881,937,993,1049,1105,1161,1217,1273,1329,1385,1441,1497,1553,1609,1665,1721,1777,1833,1889,1945,2001,2057,2113,2169,2225,2281,2337,2393,2449,2505,2561,2617,2673,],
 		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
 ]};
 /*[19] Shadow Master	*/ var d262 = {values:[
@@ -327,7 +327,7 @@ var skills_pd2_assassin = [
 {data:d113, key:"113", code:251, name:"Dragon Talon", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Finishing Move<br><br>Kick your enemies out of your way<br>Adds charged-up bonuses to the kick", syn_title:"<br>Dragon Talon Receives Bonuses From:<br>", syn_text:"Dragon Tail: +10% Damage per Level<br>Dragon Flight: +10% Damage per Level", graytext:"", index:[0,""], text:[""," Kicks<br>Kick Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 6"]},
 {data:d121, key:"121", code:251, name:"Fists of Fire", i:2, req:[], reqlvl:6, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add fire bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Fists of Fire Receives Bonuses From:<br>", syn_text:"Tiger Strike: +26% Damage per Level<br>Phoenix Strike: +26% Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - fire damage: ","-","<br>Charge 2 - fire nova damage: ","-","<br>Charge 3 - meteor damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 2"]},
 {data:d123, key:"123", code:251, name:"Dragon Claw", i:3, req:[1], reqlvl:6, reqWeapon:["claw"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Finishing Move<br><br>Slice and dice your enemies<br>with your dual claw-class weapons<br>Adds charged-up bonuses to both claw attacks", syn_title:"<br>Dragon Claw Receives Bonuses From:<br>", syn_text:"Claw and Dagger Mastery: +14% Damage per Level<br>Weapon Block: +14% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 2"]},
-{data:d132, key:"132", code:251, name:"Cobra Strike", i:4, req:[0], reqlvl:12, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add poison bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Cobra Strike Receives Bonuses From:<br>", syn_text:"Venom: +14% Poison Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - poison bolt damage: ","-"," over 1 second<br>Charge 2 - +"," percent life and mana stealing<br>Charge 3 - poison cloud damage: ","-"," over 1 second<br>Attack: +"," percent<br>Mana Cost: 2"]},
+{data:d132, key:"132", code:251, name:"Cobra Strike", i:4, req:[0], reqlvl:12, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add poison bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Cobra Strike Receives Bonuses From:<br>", syn_text:"Venom: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - poison bolt damage: ","-"," over 1 second<br>Charge 2 - +"," percent life and mana stealing<br>Charge 3 - poison cloud damage: ","-"," over 1 second<br>Attack: +"," percent<br>Mana Cost: 2"]},
 {data:d141, key:"141", code:251, name:"Claws of Thunder", i:5, req:[2], reqlvl:18, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add lightning bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Claws of Thunder Receives Bonuses From:<br>", syn_text:"Phoenix Strike: +16% Lightning Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - lightning damage: ","-","<br>Charge 2 - nova damage: ","-","<br>Charge 3 - charged bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
 {data:d143, key:"143", code:251, name:"Dragon Tail", i:6, req:[3,1], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Finishing Move<br><br>Deals damage to your enemies with an explosive kick<br>Adds charged-up bonuses to the kick<br><br>Converts 100% Physical Damage to Fire Damage<br>Radius: 4 yards", syn_title:"<br>Dragon Tail Receives Bonuses From:<br>", syn_text:"Dragon Talon: +8% Damage per Level<br>Dragon Flight: +8% Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 10"]},
 {data:d151, key:"151", code:251, name:"Blades of Ice", i:7, req:[5,2], reqlvl:24, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add cold bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Blades of Ice Receives Bonuses From:<br>", syn_text:"Phoenix Strike: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - cold damage: ","-","<br>Charge 2 - cold damage radius: 4 yards<br>Charge 3 - freeze duration: "," seconds<br>Attack: +"," percent<br>Mana Cost: 3"]},
@@ -342,15 +342,15 @@ var skills_pd2_assassin = [
 {data:d241, key:"241", code:266, name:"Fade", i:15, req:[11,9], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Raise all resistances and resist curses<br>for a period of time", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Reduces curse duration by "," percent<br>Physical Damage Reduction: "," percent<br>Resist All: "," percent<br>Duration: "," seconds<br>Mana Cost: 10"]},
 {data:d242, key:"242", code:267, name:"Shadow Warrior", i:16, req:[13,14,9,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a shadow of yourself that mimics<br>your skills and fights by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Life: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
 {data:d243, key:"243", code:268, name:"Mind Blast", i:17, req:[14,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Stun a group of enemies<br>using the power of your mind", syn_title:"<br>Mind Blast Receives Bonuses From:<br>", syn_text:"Psychic Hammer: +13% Damage per Level<br>Cloak of Shadows: +13% Damage per Level<br>Shadow Warrior: +13% Damage per Level", graytext:"", index:[2," yards"], text:["Stun Length: "," seconds<br>Radius: ","Magic Damage: ","-","<br>Damage: ","-","<br>Mana Cost: 9"]},
-{data:d261, key:"261", code:269, name:"Venom", i:18, req:[15,11,9], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison damage to your weapons", syn_title:"<br>Venom Receives Bonuses From:<br>", syn_text:"Cobra Strike: +8% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 1.6 seconds<br>Duration: "," seconds<br>Mana Cost: 12",""]},
+{data:d261, key:"261", code:269, name:"Venom", i:18, req:[15,11,9], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison damage to your weapons", syn_title:"<br>Venom Receives Bonuses From:<br>", syn_text:"Cobra Strike: +8% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 1 second<br>Duration: "," seconds<br>Mana Cost: 12",""]},
 {data:d262, key:"262", code:270, name:"Shadow Master", i:19, req:[16,13,14,9,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a powerful shadow of yourself<br>to fight by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Life: ","<br>Attack: +","<br>Resist All: +"," percent<br>Mana Cost: ",""]},
 
 {data:d312, key:"312", code:271, name:"Fire Blast", i:20, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a fire bomb<br>to blast your enemies to bits", syn_title:"<br>Fire Blast Receives Bonuses From:<br>", syn_text:"Shock Web: +14% Fire Damage per Level<br>Charged Bolt Sentry: +14% Fire Damage per Level<br>Lightning Sentry: +14% Fire Damage per Level<br>Chain Lightning Sentry: +14% Fire Damage per Level<br>Wake of Fire: +14% Fire Damage per Level<br>Wake of Inferno: +14% Fire Damage per Level", graytext:"", index:[1,""], text:["Gains an Extra Bomb Every 4 Base Levels<br>Bombs: ","Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:272, name:"Shock Web", i:21, req:[20], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Throw a web of lightning<br>to shock your enemies", syn_title:"<br>Shock Web Receives Bonuses From: <br>", syn_text:"Charged Bolt Sentry: +14% Lightning Damage per Level<br>Wake of Fire: +14% Lightning Damage per Level<br>Chain Lightning Sentry: +14% Lightning Damage per Level<br>Death Sentry: +14% Lightning Damage per Level<br>Lightning Sentry: +14% Lightning Damage per Level<br>Wake of Inferno: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:["Spikes: ","<br>Duration: 3.6 seconds<br>Average Lightning Damage: ","-"," per second<br>Mana Cost: 6",""]},
-{data:d323, key:"323", code:273, name:"Blade Sentinel", i:22, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Set a spinning blade to patrol<br>between you and target point", syn_title:"<br>Blade Sentinel Receives Bonuses From:<br>", syn_text:"Blade Fury: +10% Damage per Level<br>Blade Shield: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>+3/4 Weapon Damage<br>Mana Cost: ",""]},
+{data:d323, key:"323", code:273, name:"Blade Sentinel", i:22, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Set a spinning blade to patrol<br>between you and target point", syn_title:"<br>Blade Sentinel Receives Bonuses From:<br>", syn_text:"Blade Fury: +12% Damage per Level<br>Blade Shield: +12% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>+3/4 Weapon Damage<br>Mana Cost: ",""]},
 {data:d331, key:"331", code:274, name:"Charged Bolt Sentry", i:23, req:[21,20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits Charged Bolts<br>at enemies that pass near", syn_title:"<br>Charged Bolt Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Lightning Damage per Level<br>Lightning Sentry: +8% Lightning Damage per Level<br>Chain Lightning Sentry: +8% Lightning Damage per Level", graytext:"", index:[1,""], text:["Releases an Additional Bolt Every 4 Base Levels<br>Bolts Fired: ","Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d332, key:"332", code:275, name:"Wake of Fire", i:24, req:[20], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that emits waves of fire<br><br>Shoots 5 Times", syn_title:"<br>Wake of Fire Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Fire Damage per Level<br>Wake of Inferno: +8% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d343, key:"343", code:276, name:"Blade Fury", i:25, req:[22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Throw spinning blades<br>to slice up your enemies<br><br>Minimum Mana Required to Cast: 3", syn_title:"<br>Blade Fury Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +7% Damage per Level<br>Blade Shield: +7% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+1/2 Weapon Damage<br>Mana Cost: "," per blade",""]},
+{data:d343, key:"343", code:276, name:"Blade Fury", i:25, req:[22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Throw spinning blades<br>to slice up your enemies<br><br>Minimum Mana Required to Cast: 3", syn_title:"<br>Blade Fury Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +10% Damage per Level<br>Blade Shield: +10% Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Damage: ","-","<br>+1/2 Weapon Damage<br>Mana Cost: "," per blade",""]},
 {data:d351, key:"351", code:350, name:"Lightning Sentry", i:26, req:[23,21,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots lightning<br>to scorch passing enemies<br><br>Shoots 5 Times", syn_title:"<br>Lightning Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +16% Lightning Damage per Level<br>Charged Bolt Sentry: +16% Lightning Damage per Level<br>Chain Lightning Sentry: +16% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 5 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Fire Blast: +6.5% Fire Damage per Level<br>Wake of Fire: +6.5% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Damage per Level<br>Wake of Inferno: +8% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 3-5 percent of corpse Life<br>Shoots ","Radius: 10 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
@@ -362,53 +362,42 @@ var skills_pd2_assassin = [
 
 /* Changelog Notes - Assassin
 
-		Mind Blast
-		Now deals partial magic damage
+	Cobra Strike
+	Synergies increased from 14% to 20%
 
-		Tiger strike 
-		Animation reverted back to only using it’s main hand
-		can now be used with daggers (1h only)
+	Dragon Claw
+	Can no longer be interrupted 
+	Now procs all built up charges on both weapon attacks before consuming them
 
-		Shadow warrior 
-		Item quality per level increased from 2 to 3
-		Shadow warrior base item quality increased from 18 to 20
-		Reworked Shadow Warrior and Shadow Master equipment generation so that they will generate boots to increase their kick damage
+	Blade Sentinel
+	Synergies increased from 10% to 12%
 
-		Fists of Fire
-		Fixed fists of fire's meteor physical damage only gaining 25% from synergies instead of 26%
-		Fists of fire second charge nova level 22-28 scaling reduced from 30-33 to 27-33
-		Fists of fire second charge nova level 28+ scaling increased from 30-33 to 33-40
+	Blade Fury
+	Synergies increased from 7% to 10%
 
-		Dragon Claw
-		Synergies increased from 8 to 15%
-		Damage per level increased from 15% to 25%
+	Phoenix Strike
+	Third charge freeze duration reduced from 1 second to .5
 
-		Blade Sentinel
-		Synergies increased from 9 to 10%
+	Weapon Block
+	Scaling has been reworked from diminishing returns to 10% at level 1 and 1% per level (capping at 55%)
+	Now can be increased by increased block chance at a 1:10 ratio (weapon block : increased block chance)
+	The blocking mechanic from weapon based blocks will now be called a “Parry” to differentiate it from normal block
 
-		Fireblast
-		Synergies increased from 12 to 14%
+	Blade Shield
+	Now uses on striking instead of on attack
+	No longer uses durability
+	Radius is no longer capped by weapon range
 
-		Shockweb
-		Synergies increased from 12 to 14%
+	Venom
+	Now deals it’s damage over 1 second instead of 2
+	Venom’s damage has been doubled and top end increased slightly			...didn't check level 30+
 
-		Blade shield
-		synergies increased from 8% -> 10%
+	Traps
+	Will now be displayed similar to other pets
 
-		Blade dance
-		base damage% increased from 60% -> 110%
-		base attack rating increased from 90% to 200%
-		attack rating per level increased from 6% to 15%
-
-		Venom
-		no longer double dips on increase poison damage% (the poison damage% will be applied on _hit_ and not on casting venom)
-		no longer has scaling duration from poison damage%
-		now lasts 1.6 seconds at all levels (Total damage is the same from previous patch)
-
-		Cobra Strike
-		now has next hit delay
-		Poison Bolt level 22-28 scaling increased from 18-18 to 20-20
-		Poison Bolt level 28+ scaling increased from 26-26 to 30-30
-		Synergies increased from 12% to 14%
+	Kick Damage Formula
+	Reworked kick damage dex/str scaling:
+	- Removed strength from base feet damage calc, changed from dex/6 - dex/5 to dex/3 - dex/2
+	- Lowered strength attribute bonus on boots from 120 -> 80
 
 */

@@ -32,7 +32,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 
 		if (skill.name == "Static Field" && elem == 0) {				result = 5 + 0.2*sk[20].level }
 		if (skill.name == "Telekinesis" && elem == 0) {					result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
-		if (skill.name == "Telekinesis" && elem == 1) {					result *= ((1 + 0.14*sk[11].level + 0.14*sk[14].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Telekinesis" && elem == 1) {					result *= ((1 + 0.15*sk[11].level + 0.15*sk[14].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Teleport" && elem == 0) {					result = -65 + 2*skill.level + 2-2*Math.min(1,skill.level) }
 		if (skill.name == "Charged Bolt" && elem < 2) {					result *= ((1 + 0.06*sk[13].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Nova" && elem < 2) {							result *= ((1 + 0.03*sk[11].level + 0.03*sk[13].level) * (1+c.lDamage/100)) }
@@ -41,7 +41,7 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 		if (skill.name == "Chain Lightning" && elem == 1) {				result *= (1+c.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Chain Lightning" && elem == 2) {				result *= ((1 + 0.06*sk[11].level + 0.06*sk[15].level) * (1+c.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 		if (skill.name == "Thunder Storm" && elem == 0) {				result = 2 - 0.1*Math.ceil(skill.level/2) - 0.1+0.1*Math.min(1,skill.level) }
-		if (skill.name == "Thunder Storm" && elem > 1 && elem < 4) {	result *= ((1 + 0.06*sk[11].level + 0.06*sk[14].level) * (1+c.lDamage/100)) }
+		if (skill.name == "Thunder Storm" && elem > 1 && elem < 4) {	result *= ((1 + 0.08*sk[11].level + 0.08*sk[14].level) * (1+c.lDamage/100)) }
 		if (skill.name == "Energy Shield" && elem == 2) {				result = 225 - 6.25*sk[13].level }
 
 		if (skill.name == "Fire Bolt" && elem < 2) {					result *= ((1 + 0.18*sk[26].level + 0.18*sk[33].level) * (1+c.fDamage/100)) }
@@ -228,11 +228,11 @@ var character_pd2_sorceress = {class_name:"Sorceress", strength:10, dexterity:25
 /*[18]*/
 /*[19] Energy Shield	*/ var d263 = {values:[
 		["Duration (seconds)",144,204,264,324,384,444,504,564,624,684,744,804,864,924,984,1044,1104,1164,1224,1284,1344,1404,1464,1524,1584,1644,1704,1764,1824,1884,1944,2004,2064,2124,2184,2244,2304,2364,2424,2484,2544,2604,2664,2724,2784,2844,2904,2964,3024,3084,3144,3204,3264,3324,3384,3444,3504,3564,3624,3684,],
-		["Absorbs % Damage",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,85,],
+		["Absorbs % Damage",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,],
 		["% damage taken as mana",],
 ]};
 /*[20] Lightning Mastery*/ var d262 = {values:[
-		["Lightning Damage +%",50,62,74,86,98,110,122,134,146,158,170,182,194,206,218,230,242,254,266,278,290,302,314,326,338,350,362,374,386,398,410,422,434,446,458,470,482,494,506,518,530,542,554,566,578,590,602,614,626,638,650,662,674,686,698,710,722,734,746,758,],
+		["Lightning Damage +%",50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,],
 ]};
 /*[21] Thunder Storm	*/ var d251 = {values:[
 		["Delay between hits",],
@@ -322,14 +322,14 @@ var skills_pd2_sorceress = [
 {data:d133, key:"133", code:40, name:"Shiver Armor", i:4, req:[1,3,0], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases your defense rating<br>Freezes and damages enemy melee attackers", syn_title:"<br>Shiver Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Defense Bonus: "," percent<br>Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: 11"]},
 {data:d142, key:"142", code:41, name:"Glacial Spike", i:5, req:[3,0], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical ice comet<br>that freezes or kills nearby enemies<br><br>Radius: 3.3 yards", syn_title:"<br>Glacial Spike Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Ice Blast: +8% Cold Damage per Level<br>Blizzard: +5% Freeze Length per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Freezes for "," seconds<br>Mana Cost: ",""]},
 {data:d151, key:"151", code:42, name:"Blizzard", i:6, req:[2,5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons massive shards of ice to destroy your enemies", syn_title:"<br>Blizzard Receives Bonuses From:<br>", syn_text:"Ice Bolt: +10% Cold Damage per Level<br>Ice Blast: +10% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 4.6 yards<br>Cold Damage: ","-","<br>Duration: 2 seconds<br>Mana Cost: ",""]},
-{data:d152, key:"152", code:43, name:"Ice Barrage", i:7, req:[5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a barrage of magical ice lances<br>that damage and slow nearby enemies<br><br>Radius: 2.6 yards", syn_title:"<br>Ice Barrage Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Glacial Spike: +8% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>"," Ice Lances<br>Mana Cost: ",""]},
+{data:d152, key:"152", code:43, name:"Ice Barrage", i:7, req:[5,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a barrage of magical ice lances<br>that damage and slow nearby enemies<br><br>Radius: 4.6 yards", syn_title:"<br>Ice Barrage Receives Bonuses From:<br>", syn_text:"Ice Bolt: +8% Cold Damage per Level<br>Glacial Spike: +8% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>"," Ice Lances<br>Mana Cost: ",""]},
 {data:d153, key:"153", code:44, name:"Chilling Armor", i:8, req:[4,1,3,0], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases defense and discharges a blizzard spike<br>in retaliation against ranged attackers<br>Damages melee attackers if you are hit", syn_title:"<br>Chilling Armor Receives Bonuses From:<br>", syn_text:"Cold Enchant: +20% Cold Damage per Level", graytext:"", index:[0,""], text:["Defense Bonus: "," percent<br>Duration: "," seconds<br>Cold Damage: ","-","<br>Mana Cost: 17",""]},
 {data:d161, key:"161", code:45, name:"Frozen Orb", i:9, req:[6,2,5,3,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical globe that sprays a torrent of ice bolts<br>to lay waste to your enemies", syn_title:"<br>Frozen Orb Receives Bonuses From:<br>", syn_text:"Ice Bolt: +4% Cold Damage per Level<br>Frost Nova: +4% Cold Damage per Level", graytext:"", index:[0,""], text:["Cold Damage: ","-","<br>Cold Length: "," seconds<br>Mana Cost: ",""]},
 {data:d162, key:"162", code:46, name:"Cold Mastery", i:10, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your cold spells<br>and pierces enemies' resistances to cold", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cold Damage: +"," percent<br>Cold Pierce: +"," percent"]},
 
 {data:d212, key:"212", code:47, name:"Charged Bolt", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates multiple, randomly directed<br>bolts of electrical energy", syn_title:"<br>Charged Bolt Receives Bonuses From:<br>", syn_text:"Telekinesis: +6% Lightning Damage per Level<br>Lightning: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>"," bolts<br>Mana Cost: ",""]},
 {data:d211, key:"211", code:48, name:"Static Field", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an electrical field that reduces life<br>of all nearby enemies<br>Lowers enemy lightning resistances for a short duration<br><br>Weakens enemies by 25 percent", syn_title:"<br>Static Field Receives Bonuses From:<br>", syn_text:"Lightning Mastery: +0.2 Seconds Duration per Level", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Enemy Lightning Resistances: "," percent<br>Radius: "," yards<br>Mana Cost: 9"]},
-{data:d213, key:"213", code:49, name:"Telekinesis", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Uses the power of your mind to<br>pick up items, use objects,<br>and knock back enemies", syn_title:"<br>Telekinesis Receives Bonuses From:<br>", syn_text:"Charged Bolt: +14% Lightning Damage per Level<br>Nova: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: 7",""]},
+{data:d213, key:"213", code:49, name:"Telekinesis", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Uses the power of your mind to<br>pick up items, use objects,<br>and knock back enemies", syn_title:"<br>Telekinesis Receives Bonuses From:<br>", syn_text:"Charged Bolt: +15% Lightning Damage per Level<br>Nova: +15% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: 7",""]},
 {data:d231, key:"231", code:50, name:"Nova", i:14, req:[11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates an expanding ring of lightning<br>to shock nearby enemies", syn_title:"<br>Nova Receives Bonuses From:<br>", syn_text:"Charged Bolt: +3% Lightning Damage per Level<br>Telekinesis: +3% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d232, key:"232", code:51, name:"Lightning", i:15, req:[11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a powerful lightning bolt<br>to lay waste to your enemies", syn_title:"<br>Lightning Receives Bonuses From:<br>", syn_text:"Charged Bolt: +6% Lightning Damage per Level<br>Chain Lightning: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d252, key:"252", code:52, name:"Chain Lightning", i:16, req:[15,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a bolt of lightning that<br>arcs through several targets", syn_title:"<br>Chain Lightning Receives Bonuses From:<br>", syn_text:"Charged Bolt: +6% Lightning Damage per Level<br>Lightning: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
@@ -337,7 +337,7 @@ var skills_pd2_sorceress = [
 /*TODO: remove*/{data:d263, key:"263", code:54, name:"None", i:18, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
 {data:d263, key:"263", code:55, name:"Energy Shield", i:19, req:[16,17,13,15,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a magical shield that consumes mana<br>instead of health when you take damage", syn_title:"<br>Energy Shield Receives Bonuses From:<br>", syn_text:"Telekinesis", graytext:"", index:[0,""], text:["Duration: "," seconds<br>Absorbs "," percent<br>","% Redirected to Mana<br>Mana Cost: 5",""]},
 {data:d262, key:"262", code:56, name:"Lightning Mastery", i:20, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:1, bindable:0, description:"Passive - Increases all damage caused by your lightning spells", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Lightning Damage: +"," percent",""]},
-{data:d251, key:"251", code:57, name:"Thunder Storm", i:21, req:[15,14,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summons a deadly thunderstorm that strikes<br>your enemies with bolts of lightning<br><br>Delay reduced by 0.1 seconds per 2 base levels", syn_title:"<br>Thunder Storm Receives Bonuses From:<br>", syn_text:"Charged Bolt: +6% Lightning Damage per Level<br>Nova: +6% Lightning Damage per Level", graytext:"", index:[0,""], text:["Delay: "," seconds<br>Duration: "," seconds<br>Lightning Damage: ","-","<br>Mana Cost: 19"]},
+{data:d251, key:"251", code:57, name:"Thunder Storm", i:21, req:[15,14,11], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Summons a deadly thunderstorm that strikes<br>your enemies with bolts of lightning<br><br>Delay reduced by 0.1 seconds per 2 base levels", syn_title:"<br>Thunder Storm Receives Bonuses From:<br>", syn_text:"Charged Bolt: +8% Lightning Damage per Level<br>Nova: +8% Lightning Damage per Level", graytext:"", index:[0,""], text:["Delay: "," seconds<br>Duration: "," seconds<br>Lightning Damage: ","-","<br>Mana Cost: 19"]},
 
 {data:d312, key:"312", code:58, name:"Fire Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Creates a magical flaming missile", syn_title:"<br>Fire Bolt Receives Bonuses From:<br>", syn_text:"Fire Ball: +18% Fire Damage per Level<br>Combustion: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d313, key:"313", code:59, name:"Warmth", i:23, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Increases the rate at which you recover mana<br>and grants passive attack rating", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""," percent<br>+"," Attack Rating"]},
@@ -355,13 +355,19 @@ var skills_pd2_sorceress = [
 
 /* Changelog Notes - Sorceress
 
-		Blizzard
-		Base damage changed from 15-25 to 17-24
-		Level 16-22 scaling increased from 8-10 to 8-11
-		Level 22-28 scaling changed from 11-13 to 10-14
-		Level 28+ scaling increased from 15-17 to 14-19
+	Energy shield 
+	Cap  increased from 85% to 90%
 
-		Frozen orb base damage reduced from 100-110 to 80-90
-		Frozen orb level 28+ scaling increased from 27-29 to 28-30
+	Ice Barrage
+	Explosion radius increased from 4 yards to 4.6
+
+	Lightning Mastery 
+	Lightning damage per level bonus reduced from 12% to 10%
+
+	Thunderstorm 
+	Synergies increased from 6% to 8%
+
+	Telekinesis 
+	Synergies increased from 14% to 15%
 
 */

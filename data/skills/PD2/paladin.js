@@ -27,12 +27,12 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 
 		if (skill.name == "Might" && elem == 1) {				result = skill.data.values[2][lvl]/2 }
 		if (skill.name == "Blessed Aim" && elem == 0) {			result = skill.level }
-		if (skill.name == "Holy Fire" && elem>0 && elem<5) {	result *= ((1 + 0.18*skills[1].level + 0.18*skills[9].level + 0.18*skills[13].level) * (1+character.fDamage/100)) }
+		if (skill.name == "Holy Fire" && elem>0 && elem<5) {	result *= ((1 + 0.15*skills[1].level + 0.15*skills[9].level + 0.15*skills[13].level) * (1+character.fDamage/100)) }
 		if (skill.name == "Holy Freeze" && elem < 4) {			result *= ((1 + 0.12*skills[3].level + 0.12*skills[9].level + 0.12*skills[13].level) * (1+character.cDamage/100)) }
 		if (skill.name == "Holy Shock" && (elem == 0 || elem == 2)) {	result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
-		if (skill.name == "Holy Shock" && (elem == 1 || elem == 3)) {	result *= ((1 + 0.08*skills[5].level + 0.08*skills[9].level + 0.08*skills[13].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
-		if (skill.name == "Sanctuary" && elem>0 && elem<3) {	result *= ((1 + 0.07*skills[10].level + 0.07*skills[13].level + 0.07*skills[27].level)) }								// attack
-		if (skill.name == "Sanctuary" && elem>2 && elem<5) {	result *= ((1 + 0.07*skills[10].level + 0.07*skills[13].level + 0.07*skills[27].level) * (1+character.mDamage/100)) }	// aura
+		if (skill.name == "Holy Shock" && (elem == 1 || elem == 3)) {	result *= ((1 + 0.09*skills[5].level + 0.09*skills[9].level + 0.09*skills[13].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
+		if (skill.name == "Sanctuary" && elem>0 && elem<3) {	result *= ((1 + 0.08*skills[10].level + 0.08*skills[13].level + 0.08*skills[27].level)) }								// attack
+		if (skill.name == "Sanctuary" && elem>2 && elem<5) {	result *= ((1 + 0.08*skills[10].level + 0.08*skills[13].level + 0.08*skills[27].level) * (1+character.mDamage/100)) }	// aura
 		if (skill.name == "Thorns" && elem == 1) {				result *= (1 + 0.20*skills[10].level + 0.20*skills[2].level) }
 		if (skill.name == "Concentration" && elem == 1) {		result = skill.data.values[2][lvl]/2 }									// party damage
 		if (skill.name == "Concentration" && elem == 4) {		result = ((skill.data.values[2][lvl]/2) * (1+character.mDamage/100)) }	// magic hammer skill damage
@@ -40,7 +40,7 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 
 		if (skill.name == "Joust" && elem == 0) {				result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Sacrifice" && elem == 2) {			result += (20*skills[8].level + 20*skills[18].level) }
-		if (skill.name == "Zeal" && elem == 1) {				result += (20*skills[20].level) }
+		if (skill.name == "Zeal" && elem == 1) {				result += (15*skills[20].level) }
 		if (skill.name == "Vengeance" && elem == 2) {			result += (2*skills[11].level + 2*skills[15].level + 2*skills[16].level + 2*skills[19].level) }
 		if (skill.name == "Charge" && elem == 0) {				result += (25*skills[6].level + 25*skills[10].level) }
 		if (skill.name == "Holy Shield" && elem < 2) {			result *= (1 + 0.04*skills[21].level + 0.04*skills[2].level) }
@@ -201,10 +201,11 @@ function disableAuras(skill) {
 ]};
 /*[11] Holy Fire		*/ var d222 = {values:[
 		["Radius (yards)",4,4.6,5.3,6,6.6,7.3,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
-		["fire attack (min)",5,6,7,8,10,11,12,13,17,21,25,28,32,36,40,43,56,68,81,93,106,118,142,166,190,213,237,261,290,318,347,376,405,433,462,491,520,548,577,606,635,663,692,721,750,778,807,836,865,893,922,951,980,1008,1037,1066,1095,1123,1152,1181],
-		["fire attack (max)",11,12,13,15,16,17,18,20,23,27,31,35,38,42,46,50,62,75,87,100,112,125,148,172,196,220,243,267,296,325,353,382,411,440,468,497,526,555,583,612,641,670,698,727,756,785,813,842,871,900,928,957,986,1015,1043,1072,1101,1130,1158,1187],
-		["Fire Damage (min)",1,1,1,1,2,2,2,2,3,4,5,5,6,7,8,8,11,13,16,18,21,23,28,33,38,42,47,52,58,63,69,75,81,86,92,98,104,109,115,121,127,132,138,144,150,155,161,167,173,178,184,190,196,201,207,213,219,224,230,236],
-		["Fire Damage (max)",2,2,2,3,3,3,3,4,4,5,6,7,7,8,9,10,12,15,17,20,22,25,29,34,39,44,48,53,59,65,70,76,82,88,93,99,105,111,116,122,128,134,139,145,151,157,162,168,174,180,185,191,197,203,208,214,220,226,231,237],
+		["fire attack (min)",5,6,7,8,10,11,12,13,17,21,25,28,32,36,40,43,56,68,81,93,106,118,141,163,186,208,231,253,285,316,347,378,410,441,472,503,535,566,597,628,660,691,722,753,785,816,847,878,910,941,972,1003,1035,1066,1097,1128,1160,1191,1222,1253,],
+		["fire attack (max)",11,13,16,18,21,23,26,28,33,38,43,48,53,58,63,68,83,98,113,128,143,158,185,211,237,263,290,316,353,391,428,466,503,541,578,616,653,691,728,766,803,841,878,916,953,991,1028,1066,1103,1141,1178,1216,1253,1291,1328,1366,1403,1441,1478,1516,],
+		["Fire Damage (min)",1,1,1,1,2,2,2,2,3,4,5,5,6,7,8,8,11,13,16,18,21,23,28,32,37,41,46,50,57,63,69,75,82,88,94,100,107,113,119,125,132,138,144,150,157,163,169,175,182,188,194,200,207,213,219,225,232,238,244,250,],
+		["Fire Damage (max)",2,2,3,3,4,4,5,5,6,7,8,9,10,11,12,13,16,19,22,25,28,31,37,42,47,52,58,63,70,78,85,93,100,108,115,123,130,138,145,153,160,168,175,183,190,198,205,213,220,228,235,243,250,258,265,273,280,288,295,303,],
+		["Attack Rating +%",50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,],
 ]};
 /*[12] Thorns			*/ var d223 = {values:[
 		["Radius (yards)",13.3,14.6,16,17.3,18.6,20,21.3,22.6,24,25.3,26.6,28,29.3,30.6,32,33.3,34.6,36,37.3,38.6,40,41.3,42.6,44,45.3,46.6,48,49.3,50.6,52,53.3,54.6,56,57.3,58.6,60,61.3,62.6,64,65.3,66.6,68,69.3,70.6,72,73.3,74.6,76,77.3,78.6,80,81.3,82.6,84,85.3,86.6,88,89.3,90.6,92,],
@@ -230,12 +231,14 @@ function disableAuras(skill) {
 		["Cold Damage (min)",2,3,4,5,6,7,8,9,10,12,13,15,16,18,19,21,23,26,28,31,33,36,40,44,48,52,56,60,66,72,78,84,90,96,102,108,114,120,126,132,138,144,150,156,162,168,174,180,186,192,198,204,210,216,222,228,234,240,246,252],
 		["Cold Damage (max)",3,4,6,7,9,10,12,13,15,17,19,21,23,25,27,29,32,35,38,41,44,47,52,57,62,67,72,77,84,91,98,105,112,119,126,133,140,147,154,161,168,175,182,189,196,203,210,217,224,231,238,245,252,259,266,273,280,287,294,301],
 		["Slowed By %",30,34,37,40,42,44,45,46,48,48,49,50,51,51,52,53,53,53,54,54,54,55,55,55,55,56,56,56,56,56,57,57,57,57,57,57,57,58,58,58,58,58,58,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,60,],
+		["Attack Rating +%",50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,],
 ]};
 /*[16] Holy Shock		*/ var d252 = {values:[
 		["lightning attack (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 		["lightning attack (max)",80,112,144,176,208,240,272,304,348,392,436,480,524,568,612,656,716,776,836,896,956,1016,1096,1176,1256,1336,1416,1496,1600,1704,1808,1912,2016,2120,2224,2328,2432,2536,2640,2744,2848,2952,3056,3160,3264,3368,3472,3576,3680,3784,3888,3992,4096,4200,4304,4408,4512,4616,4720,4824],
 		["Lightning Damage (min)",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 		["Lightning Damage (max)",10,14,18,22,26,30,34,38,43,49,54,60,65,71,76,82,89,97,104,112,119,127,137,147,157,167,177,187,200,213,226,239,252,265,278,291,304,317,330,343,356,369,382,395,408,421,434,447,460,473,486,499,512,525,538,551,564,577,590,603],
+		["Attack Rating +%",50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,],
 ]};
 /*[17] Sanctuary		*/ var d253 = {values:[
 		["Enemy Magic Resistance %",-5,-6,-6,-7,-7,-8,-8,-9,-9,-10,-10,-11,-11,-12,-12,-13,-13,-14,-14,-15,-15,-16,-16,-17,-17,-18,-18,-19,-19,-20,-20,-21,-21,-22,-22,-23,-23,-24,-24,-25,-25,-26,-26,-27,-27,-28,-28,-29,-29,-30,-30,-31,-31,-32,-32,-33,-33,-34,-34,-35,],
@@ -243,6 +246,7 @@ function disableAuras(skill) {
 		["magic attack (max)",40,48,56,64,72,80,88,96,106,116,126,136,146,156,166,176,191,206,221,236,251,266,289,312,335,358,381,404,438,472,506,540,574,608,642,676,710,744,778,812,846,880,914,948,982,1016,1050,1084,1118,1152,1186,1220,1254,1288,1322,1356,1390,1424,1458,1492],
 		["Magic Damage (min)",6,8,10,12,14,16,18,20,22,25,27,30,32,35,37,40,44,47,51,55,59,62,68,74,80,85,91,97,105,114,122,131,139,148,156,165,173,182,190,199,207,216,224,233,241,250,258,267,275,284,292,301,309,318,326,335,343,352,360,369],
 		["Magic Damage (max)",10,12,14,16,18,20,22,24,26,29,31,34,36,39,41,44,47,51,55,59,62,66,72,78,83,89,95,101,109,118,126,135,143,152,160,169,177,186,194,203,211,220,228,237,245,254,262,271,279,288,296,305,313,322,330,339,347,356,364,373],
+		["Attack Rating +%",50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,],
 ]};
 /*[18] Fanaticism		*/ var d261 = {values:[
 		["Radius (Yards)",13.3,15.3,17.3,19.3,21.3,23.3,25.3,27.3,29.3,31.3,33.3,35.3,37.3,39.3,41.3,43.3,45.3,47.3,49.3,51.3,53.3,55.3,57.3,59.3,61.3,63.3,65.3,67.3,69.3,71.3,73.3,75.3,77.3,79.3,81.3,83.3,85.3,87.3,89.3,91.3,93.3,95.3,97.3,99.3,101.3,103.3,105.3,107.3,109.3,111.3,113.3,115.3,117.3,119.3,121.3,123.3,125.3,127.3,129.3,131.3,],
@@ -263,7 +267,7 @@ function disableAuras(skill) {
 		["Damage %",180,205,230,255,280,305,330,355,380,405,430,455,480,505,530,555,580,605,630,655,680,705,730,755,780,805,830,855,880,905,930,955,980,1005,1030,1055,1080,1105,1130,1155,1180,1205,1230,1255,1280,1305,1330,1355,1380,1405,1430,1455,1480,1505,1530,1555,1580,1605,1630,1655,],
 ]};
 /*[21] Smite			*/ var d313 = {values:[
-		["Damage +%",20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,],
+		["Damage +%",40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,],
 		["Stun (seconds)",0.6,0.8,1,1.2,1.4,1.6,1.8,2,2.2,2.4,2.6,2.8,3,3.2,3.4,3.6,3.8,4,4.2,4.4,4.6,4.8,5,5.2,5.4,5.6,5.8,6,6.2,6.4,6.6,6.8,7,7.2,7.4,7.6,7.8,8,8.2,8.4,8.6,8.8,9,9.2,9.4,9.6,9.8,10,10,10,10,10,10,10,10,10,10,10,10,10,],
 ]};
 /*[22] Holy Bolt		*/ var d312 = {values:[
@@ -275,7 +279,7 @@ function disableAuras(skill) {
 ]};
 /*[23] Zeal				*/ var d321 = {values:[
 		["Attack +%",35,49,63,77,91,105,119,133,147,161,175,189,203,217,231,245,259,273,287,301,315,329,343,357,371,385,399,413,427,441,455,469,483,497,511,525,539,553,567,581,595,609,623,637,651,665,679,693,707,721,735,749,763,777,791,805,819,833,847,861,],
-		["Damage +%",20,20,20,20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,],
+		["Damage +%",40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,],
 ]};
 /*[24] Charge			*/ var d333 = {values:[
 		["Damage +%",100,130,160,190,220,250,280,310,340,370,400,430,460,490,520,550,580,610,640,670,700,730,760,790,820,850,880,910,940,970,1000,1030,1060,1090,1120,1150,1180,1210,1240,1270,1300,1330,1360,1390,1420,1450,1480,1510,1540,1570,1600,1630,1660,1690,1720,1750,1780,1810,1840,1870,],
@@ -298,12 +302,14 @@ function disableAuras(skill) {
 		["Magic Damage (max)",16,24,32,40,48,56,64,72,82,92,102,112,122,132,142,152,164,176,188,200,212,224,237,250,263,276,289,302,316,330,344,358,372,386,400,414,428,442,456,470,484,498,512,526,540,554,568,582,596,610,624,638,652,666,680,694,708,722,736,750,],
 		["Mana Cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,],
 ]};
-/*[27] Conversion		*/ var d343 = {values:[
-		["Chance to Convert %",40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,],
+/*[27] Holy Sword		*/ var d343 = {values:[
+		["Parry Chance %",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,],
+		["Damage to Demons/Undead +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,],
+		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
 ]};
 /*[28] Holy Shield		*/ var d353 = {values:[
-		["smite (min)",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,29,32,35,38,41,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116,120,124,128,132,136,140,144,148,152,156,160,164,168,172,176,180,184,188,192,196,],
-		["smite (max)",6,7,8,9,10,11,12,13,15,17,19,21,23,25,27,29,32,35,38,41,44,47,51,55,59,63,67,71,75,79,83,87,91,95,99,103,107,111,115,119,123,127,131,135,139,143,147,151,155,159,163,167,171,175,179,183,187,191,195,199,],
+		["smite (min)",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,29,32,35,38,41,44,48,52,56,60,64,68,73,78,83,88,93,98,103,108,113,118,123,128,133,138,143,148,153,158,163,168,173,178,183,188,193,198,203,208,213,218,223,228,],
+		["smite (max)",6,7,8,9,10,11,12,13,15,17,19,21,23,25,27,29,32,35,38,41,44,47,51,55,59,63,67,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211,216,221,226,231,],
 		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
 		["Defense +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,],
 		["Successful Blocking +%",10,14,17,20,22,24,25,26,27,28,29,30,31,31,32,33,33,33,34,34,34,35,35,35,35,36,36,36,36,36,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,40,],
@@ -348,24 +354,24 @@ var skills_pd2_paladin = [
 {data:d163, key:"163", code:106, name:"Salvation", i:9, req:[], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura decreases fire, cold, and lightning damage<br>received and increases fire, cold, and lightning damage dealt<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Elemental Damage: +"," percent<br>Resist All: +"," percent"]},
 
 {data:d211, key:"211", code:107, name:"Might", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage<br>done by you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Party Damage: +"," percent<br>Your Damage: +"," percent"]},
-{data:d222, key:"222", code:108, name:"Holy Fire", i:11, req:[10], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with heavenly flames<br>and adds fire damage to your attacks", syn_title:"<br>Holy Fire Receives Bonuses From:<br>", syn_text:"Resist Fire: +18% Fire Damage per Level<br>Salvation: +18% Fire Damage per Level<br>Blessed Aim: +18% Fire Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Fire Damage: ","-"," to your attack<br>Fire Damage: ","-",""]},
+{data:d222, key:"222", code:108, name:"Holy Fire", i:11, req:[10], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with heavenly flames<br>and adds fire damage to your attacks", syn_title:"<br>Holy Fire Receives Bonuses From:<br>", syn_text:"Resist Fire: +15% Fire Damage per Level<br>Salvation: +15% Fire Damage per Level<br>Blessed Aim: +15% Fire Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Fire Damage: ","-"," to your attack<br>Fire Damage: ","-","<br>Attack: +"," percent"]},
 {data:d223, key:"223", code:109, name:"Thorns", i:12, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura returns damage to enemies<br>who attack you or your party", syn_title:"<br>Thorns Receives Bonuses From:<br>", syn_text:"Might: +20% Damage per Level<br>Defiance: +20% Damage per Level", graytext:"", index:[0,""], text:["Radius: "," yards<br>Attackers take "," damage"]},
 {data:d231, key:"231", code:110, name:"Blessed Aim", i:13, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the attack rating<br>for you and your party", syn_title:"", syn_text:"", graytext:"", index:[1,"% to Target Defense"], text:["Passive - Your Target's Defense is Reduced by 1% per Base Level<br>-","Radius: "," yards<br>Attack Rating: +"," percent<br>Deadly Strike: +"," percent"]},
 {data:d241, key:"241", code:111, name:"Concentration", i:14, req:[13,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases the damage and decreases the chance<br>that attacks will be interrupted for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Chance uninterruptable: 20 percent<br>Party Damage: +"," percent<br>Your Damage: +"," percent<br>Attack: +"," percent<br>Blessed Hammer Skill Damage: +"," percent",""]},
-{data:d242, key:"242", code:112, name:"Holy Freeze", i:15, req:[11,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura freezes nearby enemies<br>and adds cold damage to your attacks", syn_title:"<br>Holy Freeze Receives Bonuses From:<br>", syn_text:"Resist Cold: +12% Cold Damage per Level<br>Salvation: +12% Cold Damage per Level<br>Blessed Aim: +12% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 8 yards<br>Cold Damage: ","-"," to your attack<br>Cold Damage: ","-","<br>Enemies slowed "," percent"]},
-{data:d252, key:"252", code:113, name:"Holy Shock", i:16, req:[15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with pulses of electricity<br>and adds lightning damage to your attacks", syn_title:"<br>Holy Shock Receives Bonuses From:<br>", syn_text:"Resist Lightning: +8% Lightning Damage per Level<br>Salvation: +8% Lightning Damage per Level<br>Blessed Aim: +8% Lightning Damage per Level", graytext:"", index:[0,""], text:["Radius: 9.3 yards<br>Lightning Damage: ","-"," to your attack<br>Lightning Damage: ","-",""]},
-{data:d253, key:"253", code:114, name:"Sanctuary", i:17, req:[12,15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with magic, reduces enemy magic resistances,<br>and adds magic damage to your attacks", syn_title:"<br>Sanctuary Receives Bonuses From:<br>", syn_text:"Might: +7% Magic Damage per Level<br>Blessed Aim: +7% Magic Damage per Level<br>Conversion: +7% Magic Damage per Level", graytext:"", index:[0,""], text:["Enemy Magic Resistance: "," percent<br>Magic Damage: ","-"," to your attack<br>Radius: 9.3 yards<br>Magic Damage: ","-",""]},
+{data:d242, key:"242", code:112, name:"Holy Freeze", i:15, req:[11,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura freezes nearby enemies<br>and adds cold damage to your attacks", syn_title:"<br>Holy Freeze Receives Bonuses From:<br>", syn_text:"Resist Cold: +12% Cold Damage per Level<br>Salvation: +12% Cold Damage per Level<br>Blessed Aim: +12% Cold Damage per Level", graytext:"", index:[0,""], text:["Radius: 8 yards<br>Cold Damage: ","-"," to your attack<br>Cold Damage: ","-","<br>Enemies slowed "," percent<br>Attack: +"," percent"]},
+{data:d252, key:"252", code:113, name:"Holy Shock", i:16, req:[15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with pulses of electricity<br>and adds lightning damage to your attacks", syn_title:"<br>Holy Shock Receives Bonuses From:<br>", syn_text:"Resist Lightning: +9% Lightning Damage per Level<br>Salvation: +9% Lightning Damage per Level<br>Blessed Aim: +9% Lightning Damage per Level", graytext:"", index:[0,""], text:["Radius: 9.3 yards<br>Lightning Damage: ","-"," to your attack<br>Lightning Damage: ","-","<br>Attack: +"," percent"]},
+{data:d253, key:"253", code:114, name:"Sanctuary", i:17, req:[12,15,11,10], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura damages nearby enemies<br>with magic, reduces enemy magic resistances,<br>and adds magic damage to your attacks", syn_title:"<br>Sanctuary Receives Bonuses From:<br>", syn_text:"Might: +8% Magic Damage per Level<br>Blessed Aim: +8% Magic Damage per Level<br>Holy Sword: +8% Magic Damage per Level", graytext:"", index:[0,""], text:["Enemy Magic Resistance: "," percent<br>Magic Damage: ","-"," to your attack<br>Radius: 9.3 yards<br>Magic Damage: ","-","<br>Attack: +"," percent"]},
 {data:d261, key:"261", code:115, name:"Fanaticism", i:18, req:[14,13,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases damage, attack speed,<br>and attack rating for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Party Damage: +"," percent<br>Your Damage: +"," percent<br>Attack Speed: +"," percent<br>Attack: +"," percent"]},
 {data:d263, key:"263", code:116, name:"Conviction", i:19, req:[17,12,15,11,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reduces the defenses<br>and resistances of nearby enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Defense: "," percent<br>Resistances: "," percent"]},
 
 {data:d311, key:"311", code:117, name:"Sacrifice", i:20, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"A deadly attack at the cost of life<br>Slain monsters explode dealing<br>overkill damage plus 5 percent of corpse life<br>as half physical and half magical", syn_title:"<br>Sacrifice Receives Bonuses From:<br>", syn_text:"Redemption: +20% Damage per Level<br>Fanaticism: +20% Damage per Level", graytext:"", index:[1," percent damage to self"], text:["","To Attack Rating: +"," percent<br>Damage: +"," percent",""]},
 {data:d313, key:"313", code:118, name:"Smite", i:21, req:[], reqlvl:1, reqWeapon:[""], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Temporarily stun your enemy<br>by bashing it with your shield", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Stun Length: "," seconds<br>Mana Cost: 2"]},
 {data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +9% Magic Damage per Level<br>Fist of the Heavens: +9% Magic Damage per Level<br>Holy Nova: +9% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
-{data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +20% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
+{data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
 {data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy<br><br>Gains up to 60% increased melee splash radius<br>based on the distance traveled", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +25% Damage per Level<br>Might: +25% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
 {data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Deals fire, lightning, and cold damage in an area<br>This effect also carries and increases elemental<br>damage from items", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Holy Fire: +2% Elemental Damage per Level<br>Holy Freeze: +2% Elemental Damage per Level<br>Holy Shock: +2% Elemental Damage per Level<br>Conviction: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Chance to Chain "," percent<br>Attack: +"," percent<br>Elemental Damage: +"," percent<br>Added Fire Damage: ","-","<br>Added Cold Damage: ","-","<br>Added Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:123, name:"Blessed Hammer", i:26, req:[31,22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons an ethereal hammer that<br>spirals outwards damaging enemies it hits", syn_title:"<br>Blessed Hammer Receives Bonuses From:<br>", syn_text:"Blessed Aim: +12% Magic Damage per Level<br>Vigor: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
-{data:d343, key:"343", code:124, name:"Conversion", i:27, req:[24,21], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Converts monsters to fight against<br>other foul demons and beasts", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Chance to convert: "," percent<br>Duration: 8 seconds<br>Mana Cost: 4"]},
+{data:d343, key:"343", code:124, name:"Holy Sword", i:27, req:[24,21], reqlvl:18, reqWeapon:["sword"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Imbues a two-handed sword with holy energy<br>allowing the user to parry attacks and spells<br>and deal extra damage to demons and undead", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Parry Chance: +"," percent<br>Damage to Demons/Undead: "," percent<br>Duration: "," seconds<br>Mana Cost: 35"]},
 {data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Smite: +4% Damage per Level<br>Defiance: +4% Damage per Level<br>Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35"]},
 {data:d352, key:"352", code:126, name:"Fist of the Heavens", i:29, req:[26,31,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Lightning Strikes your target as holy bolts<br>seek out nearby enemies", syn_title:"<br>Fist of the Heavens Receives Bonuses From:<br>", syn_text:"Holy Bolt: +11% Damage per Level<br>Holy Light: +11% Damage per Level<br>Holy Nova: +11% Damage per Level", graytext:"", index:[0,""], text:["Holy Bolt Magic Damage: ","-","<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d351, key:"351", code:127, name:"Joust", i:30, req:[25,23,20], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Teleport to your enemies and impale them with a deadly<br>strike gaining increased movement speed for 2 seconds", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Cooldown reduced by 0.1 per Base Point<br>Cooldown: ","Walk/Run Speed: +"," percent<br>Damage: +"," percent<br>Attack Bonus: +"," percent<br>Critical Strike: +"," percent chance<br>Mana Cost: ",""]},
@@ -375,43 +381,44 @@ var skills_pd2_paladin = [
 
 /* Changelog Notes - Paladin
 
-		Thorns
-		synergies increased from 18 to 20%
+	Smite
+	Base damage bonus increased from 20% to 40%
 
-		Blessed Aim
-		Attack rating base reduced from +80% to +60%
-		Attack rating per level reduced from +20% to +15%
-		Now provides +5% deadly strike base
-		Now gains +1% deadly strike every 2 levels
-		Blessed aim now passively provides -1% target's defense per base level instead of attack rating to prevent it from bugging when the aura is active
+	Zeal
+	Added +20% base bonus damage
+	Now gains it’s +20% damage per level bonus from level 1-4 instead of gaining +0%
+	Synergies reduced from 20% to 15%
 
-		Might
-		Now grants allies ½ of your personal bonus instead of ⅓ 
-		Might damage per level bonus reduced from +25% to +20%
+	Holy Shield
+	Level 28+ damage scaling increased from 4-4 to 5-5
 
-		Concentration
-		Attack rating base increased from +25% to +50%
-		Attack rating per level increased from +5% to +10%
-		Enhanced damage bonus per level increased from +12% to +15%
-		Now has a ½ penalty for its enhanced damage bonus to allies
+	Sanctuary
+	Added 50% base attack rating
+	Added 5% attack rating per level
+	Synergies increased from 7% to 8%
+	Now has holy sword instead of conversion as a synergy
 
-		Fanaticism 
-		Enhanced damage per level reduced from +18% to +15%
+	Holy Fire												...aura damage values have also changed slightly since they're based on attack damage values
+	Added 50% base attack rating
+	Added 5% attack rating per level
+	Level 1-8 scaling increased from 1-1 to 1-2				...values are off? verified in-game
+	Level 8-16 scaling increased from 3-3 to 3-4
+	Level 16-22 scaling increased from 10-10 to 10-12
+	Level 22-28 scaling increased from 19-19 to 18-21
+	Level 28+ scaling increased from 23-25 to 25-30
+	Synergies reduced from 18% to 15%
 
-		Charge 
-		Now gains up to +60% increased melee splash radius based on the distance traveled
-		Will always charge in melee range instead of doing a normal attack
-		“Charge bug” has now been fixed
+	Holy Shock
+	Added 50% base attack rating
+	Added 5% attack rating per level
+	Synergies increased from 8% to 9%
 
-		Zeal
-		Now gains +20% melee splash radius on it’s second attack and +40% on it’s third
+	Holy Freeze
+	Added 50% base attack rating
+	Added 5% attack rating per level
 
-		Sacrifice
-		now causes the killed monster’s corpse to explode dealing 5% of the monsters health plus overkill damage as half physical, half magical
-		Damage to self is now reduced by physical damage reduction
-		
-		Fist of the Heavens
-		synergies increased from 10% -> 11%
-		Fist of the Heavens holy bolts now gain their proper synergy values
+	Replaced Conversion with a new skill: Holy Sword			...check if the parry chance is capped
+	Allows the paladin to gain parry chance while wielding two handed swords (Similar to Weapon Block)
+	Provides the paladin with increased damage to demons and undead
 
 */
