@@ -39,7 +39,7 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Fanaticism" && elem == 1) {			result = skill.data.values[2][lvl]/2 }
 
 		if (skill.name == "Joust" && elem == 0) {				result = skill.data.values[elem][Math.max(1,skill.level)] }
-		if (skill.name == "Sacrifice" && elem == 2) {			result += (20*skills[8].level + 20*skills[18].level) }
+		if (skill.name == "Sacrifice" && elem == 2) {			result += (25*skills[8].level + 25*skills[18].level) }
 		if (skill.name == "Zeal" && elem == 1) {				result += (15*skills[20].level) }
 		if (skill.name == "Vengeance" && elem == 2) {			result += (2*skills[11].level + 2*skills[15].level + 2*skills[16].level + 2*skills[19].level) }
 		if (skill.name == "Charge" && elem == 0) {				result += (25*skills[6].level + 25*skills[10].level) }
@@ -303,8 +303,8 @@ function disableAuras(skill) {
 		["Mana Cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,],
 ]};
 /*[27] Holy Sword		*/ var d343 = {values:[
-		["Parry Chance %",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,],
-		["Damage to Demons/Undead +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,],
+		["Parry Chance %",10,12,14,16,18,20,22,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,], 
+		["Damage to Demons/Undead +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
 ]};
 /*[28] Holy Shield		*/ var d353 = {values:[
@@ -364,7 +364,7 @@ var skills_pd2_paladin = [
 {data:d261, key:"261", code:115, name:"Fanaticism", i:18, req:[14,13,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura increases damage, attack speed,<br>and attack rating for you and your party", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Party Damage: +"," percent<br>Your Damage: +"," percent<br>Attack Speed: +"," percent<br>Attack: +"," percent"]},
 {data:d263, key:"263", code:116, name:"Conviction", i:19, req:[17,12,15,11,10], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"When active, aura reduces the defenses<br>and resistances of nearby enemies", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Radius: "," yards<br>Defense: "," percent<br>Resistances: "," percent"]},
 
-{data:d311, key:"311", code:117, name:"Sacrifice", i:20, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"A deadly attack at the cost of life<br>Slain monsters explode dealing<br>overkill damage plus 5 percent of corpse life<br>as half physical and half magical", syn_title:"<br>Sacrifice Receives Bonuses From:<br>", syn_text:"Redemption: +20% Damage per Level<br>Fanaticism: +20% Damage per Level", graytext:"", index:[1," percent damage to self"], text:["","To Attack Rating: +"," percent<br>Damage: +"," percent",""]},
+{data:d311, key:"311", code:117, name:"Sacrifice", i:20, req:[], reqlvl:1, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"A deadly attack at the cost of life<br>Slain monsters explode dealing<br>overkill damage plus 5 percent of corpse life<br>as half physical and half magical", syn_title:"<br>Sacrifice Receives Bonuses From:<br>", syn_text:"Redemption: +25% Damage per Level<br>Fanaticism: +25% Damage per Level", graytext:"", index:[1," percent damage to self"], text:["","To Attack Rating: +"," percent<br>Damage: +"," percent",""]},
 {data:d313, key:"313", code:118, name:"Smite", i:21, req:[], reqlvl:1, reqWeapon:[""], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Temporarily stun your enemy<br>by bashing it with your shield", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Stun Length: "," seconds<br>Mana Cost: 2"]},
 {data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +9% Magic Damage per Level<br>Fist of the Heavens: +9% Magic Damage per Level<br>Holy Nova: +9% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
@@ -403,7 +403,7 @@ var skills_pd2_paladin = [
 	Holy Fire												...aura damage values have also changed slightly since they're based on attack damage values
 	Added 50% base attack rating
 	Added 5% attack rating per level
-	Level 1-8 scaling increased from 1-1 to 1-2				...values are off? verified in-game
+	Level 1-8 scaling increased from 1-1 to 1-2				...values don't match? verified in-game
 	Level 8-16 scaling increased from 3-3 to 3-4
 	Level 16-22 scaling increased from 10-10 to 10-12
 	Level 22-28 scaling increased from 19-19 to 18-21
@@ -422,5 +422,12 @@ var skills_pd2_paladin = [
 	Replaced Conversion with a new skill: Holy Sword			...check if the parry chance is capped
 	Allows the paladin to gain parry chance while wielding two handed swords (Similar to Weapon Block)
 	Provides the paladin with increased damage to demons and undead
+	...
+	Parry cap increased from 45% to 50%
+	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+
+	Sacrifice
+	Synergies increased from 20% to 25%
+	Lowered the delay for the AoE explosion on monster death
 
 */

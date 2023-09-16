@@ -28,12 +28,10 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		if (skill.name == "Dragon Tail" && elem == 0) { 				result += (8*skills[1].level + 8*skills[8].level) }
 		if (skill.name == "Cobra Strike" && (elem < 2 || elem == 3 || elem == 4)) { result *= ((1 + 0.20*skills[18].level) * (1+character.pDamage/100)) }
 
-		if (skill.name == "Weapon Block" && elem == 0) {				result = skill.level }
 		if (skill.name == "Psychic Hammer" && elem > 0 && elem < 3) {	result *= ((1 + 0.15*skills[17].level + 0.15*skills[14].level + 0.15*skills[16].level) * (1+character.mDamage/100)) }
 		if (skill.name == "Mind Blast" && elem == 0) { 					result = 2 - 2*Math.ceil((skill.level-1)/20) }
 		if (skill.name == "Mind Blast" && elem == 1) { 					result = skill.data.values[elem][Math.max(1,skill.level)] }
-		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= ((1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) * (1+character.mDamage/100)) }
-		if (skill.name == "Mind Blast" && elem > 3 && elem < 6) { 		result *= (1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) }
+		if (skill.name == "Mind Blast" && elem > 1 && elem < 4) { 		result *= (1 + 0.13*skills[10].level + 0.13*skills[14].level + 0.13*skills[16].level) }
 		if (skill.name == "Venom" && elem < 2) { 						result *= ((1 + 0.08*skills[4].level) * (1+character.pDamage/100)) }		// poison damage is only applied on attack, not cast (no longer "double dips") but the skill tooltip still includes it
 		if (skill.name == "Burst of Speed" && elem == 0) { 				result = skill.data.values[elem][Math.max(1,skill.level)] }
 		if (skill.name == "Shadow Warrior" && elem == 0) {				result = skill.data.values[elem][character.difficulty][lvl] }
@@ -213,8 +211,8 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 ]};
 /*[12]*/
 /*[13] Weapon Block		*/ var d232 = {values:[
-		["% Faster Block Rate",],
-		["% Chance",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,],
+		["% Faster Block Rate",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,],
+		["% Chance",15,17,19,21,23,25,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,],
 ]};
 /*[14] Cloak of Shadows	*/ var d233 = {values:[
 		["Defense Bonus +%",5,6,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,30,32,33,35,36,38,39,41,42,44,45,47,48,50,51,53,54,56,57,59,60,62,63,65,66,68,69,71,72,74,75,77,78,80,81,83,84,86,87,89,90,92,93,],
@@ -239,10 +237,8 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 /*[17] Mind Blast		*/ var d243 = {values:[
 		["Stun Length",],
 		["Radius (yards)",2.6,3.3,3.3,4,4,4.6,4.6,5.3,5.3,6,6,6,6,6,6,6,6,6,6,6,],
-		["Magic Damage (min)",3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,31,36,41,46,51,56,66,76,86,96,106,116,131,146,161,176,191,206,221,236,251,266,281,296,311,326,341,356,371,386,401,416,431,446,461,476,491,506,521,536,551,566,581,596,],
-		["Magic Damage (max)",5,6,7,8,9,10,11,12,14,16,18,20,22,24,26,28,33,38,43,48,53,58,68,78,88,98,108,118,133,148,163,178,193,208,223,238,253,268,283,298,313,328,343,358,373,388,403,418,433,448,463,478,493,508,523,538,553,568,583,598,],
-		["Damage (min)",7,9,11,13,15,17,19,21,26,31,36,41,46,51,56,61,73,85,97,109,121,133,157,181,205,229,253,277,313,349,385,421,457,493,529,565,601,637,673,709,745,781,817,853,889,925,961,997,1033,1069,1105,1141,1177,1213,1249,1285,1321,1357,1393,1429,],
-		["Damage (max)",15,17,19,21,23,25,27,29,34,39,44,49,54,59,64,69,81,93,105,117,129,141,165,189,213,237,261,285,321,357,393,429,465,501,537,573,609,645,681,717,753,789,825,861,897,933,969,1005,1041,1077,1113,1149,1185,1221,1257,1293,1329,1365,1401,1437,],
+		["Damage (min)",10,13,16,19,22,25,28,31,38,45,52,59,66,73,80,87,104,121,138,155,172,189,223,257,291,325,359,393,444,495,546,597,648,699,750,801,852,903,954,1005,1056,1107,1158,1209,1260,1311,1362,1413,1464,1515,1566,1617,1668,1719,1770,1821,1872,1923,1974,2025,], ,
+		["Damage (max)",20,23,26,29,32,35,38,41,48,55,62,69,76,83,90,97,114,131,148,165,182,199,233,267,301,335,369,403,454,505,556,607,658,709,760,811,862,913,964,1015,1066,1117,1168,1219,1270,1321,1372,1423,1474,1525,1576,1627,1678,1729,1780,1831,1882,1933,1984,2035,], ,
 ]};
 /*[18] Venom			*/ var d261 = {values:[
 		["Poison Damage (min)",75,93,112,131,150,168,187,206,231,256,281,306,331,356,381,406,437,468,500,531,562,593,637,681,725,768,812,856,912,968,1024,1080,1136,1192,1248,1304,1360,1416,1472,1528,1584,1640,1696,1752,1808,1864,1920,1976,2032,2088,2144,2200,2256,2312,2368,2424,2480,2536,2592,2648,],
@@ -316,6 +312,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Frames",0.8,0.76,0.76,0.72,0.72,0.68,0.68,0.64,0.64,0.6,0.6,0.56,0.56,0.52,0.52,0.48,0.48,0.44,0.44,0.4,], 
 		["Damage (min)",1,6,11,16,21,26,31,36,43,50,57,64,71,78,85,92,102,112,122,132,142,152,165,178,191,204,217,230,246,262,278,294,310,326,342,358,374,390,406,422,438,454,470,486,502,518,534,550,566,582,598,614,630,646,662,678,694,710,726,742,],
 		["Damage (max)",30,35,40,45,50,55,60,65,72,79,86,93,100,107,114,121,131,141,151,161,171,181,194,207,220,233,246,259,275,291,307,323,339,355,371,387,403,419,435,451,467,483,499,515,531,547,563,579,595,611,627,643,659,675,691,707,723,739,755,771,],
+		["Attack Rating +%",40,55,70,85,100,115,130,145,160,175,190,205,220,235,250,265,280,295,310,325,340,355,370,385,400,415,430,445,460,475,490,505,520,535,550,565,580,595,610,625,640,655,670,685,700,715,730,745,760,775,790,805,820,835,850,865,880,895,910,925,], 
 		["Duration",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
 		["Mana Cost",27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125,127,129,131,133,135,137,139,141,143,145,],
 ]};
@@ -357,7 +354,7 @@ var skills_pd2_assassin = [
 {data:d351, key:"351", code:350, name:"Lightning Sentry", i:26, req:[23,21,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots lightning<br>to scorch passing enemies<br><br>Shoots 5 Times", syn_title:"<br>Lightning Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +16% Lightning Damage per Level<br>Charged Bolt Sentry: +16% Lightning Damage per Level<br>Chain Lightning Sentry: +16% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d352, key:"352", code:278, name:"Wake of Inferno", i:27, req:[24,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that sprays fire at passing enemies<br><br>Shoots 5 times", syn_title:"<br>Wake of Inferno Receives Bonuses From:<br>", syn_text:"Fire Blast: +6.5% Fire Damage per Level<br>Wake of Fire: +6.5% Fire Damage per Level", graytext:"", index:[0,""], text:["Fire Damage: ","-","<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:279, name:"Death Sentry", i:28, req:[27,24,26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"Trap that explodes nearby corpses<br>laying waste to enemies", syn_title:"<br>Death Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +8% Damage per Level<br>Wake of Inferno: +8% Damage per Level", graytext:"", index:[1," Times"], text:["Corpse Explosion Damage: 3-5 percent of corpse Life<br>Shoots ","Radius: 10 yards<br>Damage: ","-","<br>Fire Damage: ","-","<br>Mana Cost: ",""]},
-{data:d353, key:"353", code:280, name:"Blade Shield", i:29, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, damaging:{attack:1,spell:0}, bindable:1, description:"Spinning blades slice enemies<br>who stray too close", syn_title:"<br>Blade Shield Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +10% Damage per Level<br>Blade Fury: +10% Damage per Level", graytext:"", index:[1," seconds"], text:["Increases attack rate by 1 frame every 2 base levels<br>Deals damage every ","Damage: ","-","<br>+1/4 Weapon Damage<br>Duration: "," seconds<br>Mana Cost: ",""]},
+{data:d353, key:"353", code:280, name:"Blade Shield", i:29, req:[25,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, damaging:{attack:1,spell:0}, bindable:1, description:"Spinning blades slice enemies<br>who stray too close", syn_title:"<br>Blade Shield Receives Bonuses From:<br>", syn_text:"Blade Sentinel: +10% Damage per Level<br>Blade Fury: +10% Damage per Level", graytext:"", index:[1," seconds"], text:["Increases attack rate by 1 frame every 2 base levels<br>Deals damage every ","Damage: ","-","<br>+1/4 Weapon Damage<br>Attack Rating: +"," percent<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d361, key:"361", code:277, name:"Chain Lightning Sentry", i:30, req:[26,23,21,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, damaging:{attack:0,spell:1}, description:"A trap that shoots chain lightning<br>to scorch passing enemies<br><br>Shoots 5 Times", syn_title:"<br>Chain Lightning Sentry Receives Bonuses From:<br>", syn_text:"Fire Blast: +15% Lightning Damage per Level<br>Charged Bolt Sentry: +15% Lightning Damage per Level<br>Lightning Sentry: +15% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 
 {data:d162, key:"162", code:251, name:"Phoenix Strike", i:31, req:[7,5,2,4,0], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add elemental bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Phoenix Strike Receives Bonuses From:<br>", syn_text:"Fists of Fire: +16% Fire Damage per Level<br>Fists of Fire: +10% Average Fire Damage per Second per Level<br>Claws of Thunder: +14% Lightning Damage per Level<br>Blades of Ice: +14% Cold Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - meteor damage: ","-","<br>Burning Damage: ","-"," per second<br>Charge 2 - chain lightning damage: ","-","<br>Charge 3 - chaos ice bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
@@ -377,9 +374,12 @@ var skills_pd2_assassin = [
 	...
 	Added an AoE burst to blade sentinel that triggers when the sentinel changes direction (cannot happen more than once per 12 frames)
 	Blade sentinel now has scaling AR bonus with soft points
+	...
+	Lowered the AoE size from 10 -> 7
 
 	Blade Fury
 	Synergies increased from 7% to 10%
+	now uninterruptable while channeling
 
 	Phoenix Strike
 	Third charge freeze duration reduced from 1 second to .5
@@ -388,6 +388,11 @@ var skills_pd2_assassin = [
 	Scaling has been reworked from diminishing returns to 10% at level 1 and 1% per level (capping at 55%)
 	Now can be increased by increased block chance at a 1:10 ratio (weapon block : increased block chance)
 	The blocking mechanic from weapon based blocks will now be called a “Parry” to differentiate it from normal block
+	...
+	Parry cap increased from 50% to 55%								...was already changed to 55% in original beta patch?
+	Base parry chance increased from 10% to 15%
+	Now gains 1% faster block rate per soft point instead of base point
+	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
 
 	Blade Shield
 	Now uses on striking instead of on attack
@@ -395,7 +400,18 @@ var skills_pd2_assassin = [
 	Radius is no longer capped by weapon range
 	...
 	Changed the frame delay on blade shield to scale with hard points. It now starts at 20 frame delay base level 1 and scales to 10 frame delay at level 20 (from 12 frames flat at all levels before)
-
+	...
+	Blade shield now has scaling AR bonus on skill
+	Blade shield now shows the chance to hit in the character screen
+	Blade shield no longer procs the following effects: Slow, Freeze target, Monsters Flee, Life gained on hit, Blind target
+		Compared to before, it now works with:
+		Chance to Cast on Striking
+		Crushing Blow
+		Open Wounds
+		Life After Each Kill
+		Mana After Each Kill
+		-% to Enemy Physical Resistance? (not sure if this worked previously)
+  
 	Venom
 	Now deals it’s damage over 1 second instead of 2
 	Venom’s damage has been doubled and top end increased slightly			...didn't check level 30+
@@ -410,5 +426,8 @@ var skills_pd2_assassin = [
 	...
 	Fixed the dragon talon character sheet to use the new kick formula changes
 	Increased boot damage ED% strength scaling from 80% to 100%
+
+	Mindblast
+	Reverted back to 100% physical damage
 
 */

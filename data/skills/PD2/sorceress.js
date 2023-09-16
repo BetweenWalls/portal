@@ -370,4 +370,6 @@ var skills_pd2_sorceress = [
 	Telekinesis 
 	Synergies increased from 14% to 15%
 
+	Inferno is now uninterruptable while channeling
+	
 */

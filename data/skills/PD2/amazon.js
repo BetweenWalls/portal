@@ -31,7 +31,6 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		if (skill.name == "Lightning Fury" && elem == 1) { 					result *= (1+character.lDamage/100) }	// synergies don't apply to minimum lightning damage
 		if (skill.name == "Lightning Fury" && elem == 2) { 					result *= ((1 + 0.02*skills[1].level + 0.02*skills[4].level) * (1+character.lDamage/100)) }	// excludes minimum lightning damage (synergies don't apply)
 
-		if (skill.name == "Dodge" && elem == 0) { 							result = 4 + skill.level*1 }
 		if (skill.name == "Penetrate" && elem == 0) { 						result = -5 - skill.level*1 }
 		if (skill.name == "Decoy" && elem < 2) { 							result *= (1 + 0.10*skills[18].level + 0.10*skills[27].level) }
 		if (skill.name == "Valkyrie" && elem == 0) { 						result = skill.data.values[elem][character.difficulty][lvl] }
@@ -202,8 +201,8 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["Radius",12,12.6,13.2,13.8,14.4,15,15.6,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,],
 ]};
 /*[13] Dodge			*/ var d242 = {values:[
-		["fhr",],
-		["dodge chance",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,],
+		["fhr",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,],
+		["dodge chance",5,7,9,11,13,15,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,],
 ]};
 /*[14]*/
 /*[15] Penetrate		*/ var d253 = {values:[
@@ -211,7 +210,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["attack rating bonus",35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,],
 ]};
 /*[16] Evade			*/ var d222 = {values:[
-		["dodge chance",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,],
+		["dodge chance",5,7,9,11,13,15,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,],
 		["speed",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,],
 ]};
 /*[17] Decoy			*/ var d241 = {values:[
@@ -248,8 +247,8 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 /*[21] Magic Arrow		*/ var d312 = {values:[
 		["arrows",],
 		["attack rating bonus",10,19,28,37,46,55,64,73,82,91,100,109,118,127,136,145,154,163,172,181,190,199,208,217,226,235,244,253,262,271,280,289,298,307,316,325,334,343,352,361,370,379,388,397,406,415,424,433,442,451,460,469,478,487,496,505,514,523,532,541,],
-		["Magic Damage (min)",2,3,5,6,8,9,11,12,16,20,24,27,31,35,39,42,54,65,76,87,99,110,129,147,166,185,204,222,249,275,301,327,353,379,405,431,457,483,509,535,561,587,613,639,665,691,717,743,769,795,821,847,873,899,925,951,977,1003,1029,1055,],
-		["Magic Damage (max)",3,6,8,10,12,15,17,19,24,30,35,40,45,51,56,61,74,87,99,112,125,138,158,178,198,219,239,259,287,315,343,371,399,427,455,483,511,539,567,595,623,651,679,707,735,763,791,819,847,875,903,931,959,987,1015,1043,1071,1099,1127,1155,],
+		["Magic Damage (min)",2,3,5,6,8,9,11,12,16,20,24,27,31,35,39,42,54,65,76,87,99,110,132,154,176,198,220,242,275,308,341,374,407,440,473,506,539,572,605,638,671,704,737,770,803,836,869,902,935,968,1001,1034,1067,1100,1133,1166,1199,1232,1265,1298,],
+		["Magic Damage (max)",3,6,8,10,12,15,17,19,24,30,35,40,45,51,56,61,74,87,99,112,125,138,162,186,210,234,258,282,317,352,387,422,457,492,527,562,597,632,667,702,737,772,807,842,877,912,947,982,1017,1052,1087,1122,1157,1192,1227,1262,1297,1332,1367,1402,],
 		["Mana Cost",2,2.1,2.2,2.3,2.5,2.6,2.7,2.8,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,4,4.1,4.2,4.3,4.5,4.6,4.7,4.8,5,5.1,5.2,5.3,5.5,5.6,5.7,5.8,6,6.1,6.2,6.3,6.5,6.6,6.7,6.8,7,7.1,7.2,7.3,7.5,7.6,7.7,7.8,8,8.1,8.2,8.3,8.5,8.6,8.7,8.8,9,9.1,9.2,9.3,],
 ]};
 /*[22] Multiple Shot	*/ var d322 = {values:[
@@ -353,7 +352,10 @@ var skills_pd2_amazon = [
 	Magic Arrow
 	Level 22-28 scaling reduced from 22.5-25.5 to 19-20
 	Level 28+ scaling reduced from 34-38 to 26-28
-	Fixed an issue that was causing the tooltip to display lower values than the actual damage			...didn't check levels 30+ (may not be exactly 26-28 per level)
+	Fixed an issue that was causing the tooltip to display lower values than the actual damage
+	...
+	Level 22-28 scaling increased from 19-20 to 22-24
+	Level 28+ scaling increased from 26-28 to 33-35						...didn't check in-game (may not be exactly 22-24 and 33-35 per level)
 
 	Cold arrow
 	Synergies reduced from 22% to 20%
@@ -368,7 +370,15 @@ var skills_pd2_amazon = [
 	Base enhanced damage bonus increased from 35% to 40%
 	Damage per level increased from 10% to 12%
 	
+	Evade
+	Rescaled Amazon Dodge to 5% base + 1% per soft point, capping at 40%
 	...
-	
-	Rescaled Amazon Dodge and Evade to 5% base + 1% per soft point, capping at 40%
+	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+
+	Dodge
+	Rescaled Amazon Evade to 5% base + 1% per soft point, capping at 40%
+	...
+	Now gains 1% faster hit recovery per soft point instead of base point
+	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+
 */
