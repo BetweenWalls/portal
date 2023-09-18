@@ -374,11 +374,15 @@ var skills_pd2_amazon = [
 	Rescaled Amazon Dodge to 5% base + 1% per soft point, capping at 40%
 	...
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+	...
+Reverted back to season 7 diminishing return scaling
 
 	Dodge
 	Rescaled Amazon Evade to 5% base + 1% per soft point, capping at 40%
 	...
 	Now gains 1% faster hit recovery per soft point instead of base point
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+	...
+Reverted back to season 7 diminishing return scaling
 
 */

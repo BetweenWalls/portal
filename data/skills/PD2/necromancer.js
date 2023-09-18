@@ -500,4 +500,25 @@ var skills_pd2_necromancer = [
 	Synergies increased from 8% to 10%
 	Radius increased from 10 yards to 12 yards			...assumed same scaling
 
+Fire Golem
+- Fire golem was dealing too much damage during leveling progression, we've moved some of that power to higher levels /synergies resuling in less power early on and more late game
+
+Fire Golem Melee Attack
+- Base damage reduced from 20-25 to 12-15
+- Level 1-8 scaling reduced from 10-12 to 4-5
+- Level 8-16 scaling reduced from 11-13 to 7-9
+- Level 16-22 scaling reduced from 12-14 to 11-13
+- Level 22-28 scaling increased from 13-15 to 13-16
+- Level 28+ scaling reduced from 14-16 to 13-16
+- Synergies increased from 4% to 5%
+
+Fire Golem Holy Fire Aura
+- Base damage reduced from 25-35 to 21-29
+- Level 1-8 scaling reduced 15-17 to 13-14
+- Level 8-16 scaling reduced from 20-22 to 17-18
+- Level 16-22 scaling reduced from 25-27 to 21-22
+- Level 22-28 scaling increased from 30-32 to 25-26
+- Level 28+ scaling reduced from 30-32 to 25-26
+- Synergies increased from 4% to 5%
+
 */

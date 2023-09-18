@@ -419,15 +419,23 @@ var skills_pd2_paladin = [
 	Added 50% base attack rating
 	Added 5% attack rating per level
 
+	Holy Sword
 	Replaced Conversion with a new skill: Holy Sword			...check if the parry chance is capped
 	Allows the paladin to gain parry chance while wielding two handed swords (Similar to Weapon Block)
 	Provides the paladin with increased damage to demons and undead
 	...
 	Parry cap increased from 45% to 50%
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+	...
+Scaling reworked to diminshing returns scaling
+Base parry chance changed to 8%
+Parry chance cap set to 55%
 
 	Sacrifice
 	Synergies increased from 20% to 25%
 	Lowered the delay for the AoE explosion on monster death
+
+	Joust
+	Items that reduce cooldown will now all you to reduce the cooldown below the 1.5 second minimum cooldown				...previously, the tooltip was inaccurate on Alma Negra?
 
 */

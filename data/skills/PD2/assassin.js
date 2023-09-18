@@ -393,6 +393,10 @@ var skills_pd2_assassin = [
 	Base parry chance increased from 10% to 15%
 	Now gains 1% faster block rate per soft point instead of base point
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
+	...
+Base parry chance reduced from 14% to 8%
+Scaling reverted back to diminshing returns scaling
+Parry chance cap set to 55%
 
 	Blade Shield
 	Now uses on striking instead of on attack
@@ -429,5 +433,22 @@ var skills_pd2_assassin = [
 
 	Mindblast
 	Reverted back to 100% physical damage
+
+Fists of Fire 
+First charge and third charge meteor fire burn damage per second
+- Level 16-22 scaling increased from 3-4 to 4-6
+- Level 22-28 scaling increased from 4-5 to 7-9
+- Level 28+ scaling increased from 5-6 to 10-12
+Second charge fire nova damage
+- Level 22-28 scaling increased from 27-33 to 28-33
+- Level 28+ scaling increased from 33-40 to 41-48
+Third charge meteor impact damage
+- Level 22-28 scaling increased from 16-17 to 17-18
+- Level 28+ scaling increased from 22-23 to 25-26
+
+Blades of Ice
+Base freeze duration change from 100 frames to 250
+Removed the 10 frames per level freeze duration scaling 
+Synergies increased from 20% to 22%
 
 */

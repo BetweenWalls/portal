@@ -1351,12 +1351,16 @@ function loadItems(group, dropdown, className) {
 							else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
 							else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
 						} else {
-							if (typeof(item.only) != 'undefined' || (typeof(item.debug) != 'undefined' && ((game_version != 3 && typeof(item.all_skills) != 'undefined') || (game_version == 3 && (typeof(item.all_skills) != 'undefined' || typeof(item.skills_fire_all) != 'undefined' || typeof(item.skills_cold_all) != 'undefined' || typeof(item.skills_lightning_all) != 'undefined' || typeof(item.skills_poison_all) != 'undefined' || typeof(item.skills_magic_all) != 'undefined'))))) {	// TODO: simplify logic by making all items have a "version" variable (at least if they shouldn't be included in all versions)
-								if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
-								else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
-								else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
+							if (typeof(item.pod) != 'undefined') { addon = "" }
+							else {
+								if (game_version == 1 && typeof(item.pd2) != 'undefined') {
+									addon = ""
+								} else {
+									if (typeof(item.debug) != 'undefined') { addon = "<option class='dropdown-debug'>" + item.name + "</option>" }
+									else if (typeof(item.rarity) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" }
+									else { addon = "<option class='dropdown-unique'>" + item.name + "</option>" }
+								}
 							}
-							else if (game_version == 3) { if (typeof(item.pd2) != 'undefined') { addon = "<option class='dropdown-"+item.rarity+"'>" + item.name + "</option>" } }
 						}
 					}
 					choices += addon
