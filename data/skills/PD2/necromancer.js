@@ -56,7 +56,7 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 		if (skill.name == "Fire Golem" && elem == 0) {						result = 120 + 20*skills[3].level + golem_attack }
 		if (skill.name == "Fire Golem" && elem == 1) {						result = 200 + 35*(skills[8].level+(skills[8].extra_levels*Math.min(1,skills[8].level))) }
 		if (skill.name == "Fire Golem" && elem == 2) {						result = skill.data.values[elem][character.difficulty][lvl] + ((2*skill.data.values[elem][character.difficulty][1] - skill.data.values[elem][character.difficulty][2]) * (golem_life/100)) + 0*skills[6].level }	// tooltip includes hidden life synergy (+20.5 per level) from Blood Golem, but is incorrect
-		if (skill.name == "Fire Golem" && elem > 2 && elem < 7) {			result *= (1 + 0.04*skills[3].level + 0.04*skills[6].level + 0.04*skills[8].level + 0.04*skills[4].level) * (1+character.fDamage/100) }
+		if (skill.name == "Fire Golem" && elem > 2 && elem < 7) {			result *= (1 + 0.05*skills[3].level + 0.05*skills[6].level + 0.05*skills[8].level + 0.05*skills[4].level) * (1+character.fDamage/100) }
 		if (skill.name == "Golem Mastery" && elem == 0) {					result = 1 + Math.floor(skill.level/5) }
 		if (skill.name == "Revive" && elem == 0) {							result = skill.level }
 		if (skill.name == "Revive" && elem == 1) {							result = 3 + Math.floor(skill.level/4) }
@@ -286,10 +286,10 @@ var character_pd2_necromancer = {class_name:"Necromancer", strength:15, dexterit
 			["Life (Nightmare)",295,334,372,411,449,488,526,565,603,642,681,719,758,796,835,873,912,950,989,1027,1066,1105,1143,1182,1220,1259,1297,1336,1374,1413,1452,1490,1529,1567,1606,1644,1683,1721,1760,1798,1837,1875,1914,1953,1991,2030,2068,2107,2145,2184,2222,2261,2299,2338,2377,2415,2454,2492,2531,2569,],
 			["Life (Hell)",468,529,590,651,712,773,834,895,956,1017,1078,1139,1200,1261,1322,1383,1444,1505,1566,1628,1689,1750,1811,1872,1933,1994,2055,2116,2177,2238,2299,2360,2421,2482,2543,2604,2665,2726,2787,2849,2910,2971,3032,3093,3154,3215,3276,3337,3398,3459,3520,3581,3642,3703,3764,3825,3886,3947,4008,4070,],
 		],
-		["Fire Damage (min)",20,30,40,50,60,70,80,90,101,112,123,134,145,156,167,178,190,202,214,226,238,250,263,276,289,302,315,328,342,356,370,384,398,412,426,440,454,468,482,496,510,524,538,552,566,580,594,608,622,636,650,664,678,692,706,720,734,748,762,776,],
-		["Fire Damage (max)",25,37,49,61,73,85,97,109,122,135,148,161,174,187,200,213,227,241,255,269,283,297,312,327,342,357,372,387,403,419,435,451,467,483,499,515,531,547,563,579,595,611,627,643,659,675,691,707,723,739,755,771,787,803,819,835,851,867,883,899,],
-		["Holy Fire Damage (min)",25,40,55,70,85,100,115,130,150,170,190,210,230,250,270,290,315,340,365,390,415,440,470,500,530,560,590,620,650,680,710,740,770,800,830,860,890,920,950,980,1010,1040,1070,1100,1130,1160,1190,1220,1250,1280,1310,1340,1370,1400,1430,1460,1490,1520,1550,1580,],
-		["Holy Fire Damage (max)",35,52,69,86,103,120,137,154,176,198,220,242,264,286,308,330,357,384,411,438,465,492,524,556,588,620,652,684,716,748,780,812,844,876,908,940,972,1004,1036,1068,1100,1132,1164,1196,1228,1260,1292,1324,1356,1388,1420,1452,1484,1516,1548,1580,1612,1644,1676,1708,],
+		["Fire Damage (min)",12,16,20,24,28,32,36,40,47,54,61,68,75,82,89,96,107,118,129,140,151,162,175,188,201,214,227,240,253,266,279,292,305,318,331,344,357,370,383,396,409,422,435,448,461,474,487,500,513,526,539,552,565,578,591,604,617,630,643,656,], 
+		["Fire Damage (max)",15,20,25,30,35,40,45,50,59,68,77,86,95,104,113,122,135,148,161,174,187,200,216,232,248,264,280,296,312,328,344,360,376,392,408,424,440,456,472,488,504,520,536,552,568,584,600,616,632,648,664,680,696,712,728,744,760,776,792,808,], 
+		["Holy Fire Damage (min)",21,34,47,60,73,86,99,112,129,146,163,180,197,214,231,248,269,290,311,332,353,374,399,424,449,474,499,524,549,574,599,624,649,674,699,724,749,774,799,824,849,874,899,924,949,974,999,1024,1049,1074,1099,1124,1149,1174,1199,1224,1249,1274,1299,1324,], 
+		["Holy Fire Damage (max)",29,43,57,71,85,99,113,127,145,163,181,199,217,235,253,271,293,315,337,359,381,403,429,455,481,507,533,559,585,611,637,663,689,715,741,767,793,819,845,871,897,923,949,975,1001,1027,1053,1079,1105,1131,1157,1183,1209,1235,1261,1287,1313,1339,1365,1391,], 
 		["Mana Cost",10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30,30,31,31,32,32,33,33,34,34,35,35,36,36,37,37,38,38,39,39,],
 ]};
 /*[10] Revive			*/ var d163 = {values:[
@@ -433,13 +433,13 @@ var skills_pd2_necromancer = [
 {data:d111, key:"111", code:66, name:"Skeleton Mastery", i:0, req:[1], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Increases life, damage, and<br>velocity of raised skeletons", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Warriors, Archers, Magi Velocity: +"," percent<br>Warriors, Archers, Magi Life: +","<br>Warriors Damage: +",""]},
 {data:d113, key:"113", code:67, name:"Raise Skeleton Warrior", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton warrior that<br>fights for you", syn_title:"<br>Raise Skeleton Warrior Receives Bonuses From:<br>", syn_text:"Skeleton Mastery: +6% Damage per Level<br>Raise Skeleton Archer: +2% Damage per Level", graytext:"", index:[2,""], text:["Damage: ","-","Damage: +"," percent<br>Attack: ","<br>Defense: ","<br>Life: ","<br>"," skeletons total<br>Mana Cost: ",""]},
 {data:d153, key:"153", code:68, name:"Raise Skeleton Archer", i:2, req:[1,5], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton archer that<br>fights for you", syn_title:"<br>Raise Skeleton Archer Receives Bonuses From:<br>", syn_text:"Skeleton Mastery: +6% Damage per Level<br>Raise Skeleton Warrior: +2% Damage per Level", graytext:"", index:[1," Skeleton Archers"], text:["","Damage: ","-","<br>Life: ","<br>Attack: ","<br>Defense: ","<br>Mana Cost: ",""]},
-{data:d122, key:"122", code:69, name:"Clay Golem", i:3, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem from the earth<br>to fight by your side", syn_title:"<br>Clay Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +40% Base Damage per Level<br>Iron Golem: +35 Defense per Level<br>Blood Golem: +40% Base Damage per Level<br>Iron Golem: +40% Base Damage per Level<br>Fire Golem: +40% Base Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Damage: ","-","<br>Attack Bonus: +","<br>Slows Enemies: "," percent<br>Mana Cost: ",""]},
+{data:d122, key:"122", code:69, name:"Clay Golem", i:3, req:[], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem from the earth<br>to fight by your side<br><br>Cooldown: 1 second", syn_title:"<br>Clay Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +40% Base Damage per Level<br>Iron Golem: +35 Defense per Level<br>Blood Golem: +40% Base Damage per Level<br>Iron Golem: +40% Base Damage per Level<br>Fire Golem: +40% Base Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Damage: ","-","<br>Attack Bonus: +","<br>Slows Enemies: "," percent<br>Mana Cost: ",""]},
 {data:d131, key:"131", code:70, name:"Golem Mastery", i:4, req:[3], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Enhances speed and life of all your golems", syn_title:"", syn_text:"", graytext:"", index:[1,""], text:["Can Summon an Extra Golem Every 5 Base Levels<br>Golems: ","Life: +"," percent<br>Attack Bonus: +","<br>Walk/Run Speed: +"," percent"]},
 {data:d133, key:"133", code:71, name:"Raise Skeletal Mage", i:5, req:[1], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Cast on the corpse of a slain monster,<br>this raises a skeleton mage that<br>fights for you", syn_title:"<br>Raise Skeletal Mage Receives Bonuses From:<br>", syn_text:"Skeleton Mastery: +10% Damage per Level", graytext:"", index:[1," Skeleton Magi"], text:["","Poison Damage: ","-"," over 0.5 Seconds<br>Lightning Damage: ","-","<br>Cold Damage: ","-","<br>Fire Damage: ","-","<br>Life: ","<br>Mana Cost: ",""]},
-{data:d142, key:"142", code:72, name:"Blood Golem", i:6, req:[3], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a golem that shares<br>with you the life it steals<br>Enemies damaged by the blood golem<br>will be inflicted with open wounds", syn_title:"<br>Blood Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +20% Base Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +20% Base Damage per Level<br>Iron Golem: +20% Base Damage per Level<br>Fire Golem: +20% Base Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>+"," Life Gained On Hit<br>Damage: ","-","<br>Mana Cost: ",""]},
+{data:d142, key:"142", code:72, name:"Blood Golem", i:6, req:[3], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Creates a golem that shares<br>with you the life it steals<br>Enemies damaged by the blood golem<br>will be inflicted with open wounds<br><br>Cooldown: 1 second", syn_title:"<br>Blood Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +20% Base Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +20% Base Damage per Level<br>Iron Golem: +20% Base Damage per Level<br>Fire Golem: +20% Base Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>+"," Life Gained On Hit<br>Damage: ","-","<br>Mana Cost: ",""]},
 {data:d151, key:"151", code:73, name:"Blood Warp", i:7, req:[6,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Instantly moves to a destination at the cost<br>of a percentage of your current health<br>Health lost regenerates over 5 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: "," seconds<br>Costs 12% of Your Current Health<br>Minimum Life Cost: ","<br>Mana Cost: 10"]},
-{data:d152, key:"152", code:74, name:"Iron Golem", i:8, req:[6,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transforms a metallic item into a golem that gains<br>the properties of the item", syn_title:"<br>Iron Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +20% Base Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Clay Golem: +20% Base Damage per Level<br>Blood Golem: +20% Base Damage per Level<br>Fire Golem: +20% Base Damage per Level", graytext:"", index:[4,""], text:["Damage: ","-","<br>Attack: ","<br>Defense: ","Life: ","<br>Thorns Damage: "," percent damage returned<br>Defense Bonus: +","<br>Mana Cost: 35"]},
-{data:d162, key:"162", code:75, name:"Fire Golem", i:9, req:[8,6,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem that bathes<br>nearby enemies in living flames", syn_title:"<br>Fire Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +4% Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +4% Damage per Level<br>Blood Golem: +4% Damage per Level<br>Iron Golem: +4% Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Fire Damage: ","-","<br>Holy Fire: ","-","<br>Mana Cost: ",""]},
+{data:d152, key:"152", code:74, name:"Iron Golem", i:8, req:[6,3], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transforms a metallic item into a golem that gains<br>the properties of the item<br><br>Cooldown: 1 second", syn_title:"<br>Iron Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +20% Base Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Clay Golem: +20% Base Damage per Level<br>Blood Golem: +20% Base Damage per Level<br>Fire Golem: +20% Base Damage per Level", graytext:"", index:[4,""], text:["Damage: ","-","<br>Attack: ","<br>Defense: ","Life: ","<br>Thorns Damage: "," percent damage returned<br>Defense Bonus: +","<br>Mana Cost: 35"]},
+{data:d162, key:"162", code:75, name:"Fire Golem", i:9, req:[8,6,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a golem that bathes<br>nearby enemies in living flames<br><br>Cooldown: 1 second", syn_title:"<br>Fire Golem Receives Bonuses From:<br>", syn_text:"Golem Mastery: +5% Damage per Level<br>Clay Golem: +20 Attack Rating per Level<br>Iron Golem: +35 Defense per Level<br>Clay Golem: +5% Damage per Level<br>Blood Golem: +5% Damage per Level<br>Iron Golem: +5% Damage per Level", graytext:"", index:[2,""], text:["Attack: ","<br>Defense: ","Life: ","<br>Fire Damage: ","-","<br>Holy Fire: ","-","<br>Mana Cost: ",""]},
 {data:d163, key:"163", code:76, name:"Revive", i:10, req:[5,2,1], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Returns a monster to life<br>to fight by your side", syn_title:"<br>Revive Receives Bonuses From:<br>", syn_text:"Desecrate: +20% Damage per Level<br>Desecrate: +10% Elemental Damage per Level", graytext:"", index:[2,""], text:["Monster Skill Levels: +","<br>Monsters: ","Elemental Damage: +"," percent<br>Damage: +"," percent<br>Duration: "," seconds<br>Mana Cost: 45"]},
 
 {data:d211, key:"211", code:77, name:"Poison Strike", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Adds poison to your dagger or scythe attacks", syn_title:"<br>Poison Strike Receives Bonuses From:<br>", syn_text:"Desecrate: +25% Poison Damage per Level<br>Bone Armor: +25% Poison Damage per Level", graytext:"", index:[0,""], text:["Pierces ","% Poison Resistance<br>Poison Damage: ","-","<br>over 2 seconds<br>Attack: +"," percent<br>Mana Cost: ",""]},
@@ -448,7 +448,7 @@ var skills_pd2_necromancer = [
 {data:d221, key:"221", code:80, name:"Corpse Explosion", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Cast on the corpse of a slain monster.<br>It explodes, damaging nearby enemies<br><br>Damage: 5-10 percent of corpse life", syn_title:"<br>Corpse Explosion Receives Bonuses From:<br>", syn_text:"Amplify Damage: +10% Damage per Level<br>Desecrate: +10% Damage per Level<br>Revive: +10% Damage per Level", graytext:"", index:[0,""], text:["Damage: ","-","<br>Fire Damage: ","-","<br>Radius: "," yards<br>Mana Cost: ",""]},
 {data:d231, key:"231", code:81, name:"Desecrate", i:15, req:[14,11], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summons 5 corpses and releases a deadly cloud of poison", syn_title:"<br>Desecrate Receives Bonuses From:<br>", syn_text:"Poison Strike: +20% Poison Damage per Level<br>Poison Nova: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
 {data:d242, key:"242", code:82, name:"Bone Spear", i:16, req:[12], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons deadly spikes of bone to impale your enemies<br><br>Fires an additional bone spear at levels 15 and 25", syn_title:"<br>Bone Spear Receives Bonuses From:<br>", syn_text:"Teeth: +14% Magic Damage per Level<br>Bone Spirit: +14% Magic Damage per Level<br>Bone Armor: +14% Magic Damage per Level", graytext:"", index:[0,""], text:["Bone Spears: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
-{data:d233, key:"233", code:83, name:"Bone Wall", i:17, req:[13,12], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates an impassable barrier<br>of bone and debris", syn_title:"<br>Bone Wall Receives Bonuses From:<br>", syn_text:"Bone Armor: +10% Life per Level<br>Bone Prison: +10% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: 17",""]},
+{data:d233, key:"233", code:83, name:"Bone Wall", i:17, req:[13,12], reqlvl:12, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates an impassable barrier<br>of bone and debris<br><br>Cooldown: 1 second", syn_title:"<br>Bone Wall Receives Bonuses From:<br>", syn_text:"Bone Armor: +10% Life per Level<br>Bone Prison: +10% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: 17",""]},
 {data:d262, key:"262", code:84, name:"Bone Spirit", i:18, req:[16,12], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Releases a spirit of the restless undead that<br>tracks its target or finds one of its own", syn_title:"<br>Bone Spirit Receives Bonuses From:<br>", syn_text:"Teeth: +14% Magic Damage per Level<br>Bone Spear: +14% Magic Damage per Level<br>Bone Armor: +14% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d261, key:"261", code:85, name:"Poison Nova", i:19, req:[15,14,11], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Emits an expanding ring of concentrated poison", syn_title:"<br>Poison Nova Receives Bonuses From:<br>", syn_text:"Poison Strike: +12% Poison Damage per Level<br>Desecrate: +12% Poison Damage per Level", graytext:"", index:[0,""], text:["Poison Damage: ","-","<br>over 2 seconds<br>Mana Cost: 20",""]},
 
@@ -464,7 +464,7 @@ var skills_pd2_necromancer = [
 {data:d351, key:"351", code:95, name:"Decrepify", i:29, req:[23,27,20], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses a group of enemies to slow their<br>movement speed, attack rate, and cast rate<br><br>Physical Damage Resistance: -10 percent", syn_title:"<br>Decrepify Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Reduced Attack and Cast Rate per Level<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Movement Speed: "," percent<br>Attack and Cast Rate: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 {data:d362, key:"362", code:96, name:"Lower Resist", i:30, req:[23,27,20], reqlvl:30, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Curses enemies to take more damage from all elemental attacks<br>by lowering their resistances<br>Lowers maximum resistances of hostile players", syn_title:"<br>Lower Resist Receives Bonuses From:<br>", syn_text:"Curse Mastery: +1% Lowered Resistances per Two Levels<br>Curse Mastery: +0.6 Radius per Three Levels", graytext:"", index:[0,""], text:["Resist All: "," percent<br>Radius: "," yards<br>Duration: "," seconds<br>Mana Cost: ",""]},
 
-{data:d253, key:"253", code:300, name:"Bone Prison", i:31, req:[17,16,13,12], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a barrier of fossilized bone around your target", syn_title:"<br>Bone Prison Receives Bonuses From:<br>", syn_text:"Bone Armor: +8% Life per Level<br>Bone Wall: +8% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: ",""]},
+{data:d253, key:"253", code:300, name:"Bone Prison", i:31, req:[17,16,13,12], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Creates a barrier of fossilized bone around your target<br><br>Cooldown: 5 seconds", syn_title:"<br>Bone Prison Receives Bonuses From:<br>", syn_text:"Bone Armor: +8% Life per Level<br>Bone Wall: +8% Life per Level", graytext:"", index:[0,""], text:["Life: ","<br>Duration: 24 seconds<br>Mana Cost: ",""]},
 
 {data:d313, key:"313", code:301, name:"Curse Mastery", i:32, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Provides benefits to your curses and allows<br>you to apply an additional curse for every 10 base levels", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Maximum Curses: ",""]},
 ];
@@ -493,6 +493,8 @@ var skills_pd2_necromancer = [
 	Level 22-28 scaling reduced from 21-21 to 19-19			...internal values which are 4.67x smaller than displayed values? verified in-game
 	Level 28+ scaling increased from 21-21 to 24-24
 	Corpses now decay after 16 seconds to prevent “shenk bug”
+	...
+	Disabled druid vines from providing health/mana when eating corpses generated from desecrate
 
 	Corpse Explosion
 	Level 8-16 scaling increased from 2-4 to 3-5			...also level 1-8 changed? from 1-1 to 1-2?
@@ -500,25 +502,29 @@ var skills_pd2_necromancer = [
 	Synergies increased from 8% to 10%
 	Radius increased from 10 yards to 12 yards			...assumed same scaling
 
-Fire Golem
-- Fire golem was dealing too much damage during leveling progression, we've moved some of that power to higher levels /synergies resuling in less power early on and more late game
+	Fire Golem
+	- Fire golem was dealing too much damage during leveling progression, we've moved some of that power to higher levels /synergies resuling in less power early on and more late game
+	Fire Golem Melee Attack
+	- Base damage reduced from 20-25 to 12-15
+	- Level 1-8 scaling reduced from 10-12 to 4-5
+	- Level 8-16 scaling reduced from 11-13 to 7-9
+	- Level 16-22 scaling reduced from 12-14 to 11-13
+	- Level 22-28 scaling increased from 13-15 to 13-16
+	- Level 28+ scaling reduced from 14-16 to 13-16	
+	- Synergies increased from 4% to 5%
+	Fire Golem Holy Fire Aura
+	- Base damage reduced from 25-35 to 21-29
+	- Level 1-8 scaling reduced 15-17 to 13-14
+	- Level 8-16 scaling reduced from 20-22 to 17-18
+	- Level 16-22 scaling reduced from 25-27 to 21-22
+	- Level 22-28 scaling increased from 30-32 to 25-26
+	- Level 28+ scaling reduced from 30-32 to 25-26
+	- Synergies increased from 4% to 5%
 
-Fire Golem Melee Attack
-- Base damage reduced from 20-25 to 12-15
-- Level 1-8 scaling reduced from 10-12 to 4-5
-- Level 8-16 scaling reduced from 11-13 to 7-9
-- Level 16-22 scaling reduced from 12-14 to 11-13
-- Level 22-28 scaling increased from 13-15 to 13-16
-- Level 28+ scaling reduced from 14-16 to 13-16
-- Synergies increased from 4% to 5%
+	Dark Pact
+	Fixed dark pact not working in maps with "Monsters have reduced curse duration"
 
-Fire Golem Holy Fire Aura
-- Base damage reduced from 25-35 to 21-29
-- Level 1-8 scaling reduced 15-17 to 13-14
-- Level 8-16 scaling reduced from 20-22 to 17-18
-- Level 16-22 scaling reduced from 25-27 to 21-22
-- Level 22-28 scaling increased from 30-32 to 25-26
-- Level 28+ scaling reduced from 30-32 to 25-26
-- Synergies increased from 4% to 5%
+	Revive
+	Fixed the panther javelin throwing monster's javelin hit collide type so that it will deal damage as a revive
 
 */

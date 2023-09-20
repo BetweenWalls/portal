@@ -202,7 +202,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 ]};
 /*[13] Dodge			*/ var d242 = {values:[
 		["fhr",5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,],
-		["dodge chance",5,7,9,11,13,15,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,],
+		["dodge chance",6,11,15,18,20,22,24,25,26,27,28,29,30,31,31,32,32,32,33,33,34,34,34,35,35,36,36,36,36,36,36,36,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,40,], 
 ]};
 /*[14]*/
 /*[15] Penetrate		*/ var d253 = {values:[
@@ -210,7 +210,7 @@ var character_pd2_amazon = {class_name:"Amazon", strength:20, dexterity:25, vita
 		["attack rating bonus",35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,],
 ]};
 /*[16] Evade			*/ var d222 = {values:[
-		["dodge chance",5,7,9,11,13,15,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,],
+		["dodge chance",6,11,15,18,20,22,24,25,26,27,28,29,30,31,31,32,32,32,33,33,34,34,34,35,35,36,36,36,36,36,36,36,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,40,], 
 		["speed",15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,],
 ]};
 /*[17] Decoy			*/ var d241 = {values:[
@@ -310,7 +310,7 @@ var skills_pd2_amazon = [
 {data:d121, key:"121", code:9, name:"Javelin and Spear Mastery", i:3, req:[0], reqlvl:6, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:0, description:"Increases damage and critical hit chance with<br>javelin and spear class weapons", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>"," Percent Chance of Critical Strike"]},
 {data:d133, key:"133", code:10, name:"Lightning Bolt", i:4, req:[1,2,0], reqlvl:12, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically converts your javelin into a bolt of lightning<br><br>Converts 100% Physical Damage to Elemental Damage", syn_title:"<br>Lightning Bolt Receives Bonuses From:<br>", syn_text:"Power Strike: +14% Lightning Damage per Level<br>Lightning Fury: +14% Lightning Damage per Level", graytext:"", index:[0,""], text:["Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d142, key:"142", code:11, name:"Charged Strike", i:5, req:[1,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases charged bolts upon impact", syn_title:"<br>Charged Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +5% Lightning Damage per Level<br>Lightning Strike: +5% Lightning Damage per Level<br>Lightning Fury: +5% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," charged bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
-{data:d143, key:"143", code:12, name:"Plague Javelin", i:6, req:[4,2,1,0], reqlvl:18, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your javelin to release<br>expanding clouds of poison upon impact", syn_title:"<br>Plague Javelin Receives Bonuses From:<br>", syn_text:"Poison Javelin: +12% Poison Damage per Level<br>Javelin and Spear Mastery: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
+{data:d143, key:"143", code:12, name:"Plague Javelin", i:6, req:[4,2,1,0], reqlvl:18, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Magically enhances your javelin to release<br>expanding clouds of poison upon impact<br><br>Plague Javelin", syn_title:"<br>Plague Javelin Receives Bonuses From:<br>", syn_text:"Poison Javelin: +12% Poison Damage per Level<br>Javelin and Spear Mastery: +6% Poison Damage per Level", graytext:"", index:[0,""], text:["Attack: +"," percent<br>Poison Damage: ","-","<br>over 3 seconds<br>Mana Cost: ",""]},
 {data:d141, key:"141", code:13, name:"Fend", i:7, req:[3,0], reqlvl:18, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Attacks all adjacent targets<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Fend Receives Bonuses From:<br>", syn_text:"Jab: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>Mana Cost: 5",""]},
 {data:d162, key:"162", code:14, name:"Lightning Strike", i:8, req:[5,1,0], reqlvl:30, reqWeapon:["spear","javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Adds lightning damage to javelin and spear class weapons<br>and releases chain lightning upon impact", syn_title:"<br>Lightning Strike Receives Bonuses From:<br>", syn_text:"Power Strike: +10% Lightning Damage per Level<br>Charged Strike: +10% Lightning Damage per Level", graytext:"", index:[0,""], text:[""," hits<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d163, key:"163", code:15, name:"Lightning Fury", i:9, req:[6,4,2,1,0], reqlvl:30, reqWeapon:["javelin"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Changes a thrown javelin into a powerful<br>bolt of lightning that splits on impact<br><br>Releases an additional bolt every 5 levels", syn_title:"<br>Lightning Fury Receives Bonuses From:<br>", syn_text:"Power Strike: +2% Lightning Damage per Level<br>Lightning Bolt: +2% Lightning Damage per Level", graytext:"", index:[0,""], text:["Releases "," bolts<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
@@ -375,7 +375,7 @@ var skills_pd2_amazon = [
 	...
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
 	...
-Reverted back to season 7 diminishing return scaling
+	Reverted back to season 7 diminishing return scaling
 
 	Dodge
 	Rescaled Amazon Evade to 5% base + 1% per soft point, capping at 40%
@@ -383,6 +383,9 @@ Reverted back to season 7 diminishing return scaling
 	Now gains 1% faster hit recovery per soft point instead of base point
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
 	...
-Reverted back to season 7 diminishing return scaling
+	Reverted back to season 7 diminishing return scaling
+
+	Decoy
+	Lowered the threat of decoys (decoys will now have similar aggro to mercenaries)
 
 */
