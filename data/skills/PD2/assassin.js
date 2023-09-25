@@ -138,12 +138,12 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 		["Attack +%",20,45,70,95,120,145,170,195,220,245,270,295,320,345,370,395,420,445,470,495,520,545,570,595,620,645,670,695,720,745,770,795,820,845,870,895,920,945,970,995,1020,1045,1070,1095,1120,1145,1170,1195,1220,1245,1270,1295,1320,1345,1370,1395,1420,1445,1470,1495,],
 ]};
 /*[ 2] Fists of Fire	*/ var d121 = {values:[
-		["Fire Damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,27,30,33,36,39,42,46,50,54,58,62,66,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211,216,221,226,],
-		["Fire Damage (max)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,37,41,45,49,53,57,62,67,72,77,82,87,93,99,105,111,117,123,129,135,141,147,153,159,165,171,177,183,189,195,201,207,213,219,225,231,237,243,249,255,261,267,273,279,],
-		["Nova Fire Damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,39,54,69,84,99,114,141,168,195,222,249,276,309,342,375,408,441,474,507,540,573,606,639,672,705,738,771,804,837,870,903,936,969,1002,1035,1068,1101,1134,1167,1200,1233,1266,1299,1332,],
-		["Nova Fire Damage (max)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,51,69,87,105,123,141,174,207,240,273,306,339,379,419,459,499,539,579,619,659,699,739,779,819,859,899,939,979,1019,1059,1099,1139,1179,1219,1259,1299,1339,1379,1419,1459,1499,1539,1579,1619,],
-		["Meteor Damage (min)",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,50,68,86,104,122,140,172,204,236,268,300,332,376,420,464,508,552,596,640,684,728,772,816,860,904,948,992,1036,1080,1124,1168,1212,1256,1300,1344,1388,1432,1476,1520,1564,1608,1652,1696,1740,],
-		["Meteor Damage (max)",4,6,8,10,12,14,16,18,22,26,30,34,38,42,46,50,70,90,110,130,150,170,204,238,272,306,340,374,420,466,512,558,604,650,696,742,788,834,880,926,972,1018,1064,1110,1156,1202,1248,1294,1340,1386,1432,1478,1524,1570,1616,1662,1708,1754,1800,1846,],
+		["Fire Damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,28,32,36,40,44,48,55,62,69,76,83,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,], 
+		["Fire Damage (max)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,39,45,51,57,63,69,78,87,96,105,114,123,135,147,159,171,183,195,207,219,231,243,255,267,279,291,303,315,327,339,351,363,375,387,399,411,423,435,447,459,471,483,495,507,], 
+		["Nova Fire Damage (min)",1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24,39,54,69,84,99,114,142,170,198,226,254,282,323,364,405,446,487,528,569,610,651,692,733,774,815,856,897,938,979,1020,1061,1102,1143,1184,1225,1266,1307,1348,1389,1430,1471,1512,1553,1594,], 
+		["Nova Fire Damage (max)",2,3,4,5,6,7,8,9,12,15,18,21,24,27,30,33,51,69,87,105,123,141,174,207,240,273,306,339,387,435,483,531,579,627,675,723,771,819,867,915,963,1011,1059,1107,1155,1203,1251,1299,1347,1395,1443,1491,1539,1587,1635,1683,1731,1779,1827,1875,], 
+		["Meteor Damage (min)",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,50,68,86,104,122,140,174,208,242,276,310,344,394,444,494,544,594,644,694,744,794,844,894,944,994,1044,1094,1144,1194,1244,1294,1344,1394,1444,1494,1544,1594,1644,1694,1744,1794,1844,1894,1944,], 
+		["Meteor Damage (max)",4,6,8,10,12,14,16,18,22,26,30,34,38,42,46,50,70,90,110,130,150,170,206,242,278,314,350,386,438,490,542,594,646,698,750,802,854,906,958,1010,1062,1114,1166,1218,1270,1322,1374,1426,1478,1530,1582,1634,1686,1738,1790,1842,1894,1946,1998,2050,], 
 		["Attack +%",35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,625,],
 ]};
 /*[ 3] Dragon Claw		*/ var d123 = {values:[
@@ -212,7 +212,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 /*[12]*/
 /*[13] Weapon Block		*/ var d232 = {values:[
 		["% Faster Block Rate",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,],
-		["% Chance",15,17,19,21,23,25,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,],
+		["% Chance",8,14,19,24,27,30,32,34,36,37,39,40,41,42,42,44,44,45,45,46,46,47,47,48,48,48,49,49,50,50,50,50,51,51,51,51,51,52,52,52,52,52,52,52,53,53,53,53,53,53,53,53,53,54,54,54,54,54,54,55,], 
 ]};
 /*[14] Cloak of Shadows	*/ var d233 = {values:[
 		["Defense Bonus +%",5,6,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,30,32,33,35,36,38,39,41,42,44,45,47,48,50,51,53,54,56,57,59,60,62,63,65,66,68,69,71,72,74,75,77,78,80,81,83,84,86,87,89,90,92,93,],
@@ -325,7 +325,7 @@ var character_pd2_assassin = {class_name:"Assassin", strength:20, dexterity:20, 
 var skills_pd2_assassin = [
 {data:d112, key:"112", code:251, name:"Tiger Strike", i:0, req:[], reqlvl:1, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add damage bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Charge 1 - +"," percent damage<br>Charge 2 - +"," percent damage and +20% melee splash radius<br>Charge 3 - +"," percent damage and +40% melee splash radius<br>Attack: +"," percent<br>Mana Cost: 1"]},
 {data:d113, key:"113", code:251, name:"Dragon Talon", i:1, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Finishing Move<br><br>Kick your enemies out of your way<br>Adds charged-up bonuses to the kick", syn_title:"<br>Dragon Talon Receives Bonuses From:<br>", syn_text:"Dragon Tail: +10% Damage per Level<br>Dragon Flight: +10% Damage per Level", graytext:"", index:[0,""], text:[""," Kicks<br>Kick Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 6"]},
-{data:d121, key:"121", code:251, name:"Fists of Fire", i:2, req:[], reqlvl:6, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add fire bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Fists of Fire Receives Bonuses From:<br>", syn_text:"Tiger Strike: +26% Damage per Level<br>Phoenix Strike: +26% Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - fire damage: ","-","<br>Charge 2 - fire nova damage: ","-","<br>Charge 3 - meteor damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 2"], incomplete:"Values are incorrect"},
+{data:d121, key:"121", code:251, name:"Fists of Fire", i:2, req:[], reqlvl:6, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add fire bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Fists of Fire Receives Bonuses From:<br>", syn_text:"Tiger Strike: +26% Damage per Level<br>Phoenix Strike: +26% Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - fire damage: ","-","<br>Charge 2 - fire nova damage: ","-","<br>Charge 3 - meteor damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 2"]},
 {data:d123, key:"123", code:251, name:"Dragon Claw", i:3, req:[1], reqlvl:6, reqWeapon:["claw"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Finishing Move<br><br>Slice and dice your enemies<br>with your dual claw-class weapons<br>Adds charged-up bonuses to both claw attacks", syn_title:"<br>Dragon Claw Receives Bonuses From:<br>", syn_text:"Claw and Dagger Mastery: +14% Damage per Level<br>Weapon Block: +14% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 2"]},
 {data:d132, key:"132", code:251, name:"Cobra Strike", i:4, req:[0], reqlvl:12, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add poison bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Cobra Strike Receives Bonuses From:<br>", syn_text:"Venom: +20% Poison Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - poison bolt damage: ","-"," over 1 second<br>Charge 2 - +"," percent life and mana stealing<br>Charge 3 - poison cloud damage: ","-"," over 1 second<br>Attack: +"," percent<br>Mana Cost: 2"]},
 {data:d141, key:"141", code:251, name:"Claws of Thunder", i:5, req:[2], reqlvl:18, reqWeapon:["claw","dagger"], level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:1,spell:0}, description:"Charge-up Skill<br><br>Consecutive hits add lightning bonuses based on the amount<br>of charges you have available and deplete after the third attack<br>Can only be used with claw and dagger class weapons", syn_title:"<br>Claws of Thunder Receives Bonuses From:<br>", syn_text:"Phoenix Strike: +16% Lightning Damage per Level", graytext:"", index:[0,""], text:["Charge 1 - lightning damage: ","-","<br>Charge 2 - nova damage: ","-","<br>Charge 3 - charged bolt damage: ","-","<br>Attack: +"," percent<br>Mana Cost: 4"]},
@@ -337,7 +337,7 @@ var skills_pd2_assassin = [
 {data:d213, key:"213", code:261, name:"Psychic Hammer", i:10, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, damaging:{attack:0,spell:1}, description:"Use the power of your mind to create a psychic blast<br>to crush and knock back your enemies<br><br>Deals 20% less damage per bounce", syn_title:"<br>Psychic Hammer Receives Bonuses From:<br>", syn_text:"Mind Blast: +15% Damage per Level<br>Cloak of Shadows: +15% Damage per Level<br>Shadow Warrior: +15% Damage per Level", graytext:"", index:[0,""], text:["Nearby Enemies: ","<br>Magic Damage: ","-","<br>Mana Cost: ",""]},
 {data:d221, key:"221", code:262, name:"Burst of Speed", i:11, req:[9], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Increases attack and movement speed<br>for a period of time", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Increases Attack Speed with Base Levels<br>Attack Speed: +","Walk/Run Speed: +"," percent<br>Duration: "," seconds<br>Mana Cost: 10",""]},
 /*TODO: remove*/{data:d232, key:"232", code:263, name:"None", i:12, req:[], reqlvl:100, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:[""]},
-{data:d232, key:"232", code:264, name:"Weapon Block", i:13, req:[9], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Chance to block when<br>you are using dual claw-class weapons", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants bonus 1% faster block rate per base level<br>Faster Block Rate: +",""," percent chance",""], incomplete:"Block/Parry values are incorrect"},
+{data:d232, key:"232", code:264, name:"Weapon Block", i:13, req:[9], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:0, description:"Passive - Chance to block when<br>you are using dual claw-class weapons", syn_title:"", syn_text:"", graytext:"", index:[1," percent"], text:["Grants bonus 1% faster block rate per base level<br>Faster Block Rate: +",""," percent chance",""]},
 {data:d233, key:"233", code:265, name:"Cloak of Shadows", i:14, req:[10], reqlvl:12, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Cast a shadow to blind nearby enemies<br>lowering their defenses for a period of time<br><br>Range: 20 yards<br>Mana Cost: 13", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Duration: 5 seconds<br>Defense Bonus: +"," percent<br>Enemy Defense: "," percent",""]},
 {data:d241, key:"241", code:266, name:"Fade", i:15, req:[11,9], reqlvl:18, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Raise all resistances and resist curses<br>for a period of time", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Reduces curse duration by "," percent<br>Physical Damage Reduction: "," percent<br>Resist All: "," percent<br>Duration: "," seconds<br>Mana Cost: 10"]},
 {data:d242, key:"242", code:267, name:"Shadow Warrior", i:16, req:[13,14,9,10], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:1, description:"Summon a shadow of yourself that mimics<br>your skills and fights by your side", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Cooldown: 2 seconds<br>Life: ","<br>Attack: +","<br>Defense Bonus: +"," percent<br>Mana Cost: ",""]},
@@ -394,9 +394,9 @@ var skills_pd2_assassin = [
 	Now gains 1% faster block rate per soft point instead of base point
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
 	...
-Base parry chance reduced from 14% to 8%
-Scaling reverted back to diminshing returns scaling
-Parry chance cap set to 55%
+	Base parry chance reduced from 14% to 8%
+	Scaling reverted back to diminshing returns scaling
+	Parry chance cap set to 55%
 	...
 	Now can be increased by increased block chance at a 1:5 ratio (weapon block : increased block chance)
 
@@ -436,17 +436,17 @@ Parry chance cap set to 55%
 	Mindblast
 	Reverted back to 100% physical damage
 
-Fists of Fire 
-First charge and third charge meteor fire burn damage per second
-- Level 16-22 scaling increased from 3-4 to 4-6
-- Level 22-28 scaling increased from 4-5 to 7-9
-- Level 28+ scaling increased from 5-6 to 10-12
-Second charge fire nova damage
-- Level 22-28 scaling increased from 27-33 to 28-33
-- Level 28+ scaling increased from 33-40 to 41-48
-Third charge meteor impact damage
-- Level 22-28 scaling increased from 16-17 to 17-18
-- Level 28+ scaling increased from 22-23 to 25-26
+	Fists of Fire 
+	First charge and third charge meteor fire burn damage per second
+	- Level 16-22 scaling increased from 3-4 to 4-6
+	- Level 22-28 scaling increased from 4-5 to 7-9
+	- Level 28+ scaling increased from 5-6 to 10-12
+	Second charge fire nova damage
+	- Level 22-28 scaling increased from 27-33 to 28-33
+	- Level 28+ scaling increased from 33-40 to 41-48
+	Third charge meteor impact damage
+	- Level 22-28 scaling increased from 16-17 to 17-18
+	- Level 28+ scaling increased from 22-23 to 25-26
 
 	Blades of Ice
 	Base freeze duration change from 100 frames to 250

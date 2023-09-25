@@ -42,7 +42,7 @@ var character_pd2_paladin = {class_name:"Paladin", strength:25, dexterity:20, vi
 		if (skill.name == "Sacrifice" && elem == 2) {			result += (25*skills[8].level + 25*skills[18].level) }
 		if (skill.name == "Zeal" && elem == 1) {				result += (15*skills[20].level) }
 		if (skill.name == "Vengeance" && elem == 2) {			result += (2*skills[11].level + 2*skills[15].level + 2*skills[16].level + 2*skills[19].level) }
-		if (skill.name == "Charge" && elem == 0) {				result += (25*skills[6].level + 25*skills[10].level) }
+		if (skill.name == "Charge" && elem == 0) {				result += (20*skills[6].level + 20*skills[10].level) }
 		if (skill.name == "Holy Shield" && elem < 2) {			result *= (1 + 0.04*skills[21].level + 0.04*skills[2].level) }
 		if (skill.name == "Holy Shield" && elem == 3) {			result += (15*skills[2].level) }
 		if (skill.name == "Blessed Hammer" && elem < 2) {		result *= ((1 + 0.12*skills[13].level + 0.12*skills[6].level) * (1+character.mDamage/100)) }
@@ -282,7 +282,7 @@ function disableAuras(skill) {
 		["Damage +%",40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,500,520,540,560,580,600,620,640,660,680,700,720,740,760,780,800,820,840,860,880,900,920,940,960,980,1000,1020,1040,1060,1080,1100,1120,1140,1160,1180,1200,1220,],
 ]};
 /*[24] Charge			*/ var d333 = {values:[
-		["Damage +%",100,130,160,190,220,250,280,310,340,370,400,430,460,490,520,550,580,610,640,670,700,730,760,790,820,850,880,910,940,970,1000,1030,1060,1090,1120,1150,1180,1210,1240,1270,1300,1330,1360,1390,1420,1450,1480,1510,1540,1570,1600,1630,1660,1690,1720,1750,1780,1810,1840,1870,],
+		["Damage +%",100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100,1125,1150,1175,1200,1225,1250,1275,1300,1325,1350,1375,1400,1425,1450,1475,1500,1525,1550,1575,], 
 		["Attack Mod +%",75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345,360,375,390,405,420,435,450,465,480,495,510,525,540,555,570,585,600,615,630,645,660,675,690,705,720,735,750,765,780,795,810,825,840,855,870,885,900,915,930,945,960,],
 ]};
 /*[25] Vengeance		*/ var d341 = {values:[
@@ -303,7 +303,7 @@ function disableAuras(skill) {
 		["Mana Cost",5,5.2,5.5,5.7,6,6.2,6.5,6.7,7,7.2,7.5,7.7,8,8.2,8.5,8.7,9,9.2,9.5,9.7,10,10.2,10.5,10.7,11,11.2,11.5,11.7,12,12.2,12.5,12.7,13,13.2,13.5,13.7,14,14.2,14.5,14.7,15,15.2,15.5,15.7,16,16.2,16.5,16.7,17,17.2,17.5,17.7,18,18.2,18.5,18.7,19,19.2,19.5,19.7,],
 ]};
 /*[27] Holy Sword		*/ var d343 = {values:[
-		["Parry Chance %",10,12,14,16,18,20,22,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,], 
+		["Parry Chance %",8,14,19,24,27,30,32,34,36,37,39,40,41,42,42,44,44,45,45,46,46,47,47,48,48,48,49,49,50,50,50,50,51,51,51,51,51,52,52,52,52,52,52,52,53,53,53,53,53,53,53,53,53,54,54,54,54,54,54,55,], 
 		["Damage to Demons/Undead +%",25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215,225,235,245,255,265,275,285,295,305,315,325,335,345,355,365,375,385,395,405,415,425,435,445,455,465,475,485,495,505,515,525,535,545,555,565,575,585,595,605,615,], 
 		["Duration (seconds)",300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515,520,525,530,535,540,545,550,555,560,565,570,575,580,585,590,595,],
 ]};
@@ -368,10 +368,10 @@ var skills_pd2_paladin = [
 {data:d313, key:"313", code:118, name:"Smite", i:21, req:[], reqlvl:1, reqWeapon:[""], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Temporarily stun your enemy<br>by bashing it with your shield", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Stun Length: "," seconds<br>Mana Cost: 2"]},
 {data:d312, key:"312", code:119, name:"Holy Bolt", i:22, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:2, description:"A bolt of divine energy<br>that damages enemies or heals allies<br>Fires an additional holy bolt at levels 15 and 25", syn_title:"<br>Holy Bolt Receives Bonuses From:<br>", syn_text:"Holy Light: +9% Magic Damage per Level<br>Fist of the Heavens: +9% Magic Damage per Level<br>Holy Nova: +9% Magic Damage per Level<br>Prayer: +5% Life Healed per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Heals: ","-","<br>Mana Cost: ",""]},
 {data:d321, key:"321", code:120, name:"Zeal", i:23, req:[20], reqlvl:6, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Allows you to attack multiple adjacent enemies<br>with a single attack<br><br>Attack 2: +20% melee splash radius<br>Attack 3: +40% melee splash radius", syn_title:"<br>Zeal Receives Bonuses From:<br>", syn_text:"Sacrifice: +15% Damage per Level", graytext:"", index:[0,""], text:["Attack Bonus: +"," percent<br>Damage: +"," percent<br>3 hits<br>Mana Cost: 2"]},
-{data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy<br><br>Gains up to 60% increased melee splash radius<br>based on the distance traveled", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +25% Damage per Level<br>Might: +25% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""], incomplete:"Not completely updated"},
+{data:d333, key:"333", code:121, name:"Charge", i:24, req:[21], reqlvl:12, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Charge into battle and attack an enemy<br><br>Gains up to 60% increased melee splash radius<br>based on the distance traveled", syn_title:"<br>Charge Receives Bonuses From:<br>", syn_text:"Vigor: +20% Damage per Level<br>Might: +20% Damage per Level", graytext:"", index:[0,""], text:["Damage: +"," percent<br>Attack: +"," percent<br>Mana Cost: 9",""]},
 {data:d341, key:"341", code:122, name:"Vengeance", i:25, req:[23,20], reqlvl:18, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Deals fire, lightning, and cold damage in an area<br>This effect also carries and increases elemental<br>damage from items", syn_title:"<br>Vengeance Receives Bonuses From:<br>", syn_text:"Holy Fire: +2% Elemental Damage per Level<br>Holy Freeze: +2% Elemental Damage per Level<br>Holy Shock: +2% Elemental Damage per Level<br>Conviction: +2% Elemental Damage per Level", graytext:"", index:[0,""], text:["Chance to Chain "," percent<br>Attack: +"," percent<br>Elemental Damage: +"," percent<br>Added Fire Damage: ","-","<br>Added Cold Damage: ","-","<br>Added Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d342, key:"342", code:123, name:"Blessed Hammer", i:26, req:[31,22], reqlvl:18, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Summons an ethereal hammer that<br>spirals outwards damaging enemies it hits", syn_title:"<br>Blessed Hammer Receives Bonuses From:<br>", syn_text:"Blessed Aim: +12% Magic Damage per Level<br>Vigor: +12% Magic Damage per Level", graytext:"", index:[0,""], text:["Magic Damage: ","-","<br>Mana Cost: ",""]},
-{data:d343, key:"343", code:124, name:"Holy Sword", i:27, req:[24,21], reqlvl:18, reqWeapon:["sword"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Imbues a two-handed sword with holy energy<br>allowing the user to parry attacks and spells<br>and deal extra damage to demons and undead", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Parry Chance: +"," percent<br>Damage to Demons/Undead: "," percent<br>Duration: "," seconds<br>Mana Cost: 35"], incomplete:"Parry values are incorrect"},
+{data:d343, key:"343", code:124, name:"Holy Sword", i:27, req:[24,21], reqlvl:18, reqWeapon:["sword"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Imbues a two-handed sword with holy energy<br>allowing the user to parry attacks and spells<br>and deal extra damage to demons and undead", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Parry Chance: +"," percent<br>Damage to Demons/Undead: "," percent<br>Duration: "," seconds<br>Mana Cost: 35"]},
 {data:d353, key:"353", code:125, name:"Holy Shield", i:28, req:[27,24,21], reqlvl:24, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Enhances your shield with divine power", syn_title:"<br>Holy Shield Receives Bonuses From:<br>", syn_text:"Smite: +4% Damage per Level<br>Defiance: +4% Damage per Level<br>Defiance: +15% Defense per Level", graytext:"", index:[0,""], text:["Smite Damage: +","-","<br>Duration: "," seconds<br>Defense Bonus: +"," percent<br>Successful Blocking: +"," percent<br>Mana Cost: 35",""]},
 {data:d352, key:"352", code:126, name:"Fist of the Heavens", i:29, req:[26,31,22], reqlvl:24, level:0, extra_levels:0, force_levels:0, bindable:2, description:"Lightning Strikes your target as holy bolts<br>seek out nearby enemies", syn_title:"<br>Fist of the Heavens Receives Bonuses From:<br>", syn_text:"Holy Bolt: +11% Damage per Level<br>Holy Light: +11% Damage per Level<br>Holy Nova: +11% Damage per Level", graytext:"", index:[0,""], text:["Holy Bolt Magic Damage: ","-","<br>Lightning Damage: ","-","<br>Mana Cost: ",""]},
 {data:d351, key:"351", code:127, name:"Joust", i:30, req:[25,23,20], reqlvl:24, reqWeapon:["axe","mace","club","hammer","sword","dagger","thrown","javelin","scepter","wand","staff","spear","polearm"], level:0, extra_levels:0, force_levels:0, bindable:2, description:"Teleport to your enemies and impale them with a deadly<br>strike gaining increased movement speed for 2 seconds", syn_title:"", syn_text:"", graytext:"", index:[1," seconds"], text:["Cooldown reduced by 0.1 per Base Point<br>Cooldown: ","Walk/Run Speed: +"," percent<br>Damage: +"," percent<br>Attack Bonus: +"," percent<br>Critical Strike: +"," percent chance<br>Mana Cost: ",""]},
@@ -427,9 +427,9 @@ var skills_pd2_paladin = [
 	Parry cap increased from 45% to 50%
 	Scaling changed from +1% per level to +2% per level (levels 1-8) and +1% per level (levels 8+)
 	...
-Scaling reworked to diminshing returns scaling
-Base parry chance changed to 8%
-Parry chance cap set to 55%
+	Scaling reworked to diminshing returns scaling
+	Base parry chance changed to 8%
+	Parry chance cap set to 55%
 
 	Sacrifice
 	Synergies increased from 20% to 25%
@@ -437,5 +437,10 @@ Parry chance cap set to 55%
 
 	Joust
 	Items that reduce cooldown will now all you to reduce the cooldown below the 1.5 second minimum cooldown				...previously, the tooltip was inaccurate on Alma Negra?
+
+	Charge
+	Charge was previously not gaining it's enhanced damage bonus, this has been fixed
+	Enhanced damage per level reduced from 30% to 25%
+	Synergies reduced from 25% to 20%
 
 */

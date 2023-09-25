@@ -211,7 +211,7 @@ var character_pd2_druid = {class_name:"Druid", strength:15, dexterity:20, vitali
 		["Attack Speed +%",20,28,35,40,45,48,51,53,56,57,59,61,62,63,64,66,66,67,68,68,69,70,70,71,71,72,73,73,73,73,74,74,75,75,75,75,75,76,76,76,76,77,77,77,77,77,77,77,78,78,78,78,78,79,79,79,79,79,79,80,],
 ]};
 /*[12] Lycanthropy		*/ var d212 = {values:[
-		["Max Life +%",2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,],
+		["Max Life +%",5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,],
 		["Attack Rating %",50,62,74,86,98,110,122,134,146,158,170,182,194,206,218,230,242,254,266,278,290,302,314,326,338,350,362,374,386,398,410,422,434,446,458,470,482,494,506,518,530,542,554,566,578,590,602,614,626,638,650,662,674,686,698,710,722,734,746,758,],
 ]};
 /*[13] Werebear			*/ var d213 = {values:[
@@ -383,7 +383,7 @@ var skills_pd2_druid = [
 {data:d162, key:"162", code:230, name:"Hurricane", i:10, req:[8,6,5,3], reqlvl:30, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"Create a massive storm of wind and<br>debris to pound your enemies to bits", syn_title:"<br>Hurricane Receives Bonuses From:<br>", syn_text:"Arctic Blast: +12% Damage per Level<br>Tornado: +12% Damage per Level", graytext:"", index:[1," seconds<br>Radius: 6 yards<br>Mana Cost: 30"], text:["Duration: ","Cold Damage: ","-",""]},
 
 {data:d211, key:"211", code:231, name:"Werewolf", i:11, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transform into a werewolf<br><br>Cooldown: 0.5 seconds<br>Mana Cost: 15", syn_title:"<br>Werewolf Receives Bonuses From:<br>", syn_text:"Lycanthropy", graytext:"", index:[0,""], text:["Magic Damage Reduction: +","<br>Physical Damage Reduction: +","<br>Damage: +"," percent<br>Attack Speed: +"," percent",""]},
-{data:d212, key:"212", code:232, name:"Lycanthropy", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Improves life and attack rating<br>when in werewolf or werebear form", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Max Life: +"," percent<br>To Attack Rating: +"," percent"], incomplete:"Not completely updated"},
+{data:d212, key:"212", code:232, name:"Lycanthropy", i:12, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, bindable:0, description:"Passive - Improves life and attack rating<br>when in werewolf or werebear form", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Max Life: +"," percent<br>To Attack Rating: +"," percent"]},
 {data:d213, key:"213", code:233, name:"Werebear", i:13, req:[], reqlvl:1, level:0, extra_levels:0, force_levels:0, effect:0, bindable:1, description:"Transform into a werebear<br><br>Cooldown: 0.5 seconds<br>Mana Cost: 15<br>Life: +10 percent", syn_title:"<br>Werebear Receives Bonuses From:<br>", syn_text:"Lycanthropy", graytext:"", index:[0,""], text:["Increased Melee Splash Radius: +20 percent<br>Damage: +"," percent<br>Defense: +"," percent<br>Chance to be Uninterruptable when Struck: "," percent"]},
 {data:d221, key:"221", code:234, name:"Feral Rage", i:14, req:[11], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werewolf form,<br>go into a frenzied rage to steal<br>increasing amounts of life from your enemies<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 30 seconds", syn_title:"<br>Feral Rage Receives Bonuses From:<br>", syn_text:"Fury: +6% Damage per Level", graytext:"", index:[0,""], text:["Walk/Run Speed: +","-"," percent<br>Life Steal: +","-"," percent<br>Damage: +"," percent<br>Attack: +"," percent"]},
 {data:d223, key:"223", code:235, name:"Maul", i:15, req:[13], reqlvl:6, level:0, extra_levels:0, force_levels:0, effect:0, bindable:2, description:"When in werebear form,<br>maul your enemies<br>for increasing extra damage<br>with successive hits<br><br>Mana Cost: 3<br>Duration: 20 seconds", syn_title:"", syn_text:"", graytext:"", index:[0,""], text:["Stun Length: "," seconds<br>Damage: +","-"," percent<br>Attack: +"," percent"]},
@@ -430,6 +430,9 @@ var skills_pd2_druid = [
 
 	Lycanthropy 
 	Base max life per level bonus reduced from 10% to 2%
+	...
+	Base max life per level bonus reduced from 10% to 5%
+	Level 22+ max life bonus per level reduced from 2% to 1%
 
 	Ravens
 	Level 16-22 scaling reduced from 17-18 to 14-15
