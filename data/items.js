@@ -1069,10 +1069,14 @@ var equipment = {
 {debug:1, name:"+5% lightning", req_level:100, lDamage:5},
 {debug:1, name:"+10% lightning", req_level:100, lDamage:10},
 {debug:1, name:"+20% lightning", req_level:100, lDamage:20},
-{debug:1, name:"+1% poison", req_level:100, mDamage:1},
-{debug:1, name:"+5% poison", req_level:100, mDamage:5},
-{debug:1, name:"+10% poison", req_level:100, mDamage:10},
-{debug:1, name:"+20% poison", req_level:100, mDamage:20},
+{debug:1, name:"+1% poison", req_level:100, pDamage:1},
+{debug:1, name:"+5% poison", req_level:100, pDamage:5},
+{debug:1, name:"+10% poison", req_level:100, pDamage:10},
+{debug:1, name:"+20% poison", req_level:100, pDamage:20},
+{debug:1, name:"+1% magic", req_level:100, mDamage:1},
+{debug:1, name:"+5% magic", req_level:100, mDamage:5},
+{debug:1, name:"+10% magic", req_level:100, mDamage:10},
+{debug:1, name:"+20% magic", req_level:100, mDamage:20},
 	],
 };
 
